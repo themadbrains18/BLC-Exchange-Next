@@ -5,6 +5,7 @@ import { Inter } from '@next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
   return (
     <>
       <Head>
@@ -13,8 +14,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main >
-        <h1 className='text-lg text-red-300'>This is xm tetxt</h1>
+      <main>
+        <a className='cta' >This is xm tetxt</a>
+
+        
+        <a href="" className='info-14-20 '>hgj</a>
       </main>
     </>
   )
