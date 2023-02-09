@@ -8,6 +8,7 @@ const Footer = () => {
         <div className="container">
             <div className="flex flex-wrap gap-3">
                 <div className="max-w-full lg:max-w-[72%] w-full grid gap-0 sm:gap-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 ">
+                   
                     <div>
                         <h4 className='info-14-20 mb-6'>Company</h4>
                         <ul className="h-0 overflow-hidden sm:h-auto">
@@ -138,10 +139,11 @@ const Footer = () => {
                            
                         </ul>
                     </div>
+
                 </div>
                 <div className=" max-w-full lg:max-w-[22%] w-full">
                     <div>
-                        {/* <Image src="" alt='error' width="132" height="53" /> */}
+                        <Image src="/assets/icons/companyLogo.svg" alt='error' width="132" height="53" />
                     </div>
                     <div className='my-5'>
                         <div className="mb-4">

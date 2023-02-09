@@ -1,0 +1,157 @@
+[
+    {
+        "mainHeading":"Company",
+        "content":[
+            {
+                "linkText":"About Us",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Protection Fund",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Proof of Reserves",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Twitter",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Bitget Token",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Careers",
+                "linkUrl":"#"
+            }
+        ]
+    },
+    {
+        "mainHeading":"Products",
+        "content":[
+            {
+                "linkText":"Buy Crypto",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Futures",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Spot",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Copy Trading",
+                "linkUrl":"#"
+            }
+        ]
+    },
+    {
+        "mainHeading":"Service",
+        "content":[
+            {
+                "linkText":"Bitget Academy",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Bitget Launchpad",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Promotions",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Referral Program",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Affiliate program",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"VIP Services",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Institutional Services",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"API Trading",
+                "linkUrl":"#"
+            }
+        ]
+    },
+    {
+        "mainHeading":"Legal & Disclosures",
+        "content":[
+            {
+                "linkText":"Regulatory License",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"AML/KYC Policies",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Privacy Policy",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Terms of Use",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Legal Statement",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Risk Disclosure",
+                "linkUrl":"#"
+            }
+        ]
+    },
+    {
+        "mainHeading":"Support",
+        "content":[
+            {
+                "linkText":"Feedback",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Fee Schedule",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Official Verification Channel",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Announcements",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Buy Bitcoin",
+                "linkUrl":"#"
+            }
+           
+        ]
+    },
+    {
+        "mainHeading":"Copy Trading",
+        "content":[
+            {
+                "linkText":"Copy Trading",
+                "linkUrl":"#"
+            },
+            {
+                "linkText":"Strategy Trading",
+                "linkUrl":"#"
+            }
+        ]
+    }
+]

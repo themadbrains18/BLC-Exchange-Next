@@ -15,10 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-       <div className="container "> <a className='cta' >This is xm tetxt</a>
-
-        
-        <a href="" className='info-14-20 '>hgj</a></div>
+        <a href="" className='info-14-20 '>hgj</a>
       </main>
     </>
   )
