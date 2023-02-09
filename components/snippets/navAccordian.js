@@ -8,10 +8,11 @@ const NavAccordian = (props) => {
 
     // set acordian to height
     const  setHeight = ()=>{
-        if(window.innerWidth < 640){
+       
+        // if(window.innerWidth < 640){
 
             let height = ref.current.scrollHeight;
-            console.log(height);
+            // console.log(height);
             if(ref.current.getAttribute("style")){
                 ref.current.removeAttribute("style");
                 
@@ -19,7 +20,7 @@ const NavAccordian = (props) => {
             ref.current.setAttribute("style",`height:${height}px`)
 
             }
-        }
+        // }
     }
 
     
