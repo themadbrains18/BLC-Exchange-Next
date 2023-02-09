@@ -3,29 +3,25 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Header = (props) => {
-
   const [show, setShow] = useState(true);
   const [Data, setData] = useState([]);
 
-
-  useEffect ( () => {
-    ;(async() =>{
-
-        let nav = await fetch('http://localhost:3000/api/hello')
-        .then(res => res.json())
+  useEffect(() => {
+    (async () => {
+      let nav = await fetch("http://localhost:3000/api/hello")
+        .then((res) => res.json())
         .then((data) => {
-            setData(data)
-            /* process your data further */
+          console.log(Data);
+
+          setData(data.nav);
+
+          /* process your data further */
         })
         .catch((error) => console.error(error));
-
-    })().catch(err => {
-        console.log(err)
-    })
-       
-
-  },[])
-
+    })().catch((err) => {
+      console.log(err);
+    });
+  }, []);
 
   return (
     <>
@@ -38,17 +34,22 @@ const Header = (props) => {
               height={24}
               alt="Company Logo"
             />
-            {
-                Data.length > 0 && Data.map((e,i)=>{
-                    return(<div className="flex items-center" key={i}>
+            {Data.length > 0 &&
+              Data.map((e, i) => {
+                return (
+                  <div className="flex items-center" key={i}>
                     <Link href="" className="info-14-16">
                       {e.name}
                     </Link>
-                    <Image src="/assets/icons/down.svg" height={20} width={14} alt="" />
-                  </div>)
-                }) 
-            } 
-            
+                    <Image
+                      src="/assets/icons/down.svg"
+                      height={20}
+                      width={14}
+                      alt=""
+                    />
+                  </div>
+                );
+              })}
           </div>
 
           <div className="flex gap-5 items-center">
