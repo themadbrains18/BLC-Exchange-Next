@@ -11,7 +11,7 @@ const Header = (props) => {
       let nav = await fetch("http://localhost:3000/api/hello")
         .then((res) => res.json())
         .then((data) => {
-          console.log(Data);
+          // console.log(Data);
 
           setData(data.nav);
 
