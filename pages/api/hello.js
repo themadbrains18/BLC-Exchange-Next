@@ -1,5 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import path from "path"
+import fs from 'fs'
 
 export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
+  const data = fs.readFileSync(process.cwd()+'/staticData/header-footer/nav.json',"utf8");
+  res.status(200).json(JSON.parse(data))
 }

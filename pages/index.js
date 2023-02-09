@@ -20,4 +20,21 @@ export default function Home() {
     </>
   )
 }
+
+
+
+// export async function getServerSideProps(context) {
+//   let nav = await fetch('http://localhost:3000/api/hello')
+//   .then(res => res.json())
+//   .then((data) => {
+//     console.log(data)
+//     /* process your data further */
+// })
+// .catch((error) => console.error(error));
+//   return {
+//     props: {
+//       menus : ''
+//     }, // will be passed to the page component as props
+//   }
+// }
   
