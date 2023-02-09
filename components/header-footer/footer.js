@@ -20,7 +20,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className=' py-14 '>
+    <footer className='dark:bg-black-v-3 py-14 '>
         <div className="container">
             <div className="flex flex-wrap gap-3 justify-between">
                 <div className="max-w-full lg:max-w-[72%] w-full grid gap-0 sm:gap-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 ">

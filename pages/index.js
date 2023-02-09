@@ -17,7 +17,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <a href="" className='info-14-20 '>hgj</a>
+        <h2>This is index page</h2>
       </main>
     </>
   )
