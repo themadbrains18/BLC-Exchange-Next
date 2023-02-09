@@ -3,6 +3,6 @@ import path from "path"
 import fs from 'fs'
 
 export default function handler(req, res) {
-  const data = fs.readFileSync(process.cwd()+'/staticData/nav.json',"utf8");
+  const data = fs.readFileSync(process.cwd()+'/staticData/header-footer/nav.json',"utf8");
   res.status(200).json(JSON.parse(data))
 }
