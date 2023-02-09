@@ -25,7 +25,7 @@ const Header = ({ mode, setMode }) => {
 
   return (
     <>
-      <header className="relative border-b border-primary">
+      <header className="relative overflow-hidden border-b border-primary">
         <nav className=" flex justify-between p-5 dark:bg-black-v-4">
           <div className="flex items-center gap-5">
             <Image
