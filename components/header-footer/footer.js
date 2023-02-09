@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <footer className='bg-black-v-4 py-14 dark'>
         <div className="container">
-            <div class="flex ...">
-                <div class="max-w-[75%] w-full grid gap-12 grid-cols-4">
+            <div className="flex ...">
+                <div className="max-w-[75%] w-full grid gap-12 grid-cols-4">
                     <div>
                         <h4 className='info-14-20 mb-6'>Company</h4>
                         <ul>
@@ -138,7 +138,7 @@ const Footer = () => {
                   
 
                 </div>
-                <div class="max-w-[25%] w-full">
+                <div className="max-w-[25%] w-full">
 
                 </div>
             </div>

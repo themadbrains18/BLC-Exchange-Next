@@ -1,9 +1,32 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
 
-const Header = () => {
+const Header = (props) => {
+
   const [show, setShow] = useState(true);
+  const [Data, setData] = useState([]);
+
+
+  useEffect ( () => {
+    ;(async() =>{
+
+        let nav = await fetch('http://localhost:3000/api/hello')
+        .then(res => res.json())
+        .then((data) => {
+            setData(data)
+            /* process your data further */
+        })
+        .catch((error) => console.error(error));
+
+    })().catch(err => {
+        console.log(err)
+    })
+       
+
+  },[])
+
+
   return (
     <>
       <header className="relative">
@@ -15,13 +38,17 @@ const Header = () => {
               height={24}
               alt="Company Logo"
             />
-            {}
-            <div className="flex items-center ">
-              <Link href="" className="info-14-16">
-                Buy Crypto
-              </Link>
-              <Image src="/assets/icons/down.svg" height={20} width={14} />
-            </div>
+            {
+                Data.length > 0 && Data.map((e,i)=>{
+                    return(<div className="flex items-center" key={i}>
+                    <Link href="" className="info-14-16">
+                      {e.name}
+                    </Link>
+                    <Image src="/assets/icons/down.svg" height={20} width={14} alt="" />
+                  </div>)
+                }) 
+            } 
+            
           </div>
 
           <div className="flex gap-5 items-center">

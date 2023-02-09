@@ -1,0 +1,26 @@
+[
+    
+    {
+        "name": "Buy Crypto",
+        "link":"",
+        "subMenu" : [
+            
+        ]
+    },
+    {
+        "name": "Trade",
+        "link":""
+    },
+    {
+        "name": "Markets",
+        "link":""
+    },
+    {
+        "name": "Copy Trading",
+        "link":""
+    },
+    {
+        "name": "Earn",
+        "link":""
+    }
+]
