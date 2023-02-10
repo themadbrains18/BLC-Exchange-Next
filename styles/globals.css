@@ -40,6 +40,9 @@
 .info-14{
     @apply  font-normal font-noto text-grey text-[14px] leading-[26px]  hover:text-primary-hover
 }
+.info-12{
+    @apply  font-normal font-noto text-[12px] text-light-grey leading-[18px] dark:text-grey
+}
 .cta{
     @apply  px-4 font-normal capitalize inline-block rounded font-noto bg-primary text-white text-[14px] leading-[46px] md:text-[16px] hover:bg-primary-hover
 }
