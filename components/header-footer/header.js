@@ -86,6 +86,7 @@ const Header = ({ mode, setMode }) => {
                                 src="/assets/icons/rightArrow.svg"
                                 height={14}
                                 width={14}
+                                alt="error"
                               />
                             </div>
                           );
