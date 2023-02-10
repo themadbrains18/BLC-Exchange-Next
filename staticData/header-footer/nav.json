@@ -1,26 +1,44 @@
 [
-    
     {
         "name": "Buy Crypto",
-        "link":"",
-        "subMenu" : [
-            
+        "link": "",
+        "subMenu": [
+            {
+                "heading": "Quick Buy / Express",
+                "desc": "Chooses the fastest option for you",
+                "svgType":"p2p"
+            },
+            {
+                "heading": "P2P Trading (0 Fee)",
+                "desc": "Buy crypto from verified merchants",
+                "svgType":"p2p"
+            },
+            {
+                "heading": "Credit/Debit card",
+                "desc": "Buy crypto from verified merchants",
+                "svgType":"p2p"
+            },
+            {
+                "heading": "Bank Deposit",
+                "desc": "Use local currency to buy crypto",
+                "svgType":"p2p"
+            }
         ]
     },
     {
         "name": "Trade",
-        "link":""
+        "link": ""
     },
     {
         "name": "Markets",
-        "link":""
+        "link": ""
     },
     {
         "name": "Copy Trading",
-        "link":""
+        "link": ""
     },
     {
         "name": "Earn",
-        "link":""
+        "link": ""
     }
 ]

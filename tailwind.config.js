@@ -16,8 +16,10 @@ module.exports = {
         "black-v-3": "rgba(30,30,30,0.9)",
         "black-v-4": "#212121",
         "grey": "#656e6f",
+        "light-grey":"#9aa3a3",
         "purple": "#7465ff",
         "hover-black": "#191919",
+        "light-hover": "#f8f9fb"
       },
       fontFamily: {
         'noto': ['Noto Sans', 'sans-serif'],

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Icons from "../snippets/icons";
 
 const Header = ({ mode, setMode }) => {
   const [show, setShow] = useState(true);
@@ -27,7 +28,7 @@ const Header = ({ mode, setMode }) => {
     <>
       <header className="relative overflow-hidden border-b border-primary">
         <nav className=" flex justify-between p-5 dark:bg-black-v-4">
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-4">
             <Image
               src="/assets/icons/companyLogo.svg"
               width={92}
@@ -67,16 +68,41 @@ const Header = ({ mode, setMode }) => {
                     >
                       {e.name}
                     </button>
+                    <div></div>
+                    {e.subMenu && (
+                      <div className="p-8 absolute bottom-0 bg-white rounded-xl opacity-0 group-hover:opacity-100">
+                        {e.subMenu.map((subMenu, index) => {
+                          console.log(subMenu);
+                          return (
+                            <div className="items-center rounded flex gap-6 py-4  hover:bg-light-hover">
+                              <Icons type={subMenu.svgType} />
+                              <div>
+                                <h3 className=".info-14-16">
+                                  {subMenu.heading}
+                                </h3>
+                                <p className="info-12 mt-1">{subMenu.desc}</p>
+                              </div>
+                              <Image
+                                src="/assets/icons/rightArrow.svg"
+                                height={14}
+                                width={14}
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
 
                     <svg
                       className="duration-300 group-hover:rotate-90"
-                      width="24"
-                      height="24"
+                      width="20"
+                      height="20"
                       viewBox="0 0 24 24"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path className="group-hover:fill-primary"
+                      <path
+                        className="group-hover:fill-primary"
                         d="M11.2341 16.5873L14.6179 12.9779C15.1274 12.4344 15.1274 11.5564 14.6179 11.0129L11.2341 7.40354C10.411 6.53952 9 7.1527 9 8.39299V15.5979C9 16.8521 10.411 17.4653 11.2341 16.5873Z"
                         fill="#B5B5C3"
                       />
