@@ -4,24 +4,28 @@
         "link": "",
         "subMenu": [
             {
-                "heading": "Quick Buy / Express",
+                "linkText": "Quick Buy / Express",
                 "desc": "Chooses the fastest option for you",
-                "svgType": "quick"
+                "svgType": "quick",
+                "linkUrl": "earn"
             },
             {
-                "heading": "P2P Trading (0 Fee)",
+                "linkText": "P2P Trading (0 Fee)",
                 "desc": "Buy crypto from verified merchants",
-                "svgType": "p2p"
+                "svgType": "p2p",
+                "linkUrl": "earn"
             },
             {
-                "heading": "Credit/Debit card",
+                "linkText": "Credit/Debit card",
                 "desc": "Buy crypto from verified merchants",
-                "svgType": "card"
+                "svgType": "card",
+                "linkUrl": "earn"
             },
             {
-                "heading": "Bank Deposit",
+                "linkText": "Bank Deposit",
                 "desc": "Use local currency to buy crypto",
-                "svgType": "bank"
+                "svgType": "bank",
+                "linkUrl": "earn"
             }
         ]
     },
@@ -34,24 +38,28 @@
         "link": "",
         "subMenu": [
             {
-                "heading": "Markets",
+                "linkText": "Markets",
                 "desc": "Crypto Market Information",
-                "svgType": "market"
+                "svgType": "market",
+                "linkUrl": "earn"
             },
             {
-                "heading": "Rankings",
+                "linkText": "Rankings",
                 "desc": "Crypto Rankings",
-                "svgType": "ranking"
+                "svgType": "ranking",
+                "linkUrl": "earn"
             },
             {
-                "heading": "Market Data",
+                "linkText": "Market Data",
                 "desc": "Bitget and Big Data",
-                "svgType": "market_data"
+                "svgType": "market_data",
+                "linkUrl": "earn"
             },
             {
-                "heading": "Insights",
+                "linkText": "Insights",
                 "desc": "Market trends from experts",
-                "svgType": "insights"
+                "svgType": "insights",
+                "linkUrl": "earn"
             }
         ]
     },
@@ -60,30 +68,35 @@
         "link": "",
         "subMenu": [
             {
-                "heading": "Future Copy Trading",
+                "linkText": "Future Copy Trading",
                 "desc": "Copy trades from top traders",
-                "svgType": "future_copy"
+                "svgType": "future_copy",
+                "linkUrl": "earn"
             },
             {
-                "heading": "Spot Copy Trading",
+                "linkText": "Spot Copy Trading",
                 "desc": "Follow spot trading experts",
-                "svgType": "spot_copy"
+                "svgType": "spot_copy",
+                "linkUrl": "earn"
             },
             {
-                "heading": "Strategy Copy Trading",
+                "linkText": "Strategy Copy Trading",
                 "desc": "All startegies snd startegists.",
-                "svgType": "strategy_copy"
+                "svgType": "strategy_copy",
+                "linkUrl": "earn"
             },
             {
-                "heading": "Create a strategy",
+                "linkText": "Create a strategy",
                 "desc": "Create your own startegy now",
-                "svgType": "strategy"
+                "svgType": "strategy",
+                "linkUrl": "earn"
             }
             ,
             {
-                "heading": "LeaderBoard",
+                "linkText": "LeaderBoard",
                 "desc": "Top 500 traders worldwide",
-                "svgType": "leaderboard"
+                "svgType": "leaderboard",
+                "linkUrl": "earn"
             }
         ]
     },
@@ -92,44 +105,52 @@
         "link": "",
         "subMenu": [
             {
-                "heading": "Earn",
+                "linkText": "Earn",
                 "desc": "Easy earning products",
-                "svgType":"earn"
+                "svgType":"earn",
+                "linkUrl": "earn"
             },
             {
-                "heading": "Savings",
+                "linkText": "Savings",
                 "desc": "Risk free earning",
-                "svgType":"savings"
+                "svgType":"savings",
+                "linkUrl": "earn"
             },
             {
-                "heading": "Shark Fin",
+                "linkText": "Shark Fin",
                 "desc": "Principal guaranteed earning",
-                "svgType":"shark_fin"
+                "svgType":"shark_fin",
+                "linkUrl": "earn"
             },
             {
-                "heading": "Dual Investment",
+                "linkText": "Dual Investment",
                 "desc": "Considerable earnings involving two kinds of crrypto",
-                "svgType":"investment"
+                "svgType":"investment",
+                "linkUrl": "earn"
             },
             {
-                "heading": "Launch Pool",
+                "linkText": "Launch Pool",
                 "desc": "Staking made simple",
-                "svgType":"poll"
+                "svgType":"poll",
+                "linkUrl": "earn"
             },
             {
-                "heading": "BGB Earn",
+                "linkText": "BGB Earn",
                 "desc": "Deposit BGB and earn",
-                "svgType":"earn_2"
+                "svgType":"earn_2",
+                "linkUrl": "earn"
             },
             {
-                "heading": "BGB",
+                "linkText": "BGB",
                 "desc": "Check out coin",
-                "svgType":"bgb"
+                "svgType":"bgb",
+                "linkUrl": "earn"
             },
             {
-                "heading": "Launchpad",
+                "linkText": "Launchpad",
                 "desc": "Invest before the rocket",
-                "svgType":"launchpad"
+                "svgType":"launchpad",
+                "linkUrl": "earn"
             }
 
         ]

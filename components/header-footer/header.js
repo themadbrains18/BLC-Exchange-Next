@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Context from "../contexts/context"
+import Context from "../contexts/context";
 import Dropdown from "../snippets/dropdown";
-import NavAccordian from "../snippets/navAccordian";
-
+import SideMenu from "../snippets/sideMenu";
 
 const Header = () => {
-  const {mode,setMode}=useContext(Context)
+  const { mode, setMode } = useContext(Context);
+  console.log("mode header", mode)
   const [show, setShow] = useState(true);
   const [Data, setData] = useState([]);
 
@@ -16,7 +16,6 @@ const Header = () => {
       await fetch("http://localhost:3000/api/hello")
         .then((res) => res.json())
         .then((data) => {
-
           setData(data.nav);
 
           /* process your data further */
@@ -29,9 +28,14 @@ const Header = () => {
 
   return (
     <>
-    
-      <header className="fixed w-full border-b border-primary">
-        <nav className=" flex justify-between p-5 dark:bg-black-v-4">
+      <header className="fixed bg-black-v-4 w-full border-b border-primary">
+        {/* top bar */}
+        <p className="hidden text-center info-14-16 text-white p-4 lg:block">To check content specific to your region, we suggest that you choose “English(South Asia)” as your preferred country/region. 
+       <button className="cta bg-grey py-1 px-3 leading-4 text-sm ml-3" >confirm</button> 
+       
+        </p>
+        {/* main Navbar */}
+        <nav className=" flex bg-white justify-between p-5 dark:bg-black-v-4">
           <div className="flex items-center gap-4">
             <Image
               src="/assets/icons/companyLogo.svg"
@@ -61,24 +65,23 @@ const Header = () => {
 
             {Data.length > 0 &&
               Data.map((e, i) => {
+
                 return (
                   <div
                     className="hidden  lg:flex lg:items-center group  hover:pb-8 hover:-mb-8"
                     key={i}
                   >
-                    <button
-                      href=""
+                    {
+                       e.name &&
+                    <Link
+                      href={ e.link}
                       className="info-14-16 duration-300 group-hover:text-primary "
                     >
                       {e.name}
-                    </button>
-                   
+                    </Link>
+                    }
 
-                    {e.subMenu && (
-                     <Dropdown subMenu={e.subMenu}/>
-                    )}
-              
-
+                    {e.subMenu && <Dropdown subMenu={e.subMenu} />}
 
                     <svg
                       className="duration-300 group-hover:rotate-90"
@@ -121,7 +124,6 @@ const Header = () => {
                 strokeWidth="1.5"
                 stroke={mode === "dark" ? "white" : "currentcolor"}
                 className="w-6 h-6"
-               
               >
                 <path
                   strokeLinecap="round"
@@ -190,6 +192,7 @@ const Header = () => {
                 <button
                   onClick={() => {
                     setMode("dark");
+
                   }}
                   className="hidden md:block"
                 >
@@ -204,16 +207,18 @@ const Header = () => {
                 <button
                   className="hidden md:block"
                   onClick={() => {
+                    // debugger
                     setMode("light");
+                    console.log(mode, "====mode")
                   }}
                 >
                   {/* sun */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    fill={mode === "dark" && "white"}
+                    fill={mode === "dark" ? "white" : "currentcolor"}
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke={mode === "dark" && "white"}
+                    stroke={mode === "dark" ? "white" : "currentcolor"}
                     className="w-6 h-6"
                   >
                     <path
@@ -228,34 +233,7 @@ const Header = () => {
           </div>
 
           {/* header-Menu  */}
-<div  className={`fixed p-5 duration-300 top-0 ${
-              show === false ? "right-0" : "right-[-100%]"
-            }`}>
-
-          <button
-           
-          >
-            <svg
-              onClick={() => {
-                setShow(true);
-              }}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke={mode === "dark" ? "white" : "currentcolor"}
-              className="w-6 h-6 mr-0 ml-auto"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-          <NavAccordian heading="Buy Crypto"  />
-</div>
-
+          <SideMenu show={show} setShow={setShow} data={Data}/>
         </nav>
       </header>
     </>
