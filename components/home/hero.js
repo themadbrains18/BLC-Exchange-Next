@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import heroImg from "../../public/assets/hero-img.png";
+import heroImg from "../../public/assets/images/hero-img.png";
 import Signup from '../snippets/signup';
 const Hero = () => {
   return (

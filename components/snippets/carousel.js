@@ -49,7 +49,7 @@ const Carousel = ({ play_cta, data }) => {
                                     }
                                     {
                                         play_cta &&
-                                        <Image className='absolute right-3 bottom-3' src="/assets/tutorial-play.png" width={30} height={22} alt=""/>
+                                        <Image className='absolute right-3 bottom-3' src="/assets/images/tutorial-play.png" width={30} height={22} />
                                     }
 
                                 </div>

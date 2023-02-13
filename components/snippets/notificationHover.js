@@ -26,7 +26,7 @@ const NotificationHover = () => {
             );
         })}
         </div>
-        <NavAccordian heading="dfdh" desc={'hamid exchange is live'} date={true}/>
+        <NavAccordian heading="dfdh" desc={'hamid exchange is live'} date={true} cta={true}/>
       </div>
     </>
   );

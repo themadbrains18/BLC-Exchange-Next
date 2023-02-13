@@ -1,18 +1,18 @@
 [
     {
-        "image": "/assets/tutorial1.png",
+        "image": "/assets/images/tutorial1.png",
         "heading": "Create an account",
         "subHeading": "Register now to trade crypto anywhere, anytime."
     }, {
-        "image": "/assets/tutorial2.png",
+        "image": "/assets/images/tutorial2.png",
         "heading": "Deposit with ease",
         "subHeading": "Simply select a coin, scan the QR code or copy the deposit address."
     }, {
-        "image": "/assets/tutorial3.png",
+        "image": "/assets/images/tutorial3.png",
         "heading": "Trade with us",
         "subHeading": "Spot, Futures, and One-Click Copy Trading. We satisfy all your crypto trading needs."
     }, {
-        "image": "/assets/tutorial4.png",
+        "image": "/assets/images/tutorial4.png",
         "heading": "Become a trader",
         "subHeading":" Optimize your earnings with just one click."
     }

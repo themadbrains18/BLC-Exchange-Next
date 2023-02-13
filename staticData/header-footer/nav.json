@@ -31,7 +31,52 @@
     },
     {
         "name": "Trade",
-        "link": ""
+        "link": "",
+        "subMenu": [
+            {
+                "linkText": "Futures",
+                "desc": "Futures trading",
+                "svgType": "uicon",
+                "linkUrl": "earn"
+            },
+            {
+                "linkText": "USDT-M Futures",
+                "linkUrl": "earn"
+            },
+            {
+                "linkText": "USDC-M Futures",
+                "linkUrl": "earn"
+            },
+            {
+                "linkText": "Coin-M Futures",
+                "linkUrl": "earn"
+            },
+            {
+                "linkText": "Spot Trading",
+                "desc": "Buy and Sell Crypto",
+                "svgType": "spot_margin"
+            },
+            {
+                "linkText": "Innovation",
+                "linkUrl": "earn"
+            },
+            {
+                "linkText": "Mega Swap",
+                "linkUrl": "earn"
+            },
+            {
+                "linkText": "Spot Margin Trading",
+                "desc": "Spot trading by borrowing",
+                "svgType": "spot_trading",
+                "linkUrl": "earn"
+            },
+            {
+                "linkText": "Strategy Trading",
+                "desc": "Trade With Bots",
+                "svgType": "strategy_trading",
+                "linkUrl": "earn"
+            }
+        ]
     },
     {
         "name": "Markets",

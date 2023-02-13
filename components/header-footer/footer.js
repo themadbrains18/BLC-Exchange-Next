@@ -4,17 +4,17 @@ import Image from 'next/image';
 import NavAccordian from '../snippets/navAccordian';
 
 // import social media icons
-import facebook from '../../public/assets/facebook.png';
-import discord from '../../public/assets/discord.png';
-import intsgram from '../../public/assets/intsgram.png';
-import linkdin from '../../public/assets/linkdin.png';
-import multilang from '../../public/assets/multi-lang.png';
-import reddit from '../../public/assets/reddit.png';
-import telegram from '../../public/assets/telegram.png';
-import telfuture from '../../public/assets/tel-future.png';
-import tiktok from '../../public/assets/tiktok.png';
-import twitter from '../../public/assets/twitter.png';
-import youtube from '../../public/assets/youtube.png';
+import facebook from '../../public/assets/images/facebook.png';
+import discord from '../../public/assets/images/discord.png';
+import intsgram from '../../public/assets/images/intsgram.png';
+import linkdin from '../../public/assets/images/linkdin.png';
+import multilang from '../../public/assets/images/multi-lang.png';
+import reddit from '../../public/assets/images/reddit.png';
+import telegram from '../../public/assets/images/telegram.png';
+import telfuture from '../../public/assets/images/tel-future.png';
+import tiktok from '../../public/assets/images/tiktok.png';
+import twitter from '../../public/assets/images/twitter.png';
+import youtube from '../../public/assets/images/youtube.png';
 
 
 const Footer = () => {
