@@ -9,7 +9,7 @@ const Dropdown = ({ subMenu }) => {
   return (
     <>
       <div className="p-4 absolute top-[100.6%] invisible shadow-2xl group-hover:animate-open bg-white rounded-xl opacity-0 group-hover:opacity-100 group-hover:visible overflow-x-auto h-[358px] dark:bg-black-v-4">
-        {subMenu.map((e, index) => {
+        {subMenu && subMenu.map((e, index) => {
           return (
             <div
               key={index}

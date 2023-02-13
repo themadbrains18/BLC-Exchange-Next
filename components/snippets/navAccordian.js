@@ -10,8 +10,7 @@ const NavAccordian = (props) => {
 
     // set acordian to height
     const  setHeight = (e)=>{
-        if(window.innerWidth < 640){
-
+       
             let height = ref.current.scrollHeight;
 
             let iconImg = e.currentTarget.querySelector("img");
@@ -23,7 +22,6 @@ const NavAccordian = (props) => {
             }else{
                 ref.current.setAttribute("style",`height:${height}px`);
 
-            }
         }
     }
 
@@ -37,20 +35,31 @@ const NavAccordian = (props) => {
                 height={20}
                 width={14}
                 alt=""
-                className="block sm:hidden duration-300"
+                className="block duration-300"
               />
             </h4>
-        <ul ref={ref} className="h-0 pt-4 pl-4 sm:pl-0 sm:pb-0 overflow-hidden sm:h-auto duration-300" style={{ height: `${props.setHeight}px` }}> 
+        <ul ref={ref} className="h-0 pt-4 pl-4  overflow-hidden duration-300" style={{ height: `${props.setHeight}px` }}> 
             {props.content && props.content.map((elem,index)=>{ 
                 return(
                         
-                            elem.linkUrl && elem.linkText && 
+                    <>
+                    {
+                    elem.linkUrl && elem.linkText && 
                     <li key={index} className='mb-5 last:mb-0'>
                         <Link href={elem.linkUrl} className='info-14 '>{elem.linkText}</Link>
                         </li>
+            }
+
+                    </>
                         
-                )
-            })}
+                        )
+                    })}
+                    {props.desc &&
+                        <li className='info-12 text-black-v-2'>{props.desc}</li>
+                    }    
+                    {
+                        props.date && <li className='info-12'>Notification Date</li>
+                    }
         </ul>
     </>
   )
