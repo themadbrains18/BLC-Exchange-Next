@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Inter } from '@next/font/google';
 import Hero from '@/components/home/hero';
 import Aizone from '@/components/home/ai-zone';
+import Trustworthy from '@/components/home/trustworthy';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -20,6 +21,7 @@ export default function Home() {
       <main>
         <Hero />
         <Aizone />
+        <Trustworthy />
       </main>
     </>
   )

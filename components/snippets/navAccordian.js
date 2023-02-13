@@ -22,7 +22,6 @@ const NavAccordian = (props) => {
                 
             }else{
                 ref.current.setAttribute("style",`height:${height}px`);
-
             }
         }
     }

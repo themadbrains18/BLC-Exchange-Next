@@ -12,12 +12,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 
 
-import carousel1 from '../../public/assets/ali-zone1.jpg';
-import carousel2 from '../../public/assets/ali-zone2.png';
-import carousel3 from '../../public/assets/ali-zone3.png';
-import carousel4 from '../../public/assets/ali-zone4.png';
-import carousel5 from '../../public/assets/ali-zone5.png';
-import Sound from '../../public/assets/sound.png';
+import carousel1 from '../../public/assets/images/ali-zone1.jpg';
+import carousel2 from '../../public/assets/images/ali-zone2.png';
+import carousel3 from '../../public/assets/images/ali-zone3.png';
+import carousel4 from '../../public/assets/images/ali-zone4.png';
+import carousel5 from '../../public/assets/images/ali-zone5.png';
+import Sound from '../../public/assets/images/sound.png';
 
 let images = [carousel1,carousel2,carousel3,carousel4,carousel5];
 
