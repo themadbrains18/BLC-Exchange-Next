@@ -43,9 +43,12 @@ const NavAccordian = (props) => {
         <ul ref={ref} className="h-0 pt-4 pl-4 sm:pl-0 sm:pb-0 overflow-hidden sm:h-auto duration-300" style={{ height: `${props.setHeight}px` }}> 
             {props.content && props.content.map((elem,index)=>{ 
                 return(
+                        
+                            elem.linkUrl && elem.linkText && 
                     <li key={index} className='mb-5 last:mb-0'>
                         <Link href={elem.linkUrl} className='info-14 '>{elem.linkText}</Link>
-                    </li>
+                        </li>
+                        
                 )
             })}
         </ul>

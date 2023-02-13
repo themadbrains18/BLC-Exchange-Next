@@ -32,6 +32,15 @@
     background-clip: padding-box,border-box;
     background-origin: padding-box,border-box;
 }
+.toggle-checkbox:checked {
+  @apply: right-0 border-green-400;
+  right: 0;
+  border-color: #68D391;
+}
+.toggle-checkbox:checked + .toggle-label {
+  /* @apply: bg-green-400; */
+  background-color: #68D391;
+}
 .hero-heading{
     @apply  font-medium font-noto-display text-black text-[36px] leading-[56px] md:text-[56px]  md:leading-[76px] dark:text-white
 }
@@ -60,13 +69,14 @@
     @apply  px-4 font-normal capitalize inline-block rounded font-noto bg-primary text-white text-[14px] leading-[46px] md:text-[16px] hover:bg-primary-hover
 }
 .transparent-cta{
-    @apply  font-normal font-noto capitalize text-black text-[14px]  md:text-[16px] hover:text-primary dark:text-white
+    @apply p-[10px]  font-normal font-noto capitalize text-black text-[14px]  md:text-[16px] hover:text-primary dark:text-white
 }
 .container{ @apply mx-auto max-w-[1240px] px-5
 }
 .icon_hover{
     @apply hover:rotate-90
 }
+
 .ai_zone .swiper .swiper-button-prev,
 .ai_zone .swiper .swiper-button-next{
     position: static;
