@@ -6,22 +6,22 @@
             {
                 "heading": "Quick Buy / Express",
                 "desc": "Chooses the fastest option for you",
-                "svgType":"p2p"
+                "svgType": "quick"
             },
             {
                 "heading": "P2P Trading (0 Fee)",
                 "desc": "Buy crypto from verified merchants",
-                "svgType":"p2p"
+                "svgType": "p2p"
             },
             {
                 "heading": "Credit/Debit card",
                 "desc": "Buy crypto from verified merchants",
-                "svgType":"p2p"
+                "svgType": "card"
             },
             {
                 "heading": "Bank Deposit",
                 "desc": "Use local currency to buy crypto",
-                "svgType":"p2p"
+                "svgType": "bank"
             }
         ]
     },
@@ -31,14 +31,107 @@
     },
     {
         "name": "Markets",
-        "link": ""
+        "link": "",
+        "subMenu": [
+            {
+                "heading": "Markets",
+                "desc": "Crypto Market Information",
+                "svgType": "market"
+            },
+            {
+                "heading": "Rankings",
+                "desc": "Crypto Rankings",
+                "svgType": "ranking"
+            },
+            {
+                "heading": "Market Data",
+                "desc": "Bitget and Big Data",
+                "svgType": "market_data"
+            },
+            {
+                "heading": "Insights",
+                "desc": "Market trends from experts",
+                "svgType": "insights"
+            }
+        ]
     },
     {
         "name": "Copy Trading",
-        "link": ""
+        "link": "",
+        "subMenu": [
+            {
+                "heading": "Future Copy Trading",
+                "desc": "Copy trades from top traders",
+                "svgType": "future_copy"
+            },
+            {
+                "heading": "Spot Copy Trading",
+                "desc": "Follow spot trading experts",
+                "svgType": "spot_copy"
+            },
+            {
+                "heading": "Strategy Copy Trading",
+                "desc": "All startegies snd startegists.",
+                "svgType": "strategy_copy"
+            },
+            {
+                "heading": "Create a strategy",
+                "desc": "Create your own startegy now",
+                "svgType": "strategy"
+            }
+            ,
+            {
+                "heading": "LeaderBoard",
+                "desc": "Top 500 traders worldwide",
+                "svgType": "leaderboard"
+            }
+        ]
     },
     {
         "name": "Earn",
-        "link": ""
+        "link": "",
+        "subMenu": [
+            {
+                "heading": "Earn",
+                "desc": "Easy earning products",
+                "svgType":"earn"
+            },
+            {
+                "heading": "Savings",
+                "desc": "Risk free earning",
+                "svgType":"savings"
+            },
+            {
+                "heading": "Shark Fin",
+                "desc": "Principal guaranteed earning",
+                "svgType":"shark_fin"
+            },
+            {
+                "heading": "Dual Investment",
+                "desc": "Considerable earnings involving two kinds of crrypto",
+                "svgType":"investment"
+            },
+            {
+                "heading": "Launch Pool",
+                "desc": "Staking made simple",
+                "svgType":"poll"
+            },
+            {
+                "heading": "BGB Earn",
+                "desc": "Deposit BGB and earn",
+                "svgType":"earn_2"
+            },
+            {
+                "heading": "BGB",
+                "desc": "Check out coin",
+                "svgType":"bgb"
+            },
+            {
+                "heading": "Launchpad",
+                "desc": "Invest before the rocket",
+                "svgType":"launchpad"
+            }
+
+        ]
     }
 ]

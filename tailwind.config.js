@@ -24,7 +24,20 @@ module.exports = {
       fontFamily: {
         'noto': ['Noto Sans', 'sans-serif'],
         'noto-display': [ 'Noto Serif Display', 'serif'],
+      },
+      animation: {
+        'open': 'open 0.3s alternate',
+      },
+      keyframes: {
+        open:{
+        '0%' :{
+          transform: "translateY(-3%)"
+        },
+        '100%':{
+          transform: "translateY(0)"
+        }
       }
+    }
     },
   },
   plugins: [],

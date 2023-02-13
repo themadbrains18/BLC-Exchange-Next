@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Icons from "../snippets/icons";
+import Context from "../contexts/context"
+import Dropdown from "../snippets/dropdown";
+import NavAccordian from "../snippets/navAccordian";
 
-const Header = ({ mode, setMode }) => {
+
+const Header = () => {
+  const {mode,setMode}=useContext(Context)
   const [show, setShow] = useState(true);
   const [Data, setData] = useState([]);
 
@@ -12,7 +16,6 @@ const Header = ({ mode, setMode }) => {
       await fetch("http://localhost:3000/api/hello")
         .then((res) => res.json())
         .then((data) => {
-          // console.log(Data);
 
           setData(data.nav);
 
@@ -26,7 +29,8 @@ const Header = ({ mode, setMode }) => {
 
   return (
     <>
-      <header className="relative overflow-hidden border-b border-primary">
+    
+      <header className="fixed w-full border-b border-primary">
         <nav className=" flex justify-between p-5 dark:bg-black-v-4">
           <div className="flex items-center gap-4">
             <Image
@@ -59,39 +63,22 @@ const Header = ({ mode, setMode }) => {
               Data.map((e, i) => {
                 return (
                   <div
-                    className="hidden  lg:flex lg:items-center group "
+                    className="hidden  lg:flex lg:items-center group  hover:pb-8 hover:-mb-8"
                     key={i}
                   >
                     <button
                       href=""
-                      className="info-14-16 duration-300 group-hover:text-primary"
+                      className="info-14-16 duration-300 group-hover:text-primary "
                     >
                       {e.name}
                     </button>
-                    <div></div>
+                   
+
                     {e.subMenu && (
-                      <div className="p-8 absolute bottom-0 bg-white rounded-xl opacity-0 group-hover:opacity-100">
-                        {e.subMenu.map((subMenu, index) => {
-                          console.log(subMenu);
-                          return (
-                            <div className="items-center rounded flex gap-6 py-4  hover:bg-light-hover">
-                              <Icons type={subMenu.svgType} />
-                              <div>
-                                <h3 className=".info-14-16">
-                                  {subMenu.heading}
-                                </h3>
-                                <p className="info-12 mt-1">{subMenu.desc}</p>
-                              </div>
-                              <Image
-                                src="/assets/icons/rightArrow.svg"
-                                height={14}
-                                width={14}
-                              />
-                            </div>
-                          );
-                        })}
-                      </div>
+                     <Dropdown subMenu={e.subMenu}/>
                     )}
+              
+
 
                     <svg
                       className="duration-300 group-hover:rotate-90"
@@ -240,11 +227,12 @@ const Header = ({ mode, setMode }) => {
           </div>
 
           {/* header-Menu  */}
+<div  className={`fixed p-5 duration-300 top-0 ${
+              show === false ? "right-0" : "right-[-100%]"
+            }`}>
 
           <button
-            className={`absolute p-5 duration-300 top-0 ${
-              show === false ? "right-0" : "right-[-100%]"
-            }`}
+           
           >
             <svg
               onClick={() => {
@@ -264,6 +252,9 @@ const Header = ({ mode, setMode }) => {
               />
             </svg>
           </button>
+          <NavAccordian heading="Buy Crypto"  />
+</div>
+
         </nav>
       </header>
     </>

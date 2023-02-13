@@ -1,25 +1,24 @@
-import '@/styles/globals.css'
-import Footer from '@/components/header-footer/footer'
-import Header from '@/components/header-footer/header'
-import { useState } from 'react'
+import "@/styles/globals.css";
+import { useState } from "react";
+import Context from "../components/contexts/context"
 
-
-
-
+import Footer from "@/components/header-footer/footer";
+import Header from "@/components/header-footer/header";
 
 export default function App({ Component, pageProps }) {
-  const [mode, setMode]=useState("dark")
-  console.log(pageProps)
-  return(
+//  const mode=useContext(UserContext)
+const [mode, setMode] = useState("dark");
+  return (
     <>
-    <div className={mode==="dark" ? "dark":"light"} >
-    <Header mode={mode} setMode={setMode}/>
-      <Component {...pageProps} />
-    <Footer />
-    </div>
+      <Context.Provider value={{mode,setMode}}>
+
+        <div className={mode === "dark" ? "dark" : "light"}>
+          <Header />
+          <Component {...pageProps} />
+          <Footer />
+        </div>
+      </Context.Provider>
+   
     </>
-  )
-
+  );
 }
-
-

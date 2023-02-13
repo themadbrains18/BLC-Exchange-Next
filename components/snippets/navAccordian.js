@@ -28,7 +28,7 @@ const NavAccordian = (props) => {
     <>
         <h4 className='info-14-20 sm:mb-6' onClick={setHeight}>{props.heading}</h4>
         <ul ref={ref} className="h-0 pt-4 pl-4 sm:pl-0 sm:pb-0 overflow-hidden sm:h-auto duration-300" style={{ height: `${props.setHeight}px` }}> 
-            {props.content.map((elem,index)=>{ 
+            {props.content && props.content.map((elem,index)=>{ 
                 return(
                     <li key={index} className='mb-5'>
                         <Link href={elem.linkUrl} className='info-14 '>{elem.linkText}</Link>
