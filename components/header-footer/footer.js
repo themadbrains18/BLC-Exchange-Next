@@ -42,12 +42,31 @@ const Footer = () => {
                     <div className='mb-8 sm:mb-0 block lg:hidden sm:col-start-1 sm:col-span-4'>
                         <Image src="/assets/icons/companyLogo.svg" alt='error' width="100" height="24" />
                     </div>
+
+
                     {Data.length > 0 && 
                         Data.map((e, i) => {
                             return (
-                                <div key={i} className='mb-4 sm:mb-0'>
-                                    <NavAccordian content={e.content}  heading={e.mainHeading} />
-                                </div>
+                                <>
+                                    <div key={i} className='mb-4 sm:mb-0 sm:hidden'>
+                                        <NavAccordian content={e.content}  heading={e.mainHeading} />
+                                    </div>
+                                    <div  className='mb-4 sm:mb-0 hidden sm:block'>
+                                        <h4 className='info-14-20 sm:mb-6 flex align-center justify-between'>
+                                            <span>{e.mainHeading}</span>
+                                        </h4>
+                                        <ul> 
+                                            {e.content && e.content.map((elem,index)=>{ 
+                                                return(
+                                                    
+                                                    <li key={index} className='mb-5 last:mb-0'>
+                                                        <Link href={elem.linkUrl} className='info-14 '>{elem.linkText}</Link>
+                                                    </li>
+                                                )
+                                            })}
+                                        </ul>
+                                    </div>
+                                </>
                             );
                         })
                     }

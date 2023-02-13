@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }) {
       <Context.Provider value={{ mode, setMode }}>
         <div className={mode === "dark" ? "dark" : "light"}>
           <Header />
-          <Component {...pageProps} />
+            <Component {...pageProps}  />
           <Footer />
         </div>
       </Context.Provider>
