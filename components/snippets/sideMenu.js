@@ -11,11 +11,11 @@ const SideMenu = ({ show, setShow, data }) => {
         show === false ? "right-0" : "right-[-100%]"
       }`}
     >
-      <button className=" ml-auto  block p-5">
-        <svg
-          onClick={() => {
+      <button className=" ml-auto  block p-5"  onClick={() => {
             setShow(true);
-          }}
+          }}>
+        <svg
+        
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"

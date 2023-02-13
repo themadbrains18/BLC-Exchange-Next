@@ -67,7 +67,7 @@
             {
                 "linkText": "Spot Margin Trading",
                 "desc": "Spot trading by borrowing",
-                "svgType": "spot_margin",
+                "svgType": "spot_trading",
                 "linkUrl": "earn"
             },
             {
