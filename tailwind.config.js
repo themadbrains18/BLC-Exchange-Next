@@ -15,6 +15,7 @@ module.exports = {
         "black-v-2": "#222525",
         "black-v-3": "rgba(30,30,30,0.9)",
         "black-v-4": "#212121",
+        "black-v-5": "#0d0e0e",
         "grey": "#656e6f",
         "light-grey":"#9aa3a3",
         "purple": "#7465ff",

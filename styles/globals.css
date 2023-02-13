@@ -33,7 +33,7 @@
     background-origin: padding-box,border-box;
 }
 .hero-heading{
-    @apply  font-medium font-noto-display text-black text-[40px] leading-[56px] md:text-[56px]  md:leading-[76px] dark:text-white
+    @apply  font-medium font-noto-display text-black text-[36px] leading-[56px] md:text-[56px]  md:leading-[76px] dark:text-white
 }
 .section-primary-heading{
     @apply  font-medium font-noto-display text-black text-[32px] leading-[42px] md:text-[56px]  md:leading-[68px] dark:text-white
@@ -51,7 +51,7 @@
     @apply  font-normal font-noto text-black text-[14px] leading-[26px] md:text-[16px]  dark:text-white
 }
 .info-14{
-    @apply  font-normal font-noto text-grey text-[14px] leading-[26px]  hover:text-primary-hover
+    @apply  font-normal font-noto text-grey text-[14px] leading-[26px]  hover:text-primary
 }
 .info-12{
     @apply  font-normal font-noto text-[12px] text-light-grey leading-[18px] dark:text-grey
@@ -60,11 +60,37 @@
     @apply  px-4 font-normal capitalize inline-block rounded font-noto bg-primary text-white text-[14px] leading-[46px] md:text-[16px] hover:bg-primary-hover
 }
 .transparent-cta{
-    @apply  font-normal font-noto capitalize text-black text-[14px]  md:text-[16px] hover:text-primary-hover dark:text-white
+    @apply  font-normal font-noto capitalize text-black text-[14px]  md:text-[16px] hover:text-primary dark:text-white
 }
 .container{ @apply mx-auto max-w-[1240px] px-5
 }
 .icon_hover{
     @apply hover:rotate-90
+}
+.ai_zone .swiper .swiper-button-prev,
+.ai_zone .swiper .swiper-button-next{
+    position: static;
+    display: inline-block;
+    margin-top: 40px;
+}
+.ai_zone .swiper .swiper-button-prev{
+    margin: 0;
+}
+.ai_zone .swiper .swiper-button-prev:after{
+    content: url('../public//assets//icons/left-arrow.svg');
+    width: 100%;
+}
+.ai_zone .swiper .swiper-button-next:after{
+    content: url('../public//assets//icons/right-arrow.svg');
+    width: 100%;
+}
+.ai_zone .swiper .swiper-button-next{
+    margin-left: 50px;
+}
+@media(max-width:767px){
+    .ai_zone .swiper .swiper-button-prev,
+     .ai_zone .swiper .swiper-button-next{
+        margin-top: 30px
+    }
 }
 @tailwind utilities;

@@ -2,6 +2,21 @@ import {useState,useEffect} from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import NavAccordian from '../snippets/navAccordian';
+
+// import social media icons
+import facebook from '../../public/assets/facebook.png';
+import discord from '../../public/assets/discord.png';
+import intsgram from '../../public/assets/intsgram.png';
+import linkdin from '../../public/assets/linkdin.png';
+import multilang from '../../public/assets/multi-lang.png';
+import reddit from '../../public/assets/reddit.png';
+import telegram from '../../public/assets/telegram.png';
+import telfuture from '../../public/assets/tel-future.png';
+import tiktok from '../../public/assets/tiktok.png';
+import twitter from '../../public/assets/twitter.png';
+import youtube from '../../public/assets/youtube.png';
+
+
 const Footer = () => {
   const [Data, setData] = useState([]);
 
@@ -20,11 +35,13 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className='dark:bg-black-v-3 py-14 '>
+    <footer className='dark:bg-black-v-4 py-14 '>
         <div className="container">
             <div className="flex flex-wrap gap-3 justify-between">
                 <div className="max-w-full lg:max-w-[72%] w-full grid gap-0 sm:gap-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 ">
-                   
+                    <div className='mb-8 sm:mb-0 block lg:hidden sm:col-start-1 sm:col-span-4'>
+                        <Image src="/assets/icons/companyLogo.svg" alt='error' width="100" height="24" />
+                    </div>
                     {Data.length > 0 && 
                         Data.map((e, i) => {
                             return (
@@ -38,9 +55,9 @@ const Footer = () => {
                 </div>
                 <div className=" max-w-full lg:max-w-[22%] w-full">
                     <div>
-                        <Image src="/assets/icons/companyLogo.svg" alt='error' width="132" height="53" />
+                        <Image src="/assets/icons/companyLogo.svg" alt='error' width="132" height="53" className='hidden lg:block' />
                     </div>
-                    <div className='my-5'>
+                    <div className='my-5 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:block'>
                         <div className="mb-4">
                             <p className='info-14-16'>Support Service</p>
                             <Link href="mailto:support@bitget.com" className='info-14'>support@bitget.com</Link>
@@ -58,8 +75,51 @@ const Footer = () => {
                             <Link href="mailto:vip@bitget.com" className='info-14'>vip@bitget.com</Link>
                         </div>
                     </div>
+                    <div className='grid gap-5 grid-cols-5 sm:grid-cols-11 lg:grid-cols-5 max-w-full lg:max-w-[85%] mt-10'>
+                        <Link href="#">
+                            <Image src={twitter} alt="error" width={24} height={24} />
+                        </Link>
+                        <Link href="#">
+                            <Image src={facebook} alt="error" width={24} height={24} />
+                        </Link>
+                        <Link href="#">
+                            <Image src={discord} alt="error" width={24} height={24} />
+                        </Link>
+                        <Link href="#">
+                            <Image src={intsgram} alt="error" width={24} height={24} />
+                        </Link>
+                        <Link href="#">
+                            <Image src={linkdin} alt="error" width={24} height={24} />
+                        </Link>
+                        <Link href="#">
+                            <Image src={multilang} alt="error" width={24} height={24} />
+                        </Link>
+                        <Link href="#">
+                            <Image src={reddit} alt="error" width={24} height={24} />
+                        </Link>
+                        <Link href="#">
+                            <Image src={telegram} alt="error" width={24} height={24} />
+                        </Link>
+                        <Link href="#">
+                            <Image src={telfuture} alt="error" width={24} height={24} />
+                        </Link>
+                        <Link href="#">
+                            <Image src={tiktok} alt="error" width={24} height={24} />
+                        </Link>
+                        <Link href="#">
+                            <Image src={youtube} alt="error" width={24} height={24} />
+                        </Link>
+                    </div>
                 </div>
             </div>
+
+            <div className="flex items-start gap-5 mt-8  max-w-full flex-wrap md:flex-nowrap">
+                <p className="info-14 hover:text-grey max-w-full md:max-w-[25%] w-full">© Copyright Bitget.com</p>
+                <p className="info-14 hover:text-grey max-w-full md:max-w-[75%] w-full">
+                    Bitget is a trading platform for crypto products. Trading in cryptocurrency derivatives involves huge risks. Please consider carefully whether Bitget is suitable for you to use. For details, please check our <Link href="#" className="underline hover:text-primary-hover">Terms of Use</Link>, <Link className="underline hover:text-primary-hover" href="#">Risk Disclosure </Link> and <Link className="underline hover:text-primary-hover" href="#"> Privacy Policy</Link>.
+                </p>
+            </div>
+
         </div>
     </footer>
   )

@@ -121,6 +121,7 @@ const Header = () => {
                 strokeWidth="1.5"
                 stroke={mode === "dark" ? "white" : "currentcolor"}
                 className="w-6 h-6"
+               
               >
                 <path
                   strokeLinecap="round"
