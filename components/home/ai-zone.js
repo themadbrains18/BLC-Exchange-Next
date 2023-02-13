@@ -10,8 +10,6 @@ import { Navigation, Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
-
-
 import carousel1 from '../../public/assets/ali-zone1.jpg';
 import carousel2 from '../../public/assets/ali-zone2.png';
 import carousel3 from '../../public/assets/ali-zone3.png';
