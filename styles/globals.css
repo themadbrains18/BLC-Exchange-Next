@@ -115,6 +115,10 @@
 .ai_zone .swiper .swiper-button-next{
     margin-left: 50px;
 }
+.ai_zone .black-arrows .swiper-button-prev:after,
+.ai_zone .black-arrows .swiper-button-next:after{
+    filter:brightness(0);
+}
 @media(max-width:767px){
     .ai_zone .swiper .swiper-button-prev,
      .ai_zone .swiper .swiper-button-next{

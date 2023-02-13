@@ -48,7 +48,7 @@ const { mode } = useContext(Context);
                 { cardData && cardData.map((e,i)=>{
                     return(
                             <div key={i}  className={`flex justify-center flex-col items-center p-8 sm:p-10 ${i == 0 ? mode === 'dark' ? 'blue-gradient'  : 'blue-gradient-active' :''} rounded-xl text-center ${i == 1 ? mode === 'dark' ? 'yellow-gradient'  : 'yellow-gradient-active' :''} ${i == 2 ? mode === 'dark' ? 'pink-gradient '  : 'pink-gradient-active' :''} ${i == 3 ? 'bg-purple col-span-1 lg:col-span-2' : '' }`}>
-                                <Image src={e.cardImg} alt="" width={200} height={142} className={`max-w-[100px]  w-full  ${i == 2 ? 'max-w-[150px] w-full' :'' }`} />
+                                <Image src={e.cardImg} alt="" width={200} height={142} className={`${i == 2 ? 'max-w-[150px] w-full' :'' }`} />
                                 <div className="mt-4" >
                                     <h3 className='section-secondary-heading mb-3 sm:mb-5'>{e.cardHeading}</h3>
                                     <p className='info-14-16'>{e.cardInfo}</p>

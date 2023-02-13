@@ -1,11 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import Carousel from '../snippets/carousel';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper';
 
-
+import Carousel from  '../snippets/carousel';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -32,16 +31,19 @@ const Aizone = () => {
   return (
     <section className="ai_zone bg-black-v-5 py-[80px] md:py-[120px]">
         <div className="container">
-            <div className="flex gap-5 mb-8 h-[74px] items-start md:h-[24px] overflow-hidden">
+            <div className="flex gap-5 mb-8  items-start  overflow-hidden">
                 <Image src={Sound} alt="error" width={24} height={24} />
+                {/* <Carousel /> */}
                 <Swiper
+                    
                     modules={[Autoplay]}
-                    className='!m-0'
+                    className='!m-0 h-[74px] md:h-[30px]'
                     slidesPerView={1}
                     autoplay={{
                         delay:2500
                     }}
-                    direction="vertical"
+                    direction='vertical'
+                    loop={true}
                 >
                     {
                         arrText.map((e,i)=>{
@@ -59,6 +61,7 @@ const Aizone = () => {
                 spaceBetween={50}
                 slidesPerView={3}
                 navigation={true}
+                loop={true}
                 autoplay={{
                     delay:2500,
                     disableOnInteraction: true

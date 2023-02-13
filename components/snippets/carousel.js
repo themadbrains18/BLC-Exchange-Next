@@ -1,10 +1,10 @@
-import React from 'react'
+import {useContext} from 'react'
 import Image from 'next/image';
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper';
-
+import Context from '../contexts/context';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -12,7 +12,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 
 const Carousel = ({ play_cta, data }) => {
-
+    const { mode } = useContext(Context);
     return (
         <>
             <Swiper
@@ -36,6 +36,7 @@ const Carousel = ({ play_cta, data }) => {
                         slidesPerView: 3
                     },
                 }}
+                className={`${mode === 'dark' ? ''  : 'black-arrows' }`}
 
             >
                 {
