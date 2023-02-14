@@ -14,7 +14,6 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     currentMode = localStorage.getItem("mode");
     if (currentMode) {
-      console.log(mode,currentMode)
       localStorage.setItem("mode", mode);
     } else {
       localStorage.setItem("mode", mode);

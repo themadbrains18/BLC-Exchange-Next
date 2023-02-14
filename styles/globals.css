@@ -26,6 +26,21 @@
     background-origin: padding-box,border-box;
     background-image: linear-gradient(180deg,#edffff,#edffff),linear-gradient(180deg,#81d0d0,#edffff);
 }
+.grey-gradiant{
+background-image: linear-gradient(180deg,#f9fbfb,#f9fbfb),linear-gradient(180deg,#1da2b4,#f9fbfb);
+border-radius: 12px;
+border: 1px solid transparent;
+background-clip: padding-box,border-box;
+background-origin: padding-box,border-box;
+}
+
+.grey-gradiant-active{
+    background: url("../public/assets/images/bg-gradient.png"), linear-gradient(180deg,#131414,#131414),linear-gradient(180deg,#1da2b4,#131414);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 100% 100%;
+}
+
 .yellow-gradient{
     background-image: linear-gradient(180deg,#181915,#181915),linear-gradient(180deg,#686742,#1a1b17);
     border: 1px solid transparent;
@@ -115,6 +130,11 @@
 .ai_zone .swiper .swiper-button-next{
     margin-left: 50px;
 }
+.ai_zone .black-arrows .swiper-button-prev:after,
+.ai_zone .black-arrows .swiper-button-next:after{
+    filter:brightness(0);
+}
+
 @media(max-width:767px){
     .ai_zone .swiper .swiper-button-prev,
      .ai_zone .swiper .swiper-button-next{

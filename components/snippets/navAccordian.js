@@ -34,7 +34,7 @@ const NavAccordian = (props) => {
           className="block duration-300"
         />
       </h4>
-      <ul ref={ref} className="h-0  overflow-hidden duration-300">
+      <ul ref={ref} className="h-0 pl-3 overflow-hidden duration-300">
         {props.content &&
           props.content.map((elem, index) => {
             return (

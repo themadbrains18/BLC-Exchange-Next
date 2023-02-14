@@ -8,7 +8,7 @@ const Sponsor = () => {
             <div className="container flex justify-between p-9 items-center md:justify-around">
                 {images.map((e, i) => {
                     return (
-                        <img src={`/assets/images/${e}.png`} alt="" className='h-16 md:h-20 max-w-[80px] w-full  object-contain '/>
+                        <img key={i} src={`/assets/images/${e}.png`} alt="" className='h-16 md:h-20 max-w-[80px] w-full  object-contain '/>
                     )
                 })
                 }
