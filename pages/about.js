@@ -11,7 +11,7 @@ import WhyChoose from "@/components/about/whyChoose"
 export default function About() {
   return (
     <>
-      <div className="font-noto">
+      <div >
       <Mission />
       <Values />
       <AboutUs />
