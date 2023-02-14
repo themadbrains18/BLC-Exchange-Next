@@ -6,6 +6,7 @@ import Aizone from '@/components/home/ai-zone';
 import Trustworthy from '@/components/home/trustworthy';
 import Tutorials from '@/components/home/tutorials';
 import Sponsor from '@/components/home/sponsor';
+import FlowSliderSec from '@/components/home/flowSliderSec';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -22,6 +23,7 @@ export default function Home() {
       </Head>
       <main>
         <Hero />
+        <FlowSliderSec/>
         <Aizone />
         <Trustworthy />
         <Tutorials />
