@@ -1,4 +1,4 @@
-import {useContext} from 'react'
+import { useContext } from 'react'
 import Image from 'next/image';
 
 // Import Swiper React components
@@ -11,14 +11,14 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 
-const Carousel = ({ play_cta, data,arrow}) => {
+const Carousel = ({ play_cta, data, arrow }) => {
     const { mode } = useContext(Context);
     return (
         <>
             <Swiper
                 modules={[Navigation, Autoplay]}
                 slidesPerView={"auto"}
-                spaceBetween={ 20}
+                spaceBetween={20}
                 navigation={arrow}
 
                 autoplay={{
@@ -30,7 +30,7 @@ const Carousel = ({ play_cta, data,arrow}) => {
                 //     320: {
                 //         spaceBetween: 20,
                 //         // slidesPerView: 1.5,
-                        
+
                 //     },
                 //     // when window width is >= 768px
                 //     768: {
@@ -41,13 +41,13 @@ const Carousel = ({ play_cta, data,arrow}) => {
                 //         // slidesPerView: 3,
                 //     },
                 // }}
-                className={` ${mode === 'dark' ? ''  : 'black-arrows' }`}
+                className={` ${mode === 'dark' ? '' : 'black-arrows'}`}
 
             >
                 {
 
                     data.map((e, i) => {
-                        console.log(e.image)
+                        console.log(e, "==========")
                         return (
                             <SwiperSlide key={i} className="!w-auto">
                                 {
@@ -61,10 +61,16 @@ const Carousel = ({ play_cta, data,arrow}) => {
                                     }
                                     {
                                         play_cta &&
-                                        <Image className='absolute right-3 bottom-3' src="/assets/images/tutorial-play.png" width={30} height={22} alt=""/>
+                                        <Image className='absolute right-3 bottom-3' src="/assets/images/tutorial-play.png" width={30} height={22} alt="" />
                                     }
+                                    {
 
+                                        e.bigImage
+                                        &&
+                                        <Image src={e.bigImage} alt="error" width={620} height={342} className='rounded-xl border border-[#414747] mb-6 cursor-pointer ' />
+                                    }
                                 </div>
+
                                 {
                                     e.heading &&
                                     <p className='info-12 text-2xl mb-4	w-[254px] sm:w-[384px]'>{e.heading}</p>
