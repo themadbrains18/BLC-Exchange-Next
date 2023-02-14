@@ -33,7 +33,7 @@ const Footer = () => {
       console.log(err);
     });
   }, []);
-
+console.log("===data",Data)
   return (
     <footer className='dark:bg-black-v-4 py-14 '>
         <div className="container">

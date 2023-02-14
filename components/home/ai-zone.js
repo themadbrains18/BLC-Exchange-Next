@@ -18,7 +18,6 @@ import carousel4 from '../../public/assets/images/ali-zone4.png';
 import carousel5 from '../../public/assets/images/ali-zone5.png';
 import Sound from '../../public/assets/images/sound.png';
 
-// let images = [carousel1,carousel2,carousel3,carousel4,carousel5];
 let image = [
     {
         image:carousel1
