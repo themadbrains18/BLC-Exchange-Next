@@ -7,6 +7,7 @@ import Trustworthy from '@/components/home/trustworthy';
 import Tutorials from '@/components/home/tutorials';
 import Sponsor from '@/components/home/sponsor';
 import Trending from '@/components/home/trending';
+import Download from '@/components/home/download';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -26,6 +27,7 @@ export default function Home() {
         <Aizone />
         <Trending />
         <Trustworthy />
+        <Download />
         <Tutorials />
         <Sponsor />
       </main>
