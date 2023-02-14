@@ -22,7 +22,7 @@ const NavAccordian = (props) => {
   return (
     <>
       <h4
-        className="info-14-20 flex align-center justify-between"
+        className="info-14-20 py-2 flex align-center justify-between"
         onClick={setHeight}
       >
         <span>{props.heading}</span>
@@ -40,7 +40,7 @@ const NavAccordian = (props) => {
             return (
               <>
                 {elem.linkUrl && elem.linkText && (
-                  <li key={index} className="mt-5">
+                  <li key={index} className="mt-3">
                     <Link href={elem.linkUrl} className="info-14 ">
                       {elem.linkText}
                     </Link>

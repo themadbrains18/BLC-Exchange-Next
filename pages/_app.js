@@ -8,11 +8,12 @@ import Header from "@/components/header-footer/header";
 export default function App({ Component, pageProps }) {
   //  const mode=useContext(UserContext)
   const [mode, setMode] = useState("dark");
+  const [login, setLogin] = useState(true);
+
   let currentMode;
   useEffect(() => {
     currentMode = localStorage.getItem("mode");
     if (currentMode) {
-      console.log(mode,currentMode)
       localStorage.setItem("mode", mode);
     } else {
       localStorage.setItem("mode", mode);
@@ -21,7 +22,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <Context.Provider value={{ mode, setMode }}>
+      <Context.Provider value={{ mode, setMode, login }}>
         <div className={mode === "dark" ? "dark" : "light"}>
           <Header />
             <Component {...pageProps}  />
