@@ -6,6 +6,7 @@ import Aizone from '@/components/home/ai-zone';
 import Trustworthy from '@/components/home/trustworthy';
 import Tutorials from '@/components/home/tutorials';
 import Sponsor from '@/components/home/sponsor';
+import Trending from '@/components/home/trending';
 import Download from '@/components/home/download';
 
 
@@ -24,6 +25,7 @@ export default function Home() {
       <main>
         <Hero />
         <Aizone />
+        <Trending />
         <Trustworthy />
         <Download />
         <Tutorials />

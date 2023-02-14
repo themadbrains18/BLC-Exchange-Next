@@ -12,9 +12,9 @@ import api from '../../public/assets/icons/api-svg.svg';
 
 const Download = () => {
   return (
-    <section className='bg-white dark:bg-[#131414] '>
+    <section className='py-20 dark:bg-[#131414] '>
       <div className="container  justify-between flex flex-col items-center lg:flex-row">
-        <div className='pt-20 pb-28'>
+        <div className=''>
           <div className='hero-heading mb-6'>Trade anytime, anywhere</div>
           <p className='info-14-24 mb-6'> Download our app to stay connected 24/7.</p>
 
@@ -49,7 +49,7 @@ const Download = () => {
             </div>
           </div>
         </div>
-        <div className='items-center ml-24 mb-12 '>
+        <div className='items-center mt-8 lg:mt-0 lg:ml-24 lg:mb-12 '>
           <img src='/assets/images/downloadPcDark.png' alt='error' className='w-[587px]'></img>
         </div>
       </div>
