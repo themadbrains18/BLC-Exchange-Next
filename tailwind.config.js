@@ -20,7 +20,8 @@ module.exports = {
         "light-grey":"#9aa3a3",
         "purple": "#7465ff",
         "hover-black": "#191919",
-        "light-hover": "#f8f9fb"
+        "light-hover": "#f8f9fb",
+        "line-clr": "#e6e6e6"
       },
       fontFamily: {
         'noto': ['Noto Sans', 'sans-serif'],

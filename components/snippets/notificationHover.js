@@ -1,12 +1,10 @@
 import Link from "next/link";
 import {useState} from "react";
 import NavAccordian from "./navAccordian";
-import NotificationCard from "./notificationCard";
 
 const NotificationHover = () => {
   const [active, setActive] = useState(0);
   let arr = ["All", "Activities", "Bigest Daily"];
-  console.log(active)
   return (
     <>
       <div className="p-4 absolute top-[100.6%] invisible shadow-2xl group-hover:animate-open bg-white rounded-xl opacity-0 group-hover:opacity-100 group-hover:visible overflow-x-auto h-[358px] right-0 dark:bg-black-v-4">
