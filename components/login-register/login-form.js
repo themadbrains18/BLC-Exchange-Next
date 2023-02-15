@@ -3,9 +3,27 @@ import Link from 'next/link';
 import Image from 'next/image';
 import qrImage from "../../public/assets/images/qr.png";
 import laftImage from "../../public/assets/images/form-left-new.png";
+import passHide from '../../public/assets/icons/pass-hide.svg';
+import passShow from '../../public/assets/icons/pass-show.svg';
 
 const LoginForm = () => {
     const [show,setShow] = useState(1);
+    const showPass = (e) =>{
+        if(!e.currentTarget.classList.contains("hidden")){
+            e.currentTarget.classList.toggle("hidden");
+            e.currentTarget.previousSibling.classList.toggle("hidden");    
+            let pass_input = document.querySelector("#pass_input");
+            pass_input.setAttribute("type","text");
+        }
+    }
+    const hidePass = (e) =>{
+        if(!e.currentTarget.classList.contains("hidden")){
+            e.currentTarget.classList.toggle("hidden");
+            e.currentTarget.nextSibling.classList.toggle("hidden");    
+            let pass_input = document.querySelector("#pass_input");
+            pass_input.setAttribute("type","password");
+        }
+    }
   return (
     <section className='dark:bg-black-v-5 py-[80px] !pt-[120px] lg:!pt-[204px]'>
         <div className='container'>
@@ -20,7 +38,7 @@ const LoginForm = () => {
                     <h4 className='section-secondary-heading mb-5'>Welcome back</h4>
                     <div className='flex gap-8 mb-8'> 
                         <button className={`info-14 border-b-2 border-transparent pb-1  ${show === 1 ? " !border-primary !text-primary"   : ""}`} onClick={()=>{setShow(1)}}>Email / Mobile number</button>
-                        <button className={`info-14 border-b-2 border-transparent pb-1 pb-1${show === 2 ? " !border-primary  !text-primary " : ""}`} onClick={()=>{setShow(2)}}>QR code</button>
+                        <button className={`info-14 border-b-2 border-transparent pb-1 pb-1 ${show === 2 ? " !border-primary  !text-primary " : ""}`} onClick={()=>{setShow(2)}}>QR code</button>
                     </div>
 
                     {/* form */}
@@ -28,7 +46,11 @@ const LoginForm = () => {
                         show === 1 &&
                         <form>
                             <input type="text" placeholder="Email / Mobile number" className="block  mb-4 px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="email" />
-                            <input type="password" placeholder="Enter your password"  className="block  px-4 max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="email" />
+                            <div className="relative">
+                                <input type="password" id="pass_input" placeholder="Enter your password"  className="block  px-4 !pr-[45px] max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="email" />
+                                <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e)=>{hidePass(e)}} />
+                                <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]"  onClick={(e)=>{showPass(e)}} />
+                            </div>
                             <button className='cta mt-5  w-full'>Submit</button>
                             <p className='info-14 !text-primary text-end mt-4 cursor-pointer'>Forgot password?</p>
                         </form>
@@ -88,7 +110,7 @@ const LoginForm = () => {
                     </div>
                     <p className='flex gap-3 justify-center'>
                         <span className='info-14 hover:!text-grey'>Don't have an account?</span>
-                        <Link href="#" className='info-14 !text-primary'>Join Us</Link>
+                        <Link href="/register" className='info-14 !text-primary'>Join Us</Link>
                     </p>
                 </div>
             </div>
