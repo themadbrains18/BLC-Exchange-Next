@@ -14,26 +14,29 @@
     width: 8px;
     background-color: #656e6f;
     border-radius: 14px;
-  
-  }
-.blue-gradient{
-    background-image: linear-gradient(180deg,#121616,#121616),linear-gradient(180deg,#556b6b,#141818);
-    border: 1px solid transparent;
-    background-clip: padding-box,border-box;
-    background-origin: padding-box,border-box;
+
 }
-.blue-gradient-active{
+
+.blue-gradient {
+    background-image: linear-gradient(180deg, #121616, #121616), linear-gradient(180deg, #556b6b, #141818);
     border: 1px solid transparent;
-    background-clip: padding-box,border-box;
-    background-origin: padding-box,border-box;
-    background-image: linear-gradient(180deg,#edffff,#edffff),linear-gradient(180deg,#81d0d0,#edffff);
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
 }
-.grey-gradiant{
-background-image: linear-gradient(180deg,#f9fbfb,#f9fbfb),linear-gradient(180deg,#1da2b4,#f9fbfb);
-border-radius: 12px;
-border: 1px solid transparent;
-background-clip: padding-box,border-box;
-background-origin: padding-box,border-box;
+
+.blue-gradient-active {
+    border: 1px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    background-image: linear-gradient(180deg, #edffff, #edffff), linear-gradient(180deg, #81d0d0, #edffff);
+}
+
+.grey-gradiant {
+    background-image: linear-gradient(180deg, #f9fbfb, #f9fbfb), linear-gradient(180deg, #1da2b4, #f9fbfb);
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
 }
 
 .blue-gradient {
@@ -134,8 +137,9 @@ background-origin: padding-box,border-box;
 .info-14-16 {
     @apply font-normal font-noto text-black text-[14px] leading-[26px] md:text-[16px] dark:text-white
 }
-.info-14{
-    @apply  font-normal font-noto text-grey text-[14px] leading-[26px] dark:text-grey  hover:!text-primary
+
+.info-14 {
+    @apply font-normal font-noto text-grey text-[14px] leading-[26px] dark:text-grey hover:!text-primary
 }
 
 .info-12 {
@@ -145,11 +149,13 @@ background-origin: padding-box,border-box;
 .cta {
     @apply px-4 font-normal capitalize inline-block rounded font-noto bg-primary text-white text-[14px] leading-[46px] md:text-[16px] hover:bg-primary-hover
 }
-.cta2{
-    @apply bg-transparent h-auto capitalize inline-block font-noto leading-[44px] text-[14px]  md:text-[16px] text-primary  border border-primary px-4 rounded dark:text-primary 
+
+.cta2 {
+    @apply bg-transparent h-auto capitalize inline-block font-noto leading-[44px] text-[14px] md:text-[16px] text-primary border border-primary px-4 rounded dark:text-primary
 }
-.transparent-cta{
-    @apply p-[10px]  font-normal font-noto capitalize text-black text-[14px]  md:text-[16px] hover:text-primary dark:text-white
+
+.transparent-cta {
+    @apply p-[10px] font-normal font-noto capitalize text-black text-[14px] md:text-[16px] hover:text-primary dark:text-white
 }
 
 .container {
@@ -217,7 +223,18 @@ background-origin: padding-box,border-box;
         margin-top: 30px
     }
 }
-.speed_slider ~ .swiper-wrapper{
-    transition-timing-function : linear!important;
-  }
+
+.speed_slider~.swiper-wrapper {
+    transition-timing-function: linear !important;
+}
+
+.txt_ellipsis {
+    display: -webkit-box !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
 @tailwind utilities;
