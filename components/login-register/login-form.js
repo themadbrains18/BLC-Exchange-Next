@@ -20,7 +20,7 @@ const LoginForm = () => {
                     <h4 className='section-secondary-heading mb-5'>Welcome back</h4>
                     <div className='flex gap-8 mb-8'> 
                         <button className={`info-14 border-b-2 border-transparent pb-1  ${show === 1 ? " !border-primary !text-primary"   : ""}`} onClick={()=>{setShow(1)}}>Email / Mobile number</button>
-                        <button className={`info-14 border-b-2 border-transparent pb-1 pb-1${show === 2 ? " !border-primary  !text-primary " : ""}`} onClick={()=>{setShow(2)}}>QR code</button>
+                        <button className={`info-14 border-b-2 border-transparent pb-1 pb-1 ${show === 2 ? " !border-primary  !text-primary " : ""}`} onClick={()=>{setShow(2)}}>QR code</button>
                     </div>
 
                     {/* form */}
@@ -28,7 +28,10 @@ const LoginForm = () => {
                         show === 1 &&
                         <form>
                             <input type="text" placeholder="Email / Mobile number" className="block  mb-4 px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="email" />
-                            <input type="password" placeholder="Enter your password"  className="block  px-4 max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="email" />
+                            <div>
+                                <input type="password" placeholder="Enter your password"  className="block  px-4 max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="email" />
+                                <></>
+                            </div>
                             <button className='cta mt-5  w-full'>Submit</button>
                             <p className='info-14 !text-primary text-end mt-4 cursor-pointer'>Forgot password?</p>
                         </form>
@@ -88,7 +91,7 @@ const LoginForm = () => {
                     </div>
                     <p className='flex gap-3 justify-center'>
                         <span className='info-14 hover:!text-grey'>Don't have an account?</span>
-                        <Link href="#" className='info-14 !text-primary'>Join Us</Link>
+                        <Link href="/register" className='info-14 !text-primary'>Join Us</Link>
                     </p>
                 </div>
             </div>

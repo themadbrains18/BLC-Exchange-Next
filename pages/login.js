@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head';
-import LoginForm from '@/components/login/login-form';
+import LoginForm from '@/components/login-register/login-form';
 const Login = () => {
   return (
     <>

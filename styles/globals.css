@@ -190,6 +190,26 @@ background-origin: padding-box,border-box;
     filter: brightness(0);
 }
 
+/* checkbox in register form */
+.agree_cta:checked + label:after{
+    background:#1da2b4;
+    border-color:transparent;
+}
+.agree_cta:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid #FFF;
+    border-width: 0 2px 2px 0;
+    margin: -1px -1px 0 -1px;
+    transform: rotate(45deg);
+    z-index: 2;
+}
+/* checkbox in register form */
+
 @media(max-width:767px) {
 
     .ai_zone .swiper .swiper-button-prev,
