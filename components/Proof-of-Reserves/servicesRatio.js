@@ -10,6 +10,9 @@ const ServicesRatio = () => {
             <p className='info-14-16'>Reserve ratio = funds in the platform/funds of platform users. A reserve ratio greater than or equal to 100% means that the platform has sufficient funds.</p>
             </div>
             {/* timezone */}
+            <div className="timezone">
+                
+            </div>
         </div>
     </section>
     </>
