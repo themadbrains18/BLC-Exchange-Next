@@ -12,51 +12,27 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import GradientCard from "./gradientCard";
 
-const Carousel = ({ play_cta, data, arrow,loop,left_pad,delay,card,speed}) => {
+const Carousel = ({ play_cta, data, arrow}) => {
   const { mode } = useContext(Context);
-
+ 
 
   return (
     <>
       <Swiper
         modules={[Navigation, Autoplay]}
         slidesPerView={"auto"}
-        
-        slidesOffsetBefore= {left_pad && left_pad}
         spaceBetween={20}
         navigation={arrow}
-        // freeMode={true}
-        // threshold={0}
-        // edgeSwipeThreshold={0}
-        // longSwipesMs={0}
-        speed={speed && 5000}
         autoplay={{
-            // speed:5000000,
-          delay: delay ? 2500 :0,
+
+          delay: 2500,
           disableOnInteraction: true,
         }}
-        // breakpoints={{
-        //     // when window width is >= 640px
-        //     320: {
-        //         spaceBetween: 20,
-        //         // slidesPerView: 1.5,
-
-        //     },
-        //     // when window width is >= 768px
-        //     768: {
-        //         spaceBetween: 20,
-        //         // slidesPerView: 2,
-        //     },
-        //     768: {
-        //         // slidesPerView: 3,
-        //     },
-        // }}
-        loop={loop && loop}
+      
         className={` ${mode === "dark" ? "" : "black-arrows"}`}
       >
         {data &&
           data.map((e, i) => {
-            console.log(e.image);
             return (
               <SwiperSlide key={i} className="!w-auto">
                 {e.arrText && (
@@ -96,36 +72,7 @@ const Carousel = ({ play_cta, data, arrow,loop,left_pad,delay,card,speed}) => {
             );
           })}
         
-         {
-            card &&<>
-             <SwiperSlide className="!w-auto">
-            <GradientCard />
-          </SwiperSlide>
-          <SwiperSlide className="!w-auto">
-            <GradientCard />
-          </SwiperSlide>
-          <SwiperSlide className="!w-auto">
-            <GradientCard />
-          </SwiperSlide>
-          <SwiperSlide className="!w-auto">
-            <GradientCard />
-          </SwiperSlide>
-          <SwiperSlide className="!w-auto">
-            <GradientCard />
-          </SwiperSlide>
-          <SwiperSlide className="!w-auto">
-            <GradientCard />
-          </SwiperSlide>
-          <SwiperSlide className="!w-auto">
-            <GradientCard />
-          </SwiperSlide>
-          <SwiperSlide className="!w-auto">
-            <GradientCard />
-          </SwiperSlide>
-          <SwiperSlide className="!w-auto">
-            <GradientCard />
-          </SwiperSlide></>
-         }
+      
                 
       </Swiper>
     </>
