@@ -22,13 +22,13 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <Context.Provider value={{ mode, setMode, login }}>
         <div className={mode === "dark" ? "dark" : "light"}>
+      <Context.Provider value={{ mode, setMode, login }}>
           <Header />
             <Component {...pageProps}  />
           <Footer />
-        </div>
       </Context.Provider>
+        </div>
     </>
   );
 }

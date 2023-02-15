@@ -59,8 +59,16 @@ const FlowSliderSec = () => {
               
             </div>
           </div> */}
-          <Carousel loop={true}   card={true} />
-          <Carousel loop={true} left_pad={30}   card={true} />
+          <div className="speed_slider">
+            <Carousel loop={true} delay={false} speed={true} card={true} />
+            <Carousel
+              loop={true}
+              left_pad={30}
+              speed={true}
+              delay={false}
+              card={true}
+            />
+          </div>
         </div>
       </section>
     </>
