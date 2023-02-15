@@ -14,9 +14,6 @@
     width: 8px;
     background-color: #656e6f;
     border-radius: 14px;
-<<<<<<< HEAD
-
-=======
   
   }
 .blue-gradient{
@@ -37,7 +34,6 @@ border-radius: 12px;
 border: 1px solid transparent;
 background-clip: padding-box,border-box;
 background-origin: padding-box,border-box;
->>>>>>> 1d38b19e87c4d3f94d167a01b9637eae593cd40c
 }
 
 .blue-gradient {
@@ -69,7 +65,6 @@ background-origin: padding-box,border-box;
     background-size: 100% 100%;
 }
 
-<<<<<<< HEAD
 .row-hover {
     border: 1px solid transparent;
     background-clip: padding-box, border-box;
@@ -79,10 +74,6 @@ background-origin: padding-box,border-box;
 
 .yellow-gradient {
     background-image: linear-gradient(180deg, #181915, #181915), linear-gradient(180deg, #686742, #1a1b17);
-=======
-.yellow-gradient{
-    background-image: linear-gradient(180deg,#181915,#181915),linear-gradient(180deg,#686742,#1a1b17);
->>>>>>> 1d38b19e87c4d3f94d167a01b9637eae593cd40c
     border: 1px solid transparent;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
@@ -143,14 +134,8 @@ background-origin: padding-box,border-box;
 .info-14-16 {
     @apply font-normal font-noto text-black text-[14px] leading-[26px] md:text-[16px] dark:text-white
 }
-<<<<<<< HEAD
-
-.info-14 {
-    @apply font-normal font-noto text-grey text-[14px] leading-[26px] dark:text-white hover:text-primary
-=======
 .info-14{
     @apply  font-normal font-noto text-grey text-[14px] leading-[26px] dark:text-grey  hover:!text-primary
->>>>>>> 9bac9922962da43e41125a57d939767e93f20e44
 }
 
 .info-12 {
@@ -160,17 +145,11 @@ background-origin: padding-box,border-box;
 .cta {
     @apply px-4 font-normal capitalize inline-block rounded font-noto bg-primary text-white text-[14px] leading-[46px] md:text-[16px] hover:bg-primary-hover
 }
-<<<<<<< HEAD
-
-.transparent-cta {
-    @apply p-[10px] font-normal font-noto capitalize text-black text-[14px] md:text-[16px] hover:text-primary dark:text-white
-=======
 .cta2{
     @apply bg-transparent h-auto capitalize inline-block font-noto leading-[44px] text-[14px]  md:text-[16px] text-primary  border border-primary px-4 rounded dark:text-primary 
 }
 .transparent-cta{
     @apply p-[10px]  font-normal font-noto capitalize text-black text-[14px]  md:text-[16px] hover:text-primary dark:text-white
->>>>>>> 1d38b19e87c4d3f94d167a01b9637eae593cd40c
 }
 
 .container {
@@ -218,12 +197,7 @@ background-origin: padding-box,border-box;
         margin-top: 30px
     }
 }
-<<<<<<< HEAD
-
-@tailwind utilities;
-=======
 .speed_slider ~ .swiper-wrapper{
     transition-timing-function : linear!important;
   }
 @tailwind utilities;
->>>>>>> 1d38b19e87c4d3f94d167a01b9637eae593cd40c

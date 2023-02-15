@@ -19,7 +19,7 @@ const Mission = () => {
                 <div className="container ">
                     <div className='flex items-center justify-between flex-col-reverse md:flex-row gap-5  md:text-left'>
                         <div className='max-w-full md:max-w-[48%] w-full'>
-                            <h1 className='text-4xl font-semibold md:hero-heading font-noto mb-6 dark:text-grey'>Bitget's Mission</h1>
+                            <h1 className='hero-heading text-4xl font-semibold md:text-[56px] font-noto mb-6 dark:text-grey'>Bitget's Mission</h1>
                             <p className='info-14-20 text-base md:text-xl  mb-7 md:mb-12 dark:text-grey'>As one of the world's leading cryptocurrency exchanges, Bitget is on a
                                 mission to inspire individuals to embrace crypto and connect with the
                                 future.
