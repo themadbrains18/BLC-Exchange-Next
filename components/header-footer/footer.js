@@ -1,4 +1,4 @@
-import {useState,useEffect} from 'react';
+import {useState,useEffect, Fragment} from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import NavAccordian from '../snippets/navAccordian';
@@ -33,7 +33,6 @@ const Footer = () => {
       console.log(err);
     });
   }, []);
-console.log("===data",Data)
   return (
     <footer className='dark:bg-black-v-4 py-14 '>
         <div className="container">
@@ -47,8 +46,8 @@ console.log("===data",Data)
                     {Data.length > 0 && 
                         Data.map((e, i) => {
                             return (
-                                <>
-                                    <div key={i} className='mb-4 sm:mb-0 sm:hidden'>
+                                <Fragment key={i}>
+                                    <div  className='mb-4 sm:mb-0 sm:hidden'>
                                         <NavAccordian content={e.content}  heading={e.mainHeading} />
                                     </div>
                                     <div  className='mb-4 sm:mb-0 hidden sm:block'>
@@ -66,7 +65,7 @@ console.log("===data",Data)
                                             })}
                                         </ul>
                                     </div>
-                                </>
+                                </Fragment>
                             );
                         })
                     }

@@ -6,27 +6,13 @@ import Dropdown from "../snippets/dropdown";
 import SideMenu from "../snippets/sideMenu";
 import NotificationHover from "../snippets/notificationHover";
 
-const Header = () => {
+const Header = ({data}) => {
   const { mode, setMode, login } = useContext(Context);
   const [show, setShow] = useState(true);
   const [alert, setAlert] = useState(true);
   const [Data, setData] = useState([]);
   const ref = useRef();
-  useEffect(() => {
-    (async () => {
-      await fetch("http://localhost:3000/api/hello")
-        .then((res) => res.json())
-        .then((data) => {
-          setData(data.nav);
-
-          /* process your data further */
-        })
-        .catch((error) => console.error(error));
-    })().catch((err) => {
-      console.log(err);
-    });
-  }, []);
-
+ 
   return (
     <>
       <header className="fixed  w-full border-b border-primary z-10">
@@ -100,8 +86,8 @@ const Header = () => {
               </svg>
             </div>
 
-            {Data.length > 0 &&
-              Data.map((e, i) => {
+            {data &&
+              data.map((e, i) => {
                 return (
                   <div
                     className="hidden  lg:flex lg:items-center group  hover:pb-8 hover:-mb-8"
@@ -159,12 +145,12 @@ const Header = () => {
               href={""}
               className="hidden  lg:flex lg:items-center group  hover:pb-8 hover:-mb-8"
             >
-              <Link
-                href={""}
+              <span
+                
                 className="info-14-16 duration-300 group-hover:text-primary "
               >
                 Assets
-              </Link>
+              </span>
 
               <Dropdown subMenu={""} />
 
@@ -332,5 +318,29 @@ const Header = () => {
     </>
   );
 };
-
+export async function getServerSideProps(context) {
+  let data= await fetch('http://localhost:3000/api/hello')
+console.log(data)
+  return {
+    props: {
+      data:data
+    }, // will be passed to the page component as props
+  }
+}
 export default Header;
+
+
+// useEffect(() => {
+//   (async () => {
+//     await fetch("http://localhost:3000/api/hello")
+//       .then((res) => res.json())
+//       .then((data) => {
+//         setData(data.nav);
+
+//         /* process your data further */
+//       })
+//       .catch((error) => console.error(error));
+//   })().catch((err) => {
+//     console.log(err);
+//   });
+// }, []);

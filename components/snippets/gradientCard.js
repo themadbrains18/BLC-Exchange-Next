@@ -15,7 +15,7 @@ const GradientCard = () => {
       <h3 className="info-14-20 grow text-black">Print Money</h3>
 
    
-      <button className="bg-transparent h-auto text-primary info-12 border border-primary p-2 rounded dark:text-primary">
+      <button className="cta2">
         Copy Now
       </button>
     </div>

@@ -12,9 +12,10 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import GradientCard from "./gradientCard";
 
-const Carousel = ({ play_cta, data, arrow,loop,left_pad,delay,card}) => {
+const Carousel = ({ play_cta, data, arrow,loop,left_pad,delay,card,speed}) => {
   const { mode } = useContext(Context);
-  console.log("loop",delay)
+
+
   return (
     <>
       <Swiper
@@ -24,15 +25,14 @@ const Carousel = ({ play_cta, data, arrow,loop,left_pad,delay,card}) => {
         slidesOffsetBefore= {left_pad && left_pad}
         spaceBetween={20}
         navigation={arrow}
-        waitForTransition={false}
         // freeMode={true}
         // threshold={0}
         // edgeSwipeThreshold={0}
         // longSwipesMs={0}
-        speed={5000}
+        speed={speed && 5000}
         autoplay={{
             // speed:5000000,
-          delay: delay ? delay :0,
+          delay: delay ? 2500 :0,
           disableOnInteraction: true,
         }}
         // breakpoints={{

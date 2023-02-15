@@ -1,7 +1,7 @@
 // import {useRef,} from 'react'
 import Link from "next/link";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 
 const NavAccordian = (props) => {
   const ref = useRef(null);
@@ -38,20 +38,20 @@ const NavAccordian = (props) => {
         {props.content &&
           props.content.map((elem, index) => {
             return (
-              <>
+              <Fragment  key={index}>
                 {elem.linkUrl && elem.linkText && (
-                  <li key={index} className="mt-3">
+                  <li className="mt-3">
                     <Link href={elem.linkUrl} className="info-14 ">
                       {elem.linkText}
                     </Link>
                   </li>
                 )}
-              </>
+              </Fragment>
             );
           })}
         {props.desc && <li className="mt-3 text-left text-black-v-2 dark:text-white">{props.desc}</li>}
         {props.date && <li className="mt-3 text-left info-12 dark:text-white">Notification Date</li>}
-        {props.cta && <li className=" mt-3 info-12 text-right"><a>Read more</a> </li>}
+        {props.cta && <li className=" mt-3 info-12 text-right cursor-pointer">Read more </li>}
       </ul>
     </>
   );
