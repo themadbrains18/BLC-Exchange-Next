@@ -40,7 +40,7 @@ const ProtectAssets = () => {
                                         {e.cardType.map((item, i) => {
                                             return (
 
-                                                <span className='info-12 bg-[#eff1f1] w-fit py-2 px-3 mr-4 rounded'>{item}</span>
+                                                <span key={i} className='info-12 bg-[#eff1f1] w-fit py-2 px-3 mr-4 rounded'>{item}</span>
 
                                             )
                                         })}
