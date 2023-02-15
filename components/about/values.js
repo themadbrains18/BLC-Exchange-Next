@@ -8,15 +8,15 @@ const Values = () => {
                 <div className='flex flex-wrap gap-8 justify-around items-center mt-14'>
                     <div className=' flex flex-col items-center'>
                         <Image src='/assets/images/transparency.png' width={120} height={120} alt='error'></Image>
-                        <p className='text-xl md:info-14-24 mt-8'>Transparency</p>
+                        <p className='info-14-24 text-xl dark:text-white md:text-2xl mt-8'>Transparency</p>
                     </div>
                     <div className='flex flex-col items-center'>
                         <Image src='/assets/images/collaboration.png' width={120} height={120} alt='error'></Image>
-                        <p className='text-xl md:info-14-24 mt-8'>Collaboration</p>
+                        <p className='info-14-24 text-xl dark:text-white md:text-2xl mt-8'>Collaboration</p>
                     </div>
                     <div className='flex flex-col items-center'>
                         <Image src='/assets/images/focused.png' width={120} height={120} alt='error'></Image>
-                        <p className='text-xl md:info-14-24 mt-8'>Customer-oriented</p>
+                        <p className='info-14-24 text-xl dark:text-white md:text-2xl mt-8'>Customer-oriented</p>
                     </div>
                 </div>
             </div>
