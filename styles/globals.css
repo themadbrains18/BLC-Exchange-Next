@@ -115,9 +115,14 @@
 .info-14-16 {
     @apply font-normal font-noto text-black text-[14px] leading-[26px] md:text-[16px] dark:text-white
 }
+<<<<<<< HEAD
 
 .info-14 {
     @apply font-normal font-noto text-grey text-[14px] leading-[26px] dark:text-white hover:text-primary
+=======
+.info-14{
+    @apply  font-normal font-noto text-grey text-[14px] leading-[26px] dark:text-grey  hover:!text-primary
+>>>>>>> 9bac9922962da43e41125a57d939767e93f20e44
 }
 
 .info-12 {
