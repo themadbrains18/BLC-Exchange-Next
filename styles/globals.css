@@ -200,4 +200,14 @@ background-origin: padding-box,border-box;
 .speed_slider ~ .swiper-wrapper{
     transition-timing-function : linear!important;
   }
+  .txt_ellipsis{
+    display: -webkit-box!important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
 @tailwind utilities;
+
+
