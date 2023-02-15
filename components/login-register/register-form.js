@@ -5,17 +5,31 @@ import qrImage from "../../public/assets/images/qr.png";
 import laftImage from "../../public/assets/images/form-left-new.png";
 import SearchDropdown from '../snippets/search-dropdown';
 
+import passHide from '../../public/assets/icons/pass-hide.svg';
+import passShow from '../../public/assets/icons/pass-show.svg';
+
 const RegisterForm = () => {
   const[show,setShow] = useState(1);
   const[active,setActive] = useState(false);
   const[showDropdown,setShowDropdown] = useState(false);
   const[DropdownPhone,setDropdownPhone] = useState(false);
 
-//   const closeDropdown = (e, index) => {
-//       if (showDropdown != false) {
-//         setShowDropdown(false);
-//     }
-//   }
+    const showPass = (e) =>{
+        if(!e.currentTarget.classList.contains("hidden")){
+            e.currentTarget.classList.toggle("hidden");
+            e.currentTarget.previousSibling.classList.toggle("hidden");    
+            let pass_input = document.querySelector("#pass_input");
+            pass_input.setAttribute("type","text");
+        }
+    }
+    const hidePass = (e) =>{
+        if(!e.currentTarget.classList.contains("hidden")){
+            e.currentTarget.classList.toggle("hidden");
+            e.currentTarget.nextSibling.classList.toggle("hidden");    
+            let pass_input = document.querySelector("#pass_input");
+            pass_input.setAttribute("type","password");
+        }
+    }
 
 
 
@@ -70,8 +84,11 @@ const RegisterForm = () => {
                                 }
                             </div>
                         }
-                            <input type="password" placeholder="Set password"  className="block  px-4 max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="password" />
-                            
+                        <div className="relative">
+                            <input type="password" placeholder="Set password"  id="pass_input" className="block  px-4 max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="password" />
+                            <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e)=>{hidePass(e)}} />
+                            <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]"  onClick={(e)=>{showPass(e)}} />
+                        </div>
                             <div className="mt-5">
                                 <label className="inline-flex items-center gap-3 info-14 hover:!text-grey mb-3 cursor-pointer" onClick={()=>{setActive(!active)}}>
                                     <span>Referral Code (Optional)</span>
