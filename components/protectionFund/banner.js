@@ -1,14 +1,13 @@
-import Image from 'next/image'
 import React from 'react'
 
 const Banner = () => {
   return (
-    <section className='dark:bg-black pb-20 pt-[120px] lg:pt-[180px]' >
+    <section className='dark:bg-black pb-20 pt-[120px] lg:pt-[120px]' >
         <div className='container flex items-center justify-between flex-col-reverse md:flex-row gap-5  text-left'>
             <div className='flex flex-col gap-2'>
-               <p className='info-14-20 text-[#c36f09]'>Your security, our priority</p>
+               <p className='info-14-24 dark:text-[#c36f09]  text-[#c36f09]'>Your security, our priority</p>
                <h1 className='hero-heading'>Bitget Protection Fund</h1>
-               <p className='info-14-20 mt-8'>We regularly monitor the Bitget Protection Fund, as well as crypto's cybersecurity landscape, to make sure that our fund remains adequate for our customers.</p>
+               <p className='info-14-20 mt-10'>We regularly monitor the Bitget Protection Fund, as well as crypto's cybersecurity landscape, to make sure that our fund remains adequate for our customers.</p>
             </div>
             <div className='max-w-[215px] w-full  md:max-w-[332px] md:w-full'>
                 <img src='/assets/images/protection-fund.png' alt='error' ></img>

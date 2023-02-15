@@ -2,153 +2,180 @@
 @tailwind base;
 @tailwind components;
 
-  *::-webkit-scrollbar {
+*::-webkit-scrollbar {
     width: 4px;
-  }
-  *::-webkit-scrollbar-track {
+}
+
+*::-webkit-scrollbar-track {
     border-radius: 5px;
-  }  
-  *::-webkit-scrollbar-thumb {
+}
+
+*::-webkit-scrollbar-thumb {
     width: 8px;
     background-color: #656e6f;
     border-radius: 14px;
-  
-  }
-  
-.blue-gradient{
-    background-image: linear-gradient(180deg,#121616,#121616),linear-gradient(180deg,#556b6b,#141818);
-    border: 1px solid transparent;
-    background-clip: padding-box,border-box;
-    background-origin: padding-box,border-box;
-}
-.blue-gradient-active{
-    border: 1px solid transparent;
-    background-clip: padding-box,border-box;
-    background-origin: padding-box,border-box;
-    background-image: linear-gradient(180deg,#edffff,#edffff),linear-gradient(180deg,#81d0d0,#edffff);
-}
-<<<<<<< HEAD
-.grey-gradiant{
-background-image: linear-gradient(180deg,#f9fbfb,#f9fbfb),linear-gradient(180deg,#1da2b4,#f9fbfb);
-border-radius: 12px;
-border: 1px solid transparent;
-background-clip: padding-box,border-box;
-background-origin: padding-box,border-box;
+
 }
 
-.grey-gradiant-active{
-    background: url("../public/assets/images/bg-gradient.png"), linear-gradient(180deg,#131414,#131414),linear-gradient(180deg,#1da2b4,#131414);
+.blue-gradient {
+    background-image: linear-gradient(180deg, #121616, #121616), linear-gradient(180deg, #556b6b, #141818);
+    border: 1px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+}
+
+.blue-gradient-active {
+    border: 1px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    background-image: linear-gradient(180deg, #edffff, #edffff), linear-gradient(180deg, #81d0d0, #edffff);
+}
+
+.grey-gradiant {
+    background-image: linear-gradient(180deg, #f9fbfb, #f9fbfb), linear-gradient(180deg, #1da2b4, #f9fbfb);
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+}
+
+.grey-gradiant-active {
+    background: url("../public/assets/images/bg-gradient.png"), linear-gradient(180deg, #131414, #131414), linear-gradient(180deg, #1da2b4, #131414);
     background-repeat: no-repeat;
     background-position: top;
     background-size: 100% 100%;
 }
 
-=======
-.row-hover{
+.row-hover {
     border: 1px solid transparent;
-    background-clip: padding-box,border-box;
-    background-origin: padding-box,border-box;
-    background-image: linear-gradient(90deg,#1b2a2b,#192322),linear-gradient(90deg,#30bce8,#1f3f47);
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    background-image: linear-gradient(90deg, #1b2a2b, #192322), linear-gradient(90deg, #30bce8, #1f3f47);
 }
->>>>>>> 824d7e62f5b1c8af07454dc25f3c8602461443ae
-.yellow-gradient{
-    background-image: linear-gradient(180deg,#181915,#181915),linear-gradient(180deg,#686742,#1a1b17);
+
+.yellow-gradient {
+    background-image: linear-gradient(180deg, #181915, #181915), linear-gradient(180deg, #686742, #1a1b17);
     border: 1px solid transparent;
-    background-clip: padding-box,border-box;
-    background-origin: padding-box,border-box;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
 }
-.yellow-gradient-active{
-    background-image: linear-gradient(180deg,#f8ffee,#f8ffee),linear-gradient(180deg,#cbc761,#f9ffee);
+
+.yellow-gradient-active {
+    background-image: linear-gradient(180deg, #f8ffee, #f8ffee), linear-gradient(180deg, #cbc761, #f9ffee);
     border: 1px solid transparent;
-    background-clip: padding-box,border-box;
-    background-origin: padding-box,border-box;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
 }
-.pink-gradient{
-    background-image: linear-gradient(180deg,#1a1315,#1a1315),linear-gradient(180deg,#8b5865,#1c1517);
+
+.pink-gradient {
+    background-image: linear-gradient(180deg, #1a1315, #1a1315), linear-gradient(180deg, #8b5865, #1c1517);
     border: 1px solid transparent;
-    background-clip: padding-box,border-box;
-    background-origin: padding-box,border-box;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
 }
-.pink-gradient-active{
-    background-image: linear-gradient(180deg,#fff4f4,#fff4f4),linear-gradient(180deg,#d98a9e,#fff4f4);
+
+.pink-gradient-active {
+    background-image: linear-gradient(180deg, #fff4f4, #fff4f4), linear-gradient(180deg, #d98a9e, #fff4f4);
     border: 1px solid transparent;
-    background-clip: padding-box,border-box;
-    background-origin: padding-box,border-box;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
 }
+
 .toggle-checkbox:checked {
-  @apply: right-0 border-green-400;
-  right: 0;
-  border-color: #68D391;
+    @apply: right-0 border-green-400;
+    right: 0;
+    border-color: #68D391;
 }
-.toggle-checkbox:checked + .toggle-label {
-  /* @apply: bg-green-400; */
-  background-color: #68D391;
+
+.toggle-checkbox:checked+.toggle-label {
+    /* @apply: bg-green-400; */
+    background-color: #68D391;
 }
-.hero-heading{
-    @apply  font-medium font-noto-display text-black text-[36px] leading-[56px] md:text-[56px]  md:leading-[76px] dark:text-white
+
+.hero-heading {
+    @apply font-medium font-noto-display text-black text-[36px] leading-[56px] md:text-[56px] md:leading-[76px] dark:text-white
 }
-.section-primary-heading{
-    @apply  font-medium font-noto-display text-black text-[32px] leading-[42px] md:text-[56px]  md:leading-[68px] dark:text-white
+
+.section-primary-heading {
+    @apply font-medium font-noto-display text-black text-[32px] leading-[42px] md:text-[56px] md:leading-[68px] dark:text-white
 }
-.section-secondary-heading{
-    @apply  font-medium font-noto-display text-black text-[22px] leading-[30px] md:text-[32px]  md:leading-[42px] dark:text-white
+
+.section-secondary-heading {
+    @apply font-medium font-noto-display text-black text-[22px] leading-[30px] md:text-[32px] md:leading-[42px] dark:text-white
 }
-.info-14-24{
-    @apply  font-normal font-noto text-black text-[14px] leading-[22px] md:text-[24px]  md:leading-[32px] dark:text-white
+
+.info-14-24 {
+    @apply font-normal font-noto text-black text-[14px] leading-[22px] md:text-[24px] md:leading-[32px] dark:text-white
 }
-.info-14-20{
-    @apply  font-normal font-noto text-black  text-[14px] leading-[22px] md:text-[20px]  md:leading-[26px] dark:text-white
+
+.info-14-20 {
+    @apply font-normal font-noto text-black text-[14px] leading-[22px] md:text-[20px] md:leading-[26px] dark:text-white
 }
-.info-14-16{
-    @apply  font-normal font-noto text-black text-[14px] leading-[26px] md:text-[16px]  dark:text-white
+
+.info-14-16 {
+    @apply font-normal font-noto text-black text-[14px] leading-[26px] md:text-[16px] dark:text-white
 }
-.info-14{
-    @apply  font-normal font-noto text-grey text-[14px] leading-[26px] dark:text-white  hover:text-primary
+
+.info-14 {
+    @apply font-normal font-noto text-grey text-[14px] leading-[26px] dark:text-white hover:text-primary
 }
-.info-12{
-    @apply  font-normal font-noto text-[12px] text-light-grey leading-[18px] dark:text-grey
+
+.info-12 {
+    @apply font-normal font-noto text-[12px] text-light-grey leading-[18px] dark:text-grey
 }
-.cta{
-    @apply  px-4 font-normal capitalize inline-block rounded font-noto bg-primary text-white text-[14px] leading-[46px] md:text-[16px] hover:bg-primary-hover
+
+.cta {
+    @apply px-4 font-normal capitalize inline-block rounded font-noto bg-primary text-white text-[14px] leading-[46px] md:text-[16px] hover:bg-primary-hover
 }
-.transparent-cta{
-    @apply p-[10px]  font-normal font-noto capitalize text-black text-[14px]  md:text-[16px] hover:text-primary dark:text-white
+
+.transparent-cta {
+    @apply p-[10px] font-normal font-noto capitalize text-black text-[14px] md:text-[16px] hover:text-primary dark:text-white
 }
-.container{ @apply mx-auto max-w-[1240px] px-5
+
+.container {
+    @apply mx-auto max-w-[1240px] px-5
 }
-.icon_hover{
+
+.icon_hover {
     @apply hover:rotate-90
 }
 
 .ai_zone .swiper .swiper-button-prev,
-.ai_zone .swiper .swiper-button-next{
+.ai_zone .swiper .swiper-button-next {
     position: static;
     display: inline-block;
     margin-top: 40px;
 }
-.ai_zone .swiper .swiper-button-prev{
+
+.ai_zone .swiper .swiper-button-prev {
     margin: 0;
 }
-.ai_zone .swiper .swiper-button-prev:after{
+
+.ai_zone .swiper .swiper-button-prev:after {
     content: url('../public//assets//icons/left-arrow.svg');
     width: 100%;
 }
-.ai_zone .swiper .swiper-button-next:after{
+
+.ai_zone .swiper .swiper-button-next:after {
     content: url('../public//assets//icons/right-arrow.svg');
     width: 100%;
 }
-.ai_zone .swiper .swiper-button-next{
+
+.ai_zone .swiper .swiper-button-next {
     margin-left: 50px;
 }
+
 .ai_zone .black-arrows .swiper-button-prev:after,
-.ai_zone .black-arrows .swiper-button-next:after{
-    filter:brightness(0);
+.ai_zone .black-arrows .swiper-button-next:after {
+    filter: brightness(0);
 }
 
-@media(max-width:767px){
+@media(max-width:767px) {
+
     .ai_zone .swiper .swiper-button-prev,
-     .ai_zone .swiper .swiper-button-next{
+    .ai_zone .swiper .swiper-button-next {
         margin-top: 30px
     }
 }
+
 @tailwind utilities;

@@ -7,7 +7,7 @@ const Journey = () => {
         <h1 className='text-white text-2xl md:text-[40px] font-semibold leading-10 md:font-bold text-center'>Start Your Crypto Journey Now!</h1>
         <p className='mt-2 text-center text-base md:info-14-16 text-white'>Trade on a platform trusted by millions of users</p>
         <div className='text-center mt-5'>
-            <button className='px-10 h-[48px] info-14-16 text-black rounded-lg bg-white text-center'>Join Us</button>
+            <button className='dark:text-black px-10 h-[48px] info-14-16 text-black rounded-lg bg-white text-center'>Join Us</button>
         </div>
 
     </div>
