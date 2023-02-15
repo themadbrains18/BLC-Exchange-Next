@@ -1,12 +1,6 @@
 import React from 'react'
-import learn1 from '../../public/assets/icons/learn1.svg'
-import learn2 from '../../public/assets/icons/learn2.svg'
-import learn3 from '../../public/assets/icons/learn3.svg'
-
 
 const ProtectAssets = () => {
-
-
 
     const cardData = [
         {
@@ -57,29 +51,7 @@ const ProtectAssets = () => {
                         </div>
 
                         )})}
-                    {/* {cardData && cardData.map((e, i) => {
-                        return (
-                            <div key={i} className='flex flex-col  ' >
-                                <img src={`/assets/icons/${e.cardImg}`} alt="error" className='rounded-xl w-full lg:max-w-[386px]' />
-                                <div className="mt-4" >
-                                    <div key={i} className='flex flex-row gap-4 mt-4 lg:mt-6 '>
-                                        {e.cardType.map((item, i) => {
-                                            return (
-
-                                                <p className='info-12 bg-[#eff1f1] w-fit py-2 px-3 rounded'>{item}</p>
-
-                                            )
-                                        })}
-                                    </div>
-                                    <div className='h-auto lg:h-[66px] text-ellipsis overflow-hidden break-words mt-4 lg:mt-6'>
-                                        <h3 className='info-14-24 text-base lg:text-2xl sm:mb-5'>{e.cardHeading}</h3>
-                                    </div>
-                                    <p className='info-14 mt-4'>{e.cardInfo}</p>
-                                </div>
-                            </div>
-                        )
-                    })
-                    } */}
+                   
                 </div>      
                 <p className='mt-10 info-12'>*Bitget shall have the right to conduct investigations on the compromised accounts and/or the lost assets, and claims may be subject to the investigation result.</p>
             </div>

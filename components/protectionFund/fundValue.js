@@ -1,7 +1,47 @@
 import React from 'react'
-
+import DropdownWallet from '../snippets/dropdownWallet'
 
 const FundValue = () => {
+
+    const cardData = [
+        {
+            cardImg: 'btc.svg',
+            wallet: [
+                {
+                    desc:'Wallet1'
+                },{
+                    desc:'Wallet2' 
+                }
+            ],
+            cardHeading: "BTC",
+            cardInfo: "6500 BTC",
+
+        },
+        {
+            cardImg: 'USDT.svg',
+            wallet: [
+                {
+                    desc:'Wallet3'
+                },{
+                    desc:'Wallet4' 
+                }
+            ],
+            cardHeading: "USDT",
+            cardInfo: "160 million USDT",
+        },
+        {
+            cardImg: 'USDC.svg',
+            wallet: [
+                {
+                    desc:'Wallet5'
+                },{
+                    desc:'Wallet6' 
+                }
+            ],
+            cardHeading: "USDC",
+            cardInfo: "160 million USDC",
+        }
+    ]
 
 
     return (
@@ -9,49 +49,32 @@ const FundValue = () => {
             <div className='container grey-gradiant p-10 relative'>
                 <p className='section-secondary-heading dark:text-black'>The fund is currently valued at <span className='text-[#c36f09]'>US $300 million.</span></p>
                 <div className='flex flex-col md:flex-row gap-6 mt-6'>
-                    <div className='items-start lg:items-stretch justify-between flex lg:flex-col border-t-2 border-primary bg-[#f1fcfd] p-3 lg:p-6 md:max-w-[288px] md:w-full rounded-lg'>
-                        <div className='flex flex-row-reverse items-center gap-2 lg:flex-row lg:justify-between ' >
-                            <div >
-                                <p className=' hidden lg:block text-base text-light-grey dark:text-black'>BTC</p>
-                                <p className='info-14-20 text-sm lg:text-xl dark:text-black'>6500 BTC</p>
-                            </div>
-                            <div>
 
-                                <img src='/assets/icons/btc.svg' className='w-[24px] h-[24px]'></img>
-                            </div>
-                        </div>
 
-                        <div className='mt-0  pt-1 lg:pt-0 lg:mt-6 flex gap-4'>
-                            <p className='hidden lg:block'>Wallet</p>
-                            <img src='/assets/icons/arrow.svg' alt='error'></img>
-                        </div>
-                    </div>
-                    <div className='items-start lg:items-stretch justify-between flex lg:flex-col border-t-2 border-primary bg-[#f1fcfd] p-3 lg:p-6 md:max-w-[288px] md:w-full rounded-lg'>
-                        <div className='flex flex-row-reverse items-center gap-2 lg:flex-row justify-between ' >
-                            <div >
-                                <p className='hidden lg:block text-base text-light-grey dark:text-black'>USDT</p>
-                                <p className='info-14-20 text-sm lg:text-xl dark:text-black'>160 million USDT</p>
+
+                    {cardData && cardData.map((e, i) => {
+                        return (
+                            <div className='items-start lg:items-stretch justify-between flex lg:flex-col border-t-2 border-primary bg-[#f1fcfd] p-3 lg:p-6 md:max-w-[288px] md:w-full rounded-lg'>
+                                <div key={i} className='flex flex-row-reverse items-center gap-2 lg:flex-row lg:justify-between ' >
+                                    <div >
+                                        <p className=' hidden lg:block text-base text-light-grey dark:text-black'>{e.cardHeading}</p>
+                                        <p className='info-14-20 text-sm lg:text-xl dark:text-black'>{e.cardInfo}</p>
+                                    </div>
+                                    <img src={`/assets/icons/${e.cardImg}`} alt="error" className='w-[24px] h-[24px] self-baseline' />
+                                </div>
+                                <div className='mt-0  pt-1 lg:pt-0 lg:mt-6 flex gap-4 relative group cursor-pointer'>
+                                    <p className='hidden lg:block'>Wallet</p>
+                                    <img src='/assets/icons/arrow.svg' alt='error'></img>
+                                    {e.wallet && <DropdownWallet subMenu={e.wallet} />}
+                                </div>
+                          
                             </div>
-                            <img src='/assets/icons/USDT.svg' className='w-[24px] h-[24px]'></img>
-                        </div>
-                        <div className='mt-0  pt-1 lg:pt-0 lg:mt-6 flex gap-4'>
-                            <p className='hidden lg:block'>Wallet</p>
-                            <img src='/assets/icons/arrow.svg' alt='error'></img>
-                        </div>
-                    </div>
-                    <div className='items-start lg:items-stretch justify-between flex lg:flex-col border-t-2 border-primary bg-[#f1fcfd] p-3 lg:p-6 md:max-w-[288px] md:w-full rounded-lg'>
-                        <div className='flex flex-row-reverse items-center gap-2 lg:flex-row justify-between ' >
-                            <div >
-                                <p className='hidden lg:block  text-base text-light-grey dark:text-black'>USDC</p>
-                                <p className='info-14-20 text-sm lg:text-xl dark:text-black'>160 million USDC</p>
-                            </div>
-                            <img src='/assets/icons/USDC.svg' className='w-[24px] h-[24px]'></img>
-                        </div>
-                        <div className='mt-0 pt-1 lg:pt-0 lg:mt-6 flex gap-4'>
-                            <p className='hidden lg:block'>Wallet</p>
-                            <img src='/assets/icons/arrow.svg' alt='error'></img>
-                        </div>
-                    </div>
+
+
+
+                        )
+                    })}
+                   
 
                 </div>
                 <p className='mt-6 info-14'>
