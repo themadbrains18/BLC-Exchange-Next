@@ -32,12 +32,12 @@ const Serve = () => {
                     {data && data.map((e, i) => {
                         return(
                         <div className='border border-[#dee1e4] rounded-sm p-10 mt-14' >
-                            <div className='flex flex-col sm:flex-row gap-2 sm:gap-6  p-3 bg-gradient-to-r from-[#f7f7f7] to-[hsla(0,0%,98.4%,0)] rounded-xl sm:rounded-[100px]'>
+                            <div className='flex flex-col sm:flex-row gap-2 sm:gap-6   p-3 bg-gradient-to-r from-[#f7f7f7] to-[hsla(0,0%,98.4%,0)] rounded-xl sm:rounded-[100px]'>
                                 <div className='flex  gap-1'>
                                     <img src="https://img.icons8.com/sf-ultralight/25/null/clock.png" />
-                                    <p className='info-14-16'>{e.date}</p>
+                                    <p className='info-14-16 dark:text-black'>{e.date}</p>
                                 </div>
-                                <p className='info-14-16'>User: {e.user}</p>
+                                <p className='info-14-16 dark:text-black'>User: {e.user}</p>
 
                             </div>
                             <div className='mt-8'>

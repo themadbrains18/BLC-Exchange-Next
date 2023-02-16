@@ -42,13 +42,13 @@ function SubmitFeedback() {
                     {cardData && cardData.map((e, item) => {
                         return(
 
-                        <div key={item} className='flex flex-col sm:flex-row items-center p-5 rounded-2xl max-w-[80%] sm:max-w-full mx-auto sm:mx-0 sm:rounded-[100px] cursor-pointer gap-4 bg-[#f5f5f5] sm:bg-gradient-to-r from-[#f5f5f5] to-[hsla(0,0%,98.4%,0)]' >
+                        <div key={item} className='flex flex-col sm:flex-row items-center p-5 rounded-2xl max-w-[80%] sm:max-w-full mx-auto sm:mx-0 sm:rounded-[100px] cursor-pointer gap-4 bg-gradient-to-b from-[#ccc] sm:bg-gradient-to-r sm:from-[#f5f5f5] sm:to-[hsla(0,0%,98.4%,0)]' >
                             <img src={`/assets/icons/${e.cardImg}`}></img>
-                            <div className='text-center '>
-                                <span className='info-14-20 text-black dark:text-black'>
+                            <div className=' text-center  sm:text-start '>
+                                <span className='info-14-20  dark:text-black'>
                                     {e.cardHeading}
                                 </span>
-                                <p className='mt-3 info-14 '>{e.cardInfo}</p>
+                                <p className='mt-3 info-14 dark:text-black'>{e.cardInfo}</p>
                             </div>
                         </div>
                         )
