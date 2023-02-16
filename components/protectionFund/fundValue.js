@@ -45,7 +45,7 @@ const FundValue = () => {
 
 
     return (
-        <section className='dark:bg-black px-5 pb-20 lg:pt-[80px]' >
+        <section className='dark:bg-black-v-3 px-5  py-10 md:py-20' >
             <div className='container grey-gradiant p-10 relative'>
                 <p className='section-secondary-heading dark:text-black'>The fund is currently valued at <span className='text-[#c36f09]'>US $300 million.</span></p>
                 <div className='flex flex-col md:flex-row gap-6 mt-6'>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const WhyNeed = () => {
   return (
-    <section className='dark:bg-black bg-[#f9fbfb] pb-20 lg:pt-[80px]'>
+    <section className='dark:bg-black bg-[#f9fbfb] py-10 md:py-20 '>
       <div className='container'>
         <h1 className='hero-heading  text-[32px] lg:text-[56px]'>Why do we need a protection fund?</h1>
         <div className='flex flex-col lg:flex-row gap-2 p-2 '>
