@@ -9,7 +9,7 @@ export default function App({ Component, pageProps,props }) {
   //  const mode=useContext(UserContext)
   console.log("props",props)
   const [mode, setMode] = useState("dark");
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(false);
 
   let currentMode;
   useEffect(() => {
