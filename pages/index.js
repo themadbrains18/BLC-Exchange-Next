@@ -13,7 +13,7 @@ import Download from '@/components/home/download';
 
 // const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home(props) {
 
   return (
     <>
@@ -23,7 +23,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <Hero />
+        <Hero  />
         <FlowSliderSec/>
         <Aizone />
         <Trending />
@@ -36,7 +36,11 @@ export default function Home() {
   )
 }
 
-
+export async function getServerSideProps() {
+  return {
+    props: {name: "prince"}, // will be passed to the page component as props
+  }
+}
 
 // export async function getServerSideProps(context) {
 //   let nav = await fetch('http://localhost:3000/api/hello')

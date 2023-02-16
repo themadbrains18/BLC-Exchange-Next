@@ -7,6 +7,7 @@ import SideMenu from "../snippets/sideMenu";
 import NotificationHover from "../snippets/notificationHover";
 
 const Header = (props) => {
+  console.log("props==========",props)
   const { mode, setMode, login } = useContext(Context);
   const [show, setShow] = useState(true);
   const [alert, setAlert] = useState(true);
