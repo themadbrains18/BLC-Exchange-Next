@@ -67,12 +67,13 @@ console.log(props)
         {/* main Navbar */}
         <nav className=" flex bg-white justify-between p-5 dark:bg-black-v-4">
           <div className="flex items-center gap-4">
-            <Image
+            <Link href="/" ><Image
               src="/assets/icons/companyLogo.svg"
               width={92}
               height={24}
               alt="Company Logo"
-            />
+            /></Link>
+            
             <div className="hidden  lg:flex lg:items-center group ">
               {/* grid icon  */}
               <svg
@@ -139,7 +140,7 @@ console.log(props)
 
           <div className="flex gap-5 items-center">
             <Link
-              href=""
+              href="/register"
               className={`transparent-cta hidden ${
                 login === true ? "lg:hidden" : "lg:block"
               }`}
@@ -147,7 +148,7 @@ console.log(props)
               sign up
             </Link>
             <Link
-              href=""
+              href="/login"
               className={`cta hidden ${
                 login === true ? "lg:hidden" : "lg:block"
               }`}
