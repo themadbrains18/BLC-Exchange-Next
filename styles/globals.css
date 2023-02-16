@@ -207,7 +207,6 @@
 .ai_zone .black-arrows .swiper-button-next:after {
   filter: brightness(0);
 }
-
 @media screen and (min-width: 768px) {
   .perspective:after {
   

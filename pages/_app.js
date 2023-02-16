@@ -8,7 +8,7 @@ import Header from "@/components/header-footer/header";
 export default function App({ Component, pageProps }) {
   //  const mode=useContext(UserContext)
   const [mode, setMode] = useState("dark");
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(false);
 
   let currentMode;
   useEffect(() => {

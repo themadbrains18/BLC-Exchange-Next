@@ -31,7 +31,7 @@ const LoginForm = () => {
                 <div className="hidden md:block max-w-[50%] w-full">
                     <h3 className="section-secondary-heading mb-5">Get together ,trade <br />together</h3>
                     <p className="info-14-20 mb-[50px]">Embrace crypto and connectwith the future.</p>
-                    <Image src={laftImage} alt="" width={450} height={400} class="max-w-[270px] mx-auto w-full" />
+                    <Image src={laftImage} alt="" width={450} height={400} className="max-w-[270px] mx-auto w-full" />
                 </div>
                 {/* login part */}
                 <div className='className="max-w-full md:max-w-[50%] w-full" p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto'>
