@@ -158,7 +158,9 @@ console.log(props)
 
             <Link
               href={""}
-              className="hidden  lg:flex lg:items-center group  hover:pb-8 hover:-mb-8"
+              className={`hidden ${
+                login === false ? "lg:hidden" : "lg:block"
+              } lg:flex lg:items-center group hover:pb-8 hover:-mb-8`}
             >
               <span
                 
