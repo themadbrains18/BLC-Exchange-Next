@@ -43,7 +43,7 @@ const Partners = () => {
      
         <h1 className='container dark:text-white text-4xl leading-10 font-bold py-[80px] md:pt-[120px] pb-8'>Our Partners</h1>
         <div className='mt-5'> 
-        <Carousel  data={image} arrow={false}  />
+        <Carousel  data={image} arrow={false} />
       </div> 
     </section>
   )

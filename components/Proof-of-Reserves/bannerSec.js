@@ -3,7 +3,7 @@ import React from "react";
 const BannerSec = () => {
   return (
     <>
-      <section className=" pb-20 pt-[120px] bg-secondary dark:bg-black-v-2">
+      <section className=" py-10 md:py-20 pt-[120px] bg-secondary dark:bg-black-v-2">
         <div className="container">
           <div className="flex ">
             <div className="flex flex-col gap-6 lg:gap-8 justify-center">

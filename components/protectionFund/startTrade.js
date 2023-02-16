@@ -2,7 +2,7 @@ import React from 'react'
 
 const StartTrade = () => {
   return (
-    <section className='dark:bg-black bg-[#f9fbfb] py-10 md:py-20'>
+    <section className='dark:bg-black bg-[#f9fbfb] pt-10 md:pt-20'>
       <div className='container flex flex-col-reverse text-center items-center lg:justify-between lg:flex-row'>
         <div className='mb-20 mt-8 lg:mt-0'>
             <h1 className='hero-heading  text-[32px] lg:text-[56px]'>Ready to start trading?</h1>

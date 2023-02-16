@@ -1,6 +1,8 @@
 
-import BannerSec from '@/components/Proof-of-Reserves/bannerSec'
-import ServicesRatio from '@/components/Proof-of-Reserves/servicesRatio'
+import BannerSec from '@/components/proof-of-reserves/bannerSec'
+import OnHandSec from '@/components/proof-of-reserves/onHandSec'
+import Question from '@/components/proof-of-reserves/question'
+import ServicesRatio from '@/components/proof-of-reserves/servicesRatio'
 import React from 'react'
 
 const ProofOfReserves = () => {
@@ -8,6 +10,8 @@ const ProofOfReserves = () => {
     <>
     <BannerSec/>
     <ServicesRatio/>
+    <Question/>
+    <OnHandSec/>
     </>
   )
 }

@@ -67,7 +67,7 @@ const Aizone = () => {
                 >
                     {
                         arrText.map((e,i)=>{
-                            console.log(e)
+                         
                             return (
                                 <SwiperSlide key={i}>
                                     <p className='text-white'>{e.arrText}</p>
@@ -79,7 +79,7 @@ const Aizone = () => {
             </div>
 
             {/* image carousel */}
-            <Carousel  data={image} arrow={true}  />
+            <Carousel  data={image} arrow={true} delay={true} />
         
             <div className='text-end'>
                 <Link href="#" className="text-white">See More</Link>

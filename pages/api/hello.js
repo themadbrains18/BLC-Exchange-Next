@@ -4,13 +4,15 @@ import { promises as fs }  from 'fs'
 
 export default async function handler(req, res) {
   
-  const nav = await fs.readFile(process.cwd()+'/staticData/header-footer/nav.json',"utf8");
-  const footerNav = await fs.readFile(process.cwd()+'/staticData/header-footer/footer.json',"utf8",{});
-  const tutorials = await fs.readFile(process.cwd()+'/staticData/snippet/tutorials.json',"utf8",{});
+  let nav = await fs.readFile(process.cwd()+'/staticData/header-footer/nav.json',"utf8");
+  let footerNav = await fs.readFile(process.cwd()+'/staticData/header-footer/footer.json',"utf8",{});
+  let tutorials = await fs.readFile(process.cwd()+'/staticData/snippet/tutorials.json',"utf8",{});
+  let counteryList = await fs.readFile(process.cwd()+'/staticData/countryList.json',"utf8",{});
 
   res.status(200).json({
     nav : JSON.parse(nav),
     footerNav :JSON.parse(footerNav),
-    tutorials :JSON.parse(tutorials)
+    tutorials :JSON.parse(tutorials),
+    counteryList :JSON.parse(counteryList)
   })
 }

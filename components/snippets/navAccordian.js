@@ -38,9 +38,9 @@ const NavAccordian = (props) => {
         {props.content &&
           props.content.map((elem, index) => {
             return (
-              <Fragment  key={index}>
+              <Fragment key={index} >
                 {elem.linkUrl && elem.linkText && (
-                  <li className="mt-3">
+                  <li  className="mt-3">
                     <Link href={elem.linkUrl} className="info-14 ">
                       {elem.linkText}
                     </Link>
