@@ -209,8 +209,7 @@
 }
 @media screen and (min-width: 768px) {
   .perspective:after {
-  
-    transform: perspective(188px) scaleY(1.27) rotateX(5deg);
+    transform: perspective(188px) scaleY(1.24) rotateX(5deg);
     transform-origin: bottom right;
   }
 }
