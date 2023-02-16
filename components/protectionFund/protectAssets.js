@@ -27,7 +27,7 @@ const ProtectAssets = () => {
 
 
     return (
-        <section className='dark:bg-black pb-20 lg:pt-[80px]'>
+        <section className='dark:bg-black-v-3 py-10 md:py-20'>
             <div className='container'>
                 <h1 className='hero-heading text-[32px] lg:text-[56px]'>Learn how to protect your assets.</h1>
                 <p className='info-14-24 text-base mt-2 lg:text-2xl lg:mt-6'>Read our Academy articles on how to protect your account on Web3.</p>

@@ -45,13 +45,13 @@ const FundValue = () => {
 
 
     return (
-        <section className='dark:bg-black px-5 pb-20 lg:pt-[80px]' >
+        <section className='dark:bg-black-v-3 px-5  py-10 md:py-20' >
             <div className='container grey-gradiant p-10 relative'>
                 <p className='section-secondary-heading dark:text-black'>The fund is currently valued at <span className='text-[#c36f09]'>US $300 million.</span></p>
                 <div className='flex flex-col md:flex-row gap-6 mt-6'>
                     {cardData && cardData.map((e, i) => {
                         return (
-                            <div key={i} className='items-start lg:items-stretch justify-between flex lg:flex-col border-t-2 border-primary bg-[#f1fcfd] p-3 lg:p-6 md:max-w-[288px] md:w-full rounded-lg'>
+                            <div key={i} className='items-start lg:items-stretch justify-between flex lg:flex-col border-t-2 z-[0] lg:z-[2] border-primary bg-[#f1fcfd] p-3 lg:p-6 md:max-w-[288px] md:w-full rounded-lg'>
                                 <div  className='flex flex-row-reverse items-center gap-2 lg:flex-row lg:justify-between ' >
                                     <div >
                                         <p className=' hidden lg:block text-base text-light-grey dark:text-black'>{e.cardHeading}</p>
@@ -77,7 +77,7 @@ const FundValue = () => {
                 <p className='mt-6 info-14'>
                     *Based on opening prices of November 15, 2022.
                 </p>
-                <img src='/assets/icons/downloadfund.svg' className='absolute top-0 right-0' alt='error' />
+                <img src='/assets/icons/downloadfund.svg' className='absolute top-0 right-0 hidden lg:block' alt='error' />
             </div>
 
         </section>
