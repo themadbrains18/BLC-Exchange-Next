@@ -7,7 +7,7 @@ const SearchDropdown = ({country,code,setShowDropdown,setDropdownPhone}) => {
 
     useEffect(() => {
       (async () => {
-        await fetch("http://localhost:3000/api/hello")
+        await fetch("/api/hello")
           .then((res) => res.json())
           .then((data) => {
             setData(data.counteryList);
