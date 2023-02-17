@@ -26,13 +26,25 @@ const NavAccordian = (props) => {
         onClick={setHeight}
       >
         <span>{props.heading}</span>
+        {props.blue
+        ?
         <Image
-          src="/assets/icons/down.svg"
-          height={20}
-          width={14}
-          alt=""
-          className="block duration-300"
-        />
+        src="/assets/icons/bluearrow.svg"
+        height={20}
+        width={20}
+        alt=""
+        className="block duration-300"
+      />
+        :
+        <Image
+        src="/assets/icons/down.svg"
+        height={20}
+        width={14}
+        alt=""
+        className="block duration-300"
+      />
+        }
+       
       </h4>
       <ul ref={ref} className="h-0 pl-3 overflow-hidden duration-300">
         {props.content &&

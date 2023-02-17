@@ -40,10 +40,10 @@ let arrText = [
         arrText:"Initial Listing With $BLUR - Total of $180,000+ BLUR and BGB, 5 BTC, and Messi Signed Jersey To Be Won!",
     },
     {
-        arrText:"Bitget Joins the VerifyVASP Alliance",
+        arrText:"BLC-Exchange Joins the VerifyVASP Alliance",
     },
     {
-        arrText:"Bitget Listed CryptoAI (CAI) and Botto (BOTTO) in the AI Zone - Share $20,000 Worth of Rewards!"
+        arrText:"BLC-Exchange Listed CryptoAI (CAI) and Botto (BOTTO) in the AI Zone - Share $20,000 Worth of Rewards!"
     }
 ]
 

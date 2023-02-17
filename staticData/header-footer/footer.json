@@ -19,7 +19,7 @@
                 "linkUrl":"#"
             },
             {
-                "linkText":"Bitget Token",
+                "linkText":"BLC-Exchange Token",
                 "linkUrl":"#"
             },
             {
@@ -33,7 +33,7 @@
         "content":[
             {
                 "linkText":"Buy Crypto",
-                "linkUrl":"#"
+                "linkUrl":"p2p-trade/quick"
             },
             {
                 "linkText":"Futures",
@@ -53,11 +53,11 @@
         "mainHeading":"Service",
         "content":[
             {
-                "linkText":"Bitget Academy",
+                "linkText":"BLC-Exchange Academy",
                 "linkUrl":"#"
             },
             {
-                "linkText":"Bitget Launchpad",
+                "linkText":"BLC-Exchange Launchpad",
                 "linkUrl":"#"
             },
             {
@@ -120,7 +120,7 @@
         "content":[
             {
                 "linkText":"Feedback",
-                "linkUrl":"#"
+                "linkUrl":"/feedback"
             },
             {
                 "linkText":"Fee Schedule",
@@ -128,7 +128,7 @@
             },
             {
                 "linkText":"Official Verification Channel",
-                "linkUrl":"#"
+                "linkUrl":"/official-verification"
             },
             {
                 "linkText":"Announcements",

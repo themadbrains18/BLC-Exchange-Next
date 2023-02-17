@@ -2,9 +2,10 @@ import {useState} from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import qrImage from "../../public/assets/images/qr.png";
-import laftImage from "../../public/assets/images/form-left-new.png";
+import LeftSide from './left-side';
 import SearchDropdown from '../snippets/search-dropdown';
-
+import VerificationCode from './verification-code';
+import WelcomePopup from './welcome-popup';
 import passHide from '../../public/assets/icons/pass-hide.svg';
 import passShow from '../../public/assets/icons/pass-show.svg';
 
@@ -37,13 +38,10 @@ const RegisterForm = () => {
     <section className='dark:bg-black-v-5 py-[80px] !pt-[120px] lg:!pt-[204px]' >
         <div className='container'>
             <div className="flex flex-col md:flex-row items-start gap-10">
-                <div className="hidden md:block max-w-[50%] w-full">
-                    <h3 className="section-secondary-heading mb-5">Get together ,trade <br />together</h3>
-                    <p className="info-14-20 mb-[50px]">Embrace crypto and connectwith the future.</p>
-                    <Image src={laftImage} alt="" width={450} height={400} className="max-w-[270px] mx-auto w-full" />
-                </div>
-                {/* login part */}
-                <div className='className="max-w-full md:max-w-[50%] w-full" p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto'>
+                {/* section left side */}
+                <LeftSide />
+                {/* register part */}
+                <div className="max-w-full md:max-w-[50%] w-full p-3 sm:p-6 border border-grey mx-auto">
                     <h4 className='section-secondary-heading mb-5'>Welcome back</h4>
                     <div className="my-8 relative">
                         <p className='info-14 hover:!text-grey inline-flex items-center gap-3 cursor-pointer' onClick={(e)=>{setShowDropdown( !showDropdown)}}>
@@ -147,6 +145,9 @@ const RegisterForm = () => {
                     </p>
                 </div>
             </div>
+                {/* verification code  */}
+                <VerificationCode />
+                {/* <WelcomePopup /> */}
         </div>
     </section>
   )

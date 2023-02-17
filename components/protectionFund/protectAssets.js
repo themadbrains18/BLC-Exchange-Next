@@ -6,19 +6,19 @@ const ProtectAssets = () => {
         {
             cardImg: 'learn1.svg',
             cardType: ['Cryptocurrency'],
-            cardHeading: "$300M Bitget Protection Fund to Protect User's Assets",
+            cardHeading: "$300M BLC-Exchange Protection Fund to Protect User's Assets",
             cardInfo: "December 22, 2022 ｜ 10 min",
 
         },
         {
             cardImg: 'learn2.svg',
-            cardType: ['Bitget'],
-            cardHeading: "Solana's $6M Hack: How to Protect Your Money with the Bitget Protection Fund",
+            cardType: ['BLC-Exchange'],
+            cardHeading: "Solana's $6M Hack: How to Protect Your Money with the BLC-Exchange Protection Fund",
             cardInfo: " December 12, 2022 ｜ 5 min",
         },
         {
             cardImg: 'learn3.svg',
-            cardType: ['Cryptocurrency', 'Bitget'],
+            cardType: ['Cryptocurrency', 'BLC-Exchange'],
             cardHeading: "Rookie Mistakes When Starting Out in Crypto",
             cardInfo: "November 18, 2022 ｜ 10 min",
         }
@@ -27,7 +27,7 @@ const ProtectAssets = () => {
 
 
     return (
-        <section className='dark:bg-black pb-20 lg:pt-[80px]'>
+        <section className='dark:bg-black-v-3 py-10 md:py-20'>
             <div className='container'>
                 <h1 className='hero-heading text-[32px] lg:text-[56px]'>Learn how to protect your assets.</h1>
                 <p className='info-14-24 text-base mt-2 lg:text-2xl lg:mt-6'>Read our Academy articles on how to protect your account on Web3.</p>
@@ -53,7 +53,7 @@ const ProtectAssets = () => {
                         )})}
                    
                 </div>      
-                <p className='mt-10 info-12'>*Bitget shall have the right to conduct investigations on the compromised accounts and/or the lost assets, and claims may be subject to the investigation result.</p>
+                <p className='mt-10 info-12'>*BLC-Exchange shall have the right to conduct investigations on the compromised accounts and/or the lost assets, and claims may be subject to the investigation result.</p>
             </div>
         </section>
     )

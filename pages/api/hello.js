@@ -8,11 +8,15 @@ export default async function handler(req, res) {
   let footerNav = await fs.readFile(process.cwd()+'/staticData/header-footer/footer.json',"utf8",{});
   let tutorials = await fs.readFile(process.cwd()+'/staticData/snippet/tutorials.json',"utf8",{});
   let counteryList = await fs.readFile(process.cwd()+'/staticData/countryList.json',"utf8",{});
+  let coinList = await fs.readFile(process.cwd()+'/staticData/snippet/coins.json',"utf8",{});
+  let currency = await fs.readFile(process.cwd()+'/staticData/snippet/currency.json',"utf8",{});
 
   res.status(200).json({
     nav : JSON.parse(nav),
     footerNav :JSON.parse(footerNav),
     tutorials :JSON.parse(tutorials),
-    counteryList :JSON.parse(counteryList)
+    counteryList :JSON.parse(counteryList),
+    coinList :JSON.parse(coinList),
+    currency :JSON.parse(currency)
   })
 }

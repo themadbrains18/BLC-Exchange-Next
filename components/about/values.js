@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 const Values = () => {
   return (
-    <section className='bg-white dark:bg-black-v-5 py-[80px] md:py-[120px]  '>
+    <section className='bg-white dark:bg-black-v-5 py-10 md:py-20  '>
             <div className="container ">
                 <h1 className='dark:text-white text-2xl font-semibold md:text-4xl leading-10 md:font-bold'>Our Values</h1>
                 <div className='flex flex-wrap gap-8 justify-around items-center mt-14'>

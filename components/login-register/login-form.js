@@ -6,6 +6,7 @@ import laftImage from "../../public/assets/images/form-left-new.png";
 import passHide from '../../public/assets/icons/pass-hide.svg';
 import passShow from '../../public/assets/icons/pass-show.svg';
 
+
 const LoginForm = () => {
     const [show,setShow] = useState(1);
     const showPass = (e) =>{
@@ -31,7 +32,7 @@ const LoginForm = () => {
                 <div className="hidden md:block max-w-[50%] w-full">
                     <h3 className="section-secondary-heading mb-5">Get together ,trade <br />together</h3>
                     <p className="info-14-20 mb-[50px]">Embrace crypto and connectwith the future.</p>
-                    <Image src={laftImage} alt="" width={450} height={400} class="max-w-[270px] mx-auto w-full" />
+                    <Image src={laftImage} alt="" width={450} height={400} className="max-w-[270px] mx-auto w-full" />
                 </div>
                 {/* login part */}
                 <div className='className="max-w-full md:max-w-[50%] w-full" p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto'>
@@ -52,7 +53,7 @@ const LoginForm = () => {
                                 <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]"  onClick={(e)=>{showPass(e)}} />
                             </div>
                             <button className='cta mt-5  w-full'>Log In</button>
-                            <p className='info-14 !text-primary text-end mt-4 cursor-pointer'>Forgot password?</p>
+                            <a href="/forget" className='info-14 !text-primary block text-end mt-4 cursor-pointer'>Forgot password?</a>
                         </form>
                     }
                     {/* qr part */}
@@ -70,7 +71,7 @@ const LoginForm = () => {
                                     <path d="M25.3984 23.6484L8.16767 23.6484" stroke="#1DA2B4" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
                                     <path d="M21.707 17.2461L11.8609 17.2461" stroke="#1DA2B4" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <p className='info-14 !text-grey mt-[-5px]'>Open the Bitget App and scan the code in the upper right corner of Homepage.</p>
+                                <p className='info-14 !text-grey mt-[-5px]'>Open the BLC-Exchange App and scan the code in the upper right corner of Homepage.</p>
                             </div>
                         </div>
                     }
@@ -114,6 +115,7 @@ const LoginForm = () => {
                     </p>
                 </div>
             </div>
+            
         </div>
     </section>
   )
