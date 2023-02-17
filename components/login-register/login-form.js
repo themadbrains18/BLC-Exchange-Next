@@ -51,7 +51,7 @@ const LoginForm = () => {
                                 <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e)=>{hidePass(e)}} />
                                 <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]"  onClick={(e)=>{showPass(e)}} />
                             </div>
-                            <button className='cta mt-5  w-full'>Submit</button>
+                            <button className='cta mt-5  w-full'>Log In</button>
                             <p className='info-14 !text-primary text-end mt-4 cursor-pointer'>Forgot password?</p>
                         </form>
                     }

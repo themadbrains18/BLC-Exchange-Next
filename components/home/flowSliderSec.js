@@ -14,7 +14,7 @@ const FlowSliderSec = () => {
   // })
   return (
     <>
-      <section className="dark:bg-black-v-5 ">
+      <section className="dark:bg-black-v-5 py-[80px]">
         <div className="container">
           <h2 className="hero-heading mb-4">Trade alongside the best</h2>
           <p className="info-14-24 mb-4">
