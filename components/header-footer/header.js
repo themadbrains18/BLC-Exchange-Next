@@ -5,11 +5,11 @@ import Context from "../contexts/context";
 import Dropdown from "../snippets/dropdown";
 import SideMenu from "../snippets/sideMenu";
 import NotificationHover from "../snippets/notificationHover";
+import TopBar from "../snippets/topBar";
 
 const Header = (props) => {
   const { mode, setMode, login } = useContext(Context);
   const [show, setShow] = useState(true);
-  const [alert, setAlert] = useState(true);
   const [Data, setData] = useState([]);
   const [specialData, setSpecialData] = useState([]);
   useEffect(() => {
@@ -34,47 +34,14 @@ const Header = (props) => {
     <>
       <header className="fixed  w-full border-b border-primary z-10">
         {/* top bar */}
-        <div
-          className={`hidden bg-black-v-3 ${
-            alert === true ? "lg:flex" : "lg:hidden"
-          } gap-3 justify-center items-center `}
-        >
-          <p className=" info-14-16 text-white p-4">
-            To check content specific to your region, we suggest that you choose
-            <span className="text-primary">“English(South Asia)”</span> as your
-            preferred country/region.
-          </p>
-          <Link href={""} className="cta bg-grey py-1 px-3 leading-4 text-sm ">
-            confirm
-          </Link>
-          <button
-            onClick={() => {
-              setAlert(false);
-            }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="white"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
+        <TopBar/>
         {/* main Navbar */}
         <nav className=" flex bg-white justify-between px-4 dark:bg-black-v-4">
           <div className="flex items-center gap-4">
             <Link href="/">
               <img
                 src="/assets/images/BLC-Exchange.png"
-                className="w-16 py-2 "
+                className="w-8 md:w-16 py-2 "
                 alt="Company Logo"
               />
             </Link>
@@ -87,8 +54,8 @@ const Header = (props) => {
               <svg
                 className="duration-300 group-hover:fill-primary"
                 xmlns="http://www.w3.org/2000/svg"
-                height="24"
-                width="24"
+                height="26"
+                width="26"
                 fill={mode === "dark" ? "white" : "currentcolor"}
               >
                 <path d="M6 20q-.825 0-1.412-.587Q4 18.825 4 18q0-.825.588-1.413Q5.175 16 6 16t1.412.587Q8 17.175 8 18q0 .825-.588 1.413Q6.825 20 6 20Zm6 0q-.825 0-1.412-.587Q10 18.825 10 18q0-.825.588-1.413Q11.175 16 12 16t1.413.587Q14 17.175 14 18q0 .825-.587 1.413Q12.825 20 12 20Zm6 0q-.825 0-1.413-.587Q16 18.825 16 18q0-.825.587-1.413Q17.175 16 18 16q.825 0 1.413.587Q20 17.175 20 18q0 .825-.587 1.413Q18.825 20 18 20ZM6 14q-.825 0-1.412-.588Q4 12.825 4 12t.588-1.413Q5.175 10 6 10t1.412.587Q8 11.175 8 12q0 .825-.588 1.412Q6.825 14 6 14Zm6 0q-.825 0-1.412-.588Q10 12.825 10 12t.588-1.413Q11.175 10 12 10t1.413.587Q14 11.175 14 12q0 .825-.587 1.412Q12.825 14 12 14Zm6 0q-.825 0-1.413-.588Q16 12.825 16 12t.587-1.413Q17.175 10 18 10q.825 0 1.413.587Q20 11.175 20 12q0 .825-.587 1.412Q18.825 14 18 14ZM6 8q-.825 0-1.412-.588Q4 6.825 4 6t.588-1.412Q5.175 4 6 4t1.412.588Q8 5.175 8 6t-.588 1.412Q6.825 8 6 8Zm6 0q-.825 0-1.412-.588Q10 6.825 10 6t.588-1.412Q11.175 4 12 4t1.413.588Q14 5.175 14 6t-.587 1.412Q12.825 8 12 8Zm6 0q-.825 0-1.413-.588Q16 6.825 16 6t.587-1.412Q17.175 4 18 4q.825 0 1.413.588Q20 5.175 20 6t-.587 1.412Q18.825 8 18 8Z" />
@@ -210,7 +177,7 @@ const Header = (props) => {
             {/* account */}
             <div
               href=""
-              className={` border-r border-line-clr pr-3 group  hover:pb-8 hover:-mb-8 ${
+              className={`group  hover:pb-8 hover:-mb-8 ${
                 login === true ? "lg:block" : "lg:hidden"
               }`}
             >
@@ -239,6 +206,7 @@ const Header = (props) => {
                   arrow={true}
                   height={true}
                   fixed_cta="Log Out"
+                  svgType="log_out"
                 />
               )}
             </div>
@@ -265,9 +233,12 @@ const Header = (props) => {
               </svg>
             </button>
 
-            <div className="hidden lg:flex items-center gap-[10px]">
+            <div className=" border-l border-line-clr  hidden lg:flex items-center gap-[10px]">
+            
+
               {/* bell   */}
-              <button className="group relative">
+              <button className="ml-3 group relative">
+              
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

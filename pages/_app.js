@@ -19,6 +19,7 @@ export default function App({ Component, pageProps,props }) {
     } else {
       localStorage.setItem("mode", mode);
     }
+    
   }, [mode]);
 
   return (
@@ -26,7 +27,10 @@ export default function App({ Component, pageProps,props }) {
         <div className={mode === "dark" ? "dark" : "light"}>
       <Context.Provider value={{ mode, setMode, login,setLogin }}>
           <Header props={props} />
-            <Component {...pageProps}  />
+          <div>
+
+             <Component {...pageProps}  />
+          </div>
           <Footer />
       </Context.Provider>
         </div>
