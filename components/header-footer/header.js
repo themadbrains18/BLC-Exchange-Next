@@ -7,26 +7,29 @@ import SideMenu from "../snippets/sideMenu";
 import NotificationHover from "../snippets/notificationHover";
 
 const Header = (props) => {
-  console.log("props==========",props)
   const { mode, setMode, login } = useContext(Context);
   const [show, setShow] = useState(true);
   const [alert, setAlert] = useState(true);
   const [Data, setData] = useState([]);
-console.log(props)
- useEffect(() => {
-  (async () => {
-    await fetch("/api/hello")
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data.nav);
+  const [specialData, setSpecialData] = useState([]);
+  useEffect(() => {
+    (async () => {
+      await fetch("http://localhost:3000/api/hello")
+        .then((res) => res.json())
+        .then((data) => {
+          setData(data.nav);
 
-        /* process your data further */
-      })
-      .catch((error) => console.error(error));
-  })().catch((err) => {
-    console.log(err);
-  });
-}, []);
+          setSpecialData(data.specialNav);
+        })
+        .catch((error) => console.error(error));
+    })().catch((err) => {
+      console.log(err);
+    });
+ 
+
+  }, []);
+
+  
   return (
     <>
       <header className="fixed  w-full border-b border-primary z-10">
@@ -38,7 +41,8 @@ console.log(props)
         >
           <p className=" info-14-16 text-white p-4">
             To check content specific to your region, we suggest that you choose
-            “English(South Asia)” as your preferred country/region.
+            <span className="text-primary">“English(South Asia)”</span> as your
+            preferred country/region.
           </p>
           <Link href={""} className="cta bg-grey py-1 px-3 leading-4 text-sm ">
             confirm
@@ -65,17 +69,21 @@ console.log(props)
           </button>
         </div>
         {/* main Navbar */}
-        <nav className=" flex bg-white justify-between p-5 dark:bg-black-v-4">
+        <nav className=" flex bg-white justify-between px-4 dark:bg-black-v-4">
           <div className="flex items-center gap-4">
-            <Link href="/" ><Image
-              src="/assets/icons/companyLogo.svg"
-              width={92}
-              height={24}
-              alt="Company Logo"
-            /></Link>
-            
-            <div className="hidden  lg:flex lg:items-center group ">
+            <Link href="/">
+              <img
+                src="/assets/images/BLC-Exchange.png"
+                className="w-16 py-2 "
+                alt="Company Logo"
+              />
+            </Link>
+            <div
+              href={""}
+              className=" relative hover:pb-8 hover:-mb-8 group "
+            >
               {/* grid icon  */}
+              <Link href={""} className=" hidden lg:flex lg:items-center">
               <svg
                 className="duration-300 group-hover:fill-primary"
                 xmlns="http://www.w3.org/2000/svg"
@@ -99,23 +107,33 @@ console.log(props)
                   fill="#B5B5C3"
                 />
               </svg>
+              </Link>
+              {specialData.grid != undefined && specialData.grid && (
+      
+                <Dropdown
+            
+                  specialMenu={specialData.grid}
+                />
+              )}
             </div>
 
-            {Data &&
+            {Data != undefined &&
+              Data &&
               Data.map((e, i) => {
                 return (
                   <div
-                    className="hidden  lg:flex lg:items-center group  hover:pb-8 hover:-mb-8"
+                    
+                    className="hidden relative  lg:flex lg:items-center group  hover:pb-8 hover:-mb-8"
                     key={i}
                   >
+                    <Link href={e.link}>
+
                     {e.name && (
-                      <Link
-                        href={e.link}
-                        className="info-14-16 duration-300 group-hover:text-primary "
-                      >
+                      <h3 className="info-14-16 duration-300 group-hover:text-primary ">
                         {e.name}
-                      </Link>
+                      </h3>
                     )}
+                    </Link>
 
                     {e.subMenu && <Dropdown subMenu={e.subMenu} />}
 
@@ -156,21 +174,17 @@ console.log(props)
               Log-in
             </Link>
 
-            <Link
+            <div
               href={""}
-              className={`hidden ${
-                login === false ? "lg:hidden" : "lg:block"
-              } lg:flex lg:items-center group hover:pb-8 hover:-mb-8`}
+              className={`hidden relative   group  hover:pb-8 hover:-mb-8  ${
+                login === true ? "lg:block" : "lg:hidden"
+              }`}
             >
-              <span
-                
-                className="info-14-16 duration-300 group-hover:text-primary "
-              >
+              <Link href={""} className="lg:flex lg:items-center">
+
+              <span className="info-14-16 duration-300 group-hover:text-primary ">
                 Assets
               </span>
-
-              <Dropdown subMenu={""} />
-
               <svg
                 className="duration-300 group-hover:rotate-90"
                 width="20"
@@ -185,14 +199,23 @@ console.log(props)
                   fill="#B5B5C3"
                 />
               </svg>
-            </Link>
+              </Link>
+
+              {specialData.assets != undefined && specialData.assets && (
+                <Dropdown subMenu={specialData.assets.subMenu} right={true} />
+              )}
+
+              
+            </div>
             {/* account */}
-            <Link
+            <div
               href=""
-              className={`border-r border-line-clr pr-3 hidden ${
+              className={` border-r border-line-clr pr-3 group  hover:pb-8 hover:-mb-8 ${
                 login === true ? "lg:block" : "lg:hidden"
               }`}
             >
+              <Link href={""}>
+
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -207,7 +230,18 @@ console.log(props)
                   d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
                 />
               </svg>
-            </Link>
+              </Link>
+
+              {specialData.account != undefined && specialData.account && (
+                <Dropdown
+                  subMenu={specialData.account.subMenu}
+                  right={true}
+                  arrow={true}
+                  height={true}
+                  fixed_cta="Log Out"
+                />
+              )}
+            </div>
             {/* hamburger  */}
             <button
               className={`${show === false ? "hidden" : "none"} lg:hidden`}
@@ -345,6 +379,3 @@ console.log(props)
 //   }
 // }
 export default Header;
-
-
-

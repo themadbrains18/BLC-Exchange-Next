@@ -7,9 +7,9 @@ import Header from "@/components/header-footer/header";
 
 export default function App({ Component, pageProps,props }) {
   //  const mode=useContext(UserContext)
-  console.log("props",props)
-  const [mode, setMode] = useState("dark");
-  const [login, setLogin] = useState(false);
+
+  const [mode, setMode] = useState("light");
+  const [login, setLogin] = useState(true);
 
   let currentMode;
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function App({ Component, pageProps,props }) {
   return (
     <>
         <div className={mode === "dark" ? "dark" : "light"}>
-      <Context.Provider value={{ mode, setMode, login }}>
+      <Context.Provider value={{ mode, setMode, login,setLogin }}>
           <Header props={props} />
             <Component {...pageProps}  />
           <Footer />

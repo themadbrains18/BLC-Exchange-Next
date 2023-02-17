@@ -12,7 +12,7 @@ const Question = () => {
               <h3 className="section-secondary-heading font-noto">
                 What is proof of reserves?
               </h3>
-              <p className="info-14 font-noto-display md:font-noto hover:!text-black dark:hover:!text-white  md:text-black mt-3 lg:mt-8 lg:max-w-[580px] hover:!text-white lg:w-full dark:!text-white">
+              <p className="info-14 font-noto-display md:font-noto  dark:hover:!text-white  md:text-black mt-3 lg:mt-8 lg:max-w-[580px]  lg:w-full dark:!text-white hover:!text-black">
                 'Proof of reserves' refers to an auditing procedure that is
                 verifiable through cryptographic proofs, checks of public wallet
                 ownerships, and recurring audits to certify the holdings of an
@@ -31,13 +31,14 @@ const Question = () => {
                 intact.
                 <br />
                 The open source code of the platform's proof of its 100%
-                solvency program has been published to GitHub.
+                solvency program has been published to GitHub. 
                 <br />
                 <Link
                   href={"https://github.com/BLC-ExchangeLimited/proof-of-reserves"}
                   target="_blank"
+                  className='text-primary'
                 >
-                  See for yourself
+                   See for yourself
                 </Link>
               </p>
             </div>
@@ -63,21 +64,21 @@ const Question = () => {
               <h3 className="section-secondary-heading font-noto">
                 We are committed to maximum transparency
               </h3>
-              <p className="info-14 font-noto-display md:font-noto md:text-black mt-3 lg:mt-8 lg:max-w-[580px] hover:!text-white lg:w-full dark:text-white">
-                BLC-Exchange's principles are meant to prioritize our users. To ensure
+              <p className="info-14 font-noto-display md:font-noto md:text-black mt-3 lg:mt-8 lg:max-w-[580px] hover:!text-black lg:w-full dark:text-white">
+                Bitget's principles are meant to prioritize our users. To ensure
                 the verifiable safety of our users' assets, we will be fully
                 transparent with all our platform's assets.
               </p>
               <ol className="pl-4">
-                <li className="list-decimal info-14 font-noto-display md:font-noto md:text-black mt-3 lg:mt-8 lg:max-w-[580px] hover:!text-white lg:w-full dark:text-white">
+                <li className="list-decimal info-14 font-noto-display md:font-noto md:text-black mt-3 lg:mt-8 lg:max-w-[580px] hover:!text-black lg:w-full dark:text-white">
                   Take snapshots monthly and publish all wallet assets of the
                   platform
                 </li>
-                <li className="list-decimal info-14 font-noto-display md:font-noto md:text-black mt-1 lg:mt-8 lg:max-w-[580px] hover:!text-white lg:w-full dark:text-white">
+                <li className="list-decimal info-14 font-noto-display md:font-noto md:text-black mt-1 lg:mt-8 lg:max-w-[580px] hover:!text-black lg:w-full dark:text-white">
                   Take snapshots of each user's assets monthly and desensitize
                   for publication
                 </li>
-                <li className="list-decimal info-14 font-noto-display md:font-noto md:text-black mt-1 lg:mt-8 lg:max-w-[580px] hover:!text-white lg:w-full dark:text-white">
+                <li className="list-decimal info-14 font-noto-display md:font-noto md:text-black mt-1 lg:mt-8 lg:max-w-[580px] hover:!text-black lg:w-full dark:text-white">
                   {" "}
                   Users can verify their assets in a few simple steps
                 </li>

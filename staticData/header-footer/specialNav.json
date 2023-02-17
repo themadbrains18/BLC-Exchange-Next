@@ -1,0 +1,228 @@
+{
+    "grid": [
+        {
+            "heading": "Campaings",
+            "subMenu": [
+                {
+                    "linkText": "Proof of Reserves",
+                    "desc": "check our financial healh",
+                    "svgType": "proof_of_reserves",
+                    "linkUrl": "earn"
+                },
+                {
+                    "linkText": " Rewards Hub",
+                    "desc": " All Sorts of rewards here",
+                    "svgType": "rewards_hub",
+                    "linkUrl": "earn"
+                },
+                {
+                    "linkText": "Mystery Box",
+                    "desc": " Try your luck ",
+                    "svgType": "mystery_box",
+                    "linkUrl": "earn"
+                },
+                {
+                    "linkText": "Referal Program  ",
+                    "desc": "rewards for inviting friends ",
+                    "svgType": "referal_program",
+                    "linkUrl": "earn"
+                },
+                {
+                    "linkText": "Vote to List",
+                    "desc": " Vote for listings share rewards pools ",
+                    "svgType": "Vote_to_list",
+                    "linkUrl": "earn"
+                },
+                {
+                    "linkText": " Bitget Group Coin",
+                    "desc": "Group prchase discounted Crypto ",
+                    "svgType": "Big_get_group_coin",
+                    "linkUrl": "earn"
+                }
+            ]
+        },
+        {
+            "heading": "support",
+            "subMenu": [
+                {
+                    "linkText": " VIP  Program",
+                    "desc": " Enjoy exclusive privileges ",
+                    "svgType": "Vip_program",
+                    "linkUrl": "earn"
+                },
+                {
+                    "linkText": "Affiliate program ",
+                    "desc": " Earn daily commission through your influence ",
+                    "svgType": "affiliate_program",
+                    "linkUrl": "earn"
+                },
+                {
+                    "linkText": "Star Traders ",
+                    "desc": "Earn more as a star traders  ",
+                    "svgType": "star_traders",
+                    "linkUrl": "earn"
+                },
+                {
+                    "linkText": " API Trading ",
+                    "desc": " Trade with your customized platforms  ",
+                    "svgType": "Api_trading",
+                    "linkUrl": "earn"
+                },
+                {
+                    "linkText": "Institutional Services",
+                    "desc": "For institutionsl clients ",
+                    "svgType": "institutional_services",
+                    "linkUrl": "earn"
+                }
+            ]
+        },
+        {
+            "heading": "helpcenter",
+            "subMenu":[
+                {
+                    "linkText": "FAQs",
+                    "desc": " Crypto frequently asked quetions ",
+                    "svgType": "FAQs",
+                    "linkUrl": "earn"
+                },
+                {
+                    "linkText": "Verification Channel",
+                    "desc": "rewards for inviting friends ",
+                    "svgType": "verification_channel",
+                    "linkUrl": "earn"
+                },
+                {
+                    "linkText": "Feedback",
+                    "desc": " Tell us what you think  ",
+                    "svgType": "feedback",
+                    "linkUrl": "earn"
+                },
+                {
+                    "linkText": "Listning Application",
+                    "desc": " List your coins with us ",
+                    "svgType": "listning_application",
+                    "linkUrl": "earn"
+                },
+                {
+                    "linkText": "Bitget Academy",
+                    "desc": " Learn about blockchain and Crypto",
+                    "svgType": "bitget_academy",
+                    "linkUrl": "earn"
+                },
+                {
+                    "linkText": "Bitget Blog",
+                    "desc": " Get the latest crypto news and updates from Bitget ",
+                    "svgType": "bitget_blog",
+                    "linkUrl": "earn"
+                },
+                {
+                    "linkText": "Protection Fund",
+                    "desc": " Your security our priority   ",
+                    "svgType": "protection_fund",
+                    "linkUrl": "earn"
+                }
+            ]
+        }
+    ],
+    "assets": {
+        "name": "Assets",
+        "link": "",
+        "subMenu": [
+            {
+                "linkText": "Overview",
+                "desc": "Futures trading",
+                "svgType": "overview",
+                "linkUrl": "earn"
+            },
+            {
+                "linkText": "Deposite",
+                "linkUrl": "earn",
+                "svgType": "deposite"
+            },
+            {
+                "linkText": "Withdraw",
+                "linkUrl": "earn",
+                "svgType": "withdraw"
+            },
+            {
+                "linkText": "Transfer",
+                "linkUrl": "earn",
+                "svgType": "transfer"
+            },
+            {
+                "linkText": "Transaction History",
+                "desc": "Buy and Sell Crypto",
+                "svgType": "transaction_history"
+            },
+            {
+                "linkText": "Orders",
+                "linkUrl": "earn",
+                "svgType": "orders"
+            },
+            {
+                "linkText": "Mega Swap Orders",
+                "linkUrl": "earn",
+                "svgType": "mega_swap_orders"
+            },
+            {
+                "linkText": "Audit",
+                "desc": "Spot trading by borrowing",
+                "svgType": "audit",
+                "linkUrl": "earn"
+            }
+        ]
+    },
+    "account": {
+        "link": "",
+        "subMenu": [
+            {
+                "linkText": "Dashboard",
+                "desc": "Crypto Market Information",
+                "svgType": "dashboard",
+                "linkUrl": "earn"
+            },
+            {
+                "linkText": "Security Setting",
+                "desc": "Crypto Rankings",
+                "svgType": "Security_Setting",
+                "linkUrl": "earn"
+            },
+            {
+                "linkText": "ID Verfication",
+                "desc": "Bitget and Big Data",
+                "svgType": "id_verfication",
+                "linkUrl": "earn"
+            },
+            {
+                "linkText": "API Management",
+                "desc": "Market trends from experts",
+                "svgType": "API_management",
+                "linkUrl": "earn"
+            },
+            {
+                "linkText": "My Compition",
+                "desc": "Market trends from experts",
+                "svgType": "my_compition",
+                "linkUrl": "earn"
+            },
+            {
+                "linkText": "Voucher Center",
+                "desc": "Market trends from experts",
+                "svgType": "voucher_center",
+                "linkUrl": "earn"
+            },
+            {
+                "linkText": "My Settings",
+                "desc": "Market trends from experts",
+                "svgType": "my_settings",
+                "linkUrl": "earn"
+            },
+            {
+                "linkText": "Sub Accounts",
+                "desc": "Market trends from experts",
+                "svgType": "sub_accounts",
+                "linkUrl": "earn"
+            }
+        ]
+    }
+}
