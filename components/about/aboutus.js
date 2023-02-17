@@ -10,13 +10,13 @@ const AboutUs = () => {
             <Image src='/assets/images/about_us.png' width={332} height={380} alt='error' className='hidden lg:block'></Image>
             <div className='max-w-full lg:max-w-xl w-full'>
             <p className='info-14-20 text-base md:text-xl'>
-            Launched in 2018, Bitget provides comprehensive and secure trading solutions to our global userbase.
+            Launched in 2018, BLC-Exchange provides comprehensive and secure trading solutions to our global userbase.
             </p>
             <p className='my-8 info-14-20 text-base md:text-xl'>
-            With a core focus on social trading, Bitget has amassed over 8 million users, 1.1 million followers, and 55,000 professional traders from more than 100 countries around the world.
+            With a core focus on social trading, BLC-Exchange has amassed over 8 million users, 1.1 million followers, and 55,000 professional traders from more than 100 countries around the world.
             </p>
             <p className='info-14-20 text-base md:text-xl'>
-            Bitget is ranked in the top five globally by CoinGecko for derivatives trading by volume, and has generated over US$100 billion in trading volume in 2021 alone.
+            BLC-Exchange is ranked in the top five globally by CoinGecko for derivatives trading by volume, and has generated over US$100 billion in trading volume in 2021 alone.
             </p>
 
             </div>

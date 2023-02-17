@@ -18,8 +18,8 @@ const Links = () => {
             <Image src='/assets/images/arrow.png' width={48} height={48}></Image>
         </div>
         <div className='flex flex-col justify-between gap-4 md:max-w-[280px] md:w-full'>
-            <p className='dark:text-white info-14-24 text-2xl font-semibold'>Bitget Academy</p>
-            <p className='dark:text-white font-noto text-base md:info-14-16 mb-2' >Accelerate your trading journey with Bitget Academy's in-depth guides</p>
+            <p className='dark:text-white info-14-24 text-2xl font-semibold'>BLC-Exchange Academy</p>
+            <p className='dark:text-white font-noto text-base md:info-14-16 mb-2' >Accelerate your trading journey with BLC-Exchange Academy's in-depth guides</p>
             <Image src='/assets/images/arrow.png' width={48} height={48}></Image>
         </div>
      </div>

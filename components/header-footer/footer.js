@@ -78,19 +78,19 @@ const Footer = () => {
                     <div className='my-5 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:block'>
                         <div className="mb-4">
                             <p className='info-14-16'>Support Service</p>
-                            <Link href="mailto:support@bitget.com" className='info-14'>support@bitget.com</Link>
+                            <Link href="mailto:support@b.com" className='info-14'>support@blcexchange.net</Link>
                         </div>
                         <div className="mb-4">
                             <p className='info-14-16'>Business Opportunity</p>
-                            <Link href="mailto:BD@bitget.com" className='info-14'>BD@bitget.com</Link>
+                            <Link href="mailto:BD@blcexchange.net" className='info-14'>BD@blcexchange.net</Link>
                         </div>
                         <div className="mb-4">
                             <p className='info-14-16'>Trading Quant & MM</p>
-                            <Link href="mailto:institution@bitget.com" className='info-14'>institution@bitget.com</Link>
+                            <Link href="mailto:institution@blcexchange.net" className='info-14'>institution@blcexchange.net</Link>
                         </div>
                         <div className="mb-4">
                             <p className='info-14-16'>VIP Services</p>
-                            <Link href="mailto:vip@bitget.com" className='info-14'>vip@bitget.com</Link>
+                            <Link href="mailto:vip@blcexchange.net" className='info-14'>vip@blcexchange.net</Link>
                         </div>
                     </div>
                     <div className='grid gap-5 grid-cols-5 sm:grid-cols-11 lg:grid-cols-5 max-w-full lg:max-w-[85%] mt-10'>
@@ -132,9 +132,9 @@ const Footer = () => {
             </div>
 
             <div className="flex items-start gap-5 mt-8  max-w-full flex-wrap md:flex-nowrap">
-                <p className="info-14 hover:text-grey max-w-full md:max-w-[25%] w-full">© Copyright Bitget.com</p>
+                <p className="info-14 hover:text-grey max-w-full md:max-w-[25%] w-full">© Copyright blcexchange.net</p>
                 <p className="info-14 hover:text-grey max-w-full md:max-w-[75%] w-full">
-                    Bitget is a trading platform for crypto products. Trading in cryptocurrency derivatives involves huge risks. Please consider carefully whether Bitget is suitable for you to use. For details, please check our <Link href="#" className="underline hover:text-primary-hover">Terms of Use</Link>, <Link className="underline hover:text-primary-hover" href="#">Risk Disclosure </Link> and <Link className="underline hover:text-primary-hover" href="#"> Privacy Policy</Link>.
+                    BLC-Exchange is a trading platform for crypto products. Trading in cryptocurrency derivatives involves huge risks. Please consider carefully whether BLC-Exchange is suitable for you to use. For details, please check our <Link href="#" className="underline hover:text-primary-hover">Terms of Use</Link>, <Link className="underline hover:text-primary-hover" href="#">Risk Disclosure </Link> and <Link className="underline hover:text-primary-hover" href="#"> Privacy Policy</Link>.
                 </p>
             </div>
 

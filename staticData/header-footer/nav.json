@@ -7,7 +7,7 @@
                 "linkText": "Quick Buy / Express",
                 "desc": "Chooses the fastest option for you",
                 "svgType": "quick",
-                "linkUrl": "earn"
+                "linkUrl": "/p2p-trade/quick"
             },
             {
                 "linkText": "P2P Trading (0 Fee)",
@@ -96,7 +96,7 @@
             },
             {
                 "linkText": "Market Data",
-                "desc": "Bitget and Big Data",
+                "desc": "BLC-Exchange and Big Data",
                 "svgType": "market_data",
                 "linkUrl": "earn"
             },
