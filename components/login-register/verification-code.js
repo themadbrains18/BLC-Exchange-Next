@@ -1,5 +1,6 @@
 import {useEffect,useContext} from 'react'
 import Context from "../contexts/context";
+import Link from 'next/link';
 
 
 const VerificationCode = () => {
@@ -80,7 +81,8 @@ const VerificationCode = () => {
                     </div>
                     
                 </div>
-                <button className='cta mt-5  w-full'>Sign Up</button>
+                {/* <button className='cta mt-5 w-full'>Sign Up</button> */}
+                <Link href="/" className='cta mt-5 w-full text-center'>Sign Up</Link>
             </form>
             </div> 
         </div>

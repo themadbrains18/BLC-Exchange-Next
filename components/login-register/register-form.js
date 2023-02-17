@@ -5,7 +5,7 @@ import qrImage from "../../public/assets/images/qr.png";
 import LeftSide from './left-side';
 import SearchDropdown from '../snippets/search-dropdown';
 import VerificationCode from './verification-code';
-import WelcomePopup from './welcome-popup';
+import WelcomePopup from './anti-phishing';
 import passHide from '../../public/assets/icons/pass-hide.svg';
 import passShow from '../../public/assets/icons/pass-show.svg';
 
