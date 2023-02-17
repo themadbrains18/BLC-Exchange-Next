@@ -8,14 +8,10 @@ const OnHandSec = () => {
           <h3 className="section-secondary-heading font-noto ">
             Why 100% on-hand reserves are so important
           </h3>
-          <div className="bg-border-clr rounded-2xl mt-10 flex flex-col-reverse lg:flex-row ">
-            <div className="relative p-5 lg:py-16 lg:px-8 h-[50%] lg:h-[unset]  lg:w-[40%] ">
-              <Image
-                src={"/assets/images/vsLogo.png"}
-                height={150}
-                width={150}
-                className="absolute -top-[14%] left-[50%] translate-x-[-50%] z-[1]  lg:left-[unset] lg:-right-[45%] lg:top-[50%] lg:-translate-x-[50%] lg:-translate-y-[50%] w-14 h-14 lg:w-40 lg:h-40"
-              />
+          <div className="lg:relative bg-border-clr rounded-2xl mt-10 flex flex-col-reverse lg:flex-row ">
+         
+            <div className="p-5 lg:py-16 lg:px-8 h-[50%] lg:h-[unset]  lg:w-[40%] ">
+             
 
               <h3 className="section-secondary-heading font-noto dark:text-black">
                 Unable to prove 100% on-hand reserves
@@ -60,7 +56,16 @@ const OnHandSec = () => {
                   </div>
                 </li>
               </ol>
-            </div>
+            </div>  
+            <div className="grid place-items-center -mt-[27px] lg:mt-0 lg:top-[50%] lg:left-[45%] lg:absolute lg:-translate-x-[50%] lg:-translate-y-[50%] z-[1]">
+
+            <Image
+                src={"/assets/images/vsLogo.png"}
+                height={150}
+                width={150}
+                className="  w-14 h-14 lg:w-40 lg:h-40"
+                />
+                </div>
             <div className="p-5 lg:p-0 rounded-2xl bg-primary lg:bg-transparent relative inline-block lg:w-[60%] lg:after:rounded-2xl perspective lg:after:content-[''] lg:after:bg-primary lg:after:absolute lg:after:top-0 lg:after:bottom-0 lg:after:right-0 h-[50%] lg:h-[unset] lg:after:h-full lg:after:w-full  ">
               <div className=" relative lg:max-w-md w-full lg:ml-auto lg:mt-16 lg:mr-14 ">
                 <h3 className="section-secondary-heading font-noto relative z-[1] text-white">

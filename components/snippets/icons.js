@@ -460,13 +460,1217 @@ const Icons = ({ type }) => {
           width="24px"
           height="24px"
           fill={mode === "dark" ? "white" : "currentColor"}
-          stroke={mode === "dark" ? "white" : "currentColor"}
-          
-        >
+          stroke={mode === "dark" ? "white" : "currentColor"} >
           <path d="m13.51 158.13 9.57 118.61c1.29 12.26 3.94 20.14 7.68 24.48 2.96 3.43 7 4.41 11.85 3.52.39-.07.77-.1 1.15-.1l46.28-.02.69.03c6.49.11 10.98-1.82 13.8-5.45 3.29-4.23 4.89-10.9 5.14-19.51l-.02-130.76c-.17-.58-.26-1.19-.26-1.82 0-.17 0-.34.02-.51-.72-4.17-2.54-6.98-5.24-8.73-3.73-2.41-9.33-3.34-16.18-3.26h-.08v.03l-58.74-.01c-6.05.29-10.69 1.74-13.29 4.86-2.78 3.34-3.78 9.11-2.43 18.05l.06.59zm374.41-5.04c0-2.1.13-4.09.39-5.97l-21.77-14.54c-3.13-2.09-6.56-4.49-10-6.9-5.87-4.11-11.81-8.27-17.91-11.91 2.14-3.7 4.02-7.58 5.61-11.6 6.77 3.97 13.25 8.52 19.64 13 3.19 2.23 6.36 4.45 9.79 6.74l19.35 12.88c.98-1.36 2.11-2.6 3.37-3.74 5.53-4.98 13.45-7.41 23.61-7.42v-.03l55.1.02c11.52-.04 20.91 2.06 27.4 7.06 7.22 5.57 10.62 14.04 9.17 26.19l-12.18 125.89c-.89 11.23-3.86 20.05-9.15 26.13-5.63 6.47-13.47 9.66-23.74 9.23l-49.55.01c-6.94.36-12.82-1.52-17.75-5.45-3.6-2.88-6.58-6.82-8.97-11.73h-17.14c2.31 6.75 2.19 13.16.35 18.84-1.9 5.86-5.59 10.84-10.3 14.58-4.61 3.66-10.24 6.16-16.12 7.12-5.75.94-11.76.43-17.35-1.89-6.51 6.79-13.35 11.08-20.49 13.04-7.17 1.97-14.43 1.57-21.78-1-6.97 7.72-14.68 12.57-23.18 14.41-8.65 1.88-17.84.58-27.59-4.01-3.03 2.38-6.21 4.26-9.53 5.63-4.7 1.94-9.64 2.84-14.79 2.69-12.35-.36-20.67-4.02-27.29-9.94-6.31-5.64-10.57-12.89-15.35-21.23l-27.31-47.64h-21.18c-1.23 6.16-3.38 11.37-6.59 15.5-5.4 6.97-13.33 10.66-24.29 10.44l-46.21.01c-9.15 1.49-17-.76-23.14-7.88-5.44-6.3-9.16-16.51-10.75-31.53l-.06-.55L.69 159.25c-1.9-12.77.2-21.8 5.33-27.97 5.18-6.22 12.98-9.03 22.6-9.48l.79-.05h58.5v.03c9.23-.1 17.17 1.42 23.2 5.32 4.85 3.14 8.33 7.56 10.12 13.57h39.81c10-6.75 19.37-12.05 29.73-15.28 1.54-.48 3.09-.91 4.67-1.29 2.11 2.67 4.37 5.21 6.77 7.61a84.39 84.39 0 0 0 3.77 3.56c-3.99.46-7.76 1.27-11.39 2.4-9.35 2.91-18.07 7.99-27.61 14.5-1.1.87-2.49 1.38-3.99 1.38h-40.46v125.12h23.65c2.5 0 4.67 1.42 5.74 3.5l29.03 50.63c4.25 7.42 8 13.83 12.73 18.06 4.42 3.95 10.2 6.4 19.08 6.67 3.34.09 6.53-.49 9.57-1.74 1.86-.77 3.69-1.81 5.48-3.11l-18.91-35.39a6.412 6.412 0 0 1 2.64-8.68 6.41 6.41 0 0 1 8.68 2.64l20.56 38.47c7.65 3.89 14.59 5.1 20.83 3.75 5.7-1.23 11.08-4.66 16.13-10.19l-29.62-46.5a6.41 6.41 0 0 1 1.97-8.85 6.4 6.4 0 0 1 8.85 1.96l31.22 49.02c5.48 2.22 10.74 2.72 15.75 1.35 4.78-1.32 9.57-4.38 14.35-9.34l-28.29-53.25c-1.66-3.14-.47-7.04 2.67-8.7a6.44 6.44 0 0 1 8.71 2.66l29.26 55.09c3.8 2.21 8.21 2.78 12.45 2.09 3.7-.61 7.26-2.19 10.17-4.51 2.82-2.23 5-5.13 6.08-8.44 1.17-3.63 1.05-7.9-.97-12.53a6.45 6.45 0 0 1-.52-2.97 6.456 6.456 0 0 1-3.66-4.26l-64.23-115.85c-7.13-11.94-13.57-12.25-19.79-8.54-4.41 2.63-9.05 6.87-13.7 11.11-2.81 2.58-5.64 5.16-7.98 7.09l-11.4 9.39c-7.94 6.32-16.88 9.7-25.36 10.41-5.64.46-11.13-.26-16.06-2.11-5.1-1.91-9.57-5.01-12.96-9.23-3.66-4.53-6.05-10.29-6.62-17.13-.16-1.97.58-3.79 1.86-5.08l30.97-36.85c3.41 2.61 7.03 4.98 10.81 7.06l-30.47 36.27c.6 3.06 1.81 5.63 3.46 7.68 1.91 2.38 4.48 4.15 7.43 5.25 3.12 1.18 6.72 1.62 10.53 1.31 6.08-.5 12.56-2.99 18.4-7.62l11.21-9.26c2.83-2.34 5.18-4.49 7.53-6.64 5.17-4.72 10.34-9.44 15.76-12.67 12.56-7.49 25.06-7.74 37.42 13l63.39 114.32h21.54l.02-134.92zM263.53 0c38.89 0 70.4 31.53 70.4 70.4 0 38.89-31.53 70.39-70.4 70.39-38.9 0-70.4-31.52-70.4-70.39 0-38.9 31.52-70.4 70.4-70.4zm-19.64 63.86c2.44 1.4 4.45 2.69 6.33 4.15a39.47 39.47 0 0 1 4.07 3.63c3.37-4.93 9.81-13.04 16.15-19.81 5.29-5.64 10.59-10.41 14.17-11.8l.31-.12h18.79l-2.55 2.83c-9.82 10.91-17.57 19.96-24.53 29.52-6.96 9.57-13.18 19.71-19.98 32.82l-1.58 3.04-1.45-3.1c-3.51-7.51-6.83-13.86-11-19.49-4.14-5.6-9.15-10.54-16.08-15.29l-3.2-2.19 19.98-4.52.57.33zM65.73 249.69c6.11 0 11.07 4.95 11.07 11.07 0 6.11-4.96 11.07-11.07 11.07-6.12 0-11.08-4.96-11.08-11.07 0-6.12 4.96-11.07 11.08-11.07zm378.78 0c6.12 0 11.08 4.95 11.08 11.07 0 6.11-4.96 11.07-11.08 11.07-6.11 0-11.07-4.96-11.07-11.07 0-6.12 4.96-11.07 11.07-11.07z" />
         </svg>
       )}
       
+   {/* //   mystery box icon */}
+   {type === "mystery_box" && (
+      <svg
+      xmlns="http://www.w3.org/2000/svg"
+      id="Layer_1"
+      data-name="Layer 1"
+      viewBox="0 0 122.88 119.9"
+      width="24px"
+      height="24px"
+      fill={mode === "dark" ? "white" : "currentColor"}
+    >
+      <defs>
+        <style dangerouslySetInnerHTML={{ __html: ".cls-1{fill-rule:evenodd;}" }} />
+      </defs>
+      <title>gift-box</title>
+      <path
+        className="cls-1"
+        d="M7.42,31.66h25a29.14,29.14,0,0,1-7.34-4.6A21.2,21.2,0,0,1,20,20.61a13.78,13.78,0,0,1-1.48-7.79,14.86,14.86,0,0,1,3.8-8.08A14.45,14.45,0,0,1,25,2.25l.1-.08C28.72-.26,32.79-.47,36.81.67A29.55,29.55,0,0,1,47.65,6.9,37.7,37.7,0,0,1,54,14a68,68,0,0,1,4.81,8.47c1,2,1.91,4.1,2.79,6.21.89-2.11,1.81-4.19,2.8-6.21A68,68,0,0,1,69.23,14,37.35,37.35,0,0,1,75.6,6.9,29.55,29.55,0,0,1,86.44.67c4-1.14,8.09-.93,11.68,1.5l.11.08A14.45,14.45,0,0,1,101,4.74a14.94,14.94,0,0,1,3.8,8.08,13.8,13.8,0,0,1-1.48,7.79,21.24,21.24,0,0,1-5.16,6.45,29.09,29.09,0,0,1-7.33,4.6h24.65a7.42,7.42,0,0,1,5.23,2.18l0,0a7.41,7.41,0,0,1,2.17,5.22V50.64a7.37,7.37,0,0,1-2.18,5.24l-.3.28A7.45,7.45,0,0,1,116.1,58v54a7.94,7.94,0,0,1-7.91,7.91H14.82A7.94,7.94,0,0,1,6.92,112V58a7.37,7.37,0,0,1-4.74-2.16,2.7,2.7,0,0,1-.28-.31A7.37,7.37,0,0,1,0,50.64V39.08a7.44,7.44,0,0,1,7.42-7.42Zm43,0h3.36c-.76-1.49-1.71-3.3-2.81-5.23s-2.33-4-3.65-6a54.68,54.68,0,0,0-3.78-5.18,17.93,17.93,0,0,0-4.11-3.72c-3.6-2.2-6.59-2.45-8.5-1.45a4,4,0,0,0-2,2.48,6.91,6.91,0,0,0,.26,4.3c1.64,4.67,7.33,10.27,19.09,14.05l2.18.73Zm19,0h3.36L75,30.93c11.75-3.78,17.45-9.38,19.09-14a7,7,0,0,0,.26-4.3,4.08,4.08,0,0,0-2-2.48c-1.92-1-4.91-.75-8.51,1.45a18.14,18.14,0,0,0-4.11,3.72,56.5,56.5,0,0,0-3.78,5.18c-1.32,2-2.55,4.05-3.64,6s-2.06,3.75-2.81,5.24Zm4.35,22.59V93.51l-12-7.89L49.73,93.51V54.28l-35.09,0V112a.18.18,0,0,0,.18.19h93.37a.19.19,0,0,0,.19-.19V54.21l-34.56,0Zm-12,12.53L64,70.51l4.07,1-2.71,3.33.32,4.36-3.87-1.67L57.9,79.23l.33-4.36-2.72-3.33,4.07-1,2.19-3.73ZM99.94,36.85l2.21,3.76,4.1,1L103.51,45l.33,4.39-3.9-1.68L96,49.39,96.37,45l-2.73-3.36,4.09-1,2.21-3.76ZM61.73,38.33l2.19,3.73,4.06,1-2.71,3.32.32,4.37-3.86-1.67-3.87,1.67.32-4.37-2.71-3.32,4.07-1,2.19-3.73ZM22.5,36.43l2.05,3.5,3.82,1L25.82,44l.31,4.09L22.5,46.53,18.87,48.1,19.18,44l-2.55-3.12,3.82-1,2.05-3.5Z"
+      />
+    </svg>
+    
+ 
+      )}
+
+ {/* //my compition icon */}
+ {type === "my_compition" && (
+       <svg
+       xmlns="http://www.w3.org/2000/svg"
+       width={24}
+       height={24}
+       viewBox="0 0 24 24"
+       fill="none"
+       stroke={mode === "light" ? "black" : "white"}
+     >
+       <path
+         d="M20.5713 10.1538L22.5629 6.07391C23.1814 4.80682 22.8563 4.01384 21.4275 3.31635L17.7969 1.54412C16.3681 0.846636 15.5429 1.07812 14.9244 2.34521L12.9372 6.41609C12.3143 7.69217 12.6438 8.47616 14.0726 9.17364L17.7032 10.9459C19.1276 11.6523 19.9528 11.4209 20.5713 10.1538Z"
+
+         strokeWidth="1.5"
+         strokeLinecap="round"
+         strokeLinejoin="round"
+       />
+       <path
+         d="M22 19.77V15.73C22 14.14 21.36 13.5 19.77 13.5H15.73C14.14 13.5 13.5 14.14 13.5 15.73V19.77C13.5 21.36 14.14 22 15.73 22H19.77C21.36 22 22 21.36 22 19.77Z"
+       
+         strokeWidth="1.5"
+         strokeLinecap="round"
+         strokeLinejoin="round"
+       />
+       <path
+         d="M10.5 8.52V3.98C10.5 2.57 9.86 2 8.27 2H4.23C2.64 2 2 2.57 2 3.98V8.51C2 9.93 2.64 10.49 4.23 10.49H8.27C9.86 10.5 10.5 9.93 10.5 8.52Z"
+      
+         strokeWidth="1.5"
+         strokeLinecap="round"
+         strokeLinejoin="round"
+       />
+       <path
+         d="M10.5 19.77V15.73C10.5 14.14 9.86 13.5 8.27 13.5H4.23C2.64 13.5 2 14.14 2 15.73V19.77C2 21.36 2.64 22 4.23 22H8.27C9.86 22 10.5 21.36 10.5 19.77Z"
+       
+         strokeWidth="1.5"
+         strokeLinecap="round"
+         strokeLinejoin="round"
+       />
+     </svg>
+     
+      )}
+
+
+
+
+
+
+{/* bhvya */}
+
+
+
+
+{/* // proof of reserves icons */}
+    {type === "proof_of_reserves" && (
+      <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={24}
+  height={24}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke={mode === "light" ? "black" : "white"}
+>
+  <path
+    d="M8.67188 14.3298C8.67188 15.6198 9.66188 16.6598 10.8919 16.6598H13.4019C14.4719 16.6598 15.3419 15.7498 15.3419 14.6298C15.3419 13.4098 14.8119 12.9798 14.0219 12.6998L9.99187 11.2998C9.20187 11.0198 8.67188 10.5898 8.67188 9.36984C8.67188 8.24984 9.54187 7.33984 10.6119 7.33984H13.1219C14.3519 7.33984 15.3419 8.37984 15.3419 9.66984"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M12 6V18"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+
+      )}
+    {/* //   rewards hub icon */}
+    {type === "rewards_hub" && (
+      <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={mode === "light" ? "black" : "white"}
+    >
+      <path
+        d="M12.1744 21.6535V7.68988M10.5495 6.85219C10.7223 6.89098 10.9045 6.84344 11.0289 6.71898C11.1534 6.59452 11.2009 6.41229 11.1622 6.23948C11.007 5.6057 10.4355 3.48346 9.84861 2.89659C9.11745 2.16543 7.92745 2.16239 7.1999 2.88993C6.47241 3.61742 6.47535 4.80742 7.20656 5.53863C7.80303 6.1351 9.91569 6.69705 10.5495 6.85219ZM12.324 6.23943C12.2852 6.4123 12.3328 6.59447 12.4572 6.71893C12.5817 6.84339 12.7639 6.89086 12.9367 6.85214C13.5705 6.69699 15.6928 6.12545 16.2796 5.53858C17.0108 4.80742 17.0138 3.61742 16.2863 2.88988C15.5588 2.16239 14.3688 2.16533 13.6376 2.89654C13.0411 3.49301 12.4792 5.60567 12.324 6.23943ZM3.09808 12.5772H20.9017C21.2873 12.5772 21.5999 12.2646 21.5999 11.879V8.38806C21.5999 8.00247 21.2873 7.68988 20.9017 7.68988H3.09808C2.71249 7.68988 2.3999 8.00247 2.3999 8.38806V11.879C2.3999 12.2646 2.71249 12.5772 3.09808 12.5772ZM19.8544 12.5772V20.9553C19.8544 21.3409 19.5419 21.6535 19.1563 21.6535H4.84354C4.45794 21.6535 4.14536 21.3409 4.14536 20.9553V12.5772H19.8544Z"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+    
+      )}
+
+    
+    {/* //   referal program icon */}
+      {type === "referal_program" && (
+        <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={24}
+        height={24}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={mode === "light" ? "black" : "white"}
+      >
+        <path
+          d="M14.4399 19.05L15.9599 20.57L18.9999 17.53"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.4501 10.79 7.5601 8.84 7.5601 6.44C7.5501 3.99 9.5401 2 11.9901 2C14.4401 2 16.4301 3.99 16.4301 6.44C16.4301 8.84 14.5301 10.79 12.1601 10.87Z"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M11.99 21.81C10.17 21.81 8.36004 21.35 6.98004 20.43C4.56004 18.81 4.56004 16.17 6.98004 14.56C9.73004 12.72 14.24 12.72 16.99 14.56"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+      
+      )}
+  {/* //   vote to list  icon */}
+  {type === "Vote_to_list" && (
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={24}
+  height={24}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke={mode === "light" ? "black" : "white"}
+>
+  <path
+    d="M3.92969 15.8792L15.8797 3.9292"
+    stroke="white"
+    strokeWidth="1.5"
+    strokeMiterlimit={10}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M11.1013 18.279L12.3013 17.079"
+    strokeWidth="1.5"
+    strokeMiterlimit={10}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M13.793 15.5887L16.183 13.1987"
+    strokeWidth="1.5"
+    strokeMiterlimit={10}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M3.60127 10.239L10.2413 3.599C12.3613 1.479 13.4213 1.469 15.5213 3.569L20.4313 8.479C22.5313 10.579 22.5213 11.639 20.4013 13.759L13.7613 20.399C11.6413 22.519 10.5813 22.529 8.48127 20.429L3.57127 15.519C1.47127 13.419 1.47127 12.369 3.60127 10.239Z"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M2 21.9985H22"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+
+  )}
+  {/* //   Big get group coin icon */}
+  {type === "Big_get_group_coin" && (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      shapeRendering="geometricPrecision"
+      textRendering="geometricPrecision"
+      imageRendering="optimizeQuality"
+      fillRule="evenodd"
+      clipRule="evenodd"
+      viewBox="0 0 512 370.38"
+      width="24px"
+      height="24px"
+      fill={mode === "dark" ? "white" : "black"}
+     
+    >
+<g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <path
+   
+    d="M90 53V37H79v30H26v12h18v-7h4v7h42V63a5 5 0 0 1 0-10z"
+  />
+  <path
+  
+    d="M75 41V29H33v8h-4v-8H11v34h18v-8h4v8h42V51a5 5 0 0 1 0-10zm-42 9h-4v-8h4v8z"
+  />
+</svg>
+</g>
+</svg>
+  )}
+  {/* //   Vip program icon */}
+  {type === "Vip_program" && (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={mode === "light" ? "black" : "white"}
+  >
+    <path
+      d="M10.5086 3.83008L8.45815 9.1427L11.9999 20.1699M11.9999 20.1699L15.6349 9.0495L13.6776 3.83008M11.9999 20.1699L2.3999 9.2359M11.9999 20.1699L21.5999 9.2359M2.3999 9.2359L6.50087 3.83008H17.5921L21.5999 9.2359M2.3999 9.2359H21.5999"
+      
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+  
+  )}
+  {/* //  affiliate program icon */}
+  {type === "affiliate_program" && (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={mode === "light" ? "black" : "white"}
+  >
+    <path
+      d="M20.5 11.3V7.04001C20.5 3.01001 19.56 2 15.78 2H8.22C4.44 2 3.5 3.01001 3.5 7.04001V18.3C3.5 20.96 4.96001 21.59 6.73001 19.69L6.73999 19.68C7.55999 18.81 8.80999 18.88 9.51999 19.83L10.53 21.18"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M18.2 21.4C19.9673 21.4 21.4 19.9673 21.4 18.2C21.4 16.4327 19.9673 15 18.2 15C16.4327 15 15 16.4327 15 18.2C15 19.9673 16.4327 21.4 18.2 21.4Z"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M22 22L21 21"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M8 7H16"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M9 11H15"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+  )}
+  {/* //  Api Trading icon */}
+  {type === "Api_trading" && (
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlnsXlink="http://www.w3.org/1999/xlink"
+  version="1.1"
+  id="Layer_1"
+  x="0px"
+  y="0px"
+  width={24}
+  height={24}
+  viewBox="0 0 24 24"
+  stroke={mode === "light" ? "black" : "white"}
+  // viewBox="0 0 117.74 122.88"
+  style={{ enableBackground: "new 0 0 117.74 122.88" }}
+  xmlSpace="preserve"
+  
+>
+  <style
+    type="text/css"
+    dangerouslySetInnerHTML={{
+      __html: ".st0{fill-rule:evenodd;clip-rule:evenodd;}"
+    }}
+  />
+  <g>
+    <path
+   
+      d="M94.62,2c-1.46-1.36-3.14-2.09-5.02-1.99c-1.88,0-3.56,0.73-4.92,2.2L73.59,13.72l31.07,30.03l11.19-11.72 c1.36-1.36,1.88-3.14,1.88-5.02s-0.73-3.66-2.09-4.92L94.62,2L94.62,2L94.62,2z M41.44,109.58c-4.08,1.36-8.26,2.62-12.35,3.98 c-4.08,1.36-8.16,2.72-12.35,4.08c-9.73,3.14-15.07,4.92-16.22,5.23c-1.15,0.31-0.42-4.18,1.99-13.6l7.74-29.61l0.64-0.66 l30.56,30.56L41.44,109.58L41.44,109.58L41.44,109.58z M22.2,67.25l42.99-44.82l31.07,29.92L52.75,97.8L22.2,67.25L22.2,67.25z"
+    />
+    
+  </g>
+</svg>
+
+  )}
+  {/* //  institutiona services icon */}
+  {type === "institutional_services" && (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={mode === "light" ? "black" : "white"}
+  >
+    <g clipPath="url(#clip0_2_23968)">
+      <path
+        d="M6 17C6.55 17 7 16.55 7 16V11C7 10.45 6.55 10 6 10C5.45 10 5 10.45 5 11V16C5 16.55 5.45 17 6 17Z"
+        fill="#B5B5C3"
+      />
+      <path
+        d="M12 17C12.55 17 13 16.55 13 16V11C13 10.45 12.55 10 12 10C11.45 10 11 10.45 11 11V16C11 16.55 11.45 17 12 17Z"
+        fill="#B5B5C3"
+      />
+      <path
+        d="M21.32 5.65999L12.9 1.44999C12.34 1.16999 11.67 1.16999 11.11 1.44999L2.68 5.65999C2.26 5.86999 2 6.29999 2 6.75999C2 7.44999 2.55 7.99999 3.24 7.99999H20.77C21.45 7.99999 22 7.44999 22 6.75999C22 6.29999 21.74 5.86999 21.32 5.65999Z"
+        fill="#B5B5C3"
+      />
+      <path
+        d="M2 20C2 20.55 2.45 21 3 21H14.4C14.19 20.36 14.08 19.69 14.04 19H3C2.45 19 2 19.45 2 20Z"
+        fill="#B5B5C3"
+      />
+      <path
+        d="M19 12.26V11C19 10.45 18.55 10 18 10C17.45 10 17 10.45 17 11V13.26L19 12.26Z"
+        fill="#B5B5C3"
+      />
+      <path
+        d="M19.55 14.22L16.55 15.72C16.21 15.89 16 16.24 16 16.62V18.55C16 21.07 17.71 23.43 20 24C22.29 23.43 24 21.07 24 18.55V16.62C24 16.24 23.79 15.89 23.45 15.73L20.45 14.23C20.17 14.08 19.83 14.08 19.55 14.22ZM18.58 20.3L17.78 19.5C17.49 19.21 17.49 18.73 17.78 18.44C18.07 18.15 18.55 18.15 18.84 18.44L19.28 18.88L21.16 17.03C21.45 16.74 21.93 16.74 22.22 17.03C22.51 17.32 22.51 17.8 22.22 18.09L19.99 20.3C19.6 20.69 18.97 20.69 18.58 20.3Z"
+        fill="#B5B5C3"
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0_2_23968">
+        <rect width={24} height={24} fill="white" />
+      </clipPath>
+    </defs>
+  </svg>
+  
+  )}
+  {/* // FAQs icon */}
+  {type === "FAQs" && (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={mode === "light" ? "black" : "white"}
+  >
+    <path
+      d="M17 18.43H13L8.54999 21.39C7.88999 21.83 7 21.36 7 20.56V18.43C4 18.43 2 16.43 2 13.43V7.42993C2 4.42993 4 2.42993 7 2.42993H17C20 2.42993 22 4.42993 22 7.42993V13.43C22 16.43 20 18.43 17 18.43Z"
+      strokeWidth="1.5"
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M12 11.36V11.15C12 10.47 12.42 10.11 12.84 9.82001C13.25 9.54001 13.66 9.18002 13.66 8.52002C13.66 7.60002 12.92 6.85999 12 6.85999C11.08 6.85999 10.34 7.60002 10.34 8.52002"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M11.9955 13.75H12.0045"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+  
+  )}
+  {/* //verification channel icon */}
+  {type === "verification_channel" && (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={mode === "light" ? "black" : "white"}
+  >
+    <path
+      d="M22 13V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H13"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M22 13V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H13"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M22 13V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H13"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M16 19.43L17.58 21L21 17"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M7 10.5V13.5"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M12 10.5V13.5"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M17 10.5V13.5"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+  )}
+  {/* //feedback form icon */}
+  {type === "feedback" && (
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={24}
+  height={24}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke={mode === "light" ? "black" : "white"}
+>
+  <path
+    d="M19 3H14.82C14.4 1.84 13.3 1 12 1C10.7 1 9.6 1.84 9.18 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM12 3C12.55 3 13 3.45 13 4C13 4.55 12.55 5 12 5C11.45 5 11 4.55 11 4C11 3.45 11.45 3 12 3ZM13 17H8C7.45 17 7 16.55 7 16C7 15.45 7.45 15 8 15H13C13.55 15 14 15.45 14 16C14 16.55 13.55 17 13 17ZM16 13H8C7.45 13 7 12.55 7 12C7 11.45 7.45 11 8 11H16C16.55 11 17 11.45 17 12C17 12.55 16.55 13 16 13ZM16 9H8C7.45 9 7 8.55 7 8C7 7.45 7.45 7 8 7H16C16.55 7 17 7.45 17 8C17 8.55 16.55 9 16 9Z"
+  
+  />
+</svg>
+
+  )}
+  {/* //listning application icon */}
+  {type === "listning_application" && (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    viewBox="0 0 28 31"
+    fill="none"
+    stroke={mode === "dark" ? "white" : "currentColor"}
+
+  >
+    <g filter="url(#filter0_dd_1_2875)">
+      <path
+        d="M9 12C5 12 5 13.79 5 16V17C5 19.76 5 22 10 22H18C22 22 23 19.76 23 17V16C23 13.79 23 12 19 12C18 12 17.72 12.21 17.2 12.6L16.18 13.68C15 14.94 13 14.94 11.81 13.68L10.8 12.6C10.28 12.21 10 12 9 12Z"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M21 12V6C21 3.79 21 2 17 2H11C7 2 7 3.79 7 6V12"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12.55 9.22998H15.88"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11.72 6.22998H16.72"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </g>
+    <defs>
+      <filter
+        id="filter0_dd_1_2875"
+        x={-2}
+        y={0}
+        width={32}
+        height={32}
+        filterUnits="userSpaceOnUse"
+        colorInterpolationFilters="sRGB"
+      >
+        <feFlood floodOpacity={0} result="BackgroundImageFix" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy={4} />
+        <feGaussianBlur stdDeviation={2} />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="BackgroundImageFix"
+          result="effect1_dropShadow_1_2875"
+        />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy={4} />
+        <feGaussianBlur stdDeviation={2} />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="effect1_dropShadow_1_2875"
+          result="effect2_dropShadow_1_2875"
+        />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="effect2_dropShadow_1_2875"
+          result="shape"
+        />
+      </filter>
+    </defs>
+  </svg>
+  
+  )}
+  {/* //bitget academy icon */}
+  {type === "bitget_academy" && (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    viewBox="0 0 24 24"
+    stroke="none"
+    fill={mode === "light" ? "black" : "white"}
+
+  >
+    <path
+      d="M18.15 1.35L14.15 5.35C14.05 5.45 14 5.57 14 5.71V13.88C14 14.31 14.51 14.54 14.83 14.25L18.83 10.65C18.94 10.56 19 10.42 19 10.28V1.71C19 1.26 18.46 1.04 18.15 1.35ZM22.47 5.2C22 4.96 21.51 4.76 21 4.59V16.62C19.86 16.21 18.69 16 17.5 16C15.6 16 13.72 16.54 12 17.58V5.48C10.38 4.55 8.51 4 6.5 4C4.71 4 3.02 4.44 1.53 5.2C1.2 5.36 1 5.71 1 6.08V18.16C1 18.92 1.81 19.39 2.48 19.03C3.69 18.4 5.05 18 6.5 18C8.57 18 10.48 18.82 12 20C13.52 18.82 15.43 18 17.5 18C18.95 18 20.31 18.4 21.52 19.04C22.19 19.4 23 18.93 23 18.17V6.08C23 5.71 22.8 5.36 22.47 5.2Z"
+    
+    />
+  </svg>
+  
+  )}
+  {/* //bitget blog icon */}
+  {type === "bitget_blog" && (
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={24}
+  height={24}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke={mode === "light" ? "black" : "white"}
+
+>
+  <path
+    d="M20 12.2V13.9C20 17.05 18.2 18.4 15.5 18.4H6.5C3.8 18.4 2 17.05 2 13.9V8.5C2 5.35 3.8 4 6.5 4H9.2C9.07 4.38 9 4.8 9 5.25V9.15002C9 10.12 9.32 10.94 9.89 11.51C10.46 12.08 11.28 12.4 12.25 12.4V13.79C12.25 14.3 12.83 14.61 13.26 14.33L16.15 12.4H18.75C19.2 12.4 19.62 12.33 20 12.2Z"
+    strokeWidth="1.5"
+    strokeMiterlimit={10}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M22 5.25V9.15002C22 10.64 21.24 11.76 20 12.2C19.62 12.33 19.2 12.4 18.75 12.4H16.15L13.26 14.33C12.83 14.61 12.25 14.3 12.25 13.79V12.4C11.28 12.4 10.46 12.08 9.89 11.51C9.32 10.94 9 10.12 9 9.15002V5.25C9 4.8 9.07 4.38 9.2 4C9.64 2.76 10.76 2 12.25 2H18.75C20.7 2 22 3.3 22 5.25Z"
+    strokeWidth="1.5"
+    strokeMiterlimit={10}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M7.40002 22H14.6"
+    strokeWidth="1.5"
+    strokeMiterlimit={10}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M11 18.4V22"
+    strokeWidth="1.5"
+    strokeMiterlimit={10}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M18.4955 7.25H18.5045"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M15.6957 7.25H15.7047"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M12.8954 7.25H12.9044"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+
+  )}
+{/* // *********** grid icon end***********
+//************  assets icon start********
+  //overview icon */}
+  {type === "overview" && (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={mode === "light" ? "black" : "white"}
+  >
+    <path
+      d="M12 22H17C20 22 22 20 22 17V12C22 9.3 20.3 7.3 17.8 7C17.6 7 17.3 7 17 7H7C6.7 7 6.5 6.99998 6.2 7.09998C3.6 7.39998 2 9.3 2 12C2 12.3 2 12.7 2 13"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M17.8 7.00001C17.6 7.00001 17.3 7.00001 17 7.00001H6.99995C6.69995 7.00001 6.49995 6.99999 6.19995 7.09999C6.29995 6.79999 6.49996 6.6 6.79996 6.3L9.99995 3.00001C11.4 1.60001 13.6 1.60001 15 3.00001L16.8 4.8C17.4 5.4 17.7 6.20001 17.8 7.00001Z"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M22 12.5H19C17.9 12.5 17 13.4 17 14.5C17 15.6 17.9 16.5 19 16.5H22"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M5.80157 21.4C7.57157 21.4 9.00156 19.97 9.00156 18.2C9.00156 16.43 7.57157 15 5.80157 15C4.03157 15 2.60156 16.43 2.60156 18.2C2.60156 19.97 4.03157 21.4 5.80157 21.4Z"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M2 22L3 21"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+  
+  )}
+  {/* //deposite icon */}
+  {type === "deposite" && (
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={24}
+  height={24}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke={mode === "light" ? "black" : "white"}
+>
+  <path
+    d="M12 2V9L14 7"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M12 9L10 7"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M1.97998 13H6.38998C6.76998 13 7.10998 13.21 7.27998 13.55L8.44998 15.89C8.78998 16.57 9.47998 17 10.24 17H13.77C14.53 17 15.22 16.57 15.56 15.89L16.73 13.55C16.9 13.21 17.25 13 17.62 13H21.98"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M7 4.13C3.46 4.65 2 6.73 2 11V15C2 20 4 22 9 22H15C20 22 22 20 22 15V11C22 6.73 20.54 4.65 17 4.13"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+
+  )}
+  {/* //withdraw icon */}
+  {type === "withdraw" && (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={mode === "light" ? "black" : "white"}
+  >
+    <path
+      d="M12 9V2L10 4"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M12 2L14 4"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M1.97998 13H6.38998C6.76998 13 7.10998 13.21 7.27998 13.55L8.44998 15.89C8.78998 16.57 9.47998 17 10.24 17H13.77C14.53 17 15.22 16.57 15.56 15.89L16.73 13.55C16.9 13.21 17.25 13 17.62 13H21.98"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M7 5.13C3.46 5.65 2 7.73 2 12V15C2 20 4 22 9 22H15C20 22 22 20 22 15V12C22 7.73 20.54 5.65 17 5.13"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+  
+  )}
+  {/* //transfer icon */}
+  {type === "transfer" && (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={mode === "light" ? "black" : "white"}
+  >
+    <path
+      d="M20.5 14.99L15.49 20.01"
+      strokeWidth="1.5"
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M3.5 14.99H20.5"
+      strokeWidth="1.5"
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M3.5 9.01L8.51 3.99"
+      strokeWidth="1.5"
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M20.5 9.01H3.5"
+      strokeWidth="1.5"
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+  
+  )}
+  {/* //transaction history icon */}
+  {type === "transaction_history" && (
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={24}
+  height={24}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke={mode === "light" ? "black" : "white"}
+>
+  <path
+    d="M11.4 21.5998H5.39999C4.0745 21.5998 2.99999 20.5253 3 19.1998L3.00009 4.79989C3.0001 3.47441 4.07462 2.3999 5.40009 2.3999H16.2004C17.5258 2.3999 18.6004 3.47442 18.6004 4.7999V9.5999M19.8 19.7999L21 20.9999M7.20037 7.1999H14.4004M7.20037 10.7999H14.4004M7.20037 14.3999H10.8004M20.4 17.3999C20.4 19.0568 19.0569 20.3999 17.4 20.3999C15.7431 20.3999 14.4 19.0568 14.4 17.3999C14.4 15.743 15.7431 14.3999 17.4 14.3999C19.0569 14.3999 20.4 15.743 20.4 17.3999Z"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+
+  )}
+  {/* //orders icon */}
+  {type === "orders" && (
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={24}
+  height={24}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke={mode === "light" ? "black" : "white"}
+>
+  <path
+    d="M10.4999 21.5998H4.49984C3.17436 21.5998 2.09984 20.5253 2.09985 19.1998L2.09995 4.79989C2.09995 3.47441 3.17447 2.3999 4.49995 2.3999H15.3002C16.6257 2.3999 17.7002 3.47442 17.7002 4.7999V9.5999M6.30023 7.1999H13.5002M6.30023 10.7999H13.5002M6.30023 14.3999H9.90023M15.3428 20.3999L12.9002 17.9456M12.9002 17.9456L15.2324 15.5999M12.9002 17.9456H20.1274C21.1065 17.9456 21.9002 17.1519 21.9002 16.1728C21.9002 15.1936 21.1065 14.3999 20.1274 14.3999H17.7002"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+
+  )}
+  {/* //mega swap orders icon */}
+  {type === "mega_swap_orders" && (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={27}
+    height={27}
+    viewBox="0 0 27 27"
+    fill="none"
+    stroke={mode === "light" ? "black" : "white"}
+  >
+    <path
+      d="M4.02763 7.3999C5.98991 3.81309 9.65755 1.3999 13.8582 1.3999C18.621 1.3999 22.6986 4.50216 24.3822 8.8999M7.47449 8.8999H1.80005V2.8999M23.5725 19.3999C21.6102 22.9867 17.9426 25.3999 13.7419 25.3999C8.97905 25.3999 4.9015 22.2976 3.21793 17.8999M20.1256 17.8999H25.8V23.8999"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+  
+  )}
+    {/* //audit icon */}
+    {type === "audit" && (
+      <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={27}
+      height={27}
+      viewBox="0 0 27 27"
+      fill="none"
+      stroke={mode === "light" ? "black" : "white"}
+    >
+      <path
+        d="M11.9 25.3999H4.40001C2.74315 25.3999 1.40001 24.0567 1.40002 22.3999L1.40014 4.39989C1.40015 2.74304 2.74329 1.3999 4.40014 1.3999H17.9005C19.5573 1.3999 20.9005 2.74305 20.9005 4.39991V10.3999M20.15 20.0862V20.0072M6.65049 7.39992H15.6505M6.65049 11.8999H15.6505M6.65049 16.3999H11.1505M25.4 20.15C25.4 20.15 24.1548 23.8245 20.15 23.7604C16.1452 23.6962 14.9 20.15 14.9 20.15C14.9 20.15 16.0947 16.4112 20.15 16.4112C24.2053 16.4112 25.4 20.15 25.4 20.15Z"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+    
+      )}
+{/* // *************assets icon end****************
+    //dashboard icon */}
+    {type === "dashboard" && (
+      <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={mode === "light" ? "black" : "white"}
+    >
+      <path
+        d="M13.01 2.92001L18.91 5.54001C20.61 6.29001 20.61 7.53001 18.91 8.28001L13.01 10.9C12.34 11.2 11.24 11.2 10.57 10.9L4.67 8.28001C2.97 7.53001 2.97 6.29001 4.67 5.54001L10.57 2.92001C11.24 2.62001 12.34 2.62001 13.01 2.92001Z"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M3 11C3 11.84 3.63 12.81 4.4 13.15L11.19 16.17C11.71 16.4 12.3 16.4 12.81 16.17L19.6 13.15C20.37 12.81 21 11.84 21 11"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M3 16C3 16.93 3.55 17.77 4.4 18.15L11.19 21.17C11.71 21.4 12.3 21.4 12.81 21.17L19.6 18.15C20.45 17.77 21 16.93 21 16"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+    
+      )}
+    {/* //Security Setting icon */}
+    {type === "Security_Setting" && (
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={25}
+  height={24}
+  viewBox="0 0 25 24"
+  fill="none"
+  stroke={mode === "light" ? "black" : "white"}
+>
+  <path
+    d="M21.2432 11.12C21.2432 16.01 17.6932 20.59 12.8432 21.93C12.5132 22.02 12.1532 22.02 11.8232 21.93C6.97321 20.59 3.42322 16.01 3.42322 11.12V6.73003C3.42322 5.91003 4.04323 4.98004 4.81323 4.67004L10.3832 2.39007C11.6332 1.88007 13.0432 1.88007 14.2932 2.39007L19.8632 4.67004C20.6232 4.98004 21.2532 5.91003 21.2532 6.73003L21.2432 11.12Z"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M12.3333 12.5C13.4378 12.5 14.3333 11.6046 14.3333 10.5C14.3333 9.39543 13.4378 8.5 12.3333 8.5C11.2287 8.5 10.3333 9.39543 10.3333 10.5C10.3333 11.6046 11.2287 12.5 12.3333 12.5Z"
+    strokeWidth="1.5"
+    strokeMiterlimit={10}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M12.3333 12.5V15.5"
+    strokeWidth="1.5"
+    strokeMiterlimit={10}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+
+      )}
+    {/* //id verification icon */}
+    {type === "id_verfication" && (
+      <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={mode === "light" ? "black" : "white"}
+    >
+      <path
+        d="M20 7C20 4 18.5 2 15 2H7C3.5 2 2 4 2 7V17C2 20 3.5 22 7 22H15"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.5 4.5V6.5C13.5 7.6 14.4 8.5 15.5 8.5H17.5"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7 13H10"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7 17H13"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M19.5 14.5C20.5355 14.5 21.375 13.6605 21.375 12.625C21.375 11.5895 20.5355 10.75 19.5 10.75C18.4645 10.75 17.625 11.5895 17.625 12.625C17.625 13.6605 18.4645 14.5 19.5 14.5Z"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M22.7213 19.25C22.7213 17.7988 21.2776 16.625 19.5001 16.625C17.7226 16.625 16.2788 17.7988 16.2788 19.25"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+    
+      )}
+    {/* //API management icon */}
+    {type === "API_management" && (
+      <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={25}
+  height={24}
+  viewBox="0 0 25 24"
+  fill="none"
+  stroke={mode === "light" ? "black" : "white"}
+>
+  <path
+    d="M20.6665 14C21.7711 14 22.6665 13.1046 22.6665 12C22.6665 10.8954 21.7711 10 20.6665 10C19.5619 10 18.6665 10.8954 18.6665 12C18.6665 13.1046 19.5619 14 20.6665 14Z"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M20.6665 6C21.7711 6 22.6665 5.10457 22.6665 4C22.6665 2.89543 21.7711 2 20.6665 2C19.5619 2 18.6665 2.89543 18.6665 4C18.6665 5.10457 19.5619 6 20.6665 6Z"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M20.6665 22C21.7711 22 22.6665 21.1046 22.6665 20C22.6665 18.8954 21.7711 18 20.6665 18C19.5619 18 18.6665 18.8954 18.6665 20C18.6665 21.1046 19.5619 22 20.6665 22Z"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M4.6665 14C5.77107 14 6.6665 13.1046 6.6665 12C6.6665 10.8954 5.77107 10 4.6665 10C3.56193 10 2.6665 10.8954 2.6665 12C2.6665 13.1046 3.56193 14 4.6665 14Z"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M6.6665 12H18.6665"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M18.6665 4H14.6665C12.6665 4 11.6665 5 11.6665 7V17C11.6665 19 12.6665 20 14.6665 20H18.6665"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+
+      )}
+
+    {/* //my compition icon */}
+    
+    {/* // voucher center icon */}
+    {type === "voucher_center" && (
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={24}
+  height={24}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke={mode === "light" ? "black" : "white"}
+>
+  <path
+    d="M19.5 12.5C19.5 11.12 20.62 10 22 10V9C22 5 21 4 17 4H7C3 4 2 5 2 9V9.5C3.38 9.5 4.5 10.62 4.5 12C4.5 13.38 3.38 14.5 2 14.5V15C2 19 3 20 7 20H17C21 20 22 19 22 15C20.62 15 19.5 13.88 19.5 12.5Z"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M9 14.75L15 8.75"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M14.9945 14.75H15.0035"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M8.99451 9.25H9.00349"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+
+      )}
+    {/* // my settings icon */}
+    {type === "my_settings" && (
+      <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={25}
+      height={24}
+      viewBox="0 0 25 24"
+      fill="none"
+      stroke={mode === "light" ? "black" : "white"}
+    >
+      <path
+        d="M22.333 6.5H16.333"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.33301 6.5H2.33301"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10.333 10C12.266 10 13.833 8.433 13.833 6.5C13.833 4.567 12.266 3 10.333 3C8.40001 3 6.83301 4.567 6.83301 6.5C6.83301 8.433 8.40001 10 10.333 10Z"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M22.333 17.5H18.333"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8.33301 17.5H2.33301"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14.333 21C16.266 21 17.833 19.433 17.833 17.5C17.833 15.567 16.266 14 14.333 14C12.4 14 10.833 15.567 10.833 17.5C10.833 19.433 12.4 21 14.333 21Z"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+    
+      )}
+
+    {/* // sub acounts icon */}
+    {type === "sub_accounts" && (
+      <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={mode === "light" ? "black" : "white"}
+    >
+      <path
+        d="M20 7C20 4 18.5 2 15 2H7C3.5 2 2 4 2 7V17C2 20 3.5 22 7 22H15"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.5 4.5V6.5C13.5 7.6 14.4 8.5 15.5 8.5H17.5"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7 13H10"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7 17H13"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M19.5 14.5C20.5355 14.5 21.375 13.6605 21.375 12.625C21.375 11.5895 20.5355 10.75 19.5 10.75C18.4645 10.75 17.625 11.5895 17.625 12.625C17.625 13.6605 18.4645 14.5 19.5 14.5Z"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M22.7213 19.25C22.7213 17.7988 21.2776 16.625 19.5001 16.625C17.7226 16.625 16.2788 17.7988 16.2788 19.25"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+      )}
+
+
     </>
   );
 };

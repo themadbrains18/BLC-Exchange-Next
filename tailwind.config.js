@@ -24,7 +24,7 @@ module.exports = {
         "line-clr": "#e6e6e6",
         "secondary":"#e9f9fc",
         "border-clr":"#ebebeb",
-        "border-clr-2":"#eff1f1"
+        "table-bg":"#f9f9f9"
       },
       fontFamily: {
         'noto': ['Noto Sans', 'sans-serif'],

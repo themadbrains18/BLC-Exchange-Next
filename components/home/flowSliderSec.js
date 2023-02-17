@@ -22,30 +22,34 @@ const FlowSliderSec = () => {
             secrets to great returns.
           </p>
          <div>
-            <div className="overflow-hidden z-[0] grid grid-rows-2">
-              <div
-                // style={{ transform: "translateX(-10%)" }}
-                className="text-white flex gap-8 z-[0] duration-[30000ms] hover:translate-x-[-60%]"
-              >
-           {/* {handelCard()} */}
-
-           <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-               
+            <div className="overflow-hidden z-[0] grid grid-rows-2 tmb">
+              <div className="flex ">
+                <div
+                  // style={{ transform: "translateX(-10%)" }}
+                  className="text-white flex gap-8 z-[0]  marquee"
+                >
+                    <GradientCard/>
+                    <GradientCard/>
+                    <GradientCard/>
+                    <GradientCard/>
+                    <GradientCard/>
+                    <GradientCard/>
+                  </div>
+                <div
+                  // style={{ transform: "translateX(-10%)" }}
+                  className="text-white flex gap-8 z-[0]  marquee2 "
+                >
+                    <GradientCard/>
+                    <GradientCard/>
+                    <GradientCard/>
+                    <GradientCard/>
+                    <GradientCard/>
+                    <GradientCard/>
+                  </div>
                 </div>
-              <div
+              {/* <div
                 // style={{ transform: "translateX(-10%)" }}
-                className="text-white flex gap-8 z-[0] duration-[30000ms] hover:translate-x-[-60%]"
+                className="text-white flex gap-8 z-[0] marquee"
               >
            
 
@@ -62,7 +66,7 @@ const FlowSliderSec = () => {
                 <GradientCard/>
                 <GradientCard/>
                
-                </div> 
+                </div>  */}
             
                
               
