@@ -8,19 +8,19 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
     const [currencyData, setCurrencyData] = useState([]);
 
     useEffect(() => {
-        (async () => {
-            await fetch("http://localhost:3000/api/hello")
-                .then((res) => res.json())
-                .then((data) => {
-                    setData(data.counteryList);
-                    setCoinData(data.coinList);
-                    setCurrencyData(data.currency);
-                    /* process your data further */
-                })
-                .catch((error) => console.error(error));
-        })().catch((err) => {
-            console.log(err);
-        });
+      (async () => {
+        await fetch("/api/hello")
+          .then((res) => res.json())
+          .then((data) => {
+            setData(data.counteryList);
+            setCoinData(data.coinList);
+            setCurrencyData(data.currency);
+            /* process your data further */
+          })
+          .catch((error) => console.error(error));
+      })().catch((err) => {
+        console.log(err);
+      });
     }, []);
 
     const selectCounteryName = (event) => {
