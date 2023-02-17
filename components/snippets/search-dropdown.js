@@ -43,7 +43,7 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
         <>
             <div className='bg-white dark:bg-black-v-5 absolute top-[100%] left-0 w-full border border-grey max-h-[350px] overflow-auto z-10'>
                 <div className="p-2 sticky top-0 left-0 w-full bg-white dark:bg-black-v-5">
-                    <input type="search" placeholder="search" className="block  px-4 max-w-full w-full bg-white border  border-black dark:border-white rounded min-h-[40px] text-black dark:text-white outline-none focus:!border-primary" name="search" />
+                    <input type="search" placeholder="search" className="block  px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[40px] text-black dark:text-white outline-none focus:!border-primary" name="search" />
                 </div>
                 <ul>
                     {Data.length > 0 &&
@@ -103,8 +103,9 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
                     }
                 </ul>
             </div>
-        </>
-    )
+          
+    </>
+  )
 }
 
 export default SearchDropdown;

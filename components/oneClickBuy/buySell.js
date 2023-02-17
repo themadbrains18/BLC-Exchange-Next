@@ -46,10 +46,10 @@ const BuySell = () => {
                 </div>
 
                 <div className='rounded-lg '>
-                    <div className='bg-white  shadow-lg  dark:bg-black-v-3 shadow-[#e2e2e2] rounded-lg max-w-md mr-0 ml-auto w-full'>
+                    <div className='bg-white  shadow-lg  dark:bg-black-v-3 shadow-[#e2e2e2] dark:shadow-[#000] rounded-lg max-w-md mr-0 ml-auto w-full'>
                         <div className='flex items-center rounded-lg dark:bg-black-v-3 bg-white'>
-                            <button className={`w-full info-14-20 py-5 ${show === 1 ? "bg-white dark:bg-black-v-3" : "bg-[#f9f9f9] dark:bg-black-v-5"}`} onClick={() => { setShow(1) }}>Buy</button>
-                            <button className={`w-full info-14-20 py-5 ${show === 2 ? "bg-white dark:bg-black-v-3" : "bg-[#f9f9f9] dark:bg-black-v-5"}`} onClick={() => { setShow(2) }}>Sell</button>
+                            <button className={`w-full info-14-20 rounded-lg  py-5 ${show === 1 ? "bg-white dark:bg-black-v-3" : "bg-[#f9f9f9] dark:bg-black-v-5"}`} onClick={() => { setShow(1) }}>Buy</button>
+                            <button className={`w-full info-14-20 rounded-lg  py-5 ${show === 2 ? "bg-white dark:bg-black-v-3" : "bg-[#f9f9f9] dark:bg-black-v-5"}`} onClick={() => { setShow(2) }}>Sell</button>
                         </div>
 
 
