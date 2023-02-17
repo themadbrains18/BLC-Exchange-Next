@@ -17,11 +17,8 @@ export default async function handler(req, res) {
     footerNav :JSON.parse(footerNav),
     tutorials :JSON.parse(tutorials),
     counteryList :JSON.parse(counteryList),
-<<<<<<< HEAD
-    specialNav :JSON.parse(specialNav)
-=======
+    specialNav :JSON.parse(specialNav),
     coinList :JSON.parse(coinList),
     currency :JSON.parse(currency)
->>>>>>> 8d830f3d94161607e286850264173cad136c522c
   })
 }
