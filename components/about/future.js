@@ -3,7 +3,7 @@ import React from 'react'
 
 const Future = () => {
     return (
-        <section className='bg-white dark:bg-black-v-5 py-10 md:py-20 border-b-2 border-[#ebebeb] '>
+        <section className='bg-white dark:bg-black-v-5 py-10 md:py-20 border-b-2 border-border-clr '>
             <div className="container inline-block xl:flex justify-between items-start gap-4">
                 <div className=' w-[100%] xl:w-[50%]'>
                     <h1 className='dark:text-white text-2xl font-noto mb-6 md:text-[40px] leading-10 font-bold xl:mb-20'>The Future of Trading is Social</h1>

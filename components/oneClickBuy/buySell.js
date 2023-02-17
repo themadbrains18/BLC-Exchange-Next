@@ -12,7 +12,7 @@ const BuySell = () => {
                 <div className='order-last lg:order-first'>
                     <h1 className='hero-heading'>Buy Crypto In One Click</h1>
                     {show === 1 &&
-                        <ul className='mt-12 list-decimal info-14-20 border border-[#ebebeb] rounded-lg p-5 lg:border-none'>
+                        <ul className='mt-12 list-decimal info-14-20 border border-border-clr rounded-lg p-5 lg:border-none'>
                             <li className='mb-5 pb-4  pl-3 ml-4'>
                                 <p className='info-14-20'> Select a fiat and cryptocurrency to create an order</p>
                                 <p className='pt-1 info-14'>We support 40+ fiat currencies and 100+ cryptocurrencies</p>
@@ -79,7 +79,7 @@ const BuySell = () => {
                                             <img src='/assets/icons/down.svg' ></img>
                                         </div>
                                         {
-                                            show === 2 && dropDown != false &&
+                                             dropDown != false &&
                                             <SearchDropdown setShowDropdown={setDropDown} coin={true} />
                                         }
                                     </div>
@@ -101,7 +101,7 @@ const BuySell = () => {
                                             <img src='/assets/icons/down.svg' ></img>
                                         </div>
                                         {
-                                            show === 2 && dropDown != false &&
+                                           dropDown != false &&
                                             <SearchDropdown setShowDropdown={setDropDown} coin={true} />
                                         }
                                     </div>

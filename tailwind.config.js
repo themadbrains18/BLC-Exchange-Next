@@ -23,7 +23,8 @@ module.exports = {
         "light-hover": "#f8f9fb",
         "line-clr": "#e6e6e6",
         "secondary":"#e9f9fc",
-        "border-clr":"#ebebeb"
+        "border-clr":"#ebebeb",
+        "border-clr-2":"#eff1f1"
       },
       fontFamily: {
         'noto': ['Noto Sans', 'sans-serif'],
