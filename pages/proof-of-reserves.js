@@ -1,4 +1,6 @@
 
+import ReserveDetails from '@/components/proof-of-reserves/reserveDetails'
+import WalletDetails from '@/components/proof-of-reserves/walletDetails'
 import BannerSec from 'components/Proof-of-Reserves/bannerSec'
 import OnHandSec from 'components/Proof-of-Reserves/onHandSec'
 import Question from 'components/Proof-of-Reserves/question'
@@ -12,6 +14,8 @@ const ProofOfReserves = () => {
     <ServicesRatio/>
     <Question/>
     <OnHandSec/>
+    <ReserveDetails/>
+    <WalletDetails/>
     </>
   )
 }

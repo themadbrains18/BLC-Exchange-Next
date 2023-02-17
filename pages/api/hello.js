@@ -7,12 +7,13 @@ export default async function handler(req, res) {
   let nav = await fs.readFile(process.cwd()+'/staticData/header-footer/nav.json',"utf8");
   let footerNav = await fs.readFile(process.cwd()+'/staticData/header-footer/footer.json',"utf8",{});
   let tutorials = await fs.readFile(process.cwd()+'/staticData/snippet/tutorials.json',"utf8",{});
-  let counteryList = await fs.readFile(process.cwd()+'/staticData/countryList.json',"utf8",{});
+  let counteryList = await fs.readFile(process.cwd()+'/staticData/countryList.json',"utf8",{});let specialNav = await fs.readFile(process.cwd()+'/staticData/header-footer/specialNav.json',"utf8",{});
 
   res.status(200).json({
     nav : JSON.parse(nav),
     footerNav :JSON.parse(footerNav),
     tutorials :JSON.parse(tutorials),
-    counteryList :JSON.parse(counteryList)
+    counteryList :JSON.parse(counteryList),
+    specialNav :JSON.parse(specialNav)
   })
 }
