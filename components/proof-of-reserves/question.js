@@ -22,7 +22,7 @@ const Question = () => {
                 exceeds or is equal to the sum of all users' holdings of those
                 coins.
                 <br />
-                To achieve this, Bitget stores the hash of each user's account
+                To achieve this, BLC-Exchange stores the hash of each user's account
                 assets in a leaf node on the Merkle tree. Each user can verify
                 that their funds are included in the Merkle tree by checking the
                 total amount of users' assets stored in the Merkle tree leaf
@@ -34,7 +34,7 @@ const Question = () => {
                 solvency program has been published to GitHub. 
                 <br />
                 <Link
-                  href={"https://github.com/BitgetLimited/proof-of-reserves"}
+                  href={"https://github.com/BLC-ExchangeLimited/proof-of-reserves"}
                   target="_blank"
                   className='text-primary'
                 >

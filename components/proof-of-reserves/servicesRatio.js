@@ -13,7 +13,7 @@ const ServicesRatio = () => {
       {
         img_url: "roothash.png",
         heading: "Total reserve ratio",
-        desc: "Bitget holds more than 100% of the users' total assets (BTC, ETH, USDT)",
+        desc: "BLC-Exchange holds more than 100% of the users' total assets (BTC, ETH, USDT)",
         code: "227%",
       },
     ],
@@ -25,11 +25,11 @@ const ServicesRatio = () => {
         specialText: "Reserves are sufficient",
         details: [
           {
-            heading: "Bitget wallet reserves",
+            heading: "BLC-Exchange wallet reserves",
             value: "8163.65 BTC",
           },
           {
-            heading: "Bitget users' assets",
+            heading: "BLC-Exchange users' assets",
             value: "1316.48 BTC",
           },
         ],
@@ -41,11 +41,11 @@ const ServicesRatio = () => {
         specialText: "Reserves are sufficient",
         details: [
           {
-            heading: "Bitget wallet reserves",
+            heading: "BLC-Exchange wallet reserves",
             value: "8163.65 BTC",
           },
           {
-            heading: "Bitget users' assets",
+            heading: "BLC-Exchange users' assets",
             value: "1316.48 BTC",
           },
         ],
@@ -57,11 +57,11 @@ const ServicesRatio = () => {
         specialText: "Reserves are sufficient",
         details: [
           {
-            heading: "Bitget wallet reserves",
+            heading: "BLC-Exchange wallet reserves",
             value: "8163.65 BTC",
           },
           {
-            heading: "Bitget users' assets",
+            heading: "BLC-Exchange users' assets",
             value: "1316.48 BTC",
           },
         ],
@@ -75,7 +75,7 @@ const ServicesRatio = () => {
         <div className="container">
           <div className="">
             <h3 className="section-secondary-heading mb-4 font-noto">
-              The latest Bitget reserve ratio
+              The latest BLC-Exchange reserve ratio
             </h3>
             <p className="info-14-16 mb-4 ">
               Reserve ratio = funds in the platform/funds of platform users. A

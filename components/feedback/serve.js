@@ -15,7 +15,7 @@ const Serve = () => {
             date: '2021/03/10 14:21:15',
             user: 'mochcholid****@gmail.com',
             type: 'Share Your Thoughts',
-            feedback: 'I think in the Bitget application there should be a widget feature to help traders monitor price movements automatically',
+            feedback: 'I think in the BLC-Exchange application there should be a widget feature to help traders monitor price movements automatically',
             reply: 'Widget for price quotes has already been added on App, please refer to the real-time tracking in setting.'
         },
 
@@ -37,20 +37,20 @@ const Serve = () => {
                                     <img src="https://img.icons8.com/sf-ultralight/25/null/clock.png" />
                                     <p className='info-14-16 dark:text-black'>{e.date}</p>
                                 </div>
-                                <p className='info-14-16 dark:text-black'>User: {e.user}</p>
+                                <p className='info-14-16 dark:text-black '>User: {e.user}</p>
 
                             </div>
                             <div className='mt-8'>
                                 <div className='flex gap-4'>
-                                    <span className='info-14-16 bg-primary border-[#1da2b4] text-white px-2 rounded'>{e.type}</span>
+                                    <span className='info-14-16 bg-primary border-primary text-white px-2 rounded'>{e.type}</span>
                                     <p className='info-14-16'>User feedback: </p>
                                     <img src="https://img.icons8.com/small/24/null/happy.png" />
                                 </div>
-                                <p className='info-14 border-0 sm:border-l sm:border-dashed border-[#1da2b4] ml-0 sm:ml-12 pl-0 sm:pl-14 p-5 pb-7'>{e.feedback}</p>
+                                <p className='info-14 border-0 sm:border-l sm:border-dashed border-primary ml-0 sm:ml-12 pl-0 sm:pl-14 p-5 pb-7'>{e.feedback}</p>
                                 {e.reply &&
                                     <div className='flex flex-col sm:flex-row items-start'>
-                                        <div className='border-collapse sm:border-t border-dashed border-[#1da2b4] w-0 sm:w-16 top-3 ml-12'></div>
-                                        <p className='-mt-3 px-2 text-primary border border-[#1da2b4] rounded info-14-16'>Adopted</p>
+                                        <div className='border-collapse sm:border-t border-dashed border-primary w-0 sm:w-16 top-3 ml-12'></div>
+                                        <p className='-mt-3 px-2 text-primary border border-primary rounded info-14-16'>Adopted</p>
                                         <p className='mt-4 sm:-mt-3 info-14-16  ml-0 sm:ml-4'>{e.reply}</p>
                                     </div>
                                 }

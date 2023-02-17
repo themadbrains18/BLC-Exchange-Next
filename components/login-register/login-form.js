@@ -70,7 +70,7 @@ const LoginForm = () => {
                                     <path d="M25.3984 23.6484L8.16767 23.6484" stroke="#1DA2B4" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
                                     <path d="M21.707 17.2461L11.8609 17.2461" stroke="#1DA2B4" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <p className='info-14 !text-grey mt-[-5px]'>Open the Bitget App and scan the code in the upper right corner of Homepage.</p>
+                                <p className='info-14 !text-grey mt-[-5px]'>Open the BLC-Exchange App and scan the code in the upper right corner of Homepage.</p>
                             </div>
                         </div>
                     }

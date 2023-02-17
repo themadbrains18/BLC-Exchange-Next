@@ -44,7 +44,7 @@ const WhyChoose = () => {
     return (
         <section className='bg-white dark:bg-black-v-5 py-10 md:py-20  '>
             <div className="container ">
-                <h1 className='dark:text-white text-2xl md:text-[40px] leading-10 font-bold'>Why Choose Bitget?</h1>
+                <h1 className='dark:text-white text-2xl md:text-[40px] leading-10 font-bold'>Why Choose BLC-Exchange?</h1>
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 mt-20 gap-6 '>
                     {cardData && cardData.map((e, i) => {
                          return(

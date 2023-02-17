@@ -158,7 +158,7 @@ const Header = (props) => {
 
           <div className="flex gap-5 items-center">
             <Link
-              href=""
+              href="/register"
               className={`transparent-cta hidden ${
                 login === true ? "lg:hidden" : "lg:block"
               }`}
@@ -166,7 +166,7 @@ const Header = (props) => {
               sign up
             </Link>
             <Link
-              href=""
+              href="/login"
               className={`cta hidden ${
                 login === true ? "lg:hidden" : "lg:block"
               }`}

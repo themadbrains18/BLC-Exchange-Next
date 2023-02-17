@@ -9,7 +9,7 @@ const BannerSec = () => {
             <div className="flex flex-col gap-6 lg:gap-8 justify-center">
               <h3 className="hero-heading  font-noto">Proof of Reserves</h3>
               <p className="info-14-24 ">
-                Bitget guarantees it will hold 100% of users' assets in reserves
+                BLC-Exchange guarantees it will hold 100% of users' assets in reserves
                 and will publish its Merkle Tree proof, platform reserves, and
                 platform reserve ratio on a monthly basis
               </p>
