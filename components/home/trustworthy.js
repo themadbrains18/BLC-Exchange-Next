@@ -41,7 +41,7 @@ const { mode } = useContext(Context);
     <section className='dark:bg-black py-20'>
         <div className='container'>
             <div className='mb-10 sm:mb-14'>
-                <h2 className='section-primary-heading mb-5 sm:mb-8'>A trustworthy crypto exchange</h2>
+                <h2 className='hero-heading mb-5 sm:mb-8'>A trustworthy crypto exchange</h2>
                 <p className="info-14-24">Trade with confidence on a secure, reliable, no cost, and community-driven platform.</p>
             </div>
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>

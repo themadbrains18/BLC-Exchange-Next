@@ -177,7 +177,11 @@
 .icon_hover {
   @apply hover:rotate-90;
 }
-
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 .ai_zone .swiper .swiper-button-prev,
 .ai_zone .swiper .swiper-button-next {
   position: static;
@@ -316,5 +320,24 @@
 
 
 
-@tailwind utilities;
 
+.qwe {
+  display: flex;
+  overflow: hidden;
+}
+.qwe> .card {
+  min-width: 480px;
+  margin-right: 40px;
+}
+
+.qwe_wrap{
+  display: flex;
+  /* gap: 40px */
+
+}
+.qwe2{
+  position: relative;
+  left: -240px;
+}
+
+@tailwind utilities;
