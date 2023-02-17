@@ -262,5 +262,25 @@
   fill:#fff!important;
 }
 
+
+.qwe {
+  display: flex;
+  overflow: hidden;
+}
+.qwe> .card {
+  min-width: 480px;
+  margin-right: 40px;
+}
+
+.qwe_wrap{
+  display: flex;
+  /* gap: 40px */
+
+}
+.qwe2{
+  position: relative;
+  left: -240px;
+}
+
 @tailwind utilities;
 

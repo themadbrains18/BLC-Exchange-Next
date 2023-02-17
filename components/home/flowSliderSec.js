@@ -1,17 +1,39 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Carousel from "../snippets/carousel";
 import GradientCard from "../snippets/gradientCard";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper";
+import "swiper/css";
+import "swiper/css/autoplay";
 const FlowSliderSec = () => {
-  // const handelCard= (()=>{
-  //   for (let index = 1; index < 5 ; index++) {
-  //     console.log("hi")
-  //     for (let i = 0; i < 1; i++) {
-  //     return<GradientCard/>
-      
-  //   }
-  //   }
-  // })
+
+  const qweWrap = useRef(null);
+  const qweAnimation = useRef(null);
+
+ 
+
+  const animation = ()=>{
+      let lastValue = qweWrap.current.style.transform;
+      lastValue = Number(lastValue.replace("translateX(","").replace("px)",""));
+      if(qweAnimation.current.offsetWidth <= Math.abs(lastValue)){
+        qweWrap.current.style.transform = `translateX(0px)`;
+      }else{
+        if(typeof(lastValue) === "number"){
+          qweWrap.current.style.transform = `translateX(${lastValue - 1}px)`;
+        }else{
+          qweWrap.current.style.transform = `translateX(0px)`;
+        }
+      }
+      window.requestAnimationFrame(animation);
+  }
+
+  useEffect(()=>{
+    qweWrap.current.style.width = `${qweAnimation.current.offsetWidth * 2}px`;
+    qweWrap.current.style.transform = `translateX(0px)`;
+    window.requestAnimationFrame(animation);
+  },[])
+
   return (
     <>
       <section className="dark:bg-black-v-5 ">
@@ -21,54 +43,36 @@ const FlowSliderSec = () => {
             Follow and learn from the most successful traders and uncover the
             secrets to great returns.
           </p>
-         <div>
-            <div className="overflow-hidden z-[0] grid grid-rows-2">
-              <div
-                // style={{ transform: "translateX(-10%)" }}
-                className="text-white flex gap-8 z-[0] duration-[30000ms] hover:translate-x-[-60%]"
-              >
-           {/* {handelCard()} */}
-
-           <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-               
+          <div className="qwe_animation" style={{overflow:"hidden"}}>
+            <div className="qwe_wrap" ref={qweWrap}>
+              <div>
+                <div className="qwe" ref={qweAnimation}>
+                  <GradientCard/>
+                  <GradientCard/>
+                  <GradientCard/>
                 </div>
-              <div
-                // style={{ transform: "translateX(-10%)" }}
-                className="text-white flex gap-8 z-[0] duration-[30000ms] hover:translate-x-[-60%]"
-              >
-           
-
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-                <GradientCard/>
-               
-                </div> 
-            
-               
-              
+                <div className="qwe qwe2">
+                  <GradientCard/>
+                  <GradientCard/>
+                  <GradientCard/>
+                
+                </div>
+              </div>
+              <div>
+              <div className="qwe" ref={qweAnimation}>
+                  <GradientCard/>
+                  <GradientCard/>
+                  <GradientCard/>
+                </div>
+                <div className="qwe qwe2">
+                  <GradientCard/>
+                  <GradientCard/>
+                  <GradientCard/>
+                </div>
+              </div>
             </div>
-          </div> 
-         
+            </div>
+
         </div>
       </section>
     </>
