@@ -3,8 +3,8 @@ import React from 'react'
 
 const Profile = () => {
     return (
-        <section className='bg-white dark:bg-black-v-3 py-10 md:py-5'>
-            <div className='flex px-5 justify-between'>
+        <section className='bg-white dark:bg-black-v-3 px-8 py-10 md:py-5'>
+            <div className='flex px-5 gap-2'>
                 <div className='cursor-pointer'>
                     <Image src='/assets/images/avatar-default.jpg' width={80} height={80} alt='error' className='rounded-full'></Image>
                     <p className='info-12 mt-3 text-primary'>Sub account</p>
@@ -46,9 +46,12 @@ const Profile = () => {
                 </div>
             </div>
             
-            <div className='my-12 px-4 border-clr-2'>
-
-
+            <div className='my-12 p-4 border rounded-md border-clr-2 gap-7 flex justify-between items-center'>
+                <div>
+                <p className='info-14-26 mb-2'>Verification</p>
+                <p>Once verification is completed, you will have a higher withdrawal limit.</p>
+                </div>
+                <button className='text-primary border border-primary rounded-lg px-3 py-2'>Verify</button>
             </div>
         </section>
     )

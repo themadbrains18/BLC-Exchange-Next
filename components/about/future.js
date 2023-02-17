@@ -12,7 +12,7 @@ const Future = () => {
                     <p className='dark:text-white  info-14-20  text-base md:text-xl'>BLC-Exchange is the link that connects you.</p>                
                 </div>
                 <div className='mt-12 xl:mt-0 grid md:grid md:grid-cols-2 gap-4'>
-                    <div className='p-6 grid place-items-center bg-table-bgrounded-2xl w-[100%] xl:max-w-[282px] xl:w-full min-h-[222px] '>
+                    <div className='p-6 grid place-items-center bg-table-bg rounded-2xl w-[100%] xl:max-w-[282px] xl:w-full min-h-[222px] '>
                         <Image src='/assets/images/future1.png' alt='error' width={90} height={90}></Image>
                         <p className='dark:text-black info-14 text-center'>Exchange market information</p>
                     </div>
@@ -20,7 +20,7 @@ const Future = () => {
                         <Image src='/assets/images/future2.png' alt='error' width={90} height={90}></Image>
                         <p className='dark:text-black info-14 text-center'>Follow model traders</p>
                     </div>
-                    <div className='p-6 grid place-items-center bg-table-bgrounded-2xl  w-[100%] xl:max-w-[282px] xl:w-full  min-h-[222px]'>
+                    <div className='p-6 grid place-items-center bg-table-bg rounded-2xl  w-[100%] xl:max-w-[282px] xl:w-full  min-h-[222px]'>
                         <Image src='/assets/images/future3.png' alt='error' width={90} height={90}></Image>
                         <p className='dark:text-black info-14 text-center'>Share trading strategies & simulations</p>
                     </div>
