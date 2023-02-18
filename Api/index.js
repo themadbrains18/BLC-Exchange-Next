@@ -9,7 +9,8 @@ const API = axios.create(
   })
 
 export const loginRequestApi = (formData) => API.post('/users/login', formData)
-export const registerRequest = (formData) => API.post('/users/register', formData)
+export const registerRequest = (formData) => API.post('/users/create', formData)
+export const checkUserRequest = (formData) => API.post('/users',formData);
 
 export const sendOtp = (formData) => API.post('/otp', formData)
 

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
-import qrImage from "../../public/assets/images/qr.png";
 import LeftSide from './left-side';
 import SearchDropdown from '../snippets/search-dropdown';
 import VerificationCode from './verification-code';
@@ -9,8 +8,12 @@ import VerificationCode from './verification-code';
 import passHide from '../../public/assets/icons/pass-hide.svg';
 import passShow from '../../public/assets/icons/pass-show.svg';
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as Yup from 'yup'
+import { useRouter } from 'next/router';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { checkUserRequest, registerRequest, sendOtp } from '@/Api';
 
 const RegisterForm = () => {
     const [show, setShow] = useState(1);
@@ -18,37 +21,13 @@ const RegisterForm = () => {
     const [active, setActive] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const [DropdownPhone, setDropdownPhone] = useState(false);
+    const [isLoding, setLoading] = useState(false);
+    const [registerForm, setRegisterForm] = useState();
 
+    const router = useRouter();
 
-    const formSchema = Yup.object().shape({
-        isActive: Yup.boolean(),
-        email: Yup.string()
-            .when('isActive', {
-            is: true,
-            then:(qwe)=>{ 
-                qwe.required("Email number is required.")
-            }
-        }),
-        QWEphone: Yup.string()
-            .when('isActive', {
-            is: false,
-            then: (schema)=>{
-                Yup.string().required()
-                console.log("==24454",schema)
-                console.log("==24454",schema.tests)
-            },
-        }),
-        password: Yup.string().required('Password is Mandatory'),
-    })
+    let { register, setValue, handleSubmit, watch, setError, formState: { errors } } = useForm();
 
-
-    let {register,setValue,handleSubmit,watch,setError,formState: { errors }} = useForm({ 
-        resolver: yupResolver(formSchema), 
-        defaultValues: {
-            isActive: 'Email'
-        }
-    });
-    
 
     const showPass = (e) => {
         if (!e.currentTarget.classList.contains("hidden")) {
@@ -68,18 +47,99 @@ const RegisterForm = () => {
     }
 
     const onSubmit = async (data) => {
-        // if(data.isActive == "Email" && data.email == ""){
-        //     setError('email', { type: 'custom', message: 'Email is required' });
-        // }
-        // else if(data.isActive == "Phone" && data.phone == ""){
-        //     setError('phone', { type: 'custom', message: 'Phone is required' });
-        // }
-        console.log(data);
+        let formdata;
+        let otpForm;
+        if (show === 1) {
+            formdata = {
+                email: data.email,
+                password: data.password,
+                requestType: 'email',
+                resetPassword: false
+            };
+
+            otpForm = {
+                email: data.email,
+                requestType: 'email',
+                resetPassword: false
+            }
+
+        }
+        else {
+            formdata = {
+                number: data.phone,
+                dial_code: 91,
+                password: data.password,
+                requestType: 'mobile',
+                resetPassword: false
+            };
+
+            otpForm = {
+                number: data.phone,
+                dial_code: 91,
+                requestType: 'mobile',
+                resetPassword: false
+            }
+        }
+
+        setLoading(true);
+
+        let userExist = await checkUserRequest(formdata);
+        if (userExist.data.status === 200 && userExist.data !== undefined) {
+            setLoading(false);
+            toast.error(userExist.data.message, {
+                position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+            })
+        }
+        else {
+            let otpResponse = await sendOtp(otpForm);
+            if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
+                setLoading(false);
+                setRegisterForm(formdata);
+                setShowVerification(1);
+            }
+            else {
+                console.log(otpResponse);
+                toast.error(otpResponse.data, {
+                    position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+                })
+            }
+        }
+    }
+
+    const onFinalSubmit = async (otp) => {
+
+        registerForm.otp = otp;
+        registerForm.time = new Date();
+
+        let result = await registerRequest(registerForm);
+
+        if (result.data.status === 200 && result.data != undefined) {
+            router.push('/login');
+        }
+        else {
+            toast.error(result.data.message, {
+                position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+            })
+        }
+    }
+
+    const sendOtpAgain = async () => {
+        let otpResponse = await sendOtp(registerForm);
+        if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
+            let usrname = registerForm.requestType === 'mobile' ? registerForm.number : registerForm.email
+            console.log(usrname);
+            let message = otpResponse.data.message + ' ' + usrname;
+            console.log(message);
+            toast.success(message, {
+                position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+            })
+        }
     }
 
 
     return (
         <section className='dark:bg-black-v-5 py-[80px] !pt-[120px] lg:!pt-[204px]' >
+            <ToastContainer />
             <div className='container'>
                 <div className="flex flex-col md:flex-row items-start gap-10">
                     {/* section left side */}
@@ -103,9 +163,8 @@ const RegisterForm = () => {
                                 }
                             </div>
                             <div className='flex gap-8 mb-8'>
-                                {formSchema.isActive}
-                                <button  onClick={() => { setShow(1);setValue("isActive", true)  }}className={`info-14 border-b-2 border-transparent pb-1  ${show === 1 ? " !border-primary !text-primary" : ""}`}>Email</button>
-                                <button  onClick={() => { setShow(2) ;setValue("isActive", false) }} className={`info-14 border-b-2 border-transparent pb-1  ${show === 2 ? " !border-primary  !text-primary " : ""}`} >Mobile number</button>
+                                <button onClick={() => { setShow(1); setValue("preferredContact", 'Email') }} name="preferredContact" className={`info-14 border-b-2 border-transparent pb-1  ${show === 1 ? " !border-primary !text-primary" : ""}`}>Email</button>
+                                <button onClick={() => { setShow(2); setValue("preferredContact", 'Phone') }} name="preferredContact" className={`info-14 border-b-2 border-transparent pb-1  ${show === 2 ? " !border-primary  !text-primary " : ""}`} >Mobile number</button>
                             </div>
 
                             {/* form */}
@@ -113,35 +172,45 @@ const RegisterForm = () => {
                                 {
                                     show === 1 &&
                                     <div className=' mb-4'>
-                                        <input type="email" placeholder="Email" className="block  px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="email"  
-                                        {...register('email')} />
-                                        <p className="!text-red-700 info-12">{errors.email?.message}</p>
+                                        <input type="email" placeholder="Email" className="block  px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="email"
+                                            {...register('email', { required: show === 1 ? true : false })} />
+                                        {errors.email && errors.email.type === "required" && (
+                                            <span role="alert" className="!text-red-700 info-12">This is required</span>
+                                        )}
                                     </div>
                                 }
                                 {
                                     show === 2 &&
+                                    <>
+                                        <div className="border border-black dark:border-white rounded min-h-[46px] mb-4 px-4 flex items-center relative">
+                                            <div className="flex items-center gap-2  min-w-[90px] cursor-pointer" onClick={() => { setDropdownPhone(!DropdownPhone) }}>
+                                                <span className="text-black dark:text-white" id="counteryCode">+ <span>91</span> </span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#656e6f" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
+                                            </div>
+                                            <input type="tel" placeholder="Mobile number" className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone"
+                                                {...register('phone', { required: show === 2 ? true : false, maxLength: 15 })} />
+                                            {
+                                                DropdownPhone != false &&
+                                                <SearchDropdown setDropdownPhone={setDropdownPhone} code={true} />
+                                            }
 
-                                    <div className="border border-black dark:border-white rounded min-h-[46px] mb-4 px-4 flex items-center relative">
-                                        <div className="flex items-center gap-2  min-w-[90px] cursor-pointer" onClick={() => { setDropdownPhone(!DropdownPhone) }}>
-                                            <span className="text-black dark:text-white" id="counteryCode">+ <span>91</span> </span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#656e6f" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                                         </div>
-                                        <input type="tel" placeholder="Mobile number" className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone" 
-                                        {...register('QWEphone')}/>
-                                        {
-                                            DropdownPhone != false &&
-                                            <SearchDropdown setDropdownPhone={setDropdownPhone} code={true} />
-                                        }
-                                        <p className="!text-red-700 info-12">{errors.QWEphone?.message}</p>
-                                    </div>
-                                    
+                                        {errors.phone && errors.phone.type === "required" && (
+                                            <span role="alert" className="!text-red-700 info-12">This is required</span>
+                                        )}
+                                    </>
+
                                 }
+
                                 <div className="relative">
-                                    <input type="password" placeholder="Set password" id="pass_input" className="block  px-4 max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="password" {...register('password')} />
+                                    <input type="password" placeholder="Set password" id="pass_input" className="block  px-4 max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="password" {...register('password', { required: true })} />
                                     <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
                                     <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }} />
                                 </div>
-                                <p className="!text-red-700 info-12">{errors.password?.message}</p>
+
+                                {errors.password && errors.password.type === "required" && (
+                                    <span role="alert" className="!text-red-700 info-12">This is required</span>
+                                )}
                                 <div className="mt-5">
                                     <label className="inline-flex items-center gap-3 info-14 hover:!text-grey mb-3 cursor-pointer" onClick={() => { setActive(!active) }}>
                                         <span>Referral Code (Optional)</span>
@@ -153,7 +222,7 @@ const RegisterForm = () => {
                                     }
                                 </div>
 
-                                <button type="submit" className='cta my-5 relative w-full' onClick={(e)=>{e.preventDefault();e.currentTarget.classList.add("hide_text");setTimeout((e)=>{setShowVerification(1)},3000)}}>
+                                <button type="submit" className={`relative cta mt-5  w-full ${isLoding === true ? 'hide_text' : ''} `}>
                                     <span>Create Account</span>
                                     {/* spinner */}
                                     <div className="hidden w-8 h-8 rounded-full animate-spin border-4 border-solid border-purple-500 border-t-transparent absolute top-[50%] left-[50%] mt-[-16px] ml-[-15px] z-10"></div>
@@ -206,9 +275,8 @@ const RegisterForm = () => {
                         </div>
                     }
                     {/* verification code  */}
-                    {
-                        showVerification === 1 &&
-                        <VerificationCode />
+                    {showVerification === 1 &&
+                        <VerificationCode onFinalSubmit={onFinalSubmit} sendOtpAgain={sendOtpAgain} username={registerForm.requestType === 'mobile' ? registerForm.number : registerForm.email} />
                     }
                 </div>
             </div>
