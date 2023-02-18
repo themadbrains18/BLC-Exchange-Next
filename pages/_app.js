@@ -10,6 +10,7 @@ export default function App({ Component, pageProps,props }) {
 
   const [mode, setMode] = useState("light");
   const [login, setLogin] = useState(true);
+  const [click, setClick] = useState(false);
 
   let currentMode;
   useEffect(() => {
@@ -25,10 +26,10 @@ export default function App({ Component, pageProps,props }) {
   return (
     <>
         <div className={mode === "dark" ? "dark" : "light"}>
-      <Context.Provider value={{ mode, setMode, login,setLogin }}>
+      <Context.Provider value={{ mode, setMode, login,setLogin,click, setClick }}>
           <Header props={props} />
-          <div>
-
+          <div >
+<div className={`qwe bg-black  opacity-0 invisible duration-300 fixed top-0 left-0 h-full w-full z-[20] ${click && "!visible opacity-50"}`}></div>
              <Component {...pageProps}  />
           </div>
           <Footer />

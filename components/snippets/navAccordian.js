@@ -22,10 +22,10 @@ const NavAccordian = (props) => {
   return (
     <>
       <h4
-        className="info-14-20 py-2 flex align-center justify-between"
+        className="info-14-20 py-3 flex align-center gap-4 justify-between"
         onClick={setHeight}
       >
-        <span>{props.heading}</span>
+        <span className={`${props.className && props.className }  ` }>{props.heading}</span>
         {props.blue
         ?
         <Image
@@ -53,7 +53,7 @@ const NavAccordian = (props) => {
               <Fragment key={index} >
                 {elem.linkUrl && elem.linkText && (
                   <li  className="mt-3">
-                    <Link href={elem.linkUrl} className="info-14 ">
+                    <Link href={elem.linkUrl} className={`info-14 ${props.className && " hover:border-r-2 hover:border-primary block"}`}>
                       {elem.linkText}
                     </Link>
                   </li>
