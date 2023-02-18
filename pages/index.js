@@ -26,7 +26,7 @@ export default function Home(props) {
         <Hero  />
         <FlowSliderSec/>
         <Aizone />
-        <Trending />
+        <Trending />          
         <Trustworthy />
         <Download />
         <Tutorials />
