@@ -147,7 +147,7 @@ const Header = (props) => {
                 login === true ? "lg:block" : "lg:hidden"
               }`}
             >
-              <Link href={""} className="lg:flex lg:items-center">
+              <Link href={"/asset"} className="lg:flex lg:items-center">
 
               <span className="info-14-16 duration-300 group-hover:text-primary ">
                 Assets
