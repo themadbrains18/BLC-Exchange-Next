@@ -31,7 +31,7 @@ const FlowSliderSec = () => {
   }
 
   useEffect(()=>{
-    qweWrap.current.style.width = `${qweAnimation.current.offsetWidth * 2}px`;
+    qweWrap.current.style.width = `${qweAnimation.current.offsetWidth * 2}px`; 
     qweWrap.current.style.transform = `translateX(0px)`;
     animationFrame = requestAnimationFrame(animation);
     return ()=>{
