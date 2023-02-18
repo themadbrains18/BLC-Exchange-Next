@@ -18,7 +18,7 @@ const Asset = ({ assets }) => {
   let activeCta = ["Spot", "Margin", "P2P", "Earn", "Coupons", "Merge Swap"];
   return (
     <>
-      <AssetLayout data={assets} slug="asset">
+      <Layout data={assets} slug="asset">
         <div className="grow px-4 pt-[120px] p-10 md:p-20">
           <div className="hidden md:flex gap-2 items-center ">
             <h3 className="section-secondary-heading font-noto">Assets</h3>
@@ -231,7 +231,7 @@ const Asset = ({ assets }) => {
             </div>
           )}
         </div>
-      </AssetLayout>
+      </Layout>
     </>
   );
 };
