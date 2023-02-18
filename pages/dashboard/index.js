@@ -16,7 +16,7 @@ const Dashboard = ({account}) => {
       <AssetLayout data={account} slug="dashboard">
         
          
-          <div className='grow max-w-full px-10'>
+          <div className='grow max-w-full px-0 xl:px-10 bg-white dark:bg-black-v-3'>
             <div>
               <Profile />
             </div>
