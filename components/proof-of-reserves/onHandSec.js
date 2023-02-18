@@ -8,7 +8,7 @@ const OnHandSec = () => {
           <h3 className="section-secondary-heading font-noto ">
             Why 100% on-hand reserves are so important
           </h3>
-          <div className="lg:relative bg-border-clr rounded-2xl mt-10 flex flex-col-reverse lg:flex-row ">
+          <div className="lg:relative bg-table-bg rounded-2xl mt-10 flex flex-col-reverse lg:flex-row ">
          
             <div className="p-5 lg:py-16 lg:px-8 h-[50%] lg:h-[unset]  lg:w-[40%] ">
              

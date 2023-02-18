@@ -3,7 +3,7 @@ import React from 'react'
 
 const AboutUs = () => {
   return (
-    <section className='bg-[#f8f8f8] dark:bg-black-v-3 py-[50px] md:py-[120px]  '>
+    <section className='bg-table-bg dark:bg-black-v-3 py-[50px] md:py-[120px]  '>
     <div className="container ">
         <h1 className='dark:text-white text-2xl font-semibold md:text-4xl leading-10 md:font-bold mb-6 lg:mb-0'>About Us</h1>
         <div className='flex justify-around items-center  '>
@@ -22,7 +22,7 @@ const AboutUs = () => {
             </div>
             
         </div>
-        <div className='grid grid-cols-1  p-4 md:grid md:grid-cols-2 bg-[#f8f8f8] lg:flex justify-between mt-16 rounded-2xl lg:bg-white lg:py-16 lg:px-20'>
+        <div className='grid grid-cols-1  p-4 md:grid md:grid-cols-2 bg-table-bg lg:flex justify-between mt-16 rounded-2xl lg:bg-white lg:py-16 lg:px-20'>
            <div className='mb-10 md:mb-16 lg:flex flex-col justify-between'>
             <p className='section-secondary-heading text-2xl md:text-3xl font-noto text-primary dark:text-primary font-bold'>#1 Platform</p>
             <p className='mt-4 text-base info-14-16  dark:text-black'>For copy trading by volume</p>

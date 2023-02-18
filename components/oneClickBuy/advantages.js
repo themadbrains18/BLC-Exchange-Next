@@ -30,7 +30,7 @@ const Advantages = () => {
                 <div className='grid grid-cols-1 lg:grid-cols-3 mt-10 gap-6'>
                     {cardData && cardData.map((e, i) => {
                         return (
-                            <div key={i} className="max-w-full lg:max-w-xs w-full flex border border-[#ebebeb] rounded-lg p-6 md:p-9 lg:p-0 lg:border-none">
+                            <div key={i} className="max-w-full lg:max-w-xs w-full flex border border-border-clr rounded-lg p-6 md:p-9 lg:p-0 lg:border-none">
                                 <img src={`/assets/icons/${e.cardImg}`} alt="error" className='max-w-[80px] lg:max-w-[120px] mr-8 lg:mr-0 w-full' />
                                 <div className='mt-4 lg:mt-6 w-full '>
                                     <h3 className='info-14-24'>{e.cardHeading}</h3>
