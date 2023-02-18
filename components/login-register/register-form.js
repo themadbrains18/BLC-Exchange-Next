@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import LeftSide from './left-side';
@@ -7,7 +7,7 @@ import VerificationCode from './verification-code';
 // import WelcomePopup from './welcome-popup';
 import passHide from '../../public/assets/icons/pass-hide.svg';
 import passShow from '../../public/assets/icons/pass-show.svg';
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { useRouter } from 'next/router';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -17,10 +17,10 @@ import { checkUserRequest, registerRequest, sendOtp } from '@/Api';
 
 const RegisterForm = () => {
     const [show, setShow] = useState(1);
-    const [showVerification, setShowVerification] = useState(0);
     const [active, setActive] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const [DropdownPhone, setDropdownPhone] = useState(false);
+    const [showVerification, setShowVerification] = useState(0);
     const [isLoding, setLoading] = useState(false);
     const [registerForm, setRegisterForm] = useState();
 
@@ -54,7 +54,8 @@ const RegisterForm = () => {
                 email: data.email,
                 password: data.password,
                 requestType: 'email',
-                resetPassword: false
+                resetPassword: false,
+                referal_code : data.referal_code
             };
 
             otpForm = {
@@ -70,7 +71,8 @@ const RegisterForm = () => {
                 dial_code: 91,
                 password: data.password,
                 requestType: 'mobile',
-                resetPassword: false
+                resetPassword: false,
+                referal_code : data.referal_code
             };
 
             otpForm = {
@@ -145,8 +147,7 @@ const RegisterForm = () => {
                     {/* section left side */}
                     <LeftSide />
                     {/* register part */}
-                    {
-                        showVerification === 0 &&
+                    {showVerification === 0 &&
                         <div className="max-w-full md:max-w-[50%] w-full p-3 sm:p-6 border border-grey mx-auto">
                             <h4 className='section-secondary-heading mb-5'>Welcome back</h4>
                             <div className="my-8 relative">
@@ -168,7 +169,7 @@ const RegisterForm = () => {
                             </div>
 
                             {/* form */}
-                            <form onSubmit={handleSubmit(onSubmit)}>
+                            <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit)}>
                                 {
                                     show === 1 &&
                                     <div className=' mb-4'>
@@ -218,7 +219,7 @@ const RegisterForm = () => {
                                     </label>
                                     {
                                         active != false &&
-                                        <input type="tel" placeholder="Referral Code (Optional)" className="block px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="referelCode" />
+                                        <input type="tel" {...register('referal_code', { required: false })} placeholder="Referral Code (Optional)" className="block px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="referelCode" />
                                     }
                                 </div>
 
@@ -268,16 +269,13 @@ const RegisterForm = () => {
                                     </svg>
                                 </Link>
                             </div>
-                            <p className='flex gap-3 justify-center'>
-                                <span className='info-14 hover:!text-grey'>Already have an account?</span>
-                                <Link href="/login" className='info-14 !text-primary'>Login</Link>
-                            </p>
                         </div>
                     }
                     {/* verification code  */}
                     {showVerification === 1 &&
                         <VerificationCode onFinalSubmit={onFinalSubmit} sendOtpAgain={sendOtpAgain} username={registerForm.requestType === 'mobile' ? registerForm.number : registerForm.email} />
                     }
+
                 </div>
             </div>
         </section>

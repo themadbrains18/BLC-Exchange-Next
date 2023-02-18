@@ -8,9 +8,9 @@ const FundValue = () => {
             cardImg: 'btc.svg',
             wallet: [
                 {
-                    desc:'Wallet1'
-                },{
-                    desc:'Wallet2' 
+                    desc: 'Wallet1'
+                }, {
+                    desc: 'Wallet2'
                 }
             ],
             cardHeading: "BTC",
@@ -21,9 +21,9 @@ const FundValue = () => {
             cardImg: 'USDT.svg',
             wallet: [
                 {
-                    desc:'Wallet3'
-                },{
-                    desc:'Wallet4' 
+                    desc: 'Wallet3'
+                }, {
+                    desc: 'Wallet4'
                 }
             ],
             cardHeading: "USDT",
@@ -33,9 +33,9 @@ const FundValue = () => {
             cardImg: 'USDC.svg',
             wallet: [
                 {
-                    desc:'Wallet5'
-                },{
-                    desc:'Wallet6' 
+                    desc: 'Wallet5'
+                }, {
+                    desc: 'Wallet6'
                 }
             ],
             cardHeading: "USDC",
@@ -52,7 +52,7 @@ const FundValue = () => {
                     {cardData && cardData.map((e, i) => {
                         return (
                             <div key={i} className='items-start lg:items-stretch justify-between flex lg:flex-col border-t-2 z-[0] lg:z-[2] border-primary bg-[#f1fcfd] p-3 lg:p-6 md:max-w-[288px] md:w-full rounded-lg'>
-                                <div  className='flex flex-row-reverse items-center gap-2 lg:flex-row lg:justify-between ' >
+                                <div className='flex flex-row-reverse items-center gap-2 lg:flex-row lg:justify-between ' >
                                     <div >
                                         <p className=' hidden lg:block text-base text-light-grey dark:text-black'>{e.cardHeading}</p>
                                         <p className='info-14-20 text-sm lg:text-xl dark:text-black'>{e.cardInfo}</p>
@@ -64,15 +64,10 @@ const FundValue = () => {
                                     <img src='/assets/icons/arrow.svg' alt='error'></img>
                                     {e.wallet && <DropdownWallet subMenu={e.wallet} />}
                                 </div>
-                          
                             </div>
-
-
-
                         )
                     })}
-                   
-
+                    
                 </div>
                 <p className='mt-6 info-14'>
                     *Based on opening prices of November 15, 2022.

@@ -46,13 +46,7 @@ const Profile = () => {
                 </div>
             </div>
             
-            <div className='my-12 p-4 border rounded-md border-clr-2 gap-7 flex justify-between items-center'>
-                <div>
-                <p className='info-14-26 mb-2'>Verification</p>
-                <p>Once verification is completed, you will have a higher withdrawal limit.</p>
-                </div>
-                <button className='text-primary border border-primary rounded-lg px-3 py-2'>Verify</button>
-            </div>
+           
         </section>
     )
 }
