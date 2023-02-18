@@ -30,7 +30,7 @@ const hidePass = (e) =>{
               <div className="container">
                   <div className="max-w-full md:max-w-[480px] w-full p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto" >
                     <h4 className='section-secondary-heading mb-1'>Enter a new password</h4>
-                    <p className='info-14 text-black dark:!text-white hover:!text-white'>Once you reset your password, any withdrawals and P2P sales will be put on a temporary hold for 24 hours.</p>
+                    <p className='info-14 text-black dark:!text-white hover:!text-black dark:hover:!text-white'>Once you reset your password, any withdrawals and P2P sales will be put on a temporary hold for 24 hours.</p>
 
                     <form>
                       <div className='mt-5'>
@@ -46,7 +46,12 @@ const hidePass = (e) =>{
                         </div>
                         {/* <span className='info-12 mt-1 block !text-[#f7647e]'>Please enter Account</span> */}
                       </div>
-                      <button className='cta mt-5  w-full' onClick={()=>{setShow(2)}}>Next</button>
+                      <button className='relative cta mt-5  w-full' onClick={(e)=>{e.preventDefault();e.currentTarget.classList.add("hide_text");setTimeout(()=>{setShow(2)},3000)}}>
+                        <span>Next</span>
+                        {/* spinner */}
+                          <div className="hidden w-8 h-8 rounded-full animate-spin border-4 border-solid border-purple-500 border-t-transparent absolute top-[50%] left-[50%] mt-[-16px] ml-[-15px] z-10"></div>
+                        {/* spinner */}
+                      </button>
                     </form>
                   </div> 
               </div>

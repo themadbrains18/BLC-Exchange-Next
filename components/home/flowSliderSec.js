@@ -11,10 +11,11 @@ const FlowSliderSec = () => {
   const qweWrap = useRef(null);
   const qweAnimation = useRef(null);
 
- 
+  let animationFrame;
 
   const animation = ()=>{
-      let lastValue = qweWrap.current?.style.transform;
+    if(qweWrap.current.style.transform){
+      let lastValue = qweWrap.current.style.transform;
       lastValue = Number(lastValue.replace("translateX(","").replace("px)",""));
       if(qweAnimation.current.offsetWidth <= Math.abs(lastValue)){
         qweWrap.current.style.transform = `translateX(0px)`;
@@ -25,13 +26,17 @@ const FlowSliderSec = () => {
           qweWrap.current.style.transform = `translateX(0px)`;
         }
       }
-      window.requestAnimationFrame(animation);
+      animationFrame = requestAnimationFrame(animation);
+    }
   }
 
   useEffect(()=>{
     qweWrap.current.style.width = `${qweAnimation.current.offsetWidth * 2}px`; 
     qweWrap.current.style.transform = `translateX(0px)`;
-    window.requestAnimationFrame(animation);
+    animationFrame = requestAnimationFrame(animation);
+    return ()=>{
+      cancelAnimationFrame(animationFrame);
+    }
   },[])
 
   return (

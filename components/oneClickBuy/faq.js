@@ -27,7 +27,7 @@ const Faq = () => {
                 
                 {data && data.map((e, i) => {
                         return (
-                            <div className='border-b border-[#ebebeb] py-6'>
+                            <div className='border-b border-border-clr py-6'>
                             <NavAccordian
                             heading={e.heading}
                             desc={e.info}

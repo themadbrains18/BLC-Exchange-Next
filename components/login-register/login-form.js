@@ -53,7 +53,12 @@ const LoginForm = () => {
                                 <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e)=>{hidePass(e)}} />
                                 <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]"  onClick={(e)=>{showPass(e)}} />
                             </div>
-                            <button className='cta mt-5  w-full' onClick={(e)=>{e.preventDefault();setShowPopup(1)}} >Log In</button>
+                            <button className='relative cta mt-5  w-full' onClick={(e)=>{e.preventDefault();e.currentTarget.classList.add("hide_text");setTimeout(()=>{setShowPopup(1)},3000)}} >
+                                <span>Log In</span>
+                                {/* spinner */}
+                                    <div className="hidden w-8 h-8 rounded-full animate-spin border-4 border-solid border-purple-500 border-t-transparent absolute top-[50%] left-[50%] mt-[-16px] ml-[-15px] z-10"></div>
+                                {/* spinner */}
+                            </button>
                             <Link href="/forget" className='info-14 !text-primary block text-end mt-4 cursor-pointer'>Forget password?</Link>
                         </form>
                     }

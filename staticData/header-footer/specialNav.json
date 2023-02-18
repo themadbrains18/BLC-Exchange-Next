@@ -179,7 +179,7 @@
                 "linkText": "Dashboard",
                 "desc": "Crypto Market Information",
                 "svgType": "dashboard",
-                "linkUrl": "earn"
+                "linkUrl": "dashboard"
             },
             {
                 "linkText": "Security Setting",
