@@ -1,10 +1,10 @@
 import SideBar from "@/components/asset/sideBar";
 
-const AssetLayout = ({ children ,assets }) => {
+const AssetLayout = ({ children,slug,data }) => {
   return (
     <>
-      <div className="flex flex-col md:flex-row dark:bg-black-v-5 ">
-        <SideBar  data={assets} slug="asset" />
+      <div className="flex pt-[120px] flex-col md:flex-row dark:bg-black-v-5 ">
+        <SideBar  data={data} slug={slug} />
         { children }
       </div>
     </>
