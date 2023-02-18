@@ -1,5 +1,5 @@
 import SideBar from "@/components/asset/sideBar";
-import Dashboard from "@/components/layout/assetLayout";
+import Dashboard from "@/components/layout/Layout";
 import Link from "next/link";
 import React, { useState } from "react";
 
