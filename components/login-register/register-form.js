@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import qrImage from "../../public/assets/images/qr.png";
@@ -8,7 +8,7 @@ import VerificationCode from './verification-code';
 // import WelcomePopup from './welcome-popup';
 import passHide from '../../public/assets/icons/pass-hide.svg';
 import passShow from '../../public/assets/icons/pass-show.svg';
-import { useForm } from "react-hook-form";
+import { useForm ,FormProvider } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 
@@ -19,35 +19,35 @@ const RegisterForm = () => {
     const [DropdownPhone, setDropdownPhone] = useState(false);
 
 
-    const formSchema = Yup.object().shape({
-        isActive: Yup.boolean(),
-        email: Yup.string()
-            .when('isActive', {
+    const schema = Yup.object({
+        isActive: Yup.bool(),
+        email: Yup.string().when('isActive', {
             is: true,
-            then:(qwe)=>{ 
-                qwe.required("Email number is required.")
-            }
+            then: (schema)=> {schema.required()}
         }),
-        QWEphone: Yup.string()
+        phone: Yup.string()
             .when('isActive', {
             is: false,
-            then: (schema)=>{
-                Yup.string().required()
-                console.log("==24454",schema)
-                console.log("==24454",schema.tests)
-            },
+            then: (schema)=> {schema.required()}
         }),
         password: Yup.string().required('Password is Mandatory'),
     })
 
-
-    let {register,setValue,handleSubmit,watch,setError,formState: { errors }} = useForm({ 
-        resolver: yupResolver(formSchema), 
+    const methods = useForm({
+        mode: "all",
         defaultValues: {
-            isActive: 'Email'
-        }
-    });
-    
+            isActive: true,
+            email : "",
+            phone : "",
+            password : ""
+        },
+        resolver: yupResolver(schema), 
+        shouldUnregister: true
+      });
+
+    const { register,setValue,handleSubmit,watch,setError,formState: { errors }} = methods
+    const isActive = watch("isActive");
+
 
     const showPass = (e) => {
         if (!e.currentTarget.classList.contains("hidden")) {
@@ -100,62 +100,62 @@ const RegisterForm = () => {
                             }
                         </div>
                         <div className='flex gap-8 mb-8'>
-                            {formSchema.isActive}
                             <button  onClick={() => { setShow(1);setValue("isActive", true)  }}className={`info-14 border-b-2 border-transparent pb-1  ${show === 1 ? " !border-primary !text-primary" : ""}`}>Email</button>
                             <button  onClick={() => { setShow(2) ;setValue("isActive", false) }} className={`info-14 border-b-2 border-transparent pb-1  ${show === 2 ? " !border-primary  !text-primary " : ""}`} >Mobile number</button>
                         </div>
 
                         {/* form */}
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            {
-                                show === 1 &&
-                                <div className=' mb-4'>
-                                    <input type="email" placeholder="Email" className="block  px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="email"  
-                                    {...register('email')} />
-                                    <p className="!text-red-700 info-12">{errors.email?.message}</p>
-                                </div>
-                            }
-                            {
-                                show === 2 &&
-
-                                <div className="border border-black dark:border-white rounded min-h-[46px] mb-4 px-4 flex items-center relative">
-                                    <div className="flex items-center gap-2  min-w-[90px] cursor-pointer" onClick={() => { setDropdownPhone(!DropdownPhone) }}>
-                                        <span className="text-black dark:text-white" id="counteryCode">+ <span>91</span> </span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#656e6f" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
-                                    </div>
-                                    <input type="tel" placeholder="Mobile number" className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone" 
-                                    {...register('QWEphone')}/>
-                                    {
-                                        DropdownPhone != false &&
-                                        <SearchDropdown setDropdownPhone={setDropdownPhone} code={true} />
-                                    }
-                                    <p className="!text-red-700 info-12">{errors.QWEphone?.message}</p>
-                                </div>
-                                
-                            }
-                            <div className="relative">
-                                <input type="password" placeholder="Set password" id="pass_input" className="block  px-4 max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="password" {...register('password')} />
-                                <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
-                                <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }} />
-                            </div>
-                            <p className="!text-red-700 info-12">{errors.password?.message}</p>
-                            <div className="mt-5">
-                                <label className="inline-flex items-center gap-3 info-14 hover:!text-grey mb-3 cursor-pointer" onClick={() => { setActive(!active) }}>
-                                    <span>Referral Code (Optional)</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
-                                </label>
+                        <FormProvider {...methods}>
+                            <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit)}>
                                 {
-                                    active != false &&
-                                    <input type="tel" placeholder="Referral Code (Optional)" className="block px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="referelCode" />
+                                    show === 1 &&
+                                    <div className=' mb-4'>
+                                        <input type="email" placeholder="Email" className="block  px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="email"  
+                                        {...register('email')} />
+                                        <p className="!text-red-700 info-12">{errors.email?.message}</p>
+                                    </div>
                                 }
-                            </div>
+                                {
+                                    show === 2 &&
+                                    <div className="border border-black dark:border-white rounded min-h-[46px] mb-4 px-4 flex items-center relative">
+                                        <div className="flex items-center gap-2  min-w-[90px] cursor-pointer" onClick={() => { setDropdownPhone(!DropdownPhone) }}>
+                                            <span className="text-black dark:text-white" id="counteryCode">+ <span>91</span> </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#656e6f" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
+                                        </div>
+                                        <input type="tel" placeholder="Mobile number" className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone" 
+                                        {...register('phone')}/>
+                                        {
+                                            DropdownPhone != false &&
+                                            <SearchDropdown setDropdownPhone={setDropdownPhone} code={true} />
+                                        }
+                                        <p className="!text-red-700 info-12">{errors.phone?.message}</p>
+                                    </div>
+                                    
+                                }
+                                <div className="relative">
+                                    <input type="password" placeholder="Set password" id="pass_input" className="block  px-4 max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="password" {...register('password')} />
+                                    <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
+                                    <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }} />
+                                </div>
+                                <p className="!text-red-700 info-12">{errors.password?.message}</p>
+                                <div className="mt-5">
+                                    <label className="inline-flex items-center gap-3 info-14 hover:!text-grey mb-3 cursor-pointer" onClick={() => { setActive(!active) }}>
+                                        <span>Referral Code (Optional)</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
+                                    </label>
+                                    {
+                                        active != false &&
+                                        <input type="tel" placeholder="Referral Code (Optional)" className="block px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="referelCode" />
+                                    }
+                                </div>
 
-                            <button type="submit" className='cta my-5  w-full'>Create Account</button>
-                            <div className="relative mb-5 inline-block">
-                                <input id="checkbox" type="checkbox" className="hidden agree_cta" />
-                                <label htmlFor="checkbox" className="relative info-14 hover:!text-grey pl-[25px] after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-[16px] after:h-[16px] cursor-pointer">I agree to the <Link href="#" className="text-primary">Terms of Use</Link></label>
-                            </div>
-                        </form>
+                                <button type="submit" className='cta my-5  w-full'>Create Account</button>
+                                <div className="relative mb-5 inline-block">
+                                    <input id="checkbox" type="checkbox" className="hidden agree_cta" />
+                                    <label htmlFor="checkbox" className="relative info-14 hover:!text-grey pl-[25px] after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-[16px] after:h-[16px] cursor-pointer">I agree to the <Link href="#" className="text-primary">Terms of Use</Link></label>
+                                </div>
+                            </form>
+                        </FormProvider>
 
 
                         <div className='bg-grey w-full h-[1px] my-5'></div>
