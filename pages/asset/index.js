@@ -19,7 +19,7 @@ const Asset = ({ assets }) => {
   return (
     <>
       <Layout data={assets} slug="asset">
-        <div className="grow px-4 pt-[120px] p-10 md:p-20">
+        <div className="grow p-4 ">
           <div className="hidden md:flex gap-2 items-center ">
             <h3 className="section-secondary-heading font-noto">Assets</h3>
             <button

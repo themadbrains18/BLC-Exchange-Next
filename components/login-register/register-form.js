@@ -140,7 +140,7 @@ const RegisterForm = () => {
 
 
     return (
-        <section className='dark:bg-black-v-5 py-[80px] !pt-[120px] lg:!pt-[204px]' >
+        <section className='dark:bg-black-v-5 !Wpt-10 lg:!pt-20' >
             <ToastContainer />
             <div className='container'>
                 <div className="flex flex-col md:flex-row items-start gap-10">
