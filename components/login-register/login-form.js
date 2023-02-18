@@ -14,12 +14,16 @@ import VerificationCode from './verification-code';
 import { loginRequestApi, otpMatchRequestApi, sendOtp } from '@/Api';
 import AntiFishing from './anti-phishing';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const LoginForm = () => {
     const [show, setShow] = useState(1);
     const [loginData, setLoginData] = useState({});
     const [showPopup, setShowPopup] = useState(0);
-    const [isLoding, setLoading] = useState(false)
+    const [isLoding, setLoading] = useState(false);
+    const [otpForm, setOtpForm] = useState(); 
 
     const router = useRouter();
 
@@ -75,6 +79,7 @@ const LoginForm = () => {
                 OtpForm = { number: data.username, dial_code: 91, requestType: "mobile", resetPassword: false }
             }
 
+            setOtpForm(OtpForm);
             let otpResponse = await sendOtp(OtpForm);
             if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
                 setLoading(false);
@@ -87,7 +92,9 @@ const LoginForm = () => {
         }
         else {
             setLoading(false);
-            alert(result.data.message);
+            toast.error(result.data.message, {
+                position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+            })
         }
 
     }
@@ -99,16 +106,33 @@ const LoginForm = () => {
         let result = await otpMatchRequestApi(obj)
 
         if (result.data.status === 200 && result.data != undefined) {
+            toast.success(result.data.message, {
+                position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+            })
             setShowPopup(1);
         }
         else {
-            alert(result.data.message);
+            toast.error(result.data.message, {
+                position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+            })
+        }
+    }
+
+    const sendOtpAgain=async()=>{
+        let otpResponse = await sendOtp(otpForm);
+        if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
+            let usrname = otpForm.requestType ==='mobile'?otpForm.number :otpForm.email;
+            let message = otpResponse.data.message + ' '+ usrname;
+            toast.success(message, {
+                position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+            })
         }
     }
 
 
     return (
-        <section className='dark:bg-black-v-5 py-[80px] ! lg:!pt-[204px]'>
+        <section className='dark:bg-black-v-5  !py-10 lg:!py-20'>
+            <ToastContainer />
             <div className='container'>
                 <div className="flex flex-col md:flex-row items-start gap-10">
                     <div className="hidden md:block max-w-[50%] w-full">
@@ -175,7 +199,7 @@ const LoginForm = () => {
                     }
 
                     {show === 3 &&
-                        <VerificationCode onFinalSubmit={onFinalSubmit} />
+                        <VerificationCode onFinalSubmit={onFinalSubmit} sendOtpAgain={sendOtpAgain} username= {otpForm.requestType ==='mobile'?otpForm.number :otpForm.email} />
                     }
                 </div>
                 {showPopup === 1 &&
