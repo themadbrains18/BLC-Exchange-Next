@@ -11,7 +11,7 @@ import * as Yup from 'yup'
 import { useRouter } from 'next/router';
 import VerificationCode from './verification-code';
 
-import { loginRequestApi, sendOtp } from '@/Api';
+import { loginRequestApi, otpMatchRequestApi, sendOtp } from '@/Api';
 import AntiFishing from './anti-phishing';
 
 
@@ -19,6 +19,7 @@ const LoginForm = () => {
     const [show, setShow] = useState(1);
     const [loginData, setLoginData] = useState({});
     const [showPopup, setShowPopup] = useState(0);
+    const [isLoding, setLoading] = useState(false)
 
     const router = useRouter();
 
@@ -55,7 +56,7 @@ const LoginForm = () => {
     const onSubmit = async (data) => {
         let text = data.username;
         let exist = text.includes("@");
-
+        setLoading(true)
         let formdata = {
             username: data.username,
             password: data.password,
@@ -75,8 +76,8 @@ const LoginForm = () => {
             }
 
             let otpResponse = await sendOtp(OtpForm);
-
             if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
+                setLoading(false);
                 setShow(3);
                 setLoginData(result.data);
             }
@@ -85,8 +86,7 @@ const LoginForm = () => {
             }
         }
         else {
-            console.log(result);
-
+            setLoading(false);
             alert(result.data.message);
         }
 
@@ -94,20 +94,16 @@ const LoginForm = () => {
 
     const onFinalSubmit = async (otp) => {
 
-        console.log(loginData, '===========');
+        let obj = { username: loginData.registerType === 'email'? loginData.email : loginData.number, otp: otp, time: new Date() };
 
-        let obj = { username: loginData, otp: otp, time: new Date() };
+        let result = await otpMatchRequestApi(obj)
 
-        console.log(obj);
-
-        // let result = await otpMatchRequestApi(obj)
-
-        // if (result.data.status === 200 && result.data != undefined) {
-        //     router.push('/');
-        // }
-        // else {
-        //     console.log(result);
-        // }
+        if (result.data.status === 200 && result.data != undefined) {
+            setShowPopup(1);
+        }
+        else {
+            alert(result.data.message);
+        }
     }
 
 
@@ -142,7 +138,7 @@ const LoginForm = () => {
                                     <div className="!text-red-700 info-12">{errors.password?.message}</div>
                                     {/* <button type="submit" className='cta mt-5  w-full'>Log In</button>
                                     <a href="/forget" className='info-14 !text-primary block text-end mt-4 cursor-pointer'>Forgot password?</a> */}
-                                    <button className='relative cta mt-5  w-full' onClick={(e) => { e.preventDefault(); e.currentTarget.classList.add("hide_text"); setTimeout(() => { setShowPopup(1) }, 3000) }} >
+                                    <button type='submit' className={`relative cta mt-5  w-full ${isLoding === true ?'hide_text' :''} `}>
                                         <span>Log In</span>
                                         {/* spinner */}
                                         <div className="hidden w-8 h-8 rounded-full animate-spin border-4 border-solid border-purple-500 border-t-transparent absolute top-[50%] left-[50%] mt-[-16px] ml-[-15px] z-10"></div>
