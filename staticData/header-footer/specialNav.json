@@ -36,7 +36,7 @@
                 {
                     "linkText": " Bitget Group Coin",
                     "desc": "Group prchase discounted Crypto ",
-                    "svgType": "Big_get_group_coin",
+                    "svgType": "Bitget_group_coin",
                     "linkUrl": "earn"
                 }
             ]
@@ -179,7 +179,7 @@
                 "linkText": "Dashboard",
                 "desc": "Crypto Market Information",
                 "svgType": "dashboard",
-                "linkUrl": "earn"
+                "linkUrl": "dashboard"
             },
             {
                 "linkText": "Security Setting",

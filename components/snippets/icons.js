@@ -671,35 +671,7 @@ const Icons = ({ type }) => {
 </svg>
 
   )}
-  {/* //   Big get group coin icon */}
-  {type === "Big_get_group_coin" && (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      shapeRendering="geometricPrecision"
-      textRendering="geometricPrecision"
-      imageRendering="optimizeQuality"
-      fillRule="evenodd"
-      clipRule="evenodd"
-      viewBox="0 0 512 370.38"
-      width="24px"
-      height="24px"
-      fill={mode === "dark" ? "white" : "black"}
-     
-    >
-<g>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <path
-   
-    d="M90 53V37H79v30H26v12h18v-7h4v7h42V63a5 5 0 0 1 0-10z"
-  />
-  <path
-  
-    d="M75 41V29H33v8h-4v-8H11v34h18v-8h4v8h42V51a5 5 0 0 1 0-10zm-42 9h-4v-8h4v8z"
-  />
-</svg>
-</g>
-</svg>
-  )}
+ 
   {/* //   Vip program icon */}
   {type === "Vip_program" && (
     <svg
@@ -764,35 +736,15 @@ const Icons = ({ type }) => {
   )}
   {/* //  Api Trading icon */}
   {type === "Api_trading" && (
-<svg
+    <svg
   xmlns="http://www.w3.org/2000/svg"
-  xmlnsXlink="http://www.w3.org/1999/xlink"
-  version="1.1"
-  id="Layer_1"
-  x="0px"
-  y="0px"
-  width={24}
   height={24}
-  viewBox="0 0 24 24"
-  stroke={mode === "light" ? "black" : "white"}
-  // viewBox="0 0 117.74 122.88"
-  style={{ enableBackground: "new 0 0 117.74 122.88" }}
-  xmlSpace="preserve"
-  
+  viewBox="0 96 960 960"
+  width={24}
+  fill={mode === "dark" ? "white" : "black"}
+
 >
-  <style
-    type="text/css"
-    dangerouslySetInnerHTML={{
-      __html: ".st0{fill-rule:evenodd;clip-rule:evenodd;}"
-    }}
-  />
-  <g>
-    <path
-   
-      d="M94.62,2c-1.46-1.36-3.14-2.09-5.02-1.99c-1.88,0-3.56,0.73-4.92,2.2L73.59,13.72l31.07,30.03l11.19-11.72 c1.36-1.36,1.88-3.14,1.88-5.02s-0.73-3.66-2.09-4.92L94.62,2L94.62,2L94.62,2z M41.44,109.58c-4.08,1.36-8.26,2.62-12.35,3.98 c-4.08,1.36-8.16,2.72-12.35,4.08c-9.73,3.14-15.07,4.92-16.22,5.23c-1.15,0.31-0.42-4.18,1.99-13.6l7.74-29.61l0.64-0.66 l30.56,30.56L41.44,109.58L41.44,109.58L41.44,109.58z M22.2,67.25l42.99-44.82l31.07,29.92L52.75,97.8L22.2,67.25L22.2,67.25z"
-    />
-    
-  </g>
+  <path d="M754 472 584 302l57-57q23-23 56.5-23t56.5 23l57 57q23 23 23 56.5T811 415l-57 57ZM120 936V766l180-180L89 373l189-189 212 213 94-95 170 170-94 94 211 213-188 188-213-212-180 181H120Zm237-407 76-76-48-48-48 47-56-56 47-48-51-50-75 76 155 155Zm325 325 76-76-51-50-47 47-57-56 48-48-49-48-76 76 156 155Zm-482 2h56l385-384-57-57-384 385v56Z" />
 </svg>
 
   )}
@@ -943,103 +895,7 @@ const Icons = ({ type }) => {
 </svg>
 
   )}
-  {/* //listning application icon */}
-  {type === "listning_application" && (
-    <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={24}
-    height={24}
-    viewBox="0 0 28 31"
-    fill="none"
-    stroke={mode === "dark" ? "white" : "currentColor"}
 
-  >
-    <g filter="url(#filter0_dd_1_2875)">
-      <path
-        d="M9 12C5 12 5 13.79 5 16V17C5 19.76 5 22 10 22H18C22 22 23 19.76 23 17V16C23 13.79 23 12 19 12C18 12 17.72 12.21 17.2 12.6L16.18 13.68C15 14.94 13 14.94 11.81 13.68L10.8 12.6C10.28 12.21 10 12 9 12Z"
-        strokeWidth="1.5"
-        strokeMiterlimit={10}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M21 12V6C21 3.79 21 2 17 2H11C7 2 7 3.79 7 6V12"
-        strokeWidth="1.5"
-        strokeMiterlimit={10}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M12.55 9.22998H15.88"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M11.72 6.22998H16.72"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </g>
-    <defs>
-      <filter
-        id="filter0_dd_1_2875"
-        x={-2}
-        y={0}
-        width={32}
-        height={32}
-        filterUnits="userSpaceOnUse"
-        colorInterpolationFilters="sRGB"
-      >
-        <feFlood floodOpacity={0} result="BackgroundImageFix" />
-        <feColorMatrix
-          in="SourceAlpha"
-          type="matrix"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-          result="hardAlpha"
-        />
-        <feOffset dy={4} />
-        <feGaussianBlur stdDeviation={2} />
-        <feComposite in2="hardAlpha" operator="out" />
-        <feColorMatrix
-          type="matrix"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
-        />
-        <feBlend
-          mode="normal"
-          in2="BackgroundImageFix"
-          result="effect1_dropShadow_1_2875"
-        />
-        <feColorMatrix
-          in="SourceAlpha"
-          type="matrix"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-          result="hardAlpha"
-        />
-        <feOffset dy={4} />
-        <feGaussianBlur stdDeviation={2} />
-        <feComposite in2="hardAlpha" operator="out" />
-        <feColorMatrix
-          type="matrix"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
-        />
-        <feBlend
-          mode="normal"
-          in2="effect1_dropShadow_1_2875"
-          result="effect2_dropShadow_1_2875"
-        />
-        <feBlend
-          mode="normal"
-          in="SourceGraphic"
-          in2="effect2_dropShadow_1_2875"
-          result="shape"
-        />
-      </filter>
-    </defs>
-  </svg>
-  
-  )}
   {/* //bitget academy icon */}
   {type === "bitget_academy" && (
     <svg
@@ -1118,6 +974,10 @@ const Icons = ({ type }) => {
 </svg>
 
   )}
+  
+
+
+
 {/* // *********** grid icon end***********
 //************  assets icon start********
   //overview icon */}
@@ -1670,6 +1530,152 @@ const Icons = ({ type }) => {
     </svg>
       )}
 
+
+{
+  type=== "log_out" && (<svg
+    xmlns="http://www.w3.org/2000/svg"
+    height={24}
+    viewBox="0 96 960 960"
+    width={24}
+    stroke={mode === "dark" ? "white" : "black"}
+
+  >
+    <path d="M200 936q-33 0-56.5-23.5T120 856V296q0-33 23.5-56.5T200 216h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585 434l55-58 200 200-200 200Z" />
+  </svg>)
+}
+{/* //listning application icon */}
+  {type === "listning_application" && (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={25}
+    height={24}
+    viewBox="0 0 25 24"
+    fill="none"
+    stroke={mode === "light" ? "black" : "white"}
+>
+    <path
+      d="M7.33325 12C3.33325 12 3.33325 13.79 3.33325 16V17C3.33325 19.76 3.33325 22 8.33325 22H16.3333C20.3333 22 21.3333 19.76 21.3333 17V16C21.3333 13.79 21.3333 12 17.3333 12C16.3333 12 16.0533 12.21 15.5333 12.6L14.5133 13.68C13.3333 14.94 11.3333 14.94 10.1433 13.68L9.13325 12.6C8.61325 12.21 8.33325 12 7.33325 12Z"
+      strokeWidth="1.5"
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M19.3333 12V6C19.3333 3.79 19.3333 2 15.3333 2H9.33325C5.33325 2 5.33325 3.79 5.33325 6V12"
+      strokeWidth="1.5"
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M10.8833 9.22998H14.2133"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M10.0532 6.22998H15.0532"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+  )}
+
+{type === "protection_fund" && (
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={25}
+  height={24}
+  viewBox="0 0 25 24"
+  fill="none"
+  stroke={mode === "light" ? "black" : "white"}
+>
+  <path
+    d="M10.8233 2.23006L5.83329 4.11006C4.68329 4.54006 3.74329 5.90006 3.74329 7.12006V14.5501C3.74329 15.7301 4.52329 17.2801 5.47329 17.9901L9.77329 21.2001C11.1833 22.2601 13.5033 22.2601 14.9133 21.2001L19.2133 17.9901C20.1633 17.2801 20.9433 15.7301 20.9433 14.5501V7.12006C20.9433 5.89006 20.0033 4.53006 18.8533 4.10006L13.8633 2.23006C13.0133 1.92006 11.6533 1.92006 10.8233 2.23006Z"
+
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M9.3833 11.8701L10.9933 13.4801L15.2933 9.18005"
+
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+  )}
+
+{/* // star traders icon */}
+  {type === "star_traders" && (
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={24}
+  height={24}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke={mode === "light" ? "black" : "white"}
+>
+  <path
+    d="M6.72827 19.7C7.54827 18.82 8.79828 18.89 9.51828 19.85L10.5283 21.2C11.3383 22.27 12.6483 22.27 13.4583 21.2L14.4683 19.85C15.1883 18.89 16.4383 18.82 17.2583 19.7C19.0383 21.6 20.4883 20.97 20.4883 18.31V7.04C20.4883 3.01 19.5483 2 15.7683 2H8.20828C4.42828 2 3.48828 3.01 3.48828 7.04V18.3C3.49828 20.97 4.95827 21.59 6.72827 19.7Z"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M9.25 10H14.75"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+  )}
+
+
+{/* Bitget_group_coin */}
+{type === "Bitget_group_coin" && (
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={24}
+  height={24}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke={mode === "light" ? "black" : "white"}
+>
+  <path
+    d="M9.5 13.75C9.5 14.72 10.25 15.5 11.17 15.5H13.05C13.85 15.5 14.5 14.82 14.5 13.97C14.5 13.06 14.1 12.73 13.51 12.52L10.5 11.47C9.91 11.26 9.51001 10.94 9.51001 10.02C9.51001 9.17999 10.16 8.48999 10.96 8.48999H12.84C13.76 8.48999 14.51 9.26999 14.51 10.24"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M12 7.5V16.5"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M22 6V2H18"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M17 7L22 2"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+  )}
 
     </>
   );
