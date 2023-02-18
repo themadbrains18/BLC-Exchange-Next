@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
+import ActiveCta from "./activeCta";
 import NavAccordian from "./navAccordian";
 
 const NotificationHover = () => {
@@ -14,26 +15,7 @@ const NotificationHover = () => {
             View All
           </Link>
         </div>
-        <div className="flex gap-3 w-[400px] mb-4">
-          {arr.map((elem, index) => {
-            return (
-              <Link
-                onClick={() => {
-                  setActive(index);
-                }}
-                className={`pb-3 info-14-16 ${
-                  active === index
-                    ? "border-b border-primary text-black-v-3"
-                    : ""
-                }`}
-                href={""}
-                key={index}
-              >
-                {elem}
-              </Link>
-            );
-          })}
-        </div>
+        <ActiveCta data={arr} active={active} setActive={setActive}/>
         <NavAccordian
           heading="dfdh"
           desc={"hamid exchange is live"}

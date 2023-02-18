@@ -78,7 +78,7 @@
         },
         {
             "heading": "helpcenter",
-            "subMenu":[
+            "subMenu": [
                 {
                     "linkText": "FAQs",
                     "desc": " Crypto frequently asked quetions ",
@@ -132,7 +132,7 @@
                 "linkText": "Overview",
                 "desc": "Futures trading",
                 "svgType": "overview",
-                "linkUrl": "earn"
+                "linkUrl": ""
             },
             {
                 "linkText": "Deposite",
@@ -152,12 +152,76 @@
             {
                 "linkText": "Transaction History",
                 "desc": "Buy and Sell Crypto",
-                "svgType": "transaction_history"
+                "svgType": "transaction_history",
+                "menu": [
+                    {
+                        "linkText": "Spot",
+                        "linkUrl": "p"
+                    },
+                   
+                    {
+                        "linkText": "Spot",
+                        "linkUrl": "p"
+                    },
+                   
+                    {
+                        "linkText": "Spot",
+                        "linkUrl": "p"
+                    },
+                   
+                    {
+                        "linkText": "Spot",
+                        "linkUrl": "p"
+                    },
+                   
+                    {
+                        "linkText": "Spot",
+                        "linkUrl": "p"
+                    },
+                   
+                    {
+                        "linkText": "Spot",
+                        "linkUrl": "p"
+                    }
+                   
+                ]
             },
             {
                 "linkText": "Orders",
                 "linkUrl": "earn",
-                "svgType": "orders"
+                "svgType": "orders",
+                "menu": [
+                    {
+                        "linkText": "Spot",
+                        "linkUrl": "p"
+                    },
+                   
+                    {
+                        "linkText": "Margin",
+                        "linkUrl": "p"
+                    },
+                   
+                    {
+                        "linkText": "P2P",
+                        "linkUrl": "p"
+                    },
+                   
+                    {
+                        "linkText": "Earn",
+                        "linkUrl": "p"
+                    },
+                   
+                    {
+                        "linkText": "Coupons",
+                        "linkUrl": "p"
+                    },
+                   
+                    {
+                        "linkText": "Merge Swap",
+                        "linkUrl": "Merge Swap"
+                    }
+                   
+                ]
             },
             {
                 "linkText": "Mega Swap Orders",

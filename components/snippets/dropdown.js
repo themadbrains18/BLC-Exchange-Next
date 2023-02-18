@@ -71,7 +71,7 @@ const Dropdown = ({
           subMenu.map((e, index) => {
             return (
               <Link
-                href={`/${e.linkUrl}`}
+                href={`${e.linkUrl}`}
                 key={index}
                 className={`items-center rounded flex gap-6 min-w-[330px] p-4 group/arrow  ${
                   mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
