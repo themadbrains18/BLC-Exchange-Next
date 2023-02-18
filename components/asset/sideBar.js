@@ -14,7 +14,7 @@ const SideBar = ({ data,slug }) => {
   console.log(router)
   return (
     <>
-      <section className={`px-3 md:px-0 ${click && "z-30"} dark:bg-black-v-5`} >
+      <div className={`px-3 md:px-0 ${click && "z-30"}  `} >
         <button
           className="flex items-center md:hidden"
           onClick={() => {
@@ -32,7 +32,7 @@ const SideBar = ({ data,slug }) => {
         </button>
 
         <div
-          className={` absolute top-0 z-10 duration-300 md:static w-[calc(100%-4rem)] md:w-fit h-[100vh] md:h-auto ${
+          className={` absolute top-0 z-10 duration-300 md:static w-[calc(100%-4rem)] bg-white dark:bg-black-v-5 md:w-fit h-[100vh] md:h-auto ${
             show ? "left-0" : "-left-[100%]"
           } `}
         >
@@ -82,7 +82,7 @@ const SideBar = ({ data,slug }) => {
               })}
           </ul>
         </div>
-      </section>
+      </div>
     </>
   );
 };

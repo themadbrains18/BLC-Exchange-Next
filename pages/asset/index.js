@@ -1,9 +1,11 @@
 import SideBar from "@/components/asset/sideBar";
 import AssetLayout from "@/components/layout/assetLayout";
+import ActiveCta from "@/components/snippets/activeCta";
 import Link from "next/link";
 import React, { useState } from "react";
 
 const Asset = ({ assets }) => {
+  const [active, setActive] = useState(0);
   const [show, setShow] = useState(true);
   const [index, setIndex] = useState(0);
   let obj = [
@@ -13,10 +15,11 @@ const Asset = ({ assets }) => {
     { name: "Transfer", link: "" },
     { name: "MegaSwap", link: "" },
   ];
+  let activeCta = ["Spot", "Margin", "P2P", "Earn", "Coupons", "Merge Swap"];
   return (
     <>
       <AssetLayout assets={assets}>
-        <div>
+        <div className="grow px-4 pt-[120px] p-10 md:p-20">
           <div className="hidden md:flex gap-2 items-center ">
             <h3 className="section-secondary-heading font-noto">Assets</h3>
             <button
@@ -150,6 +153,7 @@ const Asset = ({ assets }) => {
             {obj.map((e, i) => {
               return (
                 <Link
+                key={i}
                   href={e.link}
                   className={`w-max text-center py-2 px-4 font-noto text-sm whitespace-nowrap rounded-lg ${
                     index === i
@@ -163,8 +167,69 @@ const Asset = ({ assets }) => {
             })}
           </div>
           <p className="bg-table-bg p-2 mt-3 rounded-lg">
-          You currently have no assets. Deposit or Buy Crypto To fill your wallet and start trading.
+            You currently have no assets.{" "}
+            <Link href="" className="text-primary">
+              {" "}
+              Deposit
+            </Link>{" "}
+            or{" "}
+            <Link href="" className="text-primary">
+              {" "}
+              Buy Crypto
+            </Link>{" "}
+            To fill your wallet and start trading.
           </p>
+          <div className="mt-3   overflow-x-auto table_box border-b border-border-clr">
+            <ActiveCta data={activeCta} active={active} setActive={setActive} />
+          </div>
+          {active === 0 && (
+            <div className="mt-3">
+              <div className="flex justify-between">
+                <div>
+                  <h4>Estimated Spot Balance</h4>
+                  <span>0.00000000 BTC</span>
+                </div>
+                <Link href={""}>
+                  <h4>Today's PNL </h4>
+                  <span>0 BTC ≈$ 0</span>
+                </Link>
+              </div>
+              <div className="flex flex-col">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-primary"
+                />
+                <label className="inline-flex items-center">
+                  <input
+                    type="checkbox"
+                    className="w-4 h-4 border-0 focus:ring-0 accent-primary"
+                  />
+
+                  <span className="ml-2 info-12">Hide</span>
+                </label>
+                <span>0 Balances</span>
+                <Link href={""}>Convert Small Balances into BGB</Link>
+              </div>
+
+              <div className="flex justify-center">
+                <div className="form-check form-switch">
+                  <input
+                    className="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-white bg-no-repeat bg-contain focus:outline-none cursor-pointer shadow-sm"
+                    type="checkbox"
+                    role="switch"
+                    id="flexSwitchCheckDefault"
+                  />
+                  <label
+                    className="form-check-label inline-block text-gray-800"
+                    htmlFor="flexSwitchCheckDefault"
+                  >
+                    BGB fee Discount-20%
+                  </label>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </AssetLayout>
     </>

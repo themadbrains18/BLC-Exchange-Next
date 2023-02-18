@@ -132,7 +132,7 @@
                 "linkText": "Overview",
                 "desc": "Futures trading",
                 "svgType": "overview",
-                "linkUrl": "/"
+                "linkUrl": ""
             },
             {
                 "linkText": "Deposite",
@@ -197,28 +197,28 @@
                     },
                    
                     {
-                        "linkText": "Spot",
+                        "linkText": "Margin",
                         "linkUrl": "p"
                     },
                    
                     {
-                        "linkText": "Spot",
+                        "linkText": "P2P",
                         "linkUrl": "p"
                     },
                    
                     {
-                        "linkText": "Spot",
+                        "linkText": "Earn",
                         "linkUrl": "p"
                     },
                    
                     {
-                        "linkText": "Spot",
+                        "linkText": "Coupons",
                         "linkUrl": "p"
                     },
                    
                     {
-                        "linkText": "Spot",
-                        "linkUrl": "p"
+                        "linkText": "Merge Swap",
+                        "linkUrl": "Merge Swap"
                     }
                    
                 ]
