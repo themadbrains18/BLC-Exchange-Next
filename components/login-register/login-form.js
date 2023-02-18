@@ -5,10 +5,11 @@ import qrImage from "../../public/assets/images/qr.png";
 import laftImage from "../../public/assets/images/form-left-new.png";
 import passHide from '../../public/assets/icons/pass-hide.svg';
 import passShow from '../../public/assets/icons/pass-show.svg';
-
+import AntiFishing from './anti-phishing';
 
 const LoginForm = () => {
     const [show,setShow] = useState(1);
+    const [showPopup,setShowPopup] = useState(0);
     const showPass = (e) =>{
         if(!e.currentTarget.classList.contains("hidden")){
             e.currentTarget.classList.toggle("hidden");
@@ -52,8 +53,8 @@ const LoginForm = () => {
                                 <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e)=>{hidePass(e)}} />
                                 <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]"  onClick={(e)=>{showPass(e)}} />
                             </div>
-                            <button className='cta mt-5  w-full'>Log In</button>
-                            <a href="/forget" className='info-14 !text-primary block text-end mt-4 cursor-pointer'>Forgot password?</a>
+                            <button className='cta mt-5  w-full' onClick={(e)=>{e.preventDefault();setShowPopup(1)}} >Log In</button>
+                            <Link href="/forget" className='info-14 !text-primary block text-end mt-4 cursor-pointer'>Forget password?</Link>
                         </form>
                     }
                     {/* qr part */}
@@ -114,6 +115,10 @@ const LoginForm = () => {
                         <Link href="/register" className='info-14 !text-primary'>Join Us</Link>
                     </p>
                 </div>
+                        {
+                            showPopup === 1 &&
+                            <AntiFishing />
+                        }
             </div>
             
         </div>
