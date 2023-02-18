@@ -6,14 +6,14 @@ import Referral from '@/components/dashboard/referral'
 import SocialTrades from '@/components/dashboard/socialTrades'
 import Tranding from '@/components/dashboard/tranding'
 import Welfare from '@/components/dashboard/welfare'
-import AssetLayout from '@/components/layout/assetLayout'
+import Layout from '@/components/layout/assetLayout'
 import SideMenu from '@/components/snippets/sideMenu'
 import React from 'react'
 
 const Dashboard = ({account}) => {
   return (
     <>
-      <AssetLayout data={account} slug="dashboard">
+      <Layout data={account} slug="dashboard">
         
          
           <div className='grow max-w-full px-10'>
@@ -39,7 +39,7 @@ const Dashboard = ({account}) => {
 
 
       
-      </AssetLayout>
+      </Layout>
     </>
   )
 }
