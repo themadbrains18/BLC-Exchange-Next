@@ -3,7 +3,7 @@ import React from 'react'
 
 const AboutUs = () => {
   return (
-    <section className='bg-table-bg dark:bg-black-v-3 py-[50px] md:py-[120px]  '>
+    <section className='bg-table-bg dark:black-v-3 py-[50px] md:py-[120px]  '>
     <div className="container ">
         <h1 className='dark:text-white text-2xl font-semibold md:text-4xl leading-10 md:font-bold mb-6 lg:mb-0'>About Us</h1>
         <div className='flex justify-around items-center  '>
