@@ -39,7 +39,7 @@ const Footer = () => {
             <div className="flex flex-wrap gap-3 justify-between">
                 <div className="max-w-full lg:max-w-[72%] w-full grid gap-0 sm:gap-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 ">
                     <div className='mb-8 sm:mb-0 block lg:hidden sm:col-start-1 sm:col-span-4'>
-                        <Image src="/assets/icons/companyLogo.svg" alt='error' width="100" height="24" />
+                        <Image src="/assets/images/BLC-Exchange.png" alt='error' width="40" height="40" />
                     </div>
 
 
@@ -73,7 +73,7 @@ const Footer = () => {
                 </div>
                 <div className=" max-w-full lg:max-w-[22%] w-full">
                     <div>
-                        <Image src="/assets/icons/companyLogo.svg" alt='error' width="132" height="53" className='hidden lg:block' />
+                        <Image src="/assets/images/BLC-Exchange.png" alt='error' width="100" height="50" className='hidden lg:block' />
                     </div>
                     <div className='my-5 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:block'>
                         <div className="mb-4">
