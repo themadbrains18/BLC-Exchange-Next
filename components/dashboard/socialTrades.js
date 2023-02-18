@@ -9,7 +9,6 @@ const SocialTrades = () => {
                 <div className='flex'>
                     <span className='info-14 border-b border-dashed border-border-clr'>Capital</span>
                     <div>
-
                     <span className='section-secondary-heading'>0</span>
                     <span className='info-14-16'>USDT</span>
                     </div>
