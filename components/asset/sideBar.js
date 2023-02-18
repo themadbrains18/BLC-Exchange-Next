@@ -1,28 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter} from "next/router";
-import { useState,useContext } from "react";
+import { useRouter } from "next/router";
+import { useState, useContext } from "react";
 import Context from "../contexts/context";
 import Dropdown from "../snippets/dropdown";
 import Icons from "../snippets/icons";
 import NavAccordian from "../snippets/navAccordian";
 
-const SideBar = ({ data,slug }) => {
+const SideBar = ({ data, slug }) => {
   const router = useRouter();
-  const {click,setClick} = useContext(Context)
+  const { click, setClick } = useContext(Context);
   const [show, setShow] = useState(false);
-  console.log(router)
   return (
     <>
-      <div className={`px-3 md:px-0 ${click && "z-30"}  `} >
+      <div className={`px-3 md:px-0 ${click && "z-30"}  `}>
         <button
           className="flex items-center md:hidden"
           onClick={() => {
             setShow(true);
-            setClick(true)
+            setClick(true);
           }}
         >
-          <h3 className="section-secondary-heading font-noto ">{data.name}</h3>
+          {data.name && (
+            <h3 className="section-secondary-heading font-noto ">
+              {data.name}
+            </h3>
+          )}
           <Image
             src={"/assets/icons/rightArrowSmall.svg"}
             width={24}
@@ -38,10 +41,10 @@ const SideBar = ({ data,slug }) => {
         >
           <div className="text-end p-4 border-b md:hidden border-border-clr">
             <button
-              className="ml-auto mr-0" 
+              className="ml-auto mr-0"
               onClick={() => {
                 setShow(false);
-                setClick(false)
+                setClick(false);
               }}
             >
               <svg
@@ -64,17 +67,33 @@ const SideBar = ({ data,slug }) => {
           <ul className="menu_box p-4">
             {data.subMenu &&
               data.subMenu.map((e, i) => {
-          
-
                 return (
-                  <li key={i} className={`${e.menu ? "flex items-center":"md:hover:border-r-2 md:border-primary  "} `}>
+                  <li
+                    key={i}
+                    className={`${
+                      e.menu
+                        ? "flex items-center"
+                        : "md:hover:border-r-2 md:border-primary  "
+                    } `}
+                  >
                     <div className="flex p-3 gap-3 self-start">
                       <Icons type={e.svgType} />
-                      {!e.menu && <Link href={`/${slug}/${e.linkUrl}`} className="info-14">{e.linkText}</Link>}
+                      {!e.menu && (
+                        <Link
+                          href={`/${slug}/${e.linkUrl}`}
+                          className="info-14"
+                        >
+                          {e.linkText}
+                        </Link>
+                      )}
                     </div>
                     {e.menu && (
                       <div className="w-full ">
-                        <NavAccordian heading={e.linkText} className={"info-14"} content={e.menu} />
+                        <NavAccordian
+                          heading={e.linkText}
+                          className={"info-14"}
+                          content={e.menu}
+                        />
                       </div>
                     )}
                   </li>

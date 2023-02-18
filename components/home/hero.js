@@ -5,7 +5,7 @@ import heroImg from "../../public/assets/images/hero-img.png";
 import Signup from '../snippets/signup';
 const Hero = () => {
   return (
-    <section className='dark:bg-black pb-20 pt-[120px] lg:pt-[210px]'>
+    <section className='dark:bg-black py-10 md:py-20 '>
       <div className="container">
         <div className='flex items-center justify-between flex-col-reverse md:flex-row gap-5 text-center md:text-left'>
           <div className='max-w-full md:max-w-[48%] w-full'>
