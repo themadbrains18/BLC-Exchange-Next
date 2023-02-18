@@ -14,7 +14,7 @@ const FlowSliderSec = () => {
  
 
   const animation = ()=>{
-      let lastValue = qweWrap.current.style.transform;
+      let lastValue = qweWrap.current?.style.transform;
       lastValue = Number(lastValue.replace("translateX(","").replace("px)",""));
       if(qweAnimation.current.offsetWidth <= Math.abs(lastValue)){
         qweWrap.current.style.transform = `translateX(0px)`;
@@ -29,7 +29,7 @@ const FlowSliderSec = () => {
   }
 
   useEffect(()=>{
-    qweWrap.current.style.width = `${qweAnimation.current.offsetWidth * 2}px`;
+    qweWrap.current.style.width = `${qweAnimation.current.offsetWidth * 2}px`; 
     qweWrap.current.style.transform = `translateX(0px)`;
     window.requestAnimationFrame(animation);
   },[])
