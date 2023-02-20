@@ -24,7 +24,7 @@ const NavAccordian = (props) => {
       <h4
         className={`info-14-20 py-3 flex align-center gap-4 justify-between ${props.showAccordian? "openAccordian":"" }`}
         style={{
-          display : props.showAccordian ? 'none' : 'block'
+          display : props.showAccordian ? 'none' : 'flex'
         }}
         
         onClick={setHeight}

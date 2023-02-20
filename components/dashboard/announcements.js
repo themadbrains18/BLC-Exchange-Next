@@ -10,15 +10,15 @@ const Announcements = () => {
             </div>
             <div className='mt-7 cursor-pointer'>
                 <div className='border-b mt-2 border-border-clr pb-5 '>
-                    <p className='info-14 text-black hover:!underline'>Bitget x PandaFarm Launchpad: Revved Up & Ready for Launch</p>
+                    <p className='info-14 text-black hover:!underline'>BLC-Exchange x PandaFarm Launchpad: Revved Up & Ready for Launch</p>
                     <p className='info-14'>2023-02-16 16:25:33</p>
                 </div>
                 <div className='border-b mt-2 border-border-clr pb-5 '>
-                    <p className='info-14 text-black hover:!underline'>Bitget x PandaFarm Launchpad: Revved Up & Ready for Launch</p>
+                    <p className='info-14 text-black hover:!underline'>BLC-Exchange x PandaFarm Launchpad: Revved Up & Ready for Launch</p>
                     <p className='info-14'>2023-02-16 16:25:33</p>
                 </div>
                 <div className='border-b mt-2 border-border-clr pb-5 '>
-                    <p className='info-14 text-black hover:!underline'>Bitget x PandaFarm Launchpad: Revved Up & Ready for Launch</p>
+                    <p className='info-14 text-black hover:!underline'>BLC-Exchange x PandaFarm Launchpad: Revved Up & Ready for Launch</p>
                     <p className='info-14'>2023-02-16 16:25:33</p>
                 </div>
             </div>

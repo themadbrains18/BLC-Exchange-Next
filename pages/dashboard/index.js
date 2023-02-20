@@ -6,14 +6,14 @@ import Referral from '@/components/dashboard/referral'
 import SocialTrades from '@/components/dashboard/socialTrades'
 import Tranding from '@/components/dashboard/tranding'
 import Welfare from '@/components/dashboard/welfare'
-import AssetLayout from '@/components/layout/assetLayout'
+import Layout from '@/components/layout/Layout'
 import SideMenu from '@/components/snippets/sideMenu'
 import React from 'react'
 
 const Dashboard = ({account}) => {
   return (
     <>
-      <AssetLayout data={account} slug="dashboard">
+      <Layout data={account} slug="dashboard">
         
          
           <div className='grow max-w-full px-0 xl:px-10 bg-white dark:bg-black-v-3'>
@@ -39,12 +39,12 @@ const Dashboard = ({account}) => {
 
 
       
-      </AssetLayout>
+      </Layout>
     </>
   )
 }
 export async function getServerSideProps(context) {
-    let data = await fetch("http://localhost:3000/api/hello");
+    let data = await fetch("/api/hello");
   
     let menu = await data.json();
     return {

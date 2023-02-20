@@ -4,7 +4,7 @@ import Image from 'next/image';
 import schedualHero from '../../public/assets/images/free-schedual-hero.png';
 const Hero = () => {
   return (
-    <section className='py-[80px] dark:bg-black pt-[120px] lg:pt-[210px]'>
+    <section className='py-[80px] dark:bg-black '>
         <div className='container'>
             <div className="flex items-center gap-4 flex-col-reverse  md:flex-row ">
                 <div className="max-w-full md:max-w-[50%] w-full">

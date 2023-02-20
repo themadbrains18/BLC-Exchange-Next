@@ -1,5 +1,5 @@
 import SideBar from "@/components/asset/sideBar";
-import AssetLayout from "@/components/layout/assetLayout";
+import Layout from "@/components/layout/Layout";
 import ActiveCta from "@/components/snippets/activeCta";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -18,8 +18,8 @@ const Asset = ({ assets }) => {
   let activeCta = ["Spot", "Margin", "P2P", "Earn", "Coupons", "Merge Swap"];
   return (
     <>
-      <AssetLayout data={assets} slug="asset">
-        <div className="grow px-4 pt-[120px] p-10 md:p-20">
+      <Layout data={assets} slug="asset">
+        <div className="grow p-4 ">
           <div className="hidden md:flex gap-2 items-center ">
             <h3 className="section-secondary-heading font-noto">Assets</h3>
             <button
@@ -231,13 +231,13 @@ const Asset = ({ assets }) => {
             </div>
           )}
         </div>
-      </AssetLayout>
+      </Layout>
     </>
   );
 };
 
 export async function getServerSideProps(context) {
-  let data = await fetch("http://localhost:3000/api/hello");
+  let data = await fetch("/api/hello");
 
   let menu = await data.json();
   return {
