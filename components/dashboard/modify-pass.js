@@ -6,7 +6,7 @@ import passShow from '../../public/assets/icons/pass-show.svg';
 import Context from '@/components/contexts/context';
 import VerificationCode from './../login-register/verification-code';
 const ModifyPass = ()=>{
-    const { mode } = useContext(Context);
+    const { mode , setClick} = useContext(Context);
     const [show,setShow]  = useState(1);
         const showPass = (e) =>{
         if(!e.currentTarget.classList.contains("hidden")){
@@ -61,12 +61,14 @@ const ModifyPass = ()=>{
                             </div>
                             {/* <span className='info-12 mt-1 block !text-[#f7647e]'>Please enter Account</span> */}
                             </div>
-                            <button className='relative cta mt-5  w-full' onClick={(e)=>{e.preventDefault();e.currentTarget.classList.add("hide_text");setTimeout(()=>{setShow(2)},3000)}}>
-                            <span>Next</span>
-                            {/* spinner */}
-                                <div className="hidden w-8 h-8 rounded-full animate-spin border-4 border-solid border-purple-500 border-t-transparent absolute top-[50%] left-[50%] mt-[-16px] ml-[-15px] z-10"></div>
-                            {/* spinner */}
+
+                            <button className='relative cta mt-5  w-full' onClick={(e)=>{e.preventDefault();e.currentTarget.classList.toggle("hide_text");setTimeout((e)=>{setClick(true); setShow(2)},3000)}}>
+                                <span>Next</span>
+                                {/* spinner */}
+                                    <div className="hidden w-8 h-8 rounded-full animate-spin border-4 border-solid border-purple-500 border-t-transparent absolute top-[50%] left-[50%] mt-[-16px] ml-[-15px] z-10"></div>
+                                {/* spinner */}
                             </button>
+
                         </form>
                         </div> 
                     </div>
@@ -74,7 +76,7 @@ const ModifyPass = ()=>{
             
             {
                 show === 2 &&
-                <VerificationCode modifyPass={true} fixed={true} />
+                <VerificationCode modifyPass={true} fixed={true} showState={show} showSetState={setShow} />
             }
         </>
     )

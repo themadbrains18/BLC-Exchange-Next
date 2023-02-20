@@ -1,11 +1,13 @@
 import { useEffect, useContext, useState } from 'react'
 import Context from "../contexts/context";
 import Link from 'next/link';
+import ResetPassSuccess from './reset-pass-success';
 
 
-const VerificationCode = ({fixed,modifyPass,verifyCode, onFinalSubmit, sendOtpAgain,username }) => {
+const VerificationCode = ({showSetState,showState,fixed,modifyPass,verifyCode, onFinalSubmit, sendOtpAgain,username }) => {
     const { mode,setClick } = useContext(Context);
     const [fillOtp, setOtp] = useState();
+    const [showSuccess, setShowSuccess] = useState(1);
     useEffect(() => {
         const inputElements = document.querySelectorAll('.input_wrapper input');
         inputElements.forEach((ele, index) => {
@@ -46,10 +48,12 @@ const VerificationCode = ({fixed,modifyPass,verifyCode, onFinalSubmit, sendOtpAg
     return (
         <div className={`${fixed === true ? "z-[20] fixed top-[50%] left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%]":""}`}>
             <div className="container !p-0">
-                <div className="max-w-full dark:bg-black-v-5 w-full p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto" onClick={setClick(false)}>
+            {
+                            showSuccess === 1 &&
+                <div className="max-w-full dark:bg-black-v-5 bg-white w-full p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto" >
                     {
                         modifyPass &&
-                        <div className="max-w-[24px] w-full ml-auto cursor-pointer">
+                        <div className="max-w-[24px] w-full ml-auto cursor-pointer" onClick={()=>{showSetState(0);setClick(false)}}>
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60.963 60.842" style={{enableBackground: 'new 0 0 60.963 60.842'}} xmlSpace="preserve">
                                 <path  fill={mode === "dark" ? "white" : "#231F20"} d="M59.595,52.861L37.094,30.359L59.473,7.98c1.825-1.826,1.825-4.786,0-6.611
                             c-1.826-1.825-4.785-1.825-6.611,0L30.483,23.748L8.105,1.369c-1.826-1.825-4.785-1.825-6.611,0c-1.826,1.826-1.826,4.786,0,6.611
@@ -60,7 +64,7 @@ const VerificationCode = ({fixed,modifyPass,verifyCode, onFinalSubmit, sendOtpAg
                         </div>
                     }
                     <h4 className='section-secondary-heading mb-1'>You're almost there</h4>
-                    <p className='info-14 text-black dark:!text-white hover:!text-white'>Enter the verification code below.</p>
+                    <p className='info-14 text-black dark:!text-white dark:hover:!text-white hover:!text-black'>Enter the verification code below.</p>
 
                     <form>
                         <div className='mt-5'>
@@ -111,14 +115,20 @@ const VerificationCode = ({fixed,modifyPass,verifyCode, onFinalSubmit, sendOtpAg
                         {
                             // { This Cta for Dashboard modifiy password verifiction }
                             modifyPass &&
-                            <button className='cta mt-5  w-full' onClick={setClick(true)}>Submit</button>
+                            <button className='cta mt-5 w-full' onClick={(e)=>{e.preventDefault();setShowSuccess(2)}}>Submit</button>
                         }
                         {
                             verifyCode &&
-                            <button className='cta mt-5  w-full' onClick={(e)=>confirmOtp(e)}>Confirm</button>
+                            <button className='cta mt-5 w-full' onClick={(e)=>confirmOtp(e)}>Confirm</button>
                         }
                     </form>
                 </div>
+}
+
+                        {
+                            showSuccess === 2 &&
+                            <ResetPassSuccess />
+                        }
             </div>
         </div>
     )
