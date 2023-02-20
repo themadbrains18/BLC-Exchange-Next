@@ -14,7 +14,7 @@ export default function App({ Component, pageProps, props }) {
   const [click, setClick] = useState(false);
   const [loader, setLoader] = useState(true);
   // const [pad, setPad] = useState();
-  const [topBar, setTopBar] = useState(true);
+  // const [topBar, setTopBar] = useState(true);
   const ref = useRef(null);
   const ref2 = useRef(null);
   let currentMode;
@@ -57,8 +57,7 @@ export default function App({ Component, pageProps, props }) {
             setClick,
             heightUpdate,
             padding,
-            topBar,
-            setTopBar,
+            
           }}
         >
           <div
