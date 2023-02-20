@@ -13,7 +13,7 @@ export default function App({ Component, pageProps, props }) {
   const [login, setLogin] = useState(true);
   const [click, setClick] = useState(false);
   const [loader, setLoader] = useState(true);
-  // const [pad, setPad] = useState();
+  const [pad, setPad] = useState();
   // const [topBar, setTopBar] = useState(true);
   const ref = useRef(null);
   const ref2 = useRef(null);
@@ -23,6 +23,8 @@ export default function App({ Component, pageProps, props }) {
   useEffect(() => {
     padding = ref.current.offsetHeight;
     // console.log(padding)
+    console.log(padding,'===inital padding')
+    setPad(padding);
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
     currentMode = localStorage.getItem("mode");
     if (currentMode == "light") {
@@ -34,9 +36,11 @@ export default function App({ Component, pageProps, props }) {
     }, 1000);
   }, []);
 
-  const heightUpdate = () => {
-     padding = document.querySelector(".navbar").offsetHeight;
-    ref2.current.setAttribute("style", `padding-top: ${padding}px`);
+  const heightUpdate = (topPaddong) => {
+    console.log(pad,'all padding');
+    // console.log((pad - topPaddong),'after notification remove padding');
+    //  padding = document.querySelector(".navbar").offsetHeight;
+    ref2.current.setAttribute("style", `padding-top: ${pad - topPaddong}px`);
   };
   return (
     <>
@@ -57,6 +61,8 @@ export default function App({ Component, pageProps, props }) {
             setClick,
             heightUpdate,
             padding,
+            ref2,
+            ref
             
           }}
         >

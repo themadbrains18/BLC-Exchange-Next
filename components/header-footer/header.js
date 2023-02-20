@@ -9,7 +9,7 @@ import TopBar from "../snippets/topBar";
 import { useRouter } from "next/router";
 
 const Header = (props) => {
-  const { mode, setMode, login,topBar,setClick } = useContext(Context);
+  const { mode, setMode, login,topBar,setClick, ref2, ref } = useContext(Context);
   const [show, setShow] = useState(true);
   const [Data, setData] = useState([]);
   const [specialData, setSpecialData] = useState([]);
@@ -30,6 +30,20 @@ const Header = (props) => {
     // rou``
   }, []);
   const router =useRouter()
+
+  if(router.pathname !== '/'){
+    setTimeout(() => {
+      let padd = document.querySelector(".navbar").offsetHeight;
+      ref2.current.setAttribute("style", `padding-top: ${padd+2}px`);
+    }, 100);
+    
+  }
+  else{
+    setTimeout(() => {
+      let padding = ref.current.offsetHeight;
+      ref2.current.setAttribute("style", `padding-top: ${padding}px`);
+    }, 100);
+  }
   // console.log(router)
 
   
