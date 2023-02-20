@@ -31,19 +31,19 @@ const Header = (props) => {
   }, []);
   const router =useRouter()
 
-  if(router.pathname !== '/'){
-    setTimeout(() => {
-      let padd = document.querySelector(".navbar").offsetHeight;
-      ref2.current.setAttribute("style", `padding-top: ${padd+2}px`);
-    }, 100);
+  // if(router.pathname !== '/'){
+  //   setTimeout(() => {
+  //     let padd = document.querySelector(".navbar").offsetHeight;
+  //     ref2.current.setAttribute("style", `padding-top: ${padd+2}px`);
+  //   }, 500);
     
-  }
-  else{
-    setTimeout(() => {
-      let padding = ref.current.offsetHeight;
-      ref2.current.setAttribute("style", `padding-top: ${padding}px`);
-    }, 100);
-  }
+  // }
+  // else{
+  //   setTimeout(() => {
+  //     let padding = ref.current.offsetHeight;
+  //     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
+  //   }, 1000);
+  // }
   // console.log(router)
 
   

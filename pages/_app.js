@@ -38,9 +38,9 @@ export default function App({ Component, pageProps, props }) {
 
   const heightUpdate = (topPaddong) => {
     console.log(pad,'all padding');
-    // console.log((pad - topPaddong),'after notification remove padding');
+    console.log((pad - topPaddong),'after notification remove padding');
     //  padding = document.querySelector(".navbar").offsetHeight;
-    ref2.current.setAttribute("style", `padding-top: ${pad - topPaddong}px`);
+    ref2.current.setAttribute("style", `padding-top: ${padding}px`);
   };
   return (
     <>
