@@ -14,7 +14,7 @@ import React from 'react'
 const Dashboard = ({ account }) => {
   return (
     <>
-      <Layout data={account} slug="dashboard">
+      <Layout data={account} link="dashboard">
       <div className='grow max-w-full  bg-white dark:bg-black-v-3'>
                 <div>
                   <Profile />

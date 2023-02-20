@@ -7,11 +7,11 @@ import Dropdown from "../snippets/dropdown";
 import Icons from "../snippets/icons";
 import NavAccordian from "../snippets/navAccordian";
 
-const SideBar = ({ data, slug }) => {
+const SideBar = ({ data, link }) => {
   const router = useRouter();
   const { click, setClick } = useContext(Context);
   const [show, setShow] = useState(false);
-
+console.log(link , "sliud[[[")
   return (
     <>
       <div className={` px-3 md:px-0 ${click && "z-30"}  `}>
@@ -81,7 +81,7 @@ const SideBar = ({ data, slug }) => {
                       <Icons type={e.svgType} />
                       {!e.menu && (
                         <Link
-                          href={`/${slug}/${e.linkUrl}`}
+                          href={`/${link}/${ e.linkUrl}`}
                           className="info-14"
                         >
                           {e.linkText}

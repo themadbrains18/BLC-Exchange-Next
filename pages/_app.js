@@ -21,6 +21,7 @@ export default function App({ Component, pageProps, props }) {
   useEffect(() => {
    
     setpadding(ref.current.offsetHeight)
+    console.log(ref.current.offsetHeight)
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
     currentMode = localStorage.getItem("mode");
     if (currentMode == "light") {
@@ -52,7 +53,7 @@ const heightUpdate =(()=>{
         >
           <div
             ref={ref}
-            className="fixed  w-full z-10 border-b border-primary "
+            className="fixed w-full z-10 border-b border-primary "
           >
             <Header />
           </div>

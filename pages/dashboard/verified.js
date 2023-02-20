@@ -6,7 +6,7 @@ const Verified = ({ account }) => {
     return (
         <>
             <Layout data={account} >
-                <div className=' p-4 '>
+                <div className=' p-4 grow '>
                     <VerificationType />
                 </div>
             </Layout>
