@@ -7,7 +7,7 @@ const TopBar = () => {
   return (
     <>
     <div
-          className={`hidden bg-black-v-3 ${
+          className={` topBar hidden bg-black-v-3 ${
             alert === true ? "lg:flex" : "lg:hidden"
           } gap-3 justify-center items-center `}
         >

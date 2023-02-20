@@ -6,6 +6,7 @@ import Dropdown from "../snippets/dropdown";
 import SideMenu from "../snippets/sideMenu";
 import NotificationHover from "../snippets/notificationHover";
 import TopBar from "../snippets/topBar";
+import { useRouter } from "next/router";
 
 const Header = (props) => {
   const { mode, setMode, login,topBar,setClick } = useContext(Context);
@@ -26,15 +27,17 @@ const Header = (props) => {
       console.log(err);
     });
  
-
+    // rou``
   }, []);
+  const router =useRouter()
+  // console.log(router)
 
   
   return (
     <>
       <header className="header w-full border-b border-primary ">
         {/* top bar */}
-        {topBar &&
+        {router.pathname==="/" &&
         <TopBar/>}
         {/* main Navbar */}
         <nav className="navbar flex bg-white justify-between px-4 dark:bg-black-v-4 z-10">
