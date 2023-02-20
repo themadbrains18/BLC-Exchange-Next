@@ -8,13 +8,13 @@ import NotificationHover from "../snippets/notificationHover";
 import TopBar from "../snippets/topBar";
 
 const Header = (props) => {
-  const { mode, setMode, login,topBar } = useContext(Context);
+  const { mode, setMode, login,topBar,setClick } = useContext(Context);
   const [show, setShow] = useState(true);
   const [Data, setData] = useState([]);
   const [specialData, setSpecialData] = useState([]);
   useEffect(() => {
     (async () => {
-      await fetch("/api/hello")
+      await fetch(process.env.NEXT_PUBLIC_BASEURL+ "/hello")
         .then((res) => res.json())
         .then((data) => {
           setData(data.nav);
@@ -32,12 +32,12 @@ const Header = (props) => {
   
   return (
     <>
-      <header className="fixed header w-full border-b border-primary z-10">
+      <header className="header w-full border-b border-primary ">
         {/* top bar */}
         {topBar &&
         <TopBar/>}
         {/* main Navbar */}
-        <nav className=" flex bg-white justify-between px-4 dark:bg-black-v-4">
+        <nav className="navbar flex bg-white justify-between px-4 dark:bg-black-v-4 z-10">
           <div className="flex items-center gap-4">
             <Link href="/">
               <img
@@ -216,6 +216,7 @@ const Header = (props) => {
               className={`${show === false ? "hidden" : "none"} lg:hidden`}
               onClick={() => {
                 setShow(false);
+                setClick(true)
               }}
             >
               <svg
@@ -336,16 +337,16 @@ const Header = (props) => {
             </div>
           </div>
 
+        </nav>
           {/* header-Menu  */}
           <SideMenu show={show} setShow={setShow} data={Data} />
-        </nav>
       </header>
     </>
   );
 };
 
 // export const getServerSideProps = async (context)=> {
-// //   let data= await fetch('http://localhost:3000/api/hello')
+// //   let data= await fetch(process.env.NEXT_PUBLIC_BASEURL+ "/hello")
 // // let nav= await data.json()
 // console.log("runing")
 //   return {

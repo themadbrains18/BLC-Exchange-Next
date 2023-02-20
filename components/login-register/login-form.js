@@ -11,7 +11,7 @@ import * as Yup from 'yup'
 import { useRouter } from 'next/router';
 import VerificationCode from './verification-code';
 
-import { loginRequestApi, otpMatchRequestApi, sendOtp } from '@/Api';
+// import { loginRequestApi, otpMatchRequestApi, sendOtp } from '@/Api';
 import AntiFishing from './anti-phishing';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -68,7 +68,10 @@ const LoginForm = () => {
             dial_code: 91
         }
 
-        let result = await loginRequestApi(formdata)
+        let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users`,{
+            method : "POST",
+            body : JSON.stringify(formdata)
+        }).then(response=>response.json())
 
         if (result.data.status === 200 && result.data != undefined) {
             let OtpForm;
@@ -80,7 +83,12 @@ const LoginForm = () => {
             }
 
             setOtpForm(OtpForm);
-            let otpResponse = await sendOtp(OtpForm);
+            // let otpResponse = await sendOtp(OtpForm);
+            let otpResponse = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`,{
+                method : "POST",
+                body : JSON.stringify(OtpForm)
+            }).then(response=>response.json());
+
             if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
                 setLoading(false);
                 setShow(3);
@@ -103,7 +111,11 @@ const LoginForm = () => {
 
         let obj = { username: loginData.registerType === 'email'? loginData.email : loginData.number, otp: otp, time: new Date() };
 
-        let result = await otpMatchRequestApi(obj)
+        // let result = await otpMatchRequestApi(obj)
+        let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp/match`,{
+            method : "POST",
+            body : JSON.stringify(obj)
+        }).then(response=>response.json());
 
         if (result.data.status === 200 && result.data != undefined) {
             toast.success(result.data.message, {
@@ -119,7 +131,14 @@ const LoginForm = () => {
     }
 
     const sendOtpAgain=async()=>{
-        let otpResponse = await sendOtp(otpForm);
+
+        // let otpResponse = await sendOtp(otpForm);
+
+        let otpResponse = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`,{
+            method : "POST",
+            body : JSON.stringify(otpForm)
+        }).then(response=>response.json());
+
         if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
             let usrname = otpForm.requestType ==='mobile'?otpForm.number :otpForm.email;
             let message = otpResponse.data.message + ' '+ usrname;

@@ -8,7 +8,6 @@ const Layout = ({ children, slug, data }) => {
  useEffect(() => {
     setTopBar(false)
     setPadding(document.querySelector(".header").offsetHeight)
-    console.log(padding);
     ref.current.setAttribute("style", `padding-top: ${padding}px`);
   }, [padding]);
 
@@ -19,7 +18,10 @@ const Layout = ({ children, slug, data }) => {
         className={`flex  flex-col md:flex-row dark:bg-black-v-5 `}
       >
         <SideBar data={data} slug={slug} />
+        <div className="md:w-[calc(100%-240px)] md:ml-auto">
+
         {children}
+        </div>
       </div>
     </>
   );

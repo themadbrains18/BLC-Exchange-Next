@@ -9,7 +9,7 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
 
     useEffect(() => {
       (async () => {
-        await fetch("/api/hello")
+        await fetch(process.env.NEXT_PUBLIC_BASEURL+ "/hello")
           .then((res) => res.json())
           .then((data) => {
             setData(data.counteryList);
@@ -32,7 +32,6 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
     const selectCounteryCode = (event) => {
         let countryCode = document.querySelector("#counteryCode span");
         let SelectedValue = event.currentTarget.querySelector("#codeValue").innerHTML;
-        console.log(SelectedValue);
         setDropdownPhone(false);
         countryCode.innerHTML = SelectedValue;
     }
