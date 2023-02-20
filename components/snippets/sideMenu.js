@@ -3,8 +3,8 @@ import Context from "../contexts/context";
 import NavAccordian from "../snippets/navAccordian";
 import Link from "next/link";
 
-const SideMenu = ({ show, setShow, data }) => {
-  const { mode, setMode } = useContext(Context);
+const SideMenu = ({ show, setShow, data, }) => {
+  const { mode, setMode,setClick,click } = useContext(Context);
   const handelMode = () => {
     if (mode === "light") {
       localStorage.setItem("mode", "dark");
@@ -16,14 +16,16 @@ const SideMenu = ({ show, setShow, data }) => {
   };
   return (
     <div
-      className={`fixed max-w-80 w-full h-full duration-300 top-0 bg-white dark:bg-black ${
+      className={`fixed w-[calc(100%-4rem)] ${click && "z-10"} overflow-x-auto table_box h-[100vh] duration-300 top-0 bg-white dark:bg-black ${
         show === false ? "right-0" : "right-[-100%]"
       }`}
     >
+      <div className={`p-5  right-0 `}>
       <button
-        className=" ml-auto  block p-5"
+     
         onClick={() => {
           setShow(true);
+          setClick(false)
         }}
       >
         <svg
@@ -41,7 +43,9 @@ const SideMenu = ({ show, setShow, data }) => {
           />
         </svg>
       </button>
-      <div className="mx-3">
+      </div>
+     
+      <div className="mx-3 mt-10">
         <button className="transparent-cta w-full">sign up</button>
         <button className="cta w-full ">Login</button>
       </div>

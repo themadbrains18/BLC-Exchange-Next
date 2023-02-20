@@ -32,7 +32,6 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
     const selectCounteryCode = (event) => {
         let countryCode = document.querySelector("#counteryCode span");
         let SelectedValue = event.currentTarget.querySelector("#codeValue").innerHTML;
-        console.log(SelectedValue);
         setDropdownPhone(false);
         countryCode.innerHTML = SelectedValue;
     }

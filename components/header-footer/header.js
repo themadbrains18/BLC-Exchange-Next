@@ -8,7 +8,7 @@ import NotificationHover from "../snippets/notificationHover";
 import TopBar from "../snippets/topBar";
 
 const Header = (props) => {
-  const { mode, setMode, login } = useContext(Context);
+  const { mode, setMode, login,topBar,setClick } = useContext(Context);
   const [show, setShow] = useState(true);
   const [Data, setData] = useState([]);
   const [specialData, setSpecialData] = useState([]);
@@ -32,11 +32,12 @@ const Header = (props) => {
   
   return (
     <>
-      <header className="fixed  w-full border-b border-primary z-10">
+      <header className="header w-full border-b border-primary ">
         {/* top bar */}
-        <TopBar/>
+        {topBar &&
+        <TopBar/>}
         {/* main Navbar */}
-        <nav className=" flex bg-white justify-between px-4 dark:bg-black-v-4">
+        <nav className="navbar flex bg-white justify-between px-4 dark:bg-black-v-4 z-10">
           <div className="flex items-center gap-4">
             <Link href="/">
               <img
@@ -215,6 +216,7 @@ const Header = (props) => {
               className={`${show === false ? "hidden" : "none"} lg:hidden`}
               onClick={() => {
                 setShow(false);
+                setClick(true)
               }}
             >
               <svg
@@ -295,6 +297,7 @@ const Header = (props) => {
                 <button
                   onClick={() => {
                     setMode("dark");
+                    localStorage.setItem("mode", "dark");
                   }}
                   className="hidden md:block"
                 >
@@ -311,6 +314,7 @@ const Header = (props) => {
                   onClick={() => {
                     // debugger
                     setMode("light");
+                    localStorage.setItem("mode", "light");
                   }}
                 >
                   {/* sun */}
@@ -333,9 +337,9 @@ const Header = (props) => {
             </div>
           </div>
 
+        </nav>
           {/* header-Menu  */}
           <SideMenu show={show} setShow={setShow} data={Data} />
-        </nav>
       </header>
     </>
   );
