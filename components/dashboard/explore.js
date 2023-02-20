@@ -5,6 +5,7 @@ import cardImg1 from '../../public/assets/icons/explore1.svg';
 import cardImg2 from '../../public/assets/icons/explore2.svg';
 import cardImg3 from '../../public/assets/icons/explore3.svg';
 import { useContext } from 'react';
+import Announcements from './announcements';
 
 const Explore = () => {
     const { mode } = useContext(Context);
@@ -27,10 +28,10 @@ const Explore = () => {
     ]
 
   return (
-    <section className='bg-white dark:bg-black-v-4 px-8 py-10 md:py-5'>
+    <section className='px-8 py-10 md:py-5'>
         <div>
             <p className='section-secondary-heading'>Exploration</p>
-            <div className='grid grid-cols-2 gap-8 mt-9 '>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mt-9 '>
             { cardData && cardData.map((e,i)=>{
                     return(
                         <div className=''>
@@ -49,7 +50,9 @@ const Explore = () => {
 
             </div>
         </div>
-      
+        <div className='xl:hidden'>
+                <Announcements />
+            </div>
     </section>
   )
 }

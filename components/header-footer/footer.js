@@ -2,7 +2,7 @@ import {useState,useEffect, Fragment} from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import NavAccordian from '../snippets/navAccordian';
-
+import  { baseURL } from '../../Api'
 // import social media icons
 import facebook from '../../public/assets/images/facebook.png';
 import discord from '../../public/assets/images/discord.png';
@@ -22,7 +22,7 @@ const Footer = () => {
 
   useEffect(() => {
     (async () => {
-      await fetch("/api/hello")
+      await fetch(`${baseURL}/hello`)
         .then((res) => res.json())
         .then((data) => {
           setData(data.footerNav);
