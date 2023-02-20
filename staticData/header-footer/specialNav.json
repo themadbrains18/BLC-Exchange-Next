@@ -255,7 +255,7 @@
                 "linkText": "ID Verfication",
                 "desc": "BLC-Exchange and Big Data",
                 "svgType": "id_verfication",
-                "linkUrl": "earn"
+                "linkUrl": "verified"
             },
             {
                 "linkText": "API Management",

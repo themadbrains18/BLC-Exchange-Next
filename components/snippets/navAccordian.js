@@ -70,7 +70,7 @@ const NavAccordian = (props) => {
         {props.cta && <li className=" mt-3 info-12 text-right cursor-pointer">Read more </li>}
         {props.data &&
           props.data.map((elem, index) => {
-            console.log("===elem", elem)
+
             return (
               <Fragment key={index} >
                 {elem.heading && elem.desc && (

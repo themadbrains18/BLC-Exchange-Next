@@ -81,7 +81,7 @@ const Asset = ({ assets }) => {
                 onClick={() => {
                   setShow(!show);
                 }}
-                s
+                
               >
                 {show ? (
                   //   open
@@ -238,7 +238,7 @@ const Asset = ({ assets }) => {
 };
 
 export async function getServerSideProps(context) {
-  let data = await fetch(`${baseurl}/hello`);
+  let data = await fetch(process.env.BASEURL + "/hello");
 
   let menu = await data.json();
   return {
