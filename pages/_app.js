@@ -10,17 +10,18 @@ export default function App({ Component, pageProps, props }) {
   //  const mode=useContext(UserContext)
 
   const [mode, setMode] = useState("dark");
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(true);
   const [click, setClick] = useState(false);
   const [loader, setLoader] = useState(true);
+  const [padding, setpadding] = useState();
+  const [topBar, setTopBar] = useState(true);
   const ref = useRef(null);
   const ref2 = useRef(null);
   let currentMode;
-
   useEffect(() => {
-    // console.log(ref.current.scrollHeight)
-    let margin = ref.current.offsetHeight;
-    ref2.current.setAttribute("style", `padding-top: ${margin}px`);
+   
+    setpadding(ref.current.offsetHeight)
+    ref2.current.setAttribute("style", `padding-top: ${padding}px`);
     currentMode = localStorage.getItem("mode");
     if (currentMode == "light") {
       setMode(currentMode);
@@ -31,7 +32,11 @@ export default function App({ Component, pageProps, props }) {
     }, 1000);
 
   }, []);
-
+  
+const heightUpdate =(()=>{
+  // var padding = ref.current.offsetHeight;
+  ref2.current.setAttribute("style", `padding-top: ${padding}px`);
+})
   return (
     <>
       <div className={mode === "dark" ? "dark" : "light"}>
@@ -43,7 +48,7 @@ export default function App({ Component, pageProps, props }) {
         }
 
         <Context.Provider
-          value={{ mode, setMode, login, setLogin, click, setClick }}
+          value={{ mode, setMode, login, setLogin, click, setClick ,heightUpdate,padding,topBar,setTopBar }}
         >
           <div
             ref={ref}

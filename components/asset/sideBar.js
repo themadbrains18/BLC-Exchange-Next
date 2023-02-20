@@ -11,9 +11,10 @@ const SideBar = ({ data, slug }) => {
   const router = useRouter();
   const { click, setClick } = useContext(Context);
   const [show, setShow] = useState(false);
+
   return (
     <>
-      <div className={`px-3 md:px-0 ${click && "z-30"}  `}>
+      <div className={` px-3 md:px-0 ${click && "z-30"}  `}>
         <button
           className="flex items-center md:hidden"
           onClick={() => {
@@ -70,10 +71,10 @@ const SideBar = ({ data, slug }) => {
                 return (
                   <li
                     key={i}
-                    className={`${
+                    className={`max-w-[250px] w-full ${
                       e.menu
                         ? "flex items-center"
-                        : "md:hover:border-r-2 md:border-primary  "
+                        : "md:border-r-2 md:hover:border-primary  border-transparent"
                     } `}
                   >
                     <div className="flex p-3 gap-3 self-start">
