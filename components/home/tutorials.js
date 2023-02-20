@@ -23,7 +23,7 @@ const Tutorials = () => {
         });
     }, []);
     return (
-        <section className="ai_zone bg-white dark:bg-black-v-5 py-[80px] md:py-[120px]">
+        <section className="ai_zone bg-white dark:bg-black-v-5 py-10 md:py-20">
             <div className="container">
                 <div >
                     <div className='hero-heading'>Your passport to the world of Crypto</div>
