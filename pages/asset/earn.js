@@ -26,7 +26,7 @@ const Asset = ({ assets }) => {
 
 
 export async function getServerSideProps(context) {
-  let data = await fetch("http://localhost:3000/api/hello");
+  let data = await fetch("/api/hello");
 
   let menu = await data.json();
   return {
