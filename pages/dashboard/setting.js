@@ -1,9 +1,12 @@
-import {useContext} from 'react'
+import {useContext,useState} from 'react'
 import Layout from '@/components/layout/layout'
 import Context from '@/components/contexts/context';
 import Link from 'next/link';
+import VerificationCode from './../../components/login-register/verification-code';
 const Setting = ({account}) => {
-  const { mode } = useContext(Context);
+  const { mode , setClick } = useContext(Context);
+  const [showSafteyV,setShowSafteyV] = useState(0);
+  const [SetState,showSetState] = useState(0);
   return (
     <Layout data={account} slug="dashboard">
         <div className="py-20  w-full px-[24px] ">
@@ -51,7 +54,7 @@ const Setting = ({account}) => {
                     <p className="info-12 ">Used to log in, withdraw, retrieve passwords, modify security settings, and perform security verification when managing APIs</p>
                   </div>
                 </div>
-                <button className='cta'>Settings</button>
+                <Link className='cta' href="bindmobile">Settings</Link>
               </div>
 
               <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">  
@@ -75,7 +78,9 @@ const Setting = ({account}) => {
                     <p className="info-12 ">Used to log in, withdraw, retrieve passwords, modify security settings, and perform security verification when managing APIs</p>
                   </div>
                 </div>
-                <Link href="#" className='info-14-16 !text-primary'> Turn Off Verification</Link>
+
+                <button className='info-14-16 !text-primary' onClick={()=>{setClick(true);setShowSafteyV(1)}}> Turn Off Verification</button>
+
               </div>
 
               <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">  
@@ -252,6 +257,10 @@ const Setting = ({account}) => {
                     <Link href="#" className='info-14-16 !text-primary'>Link</Link>
                 </div> 
               </div>
+              {
+                showSafteyV === 1 &&
+                <VerificationCode modifyPass={true} fixed={true} showSetState={showSetState} />
+              }
           </div>
         </div>
     </Layout> 

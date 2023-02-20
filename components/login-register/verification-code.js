@@ -50,7 +50,7 @@ const VerificationCode = ({showSetState,showState,fixed,modifyPass,verifyCode, o
             <div className="container !p-0">
             {
                             showSuccess === 1 &&
-                <div className="max-w-full dark:bg-black-v-5 bg-white w-full p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto" >
+                <div className="dark:bg-black-v-5 bg-white p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto" >
                     {
                         modifyPass &&
                         <div className="max-w-[24px] w-full ml-auto cursor-pointer" onClick={()=>{showSetState(0);setClick(false)}}>
@@ -115,7 +115,7 @@ const VerificationCode = ({showSetState,showState,fixed,modifyPass,verifyCode, o
                         {
                             // { This Cta for Dashboard modifiy password verifiction }
                             modifyPass &&
-                            <button className='cta mt-5 w-full' onClick={(e)=>{e.preventDefault();setShowSuccess(2)}}>Submit</button>
+                            <button className='cta mt-5 w-full' onClick={(e)=>{setClick(true); e.preventDefault();setShowSuccess(2)}}>Submit</button>
                         }
                         {
                             verifyCode &&
@@ -123,11 +123,11 @@ const VerificationCode = ({showSetState,showState,fixed,modifyPass,verifyCode, o
                         }
                     </form>
                 </div>
-}
+            }
 
                         {
                             showSuccess === 2 &&
-                            <ResetPassSuccess />
+                            <ResetPassSuccess overlay={true} linkMobile={true}  />
                         }
             </div>
         </div>
