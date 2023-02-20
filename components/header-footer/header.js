@@ -7,13 +7,31 @@ import SideMenu from "../snippets/sideMenu";
 import NotificationHover from "../snippets/notificationHover";
 import TopBar from "../snippets/topBar";
 
+import { signOut, useSession } from "next-auth/react"
+
+
 const Header = (props) => {
+
+
+  const { data: session } = useSession()
   const { mode, setMode, login,topBar,setClick } = useContext(Context);
+  const [login2,setLogin2] = useState(login)
+
+  console.log(session,' session session session')
+
+  
+
+
   const [show, setShow] = useState(true);
   const [Data, setData] = useState([]);
   const [specialData, setSpecialData] = useState([]);
   useEffect(() => {
     (async () => {
+
+      if(session !="" && session != undefined){
+        setLogin2(true)
+      }
+
       await fetch(process.env.NEXT_PUBLIC_BASEURL+ "/hello")
         .then((res) => res.json())
         .then((data) => {
@@ -27,12 +45,25 @@ const Header = (props) => {
     });
  
 
-  }, []);
+  }, [session]);
 
   
   return (
     <>
       <header className="header w-full border-b border-primary ">
+        <div className="">
+          {  (session != "" && session!=undefined ) && (
+            <>
+              <p>access_token : {session?.user?.access_token}</p>
+              <p>csrfToken : {session?.user?.csrfToken}</p>
+              <p>email : {session?.user?.email}</p>
+              <p>registerType : {session?.user?.registerType}</p>
+            </>
+            )
+          }
+            
+        </div>
+
         {/* top bar */}
         {topBar &&
         <TopBar/>}
@@ -128,7 +159,7 @@ const Header = (props) => {
             <Link
               href="/register"
               className={`transparent-cta hidden ${
-                login === true ? "lg:hidden" : "lg:block"
+                login2 === true ? "lg:hidden" : "lg:block"
               }`}
             >
               sign up
@@ -136,7 +167,7 @@ const Header = (props) => {
             <Link
               href="/login"
               className={`cta hidden ${
-                login === true ? "lg:hidden" : "lg:block"
+                login2 === true ? "lg:hidden" : "lg:block"
               }`}
             >
               Log-in
@@ -145,7 +176,7 @@ const Header = (props) => {
             <div
               href={""}
               className={`hidden relative   group  hover:pb-8 hover:-mb-8  ${
-                login === true ? "lg:block" : "lg:hidden"
+                login2 === true ? "lg:block" : "lg:hidden"
               }`}
             >
               <Link href={"/asset"} className="lg:flex lg:items-center">
@@ -179,7 +210,7 @@ const Header = (props) => {
             <div
               href=""
               className={`group  hover:pb-8 hover:-mb-8 ${
-                login === true ? "lg:block" : "lg:hidden"
+                login2 === true ? "lg:block" : "lg:hidden"
               }`}
             >
               <Link href={""}>

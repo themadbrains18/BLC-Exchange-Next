@@ -16,6 +16,8 @@ import AntiFishing from './anti-phishing';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { signIn } from "next-auth/react"
+
 
 
 const LoginForm = () => {
@@ -118,9 +120,13 @@ const LoginForm = () => {
         }).then(response=>response.json());
 
         if (result.data.status === 200 && result.data != undefined) {
+            
             toast.success(result.data.message, {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             })
+            
+            signIn("credentials", loginData);
+
             setShowPopup(1);
         }
         else {

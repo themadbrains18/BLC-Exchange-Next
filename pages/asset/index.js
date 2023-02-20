@@ -2,7 +2,6 @@ import SideBar from "@/components/asset/sideBar";
 import Layout from "@/components/layout/Layout";
 import ActiveCta from "@/components/snippets/activeCta";
 import Link from "next/link";
-import { baseurl } from "../../Api";
 import React, { useState } from "react";
 import Image from "next/image";
 
