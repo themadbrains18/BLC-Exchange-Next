@@ -2,14 +2,14 @@ import { useState } from "react";
 import Image from "next/image";
 import Coin1 from "../../public/assets/images/coin1.png";
 import Graph from "../../public/assets/images/graph.png";
-import GradientCard from "../snippets/gradientCard";
+import InsightCard from "../snippets/insight-card";
 const Trending = () => {
   const [show, setShow] = useState(1);
   return (
     <section className="py-20 dark:bg-black-v-4">
       <div className="container">
         <div className="flex flex-col lg:flex-row items-start gap-8">
-          <div className="max-w-full grow xl:max-w-[60%] w-full">
+          <div className="max-w-full grow xl:max-w-[70%] w-full">
             <div className={`flex items-end gap-5 mb-[40px]`}>
               <button
                 className={`${
@@ -425,14 +425,13 @@ const Trending = () => {
               )}
             </div>
           </div>
-          {/* <div className="max-w-full lg:max-w-[40%] w-full">
-            <div className=" grid-cols-1 hidden xl:grid">
-
-              <GradientCard />
-              <GradientCard />
-              <GradientCard />
+          <div className="max-w-full lg:max-w-[30%] w-full">
+            <div className=" grid-cols-1 grid divide-y">
+              <InsightCard />
+              <InsightCard />
+              <InsightCard />
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </section>

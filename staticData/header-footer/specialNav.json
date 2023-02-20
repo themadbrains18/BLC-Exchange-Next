@@ -249,7 +249,7 @@
                 "linkText": "Security Setting",
                 "desc": "Crypto Rankings",
                 "svgType": "Security_Setting",
-                "linkUrl": "earn"
+                "linkUrl": "setting"
             },
             {
                 "linkText": "ID Verfication",

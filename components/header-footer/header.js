@@ -6,6 +6,7 @@ import Dropdown from "../snippets/dropdown";
 import SideMenu from "../snippets/sideMenu";
 import NotificationHover from "../snippets/notificationHover";
 import TopBar from "../snippets/topBar";
+import { useRouter } from "next/router";
 
 import { signOut, useSession } from "next-auth/react"
 
@@ -44,8 +45,15 @@ const Header = (props) => {
       console.log(err);
     });
  
+<<<<<<< HEAD
 
   }, [session]);
+=======
+    // rou``
+  }, []);
+  const router =useRouter()
+  // console.log(router)
+>>>>>>> f88324234b56d303cb1a64634b36118c92bee0a0
 
   
   return (
@@ -65,7 +73,7 @@ const Header = (props) => {
         </div>
 
         {/* top bar */}
-        {topBar &&
+        {router.pathname==="/" &&
         <TopBar/>}
         {/* main Navbar */}
         <nav className="navbar flex bg-white justify-between px-4 dark:bg-black-v-4 z-10">
