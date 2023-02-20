@@ -50,7 +50,7 @@ let arrText = [
 
 const Aizone = () => {
   return (
-    <section className="ai_zone bg-black-v-5 py-[80px] md:py-[120px]">
+    <section className="ai_zone bg-black-v-5 py-10 md:py-20">
         <div className="container">
             <div className="flex gap-5 mb-8  items-start  overflow-hidden">
                 <Image src={Sound} alt="error" width={24} height={24} />

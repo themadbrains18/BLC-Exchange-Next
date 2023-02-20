@@ -8,7 +8,7 @@ import NotificationHover from "../snippets/notificationHover";
 import TopBar from "../snippets/topBar";
 
 const Header = (props) => {
-  const { mode, setMode, login } = useContext(Context);
+  const { mode, setMode, login,topBar } = useContext(Context);
   const [show, setShow] = useState(true);
   const [Data, setData] = useState([]);
   const [specialData, setSpecialData] = useState([]);
@@ -32,9 +32,10 @@ const Header = (props) => {
   
   return (
     <>
-      <header className="fixed  w-full border-b border-primary z-10">
+      <header className="fixed header w-full border-b border-primary z-10">
         {/* top bar */}
-        <TopBar/>
+        {topBar &&
+        <TopBar/>}
         {/* main Navbar */}
         <nav className=" flex bg-white justify-between px-4 dark:bg-black-v-4">
           <div className="flex items-center gap-4">
@@ -295,6 +296,7 @@ const Header = (props) => {
                 <button
                   onClick={() => {
                     setMode("dark");
+                    localStorage.setItem("mode", "dark");
                   }}
                   className="hidden md:block"
                 >
@@ -311,6 +313,7 @@ const Header = (props) => {
                   onClick={() => {
                     // debugger
                     setMode("light");
+                    localStorage.setItem("mode", "light");
                   }}
                 >
                   {/* sun */}

@@ -32,7 +32,7 @@ const Setting = ({account}) => {
                     <p className="info-12 ">Password to log into your account</p>
                   </div>
                 </div>
-                <Link href="#" className='info-14-16 !text-primary'>Modify</Link>
+                <Link href="pwd" className='info-14-16 !text-primary'>Modify</Link>
               </div>
 
               <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">  

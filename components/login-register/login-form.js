@@ -199,7 +199,7 @@ const LoginForm = () => {
                     }
 
                     {show === 3 &&
-                        <VerificationCode onFinalSubmit={onFinalSubmit} sendOtpAgain={sendOtpAgain} username= {otpForm.requestType ==='mobile'?otpForm.number :otpForm.email} />
+                        <VerificationCode verifyCode={true} onFinalSubmit={onFinalSubmit} sendOtpAgain={sendOtpAgain} username= {otpForm.requestType ==='mobile'?otpForm.number :otpForm.email} />
                     }
                 </div>
                 {showPopup === 1 &&
