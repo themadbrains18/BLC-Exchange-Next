@@ -12,17 +12,11 @@ import { signOut, useSession } from "next-auth/react"
 
 
 const Header = (props) => {
-
-
+  const router = useRouter()
   const { data: session } = useSession()
   const { mode, setMode, login,topBar,setClick } = useContext(Context);
   const [login2,setLogin2] = useState(login)
-
   console.log(session,' session session session')
-
-  
-
-
   const [show, setShow] = useState(true);
   const [Data, setData] = useState([]);
   const [specialData, setSpecialData] = useState([]);
@@ -45,15 +39,8 @@ const Header = (props) => {
       console.log(err);
     });
  
-<<<<<<< HEAD
 
   }, [session]);
-=======
-    // rou``
-  }, []);
-  const router =useRouter()
-  // console.log(router)
->>>>>>> f88324234b56d303cb1a64634b36118c92bee0a0
 
   
   return (
@@ -384,12 +371,4 @@ const Header = (props) => {
   );
 };
 
-// export const getServerSideProps = async (context)=> {
-// //   let data= await fetch(process.env.NEXT_PUBLIC_BASEURL+ "/hello")
-// // let nav= await data.json()
-// console.log("runing")
-//   return {
-//     props: {name:"prince" }, // will be passed to the page component as props
-//   }
-// }
 export default Header;
