@@ -8,7 +8,7 @@ const SocialTrades = () => {
   const { mode } = useContext(Context);
 
   return (
-    <section className='bg-white dark:bg-black-v-3 px-8 py-10 md:py-20'>
+    <section className=' px-8 py-10 md:py-20'>
       <div>
         <p className='section-secondary-heading'>My social trades</p>
         <div className='flex justify-between items-start my-8'>
@@ -33,7 +33,7 @@ const SocialTrades = () => {
         </div>
 
         <div>
-          <div className={` p-1 flex justify-between gap-11`}>
+          <div className={` p-1 grid grid-cols-1 md:grid-cols-2  gap-11`}>
             <div className={` ${mode === 'dark' ? 'blue-gradient' : 'blue-gradient-active'} rounded-lg w-full`}>
 
               <div className="bg-[url('/assets/icons/bg-social.svg')] bg-no-repeat p-8"

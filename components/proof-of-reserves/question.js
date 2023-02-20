@@ -65,7 +65,7 @@ const Question = () => {
                 We are committed to maximum transparency
               </h3>
               <p className="info-14 font-noto-display md:font-noto md:text-black mt-3 lg:mt-8 lg:max-w-[580px] hover:!text-black lg:w-full dark:text-white">
-                Bitget's principles are meant to prioritize our users. To ensure
+                BLC-Exchange's principles are meant to prioritize our users. To ensure
                 the verifiable safety of our users' assets, we will be fully
                 transparent with all our platform's assets.
               </p>

@@ -8,14 +8,13 @@ import Tranding from 'components/dashboard/tranding'
 import Welfare from 'components/dashboard/welfare'
 import Layout from 'components/layout/Layout'
 import SideMenu from 'components/snippets/sideMenu'
+import { baseurl } from '../../Api'
 import React from 'react'
 
 const Dashboard = ({ account }) => {
   return (
     <>
       <Layout data={account} slug="dashboard">
-
-
         <div className='grow max-w-full px-10'>
           <div>
             <Profile />
@@ -26,18 +25,19 @@ const Dashboard = ({ account }) => {
               <SocialTrades />
               <Tranding />
               <Explore />
+              <div className='grow max-w-full px-0 xl:px-10 bg-white dark:bg-black-v-3'>
+                <div>
+                  <Profile />
+                </div>
+                <div className='hidden xl:block max-w-xs w-full '>
+                  <Welfare />
+                  <Referral />
+                  <Announcements />
+                </div>
+              </div>
             </div>
-            <div className='hidden xl:block max-w-xs w-full '>
-              <Welfare />
-
-              <Referral />
-              <Announcements />
-            </div>
-
           </div>
         </div>
-
-
 
       </Layout>
     </>

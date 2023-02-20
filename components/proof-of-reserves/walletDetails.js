@@ -7,7 +7,7 @@ const WalletDetails = () => {
       <section className="py-10 md:py-20 dark:bg-black-v-2 ">
         <div className="container">
           <h3 className="section-secondary-heading font-noto font-bold ">
-            Bitget reserve details{" "}
+            BLC-Exchange reserve details{" "}
           </h3>
           <DataTable />
         </div>

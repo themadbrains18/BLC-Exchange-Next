@@ -14,19 +14,19 @@ const Future = () => {
                 <div className='mt-12 xl:mt-0 grid md:grid md:grid-cols-2 gap-4'>
                     <div className='p-6 grid place-items-center bg-table-bg rounded-2xl w-[100%] xl:max-w-[282px] xl:w-full min-h-[222px] '>
                         <Image src='/assets/images/future1.png' alt='error' width={90} height={90}></Image>
-                        <p className='dark:text-black info-14 text-center'>Exchange market information</p>
+                        <p className='info-14 text-center'>Exchange market information</p>
                     </div>
                     <div className='p-6 grid place-items-center bg-table-bg rounded-2xl  w-[100%] xl:max-w-[282px] xl:w-full  min-h-[222px] '>
                         <Image src='/assets/images/future2.png' alt='error' width={90} height={90}></Image>
-                        <p className='dark:text-black info-14 text-center'>Follow model traders</p>
+                        <p className='info-14 text-center'>Follow model traders</p>
                     </div>
                     <div className='p-6 grid place-items-center bg-table-bg rounded-2xl  w-[100%] xl:max-w-[282px] xl:w-full  min-h-[222px]'>
                         <Image src='/assets/images/future3.png' alt='error' width={90} height={90}></Image>
-                        <p className='dark:text-black info-14 text-center'>Share trading strategies & simulations</p>
+                        <p className=' info-14 text-center'>Share trading strategies & simulations</p>
                     </div>
                     <div className='p-6 grid place-items-center bg-table-bg rounded-2xl  w-[100%] xl:max-w-[282px] xl:w-full  min-h-[222px] '>
                         <Image src='/assets/images/future4.png' alt='error' width={90} height={90}></Image>
-                        <p className='dark:text-black info-14 text-center'>Connect with the crypto-community</p>
+                        <p className=' info-14 text-center'>Connect with the crypto-community</p>
                     </div>
                 </div>
             </div>
