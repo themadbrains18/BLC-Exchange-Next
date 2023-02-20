@@ -1,16 +1,20 @@
 import "@/styles/globals.css";
 import { useState, useEffect, useRef } from "react";
 import Context from "../components/contexts/context";
-
 import Footer from "@/components/header-footer/footer";
 import Header from "@/components/header-footer/header";
 import Loader from "@/components/snippets/loader";
 
-export default function App({ Component, pageProps, props }) {
+// import { signOut, useSession } from "next-auth/react"
+import { SessionProvider } from "next-auth/react"
+
+
+export default function App({ Component, pageProps : { session, ...pageProps }, props }) {
   //  const mode=useContext(UserContext)
+  console.log(session,' sessionsession')
 
   const [mode, setMode] = useState("dark");
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(false);
   const [click, setClick] = useState(false);
   const [loader, setLoader] = useState(true);
   const [pad, setPad] = useState();
@@ -50,7 +54,7 @@ export default function App({ Component, pageProps, props }) {
             <Loader />
           </div>
         )}
-
+<SessionProvider session={session}>
         <Context.Provider
           value={{
             mode,
@@ -80,6 +84,7 @@ export default function App({ Component, pageProps, props }) {
           </div>
           <Footer />
         </Context.Provider>
+</SessionProvider>
       </div>
     </>
   );
