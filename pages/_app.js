@@ -1,19 +1,23 @@
 import "@/styles/globals.css";
 import { useState, useEffect, useRef } from "react";
 import Context from "../components/contexts/context";
-
 import Footer from "@/components/header-footer/footer";
 import Header from "@/components/header-footer/header";
 import Loader from "@/components/snippets/loader";
 
-export default function App({ Component, pageProps, props }) {
+// import { signOut, useSession } from "next-auth/react"
+import { SessionProvider } from "next-auth/react"
+
+
+export default function App({ Component, pageProps : { session, ...pageProps }, props }) {
   //  const mode=useContext(UserContext)
+  console.log(session,' sessionsession')
 
   const [mode, setMode] = useState("dark");
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(false);
   const [click, setClick] = useState(false);
   const [loader, setLoader] = useState(true);
-  // const [pad, setPad] = useState();
+  const [pad, setPad] = useState();
   // const [topBar, setTopBar] = useState(true);
   const ref = useRef(null);
   const ref2 = useRef(null);
@@ -23,6 +27,8 @@ export default function App({ Component, pageProps, props }) {
   useEffect(() => {
     padding = ref.current.offsetHeight;
     // console.log(padding)
+    console.log(padding,'===inital padding')
+    setPad(padding);
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
     currentMode = localStorage.getItem("mode");
     if (currentMode == "light") {
@@ -34,8 +40,10 @@ export default function App({ Component, pageProps, props }) {
     }, 1000);
   }, []);
 
-  const heightUpdate = () => {
-     padding = document.querySelector(".navbar").offsetHeight;
+  const heightUpdate = (topPaddong) => {
+    console.log(pad,'all padding');
+    console.log((pad - topPaddong),'after notification remove padding');
+    //  padding = document.querySelector(".navbar").offsetHeight;
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
   };
   return (
@@ -46,7 +54,7 @@ export default function App({ Component, pageProps, props }) {
             <Loader />
           </div>
         )}
-
+<SessionProvider session={session}>
         <Context.Provider
           value={{
             mode,
@@ -57,6 +65,8 @@ export default function App({ Component, pageProps, props }) {
             setClick,
             heightUpdate,
             padding,
+            ref2,
+            ref
             
           }}
         >
@@ -74,6 +84,7 @@ export default function App({ Component, pageProps, props }) {
           </div>
           <Footer />
         </Context.Provider>
+</SessionProvider>
       </div>
     </>
   );

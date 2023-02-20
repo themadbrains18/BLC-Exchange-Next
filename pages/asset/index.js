@@ -2,7 +2,6 @@ import SideBar from "@/components/asset/sideBar";
 import Layout from "@/components/layout/Layout";
 import ActiveCta from "@/components/snippets/activeCta";
 import Link from "next/link";
-import { baseurl } from "../../Api";
 import React, { useState } from "react";
 import Image from "next/image";
 
@@ -245,7 +244,7 @@ const Asset = ({ assets }) => {
 };
 
 export async function getServerSideProps(context) {
-  let data = await fetch(process.env.BASEURL + "/hello");
+  let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
 
   let menu = await data.json();
   return {
