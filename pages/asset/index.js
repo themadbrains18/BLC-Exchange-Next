@@ -190,7 +190,7 @@ const Asset = ({ assets }) => {
                   <span>0.00000000 BTC</span>
                 </div>
                 <Link href={""}>
-                  <h4>Today's PNL </h4>
+                  <h4>Today is PNL </h4>
                   <span>0 BTC ≈$ 0</span>
                 </Link>
               </div>

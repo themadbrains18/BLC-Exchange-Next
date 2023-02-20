@@ -1,6 +1,6 @@
 
-import ReserveDetails from '@/components/proof-of-reserves/reserveDetails'
-import WalletDetails from '@/components/proof-of-reserves/walletDetails'
+import ReserveDetails from 'components/Proof-of-Reserves/reserveDetails'
+import WalletDetails from 'components/Proof-of-Reserves/walletDetails'
 import BannerSec from 'components/Proof-of-Reserves/bannerSec'
 import OnHandSec from 'components/Proof-of-Reserves/onHandSec'
 import Question from 'components/Proof-of-Reserves/question'
