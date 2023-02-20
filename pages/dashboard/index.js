@@ -6,7 +6,7 @@ import Referral from '@/components/dashboard/referral'
 import SocialTrades from '@/components/dashboard/socialTrades'
 import Tranding from '@/components/dashboard/tranding'
 import Welfare from '@/components/dashboard/welfare'
-import Layout from '@/components/layout/assetLayout'
+import Layout from '@/components/layout/layout'
 import SideMenu from '@/components/snippets/sideMenu'
 import React from 'react'
 
@@ -14,8 +14,6 @@ const Dashboard = ({account}) => {
   return (
     <>
       <Layout data={account} slug="dashboard">
-        
-         
           <div className='grow max-w-full px-10'>
             <div>
               <Profile />

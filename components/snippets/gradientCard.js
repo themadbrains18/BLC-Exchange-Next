@@ -12,17 +12,18 @@ const GradientCard = () => {
     <div className="relative grey-gradiant-active p-8 rounded-xl">
     <div className="flex gap-3 justify-between items-center">
       <img src="/assets/images/avatar.png" className="w-14 h-14 rounded-full" alt="" />
-      <h3 className="info-14-20 grow text-black">Print Money</h3>
+      <h3 className="info-14-20 grow !text-white">Print Money</h3>
 
    
       <button className="cta2">
         Copy Now
       </button>
     </div>
-  <h3 className="section-secondary-heading mt-4 text-grey">BTC Major Corrrection</h3>
-  <p className="info-12 text-black mt-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. A reprehenderit, repudiandae esse doloribus iste corporis in quisquam natus nam voluptate eos! Ea in vel possimus eveniet vitae illo sed esse.</p>
+  <h3 className="section-secondary-heading mt-4 text-white">BTC Major Corrrection</h3>
+  <p className="info-12 text-white mt-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. A reprehenderit, repudiandae esse doloribus iste corporis in quisquam natus nam voluptate eos! Ea in vel possimus eveniet vitae illo sed esse.</p>
     </div>
-  </div> </>
+  </div>
+   </>
   )
 }
 
