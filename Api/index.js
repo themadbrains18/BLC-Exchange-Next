@@ -1,11 +1,13 @@
 import axios from "axios";
 
-// const baseurl = 'http://localhost:5000/api-blc';
-const baseurl = 'http://demo.blcexchange.net/api-blc';
+const apiurl = 'http://localhost:5000/api-blc';
+
+// const baseurl = 'http://localhost:3000/api';
+// const baseurl = 'http://demo.blcexchange.net/api-blc';
 
 const API = axios.create(
   {
-    baseURL: baseurl,
+    baseURL: apiurl,
     headers: { 'Content-type': 'application/json' }
   })
 

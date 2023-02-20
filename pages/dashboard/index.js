@@ -8,6 +8,7 @@ import Tranding from 'components/dashboard/tranding'
 import Welfare from 'components/dashboard/welfare'
 import Layout from 'components/layout/Layout'
 import SideMenu from 'components/snippets/sideMenu'
+import {baseurl} from '../../Api'
 import React from 'react'
 
 const Dashboard = ({account}) => {
@@ -44,7 +45,7 @@ const Dashboard = ({account}) => {
   )
 }
 export async function getServerSideProps(context) {
-    let data = await fetch("/api/hello");
+    let data = await fetch(`${baseurl}/hello`);
   
     let menu = await data.json();
     return {
