@@ -43,7 +43,7 @@ export async function getServerSideProps() {
 }
 
 // export async function getServerSideProps(context) {
-//   let nav = await fetch('http://localhost:3000/api/hello')
+//   let nav = await fetch(process.env.NEXT_PUBLIC_BASEURL+ "/hello")
 //   .then(res => res.json())
 //   .then((data) => {
 //     console.log(data)

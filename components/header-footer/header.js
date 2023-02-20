@@ -14,7 +14,7 @@ const Header = (props) => {
   const [specialData, setSpecialData] = useState([]);
   useEffect(() => {
     (async () => {
-      await fetch("/api/hello")
+      await fetch(process.env.NEXT_PUBLIC_BASEURL+ "/hello")
         .then((res) => res.json())
         .then((data) => {
           setData(data.nav);
@@ -342,7 +342,7 @@ const Header = (props) => {
 };
 
 // export const getServerSideProps = async (context)=> {
-// //   let data= await fetch('http://localhost:3000/api/hello')
+// //   let data= await fetch(process.env.NEXT_PUBLIC_BASEURL+ "/hello")
 // // let nav= await data.json()
 // console.log("runing")
 //   return {
