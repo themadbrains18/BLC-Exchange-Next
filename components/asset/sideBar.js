@@ -12,9 +12,11 @@ const SideBar = ({ data, link }) => {
   const { click, setClick } = useContext(Context);
   const [show, setShow] = useState(false);
 console.log(link , "sliud[[[")
+  const [active, setActive] = useState(0);
+
   return (
     <>
-      <div className={` px-3 md:px-0 ${click && "z-30"}  `}>
+      <div className={`md:fixed  md:min-w-[240px]  w-fit px-3 md:px-0   `}>
         <button
           className="flex items-center md:hidden"
           onClick={() => {
@@ -36,7 +38,7 @@ console.log(link , "sliud[[[")
         </button>
 
         <div
-          className={` absolute top-0 z-10 duration-300 md:static w-[calc(100%-4rem)] bg-white dark:bg-black-v-5 md:w-fit h-[100vh] md:h-auto ${
+          className={` absolute top-0  duration-300 md:static w-[calc(100%-4rem)] overflow-x-auto table_box bg-white dark:bg-black-v-5 md:w-fit h-[100vh] md:h-auto ${
             show ? "left-0" : "-left-[100%]"
           } `}
         >
@@ -65,7 +67,7 @@ console.log(link , "sliud[[[")
             </button>
           </div>
 
-          <ul className="menu_box p-4">
+          <ul className="menu_box md:border-r h-[100vh] md:border-primary dark:bg-black-v-4">
             {data.subMenu &&
               data.subMenu.map((e, i) => {
                 return (
@@ -74,14 +76,15 @@ console.log(link , "sliud[[[")
                     className={`max-w-[250px] w-full ${
                       e.menu
                         ? "flex items-center"
-                        : "md:border-r-2 md:hover:border-primary  border-transparent"
+                        : "md:border-b md:hover:border-primary  border-transparent" 
                     } `}
+                    onClick={(()=>{setActive(i)})}
                   >
-                    <div className="flex p-3 gap-3 self-start">
+                    <div className="flex p-6 gap-3 self-start">
                       <Icons type={e.svgType} />
                       {!e.menu && (
                         <Link
-                          href={`/${link}/${ e.linkUrl}`}
+                          href={`/${ e.linkUrl}`}
                           className="info-14"
                         >
                           {e.linkText}
@@ -89,10 +92,10 @@ console.log(link , "sliud[[[")
                       )}
                     </div>
                     {e.menu && (
-                      <div className="w-full ">
+                      <div className="w-full py-2">
                         <NavAccordian
                           heading={e.linkText}
-                          className={"info-14"}
+                          className={"info-14 dark:!text-white text-black hover:!text-black dark:hover:!text-white"}
                           content={e.menu}
                         />
                       </div>

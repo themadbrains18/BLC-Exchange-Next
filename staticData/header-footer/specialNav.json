@@ -243,19 +243,19 @@
                 "linkText": "Dashboard",
                 "desc": "Crypto Market Information",
                 "svgType": "dashboard",
-                "linkUrl": ""
+                "linkUrl": "dashboard"
             },
             {
                 "linkText": "Security Setting",
                 "desc": "Crypto Rankings",
                 "svgType": "Security_Setting",
-                "linkUrl": "earn"
+                "linkUrl": "dashboard/setting"
             },
             {
                 "linkText": "ID Verfication",
                 "desc": "BLC-Exchange and Big Data",
                 "svgType": "id_verfication",
-                "linkUrl": "verified"
+                "linkUrl": "dashboard/verified"
             },
             {
                 "linkText": "API Management",

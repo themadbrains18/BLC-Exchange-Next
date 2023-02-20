@@ -31,18 +31,18 @@ const Modal = ({ setShow }) => {
                             {step === 1 &&
 
                                 <div className='flex flex-col mt-8 p-4 '>
-                                    <p className='section-secondary-heading self-center'>Verify your identity</p>
-                                    <p className='info-14-16 self-center'>It should take a few minutes</p>
-                                    <p className=' info-14-16 mt-4 self-center'>Use your webcam or phone to photograph:</p>
-                                    <p className=' info-14-16 self-center'>your identity document</p>
-                                    <p className=' info-14-16 mt-4 self-center'>your face</p>
+                                    <p className='section-secondary-heading self-center dark:text-black'>Verify your identity</p>
+                                    <p className='info-14-16 self-center dark:text-black'>It should take a few minutes</p>
+                                    <p className=' info-14-16 mt-4 self-center dark:text-black'>Use your webcam or phone to photograph:</p>
+                                    <p className=' info-14-16 self-center dark:text-black'>your identity document</p>
+                                    <p className=' info-14-16 mt-4 self-center dark:text-black'>your face</p>
                                 </div>
                             }
                             {step === 2 &&
 
                                 <div className='flex flex-col mt-8 p-4 '>
-                                    <p className='section-secondary-heading self-center'>Submit identity card (front)</p>
-                                    <p className='info-14-16 self-center'>Take a photo with your phone</p>
+                                    <p className='section-secondary-heading self-center dark:text-black'>Submit identity card (front)</p>
+                                    <p className='info-14-16 self-center dark:text-black'>Take a photo with your phone</p>
                                     <div className='my-14 bg-border-clr p-8 self-center rounded-[50%]'>
                                         <Image src='/assets/icons/take-photo.svg' alt='error' width={72} height={72}></Image>
                                     </div>
@@ -53,8 +53,8 @@ const Modal = ({ setShow }) => {
                             {step === 3 &&
 
                                 <div className='flex flex-col mt-8 p-4 '>
-                                    <p className='section-secondary-heading self-center'>Submit identity card (back)</p>
-                                    <p className='info-14-16 self-center'>Take a photo with your phone</p>
+                                    <p className='section-secondary-heading self-center dark:text-black'>Submit identity card (back)</p>
+                                    <p className='info-14-16 self-center dark:text-black'>Take a photo with your phone</p>
                                     <div className='my-14 bg-border-clr p-8 self-center rounded-[50%]'>
                                         <Image src='/assets/icons/take-photo.svg' alt='error' width={72} height={72}></Image>
                                     </div>
@@ -65,8 +65,8 @@ const Modal = ({ setShow }) => {
                             {step === 4 &&
 
                                 <div className='flex flex-col mt-8 p-4 '>
-                                    <p className='section-secondary-heading self-center'>Continue on your phone</p>
-                                    <p className='info-14-16 self-center'>Here’s how to do it:</p>
+                                    <p className='section-secondary-heading self-center dark:text-black'>Continue on your phone</p>
+                                    <p className='info-14-16 self-center dark:text-black'>Here’s how to do it:</p>
                                     <div className='flex flex-col gap-4 justify-center mt-6'>
 
                                         <div className='flex gap-4'>
@@ -74,21 +74,21 @@ const Modal = ({ setShow }) => {
 
                                                 <Image src='/assets/icons/step1kyc.svg' alt='error' width={48} height={48}></Image>
                                             </span>
-                                            <p className='self-center info-14-16'>Send a secure link to your phone</p>
+                                            <p className='self-center info-14-16 dark:text-black'>Send a secure link to your phone</p>
                                         </div>
                                         <div className='flex gap-4'>
                                             <span className='bg-border-clr p-1 self-center rounded-[50%]'>
 
                                                 <Image src='/assets/icons/srep2kyc.svg' alt='error' width={48} height={48}></Image>
                                             </span>
-                                            <p className='self-center info-14-16'>Open the link and complete the tasks</p>
+                                            <p className='self-center info-14-16 dark:text-black'>Open the link and complete the tasks</p>
                                         </div>
                                         <div className='flex gap-4'>
                                             <span className='bg-border-clr p-1 self-center rounded-[50%]'>
 
                                                 <Image src='/assets/icons/step3kyc.svg' alt='error' width={48} height={48}></Image>
                                             </span>
-                                            <p className='self-center info-14-16'>Check back here to finish the submission</p>
+                                            <p className='self-center info-14-16 dark:text-black'>Check back here to finish the submission</p>
                                         </div>
                                     </div>
 
@@ -98,22 +98,22 @@ const Modal = ({ setShow }) => {
                             {step === 5 &&
 
                                 <div className='flex flex-col mt-8 p-4 justify-center items-center'>
-                                    <p className='section-secondary-heading self-center'>Get your secure link</p>
-                                    <p className='info-14-16 self-center'>Scan the QR code with your phone</p>
+                                    <p className='section-secondary-heading self-center dark:text-black'>Get your secure link</p>
+                                    <p className='info-14-16 self-center dark:text-black'>Scan the QR code with your phone</p>
                                     <Image src='/assets/images/qr.png' alt='error' width={120} height={80} className='mt-5 '></Image>
                                     <div className='flex gap-2  mt-6'>
                                         <Image src='/assets/icons/questionmark.svg' alt='error' width={20} height={20}></Image>
-                                        <p className='underline info-14 text-black'>How to scan a QR code</p>
+                                        <p className='underline info-14 text-black dark:text-black'>How to scan a QR code</p>
                                     </div>
                                     <p className='info-14 mt-6'>Choose an alternative method</p>
                                     <div className='flex gap-4 mt-9'>
                                         <div className='flex'>
                                             <Image src='/assets/icons/message.svg' alt='error' width={20} height={20}></Image>
-                                            <p className='underline info-14 text-black'>Get link via SMS</p>
+                                            <p className='underline info-14 text-black dark:text-black'>Get link via SMS</p>
                                         </div>
                                         <div className='flex'>
                                             <Image src='/assets/icons/link.svg' alt='error' width={20} height={20}></Image>
-                                            <p className='underline info-14 text-black'>Copy link</p>
+                                            <p className='underline info-14 text-black dark:text-black'>Copy link</p>
                                         </div>
 
                                     </div>
@@ -124,16 +124,16 @@ const Modal = ({ setShow }) => {
                             {step === 6 &&
 
                                 <div className='flex flex-col mt-8 p-4 '>
-                                    <p className='section-secondary-heading self-center'>One final step</p>
-                                    <p className='info-14-16 self-center'>Here’s everything you’ve uploaded:</p>
+                                    <p className='section-secondary-heading self-center dark:text-black'>One final step</p>
+                                    <p className='info-14-16 self-center dark:text-black'>Here’s everything you’ve uploaded:</p>
                                     <div className='flex flex-col mx-auto gap-7 my-12'>
                                         <div className='flex gap-3'>
                                             <Image src='/assets/icons/tick.svg' alt='error' width={20} height={20}></Image>
-                                            <p>Document</p>
+                                            <p className='dark:text-black'>Document</p>
                                         </div>
                                         <div className='flex gap-3'>
                                             <Image src='/assets/icons/tick.svg' alt='error' width={20} height={20}></Image>
-                                            <p>Selfie</p>
+                                            <p className='dark:text-black'>Selfie</p>
                                         </div>
                                     </div>
 
@@ -152,6 +152,7 @@ const Modal = ({ setShow }) => {
                              }
                              else{
                                 setShow(false)
+                                setClick(false)
                              }
                              
                              }} >{step === 1 ? 'Choose Document' : step===2 ? 'Continue on Phone': step===3 ? 'Continue on Phone':step===4 ? 'Get Secure Link':step===5 ? 'Get Secure Link':'Submit Documents'}</button>

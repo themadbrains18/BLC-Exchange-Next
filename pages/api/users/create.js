@@ -1,13 +1,11 @@
 import nc from "next-connect";
-
-import {postData} from '../../../libs/requestMethod';
+import {postData} from "../../../libs/requestMethod";
 
 export const config = {
   api: {
     bodyParser: true, // Disallow body parsing, consume as stream
   }
 }
-
 
 const handler = nc({
   onError: (err, req, res, next) => {
@@ -19,24 +17,17 @@ const handler = nc({
   },
 })
 
+// ============================================================//
+ // create New users
  // ============================================================//
- // Login users
- // ============================================================//
-
   .post(async (req, res) => {
     try {
-      let data = await postData(`${process.env.NEXT_PUBLIC_APIURL}/users/login`, JSON.parse(req.body) )
+      let data = await postData(`${process.env.NEXT_PUBLIC_APIURL}/users/create`, JSON.parse(req.body))
       res.status(200).send({data});
     } catch (error) {
       console.log(error)
        res.status(401).send({error: error})
     }
-
   })
-
-
- // ============================================================//
- // ============================================================//
-
 
 export default handler;

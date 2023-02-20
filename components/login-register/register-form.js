@@ -13,7 +13,7 @@ import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { checkUserRequest, registerRequest, sendOtp } from '@/Api';
+// import { checkUserRequest, registerRequest, sendOtp } from '@/Api';
 
 const RegisterForm = () => {
     const [show, setShow] = useState(1);
@@ -85,7 +85,12 @@ const RegisterForm = () => {
 
         setLoading(true);
 
-        let userExist = await checkUserRequest(formdata);
+        // let userExist = await checkUserRequest(formdata);
+        let userExist = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/check`,{
+            method : "POST",
+            body : JSON.stringify(formdata)
+        }).then(response=>response.json());
+
         if (userExist.data.status === 200 && userExist.data !== undefined) {
             setLoading(false);
             toast.error(userExist.data.message, {
@@ -93,7 +98,12 @@ const RegisterForm = () => {
             })
         }
         else {
-            let otpResponse = await sendOtp(otpForm);
+            // let otpResponse = await sendOtp(otpForm);
+            let otpResponse = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`,{
+                method : "POST",
+                body : JSON.stringify(otpForm)
+            }).then(response=>response.json());
+
             if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
                 setLoading(false);
                 setRegisterForm(formdata);
@@ -113,7 +123,12 @@ const RegisterForm = () => {
         registerForm.otp = otp;
         registerForm.time = new Date();
 
-        let result = await registerRequest(registerForm);
+        let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/create`,{
+            method : "POST",
+            body : JSON.stringify(registerForm)
+        }).then(response=>response.json())
+
+        // let result = await registerRequest(registerForm);
 
         if (result.data.status === 200 && result.data != undefined) {
             router.push('/login');
@@ -126,7 +141,12 @@ const RegisterForm = () => {
     }
 
     const sendOtpAgain = async () => {
-        let otpResponse = await sendOtp(registerForm);
+        // let otpResponse = await sendOtp(registerForm);
+        let otpResponse = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`,{
+            method : "POST",
+            body : JSON.stringify(registerForm)
+        }).then(response=>response.json());
+        
         if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
             let usrname = registerForm.requestType === 'mobile' ? registerForm.number : registerForm.email
             console.log(usrname);
@@ -273,7 +293,7 @@ const RegisterForm = () => {
                     }
                     {/* verification code  */}
                     {showVerification === 1 &&
-                        <VerificationCode onFinalSubmit={onFinalSubmit} sendOtpAgain={sendOtpAgain} username={registerForm.requestType === 'mobile' ? registerForm.number : registerForm.email} />
+                        <VerificationCode verifyCode={true} onFinalSubmit={onFinalSubmit} sendOtpAgain={sendOtpAgain} username={registerForm.requestType === 'mobile' ? registerForm.number : registerForm.email} />
                     }
 
                 </div>

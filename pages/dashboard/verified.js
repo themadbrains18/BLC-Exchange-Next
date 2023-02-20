@@ -14,7 +14,7 @@ const Verified = ({ account }) => {
     )
 }
 export async function getServerSideProps(context) {
-    let data = await fetch(process.env.BASEURL + "/hello");
+    let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
   
     let menu = await data.json();
     return {

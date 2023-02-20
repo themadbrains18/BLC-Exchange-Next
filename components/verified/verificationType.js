@@ -8,7 +8,7 @@ const VerificationType = () => {
     const [active, setActive] = useState(1)
     const [step, setStep] = useState(0)
     return (
-        <section className=' dark:bg-black-v-3 '>
+        <section className=' dark:bg-black-v-5 '>
            
                 <div className='flex gap-4 items-center'>
                     <p className='section-secondary-heading'>ID Verification</p>

@@ -7,15 +7,12 @@ import SocialTrades from 'components/dashboard/socialTrades'
 import Tranding from 'components/dashboard/tranding'
 import Welfare from 'components/dashboard/welfare'
 import Layout from 'components/layout/Layout'
-
-
 import React from 'react'
-
 const Dashboard = ({ account }) => {
   return (
     <>
       <Layout data={account} link="dashboard">
-      <div className='grow max-w-full  bg-white dark:bg-black-v-3'>
+      <div className='grow max-w-full  bg-white dark:bg-black-v-5'>
                 <div>
                   <Profile />
           </div>
@@ -34,15 +31,12 @@ const Dashboard = ({ account }) => {
                 </div>
               </div>
             </div>
-          
- 
-
       </Layout>
     </>
   )
 }
 export async function getServerSideProps(context) {
-  let data = await fetch(process.env.BASEURL + "/hello");
+  let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
 
   let menu = await data.json();
   return {
@@ -51,5 +45,4 @@ export async function getServerSideProps(context) {
     }, // will be passed to the page component as props
   };
 }
-
 export default Dashboard

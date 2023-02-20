@@ -29,27 +29,27 @@ const Step1 = () => {
                 <div className='flex mt-6 gap-9 justify-between'>
                     <div className='flex flex-col gap-4'>
                         <label className='info-12'>First name</label>
-                        <input type='text' placeholder='Enter first name' autocomplete="off" className='border-b-2 border-border-clr' />
+                        <input type='text' placeholder='Enter first name' autocomplete="off" className='border-b-2 border-border-clr  bg-transparent border  text-black dark:text-white outline-none focus:!border-primary dark:border-white rounded' />
                     </div>
                     <div className='flex flex-col gap-4'>
                         <label className='info-12'>Last name</label>
-                        <input type='text' placeholder='Enter last name' autocomplete="off" className='border-b-2 border-border-clr' />
+                        <input type='text' placeholder='Enter last name' autocomplete="off" className='border-b-2 border-border-clr  bg-transparent border  text-black dark:text-white outline-none focus:!border-primary dark:border-white rounded' />
                     </div>
                 </div>
                 <div className='flex flex-col gap-4 mt-6 relative'>
                     <label className='info-12'>Identity Document Type</label>
-                    <input type='text' placeholder='ID Card' autocomplete="off" className='border-b-2 border-border-clr' />
+                    <input type='text' placeholder='ID Card' autocomplete="off"className='border-b-2 border-border-clr  bg-transparent border  text-black dark:text-white outline-none focus:!border-primary dark:border-white rounded' />
                     {<DropdownWallet subMenu={id} />}
                 </div>
                 <div className='flex flex-col gap-4 mt-6 '>
                     <label className='info-12'>Identity no.</label>
-                    <input type='text' placeholder='Input identity no.' autocomplete="off" className='border-b-2 border-border-clr' />
+                    <input type='text' placeholder='Input identity no.' autocomplete="off" className='border-b-2 border-border-clr  bg-transparent border  text-black dark:text-white outline-none focus:!border-primary dark:border-white rounded' />
                 </div>
                 <div className='flex flex-col gap-4 mt-6 '>
                     <label className='info-12'>Date of Birth.</label>
                     <span>
 
-                        <input type='date' placeholder='Please select Date of Birth' autocomplete="off" className='border-2 border-border-clr' />
+                        <input type='date' placeholder='Please select Date of Birth' autocomplete="off" className='border-b-2 border-border-clr  bg-transparent border  text-black dark:text-white outline-none focus:!border-primary dark:border-white rounded' />
                     </span>
                 </div>
                 <button className='cta my-12 w-full' onClick={() => { setShow(true), setClick(true) }}> Next</button>

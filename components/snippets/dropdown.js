@@ -4,6 +4,9 @@ import Context from "../contexts/context";
 import { useContext } from "react";
 import Link from "next/link";
 
+import { signOut } from "next-auth/react"
+
+
 const Dropdown = ({
   subMenu,
   right,
@@ -98,6 +101,7 @@ const Dropdown = ({
               className={`info-14-16 items-center rounded  flex gap-6 min-w-[330px] p-4  group/arrow  ${mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
                 }`}
               onClick={() => {
+                signOut()
                 setLogin(false);
               }}
             >

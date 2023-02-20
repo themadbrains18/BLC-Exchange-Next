@@ -2,7 +2,6 @@ import SideBar from "@/components/asset/sideBar";
 import Layout from "@/components/layout/Layout";
 import ActiveCta from "@/components/snippets/activeCta";
 import Link from "next/link";
-import { baseurl } from "../../Api";
 import React, { useState } from "react";
 import Image from "next/image";
 
@@ -20,7 +19,7 @@ const Asset = ({ assets }) => {
   let activeCta = ["Spot", "Margin", "P2P", "Earn", "Coupons", "Merge Swap"];
   return (
     <>
-      <Layout data={assets} slug="asset">
+      <Layout data={assets} link="asset">
         <div className="grow p-4 ">
           <div className="hidden md:flex gap-2 items-center ">
             <h3 className="section-secondary-heading font-noto">Assets</h3>
@@ -188,15 +187,19 @@ const Asset = ({ assets }) => {
             <div className="mt-3">
               <div className="flex justify-between">
                 <div>
-                  <h4>Estimated Spot Balance</h4>
-                  <span>0.00000000 BTC</span>
+                  <h4 className="info-14 hover:text-grey
+                  ">Estimated Spot Balance</h4>
+                  <span className="section-secondary-heading font-noto">0.00000000 BTC</span>
                 </div>
+                <div>
+
                 <Link href={""}>
-                  <h4>Today is PNL </h4>
-                  <span>0 BTC ≈$ 0</span>
+                  <h4 className="info-14 hover:text-grey">Today is PNL </h4>
                 </Link>
+                  <span className="section-secondary-heading font-noto">0 BTC ≈$ 0</span>
+                </div>
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col gap-2">
                 <input
                   type="text"
                   placeholder="Search"
@@ -217,7 +220,7 @@ const Asset = ({ assets }) => {
                 <span className=" info-12 text-primary ">
                   BGB fee Discount-20%
                 </span>
-                <label className="relative inline-flex items-center mr-5 cursor-pointer duration-500">
+                <label className={`relative inline-flex  items-center mr-5 cursor-pointer duration-500`}>
                   {" "}
                   <input
                     type="checkbox"
@@ -225,7 +228,7 @@ const Asset = ({ assets }) => {
                     className="sr-only peer"
                     defaultChecked=""
                   />
-                  <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                  <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                 </label>
               </div>
               <div className="grid place-content-center w-full h-96">
@@ -241,7 +244,7 @@ const Asset = ({ assets }) => {
 };
 
 export async function getServerSideProps(context) {
-  let data = await fetch(process.env.BASEURL + "/hello");
+  let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
 
   let menu = await data.json();
   return {

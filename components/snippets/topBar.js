@@ -1,13 +1,20 @@
-import {useContext, useState} from 'react'
+import {useContext, useEffect, useState} from 'react'
 import Link from 'next/link';
 import Context from '../contexts/context';
 const TopBar = () => {
     const [alert, setAlert] = useState(true);
-    const {heightUpdate}= useContext(Context)
+    const [topPaddong, setTopPadding] = useState(0);
+    const {heightUpdate}= useContext(Context);
+    useEffect(()=>{
+      let padding = document.querySelector(".topBar").offsetHeight;
+      console.log(padding);
+      setTopPadding(padding);
+    },[]);
+
   return (
     <>
     <div
-          className={`hidden bg-black-v-3 ${
+          className={` topBar hidden bg-black-v-3 ${
             alert === true ? "lg:flex" : "lg:hidden"
           } gap-3 justify-center items-center `}
         >
@@ -22,7 +29,7 @@ const TopBar = () => {
           <button
             onClick={() => {
               setAlert(false);
-              heightUpdate()
+              heightUpdate(topPaddong)
             }}
           >
             <svg

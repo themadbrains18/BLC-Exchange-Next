@@ -8,7 +8,6 @@ export const config = {
   }
 }
 
-
 const handler = nc({
   onError: (err, req, res, next) => {
     console.error(err.stack);
@@ -25,7 +24,7 @@ const handler = nc({
 
   .post(async (req, res) => {
     try {
-      let data = await postData(`${process.env.NEXT_PUBLIC_APIURL}/users/login`, JSON.parse(req.body) )
+      let data = await postData(`${process.env.NEXT_PUBLIC_APIURL}/otp`, JSON.parse(req.body) )
       res.status(200).send({data});
     } catch (error) {
       console.log(error)
