@@ -896,8 +896,8 @@ const Icons = ({ type }) => {
 
   )}
 
-  {/* //bitget academy icon */}
-  {type === "bitget_academy" && (
+  {/* //BLC-Exchange academy icon */}
+  {type === "BLC-Exchange_academy" && (
     <svg
     xmlns="http://www.w3.org/2000/svg"
     width={24}
@@ -914,8 +914,8 @@ const Icons = ({ type }) => {
   </svg>
   
   )}
-  {/* //bitget blog icon */}
-  {type === "bitget_blog" && (
+  {/* //BLC-Exchange blog icon */}
+  {type === "BLC-Exchange_blog" && (
     <svg
   xmlns="http://www.w3.org/2000/svg"
   width={24}
@@ -1634,8 +1634,8 @@ const Icons = ({ type }) => {
   )}
 
 
-{/* Bitget_group_coin */}
-{type === "Bitget_group_coin" && (
+{/* BLC-Exchange_group_coin */}
+{type === "BLC-Exchange_group_coin" && (
 <svg
   xmlns="http://www.w3.org/2000/svg"
   width={24}

@@ -14,7 +14,7 @@ const Header = (props) => {
   const [specialData, setSpecialData] = useState([]);
   useEffect(() => {
     (async () => {
-      await fetch("http://localhost:3000/api/hello")
+      await fetch("/api/hello")
         .then((res) => res.json())
         .then((data) => {
           setData(data.nav);

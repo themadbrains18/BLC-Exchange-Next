@@ -9,7 +9,7 @@ const Setting = ({account}) => {
         <div className="py-20  w-full px-[24px] ">
           <div className="mb-[20px]">
             <h3 className="section-secondary-heading mb-6">Security Settings</h3>
-            <div className="divide-y px-[24px] shadow-lg rounded-lg	">
+            <div className="divide-y px-[24px] shadow-lg dark:shadow-[#1da2b41c] rounded-lg	">
               
               <div className="flex items-center flex-col sm:flex-row justify-between py-[20px] gap-[20px]">  
                 <div className="flex gap-[18px] flex-col sm:flex-row grow items-center">
@@ -130,7 +130,7 @@ const Setting = ({account}) => {
                 <div className="flex gap-[18px] grow flex-col sm:flex-row  items-center">
                   <div className="max-w-[38px] w-full"> 
                     
-                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clipPath="url(#clip0)">
                           <path fillRule="evenodd"  fill={mode === "dark" ? "white" : "#000"} clipRule="evenodd" d="M14.2425 3.02985C14.7783 3.1638 15.1041 3.70673 14.9701 4.24253L10.9701 20.2425C10.8362 20.7783 10.2933 21.1041 9.75746 20.9701C9.22167 20.8362 8.89591 20.2933 9.02986 19.7575L13.0299 3.75746C13.1638 3.22166 13.7067 2.8959 14.2425 3.02985ZM6.70711 6.29289C7.09763 6.68341 7.09763 7.31658 6.70711 7.7071L2.41421 12L6.70711 16.2929C7.09763 16.6834 7.09763 17.3166 6.70711 17.7071C6.31658 18.0976 5.68342 18.0976 5.29289 17.7071L0.292893 12.7071C-0.0976311 12.3166 -0.0976311 11.6834 0.292893 11.2929L5.29289 6.29289C5.68342 5.90236 6.31658 5.90236 6.70711 6.29289ZM17.2929 6.29289C17.6834 5.90236 18.3166 5.90236 18.7071 6.29289L23.7071 11.2929C24.0976 11.6834 24.0976 12.3166 23.7071 12.7071L18.7071 17.7071C18.3166 18.0976 17.6834 18.0976 17.2929 17.7071C16.9024 17.3166 16.9024 16.6834 17.2929 16.2929L21.5858 12L17.2929 7.7071C16.9024 7.31658 16.9024 6.68341 17.2929 6.29289Z"/>
                         </g>
@@ -174,7 +174,7 @@ const Setting = ({account}) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px] mb-[20px]">
 
-            <div className="p-[20px] shadow-lg flex items-center justify-between rounded-lg">
+            <div className="p-[20px] shadow-lg dark:shadow-[#1da2b41c] flex items-center justify-between rounded-lg">
               <div>
                 <h4 className="section-secondary-heading mb-[20px]" >Account Activity</h4>
                 <button className="info-14-16 !text-primary">Delete Account</button>
@@ -182,7 +182,7 @@ const Setting = ({account}) => {
               <button className="cta">More</button>
             </div>
 
-            <div className="p-[20px] shadow-lg flex items-center justify-between rounded-lg">
+            <div className="p-[20px] shadow-lg dark:shadow-[#1da2b41c] flex items-center justify-between rounded-lg">
               <div>
                 <h4 className="section-secondary-heading mb-[20px]" >Device Management</h4>
               </div>
@@ -191,69 +191,68 @@ const Setting = ({account}) => {
             
           </div>
 
-          <div className="p-[20px] shadow-lg rounded-lg">
+          <div className="p-[20px] shadow-lg dark:shadow-[#1da2b41c] rounded-lg">
               <h4 className="section-secondary-heading mb-[20px]" >Third-party Account Management</h4>
-
-              <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">  
-                <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
-                    <div className="max-w-[38px] w-full"> 
-                        <svg viewBox="0 0 47 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                          <g id="Page-1" stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
-                            <g id="Social-Icons---Isolated" transform="translate(-389.000000, -727.000000)">
-                              <g id="Google" transform="translate(389.000000, 727.000000)">
-                                <path d="M9.82727273,24 C9.82727273,22.4757333 10.0804318,21.0144 10.5322727,19.6437333 L2.62345455,13.6042667 C1.08206818,16.7338667 0.213636364,20.2602667 0.213636364,24 C0.213636364,27.7365333 1.081,31.2608 2.62025,34.3882667 L10.5247955,28.3370667 C10.0772273,26.9728 9.82727273,25.5168 9.82727273,24" id="Fill-1" fill="#FBBC05" />
-                                <path d="M23.7136364,10.1333333 C27.025,10.1333333 30.0159091,11.3066667 32.3659091,13.2266667 L39.2022727,6.4 C35.0363636,2.77333333 29.6954545,0.533333333 23.7136364,0.533333333 C14.4268636,0.533333333 6.44540909,5.84426667 2.62345455,13.6042667 L10.5322727,19.6437333 C12.3545909,14.112 17.5491591,10.1333333 23.7136364,10.1333333" id="Fill-2" fill="#EA4335" />
-                                <path d="M23.7136364,37.8666667 C17.5491591,37.8666667 12.3545909,33.888 10.5322727,28.3562667 L2.62345455,34.3946667 C6.44540909,42.1557333 14.4268636,47.4666667 23.7136364,47.4666667 C29.4455,47.4666667 34.9177955,45.4314667 39.0249545,41.6181333 L31.5177727,35.8144 C29.3995682,37.1488 26.7323182,37.8666667 23.7136364,37.8666667" id="Fill-3" fill="#34A853" />
-                                <path d="M46.1454545,24 C46.1454545,22.6133333 45.9318182,21.12 45.6113636,19.7333333 L23.7136364,19.7333333 L23.7136364,28.8 L36.3181818,28.8 C35.6879545,31.8912 33.9724545,34.2677333 31.5177727,35.8144 L39.0249545,41.6181333 C43.3393409,37.6138667 46.1454545,31.6490667 46.1454545,24" id="Fill-4" fill="#4285F4" />
-                              </g>
-                            </g>
-                          </g>
-                        </svg>
-                    </div>
-                    <div className='sm:text-start text-center'>
-                    <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Google account</p>
-                      <p className="info-12 ">For quick login to your account</p>
-                    </div>
-                  </div>
-                  <Link href="#" className='info-14-16 !text-primary'>Change</Link>
-              </div>
-
-              <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">  
-                <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
-                    <div className="max-w-[38px] w-full"> 
-                          <svg viewBox="0 0 41 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+              <div className="divide-y">
+                <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">  
+                  <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
+                      <div className="max-w-[38px] w-full"> 
+                          <svg viewBox="0 0 47 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                             <g id="Page-1" stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
-                              <g id="Social-Icons---Isolated" transform="translate(-55.000000, -951.000000)" fill="#0B0B0A">
-                                <path d="M82.1747352,958.792499 C83.7401771,956.771699 84.9268831,953.915484 84.497649,951 C81.9390773,951.177808 78.948466,952.814769 77.2034752,954.948463 C75.6127843,956.88177 74.3054439,959.757742 74.816036,962.549042 C77.6130711,962.636535 80.4998807,960.960061 82.1747352,958.792499 L82.1747352,958.792499 Z M96,986.217241 C94.8806249,988.712195 94.3419782,989.827022 92.8999761,992.03692 C90.8884674,995.121745 88.052156,998.962958 84.5341199,998.991182 C81.4116524,999.02505 80.6064879,996.94498 76.3674507,996.970382 C72.1284135,996.99296 71.2446963,999.030695 68.116618,998.999649 C64.6013873,998.968603 61.9137648,995.502761 59.9022561,992.417937 C54.2745205,983.79849 53.6825702,973.680377 57.1529137,968.298162 C59.6217109,964.476705 63.5156776,962.241407 67.1739863,962.241407 C70.8968204,962.241407 73.2393723,964.296075 76.3225635,964.296075 C79.3131747,964.296075 81.1339127,962.235762 85.4402807,962.235762 C88.7002153,962.235762 92.1537261,964.022307 94.6113015,967.10431 C86.5540449,971.546683 87.8585799,983.121127 96,986.217241 L96,986.217241 Z" id="Apple" />
+                              <g id="Social-Icons---Isolated" transform="translate(-389.000000, -727.000000)">
+                                <g id="Google" transform="translate(389.000000, 727.000000)">
+                                  <path d="M9.82727273,24 C9.82727273,22.4757333 10.0804318,21.0144 10.5322727,19.6437333 L2.62345455,13.6042667 C1.08206818,16.7338667 0.213636364,20.2602667 0.213636364,24 C0.213636364,27.7365333 1.081,31.2608 2.62025,34.3882667 L10.5247955,28.3370667 C10.0772273,26.9728 9.82727273,25.5168 9.82727273,24" id="Fill-1" fill="#FBBC05" />
+                                  <path d="M23.7136364,10.1333333 C27.025,10.1333333 30.0159091,11.3066667 32.3659091,13.2266667 L39.2022727,6.4 C35.0363636,2.77333333 29.6954545,0.533333333 23.7136364,0.533333333 C14.4268636,0.533333333 6.44540909,5.84426667 2.62345455,13.6042667 L10.5322727,19.6437333 C12.3545909,14.112 17.5491591,10.1333333 23.7136364,10.1333333" id="Fill-2" fill="#EA4335" />
+                                  <path d="M23.7136364,37.8666667 C17.5491591,37.8666667 12.3545909,33.888 10.5322727,28.3562667 L2.62345455,34.3946667 C6.44540909,42.1557333 14.4268636,47.4666667 23.7136364,47.4666667 C29.4455,47.4666667 34.9177955,45.4314667 39.0249545,41.6181333 L31.5177727,35.8144 C29.3995682,37.1488 26.7323182,37.8666667 23.7136364,37.8666667" id="Fill-3" fill="#34A853" />
+                                  <path d="M46.1454545,24 C46.1454545,22.6133333 45.9318182,21.12 45.6113636,19.7333333 L23.7136364,19.7333333 L23.7136364,28.8 L36.3181818,28.8 C35.6879545,31.8912 33.9724545,34.2677333 31.5177727,35.8144 L39.0249545,41.6181333 C43.3393409,37.6138667 46.1454545,31.6490667 46.1454545,24" id="Fill-4" fill="#4285F4" />
+                                </g>
                               </g>
                             </g>
                           </svg>
+                      </div>
+                      <div className='sm:text-start text-center'>
+                      <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Google account</p>
+                        <p className="info-12 ">For quick login to your account</p>
+                      </div>
                     </div>
-                    <div className='sm:text-start text-center'>
-                    <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Apple ID</p>
-                      <p className="info-12 ">To protect yourself from counterfeit emails, the emails you receive from Bitget will contain the anti-phishing code you've set</p>
-                    </div>
-                  </div>
-                  <Link href="#" className='info-14-16 !text-primary'>Set</Link>
-              </div> 
-              
-              <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">  
-                <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
-                    <div className="max-w-[38px] w-full"> 
-                         
-            <svg width={48} height={48} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" clipRule="evenodd" d="M0 24C0 37.2548 10.7452 48 24 48C37.2548 48 48 37.2548 48 24C48 10.7452 37.2548 0 24 0C10.7452 0 0 10.7452 0 24ZM19.6 35L20.0083 28.8823L20.008 28.882L31.1369 18.839C31.6253 18.4055 31.0303 18.1941 30.3819 18.5873L16.6473 27.2523L10.7147 25.4007C9.4335 25.0084 9.4243 24.128 11.0023 23.4951L34.1203 14.5809C35.1762 14.1015 36.1953 14.8345 35.7922 16.4505L31.8552 35.0031C31.5803 36.3215 30.7837 36.6368 29.68 36.0278L23.6827 31.5969L20.8 34.4C20.7909 34.4088 20.7819 34.4176 20.7729 34.4264C20.4505 34.7403 20.1837 35 19.6 35Z" fill="black" />
-            </svg>
-                    </div>
-                    <div className='sm:text-start text-center'>
-                    <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Apple ID</p>
-                      <p className="info-12 ">To protect yourself from counterfeit emails, the emails you receive from Bitget will contain the anti-phishing code you've set</p>
-                    </div>
-                  </div>
-                  <Link href="#" className='info-14-16 !text-primary'>Set</Link>
-              </div> 
+                    <Link href="#" className='info-14-16 !text-primary'>Change</Link>
+                </div>
 
-            </div>
+                <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">  
+                  <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
+                      <div className="max-w-[38px] w-full"> 
+                            <svg viewBox="0 0 41 48" version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                              <g id="Page-1" stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                                <g id="Social-Icons---Isolated" transform="translate(-55.000000, -951.000000)" fill="#0B0B0A">
+                                  <path fill={mode === "dark" ? "white" : "#000"} d="M82.1747352,958.792499 C83.7401771,956.771699 84.9268831,953.915484 84.497649,951 C81.9390773,951.177808 78.948466,952.814769 77.2034752,954.948463 C75.6127843,956.88177 74.3054439,959.757742 74.816036,962.549042 C77.6130711,962.636535 80.4998807,960.960061 82.1747352,958.792499 L82.1747352,958.792499 Z M96,986.217241 C94.8806249,988.712195 94.3419782,989.827022 92.8999761,992.03692 C90.8884674,995.121745 88.052156,998.962958 84.5341199,998.991182 C81.4116524,999.02505 80.6064879,996.94498 76.3674507,996.970382 C72.1284135,996.99296 71.2446963,999.030695 68.116618,998.999649 C64.6013873,998.968603 61.9137648,995.502761 59.9022561,992.417937 C54.2745205,983.79849 53.6825702,973.680377 57.1529137,968.298162 C59.6217109,964.476705 63.5156776,962.241407 67.1739863,962.241407 C70.8968204,962.241407 73.2393723,964.296075 76.3225635,964.296075 C79.3131747,964.296075 81.1339127,962.235762 85.4402807,962.235762 C88.7002153,962.235762 92.1537261,964.022307 94.6113015,967.10431 C86.5540449,971.546683 87.8585799,983.121127 96,986.217241 L96,986.217241 Z" id="Apple" />
+                                </g>
+                              </g>
+                            </svg>
+                      </div>
+                      <div className='sm:text-start text-center'>
+                      <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Apple ID</p>
+                        <p className="info-12 ">To protect yourself from counterfeit emails, the emails you receive from Bitget will contain the anti-phishing code you've set</p>
+                      </div>
+                    </div>
+                    <Link href="#" className='info-14-16 !text-primary'>Set</Link>
+                </div> 
+                
+                <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">  
+                  <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
+                      <div className="max-w-[38px] w-full"> 
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fillRule="evenodd" clipRule="evenodd" d="M0 24C0 37.2548 10.7452 48 24 48C37.2548 48 48 37.2548 48 24C48 10.7452 37.2548 0 24 0C10.7452 0 0 10.7452 0 24ZM19.6 35L20.0083 28.8823L20.008 28.882L31.1369 18.839C31.6253 18.4055 31.0303 18.1941 30.3819 18.5873L16.6473 27.2523L10.7147 25.4007C9.4335 25.0084 9.4243 24.128 11.0023 23.4951L34.1203 14.5809C35.1762 14.1015 36.1953 14.8345 35.7922 16.4505L31.8552 35.0031C31.5803 36.3215 30.7837 36.6368 29.68 36.0278L23.6827 31.5969L20.8 34.4C20.7909 34.4088 20.7819 34.4176 20.7729 34.4264C20.4505 34.7403 20.1837 35 19.6 35Z" fill={mode === "dark" ? "white" : "#000"} />
+                        </svg>
+                      </div>
+                      <div className='sm:text-start text-center'>
+                      <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Telegram assistant</p>
+                        <p className="info-12 ">Subscribe to the Bitget Assistant to get push notifications</p>
+                      </div>
+                    </div>
+                    <Link href="#" className='info-14-16 !text-primary'>Link</Link>
+                </div> 
+              </div>
+          </div>
         </div>
     </Layout> 
   )

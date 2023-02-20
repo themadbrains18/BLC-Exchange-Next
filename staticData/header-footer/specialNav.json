@@ -34,9 +34,9 @@
                     "linkUrl": "earn"
                 },
                 {
-                    "linkText": " Bitget Group Coin",
+                    "linkText": " BLC-Exchange Group Coin",
                     "desc": "Group prchase discounted Crypto ",
-                    "svgType": "Bitget_group_coin",
+                    "svgType": "BLC-Exchange_group_coin",
                     "linkUrl": "earn"
                 }
             ]
@@ -104,15 +104,15 @@
                     "linkUrl": "earn"
                 },
                 {
-                    "linkText": "Bitget Academy",
+                    "linkText": "BLC-Exchange Academy",
                     "desc": " Learn about blockchain and Crypto",
-                    "svgType": "bitget_academy",
+                    "svgType": "BLC-Exchange_academy",
                     "linkUrl": "earn"
                 },
                 {
-                    "linkText": "Bitget Blog",
-                    "desc": " Get the latest crypto news and updates from Bitget ",
-                    "svgType": "bitget_blog",
+                    "linkText": "BLC-Exchange Blog",
+                    "desc": " Get the latest crypto news and updates from BLC-Exchange ",
+                    "svgType": "BLC-Exchange_blog",
                     "linkUrl": "earn"
                 },
                 {
@@ -253,7 +253,7 @@
             },
             {
                 "linkText": "ID Verfication",
-                "desc": "Bitget and Big Data",
+                "desc": "BLC-Exchange and Big Data",
                 "svgType": "id_verfication",
                 "linkUrl": "earn"
             },

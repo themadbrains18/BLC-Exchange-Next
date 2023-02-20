@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const OfficialVerification = () => {
   return (
-    <section className="py-10 md:py-20 pt-[120px] bg-[url('/assets/images/verify-bg.png')] min-h-[720px] h-full bg-no-repeat bg-cover">
+    <section className="py-10 md:py-20  bg-[url('/assets/images/verify-bg.png')] min-h-[720px] h-full bg-no-repeat bg-cover">
       <div className='container pt-16 md:pt-52'>
         <div className='flex flex-col text-center gap-3 md:gap-0 md:flex-row justify-center items-center'>
           <Image

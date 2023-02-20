@@ -2,6 +2,7 @@ import SideBar from "@/components/asset/sideBar";
 import Layout from "@/components/layout/Layout";
 import ActiveCta from "@/components/snippets/activeCta";
 import Link from "next/link";
+import {baseurl} from '../../Api'
 import React, { useState } from "react";
 
 const Asset = ({ assets }) => {
@@ -19,7 +20,7 @@ const Asset = ({ assets }) => {
   return (
     <>
       <Layout data={assets} slug="asset">
-        <div className="grow px-4 pt-[120px] p-10 md:p-20">
+        <div className="grow p-4 ">
           <div className="hidden md:flex gap-2 items-center ">
             <h3 className="section-secondary-heading font-noto">Assets</h3>
             <button
@@ -190,7 +191,7 @@ const Asset = ({ assets }) => {
                   <span>0.00000000 BTC</span>
                 </div>
                 <Link href={""}>
-                  <h4>Today's PNL </h4>
+                  <h4>Today is PNL </h4>
                   <span>0 BTC ≈$ 0</span>
                 </Link>
               </div>
@@ -237,7 +238,7 @@ const Asset = ({ assets }) => {
 };
 
 export async function getServerSideProps(context) {
-  let data = await fetch("http://localhost:3000/api/hello");
+  let data = await fetch(`${baseurl}/hello`);
 
   let menu = await data.json();
   return {

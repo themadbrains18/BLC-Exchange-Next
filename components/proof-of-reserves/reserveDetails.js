@@ -16,7 +16,7 @@ const ReserveDetails = () => {
       <section className="py-10 md:py-20 dark:bg-black-v-3">
         <div className="container">
           <h3 className="section-secondary-heading font-noto font-bold ">
-            Bitget reserve details{" "}
+            BLC-Exchange reserve details{" "}
           </h3>
 
           <div className="flex flex-wrap gap-4 mt-8">
@@ -40,7 +40,7 @@ const ReserveDetails = () => {
           <p className="mt-4 info-14 hover:!text-grey">
             179 users have verified the authenticity of the data.{" "}
             <Link
-              href={"https://github.com/BitgetLimited/proof-of-reserves"}
+              href={"https://github.com/BLC-ExchangeLimited/proof-of-reserves"}
               target="_blank"
               className="text-primary"
             >

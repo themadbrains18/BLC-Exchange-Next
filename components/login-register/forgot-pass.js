@@ -9,7 +9,7 @@ const ForgotPass = () => {
     <div>
         {
           show === 1 &&
-            <section className="dark:bg-black-v-5 py-[80px] !pt-[120px] lg:!pt-[204px]">
+            <section className="dark:bg-black-v-5 py-[80px] ! lg:!pt-[204px]">
                 <div className="container">
                     <div className="max-w-full md:max-w-[480px] w-full p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto" >
                       <h4 className='section-secondary-heading mb-1'>Forgot your password?</h4>

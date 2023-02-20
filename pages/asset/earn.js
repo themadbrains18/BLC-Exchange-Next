@@ -1,5 +1,5 @@
 import SideBar from "@/components/asset/sideBar";
-import Dashboard from "@/components/layout/Layout";
+import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -17,16 +17,16 @@ const Asset = ({ assets }) => {
   ];
   return (
     <>
-        <Dashboard  assets={assets}>
+        <Layout  assets={assets}>
             <h1> EARN SECTIOn</h1>
-        </Dashboard>
+        </Layout>
     </>
   );
 };
 
 
 export async function getServerSideProps(context) {
-  let data = await fetch("http://localhost:3000/api/hello");
+  let data = await fetch("/api/hello");
 
   let menu = await data.json();
   return {

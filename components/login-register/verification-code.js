@@ -3,7 +3,7 @@ import Context from "../contexts/context";
 import Link from 'next/link';
 
 
-const VerificationCode = ({ onFinalSubmit }) => {
+const VerificationCode = ({ onFinalSubmit, sendOtpAgain,username }) => {
     const { mode } = useContext(Context);
     const [fillOtp, setOtp] = useState();
     useEffect(() => {
@@ -38,6 +38,11 @@ const VerificationCode = ({ onFinalSubmit }) => {
         onFinalSubmit(fillOtp);
     }
 
+    const sendAgain=(e)=>{
+        e.preventDefault();
+        sendOtpAgain();
+    }
+
     return (
         <div className="dark:bg-black-v-5">
             <div className="container !p-0">
@@ -47,7 +52,7 @@ const VerificationCode = ({ onFinalSubmit }) => {
 
                     <form>
                         <div className='mt-5'>
-                            <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Email verification</span> <span>(email name which is registred)</span></label>
+                            <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Email verification</span> <span>({username} which is registred)</span></label>
                             <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper">
                                 <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
                                 <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
@@ -58,7 +63,7 @@ const VerificationCode = ({ onFinalSubmit }) => {
                             </div>
                         </div>
                         <div className='flex items-start sm:items-center justify-between gap-2 mt-4 flex-col sm:flex-row'>
-                            <button className='info-14 block'>Send again</button>
+                            <button className='info-14 block' onClick={(e)=>sendAgain(e)}>Send again</button>
                             <div className='flex items-center gap-2'>
                                 <p className="info-14 text-black hover:!text-black dark:!text-white dark:hover:!text-white">Help! I haven't received a code</p>
 

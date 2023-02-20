@@ -16,7 +16,7 @@ const Faq = () => {
         },
         {
             heading: "Tips for transferring",
-            info: "1. To avoid payment interception or the freezing of your card, please don't leave any message containing BTC/USDT/Bitget, etc. in the remarks during transfers. For any delayed payment due to the above reason, the Seller may choose to refuse the transaction",
+            info: "1. To avoid payment interception or the freezing of your card, please don't leave any message containing BTC/USDT/BLC-Exchange, etc. in the remarks during transfers. For any delayed payment due to the above reason, the Seller may choose to refuse the transaction",
         }
     ]
 
