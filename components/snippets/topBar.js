@@ -1,7 +1,9 @@
-import {useState} from 'react'
+import {useContext, useState} from 'react'
 import Link from 'next/link';
+import Context from '../contexts/context';
 const TopBar = () => {
     const [alert, setAlert] = useState(true);
+    const {heightUpdate}= useContext(Context)
   return (
     <>
     <div
@@ -20,6 +22,7 @@ const TopBar = () => {
           <button
             onClick={() => {
               setAlert(false);
+              heightUpdate()
             }}
           >
             <svg

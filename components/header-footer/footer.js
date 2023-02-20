@@ -22,7 +22,7 @@ const Footer = () => {
 
   useEffect(() => {
     (async () => {
-      await fetch(`${baseURL}/hello`)
+      await fetch( "api/hello")
         .then((res) => res.json())
         .then((data) => {
           setData(data.footerNav);
