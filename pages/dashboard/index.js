@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-import Announcements from '@/components/dashboard/announcements'
-import Assets from '@/components/dashboard/assets'
-import Explore from '@/components/dashboard/explore'
-import Profile from '@/components/dashboard/profile'
-import Referral from '@/components/dashboard/referral'
-import SocialTrades from '@/components/dashboard/socialTrades'
-import Tranding from '@/components/dashboard/tranding'
-import Welfare from '@/components/dashboard/welfare'
-import Layout from '@/components/layout/Layout'
-import SideMenu from '@/components/snippets/sideMenu'
-=======
 import Announcements from 'components/dashboard/announcements'
 import Assets from 'components/dashboard/assets'
 import Explore from 'components/dashboard/explore'
@@ -20,7 +8,6 @@ import Tranding from 'components/dashboard/tranding'
 import Welfare from 'components/dashboard/welfare'
 import Layout from 'components/layout/Layout'
 import SideMenu from 'components/snippets/sideMenu'
->>>>>>> a745dda59c558c96afdb46c82299414126570562
 import React from 'react'
 
 const Dashboard = ({account}) => {
