@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import getData from "../../../libs/requestMethod";
+import {getData} from "../../../libs/requestMethod";
 
 export const config = {
   api: {
@@ -18,11 +18,11 @@ const handler = nc({
 })
 
 // ============================================================//
- // create New users
+ // get token list
  // ============================================================//
-  .post(async (req, res) => {
+  .get(async (req, res) => {
     try {
-      let data = await getData(`${process.env.NEXT_PUBLIC_APIURL}/users/create`, JSON.parse(req.body))
+      let data = await getData(`${process.env.NEXT_PUBLIC_APIURL}/token`)
       res.status(200).send({data});
     } catch (error) {
       console.log(error)
