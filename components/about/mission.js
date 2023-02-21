@@ -6,8 +6,8 @@ import Context from '../contexts/context';
 const Mission = () => {
     const { mode }=useContext(Context)
     return (
-        <div>
-            <section className=" pb-20 "
+       
+            <section className="py-10 md:py-20 "
             style={{
                 backgroundColor:`${mode === "dark" ?"rgba(30,30,30,0.9)":'#f8f8f8'}`,
                 backgroundImage:"url('/assets/icons/banner-bg-about.svg')",
@@ -35,7 +35,6 @@ const Mission = () => {
                     </div>
                 </div>
             </section>
-        </div>
     )
 }
 

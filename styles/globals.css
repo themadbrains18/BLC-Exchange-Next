@@ -352,6 +352,9 @@ input[type=number]::-webkit-outer-spin-button {
   left: -240px;
 }
 
+.checkbox input:checked {
+  background-color:#1da2b4;
+}
 
 
 /* loadere */

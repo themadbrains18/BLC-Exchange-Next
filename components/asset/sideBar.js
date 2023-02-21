@@ -7,7 +7,7 @@ import Dropdown from "../snippets/dropdown";
 import Icons from "../snippets/icons";
 import NavAccordian from "../snippets/navAccordian";
 
-const SideBar = ({ data, slug }) => {
+const SideBar = ({ data, link }) => {
   const router = useRouter();
   const { click, setClick } = useContext(Context);
   const [show, setShow] = useState(false);
@@ -23,7 +23,7 @@ const SideBar = ({ data, slug }) => {
             setClick(true);
           }}
         >
-          {data.name && (
+          {data && data!==undefined && data.name && (
             <h3 className="section-secondary-heading font-noto ">
               {data.name}
             </h3>
@@ -67,7 +67,7 @@ const SideBar = ({ data, slug }) => {
           </div>
 
           <ul className="menu_box md:border-r h-[100vh] md:border-primary dark:bg-black-v-4">
-            {data.subMenu &&
+            {data && data!==undefined && data.subMenu &&
               data.subMenu.map((e, i) => {
                 return (
                   <li
@@ -83,8 +83,8 @@ const SideBar = ({ data, slug }) => {
                       <Icons type={e.svgType} />
                       {!e.menu && (
                         <Link
-                          href={`/${slug}/${e.linkUrl}`}
-                          className="info-14 !text-black hover:!text-black dark:hover:!text-white dark:!text-white "
+                          href={`/${ e.linkUrl}`}
+                          className="info-14"
                         >
                           {e.linkText}
                         </Link>

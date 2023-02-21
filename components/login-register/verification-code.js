@@ -4,7 +4,7 @@ import Link from 'next/link';
 import ResetPassSuccess from './reset-pass-success';
 
 
-const VerificationCode = ({CloseCta,showSetState,bindMobile,showState,fixed,modifyPass,verifyCode, onFinalSubmit, sendOtpAgain,username }) => {
+const VerificationCode = ({bindGoogle,CloseCta,showSetState,bindMobile,showState,fixed,modifyPass,verifyCode, onFinalSubmit, sendOtpAgain,username }) => {
     
     const { mode,setClick } = useContext(Context);
     const [fillOtp, setOtp] = useState();
@@ -140,6 +140,11 @@ const VerificationCode = ({CloseCta,showSetState,bindMobile,showState,fixed,modi
                             <button className='cta mt-5 w-full' onClick={(e)=>{e.preventDefault();setShowSuccess(2)}}>Submit</button>
                         }
                         {
+                            // { This Cta for Dashboard bindGoogle Authentication }
+                            bindGoogle &&
+                            <button className='cta mt-5 w-full' onClick={(e)=>{e.preventDefault();setShowSuccess(2)}}>Submit</button>
+                        }
+                        {
                             verifyCode &&
                             <button className='cta mt-5 w-full' onClick={(e)=>confirmOtp(e)}>Confirm</button>
                         }
@@ -155,6 +160,11 @@ const VerificationCode = ({CloseCta,showSetState,bindMobile,showState,fixed,modi
                 :
                     showSuccess === 2 &&
                     <ResetPassSuccess overlay={true} linkMobile={true}  />
+            }
+            {
+                bindGoogle &&                
+                showSuccess === 2 &&
+                <ResetPassSuccess overlay={true}  bindGoogle={true} />
             }
             
             </div>

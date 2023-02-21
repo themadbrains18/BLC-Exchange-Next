@@ -8,15 +8,16 @@ import NotificationHover from "../snippets/notificationHover";
 import TopBar from "../snippets/topBar";
 import { useRouter } from "next/router";
 
-import { signOut, useSession } from "next-auth/react"
+import {  useSession } from "next-auth/react"
 
 
 const Header = (props) => {
   const router = useRouter()
   const { data: session } = useSession()
+
   const { mode, setMode, login,topBar,setClick } = useContext(Context);
   const [login2,setLogin2] = useState(login)
-  console.log(session,' session session session')
+  // console.log(session,' session session session')
   const [show, setShow] = useState(true);
   const [Data, setData] = useState([]);
   const [specialData, setSpecialData] = useState([]);
@@ -25,6 +26,9 @@ const Header = (props) => {
 
       if(session !="" && session != undefined){
         setLogin2(true)
+      }
+      else{
+        setLogin2(false)
       }
 
       await fetch(process.env.NEXT_PUBLIC_BASEURL+ "/hello")
@@ -46,7 +50,7 @@ const Header = (props) => {
   return (
     <>
       <header className="header w-full border-b border-primary ">
-        <div className="">
+        {/* <div className="">
           {  (session != "" && session!=undefined ) && (
             <>
               <p>access_token : {session?.user?.access_token}</p>
@@ -57,7 +61,7 @@ const Header = (props) => {
             )
           }
             
-        </div>
+        </div> */}
 
         {/* top bar */}
         {router.pathname==="/" &&

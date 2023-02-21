@@ -1,9 +1,11 @@
+import Head from "next/head";
 import SideBar from "@/components/asset/sideBar";
 import Layout from "@/components/layout/Layout";
 import ActiveCta from "@/components/snippets/activeCta";
 import Link from "next/link";
 import React, { useState } from "react";
 import Image from "next/image";
+import { getProviders, getSession } from "next-auth/react"
 
 const Asset = ({ assets }) => {
   const [active, setActive] = useState(0);
@@ -19,7 +21,7 @@ const Asset = ({ assets }) => {
   let activeCta = ["Spot", "Margin", "P2P", "Earn", "Coupons", "Merge Swap"];
   return (
     <>
-      <Layout data={assets} slug="asset">
+      <Layout data={assets} link="asset">
         <div className="grow p-4 ">
           <div className="hidden md:flex gap-2 items-center ">
             <h3 className="section-secondary-heading font-noto">Assets</h3>
@@ -81,7 +83,7 @@ const Asset = ({ assets }) => {
                 onClick={() => {
                   setShow(!show);
                 }}
-                s
+                
               >
                 {show ? (
                   //   open
@@ -156,11 +158,10 @@ const Asset = ({ assets }) => {
                 <Link
                   key={i}
                   href={e.link}
-                  className={`w-max text-center py-2 px-4 font-noto text-sm whitespace-nowrap rounded-lg ${
-                    index === i
-                      ? "bg-primary text-white"
-                      : " border border-border-clr"
-                  }`}
+                  className={`w-max text-center py-2 px-4 font-noto text-sm whitespace-nowrap rounded-lg ${index === i
+                    ? "bg-primary text-white"
+                    : " border border-border-clr"
+                    }`}
                 >
                   {e.name}
                 </Link>
@@ -193,9 +194,9 @@ const Asset = ({ assets }) => {
                 </div>
                 <div>
 
-                <Link href={""}>
-                  <h4 className="info-14 hover:text-grey">Today is PNL </h4>
-                </Link>
+                  <Link href={""}>
+                    <h4 className="info-14 hover:text-grey">Today is PNL </h4>
+                  </Link>
                   <span className="section-secondary-heading font-noto">0 BTC ≈$ 0</span>
                 </div>
               </div>
@@ -232,7 +233,7 @@ const Asset = ({ assets }) => {
                 </label>
               </div>
               <div className="grid place-content-center w-full h-96">
-                <Image src={"/assets/icons/noData.svg"} alt="No Data" height={50} width={50}/>
+                <Image src={"/assets/icons/noData.svg"} alt="No Data" height={50} width={50} />
                 <h4 className="info-14 text-disable-clr text-center">No Data</h4>
               </div>
             </div>
@@ -244,14 +245,28 @@ const Asset = ({ assets }) => {
 };
 
 export async function getServerSideProps(context) {
-  let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
 
-  let menu = await data.json();
+  const { req } = context;
+  const session = await getSession({ req });
+  const providers = await getProviders()
+  if (session) {
+    let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
+    let menu = await data.json();
+    return {
+      props: {
+        assets: menu.specialNav.assets,
+      }, // will be passed to the page component as props
+    };
+  }
+  // return {
+  //     props: {
+  //         providers,
+  //     },
+  // }
   return {
-    props: {
-      assets: menu.specialNav.assets,
-    }, // will be passed to the page component as props
+    redirect: { destination: "/" },
   };
+
 }
 
 export default Asset;
