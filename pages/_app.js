@@ -9,9 +9,9 @@ import Loader from "@/components/snippets/loader";
 import { SessionProvider } from "next-auth/react"
 
 
-export default function App({ Component, pageProps : { session, ...pageProps }, props }) {
+export default function App({ Component, pageProps: { session, ...pageProps }, props }) {
   //  const mode=useContext(UserContext)
-  console.log(session,' sessionsession')
+  console.log(session, ' sessionsession')
 
   const [mode, setMode] = useState("dark");
   const [login, setLogin] = useState(false);
@@ -27,7 +27,7 @@ export default function App({ Component, pageProps : { session, ...pageProps }, 
   useEffect(() => {
     padding = ref.current.offsetHeight;
     // console.log(padding)
-    console.log(padding,'===inital padding')
+    console.log(padding, '===inital padding')
     setPad(padding);
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
     currentMode = localStorage.getItem("mode");
@@ -41,9 +41,9 @@ export default function App({ Component, pageProps : { session, ...pageProps }, 
   }, []);
 
   const heightUpdate = (topPaddong) => {
-    console.log(pad,'all padding');
-    console.log((pad - topPaddong),'after notification remove padding');
-    //  padding = document.querySelector(".navbar").offsetHeight;
+    console.log(pad, 'all padding');
+    console.log((pad - topPaddong), 'after notification remove padding');
+    padding = document.querySelector(".navbar").offsetHeight;
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
   };
   return (
@@ -54,37 +54,37 @@ export default function App({ Component, pageProps : { session, ...pageProps }, 
             <Loader />
           </div>
         )}
-<SessionProvider session={session}>
-        <Context.Provider
-          value={{
-            mode,
-            setMode,
-            login,
-            setLogin,
-            click,
-            setClick,
-            heightUpdate,
-            padding,
-            ref2,
-            ref
-            
-          }}
-        >
-          <div
-            className={` bg-black  opacity-0 invisible duration-300 fixed top-0 left-0 h-full w-full ${
-              click && "!visible opacity-50"
-            }`}
-          ></div>
-          <div ref={ref} className="fixed  w-full border-b border-primary ">
-            <Header />
-          </div>
+        <SessionProvider session={session}>
+          <Context.Provider
+            value={{
+              mode,
+              setMode,
+              login,
+              setLogin,
+              click,
+              setClick,
+              heightUpdate,
+              padding,
+              ref2,
+              ref
 
-          <div ref={ref2}>
-            <Component {...pageProps} />
-          </div>
-          <Footer />
-        </Context.Provider>
-</SessionProvider>
+            }}
+          >
+            <div
+              className={` bg-black  opacity-0 invisible duration-300 fixed top-0 left-0 h-full w-full ${click && "!visible opacity-50"
+                }`}
+            ></div>
+            
+            <div ref={ref} className="fixed  w-full border-b border-primary ">
+              <Header />
+            </div>
+
+            <div ref={ref2}>
+              <Component {...pageProps} />
+            </div>
+            <Footer />
+          </Context.Provider>
+        </SessionProvider>
       </div>
     </>
   );

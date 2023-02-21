@@ -8,8 +8,14 @@ import Tranding from 'components/dashboard/tranding'
 import Welfare from 'components/dashboard/welfare'
 import Layout from 'components/layout/Layout'
 import SideMenu from 'components/snippets/sideMenu'
+import { getProviders, getSession } from "next-auth/react"
+
 import React from 'react'
-const Dashboard = ({ account }) => {
+const Dashboard = ({ account, providers }) => {
+  console.log(providers, 'i am provider!') 
+
+
+
   return (
     <>
       <Layout data={account} slug="dashboard">
@@ -36,13 +42,47 @@ const Dashboard = ({ account }) => {
   )
 }
 export async function getServerSideProps(context) {
-  let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
 
+  const { req } = context;
+  const session = await getSession({ req });
+  const providers = await getProviders()
+  if (session) {
+    let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
   let menu = await data.json();
   return {
     props: {
       account: menu.specialNav.account,
+      providers : session
     }, // will be passed to the page component as props
   };
+  }
+  // return {
+  //     props: {
+  //         providers,
+  //     },
+  // }
+  return {
+    redirect: { destination: "/" },
+  };
+
+  
 }
 export default Dashboard
+
+
+
+// export async function getServerSideProps(context) {
+//   const { req } = context;
+//   const session = await getSession({ req });
+//   const providers = await getProviders()
+//   if (session) {
+//       return {
+//           redirect: { destination: "/dashboard" },
+//       };
+//   }
+//   return {
+//       props: {
+//           providers,
+//       },
+//   }
+// }
