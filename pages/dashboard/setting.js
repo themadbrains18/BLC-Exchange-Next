@@ -272,7 +272,7 @@ export async function getServerSideProps(context) {
   const session = await getSession({ req });
   const providers = await getProviders()
   if (session) {
-    let data = await fetch("http://localhost:3000/api/hello");
+    let data = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/hello`);
 
     let menu = await data.json();
     return {
