@@ -12,7 +12,6 @@ const Layout = ({ children, link, data }) => {
   //   div.removeAttribute("style");
   //   div.setAttribute("style",`padding-top: ${padding}px` );
   // }, []);
-console.log("==" ,link)
   return (
     <>
       <div className={`flex  flex-col md:flex-row dark:bg-black-v-5 `}>

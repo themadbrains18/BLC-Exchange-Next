@@ -11,8 +11,6 @@ import { SessionProvider } from "next-auth/react"
 
 export default function App({ Component, pageProps: { session, ...pageProps }, props }) {
   //  const mode=useContext(UserContext)
-  console.log(session, ' sessionsession')
-
   const [mode, setMode] = useState("dark");
   const [login, setLogin] = useState(true);
   const [click, setClick] = useState(false);
@@ -27,7 +25,6 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
   useEffect(() => {
     padding = ref.current.offsetHeight;
     // console.log(padding)
-    console.log(padding, '===inital padding')
     setPad(padding);
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
     currentMode = localStorage.getItem("mode");
@@ -41,8 +38,6 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
   }, []);
 
   const heightUpdate = (topPaddong) => {
-    console.log(pad, 'all padding');
-    console.log((pad - topPaddong), 'after notification remove padding');
     padding = document.querySelector(".navbar").offsetHeight;
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
   };

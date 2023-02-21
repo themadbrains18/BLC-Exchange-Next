@@ -11,7 +11,6 @@ const SideBar = ({ data, link }) => {
   const router = useRouter();
   const { click, setClick } = useContext(Context);
   const [show, setShow] = useState(false);
-console.log(link , "sliud[[[")
   const [active, setActive] = useState(0);
 
   return (

@@ -1,12 +1,13 @@
-import {useContext,useState} from 'react'
+import { useContext, useState } from 'react'
 import Layout from '@/components/layout/layout'
 import Context from '@/components/contexts/context';
 import Link from 'next/link';
 import VerificationCode from './../../components/login-register/verification-code';
-const Setting = ({account}) => {
-  const { mode , setClick } = useContext(Context);
-  const [showSafteyV,setShowSafteyV] = useState(0);
-  const [SetState,showSetState] = useState(0);
+import { getProviders, getSession } from "next-auth/react"
+const Setting = ({ account }) => {
+  const { mode, setClick } = useContext(Context);
+  const [showSafteyV, setShowSafteyV] = useState(0);
+  const [SetState, showSetState] = useState(0);
   return (
     <Layout data={account} slug="dashboard">
       <div className="py-20  w-full px-[24px] ">
@@ -53,9 +54,8 @@ const Setting = ({account}) => {
                   <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Mobile</p>
                   <p className="info-12 ">Used to log in, withdraw, retrieve passwords, modify security settings, and perform security verification when managing APIs</p>
                 </div>
-                <Link className='cta' href="bindmobile">Settings</Link>
               </div>
-              <button className='cta'>Settings</button>
+              <Link className='cta' href="bindmobile">Settings</Link>
             </div>
 
             <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">
@@ -78,11 +78,10 @@ const Setting = ({account}) => {
                   <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Email</p>
                   <p className="info-12 ">Used to log in, withdraw, retrieve passwords, modify security settings, and perform security verification when managing APIs</p>
                 </div>
-
-                <button className='info-14-16 !text-primary' onClick={()=>{setClick(true);setShowSafteyV(1)}}> Turn Off Verification</button>
-
               </div>
-              <Link href="#" className='info-14-16 !text-primary'> Turn Off Verification</Link>
+
+              <button className='info-14-16 !text-primary' onClick={() => { setClick(true); setShowSafteyV(1) }}> Turn Off Verification</button>
+
             </div>
 
             <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">
@@ -256,13 +255,14 @@ const Setting = ({account}) => {
                   <p className="info-12 ">Subscribe to the Bitget Assistant to get push notifications</p>
                 </div>
               </div>
-              {
-                showSafteyV === 1 &&
-                <VerificationCode modifyPass={true} fixed={true} showSetState={showSetState} />
-              }
+              <Link href="#" className='info-14-16 !text-primary'>Link</Link>
+            </div>
           </div>
+          {
+            showSafteyV === 1 &&
+            <VerificationCode modifyPass={true} fixed={true} showSetState={showSetState} />
+          }
         </div>
-      </div>
       </div>
     </Layout>
   )
@@ -272,12 +272,12 @@ export async function getServerSideProps(context) {
   const session = await getSession({ req });
   const providers = await getProviders()
   if (session) {
-    let data = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/hello`);
-
+    let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
     let menu = await data.json();
     return {
       props: {
         account: menu.specialNav.account,
+        session: session
       }, // will be passed to the page component as props
     };
   }
