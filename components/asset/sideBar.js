@@ -15,7 +15,7 @@ const SideBar = ({ data, slug }) => {
 
   return (
     <>
-      <div className={`md:fixed  md:min-w-[240px]  w-fit px-3 md:px-0   `}>
+      <div className={`md:fixed md:h-[100vh] bg-white dark:bg-black-v-3 md:min-w-[240px] overflow-x-auto table_box  w-fit px-3 md:px-0 md:border-r  md:border-primary  `}>
         <button
           className="flex items-center md:hidden"
           onClick={() => {
@@ -66,7 +66,7 @@ const SideBar = ({ data, slug }) => {
             </button>
           </div>
 
-          <ul className="menu_box md:border-r h-[100vh] md:border-primary dark:bg-black-v-4">
+          <ul className="menu_box  dark:bg-black-v-4">
             {data.subMenu &&
               data.subMenu.map((e, i) => {
                 return (
@@ -83,7 +83,7 @@ const SideBar = ({ data, slug }) => {
                       <Icons type={e.svgType} />
                       {!e.menu && (
                         <Link
-                          href={`/${slug}/${e.linkUrl}`}
+                          href={`${e.linkUrl}`}
                           className="info-14 !text-black hover:!text-black dark:hover:!text-white dark:!text-white "
                         >
                           {e.linkText}

@@ -1,15 +1,19 @@
-import SideBar from "@/components/asset/sideBar";
-import Layout from "@/components/layout/Layout";
-import ActiveCta from "@/components/snippets/activeCta";
+
+import Layout from "/components/layout/Layout";
+import ActiveCta from "/components/snippets/activeCta";
 import Link from "next/link";
 import { baseurl } from "../../Api";
 import React, { useState } from "react";
-import Image from "next/image";
+import Spot from "/components/asset/spot";
+import Margin from "/components/asset/margin";
+import P2P from "/components/asset/p2p";
+import Earn from "/components/asset/earn";
 
 const Asset = ({ assets }) => {
   const [active, setActive] = useState(0);
   const [show, setShow] = useState(true);
   const [index, setIndex] = useState(0);
+  const [dataShow, setDataShow] = useState(true);
   let obj = [
     { name: "Deposit", link: "" },
     { name: "Buy Crypto", link: "" },
@@ -21,7 +25,7 @@ const Asset = ({ assets }) => {
   return (
     <>
       <Layout data={assets} slug="asset">
-        <div className="grow p-4 ">
+        <div className="grow py-4 px-5 md:px-10 ">
           <div className="hidden md:flex gap-2 items-center ">
             <h3 className="section-secondary-heading font-noto">Assets</h3>
             <button
@@ -73,12 +77,12 @@ const Asset = ({ assets }) => {
           </div>
           <div className="box bg-primary p-3 rounded-xl mt-4">
             <div className="flex items-center gap-2">
-              <h4 className="info-14 text-white hover:text-white">
+              <h4 className="info-14 hover:!text-white !text-white ">
                 Total Equality
               </h4>
 
               <button
-                className="eyeIcon"
+                className="eyeIcon md:hidden"
                 onClick={() => {
                   setShow(!show);
                 }}
@@ -92,7 +96,7 @@ const Asset = ({ assets }) => {
                     strokeWidth={1.5}
                     stroke="white"
                     fill="transparent"
-                    className="w-4 h-4"
+                    // className="w-4 h-4"
                   >
                     <path
                       strokeLinecap="round"
@@ -124,7 +128,7 @@ const Asset = ({ assets }) => {
                 )}
               </button>
             </div>
-            <div className="info-16-22 text-white mt-2">
+            <div className="info-16-22 !text-white mt-2">
               <div className="flex gap-2">
                 {show ? <span>0</span> : <span>****</span>}{" "}
                 <h4 className="font-bold ">BTC </h4>
@@ -157,7 +161,7 @@ const Asset = ({ assets }) => {
                 <Link
                   key={i}
                   href={e.link}
-                  className={`w-max text-center py-2 px-4 font-noto text-sm whitespace-nowrap rounded-lg ${
+                  className={`w-max text-center py-2 px-4 font-noto text-sm whitespace-nowrap rounded-lg dark:text-white ${
                     index === i
                       ? "bg-primary text-white"
                       : " border border-border-clr"
@@ -184,60 +188,21 @@ const Asset = ({ assets }) => {
           <div className="mt-3   overflow-x-auto table_box border-b border-border-clr">
             <ActiveCta data={activeCta} active={active} setActive={setActive} />
           </div>
+          <div className="mt-3">
+             
           {active === 0 && (
-            <div className="mt-3">
-              <div className="flex justify-between">
-                <div>
-                  <h4 className="info-14 hover:text-grey
-                  ">Estimated Spot Balance</h4>
-                  <span className="section-secondary-heading font-noto">0.00000000 BTC</span>
-                </div>
-                <div>
-
-                <Link href={""}>
-                  <h4 className="info-14 hover:text-grey">Today is PNL </h4>
-                </Link>
-                  <span className="section-secondary-heading font-noto">0 BTC ≈$ 0</span>
-                </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-primary"
-                />
-                <label className="inline-flex items-center">
-                  <input
-                    type="checkbox"
-                    className="w-4 h-4 border-0 focus:ring-0 accent-primary"
-                  />
-
-                  <span className="ml-2 info-12">Hide</span>
-                </label>
-                <span>0 Balances</span>
-                <Link href={""}>Convert Small Balances into BGB</Link>
-              </div>
-              <div className="flex items-center gap-2 justify-between border-b border-border-clr py-3">
-                <span className=" info-12 text-primary ">
-                  BGB fee Discount-20%
-                </span>
-                <label className={`relative inline-flex  items-center mr-5 cursor-pointer duration-500`}>
-                  {" "}
-                  <input
-                    type="checkbox"
-                    defaultValue=""
-                    className="sr-only peer"
-                    defaultChecked=""
-                  />
-                  <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                </label>
-              </div>
-              <div className="grid place-content-center w-full h-96">
-                <Image src={"/assets/icons/noData.svg"} alt="No Data" height={50} width={50}/>
-                <h4 className="info-14 text-disable-clr text-center">No Data</h4>
-              </div>
-            </div>
+            <Spot setDataShow={setDataShow} show={show} dataShow={dataShow}/>
           )}
+          {active === 1 && (
+            <Margin setDataShow={setDataShow} show={show} dataShow={dataShow}/>
+          )}
+          {active === 2 && (
+            <P2P setDataShow={setDataShow} show={show} dataShow={dataShow}/>
+          )}
+          {active === 3 && (
+            <Earn setDataShow={setDataShow} show={show} dataShow={dataShow}/>
+          )}
+          </div>
         </div>
       </Layout>
     </>
@@ -245,7 +210,7 @@ const Asset = ({ assets }) => {
 };
 
 export async function getServerSideProps(context) {
-  let data = await fetch(process.env.BASEURL + "/hello");
+  let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
 
   let menu = await data.json();
   return {

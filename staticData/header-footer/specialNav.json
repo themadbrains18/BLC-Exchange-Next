@@ -132,11 +132,11 @@
                 "linkText": "Overview",
                 "desc": "Futures trading",
                 "svgType": "overview",
-                "linkUrl": ""
+                "linkUrl": "/asset"
             },
             {
-                "linkText": "Deposite",
-                "linkUrl": "earn",
+                "linkText": "Deposit",
+                "linkUrl": "/asset/deposit",
                 "svgType": "deposite"
             },
             {

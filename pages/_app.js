@@ -65,14 +65,17 @@ export default function App({ Component, pageProps, props }) {
               click && "!visible opacity-50"
             }`}
           ></div>
-          <div ref={ref} className="fixed  w-full border-b border-primary ">
+          <div ref={ref} className="fixed w-full border-b border-primary md:z-[2]">
             <Header />
           </div>
 
           <div ref={ref2}>
             <Component {...pageProps} />
           </div>
+         
+
           <Footer />
+         
         </Context.Provider>
       </div>
     </>
