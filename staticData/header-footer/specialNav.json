@@ -279,7 +279,7 @@
                 "linkText": "My Settings",
                 "desc": "Market trends from experts",
                 "svgType": "my_settings",
-                "linkUrl": "earn"
+                "linkUrl": "dashboard/prefernce"
             },
             {
                 "linkText": "Sub Accounts",

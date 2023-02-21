@@ -1,11 +1,12 @@
 import { Fragment, useState, useEffect } from 'react'
-const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setCurrencyList, coin, currency }) => {
+const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setCurrencyList, coin, currency, idData, selectId, selectCoin }) => {
     // const[showDropdown,setShowDropdown] = useState(false);
     // const[DropdownPhone,setDropdownPhone] = useState(false);
 
     const [Data, setData] = useState([]);
     const [coinData, setCoinData] = useState([]);
     const [currencyData, setCurrencyData] = useState([]);
+    console.log("=====idData", idData)
 
     useEffect(() => {
       (async () => {
@@ -41,7 +42,7 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
     return (
         <>
             <div className='bg-white dark:bg-black-v-5 absolute top-[100%] left-0 w-full border border-grey max-h-[350px] overflow-auto z-10'>
-                <div className="p-2 sticky top-0 left-0 w-full bg-white dark:bg-black-v-5">
+                <div className={`p-2 sticky top-0 left-0 w-full bg-white dark:bg-black-v-5 ${idData ? 'hidden':'block' }`}>
                     <input type="search" placeholder="search" className="block  px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[40px] text-black dark:text-white outline-none focus:!border-primary" name="search" />
                 </div>
                 <ul>
@@ -74,7 +75,7 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
                                 <Fragment key={i}>
                                     {
                                         coin &&
-                                        <li className="cursor-pointer info-14 !text-black flex gap-2 p-3 dark:!text-white px-4 hover:bg-[#cccccc1f]" >
+                                        <li className="cursor-pointer info-14 !text-black flex gap-2 p-3 dark:!text-white px-4 hover:bg-[#cccccc1f]" onClick={() => { selectCoin(e) }}>
                                             <img src={e.image} className='max-w-[24px] w-full h-auto'></img>
                                             <span>{e.name}</span>
                                         </li>
@@ -93,6 +94,21 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
                                             currency &&
                                             <li className="cursor-pointer info-14 !text-black flex gap-2 p-3 dark:!text-white px-4 hover:bg-[#cccccc1f]" >
                                                 <span>{e.name}</span>
+                                            </li>                                 
+                                    }
+                                  
+                                </Fragment>
+                            )
+                        })
+                    }
+                    {
+                        idData &&
+                        idData.map((e, i) => {
+                            return (
+                                <Fragment key={i}>
+                                    {
+                                            <li className="cursor-pointer info-14 !text-black flex gap-2 p-3 dark:!text-white px-4 hover:bg-[#cccccc1f]"  onClick={() => { selectId(e) }}>
+                                                <span>{e}</span>
                                             </li>                                 
                                     }
                                   

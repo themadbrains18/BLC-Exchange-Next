@@ -11,6 +11,9 @@ const VerificationType = () => {
         <section className=' dark:bg-black-v-5 '>
            
                 <div className='flex gap-4 items-center'>
+                <button className={`${step === 1 ? 'block' : 'hidden'}`} onClick={() => setStep(step - 1)}>
+                                <img src='/assets/icons/back-arrow.svg'></img>
+                            </button>
                     <p className='section-secondary-heading'>ID Verification</p>
                     <p className='info-12 bg-border-clr  rounded-sm'>Unverified</p>
                 </div>

@@ -6,6 +6,15 @@ const BuySell = () => {
     const [active, setActive] = useState(0)
     const [dropDown, setDropDown] = useState(false)
     const [currencyList, setCurrecnyList] = useState(false)
+    const [coin, setCoin] = useState(false)
+    const [coinImg, setCoinImg] = useState(false)
+
+    const selectCoin = async (item) => {
+        console.log("===item",item)
+        setCoin(item.name)
+        setCoinImg(item.image)
+    }
+
     return (
         <section className='dark:bg-black-v-3 px-10 py-10 md:py-20'>
             <div className='container place-items-center grid grid-cols gird lg:grid-cols-2 justify-between gap-11'>
@@ -75,12 +84,12 @@ const BuySell = () => {
                                     :
                                     <div>
                                         <div className='flex cursor-pointer ' onClick={() => { setDropDown(!dropDown) }}>
-                                            <p className='info-14-16 font-bold'>USD</p>
+                                            <p className='info-14-16 font-bold'>{coin}</p>
                                             <img src='/assets/icons/down.svg' ></img>
                                         </div>
                                         {
                                              dropDown != false &&
-                                            <SearchDropdown setShowDropdown={setDropDown} coin={true} />
+                                            <SearchDropdown setShowDropdown={setDropDown} coin={true} selectCoin={selectCoin}/>
                                         }
                                     </div>
                                 }
@@ -97,12 +106,12 @@ const BuySell = () => {
                                 {show === 1 ?
                                     <div>
                                         <div className='flex cursor-pointer ' onClick={() => { setDropDown(!dropDown) }}>
-                                            <p className='info-14-16 font-bold'>USD</p>
+                                            <p className='info-14-16 font-bold'>{coin}</p>
                                             <img src='/assets/icons/down.svg' ></img>
                                         </div>
                                         {
                                            dropDown != false &&
-                                            <SearchDropdown setShowDropdown={setDropDown} coin={true} />
+                                            <SearchDropdown setShowDropdown={setDropDown} coin={true} selectCoin={selectCoin} />
                                         }
                                     </div>
                                     :
