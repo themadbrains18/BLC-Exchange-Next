@@ -18,8 +18,8 @@ const Dashboard = ({ account, session }) => {
 
   return (
     <>
-      <Layout data={account} slug="dashboard">
-      <div className='grow max-w-full px-0 xl:px-10 bg-white dark:bg-black-v-3'>
+      <Layout data={account} link="dashboard">
+      <div className='grow max-w-full  bg-white dark:bg-black-v-5'>
                 <div>
                   <Profile />
           </div>
@@ -29,6 +29,7 @@ const Dashboard = ({ account, session }) => {
               <SocialTrades />
               <Tranding />
               <Explore />
+           
                 </div>
                 <div className='hidden xl:block max-w-xs w-full '>
                   <Welfare />

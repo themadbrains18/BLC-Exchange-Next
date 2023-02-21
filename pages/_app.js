@@ -14,7 +14,7 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
   console.log(session, ' sessionsession')
 
   const [mode, setMode] = useState("dark");
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(true);
   const [click, setClick] = useState(false);
   const [loader, setLoader] = useState(true);
   const [pad, setPad] = useState();

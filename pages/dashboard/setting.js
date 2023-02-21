@@ -1,10 +1,12 @@
-import { useContext } from 'react'
+import {useContext,useState} from 'react'
 import Layout from '@/components/layout/layout'
 import Context from '@/components/contexts/context';
 import Link from 'next/link';
-import { getProviders, getSession } from "next-auth/react"
-const Setting = ({ account }) => {
-  const { mode } = useContext(Context);
+import VerificationCode from './../../components/login-register/verification-code';
+const Setting = ({account}) => {
+  const { mode , setClick } = useContext(Context);
+  const [showSafteyV,setShowSafteyV] = useState(0);
+  const [SetState,showSetState] = useState(0);
   return (
     <Layout data={account} slug="dashboard">
       <div className="py-20  w-full px-[24px] ">
@@ -51,6 +53,7 @@ const Setting = ({ account }) => {
                   <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Mobile</p>
                   <p className="info-12 ">Used to log in, withdraw, retrieve passwords, modify security settings, and perform security verification when managing APIs</p>
                 </div>
+                <Link className='cta' href="bindmobile">Settings</Link>
               </div>
               <button className='cta'>Settings</button>
             </div>
@@ -75,6 +78,9 @@ const Setting = ({ account }) => {
                   <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Email</p>
                   <p className="info-12 ">Used to log in, withdraw, retrieve passwords, modify security settings, and perform security verification when managing APIs</p>
                 </div>
+
+                <button className='info-14-16 !text-primary' onClick={()=>{setClick(true);setShowSafteyV(1)}}> Turn Off Verification</button>
+
               </div>
               <Link href="#" className='info-14-16 !text-primary'> Turn Off Verification</Link>
             </div>
@@ -250,10 +256,13 @@ const Setting = ({ account }) => {
                   <p className="info-12 ">Subscribe to the Bitget Assistant to get push notifications</p>
                 </div>
               </div>
-              <Link href="#" className='info-14-16 !text-primary'>Link</Link>
-            </div>
+              {
+                showSafteyV === 1 &&
+                <VerificationCode modifyPass={true} fixed={true} showSetState={showSetState} />
+              }
           </div>
         </div>
+      </div>
       </div>
     </Layout>
   )

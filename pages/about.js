@@ -11,7 +11,7 @@ import WhyChoose from "@/components/about/whyChoose"
 export default function About() {
   return (
     <>
-      <div >
+      <>
       <Mission />
       <Values />
       <AboutUs />
@@ -21,7 +21,7 @@ export default function About() {
       <WhyChoose />
       <Links />
       <Journey />
-      </div>
+      </>
     </>
   )
 
