@@ -243,19 +243,19 @@
                 "linkText": "Dashboard",
                 "desc": "Crypto Market Information",
                 "svgType": "dashboard",
-                "linkUrl": ""
+                "linkUrl": "dashboard"
             },
             {
                 "linkText": "Security Setting",
                 "desc": "Crypto Rankings",
                 "svgType": "Security_Setting",
-                "linkUrl": "earn"
+                "linkUrl": "dashboard/setting"
             },
             {
                 "linkText": "ID Verfication",
                 "desc": "BLC-Exchange and Big Data",
                 "svgType": "id_verfication",
-                "linkUrl": "earn"
+                "linkUrl": "dashboard/verified"
             },
             {
                 "linkText": "API Management",
@@ -279,7 +279,7 @@
                 "linkText": "My Settings",
                 "desc": "Market trends from experts",
                 "svgType": "my_settings",
-                "linkUrl": "earn"
+                "linkUrl": "dashboard/prefernce"
             },
             {
                 "linkText": "Sub Accounts",

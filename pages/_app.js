@@ -1,19 +1,21 @@
 import "@/styles/globals.css";
 import { useState, useEffect, useRef } from "react";
 import Context from "../components/contexts/context";
-
 import Footer from "@/components/header-footer/footer";
 import Header from "@/components/header-footer/header";
 import Loader from "@/components/snippets/loader";
 
-export default function App({ Component, pageProps, props }) {
-  //  const mode=useContext(UserContext)
+// import { signOut, useSession } from "next-auth/react"
+import { SessionProvider } from "next-auth/react"
 
+
+export default function App({ Component, pageProps: { session, ...pageProps }, props }) {
+  //  const mode=useContext(UserContext)
   const [mode, setMode] = useState("dark");
   const [login, setLogin] = useState(true);
   const [click, setClick] = useState(false);
   const [loader, setLoader] = useState(true);
-  // const [pad, setPad] = useState();
+  const [pad, setPad] = useState();
   // const [topBar, setTopBar] = useState(true);
   const ref = useRef(null);
   const ref2 = useRef(null);
@@ -23,6 +25,7 @@ export default function App({ Component, pageProps, props }) {
   useEffect(() => {
     padding = ref.current.offsetHeight;
     // console.log(padding)
+    setPad(padding);
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
     currentMode = localStorage.getItem("mode");
     if (currentMode == "light") {
@@ -34,8 +37,8 @@ export default function App({ Component, pageProps, props }) {
     }, 1000);
   }, []);
 
-  const heightUpdate = () => {
-     padding = document.querySelector(".navbar").offsetHeight;
+  const heightUpdate = (topPaddong) => {
+    padding = document.querySelector(".navbar").offsetHeight;
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
   };
   return (
@@ -46,37 +49,37 @@ export default function App({ Component, pageProps, props }) {
             <Loader />
           </div>
         )}
+        <SessionProvider session={session}>
+          <Context.Provider
+            value={{
+              mode,
+              setMode,
+              login,
+              setLogin,
+              click,
+              setClick,
+              heightUpdate,
+              padding,
+              ref2,
+              ref
 
-        <Context.Provider
-          value={{
-            mode,
-            setMode,
-            login,
-            setLogin,
-            click,
-            setClick,
-            heightUpdate,
-            padding,
+            }}
+          >
+            <div
+              className={` bg-black  opacity-0 invisible duration-300 fixed top-0 left-0 h-full w-full ${click && "!visible opacity-50 z-[2]"
+                }`}
+            ></div>
             
-          }}
-        >
-          <div
-            className={` bg-black  opacity-0 invisible duration-300 fixed top-0 left-0 h-full w-full ${
-              click && "!visible opacity-50"
-            }`}
-          ></div>
-          <div ref={ref} className="fixed w-full border-b border-primary md:z-[2]">
-            <Header />
-          </div>
+            <div ref={ref} className="fixed  w-full border-b border-primary z-[4] ">
+              <Header />
+            </div>
 
-          <div ref={ref2}>
-            <Component {...pageProps} />
-          </div>
-         
-
-          <Footer />
-         
-        </Context.Provider>
+            <div ref={ref2}>
+              <Component {...pageProps} />
+            </div>
+            <Footer />
+          </Context.Provider>
+        </SessionProvider>
       </div>
     </>
   );

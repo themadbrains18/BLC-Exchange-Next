@@ -5,7 +5,6 @@ import { useContext } from "react";
 
 const DropdownWallet = ({ subMenu }) => {
   const { mode } = useContext(Context);
-
   return (
     <>
       <div className="p-2 absolute top-8 left-[-216px] lg:left-0 invisible shadow-2xl  group-hover:animate-open bg-white opacity-0 group-hover:opacity-100 group-hover:visible  dark:bg-black-v-4">
@@ -20,7 +19,13 @@ const DropdownWallet = ({ subMenu }) => {
               className={`items-center  flex gap-4  p-4 group/arrow ${mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
                 } grow`}
             >
+              {e.desc &&
+              
               <h3 className="info-14-16">{e.desc}</h3>
+              }
+              {
+                <h3 className="info-14-16">{e}</h3>
+              }
 
             </div>
 

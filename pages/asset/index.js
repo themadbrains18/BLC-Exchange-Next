@@ -2,12 +2,12 @@
 import Layout from "/components/layout/Layout";
 import ActiveCta from "/components/snippets/activeCta";
 import Link from "next/link";
-import { baseurl } from "../../Api";
 import React, { useState } from "react";
 import Spot from "/components/asset/spot";
 import Margin from "/components/asset/margin";
 import P2P from "/components/asset/p2p";
 import Earn from "/components/asset/earn";
+import { getProviders, getSession } from "next-auth/react"
 
 const Asset = ({ assets }) => {
   const [active, setActive] = useState(0);
@@ -24,9 +24,9 @@ const Asset = ({ assets }) => {
   let activeCta = ["Spot", "Margin", "P2P", "Earn", "Coupons", "Merge Swap"];
   return (
     <>
-      <Layout data={assets} slug="asset">
-        <div className="grow py-4 px-5 md:px-10 ">
-          <div className="hidden md:flex gap-2 items-center ">
+      <Layout data={assets} name="asset">
+        <div className="grow p-4 ">
+          <div className="hidden md:flex gap-2 items-center mb-4">
             <h3 className="section-secondary-heading font-noto">Assets</h3>
             <button
               className="eyeIcon"
@@ -75,7 +75,7 @@ const Asset = ({ assets }) => {
               )}
             </button>
           </div>
-          <div className="box bg-primary p-3 rounded-xl mt-4">
+          <div className="box bg-primary p-3 rounded-xl ">
             <div className="flex items-center gap-2">
               <h4 className="info-14 hover:!text-white !text-white ">
                 Total Equality
@@ -86,7 +86,7 @@ const Asset = ({ assets }) => {
                 onClick={() => {
                   setShow(!show);
                 }}
-                s
+                
               >
                 {show ? (
                   //   open
@@ -210,14 +210,28 @@ const Asset = ({ assets }) => {
 };
 
 export async function getServerSideProps(context) {
-  let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
 
-  let menu = await data.json();
+  const { req } = context;
+  const session = await getSession({ req });
+  const providers = await getProviders()
+  if (session) {
+    let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
+    let menu = await data.json();
+    return {
+      props: {
+        assets: menu.specialNav.assets,
+      }, // will be passed to the page component as props
+    };
+  }
+  // return {
+  //     props: {
+  //         providers,
+  //     },
+  // }
   return {
-    props: {
-      assets: menu.specialNav.assets,
-    }, // will be passed to the page component as props
+    redirect: { destination: "/" },
   };
+
 }
 
 export default Asset;

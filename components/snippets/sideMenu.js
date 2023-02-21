@@ -20,7 +20,7 @@ const SideMenu = ({ show, setShow, data, }) => {
         show === false ? "right-0" : "right-[-100%]"
       }`}
     >
-      <div className={`p-5  right-0 `}>
+      <div className={`p-5 pb-2  right-0 `}>
       <button
      
         onClick={() => {
@@ -45,7 +45,7 @@ const SideMenu = ({ show, setShow, data, }) => {
       </button>
       </div>
      
-      <div className="mx-3 mt-10">
+      <div className="mx-3">
         <button className="transparent-cta w-full">sign up</button>
         <button className="cta w-full ">Login</button>
       </div>

@@ -1,21 +1,21 @@
 [
     {
-        "image": "/assets/images/tron.png",
+        "image": "tron.png",
         "name": "USDT"
      
     }, {
-        "image": "/assets/images/bnb.png",
+        "image": "bnb.png",
         "name": "BTC"
 
     }, {
-        "image": "/assets/images/bgb.png",
+        "image": "bgb.png",
         "name": "BGB"
 
     }, {
-        "image": "/assets/images/eth.png",
+        "image": "eth.png",
         "name": "ETH"
     }, {
-        "image": "/assets/images/usdc.png",
+        "image": "usdc.png",
         "name": "USDC"
     }
 ]
