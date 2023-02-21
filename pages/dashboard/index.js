@@ -11,8 +11,8 @@ import SideMenu from 'components/snippets/sideMenu'
 import { getProviders, getSession } from "next-auth/react"
 
 import React from 'react'
-const Dashboard = ({ account, providers }) => {
-  console.log(providers, 'i am provider!') 
+const Dashboard = ({ account, session }) => {
+  console.log(session, 'i am provider!') 
 
 
 
@@ -32,7 +32,7 @@ const Dashboard = ({ account, providers }) => {
                 </div>
                 <div className='hidden xl:block max-w-xs w-full '>
                   <Welfare />
-                  <Referral />
+                  <Referral session={session}/>
                   <Announcements />
                 </div>
               </div>
@@ -52,7 +52,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       account: menu.specialNav.account,
-      providers : session
+      session : session
     }, // will be passed to the page component as props
   };
   }
@@ -68,21 +68,3 @@ export async function getServerSideProps(context) {
   
 }
 export default Dashboard
-
-
-
-// export async function getServerSideProps(context) {
-//   const { req } = context;
-//   const session = await getSession({ req });
-//   const providers = await getProviders()
-//   if (session) {
-//       return {
-//           redirect: { destination: "/dashboard" },
-//       };
-//   }
-//   return {
-//       props: {
-//           providers,
-//       },
-//   }
-// }
