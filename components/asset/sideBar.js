@@ -11,7 +11,6 @@ const SideBar = ({ data, link }) => {
   const router = useRouter();
   const { click, setClick } = useContext(Context);
   const [show, setShow] = useState(false);
-console.log(link , "sliud[[[")
   const [active, setActive] = useState(0);
 
   return (
@@ -24,7 +23,7 @@ console.log(link , "sliud[[[")
             setClick(true);
           }}
         >
-          {data.name && (
+          {data && data!==undefined && data.name && (
             <h3 className="section-secondary-heading font-noto ">
               {data.name}
             </h3>
@@ -68,7 +67,7 @@ console.log(link , "sliud[[[")
           </div>
 
           <ul className="menu_box md:border-r h-[100vh] md:border-primary dark:bg-black-v-4">
-            {data.subMenu &&
+            {data && data!==undefined && data.subMenu &&
               data.subMenu.map((e, i) => {
                 return (
                   <li

@@ -7,14 +7,18 @@ import SocialTrades from 'components/dashboard/socialTrades'
 import Tranding from 'components/dashboard/tranding'
 import Welfare from 'components/dashboard/welfare'
 import Layout from 'components/layout/Layout'
+import SideMenu from 'components/snippets/sideMenu'
+import { getProviders, getSession } from "next-auth/react"
+
 import React from 'react'
-const Dashboard = ({ account }) => {
+const Dashboard = ({ account, sessions }) => {
+
   return (
     <>
       <Layout data={account} link="dashboard">
-      <div className='grow max-w-full  bg-white dark:bg-black-v-5'>
-                <div>
-                  <Profile />
+        <div className='grow max-w-full  bg-white dark:bg-black-v-5'>
+          <div>
+            <Profile sessions={sessions.user}/>
           </div>
           <div className='flex w-full '>
             <div className=' w-full'>
@@ -22,27 +26,38 @@ const Dashboard = ({ account }) => {
               <SocialTrades />
               <Tranding />
               <Explore />
-           
-                </div>
-                <div className='hidden xl:block max-w-xs w-full '>
-                  <Welfare />
-                  <Referral />
-                  <Announcements />
-                </div>
-              </div>
+
             </div>
+            <div className='hidden xl:block max-w-xs w-full '>
+              <Welfare />
+              <Referral sessions={sessions.user} />
+              <Announcements />
+            </div>
+          </div>
+        </div>
       </Layout>
     </>
   )
 }
 export async function getServerSideProps(context) {
-  let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
 
-  let menu = await data.json();
+  const { req } = context;
+  const session = await getSession({ req });
+  const providers = await getProviders()
+  if (session) {
+    let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
+    let menu = await data.json();
+    return {
+      props: {
+        account: menu.specialNav.account,
+        sessions: session
+      },
+    };
+  }
   return {
-    props: {
-      account: menu.specialNav.account,
-    }, // will be passed to the page component as props
+    redirect: { destination: "/" },
   };
+
+
 }
 export default Dashboard

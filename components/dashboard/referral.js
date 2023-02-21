@@ -1,7 +1,8 @@
 import React from 'react'
+import {  useSession } from "next-auth/react"
 
+const Referral = ({sessions}) => {
 
-const Referral = () => {
   return (
     <section className='py-10 '>
         <div className=" border border-blue-gradient-active rounded-xl px-6 pt-8 bg-[url('/assets/icons/referral-bg.svg')] bg-no-repeat bg-right-bottom	">
@@ -11,7 +12,7 @@ const Referral = () => {
                 <span className='info-14-16'>0</span>
             </div>
             <div className='bg-light-hover rounded px-3 flex mb-4 text-center justify-between items-center'>
-                <div className='text-ellipsis break-words whitespace-nowrap overflow-hidden pr-2 py-2'>https://www.blcexchange.in/en/referral/register?clacCode=NVQPH393
+                <div className='text-ellipsis break-words whitespace-nowrap overflow-hidden pr-2 py-2'>{`https://www.blcexchange.in/en/referral/register?clacCode=${sessions!==undefined && sessions.own_code}`}
                 </div>
                 <div>
 
@@ -19,10 +20,6 @@ const Referral = () => {
                 </div>
             </div>
         </div>
-      
-      
-
-
     </section>
   )
 }

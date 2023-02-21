@@ -7,7 +7,6 @@ const TopBar = () => {
     const {heightUpdate}= useContext(Context);
     useEffect(()=>{
       let padding = document.querySelector(".topBar").offsetHeight;
-      console.log(padding);
       setTopPadding(padding);
     },[]);
 
