@@ -6,7 +6,8 @@ import VerificationCode from './../login-register/verification-code';
 const LinkMobile = () => {
     const { mode, setClick } = useContext(Context);
     const [DropdownPhone, setDropdownPhone] = useState(false);
-    const [showver, setShowver] = useState(false);
+    const [showver, setShowver] = useState(0);
+    const [show,setShow]  = useState(true);
     const [fillOtp, setOtp] = useState();
     useEffect(() => {
         const inputElements = document.querySelectorAll('.input_wrapper input');
@@ -55,11 +56,11 @@ const LinkMobile = () => {
 
     return (
         <>
-            <section className="dark:bg-black-v-5">
-                <div className="container">
+            <section className="dark:bg-black-v-5 sm:min-h-[calc(100vh-200px)] sm:h-full sm:py-0 py-10 flex">
+                <div className="container m-auto">
                     <div className="md:max-w-[480px] p-3 sm:p-6 max-w-[480px] w-full mx-auto" >
                         <h4 className='section-secondary-heading mb-1 flex items-center gap-4 flex-row-reverse justify-end'>
-                            <span>Modify login password</span>
+                            <span>Link Mobile</span>
                             <Link href="setting">
                                 <svg className="max-w-[24px] w-full" enableBackground="new 0 0 32 32" version="1.1" viewBox="0 0 32 32" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                     <path fill={mode === "dark" ? "white" : "#121313"} clipRule="evenodd" d="M31.106,15H3.278l8.325-8.293  c0.391-0.391,0.391-1.024,0-1.414c-0.391-0.391-1.024-0.391-1.414,0l-9.9,9.899c-0.385,0.385-0.385,1.029,0,1.414l9.9,9.9  c0.391,0.391,1.024,0.391,1.414,0c0.391-0.391,0.391-1.024,0-1.414L3.278,17h27.828c0.552,0,1-0.448,1-1  C32.106,15.448,31.658,15,31.106,15z" fillRule="evenodd" />
@@ -95,8 +96,10 @@ const LinkMobile = () => {
                     </div>
                 </div>
             </section>
-            {showver &&
-                <VerificationCode fixed={true} modifyPass={true} />
+            {
+                showver &&
+
+                <VerificationCode CloseCta={true} fixed={true} bindMobile={true} showState={show} showSetState={setShowver} />
             }
         </>
     )
