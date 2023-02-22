@@ -41,7 +41,7 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
 
     return (
         <>
-            <div className='bg-white dark:bg-black-v-5 animate-bottom duration-500 fixed md:absolute rounded-t-3xl md:rounded-none bottom-0 md:bottom-[unset] left-0 w-full border border-grey max-h-[350px] overflow-auto z-10'>
+            <div className='bg-white dark:bg-black-v-5 animate-bottom duration-500 absolute top-[100%] rounded-t-3xl md:rounded-none left-0 w-full border border-grey max-h-[350px] overflow-auto z-10'>
                 <div className={`p-4 sticky top-0 left-0 w-full bg-white dark:bg-black-v-5 ${idData ? 'hidden':'block' }`}>
                     <input type="search" placeholder="search" className="block  px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[40px] text-black dark:text-white outline-none focus:!border-primary" name="search" />
                 </div>
@@ -109,7 +109,10 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
                                 <Fragment key={i}>
                                     {
                                             <li className="cursor-pointer info-14 !text-black flex gap-2 p-3 dark:!text-white px-4 hover:bg-[#cccccc1f]"  
-                                            onClick={() => { selectId(e),setShowDropdown(false) }}>
+                                            onClick={() => { 
+                                                selectId(e)
+                                                setShowDropdown(false) 
+                                                }}>
                                                 <span>{e}</span>
                                             </li>                                 
                                     }

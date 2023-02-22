@@ -20,17 +20,17 @@ const VerificationType = () => {
                 {step == 0 ?
                 <>
                 <div className='mt-11'>
-                    <span>
+                    <div>
                         <p className='info-14'>Country / Region</p>
-                        <span className='cursor-pointer border-b-2 border-border-clr hover:border-primary relative max-w-lg w-full flex items-center gap-2 justify-between mt-4' onClick={(e) => { setShowDropdown(!showDropdown) }}>
+                        <div className='cursor-pointer border-b-2 border-border-clr hover:border-primary relative max-w-lg w-full flex items-center gap-2 justify-between mt-4' onClick={(e) => { setShowDropdown(!showDropdown) }}>
                             <span className="text-black dark:text-white" id="countryName">Botswana</span>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                             {
                                 showDropdown != false &&
                                 <SearchDropdown setShowDropdown={setShowDropdown} country={true} />
                             }
-                        </span>
-                    </span>
+                        </div>
+                    </div>
 
                 </div>
                 <div className='flex flex-col lg:flex-row mt-5 gap-7'>

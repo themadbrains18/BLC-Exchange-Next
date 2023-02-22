@@ -42,7 +42,7 @@ const SocialTrades = () => {
               }}>
                 <div className='flex'>
                   <span className='info-14-16'>Copy trading </span>
-                  <img src='/assets/icons/navigate.svg'></img>
+                  <img src='/assets/icons/navigate.svg' alt='error'></img>
                 </div>
                 <div className='mt-8 flex gap-1'>
                   <span className='info-14-16 text-primary'>100,000</span>
@@ -57,7 +57,7 @@ const SocialTrades = () => {
               }}>
                 <div className='flex'>
                   <span className='info-14-16'>Copy trading </span>
-                  <img src='/assets/icons/navigate.svg'></img>
+                  <img src='/assets/icons/navigate.svg' alt='error'></img>
                 </div>
                 <div className='mt-8 flex gap-1'>
                   <span className='info-14-16 text-primary'>10000</span>

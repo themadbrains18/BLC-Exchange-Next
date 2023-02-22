@@ -1,17 +1,17 @@
-import VerificationType from 'components/verified/verificationType'
 import React from 'react'
 import Layout from 'components/layout/Layout'
+import Competiton from 'components/dashboard/competiton';
 
-const Verified = ({ account }) => {
-    return (
-        <>
+const Competitions = ({ account }) => {
+  return (
+    <>
             <Layout data={account} >
                 <div className='p-4 md:p-8 grow '>
-                    <VerificationType />
+                 <Competiton />
                 </div>
             </Layout>
         </>
-    )
+  )
 }
 export async function getServerSideProps(context) {
     let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
@@ -24,4 +24,5 @@ export async function getServerSideProps(context) {
     };
   }
 
-export default Verified
+
+export default Competitions
