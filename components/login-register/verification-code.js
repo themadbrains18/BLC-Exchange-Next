@@ -4,7 +4,7 @@ import Link from 'next/link';
 import ResetPassSuccess from './reset-pass-success';
 
 
-const VerificationCode = ({bindGoogle,CloseCta,showSetState,bindMobile,showState,fixed,modifyPass,verifyCode, onFinalSubmit, sendOtpAgain,username }) => {
+const VerificationCode = ({emailAuth,bindGoogle,CloseCta,showSetState,bindMobile,showState,fixed,modifyPass,verifyCode, onFinalSubmit, sendOtpAgain,username }) => {
     
     const { mode,setClick } = useContext(Context);
     const [fillOtp, setOtp] = useState();
@@ -29,8 +29,8 @@ const VerificationCode = ({bindGoogle,CloseCta,showSetState,bindMobile,showState
                     inputElements[index + 1].value = rest.join('')
                     inputElements[index + 1].dispatchEvent(new Event('input'))
                 }
-                else {
-                    setOtp(inputElements[0].value + '' + inputElements[1].value + '' + inputElements[2].value + '' + inputElements[3].value + '' + inputElements[4].value + '' + inputElements[5].value);
+                else{
+                    setOtp(inputElements[0].value+''+inputElements[1].value+''+inputElements[2].value+''+inputElements[3].value+''+inputElements[4].value+''+inputElements[5].value);
                 }
             })
         })
@@ -42,13 +42,13 @@ const VerificationCode = ({bindGoogle,CloseCta,showSetState,bindMobile,showState
         onFinalSubmit(fillOtp);
     }
 
-    const sendAgain = (e) => {
+    const sendAgain=(e)=>{
         e.preventDefault();
         sendOtpAgain();
     }
 
     return (
-        <div className={`${fixed === true ? "z-[20] fixed top-[50%] left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%]" : ""}`}>
+        <div className={`${fixed === true ? "z-[20] fixed top-[50%] left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%]":""}`}>
             <div className="container !p-0">
             {
                             showSuccess === 1 &&
@@ -121,11 +121,13 @@ const VerificationCode = ({bindGoogle,CloseCta,showSetState,bindMobile,showState
                                             </ul>
                                             <p className="mt-3">if you still haven’t received your code, contact our customer service.</p>
                                         </div>
+                                        <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
                                     </div>
-
-
                                 </div>
+
+
                             </div>
+
                         </div>
                         {
                             // { This Cta for Dashboard modifiy password verifiction }
@@ -146,6 +148,10 @@ const VerificationCode = ({bindGoogle,CloseCta,showSetState,bindMobile,showState
                             verifyCode &&
                             <button className='cta mt-5 w-full' onClick={(e)=>confirmOtp(e)}>Confirm</button>
                         }
+                        {
+                            emailAuth &&
+                            <button className='cta mt-5 w-full' onClick={(e)=>{e.preventDefault();setShowSuccess(2)}}>Submit</button>
+                        }
                     </form>
                 </div>
             }
@@ -156,15 +162,19 @@ const VerificationCode = ({bindGoogle,CloseCta,showSetState,bindMobile,showState
                     showSuccess === 2 &&
                     <ResetPassSuccess overlay={true} />
                 :
+                emailAuth 
+                ?
+                    showSuccess === 2 &&
+                    <ResetPassSuccess overlay={true} emailAuth={true} />
+                :
+                bindGoogle 
+                ?
+                    showSuccess === 2 &&
+                    <ResetPassSuccess overlay={true} bindGoogle={true}  />
+                :
                     showSuccess === 2 &&
                     <ResetPassSuccess overlay={true} linkMobile={true}  />
             }
-            {
-                bindGoogle &&                
-                showSuccess === 2 &&
-                <ResetPassSuccess overlay={true}  bindGoogle={true} />
-            }
-            
             </div>
         </div>
     )

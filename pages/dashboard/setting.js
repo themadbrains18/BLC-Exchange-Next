@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
-import Layout from '@/components/layout/layout'
-import Context from '@/components/contexts/context';
+import Layout from '/components/layout/layout'
+import Context from '/components/contexts/context';
 import Link from 'next/link';
 import VerificationCode from './../../components/login-register/verification-code';
 import { getProviders, getSession } from "next-auth/react"
@@ -154,7 +154,10 @@ const Setting = ({ account }) => {
                   <p className="info-12 ">Protect your account from unauthorized withdrawals and P2P trading.</p>
                 </div>
               </div>
-              <button className='cta'>Settings</button>
+              <div className="flex items-center gap-5">
+                <Link href="fund-password" className='info-14-16 !text-primary'>modify</Link>
+                <Link href="fund-password" className='cta'>Settings</Link>
+              </div>
             </div>
 
             <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">
@@ -323,14 +326,14 @@ const Setting = ({ account }) => {
               <Link href="#" className='info-14-16 !text-primary'>Link</Link>
             </div>
           </div>
-          {
+          {/* {
             showSafteyV === 1 &&
             <VerificationCode modifyPass={true} fixed={true} showSetState={showSetState} />
-          }
+          } */}
         </div>
         {
           showSafteyV === 1 &&
-          <VerificationCode  CloseCta={true} modifyPass={true} fixed={true} showSetState={setShowSafteyV} />
+          <VerificationCode emailAuth={true} CloseCta={true}  fixed={true} showSetState={setShowSafteyV} />
         }
     </Layout>
   )
