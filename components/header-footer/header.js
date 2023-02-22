@@ -17,7 +17,6 @@ const Header = (props) => {
 
   const { mode, setMode, login,topBar,setClick } = useContext(Context);
   const [login2,setLogin2] = useState(login)
-  console.log(session,' session session session')
   const [show, setShow] = useState(true);
   const [Data, setData] = useState([]);
   const [specialData, setSpecialData] = useState([]);
@@ -74,7 +73,6 @@ const Header = (props) => {
               />
             </Link>
             <div
-              href={""}
               className=" relative hover:pb-8 hover:-mb-8 group "
             >
               {/* grid icon  */}

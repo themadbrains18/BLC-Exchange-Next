@@ -4,9 +4,7 @@ import {  useSession } from "next-auth/react"
 const Referral = ({providers}) => {
   const { data: session } = useSession()
 
-  console.log(providers,"session referal ====") 
 
-  // console.log(session,' session referal')
 
 
   return (

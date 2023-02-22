@@ -5,20 +5,19 @@ import Footer from "@/components/header-footer/footer";
 import Header from "@/components/header-footer/header";
 import Loader from "@/components/snippets/loader";
 
-// import { signOut, useSession } from "next-auth/react"
 import { SessionProvider } from "next-auth/react"
 
 
-export default function App({ Component, pageProps: { session, ...pageProps }, props }) {
+export default function App({ Component, pageProps : { session, ...pageProps }, props }) {
   //  const mode=useContext(UserContext)
-  console.log(session, ' sessionsession')
+  console.log(session,' sessionsession')
 
   const [mode, setMode] = useState("dark");
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(false);
   const [click, setClick] = useState(false);
   const [loader, setLoader] = useState(true);
-  const [pad, setPad] = useState();
-  // const [topBar, setTopBar] = useState(true);
+  // const [pad, setPad] = useState();
+  const [topBar, setTopBar] = useState(true);
   const ref = useRef(null);
   const ref2 = useRef(null);
   let currentMode;
@@ -27,8 +26,6 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
   useEffect(() => {
     padding = ref.current.offsetHeight;
     // console.log(padding)
-    console.log(padding, '===inital padding')
-    setPad(padding);
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
     currentMode = localStorage.getItem("mode");
     if (currentMode == "light") {
@@ -40,10 +37,8 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
     }, 1000);
   }, []);
 
-  const heightUpdate = (topPaddong) => {
-    console.log(pad, 'all padding');
-    console.log((pad - topPaddong), 'after notification remove padding');
-    padding = document.querySelector(".navbar").offsetHeight;
+  const heightUpdate = () => {
+     padding = document.querySelector(".navbar").offsetHeight;
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
   };
   return (
@@ -54,37 +49,36 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
             <Loader />
           </div>
         )}
-        <SessionProvider session={session}>
-          <Context.Provider
-            value={{
-              mode,
-              setMode,
-              login,
-              setLogin,
-              click,
-              setClick,
-              heightUpdate,
-              padding,
-              ref2,
-              ref
+<SessionProvider session={session}>
+        <Context.Provider
+          value={{
+            mode,
+            setMode,
+            login,
+            setLogin,
+            click,
+            setClick,
+            heightUpdate,
+            padding,
+            topBar,
+            setTopBar,
+          }}
+        >
+          <div
+            className={` bg-black  opacity-0 invisible duration-300 fixed top-0 left-0 h-full w-full ${
+              click && "!visible opacity-50"
+            }`}
+          ></div>
+          <div ref={ref} className="fixed  w-full border-b border-primary ">
+            <Header />
+          </div>
 
-            }}
-          >
-            <div
-              className={` bg-black  opacity-0 invisible duration-300 fixed top-0 left-0 h-full w-full ${click && "!visible opacity-50"
-                }`}
-            ></div>
-            
-            <div ref={ref} className="fixed  w-full border-b border-primary ">
-              <Header />
-            </div>
-
-            <div ref={ref2}>
-              <Component {...pageProps} />
-            </div>
-            <Footer />
-          </Context.Provider>
-        </SessionProvider>
+          <div ref={ref2}>
+            <Component {...pageProps} />
+          </div>
+          <Footer />
+        </Context.Provider>
+</SessionProvider>
       </div>
     </>
   );

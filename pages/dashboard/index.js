@@ -12,7 +12,6 @@ import { getProviders, getSession } from "next-auth/react"
 
 import React from 'react'
 const Dashboard = ({ account, session }) => {
-  console.log(session, 'i am provider!') 
 
 
 
