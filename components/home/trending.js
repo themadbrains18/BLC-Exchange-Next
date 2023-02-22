@@ -425,13 +425,26 @@ const Trending = () => {
               )}
             </div>
           </div>
-          <div className="max-w-full lg:max-w-[30%] w-full">
+          {/* <div className="max-w-full lg:max-w-[30%] w-full">
             <div className=" grid-cols-1 grid divide-y">
               <InsightCard />
               <InsightCard />
               <InsightCard />
             </div>
+          </div> */}
+          <div className="max-w-full lg:max-w-[30%] w-full tmbAnimationYWrap">
+            <div className="divide-y tmbAnimationY">
+              <InsightCard />
+              <InsightCard />
+              <InsightCard />
+            </div>
+            <div className="divide-y tmbAnimationY2">
+              <InsightCard />
+              <InsightCard />
+              <InsightCard />
+            </div>
           </div>
+
         </div>
       </div>
     </section>
