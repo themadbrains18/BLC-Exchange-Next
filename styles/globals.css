@@ -323,53 +323,78 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
-/* @keyframes marquee2 {
-  0% {
-   transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-} */
-
-/* .tmb:hover .marquee {
-
-    animation-play-state: paused;
-} */
 
 
-
-
-
-.qwe {
-  display: flex;
+.tmbAnimationXWrap{
   overflow: hidden;
+  position: relative;
 }
-.qwe> .card {
+.tmbAnimationXWrap:hover .tmbAnimationX,
+.tmbAnimationXWrap:hover .tmbAnimationX2{
+  animation-play-state: paused;  
+}
+
+
+
+
+.tmbAnimationXWrap,
+.tmbAnimationX_row{
+  display: flex;
+}
+
+.tmbAnimationX_row2{
+  position: relative;
+  left: -240px;
+}
+
+.tmbAnimationX_row > .card {
   min-width: 480px;
   margin-right: 40px;
 }
 
-.qwe_wrap{
-  display: flex;
-  /* gap: 40px */
+.tmbAnimationX{
+  animation: tmbAnimationX 4s linear infinite;
+}
 
+.tmbAnimationX2{
+  position: absolute;
+  top:0;
+  left: 0;
+  transform: translateX(100%);
+  animation: tmbAnimationX2 4s linear infinite;
 }
-.qwe2{
-  position: relative;
-  left: -240px;
+
+@keyframes tmbAnimationX {
+  100%{
+    transform: translateX(-100%)
+  }
 }
+@keyframes tmbAnimationX2 {
+  100%{
+    transform: translateY(0);
+  }
+}
+
 
 .checkbox input:checked {
   background-color:#1da2b4;
 }
 
+
+
+
 .tmbAnimationYWrap{
   position: relative;
   overflow: hidden;
 }
+
+
 .tmbAnimationY{
   animation: tmbAnimationY 3s linear infinite;
+}
+.tmbAnimationYWrap:hover .tmbAnimationY,
+.tmbAnimationYWrap:hover .tmbAnimationY2{
+  animation-play-state: paused;
 }
 .tmbAnimationY2{
   position: absolute;
@@ -389,6 +414,8 @@ input[type=number]::-webkit-outer-spin-button {
     transform: translateY(0);
   }
 }
+
+
 
 /* loadere */
 
