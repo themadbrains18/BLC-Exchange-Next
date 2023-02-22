@@ -108,10 +108,14 @@ const RegisterForm = () => {
                 setLoading(false);
                 setRegisterForm(formdata);
                 setShowVerification(1);
+                toast.success(otpResponse.data.message, {
+                    position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+                })
             }
             else {
+                setLoading(false);
                 console.log(otpResponse);
-                toast.error(otpResponse.data, {
+                toast.error(otpResponse.data.message, {
                     position: toast.POSITION.TOP_RIGHT, autoClose: 5000
                 })
             }
