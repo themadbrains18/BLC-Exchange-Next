@@ -7,7 +7,7 @@ import Context from '@/components/contexts/context';
 import VerificationCode from './../login-register/verification-code';
 const ModifyPass = ()=>{
     const { mode , setClick} = useContext(Context);
-    const [show,setShow]  = useState(1);
+    const [show,setShow]  = useState(true);
         const showPass = (e) =>{
         if(!e.currentTarget.classList.contains("hidden")){
             e.currentTarget.classList.toggle("hidden");
@@ -28,8 +28,8 @@ const ModifyPass = ()=>{
         <>
             
                 
-                <section className="dark:bg-black-v-5">
-                    <div className="container">
+                <section className="dark:bg-black-v-5 sm:min-h-[calc(100vh-200px)] sm:h-full py-10 sm:py-0 flex">
+                    <div className="container m-auto">
                         <div className="md:max-w-[480px] p-3 sm:p-6 max-w-[480px] w-full mx-auto" >
                         <h4 className='section-secondary-heading mb-1 flex items-center gap-4 flex-row-reverse justify-end'>
                             <span>Modify login password</span>
@@ -76,7 +76,7 @@ const ModifyPass = ()=>{
             
             {
                 show === 2 &&
-                <VerificationCode modifyPass={true} fixed={true} showState={show} showSetState={setShow} />
+                <VerificationCode modifyPass={true} CloseCta={true} fixed={true} showState={show} showSetState={setShow} />
             }
         </>
     )

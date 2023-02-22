@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link';
 import { useEffect, useContext, useState } from 'react'
 import Context from "../contexts/context";
-const ResetPassSuccess = ({overlay,linkMobile}) => {
+const ResetPassSuccess = ({bindGoogle,overlay,linkMobile}) => {
   const { setClick } = useContext(Context);
   return (
     <div>
@@ -15,9 +15,13 @@ const ResetPassSuccess = ({overlay,linkMobile}) => {
               </svg>
               {
                 linkMobile ?
-                <h4 className='section-secondary-heading mb-1 text-center'>Mobile Binding <br />succeedd</h4>
+                <h4 className='section-secondary-heading mb-1 text-center'>Mobile Bind <br />successfull</h4>
                 :
-                <h4 className='section-secondary-heading mb-1 text-center'>Password reset <br />succeedd</h4>
+                <h4 className='section-secondary-heading mb-1 text-center'>Password reset <br />successfully</h4>
+              }
+              {
+                bindGoogle &&
+                <h4 className='section-secondary-heading mb-1 text-center'>Bind Google Authentication success</h4>
               }
               {
                overlay ? 

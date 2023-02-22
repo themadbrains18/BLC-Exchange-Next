@@ -4,10 +4,12 @@ import Link from 'next/link';
 import ResetPassSuccess from './reset-pass-success';
 
 
-const VerificationCode = ({showSetState,showState,fixed,modifyPass,verifyCode, onFinalSubmit, sendOtpAgain,username }) => {
+const VerificationCode = ({bindGoogle,CloseCta,showSetState,bindMobile,showState,fixed,modifyPass,verifyCode, onFinalSubmit, sendOtpAgain,username }) => {
+    
     const { mode,setClick } = useContext(Context);
     const [fillOtp, setOtp] = useState();
     const [showSuccess, setShowSuccess] = useState(1);
+    
     useEffect(() => {
         const inputElements = document.querySelectorAll('.input_wrapper input');
         inputElements.forEach((ele, index) => {
@@ -27,8 +29,8 @@ const VerificationCode = ({showSetState,showState,fixed,modifyPass,verifyCode, o
                     inputElements[index + 1].value = rest.join('')
                     inputElements[index + 1].dispatchEvent(new Event('input'))
                 }
-                else{
-                    setOtp(inputElements[0].value+''+inputElements[1].value+''+inputElements[2].value+''+inputElements[3].value+''+inputElements[4].value+''+inputElements[5].value);
+                else {
+                    setOtp(inputElements[0].value + '' + inputElements[1].value + '' + inputElements[2].value + '' + inputElements[3].value + '' + inputElements[4].value + '' + inputElements[5].value);
                 }
             })
         })
@@ -40,20 +42,20 @@ const VerificationCode = ({showSetState,showState,fixed,modifyPass,verifyCode, o
         onFinalSubmit(fillOtp);
     }
 
-    const sendAgain=(e)=>{
+    const sendAgain = (e) => {
         e.preventDefault();
         sendOtpAgain();
     }
 
     return (
-        <div className={`${fixed === true ? "z-[20] fixed top-[50%] left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%]":""}`}>
+        <div className={`${fixed === true ? "z-[20] fixed top-[50%] left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%]" : ""}`}>
             <div className="container !p-0">
             {
                             showSuccess === 1 &&
                 <div className="dark:bg-black-v-5 bg-white p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto" >
                     {
-                        modifyPass &&
-                        <div className="max-w-[24px] w-full ml-auto cursor-pointer" onClick={()=>{showSetState(0);setClick(false)}}>
+                        CloseCta &&
+                        <div className="max-w-[24px] w-full ml-auto cursor-pointer" onClick={()=>{showSetState(false);setClick(false)}}>
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60.963 60.842" style={{enableBackground: 'new 0 0 60.963 60.842'}} xmlSpace="preserve">
                                 <path  fill={mode === "dark" ? "white" : "#231F20"} d="M59.595,52.861L37.094,30.359L59.473,7.98c1.825-1.826,1.825-4.786,0-6.611
                             c-1.826-1.825-4.785-1.825-6.611,0L30.483,23.748L8.105,1.369c-1.826-1.825-4.785-1.825-6.611,0c-1.826,1.826-1.826,4.786,0,6.611
@@ -67,6 +69,7 @@ const VerificationCode = ({showSetState,showState,fixed,modifyPass,verifyCode, o
                     <p className='info-14 text-black dark:!text-white dark:hover:!text-white hover:!text-black'>Enter the verification code below.</p>
 
                     <form>
+                        {/* emails verification code feilds */}
                         <div className='mt-5'>
                             <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Email verification</span> <span>({username} which is registred)</span></label>
                             <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper">
@@ -77,9 +80,23 @@ const VerificationCode = ({showSetState,showState,fixed,modifyPass,verifyCode, o
                                 <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code5" />
                                 <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
                             </div>
+                            <button className='info-14 block mt-[10px]' onClick={(e)=>sendAgain(e)}>Send Again</button>
+                        </div>
+                        {/* phone verification code feilds */}
+                        <div className='mt-5'>
+                            <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Phone verification</span> <span>({username} which is registred)</span></label>
+                            <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper">
+                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
+                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
+                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code3" />
+                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code4" />
+                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code5" />
+                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
+                            </div>
+                            <button className='info-14 block mt-[10px]' onClick={(e)=>sendAgain(e)}>Send Again</button>
                         </div>
                         <div className='flex items-start sm:items-center justify-between gap-2 mt-4 flex-col sm:flex-row'>
-                            <button className='info-14 block' onClick={(e)=>sendAgain(e)}>Send again</button>
+                 
                             <div className='flex items-center gap-2'>
                                 <p className="info-14 text-black hover:!text-black dark:!text-white dark:hover:!text-white">Help! I haven't received a code</p>
 
@@ -104,18 +121,26 @@ const VerificationCode = ({showSetState,showState,fixed,modifyPass,verifyCode, o
                                             </ul>
                                             <p className="mt-3">if you still haven’t received your code, contact our customer service.</p>
                                         </div>
-                                        <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
                                     </div>
+
+
                                 </div>
-
-
                             </div>
-
                         </div>
                         {
                             // { This Cta for Dashboard modifiy password verifiction }
                             modifyPass &&
-                            <button className='cta mt-5 w-full' onClick={(e)=>{setClick(true); e.preventDefault();setShowSuccess(2)}}>Submit</button>
+                            <button className='cta mt-5 w-full' onClick={(e)=>{e.preventDefault();setShowSuccess(2)}}>Submit</button>
+                        }
+                        {
+                            // { This Cta for Dashboard modifiy mobile verifiction }
+                            bindMobile &&
+                            <button className='cta mt-5 w-full' onClick={(e)=>{e.preventDefault();setShowSuccess(2)}}>Submit</button>
+                        }
+                        {
+                            // { This Cta for Dashboard bindGoogle Authentication }
+                            bindGoogle &&
+                            <button className='cta mt-5 w-full' onClick={(e)=>{e.preventDefault();setShowSuccess(2)}}>Submit</button>
                         }
                         {
                             verifyCode &&
@@ -124,11 +149,22 @@ const VerificationCode = ({showSetState,showState,fixed,modifyPass,verifyCode, o
                     </form>
                 </div>
             }
-
-                        {
-                            showSuccess === 2 &&
-                            <ResetPassSuccess overlay={true} linkMobile={true}  />
-                        }
+            {
+                modifyPass 
+                
+                ?
+                    showSuccess === 2 &&
+                    <ResetPassSuccess overlay={true} />
+                :
+                    showSuccess === 2 &&
+                    <ResetPassSuccess overlay={true} linkMobile={true}  />
+            }
+            {
+                bindGoogle &&                
+                showSuccess === 2 &&
+                <ResetPassSuccess overlay={true}  bindGoogle={true} />
+            }
+            
             </div>
         </div>
     )

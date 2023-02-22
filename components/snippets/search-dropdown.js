@@ -39,7 +39,6 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
     }
 
 
-
     return (
         <>
             <div className='bg-white dark:bg-black-v-5 animate-bottom duration-500 absolute top-[100%] rounded-t-3xl md:rounded-none left-0 w-full border border-grey max-h-[350px] overflow-auto z-10'>
