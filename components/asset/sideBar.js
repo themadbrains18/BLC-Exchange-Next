@@ -7,28 +7,29 @@ import Dropdown from "../snippets/dropdown";
 import Icons from "../snippets/icons";
 import NavAccordian from "../snippets/navAccordian";
 
-const SideBar = ({ data, link }) => {
+const SideBar = ({ data, name }) => {
   const router = useRouter();
   const { click, setClick } = useContext(Context);
   const [show, setShow] = useState(false);
-console.log(link , "sliud[[[")
   const [active, setActive] = useState(0);
 
   return (
     <>
-      <div className={`md:fixed  md:min-w-[240px]  w-fit px-3 md:px-0   `}>
+      <div
+        className={`md:fixed md:h-[100vh] ${show && "z-[5]"} bg-white dark:bg-black-v-3 overflow-x-auto table_box  w-fit px-3 md:px-0  `}
+      >
         <button
-          className="flex items-center md:hidden"
+          className="flex items-center md:hidden capitalize"
           onClick={() => {
             setShow(true);
             setClick(true);
           }}
         >
-          {data && data!==undefined && data.name && (
+          
             <h3 className="section-secondary-heading font-noto ">
-              {data.name}
+              {name}
             </h3>
-          )}
+         
           <Image
             src={"/assets/icons/rightArrowSmall.svg"}
             width={24}
@@ -68,7 +69,9 @@ console.log(link , "sliud[[[")
           </div>
 
           <ul className="menu_box md:border-r h-[100vh] md:border-primary dark:bg-black-v-4">
-            {data && data!==undefined && data.subMenu &&
+            {data &&
+              data !== undefined &&
+              data.subMenu &&
               data.subMenu.map((e, i) => {
                 return (
                   <li
@@ -76,17 +79,16 @@ console.log(link , "sliud[[[")
                     className={`max-w-[250px] w-full ${
                       e.menu
                         ? "flex items-center"
-                        : "md:border-b md:hover:border-primary  border-transparent" 
+                        : "md:border-b md:hover:border-primary  border-transparent"
                     } `}
-                    onClick={(()=>{setActive(i)})}
+                    onClick={() => {
+                      setActive(i);
+                    }}
                   >
                     <div className="flex p-6 gap-3 self-start">
                       <Icons type={e.svgType} />
                       {!e.menu && (
-                        <Link
-                          href={`/${ e.linkUrl}`}
-                          className="info-14"
-                        >
+                        <Link href={`/${e.linkUrl}`} className="info-14">
                           {e.linkText}
                         </Link>
                       )}
@@ -95,7 +97,9 @@ console.log(link , "sliud[[[")
                       <div className="w-full py-2">
                         <NavAccordian
                           heading={e.linkText}
-                          className={"info-14 dark:!text-white text-black hover:!text-black dark:hover:!text-white"}
+                          className={
+                            "info-14 dark:!text-white text-black hover:!text-black dark:hover:!text-white"
+                          }
                           content={e.menu}
                         />
                       </div>

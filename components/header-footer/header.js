@@ -17,6 +17,7 @@ const Header = (props) => {
 
   const { mode, setMode, login,topBar,setClick } = useContext(Context);
   const [login2,setLogin2] = useState(login)
+  // console.log(session,' session session session')
   const [show, setShow] = useState(true);
   const [Data, setData] = useState([]);
   const [specialData, setSpecialData] = useState([]);
@@ -25,6 +26,9 @@ const Header = (props) => {
 
       if(session !="" && session != undefined){
         setLogin2(true)
+      }
+      else{
+        setLogin2(false)
       }
 
       await fetch(process.env.NEXT_PUBLIC_BASEURL+ "/hello")

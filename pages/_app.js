@@ -10,13 +10,11 @@ import { SessionProvider } from "next-auth/react"
 
 export default function App({ Component, pageProps : { session, ...pageProps }, props }) {
   //  const mode=useContext(UserContext)
-  console.log(session,' sessionsession')
-
   const [mode, setMode] = useState("dark");
   const [login, setLogin] = useState(false);
   const [click, setClick] = useState(false);
   const [loader, setLoader] = useState(true);
-  // const [pad, setPad] = useState();
+  const [pad, setPad] = useState();
   const [topBar, setTopBar] = useState(true);
   const ref = useRef(null);
   const ref2 = useRef(null);
@@ -26,6 +24,7 @@ export default function App({ Component, pageProps : { session, ...pageProps }, 
   useEffect(() => {
     padding = ref.current.offsetHeight;
     // console.log(padding)
+    setPad(padding);
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
     currentMode = localStorage.getItem("mode");
     if (currentMode == "light") {
@@ -37,8 +36,8 @@ export default function App({ Component, pageProps : { session, ...pageProps }, 
     }, 1000);
   }, []);
 
-  const heightUpdate = () => {
-     padding = document.querySelector(".navbar").offsetHeight;
+  const heightUpdate = (topPaddong) => {
+    padding = document.querySelector(".navbar").offsetHeight;
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
   };
   return (
@@ -73,12 +72,22 @@ export default function App({ Component, pageProps : { session, ...pageProps }, 
             <Header />
           </div>
 
-          <div ref={ref2}>
-            <Component {...pageProps} />
-          </div>
-          <Footer />
-        </Context.Provider>
-</SessionProvider>
+            
+            <div
+              className={` bg-black  opacity-0 invisible duration-300 fixed top-0 left-0 h-full w-full ${click && "!visible opacity-50 z-[2]"
+                }`}
+            ></div>
+            
+            <div ref={ref} className="fixed  w-full border-b border-primary z-[4] ">
+              <Header />
+            </div>
+
+            <div ref={ref2}>
+              <Component {...pageProps} />
+            </div>
+            <Footer />
+          </Context.Provider>
+        </SessionProvider>
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React,{useState} from 'react'
 import Welfare from './welfare'
+import Link from 'next/link'
 
 const Assets = () => {
     const [show, setShow] = useState(true);
@@ -12,7 +13,7 @@ const Assets = () => {
                 <p className='info-14-16 mb-2'>Verification</p>
                 <p className='info-14-16'>Once verification is completed, you will have a higher withdrawal limit.</p>
                 </div>
-                <button className='text-primary border border-primary rounded-lg px-3 py-2'>Verify</button>
+                <Link href="/dashboard/verified" className='text-primary border border-primary rounded-lg px-3 py-2'>Verify</Link>
             </div>
             <div className='xl:hidden'>
                 <Welfare/>
