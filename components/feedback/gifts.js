@@ -8,15 +8,15 @@ const Gifts = () => {
         <p className='info-14-20 pt-6'>Once your feedback is accepted, you will be eligible for rewards of up to 2,000 USDT, as well as exclusive BLC-Exchange swag. </p>
         <div className='flex flex-col md:flex-row justify-between mt-14 gap-12'>
           <div className='p-4 pb-10 text-center bg-[#f7f7f7] rounded-xl'>
-            <img src='/assets/images/gift1.png'></img>
+            <img src='/assets/images/gift1.png' alt='error'></img>
             <span className='info-14-20 dark:text-black'>2000 USDT</span>
           </div>
           <div className='p-4 pb-10 text-center bg-[#f7f7f7] rounded-xl'>
-            <img src='/assets/images/gift2.png'></img>
+            <img src='/assets/images/gift2.png' alt='error'></img>
             <span  className='info-14-20 dark:text-black'>Official hoodie</span>
           </div>
           <div className='p-4 pb-10 text-center bg-[#f7f7f7] rounded-xl'>
-            <img src='/assets/images/gift3.png'></img>
+            <img src='/assets/images/gift3.png' alt='error'></img>
             <span  className='info-14-20 dark:text-black '>Mug</span>
           </div>
         </div>

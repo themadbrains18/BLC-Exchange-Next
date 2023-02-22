@@ -34,7 +34,7 @@ const Serve = () => {
                         <div className='border border-[#dee1e4] rounded-sm p-10 mt-14' >
                             <div className='flex flex-col sm:flex-row gap-2 sm:gap-6   p-3 bg-gradient-to-r from-[#f7f7f7] to-[hsla(0,0%,98.4%,0)] rounded-xl sm:rounded-[100px]'>
                                 <div className='flex  gap-1'>
-                                    <img src="https://img.icons8.com/sf-ultralight/25/null/clock.png" />
+                                    <img src="https://img.icons8.com/sf-ultralight/25/null/clock.png" alt='error' />
                                     <p className='info-14-16 dark:text-black'>{e.date}</p>
                                 </div>
                                 <p className='info-14-16 dark:text-black '>User: {e.user}</p>
@@ -44,7 +44,7 @@ const Serve = () => {
                                 <div className='flex gap-4'>
                                     <span className='info-14-16 bg-primary border-primary text-white px-2 rounded'>{e.type}</span>
                                     <p className='info-14-16'>User feedback: </p>
-                                    <img src="https://img.icons8.com/small/24/null/happy.png" />
+                                    <img src="https://img.icons8.com/small/24/null/happy.png" alt='error' />
                                 </div>
                                 <p className='info-14 border-0 sm:border-l sm:border-dashed border-primary ml-0 sm:ml-12 pl-0 sm:pl-14 p-5 pb-7'>{e.feedback}</p>
                                 {e.reply &&
