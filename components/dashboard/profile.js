@@ -45,7 +45,7 @@ const Profile = ({ sessions }) => {
                                 <p className='info-12 bg-border-clr px-1'>VIP 0</p>
                             </div>
                             <p className='info-12 bg-border-clr px-1'>Not Verified</p>
-                            <img src='/assets/icons/noraml-user.svg'></img>
+                            <img src='/assets/icons/noraml-user.svg' alt='error'></img>
                         </div>
                         <div className='hidden flex-wrap md:flex justify-between xl:justify-self-auto xl:flex-nowrap gap-9 xl:gap-10'>
                             <div>
@@ -56,7 +56,7 @@ const Profile = ({ sessions }) => {
                                 <p className='info-14'>Phone</p>
                                 <div className='flex cursor-pointer items-center'>
                                     <p className='info-14 text-black'><Link href={sessions!==undefined && sessions?.number==''? 'dashboard/bindmobile':''}>{sessions!==undefined && sessions?.number !=='' ? sessions.number : 'SetUp'}</Link></p>
-                                    <img src='/assets/icons/navigate.svg'></img>
+                                    <img src='/assets/icons/navigate.svg' alt='error'></img>
                                 </div>
                             </div>
                             <div>

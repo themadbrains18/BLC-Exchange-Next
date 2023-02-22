@@ -316,7 +316,7 @@ const Setting = ({ account,sessions }) => {
                 </div>
                 <div className='sm:text-start text-center'>
                   <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Apple ID</p>
-                  <p className="info-12 ">To protect yourself from counterfeit emails, the emails you receive from Bitget will contain the anti-phishing code you've set</p>
+                  <p className="info-12 ">To protect yourself from counterfeit emails, the emails you receive from BLC-Exchange will contain the anti-phishing code you've set</p>
                 </div>
               </div>
               <Link href="#" className='info-14-16 !text-primary'>Set</Link>
@@ -331,7 +331,7 @@ const Setting = ({ account,sessions }) => {
                 </div>
                 <div className='sm:text-start text-center'>
                   <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Telegram assistant</p>
-                  <p className="info-12 ">Subscribe to the Bitget Assistant to get push notifications</p>
+                  <p className="info-12 ">Subscribe to the BLC-Exchange Assistant to get push notifications</p>
                 </div>
               </div>
               <Link href="#" className='info-14-16 !text-primary'>Link</Link>
