@@ -132,11 +132,11 @@
                 "linkText": "Overview",
                 "desc": "Futures trading",
                 "svgType": "overview",
-                "linkUrl": ""
+                "linkUrl": "/asset"
             },
             {
-                "linkText": "Deposite",
-                "linkUrl": "earn",
+                "linkText": "Deposit",
+                "linkUrl": "/asset/deposit",
                 "svgType": "deposite"
             },
             {
@@ -267,13 +267,13 @@
                 "linkText": "My Compition",
                 "desc": "Market trends from experts",
                 "svgType": "my_compition",
-                "linkUrl": "earn"
+                "linkUrl": "dashboard/competitions"
             },
             {
                 "linkText": "Voucher Center",
                 "desc": "Market trends from experts",
                 "svgType": "voucher_center",
-                "linkUrl": "earn"
+                "linkUrl": "dashboard/coupons"
             },
             {
                 "linkText": "My Settings",

@@ -10,6 +10,7 @@ const BuySell = () => {
     const [coinImg, setCoinImg] = useState(false)
 
     const selectCoin = async (item) => {
+      
         setCoin(item.name)
         setCoinImg(item.image)
     }

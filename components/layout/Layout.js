@@ -1,7 +1,7 @@
 import SideBar from "@/components/asset/sideBar";
 import { useContext, useEffect, useRef, useState } from "react";
 import Context from "../contexts/context";
-const Layout = ({ children, link, data }) => {
+const Layout = ({ children, name, data }) => {
   const { setTopBar } = useContext(Context);
   // let padding;
   // useEffect(() => {
@@ -15,7 +15,7 @@ const Layout = ({ children, link, data }) => {
   return (
     <>
       <div className={`flex  flex-col md:flex-row dark:bg-black-v-5 `}>
-        <SideBar data={data} link={link} />
+        <SideBar data={data} name={name} />
         <div className="md:w-[calc(100%-240px)] md:ml-auto">{children}</div>
       </div>
     </>

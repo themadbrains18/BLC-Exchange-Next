@@ -66,11 +66,11 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
             }}
           >
             <div
-              className={` bg-black  opacity-0 invisible duration-300 fixed top-0 left-0 h-full w-full ${click && "!visible opacity-50"
+              className={` bg-black  opacity-0 invisible duration-300 fixed top-0 left-0 h-full w-full ${click && "!visible opacity-50 z-[2]"
                 }`}
             ></div>
             
-            <div ref={ref} className="fixed  w-full border-b border-primary ">
+            <div ref={ref} className="fixed  w-full border-b border-primary z-[4] ">
               <Header />
             </div>
 

@@ -7,7 +7,7 @@ const InsightCard = () => {
        <div className="flex items-center justify-between mb-[30px]">
           <div className='flex gap-3 items-center'>
               <Image src={cardImage} alt="" width={32} height={32} />
-              <p className='info-14-16'>Bitget Branding</p>
+              <p className='info-14-16'>BLC-Exchange Branding</p>
           </div>
           <button className="cta">Follow</button>
        </div>

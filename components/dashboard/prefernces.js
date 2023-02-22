@@ -11,7 +11,7 @@ const Prefernces = () => {
     const [showSafteyV, setShowSafteyV] = useState(0);
     const [SetState, showSetState] = useState(0);
     return (
-        <div className="w-full px-[24px] ">
+        <section className="w-full px-[24px] ">
             <div className="mb-[20px]">
                 <h3 className="section-secondary-heading mb-6"> Settings</h3>
                 <div className="divide-y px-[24px] shadow-lg dark:shadow-[#1da2b41c] rounded-lg	">
@@ -49,7 +49,7 @@ const Prefernces = () => {
                             <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
                                 <div className='sm:text-start text-center'>
                                     <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Time of registration</p>
-                                    <p className="info-12 ">The time you register for the Bitget account</p>
+                                    <p className="info-12 ">The time you register for the BLC-Exchange account</p>
                                 </div>
                             </div>
                             <p className='info-14'>2023-02-16 13:28:29</p>
@@ -112,7 +112,7 @@ const Prefernces = () => {
                         <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
                             <div className='sm:text-start text-center'>
                                 <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Promotional Emails</p>
-                                <p className="info-12 ">Turn on to receive promotional notifications from Bitget</p>
+                                <p className="info-12 ">Turn on to receive promotional notifications from BLC-Exchange</p>
                             </div>
                         </div>
                         <div className='flex gap-6 items-center'>
@@ -478,7 +478,7 @@ const Prefernces = () => {
 
             </div>
 
-        </div>
+        </section>
     )
 }
 

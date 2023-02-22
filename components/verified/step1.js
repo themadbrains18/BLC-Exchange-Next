@@ -8,6 +8,7 @@ const Step1 = () => {
 
     const [show, setShow] = useState(false)
     const { click, setClick } = useContext(Context)
+    
     const idData = [' ID card', 'Passport', 'Drivers License']
 
     const [showDropdown, setShowDropdown] = useState(false);
@@ -48,7 +49,7 @@ const Step1 = () => {
                 <div className='flex flex-col gap-4 mt-6 relative' onClick={(e) => { setShowId(!showId) }}>
                     <label className='info-12'>Identity Document Type</label>
                     <input type='text' placeholder='ID Card' autocomplete="off" value={userId} className='border-b-2 -z-10 border-border-clr  bg-transparent   text-black dark:text-white outline-none focus:!border-primary dark:border-white rounded' />
-                    {showId && <SearchDropdown idData={idData} selectId={selectId} />}
+                    {showId && <SearchDropdown setShowDropdown={setShowId} idData={idData} selectId={selectId} />}
                 </div>
                 <div className='flex flex-col gap-4 mt-6 '>
                     <label className='info-12'>Identity no.</label>
