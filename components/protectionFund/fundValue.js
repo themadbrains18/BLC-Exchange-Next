@@ -7,11 +7,10 @@ const FundValue = () => {
         {
             cardImg: 'btc.svg',
             wallet: [
-                {
-                    desc: 'Wallet1'
-                }, {
-                    desc: 'Wallet2'
-                }
+                 'Wallet1'
+                , 
+                    'Wallet2'
+                
             ],
             cardHeading: "BTC",
             cardInfo: "6500 BTC",
@@ -20,11 +19,9 @@ const FundValue = () => {
         {
             cardImg: 'USDT.svg',
             wallet: [
-                {
-                    desc: 'Wallet3'
-                }, {
-                    desc: 'Wallet4'
-                }
+                'Wallet3',
+                'Wallet4'
+            
             ],
             cardHeading: "USDT",
             cardInfo: "160 million USDT",
@@ -32,11 +29,10 @@ const FundValue = () => {
         {
             cardImg: 'USDC.svg',
             wallet: [
-                {
-                    desc: 'Wallet5'
-                }, {
-                    desc: 'Wallet6'
-                }
+                
+                'Wallet5'
+                , 'Wallet6'
+                
             ],
             cardHeading: "USDC",
             cardInfo: "160 million USDC",

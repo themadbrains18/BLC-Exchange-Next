@@ -4,7 +4,7 @@ const ActiveCta = ({ data, active, setActive,type }) => {
   return (
     <>
       {
-        !type && <div className="flex gap-3 w-[400px] ">
+        !type && <div className="flex gap-5 w-[400px] ">
         {data.map((elem, index) => {
           return (
             <Link
