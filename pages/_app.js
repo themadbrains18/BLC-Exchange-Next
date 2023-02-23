@@ -5,20 +5,19 @@ import Footer from "@/components/header-footer/footer";
 import Header from "@/components/header-footer/header";
 import Loader from "@/components/snippets/loader";
 
-// import { signOut, useSession } from "next-auth/react"
 import { SessionProvider } from "next-auth/react"
 
 
-export default function App({ Component, pageProps: { session, ...pageProps }, props }) {
+export default function App({ Component, pageProps : { session, ...pageProps }, props }) {
   //  const mode=useContext(UserContext)
 
   console.log(session,'======================session')
   const [mode, setMode] = useState("dark");
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(false);
   const [click, setClick] = useState(false);
   const [loader, setLoader] = useState(true);
   const [pad, setPad] = useState();
-  // const [topBar, setTopBar] = useState(true);
+  const [topBar, setTopBar] = useState(true);
   const ref = useRef(null);
   const ref2 = useRef(null);
   let currentMode;
@@ -51,22 +50,31 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
             <Loader />
           </div>
         )}
-        <SessionProvider session={session}>
-          <Context.Provider
-            value={{
-              mode,
-              setMode,
-              login,
-              setLogin,
-              click,
-              setClick,
-              heightUpdate,
-              padding,
-              ref2,
-              ref
+<SessionProvider session={session}>
+        <Context.Provider
+          value={{
+            mode,
+            setMode,
+            login,
+            setLogin,
+            click,
+            setClick,
+            heightUpdate,
+            padding,
+            topBar,
+            setTopBar,
+          }}
+        >
+          <div
+            className={` bg-black  opacity-0 invisible duration-300 fixed top-0 left-0 h-full w-full ${
+              click && "!visible opacity-50"
+            }`}
+          ></div>
+          <div ref={ref} className="fixed  w-full border-b border-primary ">
+            <Header />
+          </div>
 
-            }}
-          >
+            
             <div
               className={` bg-black  opacity-0 invisible duration-300 fixed top-0 left-0 h-full w-full ${click && "!visible opacity-50 z-[2]"
                 }`}

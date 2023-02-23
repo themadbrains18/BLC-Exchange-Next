@@ -14,9 +14,9 @@ const Deposit = ({ assets }) => {
   const [open, setOpen] = useState(false);
 const {mode}=useContext(Context)
   let network = ["BTC", "Bsc "];
+  let autoTransfer = ["Spot", "Bsc "];
 
   const selectCoin = async (item) => {
-    console.log("=====coin", item);
     setCoin(item.name);
     setCoinImg(item.image);
   };
@@ -25,9 +25,10 @@ const {mode}=useContext(Context)
   };
   return (
     <>
-      <Layout data={assets} name="Dashboard">
-        <section className="flex p-4 md:p-8 flex-col md:flex-row gap-4">
-          <div className="md:relative">
+      <Layout data={assets} name="Deposit">
+        <div className="flex p-4 md:p-8 flex-col md:flex-row gap-4">
+       <div className="grow">
+       <div className="md:relative">
             <h6 className="info-12">Coin</h6>
             <div
               className="flex cursor-pointer justify-between w-full border border-border-clr rounded p-2 mt-2 "
@@ -92,23 +93,13 @@ const {mode}=useContext(Context)
             )}
           </div>
           <div className="md:relative">
-            <h6 className="info-12">Network</h6>
+            <h6 className="info-12">Deposit address:</h6>
             <div
               className="flex cursor-pointer items-center justify-between w-full border border-border-clr rounded p-2 mt-2 "
-              onClick={() => {
-                setOpen(!open);
-                setRotate(!rotate);
-              }}
             >
               <div className="flex gap-3 ">
-                {/* <Image
-                  className="self-start"
-                  height={24}
-                  width={24}
-                  alt="Coin Image"
-                  src={`/assets/images/${coinImg}`}
-                ></Image> */}
-                <p className="info-14-16 font-bold">{networks}</p>
+             
+                <p className="info-14-16 font-bold">fsdgvbd</p>
               </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -126,18 +117,54 @@ const {mode}=useContext(Context)
               </svg>
             </div>
           </div>
+          {/* qr code  */}
+          <div className="grid place-items-center p-2 md:hidden mt-4">
+                <img src="/assets/images/qr.png" alt="" />
+            </div>
+            <div className="md:relative">
+            <h6 className="info-12">Automatically transfer to</h6>
+            <div
+              className="flex cursor-pointer justify-between w-full border border-border-clr rounded p-2 mt-2 "
+              onClick={() => {
+                setOpen(!open);
+                setRotate(!rotate);
+              }}
+            >
+              <div className="flex gap-3 ">
+                {/* <Image
+                  className="self-start"
+                  height={24}
+                  width={24}
+                  alt="Coin Image"
+                  src={`/assets/images/${coinImg}`}
+                ></Image> */}
+                <p className="info-14-16 font-bold">{networks}</p>
+              </div>
+              <img
+                src="/assets/icons/down.svg"
+                className={`${rotate && "rotate-90"} duration-300`}
+              ></img>
+            </div>
+            {open != false && (
+              <SearchDropdown
+                idData={autoTransfer}
+                setShowDropdown={setOpen}
+                selectId={selectId}
+              />
+            )}
+          </div>
+       </div>
+
           <div className="hidden lg:block">
             <Image
               src="/assets/images/launchPadOffer.png"
               height={360}
               width={360}
+              alt=""
             />
           </div>
-            <div className="grid place-items-center p-2">
-                <img src="/assets/images/qr.png" alt="" />
-
-            </div>
-        </section>
+        </div>
+            
       </Layout>
     </>
   );
