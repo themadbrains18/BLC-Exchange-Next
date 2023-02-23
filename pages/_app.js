@@ -10,6 +10,8 @@ import { SessionProvider } from "next-auth/react"
 
 export default function App({ Component, pageProps : { session, ...pageProps }, props }) {
   //  const mode=useContext(UserContext)
+
+  console.log(session,'======================session')
   const [mode, setMode] = useState("dark");
   const [login, setLogin] = useState(false);
   const [click, setClick] = useState(false);

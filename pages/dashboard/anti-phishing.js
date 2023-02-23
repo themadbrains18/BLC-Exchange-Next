@@ -1,26 +1,25 @@
+import React from 'react';
 import Layout from '/components/layout/layout'
-import React from 'react'
-import { getProviders, getSession } from "next-auth/react";
-
-const Spot = ({assets}) => {
+import { getProviders, getSession } from "next-auth/react"
+import AntiFishingCode from './../../components/dashboard/anti-fishing-code';
+const AntiPhishing = ({account}) => {
   return (
-    <>
-    <Layout data={assets} name="Spot">
-
+    <Layout data={account} slug="dashboard">
+        <AntiFishingCode />
     </Layout>
-    </>
   )
 }
 export async function getServerSideProps(context) {
     const { req } = context;
     const session = await getSession({ req });
-    const providers = await getProviders();
+    const providers = await getProviders()
     if (session) {
       let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
       let menu = await data.json();
       return {
         props: {
-          assets: menu.specialNav.assets,
+          account: menu.specialNav.account,
+          session: session
         }, // will be passed to the page component as props
       };
     }
@@ -32,5 +31,6 @@ export async function getServerSideProps(context) {
     return {
       redirect: { destination: "/" },
     };
+  
   }
-export default Spot
+export default AntiPhishing;

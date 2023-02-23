@@ -10,17 +10,17 @@ const Links = () => {
         <div className='flex flex-col justify-between gap-4 md:max-w-[280px] md:w-full'>
             <p className='dark:text-white info-14-24 text-2xl font-semibold'>Affiliate Program</p>
             <p className='dark:text-white font-noto text-base md:info-14-16 mb-2'>Earn daily commissions by being an influencer</p>
-            <Image src='/assets/images/arrow.png' width={48} height={48}></Image>
+            <Image src='/assets/images/arrow.png' width={48} height={48} alt=""></Image>
         </div>
         <div className='flex flex-col justify-between gap-4 md:max-w-[280px] md:w-full'>
             <p className='dark:text-white info-14-24 text-2xl font-semibold'>Rewards Program</p>
             <p className='dark:text-white font-noto text-base md:info-14-16 mb-2'>Earn rewards by completing tasks</p>
-            <Image src='/assets/images/arrow.png' width={48} height={48}></Image>
+            <Image src='/assets/images/arrow.png' width={48} height={48} alt=""></Image>
         </div>
         <div className='flex flex-col justify-between gap-4 md:max-w-[280px] md:w-full'>
             <p className='dark:text-white info-14-24 text-2xl font-semibold'>BLC-Exchange Academy</p>
             <p className='dark:text-white font-noto text-base md:info-14-16 mb-2' >Accelerate your trading journey with BLC-Exchange Academy's in-depth guides</p>
-            <Image src='/assets/images/arrow.png' width={48} height={48}></Image>
+            <Image src='/assets/images/arrow.png' width={48} height={48} alt=""></Image>
         </div>
      </div>
     </div>

@@ -1,11 +1,12 @@
 // import {useRef,} from 'react'
 import Link from "next/link";
 import Image from "next/image";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useContext, useEffect, useRef, useState } from "react";
+import Context from "../contexts/context";
 
 const NavAccordian = (props) => {
   const ref = useRef(null);
-
+const {setClick} = useContext(Context)
   // set acordian to height
   const setHeight = (e) => {
     let height = ref.current.scrollHeight;
@@ -56,7 +57,9 @@ const NavAccordian = (props) => {
             return (
               <Fragment key={index} >
                 {elem.linkUrl && elem.linkText && (
-                  <li  className="mt-3">
+                  <li  className="mt-3" onClick={() => {
+                    setClick(false);
+                  }}>
                     <Link href={elem.linkUrl} className={`info-14 ${props.className && " hover:border-r-2 hover:border-primary block"}`}>
                       {elem.linkText}
                     </Link>

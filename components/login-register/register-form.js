@@ -125,7 +125,7 @@ const RegisterForm = () => {
         }
     }
 
-    const onFinalSubmit = async (e,otp) => {
+    const createUser = async (otp) => {
 
         registerForm.otp = otp;
         registerForm.time = new Date();
@@ -134,8 +134,6 @@ const RegisterForm = () => {
             method : "POST",
             body : JSON.stringify(registerForm)
         }).then(response=>response.json())
-
-        // let result = await registerRequest(registerForm);
 
         if (result.data.status === 200 && result.data != undefined) {
             router.push('/login');
@@ -147,23 +145,23 @@ const RegisterForm = () => {
         }
     }
 
-    const sendOtpAgain = async () => {
-        // let otpResponse = await sendOtp(registerForm);
-        let otpResponse = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`,{
-            method : "POST",
-            body : JSON.stringify(registerForm)
-        }).then(response=>response.json());
+    // const sendOtpAgain = async () => {
+    //     // let otpResponse = await sendOtp(registerForm);
+    //     let otpResponse = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`,{
+    //         method : "POST",
+    //         body : JSON.stringify(registerForm)
+    //     }).then(response=>response.json());
         
-        if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
-            let usrname = registerForm.requestType === 'mobile' ? registerForm.number : registerForm.email
-            console.log(usrname);
-            let message = otpResponse.data.message + ' ' + usrname;
-            console.log(message);
-            toast.success(message, {
-                position: toast.POSITION.TOP_RIGHT, autoClose: 5000
-            })
-        }
-    }
+    //     if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
+    //         let usrname = registerForm.requestType === 'mobile' ? registerForm.number : registerForm.email
+    //         console.log(usrname);
+    //         let message = otpResponse.data.message + ' ' + usrname;
+    //         console.log(message);
+    //         toast.success(message, {
+    //             position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+    //         })
+    //     }
+    // }
 
 
     return (
@@ -300,7 +298,7 @@ const RegisterForm = () => {
                     }
                     {/* verification code  */}
                     {showVerification === 1 &&
-                        <VerificationCode verifyCode={true} onFinalSubmit={onFinalSubmit} sendOtpAgain={sendOtpAgain} username={registerForm.requestType === 'mobile' ? registerForm.number : registerForm.email} loginData={registerForm} />
+                        <VerificationCode verifyCode={true} loginData={registerForm} resgister={true} createUser={createUser} />
                     }
 
                 </div>

@@ -25,7 +25,7 @@ const {mode}=useContext(Context)
   };
   return (
     <>
-      <Layout data={assets} name="Dashboard">
+      <Layout data={assets} name="Deposit">
         <div className="flex p-4 md:p-8 flex-col md:flex-row gap-4">
        <div className="grow">
        <div className="md:relative">
@@ -160,6 +160,7 @@ const {mode}=useContext(Context)
               src="/assets/images/launchPadOffer.png"
               height={360}
               width={360}
+              alt=""
             />
           </div>
         </div>

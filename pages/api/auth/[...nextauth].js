@@ -2,7 +2,6 @@ import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 
-
 export const authOptions = {
   secret: process.env.NextAuth_SECRET,
   // Configure one or more authentication providers
@@ -78,7 +77,15 @@ export const authOptions = {
 
         async session({ session, token, user }) {
             // Send properties to the client, like an access_token from a provider.
-            session.user = token;
+            // console.log('i am here!',token)
+
+            let obj = { "number": token.number, "dial_code": token.dial_code, "email": token.email };
+            const datauser = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/profile`, {
+                method: "POST",
+                body: JSON.stringify(obj)
+            }).then(response => response.json());
+
+            session.user = datauser.data.data;
             return session;
         }
 
