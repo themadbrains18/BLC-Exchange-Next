@@ -10,7 +10,7 @@ import * as yup from 'yup';
 const schema = yup
     .object()
     .shape({
-        // country: yup.string().required('This field is required'),
+        country: yup.string().required('This field is required'),
         fname: yup.string().required('This field is required'),
         lname: yup.string().required('This field is required'),
         dob: yup.string().required('This field is required'),
@@ -54,14 +54,14 @@ const Step1 = () => {
                 <span>
                     <p className='info-14'>Country / Region</p>
                     <span className='cursor-pointer border-b-2 border-border-clr hover:border-primary relative max-w-md w-full flex items-center gap-2  justify-between mt-4' onClick={(e) => { setShowDropdown(!showDropdown) }}>
-                        <span className="text-black dark:text-white" id="countryName" >Botswana</span>
+                        <input type='text' className="text-black dark:text-white outline-none" id="countryName"  {...register('country')}></input>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                         {
                             showDropdown != false &&
                             <SearchDropdown setShowDropdown={setShowDropdown} country={true}  />
                         }
                     </span>
-                    {/* <div className="!text-red-700 info-12">{errors.country?.message}</div> */}
+                    <div className="!text-red-700 info-12">{errors.country?.message}</div>
                 </span>
 
                 <div className='flex flex-col sm:flex-row mt-6 gap-9 justify-between'>
