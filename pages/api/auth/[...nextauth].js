@@ -16,10 +16,10 @@ export const authOptions = {
     // google auth management
     //=================================================================//
 
-
     GoogleProvider({
         clientId: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        
         authorization: {
             params: {
               prompt: "consent",
@@ -38,8 +38,10 @@ export const authOptions = {
         // The name to display on the sign in form (e.g. "Sign in with...")
         name: "Credentials",
         async authorize(credentials, req) {
+
             if (credentials.status == 200) {
-                return credentials;
+                let user = credentials
+                return user;
             } else return null;
         },
     })
@@ -47,6 +49,9 @@ export const authOptions = {
 
     // ...add more providers here
   ],
+  session : {
+
+  },
   callbacks: {
 
         async signIn({ account, profile }) {
@@ -60,7 +65,8 @@ export const authOptions = {
              if(account.provider == "credentials"){
                 flag = true
              }else if(account.provider == "google"){
-                console.log(profile, ' profile')
+                // console.log(profile, ' profile')
+
                 flag = true
              }
 
@@ -79,7 +85,8 @@ export const authOptions = {
     },
     pages: {
         signIn: '/login',
-    }
+    },
+    
 }
 
 export default NextAuth(authOptions);

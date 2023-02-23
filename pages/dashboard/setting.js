@@ -4,7 +4,7 @@ import Context from '@/components/contexts/context';
 import Link from 'next/link';
 import VerificationCode from './../../components/login-register/verification-code';
 import { getProviders, getSession } from "next-auth/react"
-const Setting = ({ account }) => {
+const Setting = ({ account,sessions }) => {
   const { mode, setClick } = useContext(Context);
   const [showSafteyV, setShowSafteyV] = useState(0);
   const [SetState, showSetState] = useState(0);
@@ -56,7 +56,14 @@ const Setting = ({ account }) => {
                   <p className="info-12 ">Used to log in, withdraw, retrieve passwords, modify security settings, and perform security verification when managing APIs</p>
                 </div>
               </div>
-              <Link className='cta' href="bindmobile">Settings</Link>
+              {sessions.user.number ==='' && 
+                <Link className='cta' href="bindmobile">'Settings'</Link>
+              }
+              {sessions.user.number !=='' && 
+                <>
+                  <p className='info-14-16 !text-primary'>{sessions.user.number} |</p> <Link className='info-14-16 !text-primary' href="bindmobile">Modify</Link>
+                </> 
+              }
             </div>
 
             <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">
@@ -81,7 +88,14 @@ const Setting = ({ account }) => {
                 </div>
               </div>
 
-              <button className='info-14-16 !text-primary' onClick={() => { setClick(true); setShowSafteyV(1) }}> Turn Off Verification</button>
+              {sessions.user.email ==='' && 
+                <Link className='cta' href="bindemail">Settings</Link>
+              }
+              {sessions.user.email !=='' && 
+                <>
+                  <p className='info-14-16 !text-primary'>{sessions.user.email} |</p> <Link className='info-14-16 !text-primary' href="bindemail">Modify</Link>
+                </> 
+              }
 
             </div>
 
@@ -345,15 +359,10 @@ export async function getServerSideProps(context) {
     return {
       props: {
         account: menu.specialNav.account,
-        session: session
+        sessions: session
       }, // will be passed to the page component as props
     };
   }
-  // return {
-  //     props: {
-  //         providers,
-  //     },
-  // }
   return {
     redirect: { destination: "/" },
   };

@@ -141,7 +141,7 @@
             },
             {
                 "linkText": "Withdraw",
-                "linkUrl": "earn",
+                "linkUrl": "/asset/withdraw",
                 "svgType": "withdraw"
             },
             {
@@ -156,7 +156,7 @@
                 "menu": [
                     {
                         "linkText": "Spot",
-                        "linkUrl": "p"
+                        "linkUrl": "/asset/transaction/spot"
                     },
                    
                     {

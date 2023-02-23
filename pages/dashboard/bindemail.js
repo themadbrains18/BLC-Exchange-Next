@@ -1,11 +1,10 @@
 import Layout from '@/components/layout/layout'
-import ModifyPass from './../../components/dashboard/modify-pass';
-import LinkMobile from "../../components/dashboard/link-mobile";
+import LinkEmail from "../../components/dashboard/link-email";
 import { getProviders, getSession } from "next-auth/react"
 const Bindmobile = ({ account,sessions }) => {
   return (
     <Layout data={account} slug="dashboard">
-      <LinkMobile sessions={sessions}/>
+      <LinkEmail sessions={sessions}/>
     </Layout>
   )
 }
