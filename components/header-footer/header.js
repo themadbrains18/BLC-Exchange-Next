@@ -77,7 +77,6 @@ const Header = (props) => {
               />
             </Link>
             <div
-              href={""}
               className=" relative hover:pb-8 hover:-mb-8 group "
             >
               {/* grid icon  */}
