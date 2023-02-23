@@ -55,7 +55,8 @@ const RegisterForm = () => {
                 password: data.password,
                 requestType: 'email',
                 resetPassword: false,
-                referal_code : data.referal_code
+                referal_code : data.referal_code,
+                number :''
             };
 
             otpForm = {
@@ -72,7 +73,8 @@ const RegisterForm = () => {
                 password: data.password,
                 requestType: 'mobile',
                 resetPassword: false,
-                referal_code : data.referal_code
+                referal_code : data.referal_code,
+                email :''
             };
 
             otpForm = {
@@ -99,7 +101,8 @@ const RegisterForm = () => {
         }
         else {
             // let otpResponse = await sendOtp(otpForm);
-            let otpResponse = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`,{
+            let qwe = otpForm.requestType === "email" ?'/otp':'/otp/sms'
+            let otpResponse = await fetch(`${process.env.NEXT_PUBLIC_BASEURL+qwe}`,{
                 method : "POST",
                 body : JSON.stringify(otpForm)
             }).then(response=>response.json());
@@ -122,7 +125,7 @@ const RegisterForm = () => {
         }
     }
 
-    const onFinalSubmit = async (otp) => {
+    const onFinalSubmit = async (e,otp) => {
 
         registerForm.otp = otp;
         registerForm.time = new Date();
@@ -297,7 +300,7 @@ const RegisterForm = () => {
                     }
                     {/* verification code  */}
                     {showVerification === 1 &&
-                        <VerificationCode verifyCode={true} onFinalSubmit={onFinalSubmit} sendOtpAgain={sendOtpAgain} username={registerForm.requestType === 'mobile' ? registerForm.number : registerForm.email} />
+                        <VerificationCode verifyCode={true} onFinalSubmit={onFinalSubmit} sendOtpAgain={sendOtpAgain} username={registerForm.requestType === 'mobile' ? registerForm.number : registerForm.email} loginData={registerForm} />
                     }
 
                 </div>

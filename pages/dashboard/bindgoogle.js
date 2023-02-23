@@ -3,10 +3,10 @@
 import BindGoogle from './../../components/dashboard/bind-google';
 import Layout from '/components/layout/layout'
 import { getProviders, getSession } from "next-auth/react"
-const Bindgoogle = ({ account }) => {
+const Bindgoogle = ({ account, sessions }) => {
     return(
         <Layout data={account} slug="dashboard">
-            <BindGoogle />
+            <BindGoogle session={sessions.user}/>
         </Layout>
     )
 }
@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
       return {
         props: {
           account: menu.specialNav.account,
-          session: session
+          sessions: session
         }, // will be passed to the page component as props
       };
     }

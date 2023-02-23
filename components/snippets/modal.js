@@ -11,6 +11,7 @@ const schema = yup
     .shape({
         file: yup.mixed().required('File is required'),
         profile: yup.mixed().required('File is required'),
+        phone: yup.number().required("This Field is required")
     })
     .required();
 
@@ -32,9 +33,8 @@ const Modal = ({ setShow, formData }) => {
         if (!e.target.files) {
             return;
         }
-
         var file = e.target.files[0];
-
+        setValue('file', file, { shouldValidate: true });
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = function (e) {
@@ -50,26 +50,23 @@ const Modal = ({ setShow, formData }) => {
                 reader.onerror = error => reject(error);
             });
         }
-
         getBase64(file).then(
             data => {
                 if (data !== undefined)
                     setImageSource(data);
                 setStep(step + 1)
-                setValue('file', data, { shouldValidate: true });
+
             }
         );
     }
 
     const handleBackFile = function (e) {
 
-        console.log("====files", e.target.files)
         if (!e.target.files) {
             return;
         }
-
         var file = e.target.files[0];
-
+        setValue('profile', file, { shouldValidate: true });
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = function (e) {
@@ -91,23 +88,21 @@ const Modal = ({ setShow, formData }) => {
                 if (data !== undefined)
                     setImageSource2(data);
                 setStep(step + 1)
-                setValue('file', data, { shouldValidate: true });
             }
         );
     }
 
     const onSubmit = (data, e) => {
-        console.log("data, ")
-        console.log(data, e)
+
+        console.log(data)
     };
-    
+
 
     return (
         <div className='h-[100vh] w-full grid place-items-center absolute top-0 right-0 rounded-2xl'>
             <form
-            onSubmit={handleSubmit(onSubmit)}
-             className={`bg-white  ${click && 'z-20'} rounded-lg md:rounded-2xl grow`} >
-                <button type='submit'>sdfsdfsdfdsf</button>
+                onSubmit={handleSubmit(onSubmit)}
+                className={`bg-white  ${click && 'z-20'} rounded-lg md:rounded-2xl grow`} >
                 <div className={`md:min-w-[500px] md:w-full min-w-[300px] h-[600px] flex flex-col justify-between`} >
                     <div>
                         <div className='flex justify-between p-4 '>
@@ -275,13 +270,23 @@ const Modal = ({ setShow, formData }) => {
                                             <span className="text-black dark:text-white" id="counteryCode">+ <span>91</span> </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#656e6f" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                                         </div>
-                                        <input type="tel" placeholder="Mobile number" className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone" />
-                                        <button type='button' className='cta max-w-[110px] w-full' onClick={() => { setStep(8) }}>Send Link</button>
+                                        <input type="tel" placeholder="Mobile number" className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone"
+                                            {...register('phone')} />
+                                        <button type='button' className='cta max-w-[110px] w-full' onClick={(e) => {
+
+                                            if (e.target.value !== '') {
+                                                setStep(8)
+                                            }
+
+                                        }}>Send Link</button>
                                         {
                                             DropdownPhone &&
                                             <SearchDropdown code={true} setDropdownPhone={setDropdownPhone} />
                                         }
                                     </div>
+                                    {errors.phone && (
+                                        <span role="alert" className="!text-red-700 info-12">This is required</span>
+                                    )}
 
                                     <p className='info-14 mt-6'>Choose an alternative method</p>
                                     <div className='flex gap-4 mt-9'>
@@ -346,7 +351,7 @@ const Modal = ({ setShow, formData }) => {
                                     <label htmlFor='fileUpload' className='underline '>or Choose file </label>
                                 </div>
                                 <div className={`mx-auto mt-3 ${step === 4 ? 'block' : 'hidden'}`} >
-                                    <input name='backfile' id='backfile' type='file' placeholder='or upload photo' className='hidden' onChange={(e) => { handleBackFile(e) }} ></input>
+                                    <input name='backfile' id='backfile' type='file' placeholder='or upload photo' className='hidden' onChange={(e) => { handleBackFile(e) }}  ></input>
                                     <label htmlFor='backfile' className='underline '>or Choose file </label>
                                 </div>
                             </div>
