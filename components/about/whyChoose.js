@@ -49,7 +49,7 @@ const WhyChoose = () => {
                     {cardData && cardData.map((e, i) => {
                          return(
                         <div className='flex flex-col gap-4 p-4 justify-around sm:max-w-[340px] sm:w-full md:max-w-[282px] md:w-full'>
-                            <Image src={e.cardImg} alt="" width={90} height={90}  />
+                            <Image src={e.cardImg} alt="" width={90} height={90} />
                             <div className="mt-4" >
                                 <h3 className='dark:text-white text-2xl font-noto font-medium md:info-14-24 mb-3 sm:mb-5'>{e.cardHeading}</h3>
                                 <p className='dark:text-white text-base font-noto md:info-14-16'>{e.cardInfo}</p>
