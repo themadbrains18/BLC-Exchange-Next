@@ -9,6 +9,7 @@ import VerificationCode from './../login-register/verification-code';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { signOut } from "next-auth/react"
+import {updateUserSecurity} from '../../libs/commanMethod'
 
 const BindGoogle = ({ session }) => {
     const [show, setShow] = useState(false);
@@ -49,7 +50,7 @@ const BindGoogle = ({ session }) => {
     }, [])
     const { mode, setClick } = useContext(Context);
 
-    const updateUser = async (e) => {
+    const VerifyGoogleAuthenticate = async (e) => {
         e.preventDefault();
         const token = inputValue;
         let obj = { secret, token };
@@ -62,52 +63,36 @@ const BindGoogle = ({ session }) => {
         console.log(response, '======google authenticate verification');
 
         if (response.data.status === 200 && response.data.message === true) {
-            if(result.data.email!==""){
-                let emailOtpForm = {'email' : result.data.email};
+            if (session.email !== "") {
+                let emailOtpForm = { 'email': session.email };
                 await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`, {
                     method: "POST",
                     body: JSON.stringify(emailOtpForm)
                 }).then(response => response.json());
             }
 
-            let smsotpResponse;
-            if(result.data.number!==""){
-                let smsOtpForm = {'number' : result.data.number, 'dial_code' : 91};
+            if (session.number !== "") {
+                let smsOtpForm = { 'number': session.number, 'dial_code': 91 };
                 await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp/sms`, {
                     method: "POST",
                     body: JSON.stringify(smsOtpForm)
                 }).then(response => response.json());
             }
             setShow(true);
-            // let form = { id: session.id, TwoFA: 'enable' };
-            // let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users`, {
-            //     method: "PUT",
-            //     body: JSON.stringify(form)
-            // }).then(response => response.json());
 
-            // if (result.data.status === 200 && result.data != undefined) {
-            //     toast.success('Google Authentication bind Successfully!', {
-            //         position: toast.POSITION.TOP_RIGHT, autoClose: 5000
-            //     })
-            //     setTimeout(() => {
-            //         signOut();
-            //     }, 2000);
-
-            // }
-            // else {
-            //     toast.error(result.data.message.errors[0].message, {
-            //         position: toast.POSITION.TOP_RIGHT, autoClose: 2000
-            //     })
-            // }
         }
         else {
             toast.error('Google Authentication Code not matched!', {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             })
         }
-
-
     }
+
+    const updateUser = async () => {
+        let obj = { id: session.id, TwoFA: 'enable' };
+        updateUserSecurity(obj,true);
+    }
+
     return (
         <>
             <ToastContainer />
@@ -202,12 +187,12 @@ const BindGoogle = ({ session }) => {
                                 </div>
                                 {/* <button className='info-14 block mt-[10px]' onClick={(e) => sendAgain(e)}>Send Again</button> */}
                             </div>
-                            <button className="cta w-full mt-[15px]" onClick={(e) => { updateUser(e) }}>Submit</button>
+                            <button className="cta w-full mt-[15px]" onClick={(e) => { VerifyGoogleAuthenticate(e) }}>Submit</button>
                         </form>
                     </div>
                 </div>
                 {show &&
-                    <VerificationCode CloseCta={true} fixed={true} showState={show} showSetState={setShow} bindGoogle={true} loginData={session} />
+                    <VerificationCode CloseCta={true} fixed={true} showState={show} showSetState={setShow} bindGoogle={true} loginData={session} updateUser={updateUser} />
                 }
             </section>
         </>

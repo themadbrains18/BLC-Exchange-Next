@@ -17,7 +17,7 @@ const BuySell = () => {
 
     return (
         <section className='dark:bg-black-v-3 px-10 py-10 md:py-20'>
-            <div className='container place-items-center grid grid-cols gird lg:grid-cols-2 justify-between gap-11'>
+            <div className='container place-items-start grid grid-cols gird lg:grid-cols-2 justify-between gap-11'>
                 <div className='order-last lg:order-first'>
                     <h1 className='hero-heading'>Buy Crypto In One Click</h1>
                     {show === 1 &&

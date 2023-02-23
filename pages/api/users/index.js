@@ -1,6 +1,6 @@
 import nc from "next-connect";
 
-import {postData, putData} from '../../../libs/requestMethod';
+import {postData, putData, getData} from '../../../libs/requestMethod';
 
 export const config = {
   api: {

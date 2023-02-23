@@ -129,43 +129,43 @@ const LoginForm = () => {
 
     }
 
-    const onFinalSubmit = async (e,otp, type) => {
+    // const onFinalSubmit = async (e,otp, type) => {
 
-        let obj = { username: type === 'email' ? loginData.email : loginData.number, otp: otp, time: new Date() };
+    //     let obj = { username: type === 'email' ? loginData.email : loginData.number, otp: otp, time: new Date() };
 
-        let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp/match`, {
-            method: "POST",
-            body: JSON.stringify(obj)
-        }).then(response => response.json());
+    //     let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp/match`, {
+    //         method: "POST",
+    //         body: JSON.stringify(obj)
+    //     }).then(response => response.json());
 
-        if (result.data.status === 200 && result.data != undefined) {
-            return true;
-        }
-        else {
-            toast.error(result.data.message, {
-                position: toast.POSITION.TOP_RIGHT, autoClose: 5000
-            })
-            return false;
-        }
-    }
+    //     if (result.data.status === 200 && result.data != undefined) {
+    //         return true;
+    //     }
+    //     else {
+    //         toast.error(result.data.message, {
+    //             position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+    //         })
+    //         return false;
+    //     }
+    // }
 
-    const sendOtpAgain = async () => {
+    // const sendOtpAgain = async () => {
 
-        // let otpResponse = await sendOtp(otpForm);
+    //     // let otpResponse = await sendOtp(otpForm);
 
-        let otpResponse = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`, {
-            method: "POST",
-            body: JSON.stringify(otpForm)
-        }).then(response => response.json());
+    //     let otpResponse = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`, {
+    //         method: "POST",
+    //         body: JSON.stringify(otpForm)
+    //     }).then(response => response.json());
 
-        if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
-            let usrname = otpForm.requestType === 'mobile' ? otpForm.number : otpForm.email;
-            let message = otpResponse.data.message + ' ' + usrname;
-            toast.success(message, {
-                position: toast.POSITION.TOP_RIGHT, autoClose: 5000
-            })
-        }
-    }
+    //     if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
+    //         let usrname = otpForm.requestType === 'mobile' ? otpForm.number : otpForm.email;
+    //         let message = otpResponse.data.message + ' ' + usrname;
+    //         toast.success(message, {
+    //             position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+    //         })
+    //     }
+    // }
 
 
     return (
@@ -184,7 +184,7 @@ const LoginForm = () => {
                             <h4 className='section-secondary-heading mb-5'>Welcome back</h4>
                             <div className='flex gap-8 mb-8'>
                                 <button className={`info-14 border-b-2 border-transparent pb-1  ${show === 1 ? " !border-primary !text-primary" : ""}`} onClick={() => { setShow(1) }}>Email / Mobile number</button>
-                                <button className={`info-14 border-b-2 border-transparent pb-1 pb-1 ${show === 2 ? " !border-primary  !text-primary " : ""}`} onClick={() => { setShow(2) }}>QR code</button>
+                                <button className={`info-14 border-b-2 border-transparent pb-1  ${show === 2 ? " !border-primary  !text-primary " : ""}`} onClick={() => { setShow(2) }}>QR code</button>
                             </div>
                             {/* form */}
                             {
@@ -270,7 +270,7 @@ const LoginForm = () => {
                     }
 
                     {show === 3 &&
-                        <VerificationCode verifyCode={true} onFinalSubmit={onFinalSubmit} sendOtpAgain={sendOtpAgain} loginData={loginData} bindMobile={false} />
+                        <VerificationCode verifyCode={true} loginData={loginData}  />
                     }
                 </div>
                 {showPopup === 1 &&

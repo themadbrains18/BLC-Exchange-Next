@@ -3,7 +3,7 @@ import Image from 'next/image';
 import cardImage from "../../public/assets/images/card-img-new.png";
 const InsightCard = () => {
   return (
-    <div className="py-[24px]">
+    <div className="py-[24px] border-y border-grey">
        <div className="flex items-center justify-between mb-[30px]">
           <div className='flex gap-3 items-center'>
               <Image src={cardImage} alt="" width={32} height={32} />

@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link';
 import { useEffect, useContext, useState } from 'react'
 import Context from "../contexts/context";
-const ResetPassSuccess = ({bindGoogle,overlay,linkMobile}) => {
+const ResetPassSuccess = ({antiFishing,emailAuth,bindGoogle,overlay,linkMobile}) => {
   const { setClick } = useContext(Context);
   return (
     <div>
@@ -14,18 +14,32 @@ const ResetPassSuccess = ({bindGoogle,overlay,linkMobile}) => {
                   38,15 22,33 12,25 " />
               </svg>
               {
-                linkMobile ?
-                <h4 className='section-secondary-heading mb-1 text-center'>Mobile Bind <br />successfull</h4>
+                linkMobile 
+                ?
+                  <h4 className='section-secondary-heading mb-1 text-center'>Mobile Bind <br />successfull</h4>
+                :
+                
+                emailAuth
+                ?
+                  <h4 className='section-secondary-heading mb-1 text-center'>Email Authentication remove success</h4>
+                :
+                
+                bindGoogle 
+                ?
+                  <h4 className='section-secondary-heading mb-1 text-center'>Bind Google Authentication success</h4>
+                : 
+                antiFishing
+                ?
+                <h4 className='section-secondary-heading mb-1 text-center'>Anti-Fishing Code set successfully.</h4>
                 :
                 <h4 className='section-secondary-heading mb-1 text-center'>Password reset <br />successfully</h4>
               }
               {
-                bindGoogle &&
-                <h4 className='section-secondary-heading mb-1 text-center'>Bind Google Authentication success</h4>
-              }
-              {
                overlay ? 
                 <Link href="/login" className='cta mt-5 block w-full text-center' onClick={setClick(false)}>Back to login</Link>
+                :
+                antiFishing ?
+                <Link href="setting" className='cta mt-5 block w-full text-center' onClick={setClick(false)}>Back to setting</Link>
                 :
                 <Link href="/login" className='cta mt-5 block w-full text-center'>Back to login</Link>
               }
