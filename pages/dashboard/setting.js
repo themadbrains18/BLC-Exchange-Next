@@ -155,7 +155,7 @@ const Setting = ({ account }) => {
                 </div>
               </div>
               <div className="flex items-center gap-5">
-                <Link href="fund-password" className='info-14-16 !text-primary'>modify</Link>
+                <Link href="modify-fund-code" className='info-14-16 !text-primary'>modify</Link>
                 <Link href="fund-password" className='cta'>Settings</Link>
               </div>
             </div>
@@ -176,7 +176,7 @@ const Setting = ({ account }) => {
                     <p className="info-12 ">To protect yourself from counterfeit emails, the emails you receive from BLC-Exchange will contain the anti-phishing code you've set</p>
                   </div>
                 </div>
-              <button className='cta'>Settings</button>
+              <Link href="anti-phishing" className='cta'>Settings</Link>
               </div>
             </div>
           </div>

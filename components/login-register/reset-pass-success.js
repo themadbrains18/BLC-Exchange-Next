@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link';
 import { useEffect, useContext, useState } from 'react'
 import Context from "../contexts/context";
-const ResetPassSuccess = ({emailAuth,bindGoogle,overlay,linkMobile}) => {
+const ResetPassSuccess = ({antiFishing,emailAuth,bindGoogle,overlay,linkMobile}) => {
   const { setClick } = useContext(Context);
   return (
     <div>
@@ -28,11 +28,18 @@ const ResetPassSuccess = ({emailAuth,bindGoogle,overlay,linkMobile}) => {
                 ?
                   <h4 className='section-secondary-heading mb-1 text-center'>Bind Google Authentication success</h4>
                 : 
+                antiFishing
+                ?
+                <h4 className='section-secondary-heading mb-1 text-center'>Anti-Fishing Code set successfully.</h4>
+                :
                 <h4 className='section-secondary-heading mb-1 text-center'>Password reset <br />successfully</h4>
               }
               {
                overlay ? 
                 <Link href="/login" className='cta mt-5 block w-full text-center' onClick={setClick(false)}>Back to login</Link>
+                :
+                antiFishing ?
+                <Link href="setting" className='cta mt-5 block w-full text-center' onClick={setClick(false)}>Back to setting</Link>
                 :
                 <Link href="/login" className='cta mt-5 block w-full text-center'>Back to login</Link>
               }

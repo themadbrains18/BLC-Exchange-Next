@@ -4,7 +4,7 @@ import Link from 'next/link';
 import ResetPassSuccess from './reset-pass-success';
 
 
-const VerificationCode = ({emailAuth,bindGoogle,CloseCta,showSetState,bindMobile,showState,fixed,modifyPass,verifyCode, onFinalSubmit, sendOtpAgain,username }) => {
+const VerificationCode = ({overlay,antiFishing,emailAuth,bindGoogle,CloseCta,showSetState,bindMobile,showState,fixed,modifyPass,verifyCode, onFinalSubmit, sendOtpAgain,username }) => {
     
     const { mode,setClick } = useContext(Context);
     const [fillOtp, setOtp] = useState();
@@ -130,28 +130,14 @@ const VerificationCode = ({emailAuth,bindGoogle,CloseCta,showSetState,bindMobile
 
                         </div>
                         {
-                            // { This Cta for Dashboard modifiy password verifiction }
-                            modifyPass &&
-                            <button className='cta mt-5 w-full' onClick={(e)=>{e.preventDefault();setShowSuccess(2)}}>Submit</button>
-                        }
-                        {
-                            // { This Cta for Dashboard modifiy mobile verifiction }
-                            bindMobile &&
-                            <button className='cta mt-5 w-full' onClick={(e)=>{e.preventDefault();setShowSuccess(2)}}>Submit</button>
-                        }
-                        {
-                            // { This Cta for Dashboard bindGoogle Authentication }
-                            bindGoogle &&
-                            <button className='cta mt-5 w-full' onClick={(e)=>{e.preventDefault();setShowSuccess(2)}}>Submit</button>
-                        }
-                        {
-                            verifyCode &&
+                            verifyCode 
+                            ?
                             <button className='cta mt-5 w-full' onClick={(e)=>confirmOtp(e)}>Confirm</button>
+                            :
+                            <button className='cta mt-5 w-full' onClick={(e)=>{e.preventDefault();setShowSuccess(2)}}>Submit</button>                        
                         }
-                        {
-                            emailAuth &&
-                            <button className='cta mt-5 w-full' onClick={(e)=>{e.preventDefault();setShowSuccess(2)}}>Submit</button>
-                        }
+                       
+                        
                     </form>
                 </div>
             }
@@ -171,6 +157,11 @@ const VerificationCode = ({emailAuth,bindGoogle,CloseCta,showSetState,bindMobile
                 ?
                     showSuccess === 2 &&
                     <ResetPassSuccess overlay={true} bindGoogle={true}  />
+                :
+                antiFishing
+                ?
+                    showSuccess === 2 &&
+                    <ResetPassSuccess  antiFishing={true}  />
                 :
                     showSuccess === 2 &&
                     <ResetPassSuccess overlay={true} linkMobile={true}  />

@@ -67,7 +67,7 @@ const ChangeFundCode = () => {
                         <div className="hidden w-8 h-8 rounded-full animate-spin border-4 border-solid border-purple-500 border-t-transparent absolute top-[50%] left-[50%] mt-[-16px] ml-[-15px] z-10"></div>
                         {/* spinner */}
                     </button>
-                    <p className="info-12 text-end !text-primary cursor-pointer mt-[10px]">Forget your Fund Code</p>
+                    <Link href="reset-fund-code" className="block info-12 text-end !text-primary cursor-pointer mt-[10px]">Forget your Fund Code</Link>
                 </div>
             </div>
         </section>

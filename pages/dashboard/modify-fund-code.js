@@ -4,11 +4,12 @@ import Layout from '/components/layout/layout'
 import FundPassWordCom from '../../components/dashboard/fundpass';
 import ChangeFundCode from '../../components/dashboard/change-fund-code';
 
+
 const FundPassWord = ({account }) => {
     return(
         <Layout data={account} slug="dashboard">
           <div>
-            <FundPassWordCom />
+            <ChangeFundCode /> 
           </div>
         </Layout>
     )

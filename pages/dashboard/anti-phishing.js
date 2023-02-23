@@ -1,17 +1,13 @@
-
-import { getProviders, getSession } from "next-auth/react";
+import React from 'react';
 import Layout from '/components/layout/layout'
-import FundPassWordCom from '../../components/dashboard/fundpass';
-import ChangeFundCode from '../../components/dashboard/change-fund-code';
-
-const FundPassWord = ({account }) => {
-    return(
-        <Layout data={account} slug="dashboard">
-          <div>
-            <FundPassWordCom />
-          </div>
-        </Layout>
-    )
+import { getProviders, getSession } from "next-auth/react"
+import AntiFishingCode from './../../components/dashboard/anti-fishing-code';
+const AntiPhishing = ({account}) => {
+  return (
+    <Layout data={account} slug="dashboard">
+        <AntiFishingCode />
+    </Layout>
+  )
 }
 export async function getServerSideProps(context) {
     const { req } = context;
@@ -35,6 +31,6 @@ export async function getServerSideProps(context) {
     return {
       redirect: { destination: "/" },
     };
-}
   
-export default FundPassWord;
+  }
+export default AntiPhishing;
