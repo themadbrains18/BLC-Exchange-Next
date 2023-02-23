@@ -58,7 +58,7 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                     emailinputElements[index + 1].value = rest.join('')
                     emailinputElements[index + 1].dispatchEvent(new Event('input'))
                 }
-                else {
+                else { 
                     setEmailOtp(emailinputElements[0].value + '' + emailinputElements[1].value + '' + emailinputElements[2].value + '' + emailinputElements[3].value + '' + emailinputElements[4].value + '' + emailinputElements[5].value);
                 }
             })
@@ -244,7 +244,7 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                             {/* emails verification code feilds */}
                             {loginData.email !== "" &&
                                 <div className='mt-5'>
-                                    <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Email verification</span> <span>({loginData.email} which is registred)</span></label>
+                                    <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Email verification</span> <span>( {loginData.email} )</span></label>
                                     <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper input_wrapper_email">
                                         <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
                                         <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
