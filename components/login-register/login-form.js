@@ -234,7 +234,7 @@ const LoginForm = () => {
                                 <p className='mt-[-33px] text-grey bg-white dark:bg-black-v-5 inline-block px-3 -translate-y-35'>Or login with</p>
                             </div>
                             <div className='flex gap-3 mt-8 justify-between sm:justify-start mb-5'>
-                                <Link href="#" className='p-3 bg-black-v-4 block   w-full rounded'>
+                                <Link href={"#"} className='p-3 bg-black-v-4 block   w-full rounded' onClick={() => {signIn('google')}}> 
                                     <svg width={20} height={21} className="mx-auto" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <g clipPath="url(#clip0_610_15204)">
                                             <path fillRule="evenodd" clipRule="evenodd" d="M19.6 11.2254C19.6 10.5163 19.5364 9.83448 19.4182 9.17993H10V13.0481H15.3818C15.15 14.2981 14.4455 15.3572 13.3864 16.0663V18.5754H16.6182C18.5091 16.8345 19.6 14.2708 19.6 11.2254Z" fill="white" />
