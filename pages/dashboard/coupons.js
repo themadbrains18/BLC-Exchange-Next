@@ -5,7 +5,7 @@ import Coupon from 'components/dashboard/coupon';
 const Coupons = ({ account }) => {
     return (
       <>
-              <Layout data={account} >
+              <Layout data={account} slug="dashboard">
                   <div className='p-4 md:p-8 grow '>
                     <Coupon />
                   </div>

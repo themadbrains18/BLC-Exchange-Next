@@ -7,7 +7,7 @@
                     "linkText": "Proof of Reserves",
                     "desc": "check our financial healh",
                     "svgType": "proof_of_reserves",
-                    "linkUrl": "earn"
+                    "linkUrl": "proof-of-reserves"
                 },
                 {
                     "linkText": " Rewards Hub",
@@ -89,13 +89,13 @@
                     "linkText": "Verification Channel",
                     "desc": "rewards for inviting friends ",
                     "svgType": "verification_channel",
-                    "linkUrl": "earn"
+                    "linkUrl": "official-verification"
                 },
                 {
                     "linkText": "Feedback",
                     "desc": " Tell us what you think  ",
                     "svgType": "feedback",
-                    "linkUrl": "earn"
+                    "linkUrl": "feedback"
                 },
                 {
                     "linkText": "Listning Application",
@@ -119,7 +119,7 @@
                     "linkText": "Protection Fund",
                     "desc": " Your security our priority   ",
                     "svgType": "protection_fund",
-                    "linkUrl": "earn"
+                    "linkUrl": "protection-fund"
                 }
             ]
         }
@@ -141,7 +141,7 @@
             },
             {
                 "linkText": "Withdraw",
-                "linkUrl": "earn",
+                "linkUrl": "/asset/withdraw",
                 "svgType": "withdraw"
             },
             {
@@ -156,7 +156,7 @@
                 "menu": [
                     {
                         "linkText": "Spot",
-                        "linkUrl": "p"
+                        "linkUrl": "/asset/transaction/spot"
                     },
                    
                     {

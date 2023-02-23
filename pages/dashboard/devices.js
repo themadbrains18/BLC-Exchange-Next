@@ -1,15 +1,15 @@
-
-
-import BindGoogle from './../../components/dashboard/bind-google';
-import Layout from '/components/layout/layout'
-import { getProviders, getSession } from "next-auth/react"
-const Bindgoogle = ({ account, sessions }) => {
-    return(
-        <Layout data={account} slug="dashboard">
-            <BindGoogle session={sessions.user}/>
-        </Layout>
-    )
+import React from 'react'
+import Layout from '/components/layout/layout';
+import { getProviders, getSession } from "next-auth/react";
+import DeviceManagement from "../../components/dashboard/device-management";
+const Devices = ({account}) => {
+  return (
+    <Layout data={account} slug="dashboard">
+        <DeviceManagement />
+    </Layout>
+  )
 }
+
 export async function getServerSideProps(context) {
     const { req } = context;
     const session = await getSession({ req });
@@ -24,14 +24,9 @@ export async function getServerSideProps(context) {
         }, // will be passed to the page component as props
       };
     }
-    // return {
-    //     props: {
-    //         providers,
-    //     },
-    // }
     return {
       redirect: { destination: "/" },
     };
   
   }
-export default Bindgoogle;
+export default Devices;

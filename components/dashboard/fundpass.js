@@ -55,7 +55,7 @@ const FundPassWordCom = () => {
                             </div>
                         </div>
 
-                        <button className={`cta mt-5 w-full relative `} onClick={(e)=>{e.preventDefault();e.currentTarget.classList.toggle("hide_text");setTimeout(()=>{setShow(true)},2000)}}>
+                        <button className={`cta mt-5 w-full relative `} onClick={(e)=>{e.preventDefault();e.currentTarget.classList.toggle("hide_text")}}>
                             <span>Submit</span>
                             {/* spinner */}
                             <div className="hidden w-8 h-8 rounded-full animate-spin border-4 border-solid border-purple-500 border-t-transparent absolute top-[50%] left-[50%] mt-[-16px] ml-[-15px] z-10"></div>
@@ -64,10 +64,6 @@ const FundPassWordCom = () => {
                     </div>
                 </div>
             </section>
-            {
-                show &&
-                <VerificationCode />
-            }
         </>
     )
 }

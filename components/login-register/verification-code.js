@@ -2,16 +2,21 @@ import { useEffect, useContext, useState } from 'react'
 import Context from "../contexts/context";
 import Link from 'next/link';
 import ResetPassSuccess from './reset-pass-success';
+import { signIn } from "next-auth/react"
 
 
-const VerificationCode = ({overlay,antiFishing,emailAuth,bindGoogle,CloseCta,showSetState,bindMobile,showState,fixed,modifyPass,verifyCode, onFinalSubmit, sendOtpAgain,username }) => {
+const VerificationCode = ({overlay,antiFishing,emailAuth,bindGoogle,CloseCta,showSetState,bindMobile,showState,fixed,modifyPass,verifyCode, onFinalSubmit, sendOtpAgain,username,loginData }) => {
     
-    const { mode,setClick } = useContext(Context);
+    const [ mode,setClick ] = useContext(Context);
     const [fillOtp, setOtp] = useState();
+    const [emailOtp, setEmailOtp] = useState();
     const [showSuccess, setShowSuccess] = useState(1);
-    
+
+    // console.log(loginData, '=======login Data')
+
     useEffect(() => {
-        const inputElements = document.querySelectorAll('.input_wrapper input');
+        const inputElements = document.querySelectorAll('.input_wrapper_mobile input');
+        const emailinputElements = document.querySelectorAll('.input_wrapper_email input');
         inputElements.forEach((ele, index) => {
             ele.addEventListener('keydown', (e) => {
 
@@ -35,14 +40,63 @@ const VerificationCode = ({overlay,antiFishing,emailAuth,bindGoogle,CloseCta,sho
             })
         })
 
+        emailinputElements.forEach((ele, index) => {
+            ele.addEventListener('keydown', (e) => {
+
+                if (e.keyCode === 8 && e.target.value === '') emailinputElements[Math.max(0, index - 1)].focus()
+            })
+            ele.addEventListener('input', (e) => {
+
+                const [first, ...rest] = e.target.value
+                e.target.value = first ?? ''
+                const lastInputBox = index === emailinputElements.length - 1
+                const didInsertContent = first !== undefined
+                if (didInsertContent && !lastInputBox) {
+                    // continue to input the rest of the string
+                    emailinputElements[index + 1].focus()
+                    emailinputElements[index + 1].value = rest.join('')
+                    emailinputElements[index + 1].dispatchEvent(new Event('input'))
+                }
+                else {
+                    setEmailOtp(emailinputElements[0].value + '' + emailinputElements[1].value + '' + emailinputElements[2].value + '' + emailinputElements[3].value + '' + emailinputElements[4].value + '' + emailinputElements[5].value);
+                }
+            })
+        })
+
     }, [])
 
-    const confirmOtp = (e) => {
+    const confirmOtp = async (e) => {
         e.preventDefault();
-        onFinalSubmit(fillOtp);
+        if ((loginData.email !== "" && loginData.number !== "" && bindMobile === false) || bindGoogle === true) {
+            let mobileOtpMatch = await onFinalSubmit(e, fillOtp, 'mobile');
+            let emailOtpMatch = await onFinalSubmit(e, emailOtp, 'email');
+            Promise.all([mobileOtpMatch, emailOtpMatch]).then((values) => {
+                console.log(values);
+                if (values[0] === true && values[1] === true) {
+                    signIn("credentials", loginData);
+                }
+            });
+        }
+        if (loginData.email !== "" && loginData.number === "") {
+            let emailOtpMatch = await onFinalSubmit(e, emailOtp, 'email');
+            Promise.all([emailOtpMatch]).then((values) => {
+                if (values[0] === true) {
+                    signIn("credentials", loginData);
+                }
+            });
+        }
+        if (loginData.email === "" && loginData.number !== "") {
+            let mobileOtpMatch = await onFinalSubmit(e, fillOtp, 'mobile');
+            Promise.all([mobileOtpMatch]).then((values) => {
+                if (values[0] === true) {
+                    signIn("credentials", loginData);
+                }
+            });
+        }
+
     }
 
-    const sendAgain=(e)=>{
+    const sendAgainEmailOtp = (e) => {
         e.preventDefault();
         sendOtpAgain();
     }
@@ -50,97 +104,136 @@ const VerificationCode = ({overlay,antiFishing,emailAuth,bindGoogle,CloseCta,sho
     return (
         <div className={`${fixed === true ? "z-[20] fixed top-[50%] left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%]":""}`}>
             <div className="container !p-0">
-            {
-                            showSuccess === 1 &&
-                <div className="dark:bg-black-v-5 bg-white p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto" >
-                    {
-                        CloseCta &&
-                        <div className="max-w-[24px] w-full ml-auto cursor-pointer" onClick={()=>{showSetState(false);setClick(false)}}>
-                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60.963 60.842" style={{enableBackground: 'new 0 0 60.963 60.842'}} xmlSpace="preserve">
-                                <path  fill={mode === "dark" ? "white" : "#231F20"} d="M59.595,52.861L37.094,30.359L59.473,7.98c1.825-1.826,1.825-4.786,0-6.611
+                {
+                    showSuccess === 1 &&
+                    <div className="dark:bg-black-v-5 bg-white p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto" >
+                        {
+                            CloseCta &&
+                            <div className="max-w-[24px] w-full ml-auto cursor-pointer" onClick={() => { showSetState(false); setClick(false) }}>
+                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60.963 60.842" style={{ enableBackground: 'new 0 0 60.963 60.842' }} xmlSpace="preserve">
+                                    <path fill={mode === "dark" ? "white" : "#231F20"} d="M59.595,52.861L37.094,30.359L59.473,7.98c1.825-1.826,1.825-4.786,0-6.611
                             c-1.826-1.825-4.785-1.825-6.611,0L30.483,23.748L8.105,1.369c-1.826-1.825-4.785-1.825-6.611,0c-1.826,1.826-1.826,4.786,0,6.611
                             l22.378,22.379L1.369,52.861c-1.826,1.826-1.826,4.785,0,6.611c0.913,0.913,2.109,1.369,3.306,1.369s2.393-0.456,3.306-1.369
                             l22.502-22.502l22.501,22.502c0.913,0.913,2.109,1.369,3.306,1.369s2.393-0.456,3.306-1.369
                             C61.42,57.647,61.42,54.687,59.595,52.861z" />
-                            </svg>
-                        </div>
-                    }
-                    <h4 className='section-secondary-heading mb-1'>You're almost there</h4>
-                    <p className='info-14 text-black dark:!text-white dark:hover:!text-white hover:!text-black'>Enter the verification code below.</p>
-
-                    <form>
-                        {/* emails verification code feilds */}
-                        <div className='mt-5'>
-                            <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Email verification</span> <span>({username} which is registred)</span></label>
-                            <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper">
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code3" />
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code4" />
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code5" />
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
+                                </svg>
                             </div>
-                            <button className='info-14 block mt-[10px]' onClick={(e)=>sendAgain(e)}>Send Again</button>
-                        </div>
-                        {/* phone verification code feilds */}
-                        <div className='mt-5'>
-                            <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Phone verification</span> <span>({username} which is registred)</span></label>
-                            <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper">
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code3" />
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code4" />
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code5" />
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
+                        }
+                        <h4 className='section-secondary-heading mb-1'>You're almost there</h4>
+                        <p className='info-14 text-black dark:!text-white dark:hover:!text-white hover:!text-black'>Enter the verification code below.</p>
+
+                            <div class="relative hidden md:flex flex-col items-center group">
+                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill={mode === "dark" ? "white" : "currentcolor"} viewBox="0 0 20 20" >
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                                </svg>
+                                <div class="absolute bottom-0  flex-col items-center hidden mb-6 group-hover:flex min-w-[350px] w-full p-[10px] bg-black">
+                                    <div class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap shadow-lg">
+
+                                        <p className="mb-2">That's frustrating. Have you tried these steps?</p>
+                                        <ul>
+                                            <li className="mb-3">
+                                                · Make sure you've typed your email correctly.
+                                            </li>
+                                            <li className="mb-2">
+                                                · Check your spam folder. Sometimes even the good emails end up there.
+                                            </li>
+                                            <li className="mb-2">
+                                                · Give it a few minutes. There might be a delay.
+                                            </li>
+                                        </ul>
+                                        <p className="mt-3">if you still haven’t received your code, contact our customer service.</p>
+                                    </div>
+                                    <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                                </div>
                             </div>
-                            <button className='info-14 block mt-[10px]' onClick={(e)=>sendAgain(e)}>Send Again</button>
-                        </div>
-                        <div className='flex items-start sm:items-center justify-between gap-2 mt-4 flex-col sm:flex-row'>
-                 
-                            <div className='flex items-center gap-2'>
-                                <p className="info-14 text-black hover:!text-black dark:!text-white dark:hover:!text-white">Help! I haven't received a code</p>
+                            
+                        <form>
+                            {/* emails verification code feilds */}
+                            {loginData.email !== "" &&
+                                <div className='mt-5'>
+                                    <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Email verification</span> <span>({loginData.email} which is registred)</span></label>
+                                    <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper input_wrapper_email">
+                                        <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
+                                        <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
+                                        <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code3" />
+                                        <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code4" />
+                                        <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code5" />
+                                        <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
+                                    </div>
+                                    <button className='info-14 block mt-[10px]' onClick={(e) => sendAgain(e)}>Send Again</button>
+                                </div>
+                            }
+                            {/* phone verification code feilds */}
+                            {loginData.number !== "" &&
+                                <div className='mt-5'>
+                                    <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Phone verification</span> <span>({loginData.number} which is registred)</span></label>
+                                    <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper input_wrapper_mobile">
+                                        <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
+                                        <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
+                                        <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code3" />
+                                        <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code4" />
+                                        <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code5" />
+                                        <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
+                                    </div>
+                                    <button className='info-14 block mt-[10px]' onClick={(e) => sendAgain(e)}>Send Again</button>
+                                </div>
+                            }
 
-                                <div class="relative hidden md:flex flex-col items-center group">
-                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill={mode === "dark" ? "white" : "currentcolor"} viewBox="0 0 20 20" >
-                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-                                    </svg>
-                                    <div class="absolute bottom-0  flex-col items-center hidden mb-6 group-hover:flex min-w-[350px] w-full p-[10px] bg-black">
-                                        <div class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap shadow-lg">
 
-                                            <p className="mb-2">That's frustrating. Have you tried these steps?</p>
-                                            <ul>
-                                                <li className="mb-3">
-                                                    · Make sure you've typed your email correctly.
-                                                </li>
-                                                <li className="mb-2">
-                                                    · Check your spam folder. Sometimes even the good emails end up there.
-                                                </li>
-                                                <li className="mb-2">
-                                                    · Give it a few minutes. There might be a delay.
-                                                </li>
-                                            </ul>
-                                            <p className="mt-3">if you still haven’t received your code, contact our customer service.</p>
+                            <div className='flex items-start sm:items-center justify-between gap-2 mt-4 flex-col sm:flex-row'>
+
+                                <div className='flex items-center gap-2'>
+                                    <p className="info-14 text-black hover:!text-black dark:!text-white dark:hover:!text-white">Help! I haven't received a code</p>
+
+                                    <div className="relative hidden md:flex flex-col items-center group">
+                                        <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill={mode === "dark" ? "white" : "currentcolor"} viewBox="0 0 20 20" >
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                                        </svg>
+                                        <div className="absolute bottom-0  flex-col items-center hidden mb-6 group-hover:flex min-w-[350px] w-full p-[10px] bg-black">
+                                            <div className="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap shadow-lg">
+
+                                                <p className="mb-2">That's frustrating. Have you tried these steps?</p>
+                                                <ul>
+                                                    <li className="mb-3">
+                                                        · Make sure you've typed your email correctly.
+                                                    </li>
+                                                    <li className="mb-2">
+                                                        · Check your spam folder. Sometimes even the good emails end up there.
+                                                    </li>
+                                                    <li className="mb-2">
+                                                        · Give it a few minutes. There might be a delay.
+                                                    </li>
+                                                </ul>
+                                                <p className="mt-3">if you still haven’t received your code, contact our customer service.</p>
+                                            </div>
                                         </div>
-                                        <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+
+
                                     </div>
                                 </div>
 
 
                             </div>
 
-                        </div>
                         {
                             verifyCode 
                             ?
-                            <button className='cta mt-5 w-full' onClick={(e)=>confirmOtp(e)}>Confirm</button>
+                                <button className='cta mt-5 w-full' onClick={(e)=>confirmOtp(e)}>Confirm</button>
                             :
-                            <button className='cta mt-5 w-full' onClick={(e)=>{e.preventDefault();setShowSuccess(2)}}>Submit</button>                        
+                            bindMobile
+                            ?
+                                <button className='cta mt-5 w-full' onClick={(e)=>confirmOtp(e)}>Confirm</button>
+                            :
+                                <button className='cta mt-5 w-full' onClick={(e)=>{e.preventDefault();setShowSuccess(2)}}>Submit</button>                        
                         }
                        
                         
                     </form>
                 </div>
+                
             }
+            
+            </div>
             {
                 modifyPass 
                 
@@ -166,7 +259,8 @@ const VerificationCode = ({overlay,antiFishing,emailAuth,bindGoogle,CloseCta,sho
                     showSuccess === 2 &&
                     <ResetPassSuccess overlay={true} linkMobile={true}  />
             }
-            </div>
+            
+            
         </div>
     )
 }

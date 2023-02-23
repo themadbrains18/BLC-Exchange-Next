@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Context from '../contexts/context';
 const TopBar = () => {
     const [alert, setAlert] = useState(true);
-    const [topPaddong, setTopPadding] = useState(0);
+    const [topPadding, setTopPadding] = useState(0);
     const {heightUpdate}= useContext(Context);
     useEffect(()=>{
       let padding = document.querySelector(".topBar").offsetHeight;
@@ -28,7 +28,7 @@ const TopBar = () => {
           <button
             onClick={() => {
               setAlert(false);
-              heightUpdate(topPaddong)
+              heightUpdate(topPadding)
             }}
           >
             <svg
