@@ -6,7 +6,7 @@ import VerificationCode from './../login-register/verification-code';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router';
-import { signOut } from "next-auth/react"
+import { otpMatch, updateUserSecurity } from '../../libs/commanMethod';
 
 const LinkEmail = ({ sessions }) => {
   const { mode, setClick } = useContext(Context);
@@ -76,25 +76,28 @@ const LinkEmail = ({ sessions }) => {
   //====================================================================
   // OTP Matched Request =====================================
   //====================================================================
-  const Submit = async (e, otp, type) => {
+  const Submit = async (e) => {
     e.preventDefault();
 
-    let obj = { username: filledEmail, otp: fillOtp, time: new Date() };
-
-    // Match Second time send Email Otp 
-    if (type === 'mobile') {
-      obj = { username: sessions.user.number, otp: otp, time: new Date() };
-    }
-
-    let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp/match`, {
+    let formdata = {email : filledEmail, number :""}
+    let userExist = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/check`, {
       method: "POST",
-      body: JSON.stringify(obj)
+      body: JSON.stringify(formdata)
     }).then(response => response.json());
 
-    if (result.data.status === 200 && result.data != undefined) {
+    if (userExist.data.status === 200 && userExist.data !== undefined) {
+      toast.error(userExist.data.message, {
+        position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+      })
+    }
+    else{
+      let obj = { username: filledEmail, otp: fillOtp, time: new Date() };
 
-      // send email otp when mobile otp matched
-      if (otp === undefined) {
+      let result = await otpMatch(obj);
+  
+      if (result === true) {
+  
+        // send email otp when mobile otp matched
         let OtpForm = { 'number': sessions.user.number, 'dial_code': sessions.user.dial_code };
         await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp/sms`, {
           method: "POST",
@@ -102,37 +105,28 @@ const LinkEmail = ({ sessions }) => {
         }).then(response => response.json());
         setShowver(true)
       }
-
-      //update user mobile when email otp success fully matched
-      if (otp !== undefined) {
-        updateUser();
+      else {
+        toast.error('Otp Not Matched', {
+          position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+        })
       }
-
-    }
-    else {
-      toast.error(result.data.message, {
-        position: toast.POSITION.TOP_RIGHT, autoClose: 5000
-      })
     }
   }
 
   const updateUser = async () => {
-    let emailLinkForm = { id: sessions.user.id, email: filledEmail };
-    let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users`, {
-      method: "PUT",
-      body: JSON.stringify(emailLinkForm)
-    }).then(response => response.json());
+    let obj = { id: sessions.user.id, email: filledEmail };
+    let response = await updateUserSecurity(obj);
 
-    if (result.data.status === 200 && result.data != undefined) {
-      toast.success('Email bind Successfully!', {
+    console.log(response,'====after email linked');
+    if (response.status === 200 && response != undefined){
+      toast.success('Bind Successfully!', {
         position: toast.POSITION.TOP_RIGHT, autoClose: 5000
-      })
-      setShowver(false);
-      signOut();
-
+      });
+      setShowver(false)
+      router.push('/dashboard/setting');
     }
-    else {
-      toast.error(result.data.message.errors[0].message, {
+    else{
+      toast.error(response.message.errors[0].message, {
         position: toast.POSITION.TOP_RIGHT, autoClose: 5000
       })
     }
@@ -176,7 +170,7 @@ const LinkEmail = ({ sessions }) => {
       </section>
       {showver &&
 
-        <VerificationCode CloseCta={true} fixed={true} bindMobile={true} showState={show} showSetState={setShowver} loginData={sessions.user} onFinalSubmit={Submit} />
+        <VerificationCode CloseCta={true} fixed={true} bindEmail={true} showState={show} showSetState={setShowver} loginData={sessions.user} updateUser={updateUser} />
       }
     </>
   )

@@ -5,6 +5,8 @@ import Context from '@/components/contexts/context';
 import VerificationCode from './../login-register/verification-code';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { otpMatch, updateUserSecurity } from '../../libs/commanMethod';
+import { useRouter } from 'next/router';
 
 const LinkMobile = ({ sessions }) => {
     const { mode, setClick } = useContext(Context);
@@ -15,8 +17,7 @@ const LinkMobile = ({ sessions }) => {
     const [dialCode, setDialCode] = useState(91);
     const [filledNumber, setNumber] = useState();
     const [count, setCount] = useState(0);
-
-    console.log(sessions, '================sessions')
+    const router = useRouter();
 
     useEffect(() => {
         const inputElements = document.querySelectorAll('.input_wrapper input');
@@ -74,42 +75,32 @@ const LinkMobile = ({ sessions }) => {
     //====================================================================
     // OTP Matched Request =====================================
     //====================================================================
-    const Submit = async (e, otp, type) => {
+    const Submit = async (e) => {
         e.preventDefault();
 
-        let obj = { username: filledNumber, otp: fillOtp, time: new Date() };
-        
-        // Match Second time send Email Otp 
-        if (type === 'email') {
-            obj = { username: sessions.user.email, otp: otp, time: new Date() };
-        }
-
-        let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp/match`, {
+        let formdata = { email: "", number: filledNumber, dial_Code: dialCode }
+        let userExist = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/check`, {
             method: "POST",
-            body: JSON.stringify(obj)
+            body: JSON.stringify(formdata)
         }).then(response => response.json());
 
-        if (result.data.status === 200 && result.data != undefined) {
+        let obj = { username: filledNumber, otp: fillOtp, time: new Date() };
+
+        let result = await otpMatch(obj);
+
+        if (result === true) {
 
             toast.success(result.data.message, {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             })
 
-            // send email otp when mobile otp matched
-            if (otp === undefined) {
-                let emailOtpForm = { 'email': sessions.user.email };
-                await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`, {
-                    method: "POST",
-                    body: JSON.stringify(emailOtpForm)
-                }).then(response => response.json());
-                setShowver(true)
-            }
+            let emailOtpForm = { 'email': sessions.user.email };
+            await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`, {
+                method: "POST",
+                body: JSON.stringify(emailOtpForm)
+            }).then(response => response.json());
+            setShowver(true)
 
-            //update user mobile when email otp success fully matched
-            if(otp !==undefined){
-                updateUser();
-            }
-            
         }
         else {
             toast.error(result.data.message, {
@@ -118,12 +109,21 @@ const LinkMobile = ({ sessions }) => {
         }
     }
 
-    const updateUser=async()=>{
-        let mobileUpdateForm = {id : sessions.user.id, number: filledNumber, dial_code: dialCode, email: sessions.user.email};
-        let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users`, {
-            method: "PUT",
-            body: JSON.stringify(mobileUpdateForm)
-        }).then(response => response.json());
+    const updateUser = async () => {
+        let obj = { id: sessions.user.id, number: filledNumber, dial_code: dialCode };
+        let response = await updateUserSecurity(obj);
+        if (response.status === 200 && response != undefined) {
+            toast.success('Bind Successfully!', {
+                position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+            });
+            setShowver(false)
+            router.push('/dashboard/setting');
+        }
+        else {
+            toast.error(response.message.errors[0].message, {
+                position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+            })
+        }
     }
 
     return (
@@ -171,7 +171,7 @@ const LinkMobile = ({ sessions }) => {
             </section>
             {showver &&
 
-                <VerificationCode CloseCta={true} fixed={true} bindMobile={true} showState={show} showSetState={setShowver} loginData={sessions.user} onFinalSubmit={Submit} />
+                <VerificationCode CloseCta={true} fixed={true} bindMobile={true} showState={show} showSetState={setShowver} loginData={sessions.user} updateUser={updateUser} />
             }
         </>
     )
