@@ -132,16 +132,16 @@
                 "linkText": "Overview",
                 "desc": "Futures trading",
                 "svgType": "overview",
-                "linkUrl": "/asset"
+                "linkUrl": "asset"
             },
             {
                 "linkText": "Deposit",
-                "linkUrl": "/asset/deposit",
+                "linkUrl": "asset/deposit",
                 "svgType": "deposite"
             },
             {
                 "linkText": "Withdraw",
-                "linkUrl": "/asset/withdraw",
+                "linkUrl": "asset/withdraw",
                 "svgType": "withdraw"
             },
             {
@@ -156,7 +156,7 @@
                 "menu": [
                     {
                         "linkText": "Spot",
-                        "linkUrl": "/asset/transaction/spot"
+                        "linkUrl": "transaction/spot"
                     },
                    
                     {
@@ -193,7 +193,7 @@
                 "menu": [
                     {
                         "linkText": "Spot",
-                        "linkUrl": "p"
+                        "linkUrl": "/asset/orders/spot"
                     },
                    
                     {
