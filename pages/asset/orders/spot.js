@@ -19,7 +19,7 @@ const Spot = ({ assets }) => {
   return (
     <>
       <Layout data={assets} name="Spot">
-        <div className="grow p-4">
+        <div className="grow p-4 md:p-8">
           <h3 className="hidden md:block section-secondary-heading">Spot</h3>
           <div className="mt-4">
             <ActiveCta data={activeCta} active={active} setActive={setActive} />

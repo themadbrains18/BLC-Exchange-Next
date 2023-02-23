@@ -1,19 +1,26 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Image from "next/image";
 import Context from "../contexts/context";
 const SelectMenu = ({ selectMenu }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [value, setValue] = useState(selectMenu[0]);
-  const [overlay, setOverlay] = useState();
+  const [overlay, setOverlay] = useState(false);
+  const ref=useRef(null)
+  
+// document.addEventListener("click",(()=>{
+//   if(!ref.current){
 
+//   }
+// }))
   return (
     <>
-      <div
+      <div ref={ref}
         className={`relative border border-primary ${open && "md:z-[2]"}`}
         onClick={() => {
           setOpen(!open);
           setOverlay(!overlay)
+          
         }}
       >
         <div className="flex bg-white justify-between">
