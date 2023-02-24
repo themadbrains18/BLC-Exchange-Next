@@ -9,14 +9,14 @@ const Table = ({data}) => {
               <div
                 className={`head_row bg-table-bg grid grid-cols-10 gap-4  border-b border-border-clr `}
               >
-                <div className="head_col p-3 info-12 ">Time</div>
-                <div className="head_col p-3 info-12 ">Type Source</div>
-                <div className="head_col p-3 info-12 ">Trading Pair</div>
-                <div className="head_col p-3 info-12 ">Direction</div>
-                <div className="head_col p-3 info-12 ">Price</div>
-                <div className="head_col p-3 info-12 ">Amount</div>
-                <div className="head_col p-3 info-12 ">Total</div>
-                <div className="head_col p-3 info-12 ">
+                <div className="head_col p-3 info-12 dark:text-white">Time</div>
+                <div className="head_col p-3 info-12 dark:text-white">Type Source</div>
+                <div className="head_col p-3 info-12 dark:text-white">Trading Pair</div>
+                <div className="head_col p-3 info-12 dark:text-white">Direction</div>
+                <div className="head_col p-3 info-12 dark:text-white">Price</div>
+                <div className="head_col p-3 info-12 dark:text-white">Amount</div>
+                <div className="head_col p-3 info-12 dark:text-white">Total</div>
+                <div className="head_col p-3 info-12 dark:text-white">
                   Executed | Unexecuted
                 </div>
                 <div className="head_col p-3 info-12 ">Progress | Status</div>
@@ -24,16 +24,16 @@ const Table = ({data}) => {
               </div>
               {data ? (
                 <div className="row grid bg-white grid-cols-10 gap-4 justify-between border-b border-border-clr ">
-                  <div className="col info-12  p-3 text-black"> no data</div>
-                  <div className="col info-12  p-3 text-black"> no data</div>
-                  <div className="col info-12  p-3 text-black"> no data</div>
-                  <div className="col info-12  p-3 text-black"> no data</div>
-                  <div className="col info-12  p-3 text-black"> no data</div>
-                  <div className="col info-12  p-3 text-black"> no data</div>
-                  <div className="col info-12  p-3 text-black"> no data</div>
-                  <div className="col info-12  p-3 text-black"> no data</div>
-                  <div className="col info-12  p-3 text-black"> no data</div>
-                  <div className="col info-12  p-3 text-black"> no data</div>
+                  <div className="col info-12  p-3 text-black dark:text-white"> no data</div>
+                  <div className="col info-12  p-3 text-black dark:text-white"> no data</div>
+                  <div className="col info-12  p-3 text-black dark:text-white"> no data</div>
+                  <div className="col info-12  p-3 text-black dark:text-white"> no data</div>
+                  <div className="col info-12  p-3 text-black dark:text-white"> no data</div>
+                  <div className="col info-12  p-3 text-black dark:text-white"> no data</div>
+                  <div className="col info-12  p-3 text-black dark:text-white"> no data</div>
+                  <div className="col info-12  p-3 text-black dark:text-white"> no data</div>
+                  <div className="col info-12  p-3 text-black dark:text-white"> no data</div>
+                  <div className="col info-12  p-3 text-black dark:text-white"> no data</div>
                 </div>
               ) : (
                 <div className="xl:grid xl:place-content-center w-full p-4">

@@ -225,14 +225,14 @@
             },
             {
                 "linkText": "Mega Swap Orders",
-                "linkUrl": "earn",
+                "linkUrl": "asset/mega-swap",
                 "svgType": "mega_swap_orders"
             },
             {
                 "linkText": "Audit",
                 "desc": "Spot trading by borrowing",
                 "svgType": "audit",
-                "linkUrl": "earn"
+                "linkUrl": "asset/audit"
             }
         ]
     },

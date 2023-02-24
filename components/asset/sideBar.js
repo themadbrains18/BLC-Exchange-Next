@@ -22,7 +22,7 @@ const SideBar = ({ data, name }) => {
   return (
     <>
       <div
-        className={`md:fixed md:h-[100vh] ${
+        className={`md:sticky top-[80px] md:h-[100vh] ${
           show && "z-[5]"
         } bg-white dark:bg-black-v-3 overflow-x-auto table_box  w-fit px-3 md:px-0  `}
       >

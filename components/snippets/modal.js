@@ -5,18 +5,32 @@ import SearchDropdown from './search-dropdown'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import {  useSession } from "next-auth/react"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const schema = yup
-    .object()
-    .shape({
-        file: yup.mixed().required('File is required'),
-        profile: yup.mixed().required('File is required'),
-        phone: yup.number().required("This Field is required")
-    })
-    .required();
+// const schema = yup
+//     .object()
+//     .shape({
+//         file: yup.mixed().required('File is required'),
+//         profile: yup.mixed().required('File is required'),
+//         phone: yup.number().required("This Field is required")
+//     })
+//     .required();
+    const schema = yup.object().shape({
+        file: yup.mixed().test("type", "We only support jpeg/png/jpeg", (value) => {
+            return value && value[0].type === "image/jpeg" || 'image/png' || 'image/jpg';
+          }),
+          profile: yup.mixed().test("type", "We only support jpeg", (value) => {
+            return value && value[0].type === "image/jpeg" || 'image/png' || 'image/jpg';
+          }),
+         phone: yup.number().required("This Field is required")
+         
+       }).required();
 
-const Modal = ({ setShow, formData }) => {
+const Modal = (props) => {
     const { click, setClick } = useContext(Context)
+    const { data: session } = useSession()
     const [DropdownPhone, setDropdownPhone] = useState(false);
     const [step, setStep] = useState(1)
     const [imagesrc, setImageSource] = useState('');
@@ -34,7 +48,7 @@ const Modal = ({ setShow, formData }) => {
             return;
         }
         var file = e.target.files[0];
-        setValue('file', file, { shouldValidate: true });
+        setValue('file', e.target.files, { shouldValidate: true });
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = function (e) {
@@ -66,7 +80,7 @@ const Modal = ({ setShow, formData }) => {
             return;
         }
         var file = e.target.files[0];
-        setValue('profile', file, { shouldValidate: true });
+        setValue('profile', e.target.files, { shouldValidate: true });
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = function (e) {
@@ -92,13 +106,65 @@ const Modal = ({ setShow, formData }) => {
         );
     }
 
-    const onSubmit = (data, e) => {
 
-        console.log(data)
+const handleUpload = async(data,e)=>{
+    const formData = new FormData();
+    let file= getValues('file')
+    let profile= getValues('profile')
+    if(file!== undefined){
+
+        formData.append("idfront", file[0]);
+    }
+    if(profile!== undefined){
+    formData.append("idback", profile[0]);
+    }
+    let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/file/fileupload`,{
+        method : "POST",
+        body : formData
+    }).then(response=>response.json())
+    console.log("===result", result)
+    if (result.status == 200 ) {
+       console.log("file upload sucessfully")
+       setStep(step + 1)
+    }
+    else {
+        console.log("======", result.message)
+        toast.error(result.message, {
+            position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+        })
+    }
+}
+
+    const onSubmit = async(data, e) => {
+
+        const dataForm= props.formData;
+
+        let obj = {idfront : data.file[0].name,idback:data.profile[0].name,country:dataForm.country,user_id:session?.user?.id,fname :dataForm.fname,lname:dataForm.lname
+        ,doctype:dataForm.doctype,docnumber:dataForm.docnumber,dob:dataForm.dob,phone:data.phone}
+
+        let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/kyc/create`,{
+            method : "POST",
+            body : JSON.stringify(obj)
+        }).then(response=>response.json())
+        if (result.data.status === 200 && result.data != undefined) {
+            toast.success(result.data.message, {
+                position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+            })
+            props.setShow(false)
+            setClick(false)
+        }
+        else {
+            toast.error(result.data.message, {
+                position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+            })
+        }
+
     };
 
 
     return (
+        <>
+            <ToastContainer />
         <div className='h-[100vh] w-full grid place-items-center absolute top-0 right-0 rounded-2xl'>
             <form
                 onSubmit={handleSubmit(onSubmit)}
@@ -110,7 +176,7 @@ const Modal = ({ setShow, formData }) => {
                                 <img src='/assets/icons/back-arrow.svg'></img>
                             </button>
                             <button type='button' className='ml-auto' onClick={(() => {
-                                setShow(false)
+                                props.setShow(false)
                                 setClick(false)
                             })}>
 
@@ -139,9 +205,10 @@ const Modal = ({ setShow, formData }) => {
                                     <p className='section-secondary-heading self-center dark:text-black'>Submit identity card (front)</p>
                                     <p className='info-14-16 self-center dark:text-black'>Take a photo with your phone</p>
                                     <div className='my-14 bg-border-clr p-8 self-center rounded-[50%]'>
-                                        <Image src='/assets/icons/take-photo.svg' alt='error' width={72} height={72} {...register('file')}></Image>
+                                        <Image src='/assets/icons/take-photo.svg' alt='error' width={72} height={72} ></Image>
+                                        {/* <input {...register('file')} type="file" /> */}
                                     </div>
-                                    {errors.file?.message && <p className='errorMessage'>{errors.file?.message}</p>}
+                                    {errors.file?.message && <p className="!text-red-700 info-12">{errors.file?.message}</p>}
 
                                 </div>
                             }
@@ -163,9 +230,9 @@ const Modal = ({ setShow, formData }) => {
                                     <p className='section-secondary-heading self-center dark:text-black'>Submit identity card (back)</p>
                                     <p className='info-14-16 self-center dark:text-black'>Take a photo with your phone</p>
                                     <div className='my-14 bg-border-clr p-8 self-center rounded-[50%]'>
-                                        <Image src='/assets/icons/take-photo.svg' alt='error' width={72} height={72} {...register('profile')}></Image>
+                                        <Image src='/assets/icons/take-photo.svg' alt='error' width={72} height={72}></Image>
                                     </div>
-                                    {errors.profile?.message && <p className='errorMessage'>{errors.profile?.message}</p>}
+                                    {errors.profile?.message && <p className="!text-red-700 info-12">{errors.profile?.message}</p>}
 
                                 </div>
                             }
@@ -272,13 +339,10 @@ const Modal = ({ setShow, formData }) => {
                                         </div>
                                         <input type="tel" placeholder="Mobile number" className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone"
                                             {...register('phone')} />
-                                        <button type='button' className='cta max-w-[110px] w-full' onClick={(e) => {
-
-                                            if (e.target.value !== '') {
+                                        <button type='button' className='cta max-w-[110px] w-full'
+                                            onClick={() => {
                                                 setStep(8)
-                                            }
-
-                                        }}>Send Link</button>
+                                            }}>Send Link</button>
                                         {
                                             DropdownPhone &&
                                             <SearchDropdown code={true} setDropdownPhone={setDropdownPhone} />
@@ -328,7 +392,7 @@ const Modal = ({ setShow, formData }) => {
                         step === 3 || step === 5 ?
                             <div className='my-7 flex justify-between mx-4 gap-5'>
                                 <button type='button' className='cta w-full' onClick={() => { setStep(step - 1) }}>Redo</button>
-                                <button type='button' className='cta w-full ' onClick={() => { setStep(step + 1) }} >Upload</button>
+                                <button type='button' className='cta w-full ' onClick={() => { handleUpload()}} >Upload</button>
                             </div>
 
                             :
@@ -347,12 +411,12 @@ const Modal = ({ setShow, formData }) => {
                                     }} >{step === 1 ? 'Choose Document' : step === 2 ? 'Continue on Phone' : step === 4 ? 'Continue on Phone' : step === 6 ? 'Get Secure Link' : ''}</button>
                                 }
                                 <div className={`mx-auto mt-3 ${step === 2 ? 'block' : 'hidden'}`} >
-                                    <input id='fileUpload' type='file' placeholder='or upload photo' className='hidden' onChange={(e) => { handleFileChange(e) }} ></input>
+                                    <input id='fileUpload' type='file' placeholder='or upload photo' className='hidden' {...register('fileUpload')} onChange={(e) => { handleFileChange(e) }} ></input>
                                     <label htmlFor='fileUpload' className='underline '>or Choose file </label>
                                 </div>
                                 <div className={`mx-auto mt-3 ${step === 4 ? 'block' : 'hidden'}`} >
-                                    <input name='backfile' id='backfile' type='file' placeholder='or upload photo' className='hidden' onChange={(e) => { handleBackFile(e) }}  ></input>
-                                    <label htmlFor='backfile' className='underline '>or Choose file </label>
+                                    <input name='backfile' id='backfile' type='file' placeholder='or upload photo'  {...register('fileUpload2')} className='hidden' onChange={(e) => { handleBackFile(e) }}  ></input>
+                                    <label htmlFor='backfile' className='underline '>or Choose file  </label>
                                 </div>
                             </div>
 
@@ -363,6 +427,8 @@ const Modal = ({ setShow, formData }) => {
 
             </form>
         </div>
+        </>
+    
     )
 }
 

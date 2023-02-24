@@ -59,7 +59,7 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                     emailinputElements[index + 1].value = rest.join('')
                     emailinputElements[index + 1].dispatchEvent(new Event('input'))
                 }
-                else {
+                else { 
                     setEmailOtp(emailinputElements[0].value + '' + emailinputElements[1].value + '' + emailinputElements[2].value + '' + emailinputElements[3].value + '' + emailinputElements[4].value + '' + emailinputElements[5].value);
                 }
             })

@@ -145,7 +145,7 @@ const LoginForm = () => {
                             <h4 className='section-secondary-heading mb-5'>Welcome back</h4>
                             <div className='flex gap-8 mb-8'>
                                 <button className={`info-14 border-b-2 border-transparent pb-1  ${show === 1 ? " !border-primary !text-primary" : ""}`} onClick={() => { setShow(1) }}>Email / Mobile number</button>
-                                <button className={`info-14 border-b-2 border-transparent pb-1 pb-1 ${show === 2 ? " !border-primary  !text-primary " : ""}`} onClick={() => { setShow(2) }}>QR code</button>
+                                <button className={`info-14 border-b-2 border-transparent pb-1  ${show === 2 ? " !border-primary  !text-primary " : ""}`} onClick={() => { setShow(2) }}>QR code</button>
                             </div>
                             {/* form */}
                             {
