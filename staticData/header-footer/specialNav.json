@@ -146,7 +146,11 @@
             },
             {
                 "linkText": "Transfer",
+<<<<<<< HEAD
+                "linkUrl": "asset/transfer",
+=======
                 "linkUrl": "/earn",
+>>>>>>> 7d32eedbdf3acaec3e7ee1d254d48703a7facd4a
                 "svgType": "transfer"
             },
             {
