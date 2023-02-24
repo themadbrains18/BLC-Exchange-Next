@@ -132,21 +132,25 @@
                 "linkText": "Overview",
                 "desc": "Futures trading",
                 "svgType": "overview",
-                "linkUrl": "asset"
+                "linkUrl": "/asset"
             },
             {
                 "linkText": "Deposit",
-                "linkUrl": "asset/deposit",
+                "linkUrl": "/asset/deposit",
                 "svgType": "deposite"
             },
             {
                 "linkText": "Withdraw",
-                "linkUrl": "asset/withdraw",
+                "linkUrl": "/asset/withdraw",
                 "svgType": "withdraw"
             },
             {
                 "linkText": "Transfer",
+<<<<<<< HEAD
                 "linkUrl": "asset/transfer",
+=======
+                "linkUrl": "/earn",
+>>>>>>> 7d32eedbdf3acaec3e7ee1d254d48703a7facd4a
                 "svgType": "transfer"
             },
             {
@@ -225,14 +229,14 @@
             },
             {
                 "linkText": "Mega Swap Orders",
-                "linkUrl": "asset/mega-swap",
+                "linkUrl": "/asset/mega-swap",
                 "svgType": "mega_swap_orders"
             },
             {
                 "linkText": "Audit",
                 "desc": "Spot trading by borrowing",
                 "svgType": "audit",
-                "linkUrl": "asset/audit"
+                "linkUrl": "/asset/audit"
             }
         ]
     },
@@ -243,19 +247,19 @@
                 "linkText": "Dashboard",
                 "desc": "Crypto Market Information",
                 "svgType": "dashboard",
-                "linkUrl": "dashboard"
+                "linkUrl": "/dashboard"
             },
             {
                 "linkText": "Security Setting",
                 "desc": "Crypto Rankings",
                 "svgType": "Security_Setting",
-                "linkUrl": "dashboard/setting"
+                "linkUrl": "/dashboard/setting"
             },
             {
                 "linkText": "ID Verfication",
                 "desc": "BLC-Exchange and Big Data",
                 "svgType": "id_verfication",
-                "linkUrl": "dashboard/verified"
+                "linkUrl": "/dashboard/verified"
             },
             {
                 "linkText": "API Management",
@@ -267,25 +271,25 @@
                 "linkText": "My Compition",
                 "desc": "Market trends from experts",
                 "svgType": "my_compition",
-                "linkUrl": "dashboard/competitions"
+                "linkUrl": "/dashboard/competitions"
             },
             {
                 "linkText": "Voucher Center",
                 "desc": "Market trends from experts",
                 "svgType": "voucher_center",
-                "linkUrl": "dashboard/coupons"
+                "linkUrl": "/dashboard/coupons"
             },
             {
                 "linkText": "Referal Program ",
                 "desc": "Market trends from experts",
                 "svgType": "referal_program",
-                "linkUrl": "dashboard/coupons"
+                "linkUrl": "/dashboard/coupons"
             },
             {
                 "linkText": "My Settings",
                 "desc": "Market trends from experts",
                 "svgType": "my_settings",
-                "linkUrl": "dashboard/prefernce"
+                "linkUrl": "/dashboard/prefernce"
             },
             {
                 "linkText": "Sub Accounts",

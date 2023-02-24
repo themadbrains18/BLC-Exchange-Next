@@ -18,6 +18,8 @@ const Dropdown = ({
 }) => {
   const { mode, setLogin } = useContext(Context);
 
+  console.log(location.pathname,'====location path name')
+
   return (
     <>
       <div
@@ -35,6 +37,7 @@ const Dropdown = ({
                     {
                       e.subMenu &&
                       e.subMenu.map((elem, index) => {
+                        
                         return (
                           <Link
                             href={`/${elem.linkUrl}`}
@@ -71,8 +74,9 @@ const Dropdown = ({
           subMenu &&
           subMenu.map((e, index) => {
             return (
+              // `${e.linkUrl}`
               <Link
-                href={`${e.linkUrl}`}
+                href={{pathname : `${e.linkUrl}`}}
                 key={index}
                 className={`items-center rounded flex gap-6 min-w-[330px] p-4 group/arrow  ${mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
                   }`}

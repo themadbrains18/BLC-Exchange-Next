@@ -345,9 +345,9 @@ const Modal = (props) => {
                                         <p className='section-secondary-heading self-center dark:text-black'>Get your secure link</p>
                                         <p className='info-14-16 self-center dark:text-black'>Send this one-time link to your phone</p>
 
-                                        <div className="border border-black dark:border-white rounded my-20 min-h-[46px] pl-4 flex items-center relative">
+                                        <div className="border border-black  rounded my-20 min-h-[46px] pl-4 flex items-center relative">
                                             <div className="flex items-center gap-2  min-w-[90px] cursor-pointer" onClick={() => { setDropdownPhone(!DropdownPhone) }}>
-                                                <span className="text-black dark:text-white" id="counteryCode">+ <span>91</span> </span>
+                                                <span className="text-black" id="counteryCode">+ <span>91</span> </span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#656e6f" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                                             </div>
                                             <input type="tel" placeholder="Mobile number" className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone"

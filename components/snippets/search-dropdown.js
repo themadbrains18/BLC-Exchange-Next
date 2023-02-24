@@ -1,12 +1,12 @@
 import { Fragment, useState, useEffect } from 'react'
-const SearchDropdown = ({ country, code, setShowDropdown,setCountryName,setDropdownPhone, setCurrencyList, coin, currency, idData, selectId, selectCoin, setDialCode }) => {
+const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone,setCountryName, setCurrencyList, coin, currency, idData, selectId, selectCoin, setDialCode }) => {
     // const[showDropdown,setShowDropdown] = useState(false);
     // const[DropdownPhone,setDropdownPhone] = useState(false);
 
     const [Data, setData] = useState([]);
     const [coinData, setCoinData] = useState([]);
     const [currencyData, setCurrencyData] = useState([]);
-    const [countryList, setCountryList] =useState([])
+    const [countryList, setCountryList] = useState([])
 
 
     useEffect(() => {
@@ -28,11 +28,11 @@ const SearchDropdown = ({ country, code, setShowDropdown,setCountryName,setDropd
 
     const handleChange = (e) => {
         let search = e.target.value
-        let obj = countryList.filter(function handleClick(obj){
+        let obj = countryList.filter(function handleClick(obj) {
             console.log(search)
-            return obj.country.toLowerCase().includes(search.toLowerCase()) ;
+            return obj.country.toLowerCase().includes(search.toLowerCase());
         })
-        setData(obj)     
+        setData(obj)
     }
 
     const selectCounteryName = (event) => {
@@ -40,7 +40,7 @@ const SearchDropdown = ({ country, code, setShowDropdown,setCountryName,setDropd
         let SelectedValue = event.target.innerHTML;
         setShowDropdown(false);
         countryName.innerHTML = SelectedValue;
-        // setCountryName(SelectedValue)
+        setCountryName(SelectedValue)
     }
     const selectCounteryCode = (event) => {
         let countryCode = document.querySelector("#counteryCode span");

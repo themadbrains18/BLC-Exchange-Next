@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import SearchDropdown from '../snippets/search-dropdown';
 import Step1 from './step1';
 import { useSession } from 'next-auth/react';
@@ -10,6 +10,18 @@ const VerificationType = () => {
     const [countryName, setCountryName] = useState('Botswana')
     const [step, setStep] = useState(0)
     const { data: session } = useSession()
+    const dropdown = useRef(null);
+
+    useEffect(() => {
+        function handleClick(event) {
+            if (dropdown.current && !dropdown.current.contains(event.target)) {
+                setShowDropdown(false);
+            }
+        }
+        window.addEventListener("click", handleClick);
+        // clean up
+        return () => window.removeEventListener("click", handleClick);
+    }, [])
     return (
         <section className=' dark:bg-black-v-5 '>
 
@@ -24,11 +36,23 @@ const VerificationType = () => {
                 step == 0 ?
                     <>
                         <div className='mt-11'>
-                            <div>
+                            <div className=' max-w-lg'>
                                 <p className='info-14'>Country / Region</p>
-                                <div className='cursor-pointer border-b-2 border-border-clr hover:border-primary relative max-w-lg w-full flex items-center gap-2 justify-between mt-4' onClick={(e) => { setShowDropdown(!showDropdown) }}>
+                                {/* <div className='cursor-pointer border-b-2 border-border-clr hover:border-primary relative max-w-lg w-full flex items-center gap-2 justify-between mt-4' onClick={(e) => { setShowDropdown(!showDropdown) }} ref={dropdown}>
                                     <span className="text-black dark:text-white" id="countryName">{countryName}</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
+                                    {
+                                        showDropdown != false &&
+                                        <SearchDropdown setShowDropdown={setShowDropdown} country={true} setCountryName={setCountryName} />
+                                    }
+                                </div> */}
+                                <div className="my-8 relative" ref={dropdown}>
+                                    <div className='info-14 hover:!text-grey inline-flex items-center gap-3 cursor-pointer border-b-2 border-border-clr hover:border-primary w-full' onClick={(e) => { setShowDropdown(!showDropdown) }} >
+                                        <div className="flex items-center gap-2 justify-between w-full">
+                                            <p className="text-black dark:text-white text-end" id="countryName">{countryName}</p>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
+                                        </div>
+                                    </div>
                                     {
                                         showDropdown != false &&
                                         <SearchDropdown setShowDropdown={setShowDropdown} country={true} setCountryName={setCountryName} />
@@ -109,24 +133,24 @@ const VerificationType = () => {
                     <div className='max-w-full sm:max-w-max mt-6'>
                         <div className='w-full border  border-border-clr px-8 rounded flex gap-4 flex-col md:flex-row justify-center md:items-center  py-3'>
                             <div className='flex  items-center gap-4'>
-                            <img src='/assets/icons/account.svg' alt='eror' className='w-20'></img>
+                                <img src='/assets/icons/account.svg' alt='eror' className='w-20'></img>
                                 <h4 className='info-14-16 md:hidden font-bold '>Account Details</h4>
                             </div>
                             <div className='mt-4 '>
                                 <h4 className='info-14-16 hidden md:block mb-4'>Account Details</h4>
                                 <div className='flex flex-col md:flex-row gap-4'>
-                                <div className=' flex justify-between md:flex-col'>
-                                    <p className='info-14'>Nationality</p>
-                                    <p className='info-14'>-</p>
-                                    </div>        
-                                <div className=' flex justify-between md:flex-col'>
-                                    <p className='info-14'>Name</p>
-                                    <p className='info-14'>-</p>
-                                    </div>        
-                                <div className=' flex justify-between md:flex-col'>
-                                    <p className='info-14'>Identity no.</p>
-                                    <p className='info-14'>-</p>
-                                    </div>        
+                                    <div className=' flex justify-between md:flex-col'>
+                                        <p className='info-14'>Nationality</p>
+                                        <p className='info-14'>-</p>
+                                    </div>
+                                    <div className=' flex justify-between md:flex-col'>
+                                        <p className='info-14'>Name</p>
+                                        <p className='info-14'>-</p>
+                                    </div>
+                                    <div className=' flex justify-between md:flex-col'>
+                                        <p className='info-14'>Identity no.</p>
+                                        <p className='info-14'>-</p>
+                                    </div>
                                 </div>
                             </div>
 
