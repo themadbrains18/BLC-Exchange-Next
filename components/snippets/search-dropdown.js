@@ -1,5 +1,5 @@
 import { Fragment, useState, useEffect } from 'react'
-const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setCurrencyList, coin, currency, idData, selectId, selectCoin, setDialCode }) => {
+const SearchDropdown = ({ country, code, setShowDropdown,setCountryName,setDropdownPhone, setCurrencyList, coin, currency, idData, selectId, selectCoin, setDialCode }) => {
     // const[showDropdown,setShowDropdown] = useState(false);
     // const[DropdownPhone,setDropdownPhone] = useState(false);
 
@@ -47,7 +47,7 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
         let SelectedValue = event.currentTarget.querySelector("#codeValue").innerHTML;
         setDropdownPhone(false);
         countryCode.innerHTML = SelectedValue;
-        setDialCode(SelectedValue)
+        // setDialCode(SelectedValue)
     }
 
 
