@@ -20,25 +20,34 @@ const MegaSwap = ({ assets }) => {
           <div className="flex gap-4 flex-wrap">
             <div className="">
               <h4 className="info-14 hover:text-grey">Currency (sell)</h4>
+              <div className="border border-border-clr">
+
               <SelectMenu selectMenu={sell} />
+              </div>
             </div>
             <div className="">
               <h4 className="info-14 hover:text-grey">Currency (buy)</h4>
+              <div className="border border-border-clr">
               <SelectMenu selectMenu={buy} />
+              </div>
             </div>
             <div className="">
               <h4 className="info-14 hover:text-grey">Status</h4>
-              <SelectMenu selectMenu={status} />
+              <div className="border border-border-clr">
+                <SelectMenu selectMenu={status} />
+              </div>
             </div>
 
             <div className="">
               <h4 className="info-14 hover:text-grey">Time</h4>
-              <SelectMenu selectMenu={dateFilter} />
+              <div className="border border-border-clr">
+                <SelectMenu selectMenu={dateFilter} />
+              </div>
             </div>
 
             <div className="">
               <h4 className="info-14 hover:text-grey">Time</h4>
-              <div className="flex gap-3 h-[36px] px-1 border border-primary">
+              <div className="flex gap-3 h-[36px] px-1 border border-border-clr">
                 <input type="date" className="focus:outline-none" />
                 <input type="date" className="focus:outline-none" />
               </div>
