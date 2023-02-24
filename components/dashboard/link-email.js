@@ -7,10 +7,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router';
 import { otpMatch, updateUserSecurity } from '../../libs/commanMethod';
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as Yup from 'yup'
+
+const formSchema = Yup.object().shape({
+  email: Yup.string()
+    .required('This field is required')
+})
 
 const LinkEmail = ({ sessions }) => {
   const { mode, setClick } = useContext(Context);
-  const [DropdownPhone, setDropdownPhone] = useState(false);
   const [showver, setShowver] = useState(0);
   const [show, setShow] = useState(true);
   const [fillOtp, setOtp] = useState();
@@ -18,7 +25,11 @@ const LinkEmail = ({ sessions }) => {
   const [count, setCount] = useState(0);
   const router = useRouter();
 
-  console.log(sessions, '================sessions')
+  let {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({ resolver: yupResolver(formSchema) });
 
   useEffect(() => {
     const inputElements = document.querySelectorAll('.input_wrapper input');
@@ -51,8 +62,9 @@ const LinkEmail = ({ sessions }) => {
   // Send OTP Request =====================================
   //====================================================================
 
-  const sendOtp = async () => {
-    let otpForm = { 'email': filledEmail };
+  const sendOtp = async (data) => {
+    setEmail(data.email)
+    let otpForm = { 'email': data.email };
 
     let otpResponse = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`, {
       method: "POST",
@@ -79,7 +91,7 @@ const LinkEmail = ({ sessions }) => {
   const Submit = async (e) => {
     e.preventDefault();
 
-    let formdata = {email : filledEmail, number :""}
+    let formdata = { email: filledEmail, number: "" }
     let userExist = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/check`, {
       method: "POST",
       body: JSON.stringify(formdata)
@@ -90,13 +102,13 @@ const LinkEmail = ({ sessions }) => {
         position: toast.POSITION.TOP_RIGHT, autoClose: 5000
       })
     }
-    else{
+    else {
       let obj = { username: filledEmail, otp: fillOtp, time: new Date() };
 
       let result = await otpMatch(obj);
-  
-      if (result === true) {
-  
+
+      if (result.status === 200) {
+
         // send email otp when mobile otp matched
         let OtpForm = { 'number': sessions.user.number, 'dial_code': sessions.user.dial_code };
         await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp/sms`, {
@@ -106,7 +118,7 @@ const LinkEmail = ({ sessions }) => {
         setShowver(true)
       }
       else {
-        toast.error('Otp Not Matched', {
+        toast.error(result.data.message, {
           position: toast.POSITION.TOP_RIGHT, autoClose: 5000
         })
       }
@@ -117,15 +129,15 @@ const LinkEmail = ({ sessions }) => {
     let obj = { id: sessions.user.id, email: filledEmail };
     let response = await updateUserSecurity(obj);
 
-    console.log(response,'====after email linked');
-    if (response.status === 200 && response != undefined){
+    console.log(response, '====after email linked');
+    if (response.status === 200 && response != undefined) {
       toast.success('Bind Successfully!', {
         position: toast.POSITION.TOP_RIGHT, autoClose: 5000
       });
       setShowver(false)
       router.push('/dashboard/setting');
     }
-    else{
+    else {
       toast.error(response.message.errors[0].message, {
         position: toast.POSITION.TOP_RIGHT, autoClose: 5000
       })
@@ -146,24 +158,29 @@ const LinkEmail = ({ sessions }) => {
                 </svg>
               </Link>
             </h4>
-            <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>Email</p>
-            <div className="border border-black dark:border-white rounded min-h-[46px] px-4 flex items-center relative">
-              <input type="tel" onChange={(e) => setEmail(e.target.value)} placeholder="Email" className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none" name="email" />
-            </div>
-            <span role="alert" className="!text-red-700 info-12 mb-4 block">This is required</span>
-            <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>SMS Verification</p>
-            <div className='mt-5'>
-              <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>SMS Verification Code</span> <span></span></label>
-              <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper">
-                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
-                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
-                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code3" />
-                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code4" />
-                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code5" />
-                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
+
+            <form onSubmit={handleSubmit(sendOtp)}>
+              <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>Email</p>
+              <div className="border border-black dark:border-white rounded min-h-[46px] px-4 flex items-center relative">
+                <input type="tel" {...register('email')} name="email" placeholder="Email" className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none"  />
+                
               </div>
-            </div>
-            <button className="info-14-16 !text-primary mt-[15px]" onClick={sendOtp}>{count === 0 ? 'Send Code' : 'Send Again'} </button>
+              <p role="alert" className="!text-red-700 info-12">{errors.email?.message}</p>
+              <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>SMS Verification</p>
+              <div className='mt-5'>
+                <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>SMS Verification Code</span> <span></span></label>
+                <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper">
+                  <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
+                  <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
+                  <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code3" />
+                  <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code4" />
+                  <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code5" />
+                  <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
+                </div>
+              </div>
+              <button className="info-14-16 !text-primary mt-[15px]" type='submit'>{count === 0 ? 'Send Code' : 'Send Again'} </button>
+            </form>
+
             <button className="cta mt-[30px] w-full" onClick={Submit}>Submit</button>
           </div>
         </div>

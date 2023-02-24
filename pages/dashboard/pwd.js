@@ -1,11 +1,11 @@
 import Layout from '@/components/layout/layout'
 import ModifyPass from './../../components/dashboard/modify-pass';
 import { getProviders, getSession } from "next-auth/react"
-const Pwd = ({account}) => {
+const Pwd = ({account , sessions}) => {
   return (
     <Layout data={account} slug="dashboard">
         <div>
-            <ModifyPass />
+            <ModifyPass session={sessions.user}/>
         </div>
     </Layout>
   )
@@ -22,6 +22,7 @@ export async function getServerSideProps(context) {
     return { 
       props: {
         account: menu.specialNav.account,
+        sessions : session
       }, // will be passed to the page component as props
     };
   }

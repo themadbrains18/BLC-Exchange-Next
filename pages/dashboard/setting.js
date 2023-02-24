@@ -6,15 +6,18 @@ import VerificationCode from './../../components/login-register/verification-cod
 import DeleteAccount from './../../components/dashboard/delete-account';
 
 import { getProviders, getSession } from "next-auth/react"
-const Setting = ({ account,sessions }) => {
+const Setting = ({ account, sessions }) => {
   const { mode, setClick } = useContext(Context);
   const [showSafteyV, setShowSafteyV] = useState(0);
   const [SetState, showSetState] = useState(0);
-  const [activePopup,SetActivePopup] = useState(false);
+  const [activePopup, SetActivePopup] = useState(false);
+
+
+
   return (
     <Layout data={account} name="Setting">
-      
-        <div className="py-20  w-full px-[24px] ">
+
+      <div className="py-20  w-full px-[24px] ">
         <div className="mb-[20px]">
           <h3 className="section-secondary-heading mb-6">Security Settings</h3>
           <div className="divide-y px-[24px] shadow-lg dark:shadow-[#1da2b41c] rounded-lg	">
@@ -59,13 +62,13 @@ const Setting = ({ account,sessions }) => {
                   <p className="info-12 ">Used to log in, withdraw, retrieve passwords, modify security settings, and perform security verification when managing APIs</p>
                 </div>
               </div>
-              {sessions.user.number ==='' && 
+              {sessions.user.number === '' &&
                 <Link className='cta' href="bindmobile">Settings</Link>
               }
-              {sessions.user.number !=='' && 
+              {sessions.user.number !== '' &&
                 <>
                   <p className='info-14-16 !text-primary'>{sessions.user.number} |</p> <Link className='info-14-16 !text-primary' href="bindmobile">Modify</Link>
-                </> 
+                </>
               }
             </div>
 
@@ -91,13 +94,13 @@ const Setting = ({ account,sessions }) => {
                 </div>
               </div>
 
-              {sessions.user.email ==='' && 
+              {sessions.user.email === '' &&
                 <Link className='cta' href="bindemail">Settings</Link>
               }
-              {sessions.user.email !=='' && 
+              {sessions.user.email !== '' &&
                 <>
                   <p className='info-14-16 !text-primary'>{sessions.user.email} |</p> <Link className='info-14-16 !text-primary' href="bindemail">Modify</Link>
-                </> 
+                </>
               }
 
             </div>
@@ -147,7 +150,18 @@ const Setting = ({ account,sessions }) => {
                   <p className="info-12 ">Used to log in, withdraw, retrieve passwords, modify security settings, and perform security verification when managing APIs</p>
                 </div>
               </div>
-              <Link href="bindgoogle" className='cta'>Settings</Link>
+              {sessions.user.TwoFA === 'disable' &&
+                <Link href="bindgoogle" className='cta'>Settings</Link>
+              }
+
+              {sessions.user.TwoFA === 'enable' &&
+                <div className="flex items-center gap-5">
+                  <Link href="bindgoogle" className='info-14-16 !text-primary'>modify | </Link>
+                  <Link href="fund-password" className='info-14-16 !text-primary'>Turn Off Notification</Link>
+                </div>
+              }
+
+
             </div>
 
             <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">
@@ -171,10 +185,17 @@ const Setting = ({ account,sessions }) => {
                   <p className="info-12 ">Protect your account from unauthorized withdrawals and P2P trading.</p>
                 </div>
               </div>
-              <div className="flex items-center gap-5">
-                <Link href="modify-fund-code" className='info-14-16 !text-primary'>modify</Link>
+              {sessions.user.tradingPassword === '' &&
                 <Link href="fund-password" className='cta'>Settings</Link>
-              </div>
+              }
+
+              {sessions.user.tradingPassword !== '' &&
+                <div className="flex items-center gap-5">
+                  <Link href="modify-fund-code" className='info-14-16 !text-primary'>modify | </Link>
+                  <Link href="reset-fund-code" className='info-14-16 !text-primary'>Forget Fund Code</Link>
+                </div>
+              }
+
             </div>
 
             <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">
@@ -190,23 +211,30 @@ const Setting = ({ account,sessions }) => {
                 </div>
                 <div className='sm:text-start text-center'>
                   <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Anti-phishing code</p>
-                    <p className="info-12 ">To protect yourself from counterfeit emails, the emails you receive from BLC-Exchange will contain the anti-phishing code you've set</p>
-                  </div>
+                  <p className="info-12 ">To protect yourself from counterfeit emails, the emails you receive from BLC-Exchange will contain the anti-phishing code you've set</p>
                 </div>
-              <Link href="anti-phishing" className='cta'>Settings</Link>
               </div>
+              {sessions.user.antiphishing === '' &&
+                <Link className='cta' href="anti-phishing">Settings</Link>
+              }
+              {sessions.user.antiphishing !== '' &&
+                <>
+                  <p className='info-14-16 !text-primary'>{sessions.user.antiphishing} |</p> <Link className='info-14-16 !text-primary' href="modify-anti-phishing">Modify</Link>
+                </>
+              }
             </div>
           </div>
+        </div>
 
-        
-       
+
+
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px] mb-[20px]">
 
           <div className="p-[20px] shadow-lg dark:shadow-[#1da2b41c] flex items-center justify-between rounded-lg">
             <div>
               <h4 className="section-secondary-heading mb-[20px]" >Account Activity</h4>
-              <button className="info-14-16 !text-primary" onClick={()=>{setClick(true); SetActivePopup(true)}} >Delete Account</button>
+              <button className="info-14-16 !text-primary" onClick={(e) => { setClick(true); SetActivePopup(true) }} >Delete Account</button>
             </div>
             <Link href="history" className="cta">More</Link>
           </div>
@@ -286,15 +314,15 @@ const Setting = ({ account,sessions }) => {
             <VerificationCode modifyPass={true} fixed={true} showSetState={showSetState} />
           } */}
         </div>
-        </div>
-        {
-          showSafteyV === 1 &&
-          <VerificationCode emailAuth={true} CloseCta={true}  fixed={true} showSetState={setShowSafteyV} />
-        }
-        {
-          activePopup &&
-          <DeleteAccount SetActivePopup={SetActivePopup} />
-        }
+      </div>
+      {
+        showSafteyV === 1 &&
+        <VerificationCode emailAuth={true} CloseCta={true} fixed={true} showSetState={setShowSafteyV} />
+      }
+      {
+        activePopup &&
+        <DeleteAccount SetActivePopup={SetActivePopup} />
+      }
     </Layout>
   )
 }
