@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import LeftSide from './left-side';
@@ -23,8 +23,26 @@ const RegisterForm = () => {
     const [showVerification, setShowVerification] = useState(0);
     const [isLoding, setLoading] = useState(false);
     const [registerForm, setRegisterForm] = useState();
+    const [dialCode, setDialCode] = useState(91)
+
+    const dropdown = useRef(null);
+    const codedropdown = useRef(null);
 
     const router = useRouter();
+
+    useEffect(() => {
+        function handleClick(event) {
+            if (dropdown.current && !dropdown.current.contains(event.target)) {
+                setShowDropdown(false);
+            }
+            if (codedropdown.current && !codedropdown.current.contains(event.target)) {
+                setDropdownPhone(false);
+            }
+        }
+        window.addEventListener("click", handleClick);
+        // clean up
+        return () => window.removeEventListener("click", handleClick);
+    }, [])
 
     let { register, setValue, handleSubmit, watch, setError, formState: { errors } } = useForm();
 
@@ -55,8 +73,8 @@ const RegisterForm = () => {
                 password: data.password,
                 requestType: 'email',
                 resetPassword: false,
-                referal_code : data.referal_code,
-                number :''
+                referal_code: data.referal_code,
+                number: ''
             };
 
             otpForm = {
@@ -69,17 +87,17 @@ const RegisterForm = () => {
         else {
             formdata = {
                 number: data.phone,
-                dial_code: 91,
+                dial_code: dialCode,
                 password: data.password,
                 requestType: 'mobile',
                 resetPassword: false,
-                referal_code : data.referal_code,
-                email :''
+                referal_code: data.referal_code,
+                email: ''
             };
 
             otpForm = {
                 number: data.phone,
-                dial_code: 91,
+                dial_code: dialCode,
                 requestType: 'mobile',
                 resetPassword: false
             }
@@ -88,10 +106,10 @@ const RegisterForm = () => {
         setLoading(true);
 
         // let userExist = await checkUserRequest(formdata);
-        let userExist = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/check`,{
-            method : "POST",
-            body : JSON.stringify(formdata)
-        }).then(response=>response.json());
+        let userExist = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/check`, {
+            method: "POST",
+            body: JSON.stringify(formdata)
+        }).then(response => response.json());
 
         if (userExist.data.status === 200 && userExist.data !== undefined) {
             setLoading(false);
@@ -101,11 +119,11 @@ const RegisterForm = () => {
         }
         else {
             // let otpResponse = await sendOtp(otpForm);
-            let qwe = otpForm.requestType === "email" ?'/otp':'/otp/sms'
-            let otpResponse = await fetch(`${process.env.NEXT_PUBLIC_BASEURL+qwe}`,{
-                method : "POST",
-                body : JSON.stringify(otpForm)
-            }).then(response=>response.json());
+            let qwe = otpForm.requestType === "email" ? '/otp' : '/otp/sms'
+            let otpResponse = await fetch(`${process.env.NEXT_PUBLIC_BASEURL + qwe}`, {
+                method: "POST",
+                body: JSON.stringify(otpForm)
+            }).then(response => response.json());
 
             if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
                 setLoading(false);
@@ -130,10 +148,10 @@ const RegisterForm = () => {
         registerForm.otp = otp;
         registerForm.time = new Date();
 
-        let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/create`,{
-            method : "POST",
-            body : JSON.stringify(registerForm)
-        }).then(response=>response.json())
+        let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/create`, {
+            method: "POST",
+            body: JSON.stringify(registerForm)
+        }).then(response => response.json())
 
         if (result.data.status === 200 && result.data != undefined) {
             router.push('/login');
@@ -144,6 +162,8 @@ const RegisterForm = () => {
             })
         }
     }
+
+
 
     return (
         <section className='dark:bg-black-v-5 !Wpt-10 lg:!pt-20' >
@@ -156,7 +176,7 @@ const RegisterForm = () => {
                     {showVerification === 0 &&
                         <div className="max-w-full md:max-w-[50%] w-full p-3 sm:p-6 border border-grey mx-auto">
                             <h4 className='section-secondary-heading mb-5'>Welcome back</h4>
-                            <div className="my-8 relative">
+                            <div className="my-8 relative" ref={dropdown}>
                                 <p className='info-14 hover:!text-grey inline-flex items-center gap-3 cursor-pointer' onClick={(e) => { setShowDropdown(!showDropdown) }}>
                                     <span>Country / Region:</span>
                                     <span className="flex items-center gap-2 ">
@@ -189,16 +209,16 @@ const RegisterForm = () => {
                                 {
                                     show === 2 &&
                                     <>
-                                        <div className="border border-black dark:border-white rounded min-h-[46px] mb-4 px-4 flex items-center relative">
+                                        <div className="border border-black dark:border-white rounded min-h-[46px] mb-4 px-4 flex items-center relative" ref={codedropdown}>
                                             <div className="flex items-center gap-2  min-w-[90px] cursor-pointer" onClick={() => { setDropdownPhone(!DropdownPhone) }}>
-                                                <span className="text-black dark:text-white" id="counteryCode">+ <span>91</span> </span>
+                                                <span className="text-black dark:text-white" id="counteryCode">+ <span>{dialCode}</span> </span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#656e6f" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                                             </div>
-                                            <input type="tel" placeholder="Mobile number" className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone"
+                                            <input type="tel" placeholder="Mobile number" onFocus={()=>setDropdownPhone(false)} className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone"
                                                 {...register('phone', { required: show === 2 ? true : false, maxLength: 15 })} />
                                             {
                                                 DropdownPhone != false &&
-                                                <SearchDropdown setDropdownPhone={setDropdownPhone} code={true} />
+                                                <SearchDropdown setDropdownPhone={setDropdownPhone} code={true} setDialCode={setDialCode} />
                                             }
 
                                         </div>
