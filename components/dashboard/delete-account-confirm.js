@@ -28,8 +28,6 @@ const DeleteAccountConfirm = ({SetActivePopup }) => {
   return (
     <>
     
-    
-    
       <div className="z-[20] fixed top-[50%] left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%]">
         <div className="dark:bg-black-v-5 bg-white p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto" >
             <div className="max-w-[24px] w-full ml-auto cursor-pointer" onClick={()=>{setClick(false);SetActivePopup(false)}}>

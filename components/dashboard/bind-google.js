@@ -9,39 +9,53 @@ import VerificationCode from './../login-register/verification-code';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { signOut } from "next-auth/react"
-import {updateUserSecurity} from '../../libs/commanMethod'
+import { updateUserSecurity } from '../../libs/commanMethod'
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as Yup from 'yup'
+
+const formSchema = Yup.object().shape({
+    code: Yup.string()
+        .required('This field is required')
+})
 
 const BindGoogle = ({ session }) => {
     const [show, setShow] = useState(false);
     const [qrImg, setImage] = useState('');
-    const [inputValue, setOtp] = useState();
+    const [isLoding, setLoading] = useState(false);
+
+    let {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm({ resolver: yupResolver(formSchema) });
 
     const [secret, setSecret] = useState(JSON.parse(session.secret));
 
     useEffect(() => {
-        const inputElements = document.querySelectorAll('.input_wrapper_google input');
-        inputElements.forEach((ele, index) => {
-            ele.addEventListener('keydown', (e) => {
+        // const inputElements = document.querySelectorAll('.input_wrapper_google input');
+        // inputElements.forEach((ele, index) => {
+        //     ele.addEventListener('keydown', (e) => {
 
-                if (e.keyCode === 8 && e.target.value === '') inputElements[Math.max(0, index - 1)].focus()
-            })
-            ele.addEventListener('input', (e) => {
+        //         if (e.keyCode === 8 && e.target.value === '') inputElements[Math.max(0, index - 1)].focus()
+        //     })
+        //     ele.addEventListener('input', (e) => {
 
-                const [first, ...rest] = e.target.value
-                e.target.value = first ?? ''
-                const lastInputBox = index === inputElements.length - 1
-                const didInsertContent = first !== undefined
-                if (didInsertContent && !lastInputBox) {
-                    // continue to input the rest of the string
-                    inputElements[index + 1].focus()
-                    inputElements[index + 1].value = rest.join('')
-                    inputElements[index + 1].dispatchEvent(new Event('input'))
-                }
-                else {
-                    setOtp(inputElements[0].value + '' + inputElements[1].value + '' + inputElements[2].value + '' + inputElements[3].value + '' + inputElements[4].value + '' + inputElements[5].value);
-                }
-            })
-        })
+        //         const [first, ...rest] = e.target.value
+        //         e.target.value = first ?? ''
+        //         const lastInputBox = index === inputElements.length - 1
+        //         const didInsertContent = first !== undefined
+        //         if (didInsertContent && !lastInputBox) {
+        //             // continue to input the rest of the string
+        //             inputElements[index + 1].focus()
+        //             inputElements[index + 1].value = rest.join('')
+        //             inputElements[index + 1].dispatchEvent(new Event('input'))
+        //         }
+        //         else {
+        //             setOtp(inputElements[0].value + '' + inputElements[1].value + '' + inputElements[2].value + '' + inputElements[3].value + '' + inputElements[4].value + '' + inputElements[5].value);
+        //         }
+        //     })
+        // })
 
         QRCode.toDataURL(secret.otpauth_url, (err, image_data) => {
             setImage(image_data);
@@ -50,17 +64,14 @@ const BindGoogle = ({ session }) => {
     }, [])
     const { mode, setClick } = useContext(Context);
 
-    const VerifyGoogleAuthenticate = async (e) => {
-        e.preventDefault();
-        const token = inputValue;
+    const VerifyGoogleAuthenticate = async (data) => {
+        const token = data.code;
         let obj = { secret, token };
-
+        setLoading(true);
         let response = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/googleAuth`, {
             method: "POST",
             body: JSON.stringify(obj)
         }).then(response => response.json());
-
-        console.log(response, '======google authenticate verification');
 
         if (response.data.status === 200 && response.data.message === true) {
             if (session.email !== "") {
@@ -78,11 +89,13 @@ const BindGoogle = ({ session }) => {
                     body: JSON.stringify(smsOtpForm)
                 }).then(response => response.json());
             }
+            setLoading(false);
             setShow(true);
 
         }
         else {
-            toast.error('Google Authentication Code not matched!', {
+            setLoading(false);
+            toast.error('Google Authentication Code not matched!.', {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             })
         }
@@ -90,7 +103,7 @@ const BindGoogle = ({ session }) => {
 
     const updateUser = async () => {
         let obj = { id: session.id, TwoFA: 'enable' };
-        updateUserSecurity(obj,true);
+        updateUserSecurity(obj, true);
     }
 
     return (
@@ -174,20 +187,19 @@ const BindGoogle = ({ session }) => {
                                 <p className="info-12 text-black dark:!text-white !text-[14px] mb-[8px]">Enter the new 6-digit verification code in Google Authenticator</p>
                             </div>
                         </div>
-                        <form>
+                        <form onSubmit={handleSubmit(VerifyGoogleAuthenticate)}>
                             <div className='mt-5'>
                                 <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row">Google Authenticator</label>
-                                <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper input_wrapper_google">
-                                    <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
-                                    <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
-                                    <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code3" />
-                                    <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code4" />
-                                    <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code5" />
-                                    <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
+                                <div className="input_wrapper_google">
+                                    <input type="number" {...register('code')} name="code" className="block px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Enter your code" />
                                 </div>
-                                {/* <button className='info-14 block mt-[10px]' onClick={(e) => sendAgain(e)}>Send Again</button> */}
                             </div>
-                            <button className="cta w-full mt-[15px]" onClick={(e) => { VerifyGoogleAuthenticate(e) }}>Submit</button>
+                            <p role="alert" className="!text-red-700 info-12">{errors.code?.message}</p>
+                            <button type="submit" className={`relative cta mt-5  w-full ${isLoding === true ? 'hide_text' : ''} `}>
+                                <span>Submit</span>
+                                <div className="hidden w-8 h-8 rounded-full animate-spin border-4 border-solid border-purple-500 border-t-transparent absolute top-[50%] left-[50%] mt-[-16px] ml-[-15px] z-10"></div>
+                                
+                            </button>
                         </form>
                     </div>
                 </div>

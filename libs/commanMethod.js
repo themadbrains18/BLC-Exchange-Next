@@ -9,10 +9,10 @@ const otpMatch = async (obj) => {
   }).then(response => response.json());
 
   if (result.data.status === 200 && result.data != undefined) {
-      return true;
+      return result.data;
   }
   else {
-      return false;
+      return result.data;
   }
 }
 
