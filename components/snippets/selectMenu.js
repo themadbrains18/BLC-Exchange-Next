@@ -1,45 +1,55 @@
 import React, { useContext, useRef, useState } from "react";
-import Image from "next/image";
+
 import Context from "../contexts/context";
 const SelectMenu = ({ selectMenu }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [value, setValue] = useState(selectMenu[0]);
   const [overlay, setOverlay] = useState(false);
-  const ref=useRef(null)
-  
-// document.addEventListener("click",(()=>{
-//   if(!ref.current){
+  const ref = useRef(null);
+  const {mode} =useContext(Context)
 
-//   }
-// }))
+  // document.addEventListener("click",(()=>{
+  //   if(!ref.current){
+
+  //   }
+  // }))
   return (
     <>
-      <div ref={ref}
-        className={`relative border border-primary ${open && "md:z-[2]"}`}
-        onClick={() => {
-          setOpen(!open);
-          setOverlay(!overlay)
-          
-        }}
-      >
-        <div className="flex bg-white justify-between">
+      <div ref={ref} className={`relative pr-2  ${open && "md:z-[2]"}`}>
+        <div className="flex bg-transparent justify-between items-center">
           <input
             type="text"
             name=""
             id=""
-            className="caret-white p-1 outline-none bg-transparent   info-16 text-black"
+            className="caret-white p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
             value={value}
             onChange={() => {}}
+            onFocus={() => {
+              setOpen(!open);
+              setOverlay(!overlay);
+            }}
+            onBlur={() => {
+              setOpen(!open);
+              setOverlay(!overlay);
+            }}
           ></input>
 
-          <Image
-            src="/assets/icons/down.svg"
-            className={` ${open && "rotate-90"} duration-300`}
-            height={15}
-            width={15}
-            alt="Down Arrow"
-          ></Image>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            className={` ${open && "rotate-90"} duration-300 w-6 h-6`}
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke={mode==="dark" ?"white":"currentColor"}
+      
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M8.25 4.5l7.5 7.5-7.5 7.5"
+            />
+          </svg>
         </div>
         <div
           className={`  md:absolute  bg-white  w-full ${
@@ -52,12 +62,12 @@ const SelectMenu = ({ selectMenu }) => {
             <div className="hidden md:block p-1 -mt-[5px] z-0 bg-white -rotate-45 absolute left-10 dark:bg-black-v-4"></div>
           </div>
           <div
-            className={` bg-black  opacity-0 invisible duration-300 fixed top-0 left-0 h-full w-full ${
+            className={` bg-black  opacity-0 invisible transition-[opacity] duration-300 fixed top-0 left-0 h-full w-full ${
               overlay && "!visible opacity-75 z-[3] md:hidden"
             }`}
           ></div>
           <div
-            className={`h-[50%] rounded-t-xl md:static md:rounded-none md:w-[unset] fixed -bottom-[100%] left-0 w-full bg-white transition-[bottom] ${
+            className={`h-[50%] rounded-t-xl md:static md:rounded-none md:w-[unset] fixed -bottom-[100%] left-0 w-full bg-white dark:bg-black dark:text-white transition-[bottom] ${
               open && "bottom-[0%] z-[4]"
             }`}
           >

@@ -7,22 +7,21 @@ import AuditTable from "/components/asset/audit/auditTable";
 
 const Audit = ({ assets }) => {
   let [data, setData] = useState(true);
-  let sell = ["All"];
-  let buy = ["All"];
-  let status = ["Failed", "Succeed", "Swapping", "All States"];
-  let dateFilter = ["Last 7 Days", "Last 30 Days"];
+ 
   return (
     <>
       <Layout data={assets} name="Audit">
         <div className="grow p-4 md:p-8">
           <div className="flex gap-3 justify-between items-center">
-          <h3 className="section-secondary-heading font-noto hidden md:block mb-4 ">
-          Audit
-          </h3>
-          <p className="info-14 hover:text-grey">User registration time: 2023-02-14 10:13:48</p>
+            <h3 className="section-secondary-heading font-noto hidden md:block mb-4 ">
+              Audit
+            </h3>
+            <p className="info-14 hover:text-grey">
+              User registration time: 2023-02-14 10:13:48
+            </p>
           </div>
           {/* dataTable */}
-       <AuditTable data={data}/>
+          <AuditTable data={data} />
         </div>
       </Layout>
     </>
