@@ -20,7 +20,7 @@ const VerificationType = () => {
                 <p className='section-secondary-heading'>ID Verification</p>
                 <p className='info-12 bg-border-clr  rounded-sm'>Unverified</p>
             </div>
-            {session?.user?.kyc === false ?
+            {session?.user?.kycstatus === false || session?.user?.kycstatus === null ?
                 step == 0 ?
                     <>
                         <div className='mt-11'>
