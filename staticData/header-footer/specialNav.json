@@ -276,6 +276,12 @@
                 "linkUrl": "dashboard/coupons"
             },
             {
+                "linkText": "Referal Program ",
+                "desc": "Market trends from experts",
+                "svgType": "referal_program",
+                "linkUrl": "dashboard/coupons"
+            },
+            {
                 "linkText": "My Settings",
                 "desc": "Market trends from experts",
                 "svgType": "my_settings",

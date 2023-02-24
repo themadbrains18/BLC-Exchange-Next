@@ -4,6 +4,7 @@ import Image from "next/image";
 import Layout from "/components/layout/Layout";
 import { getProviders, getSession } from "next-auth/react";
 import Context from "/components/contexts/context";
+import DropDownActive from "@/components/snippets/dropDown-active";
 
 const Deposit = ({ assets }) => {
   const [coin, setCoin] = useState("USD");
@@ -62,7 +63,7 @@ const {mode}=useContext(Context)
           </div>
           <div className="md:relative">
             <h6 className="info-12">Network</h6>
-            <div
+            {/* <div
               className="flex cursor-pointer justify-between w-full border border-border-clr rounded p-2 mt-2 "
               onClick={() => {
                 setOpen(!open);
@@ -70,27 +71,20 @@ const {mode}=useContext(Context)
               }}
             >
               <div className="flex gap-3 ">
-                {/* <Image
-                  className="self-start"
-                  height={24}
-                  width={24}
-                  alt="Coin Image"
-                  src={`/assets/images/${coinImg}`}
-                ></Image> */}
                 <p className="info-14-16 font-bold">{networks}</p>
               </div>
               <img
                 src="/assets/icons/down.svg"
                 className={`${rotate && "rotate-90"} duration-300`}
               ></img>
-            </div>
-            {open != false && (
-              <SearchDropdown
+            </div> */}
+            {/* {open != false && ( */}
+              <DropDownActive
                 idData={network}
-                setShowDropdown={setOpen}
-                selectId={selectId}
+                // setShowDropdown={setOpen}
+                // selectId={selectId}
               />
-            )}
+            {/* )} */}
           </div>
           <div className="md:relative">
             <h6 className="info-12">Deposit address:</h6>
@@ -123,7 +117,7 @@ const {mode}=useContext(Context)
             </div>
             <div className="md:relative">
             <h6 className="info-12">Automatically transfer to</h6>
-            <div
+            {/* <div
               className="flex cursor-pointer justify-between w-full border border-border-clr rounded p-2 mt-2 "
               onClick={() => {
                 setOpen(!open);
@@ -131,27 +125,20 @@ const {mode}=useContext(Context)
               }}
             >
               <div className="flex gap-3 ">
-                {/* <Image
-                  className="self-start"
-                  height={24}
-                  width={24}
-                  alt="Coin Image"
-                  src={`/assets/images/${coinImg}`}
-                ></Image> */}
                 <p className="info-14-16 font-bold">{networks}</p>
               </div>
               <img
                 src="/assets/icons/down.svg"
                 className={`${rotate && "rotate-90"} duration-300`}
               ></img>
-            </div>
-            {open != false && (
-              <SearchDropdown
+            </div> */}
+            {/* {open != false && ( */}
+              <DropDownActive
                 idData={autoTransfer}
-                setShowDropdown={setOpen}
-                selectId={selectId}
+                // setShowDropdown={setOpen}
+                // selectId={selectId}
               />
-            )}
+            {/* // )} */}
           </div>
        </div>
 
