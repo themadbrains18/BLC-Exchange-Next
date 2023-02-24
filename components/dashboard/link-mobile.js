@@ -8,6 +8,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { otpMatch, updateUserSecurity } from '../../libs/commanMethod';
 import { useRouter } from 'next/router';
 
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as Yup from 'yup'
+
+const formSchema = Yup.object().shape({
+    phone: Yup.string()
+        .required('This field is required')
+})
+
 const LinkMobile = ({ sessions }) => {
     const { mode, setClick } = useContext(Context);
     const [DropdownPhone, setDropdownPhone] = useState(false);
@@ -18,6 +27,12 @@ const LinkMobile = ({ sessions }) => {
     const [filledNumber, setNumber] = useState();
     const [count, setCount] = useState(0);
     const router = useRouter();
+
+    let {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm({ resolver: yupResolver(formSchema) });
 
     useEffect(() => {
         const inputElements = document.querySelectorAll('.input_wrapper input');
@@ -50,8 +65,9 @@ const LinkMobile = ({ sessions }) => {
     // Send OTP Request =====================================
     //====================================================================
 
-    const sendOtp = async () => {
-        let otpForm = { 'number': filledNumber, 'dial_code': dialCode };
+    const sendOtp = async (data) => {
+        setNumber(data.phone);
+        let otpForm = { 'number': data.phone, 'dial_code': dialCode };
 
         let otpResponse = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp/sms`, {
             method: "POST",
@@ -88,7 +104,7 @@ const LinkMobile = ({ sessions }) => {
 
         let result = await otpMatch(obj);
 
-        if (result === true) {
+        if (result.status === 200) {
 
             toast.success(result.data.message, {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
@@ -140,31 +156,33 @@ const LinkMobile = ({ sessions }) => {
                                 </svg>
                             </Link>
                         </h4>
-                        <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>Mobile Number</p>
-                        <div className="border border-black dark:border-white rounded min-h-[46px] px-4 flex items-center relative">
-                            <div className="flex items-center gap-2  min-w-[90px] cursor-pointer" onClick={() => { setDropdownPhone(!DropdownPhone) }}>
-                                <span className="text-black dark:text-white" id="counteryCode">+ <span>{dialCode}</span> </span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#656e6f" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
+                        <form onSubmit={handleSubmit(sendOtp)}>
+                            <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>Mobile Number</p>
+                            <div className="border border-black dark:border-white rounded min-h-[46px] px-4 flex items-center relative">
+                                <div className="flex items-center gap-2  min-w-[90px] cursor-pointer" onClick={() => { setDropdownPhone(!DropdownPhone) }}>
+                                    <span className="text-black dark:text-white" id="counteryCode">+ <span>{dialCode}</span> </span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#656e6f" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
+                                </div>
+                                <input type="tel" {...register('phone')} name="phone" placeholder="Mobile number" className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" />
+                                {DropdownPhone &&
+                                    <SearchDropdown code={true} setDropdownPhone={setDropdownPhone} setDialCode={setDialCode} />
+                                }
                             </div>
-                            <input type="tel" onChange={(e) => setNumber(e.target.value)} placeholder="Mobile number" className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone" />
-                            {DropdownPhone &&
-                                <SearchDropdown code={true} setDropdownPhone={setDropdownPhone} setDialCode={setDialCode} />
-                            }
-                        </div>
-                        <span role="alert" className="!text-red-700 info-12 mb-4 block">This is required</span>
-                        <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>SMS Verification</p>
-                        <div className='mt-5'>
-                            <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>SMS Verification Code</span> <span></span></label>
-                            <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper">
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code3" />
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code4" />
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code5" />
-                                <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
+                            <p role="alert" className="!text-red-700 info-12">{errors.phone?.message}</p>
+                            <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>SMS Verification</p>
+                            <div className='mt-5'>
+                                <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>SMS Verification Code</span> <span></span></label>
+                                <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper">
+                                    <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
+                                    <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
+                                    <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code3" />
+                                    <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code4" />
+                                    <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code5" />
+                                    <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
+                                </div>
                             </div>
-                        </div>
-                        <button className="info-14-16 !text-primary mt-[15px]" onClick={sendOtp}>{count === 0 ? 'Send Code' : 'Send Again'} </button>
+                            <button className="info-14-16 !text-primary mt-[15px]">{count === 0 ? 'Send Code' : 'Send Again'} </button>
+                        </form>
                         <button className="cta mt-[30px] w-full" onClick={Submit}>Submit</button>
                     </div>
                 </div>

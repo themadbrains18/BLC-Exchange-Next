@@ -145,25 +145,6 @@ const RegisterForm = () => {
         }
     }
 
-    // const sendOtpAgain = async () => {
-    //     // let otpResponse = await sendOtp(registerForm);
-    //     let otpResponse = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`,{
-    //         method : "POST",
-    //         body : JSON.stringify(registerForm)
-    //     }).then(response=>response.json());
-        
-    //     if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
-    //         let usrname = registerForm.requestType === 'mobile' ? registerForm.number : registerForm.email
-    //         console.log(usrname);
-    //         let message = otpResponse.data.message + ' ' + usrname;
-    //         console.log(message);
-    //         toast.success(message, {
-    //             position: toast.POSITION.TOP_RIGHT, autoClose: 5000
-    //         })
-    //     }
-    // }
-
-
     return (
         <section className='dark:bg-black-v-5 !Wpt-10 lg:!pt-20' >
             <ToastContainer />

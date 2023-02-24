@@ -6,30 +6,41 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
     const [Data, setData] = useState([]);
     const [coinData, setCoinData] = useState([]);
     const [currencyData, setCurrencyData] = useState([]);
-  
+    const [countryList, setCountryList] =useState([])
+
 
     useEffect(() => {
-      (async () => {
-        await fetch(process.env.NEXT_PUBLIC_BASEURL+ "/hello")
-          .then((res) => res.json())
-          .then((data) => {
-            setData(data.counteryList);
-            setCoinData(data.coinList);
-            setCurrencyData(data.currency);
-            /* process your data further */
-          })
-          .catch((error) => console.error(error));
-      })().catch((err) => {
-        console.log(err);
-      });
+        (async () => {
+            await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello")
+                .then((res) => res.json())
+                .then((data) => {
+                    setData(data.counteryList);
+                    setCoinData(data.coinList);
+                    setCurrencyData(data.currency);
+                    setCountryList(data.counteryList)
+                    /* process your data further */
+                })
+                .catch((error) => console.error(error));
+        })().catch((err) => {
+            console.log(err);
+        });
     }, []);
-    console.log("====coinData", coinData)
+
+    const handleChange = (e) => {
+        let search = e.target.value
+        let obj = countryList.filter(function handleClick(obj){
+            console.log(search)
+            return obj.country.toLowerCase().includes(search.toLowerCase()) ;
+        })
+        setData(obj)     
+    }
 
     const selectCounteryName = (event) => {
         let countryName = document.querySelector("#countryName");
         let SelectedValue = event.target.innerHTML;
         setShowDropdown(false);
         countryName.innerHTML = SelectedValue;
+        // setCountryName(SelectedValue)
     }
     const selectCounteryCode = (event) => {
         let countryCode = document.querySelector("#counteryCode span");
@@ -43,8 +54,8 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
     return (
         <>
             <div className='bg-white dark:bg-black-v-5 animate-bottom duration-500 absolute top-[100%] rounded-t-3xl md:rounded-none left-0 w-full border border-grey max-h-[350px] overflow-auto z-10'>
-                <div className={`p-4 sticky top-0 left-0 w-full bg-white dark:bg-black-v-5 ${idData ? 'hidden':'block' }`}>
-                    <input type="search" placeholder="search" className="block  px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[40px] text-black dark:text-white outline-none focus:!border-primary" name="search" />
+                <div className={`p-4 sticky top-0 left-0 w-full bg-white dark:bg-black-v-5 ${idData ? 'hidden' : 'block'}`}>
+                    <input type="search" placeholder="search" className="block  px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[40px] text-black dark:text-white outline-none focus:!border-primary" name="search" onChange={(e) => { handleChange(e) }} />
                 </div>
                 <ul>
                     {Data.length > 0 &&
@@ -70,7 +81,7 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
                         })
                     }
                     {
-                        
+
                         coinData.length > 0 &&
                         coinData.map((e, i) => {
                             return (
@@ -82,7 +93,7 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
                                             <span>{e.name}</span>
                                         </li>
                                     }
-                                  
+
                                 </Fragment>
                             )
                         })
@@ -93,12 +104,12 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
                             return (
                                 <Fragment key={i}>
                                     {
-                                            currency &&
-                                            <li className="cursor-pointer info-14 !text-black flex gap-2 p-3 dark:!text-white px-4 hover:bg-[#cccccc1f]" >
-                                                <span>{e.name}</span>
-                                            </li>                                 
+                                        currency &&
+                                        <li className="cursor-pointer info-14 !text-black flex gap-2 p-3 dark:!text-white px-4 hover:bg-[#cccccc1f]" >
+                                            <span>{e.name}</span>
+                                        </li>
                                     }
-                                  
+
                                 </Fragment>
                             )
                         })
@@ -109,25 +120,25 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
                             return (
                                 <Fragment key={i}>
                                     {
-                                            <li className="cursor-pointer info-14 !text-black flex gap-2 p-3 dark:!text-white px-4 hover:bg-[#cccccc1f]"  
-                                            onClick={() => { 
+                                        <li className="cursor-pointer info-14 !text-black flex gap-2 p-3 dark:!text-white px-4 hover:bg-[#cccccc1f]"
+                                            onClick={() => {
                                                 selectId(e)
-                                                setShowDropdown(false) 
-                                                }}>
-                                                <span>{e}</span>
-                                            </li>                                 
+                                                setShowDropdown(false)
+                                            }}>
+                                            <span>{e}</span>
+                                        </li>
                                     }
-                                  
+
                                 </Fragment>
                             )
                         })
                     }
-                 
+
                 </ul>
             </div>
-          
-    </>
-  )
+
+        </>
+    )
 }
 
 export default SearchDropdown;
