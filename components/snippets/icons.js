@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import Context from "../contexts/context";
-const Icons = ({ type }) => {
+const Icons = ({ type,stroke   }) => {
   const { mode } = useContext(Context);
   return (
     <>
@@ -1105,7 +1105,8 @@ const Icons = ({ type }) => {
     height={24}
     viewBox="0 0 24 24"
     fill="none"
-    stroke={mode === "light" ? "black" : "white"}
+    stroke={mode === "light" && !stroke ? "black" :stroke ?"#1da2b4": "white"}
+
   >
     <path
       d="M20.5 14.99L15.49 20.01"
