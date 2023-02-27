@@ -13,13 +13,25 @@ const schema = yup
         country: yup.string().required('This field is required'),
         fname: yup.string().required('This field is required'),
         lname: yup.string().required('This field is required'),
-        dob: yup.string().required('This field is required'),
+        // dob: yup.string().required('This field is required'),
         doctype: yup.string().required('This field is required'),
         docnumber: yup.string().required('This field is required'),
+        birthDate: yup.date()
+            .transform(function (value, originalValue) {
+                if (this.isType(value)) {
+                    return value;
+                }
+                // const result = parse(originalValue, "dd.MM.yyyy", new Date());
+                return originalValue;
+            })
+            .typeError("please enter a valid date")
+            .required()
+            .min("1969-11-13", "Please enter valid date of birth")
+            .max("2020-01-01", "Please enter valid date of birth")
     })
     .required();
 
-const Step1 = ({countryName}) => {
+const Step1 = ({ countryName }) => {
 
     const { register, setValue, getValues, handleSubmit, formState: { errors }, } = useForm({
         mode: "onChange",
@@ -38,9 +50,9 @@ const Step1 = ({countryName}) => {
     const [formData, setFormData] = useState({});
 
     const submitForm = (data) => {
-        formData.doctype=userId
+        formData.doctype = userId
         setFormData(data);
-        setShow(true) 
+        setShow(true)
         setClick(true)
     }
 
@@ -100,10 +112,10 @@ const Step1 = ({countryName}) => {
                     <label className='info-12'>Date of Birth.</label>
                     <span>
 
-                        <input type='date' placeholder='Please select Date of Birth' autoComplete="off" {...register('dob')} className='border-b-2 border-border-clr  bg-transparent border  text-black dark:text-white outline-none focus:!border-primary dark:border-white rounded' />
+                        <input type='date' placeholder='Please select Date of Birth' autoComplete="off" {...register('birthDate')} className='border-b-2 border-border-clr  bg-transparent border  text-black dark:text-white outline-none focus:!border-primary dark:border-white rounded' />
                     </span>
                 </div>
-                <div className="!text-red-700 info-12">{errors.dob?.message}</div>
+                <div className="!text-red-700 info-12">{errors.birthDate?.message}</div>
                 <button type='submit' className='cta my-12 w-full' > Next</button>
             </form>
 

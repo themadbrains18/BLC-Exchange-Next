@@ -1,8 +1,11 @@
 import React from "react";
 import Image from "next/image";
 
-const DepositTable = ({ data }) => {
+const TransferDataTable = ({data}) => {
   return (
+   
+
+
     <>
       <div className="overflow-x-auto table_box  ">
         <div className="table mt-4 w-max md:w-full border border-border-clr rounded-sm ">
@@ -94,4 +97,4 @@ const DepositTable = ({ data }) => {
   );
 };
 
-export default DepositTable;
+export default TransferDataTable

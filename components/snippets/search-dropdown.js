@@ -47,7 +47,7 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone,setCo
         let SelectedValue = event.currentTarget.querySelector("#codeValue").innerHTML;
         setDropdownPhone(false);
         countryCode.innerHTML = SelectedValue;
-        setDialCode(SelectedValue)
+        // setDialCode(SelectedValue)
     }
 
 

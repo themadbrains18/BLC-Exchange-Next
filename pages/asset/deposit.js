@@ -40,10 +40,12 @@ const Deposit = ({ assets }) => {
       <ToastContainer />
       <Layout data={assets} name="Deposit">
         <div>
-          <div className="grid lg:grid-cols-2  p-4 md:p-8 flex-col md:flex-row gap-10">
+          <div className="grid lg:grid-cols-2  p-4 md:p-8 gap-10">
             <div className="">
               <div className="relative">
-                <h6  className="info-12 dark:hover:text-white dark:text-white">Coin</h6 >
+                <h6 className="info-12 dark:hover:text-white dark:text-white">
+                  Coin
+                </h6>
                 <div
                   className="flex cursor-pointer justify-between w-full border md:border-t-0 md:border-r-0 md:border-l-0  border-border-clr rounded p-2 mt-2 "
                   onClick={() => {
@@ -62,20 +64,19 @@ const Deposit = ({ assets }) => {
                     <p className="info-14-16 font-bold">{coin}</p>
                   </div>
                   <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            className={` ${rotate && "rotate-90"} duration-300 w-6 h-6`}
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke={mode==="dark" ? "white":"currentColor"}
-      
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M8.25 4.5l7.5 7.5-7.5 7.5"
-            />
-          </svg>
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    className={` ${rotate && "rotate-90"} duration-300 w-6 h-6`}
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke={mode === "dark" ? "white" : "currentColor"}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                    />
+                  </svg>
                 </div>
                 {dropDown != false && (
                   <SearchDropdown
@@ -86,14 +87,18 @@ const Deposit = ({ assets }) => {
                 )}
               </div>
               <div className="mt-4">
-                <h6  className="info-12 dark:hover:text-white dark:text-white">Networks</h6 >
+                <h6 className="info-12 dark:hover:text-white dark:text-white">
+                  Networks
+                </h6>
                 <div className="font-bold mt-2 border md:border-t-0 md:border-r-0 md:border-l-0  border-border-clr">
                   <SelectMenu selectMenu={network} />
                 </div>
               </div>
 
               <div className="relative mt-4">
-                <h6  className="info-12 dark:hover:text-white dark:text-white">Deposit address:</h6 >
+                <h6 className="info-12 dark:hover:text-white dark:text-white">
+                  Deposit address:
+                </h6>
                 <div
                   className={`flex cursor-pointer items-center justify-between w-full border md:border-t-0 md:border-r-0 md:border-l-0  border-border-clr rounded p-2 mt-2 `}
                 >
@@ -176,13 +181,15 @@ const Deposit = ({ assets }) => {
                 </div>
               </div>
               <div className="mt-4">
-                <h6  className="info-12 dark:hover:text-white dark:text-white">Automatically transfer to </h6 >
+                <h6 className="info-12 dark:hover:text-white dark:text-white">
+                  Automatically transfer to
+                </h6>
                 <div className="font-bold mt-2 border md:border-t-0 md:border-r-0 md:border-l-0  border-border-clr">
                   <SelectMenu selectMenu={autoTransfer} />
                 </div>
               </div>
               <div className="p-4 bg-light-hover dark:bg-black-v-2 info-14 mt-4 hover:!text-grey dark:text-white  dark:hover:!text-white">
-                <h6 >Please note:</h6 >
+                <h6>Please note:</h6>
                 <p>
                   - Please don’t deposit any other digital assets except BTC to
                   the above address. Any deposited asset which is not BTC will
@@ -218,27 +225,40 @@ const Deposit = ({ assets }) => {
                 Deposit History
               </h3>
               {/* faq pending */}
-              <Link href={"/faq"} className="info-14 hover:text-grey dark:text-white dark:hover:text-white">
+              <Link
+                href={"/faq"}
+                className="info-14 hover:text-grey dark:text-white dark:hover:text-white"
+              >
                 Haven't received your deposit?
               </Link>
             </div>
             <div className="flex gap-4 flex-wrap">
               <div className="">
-                <h4 className="info-14 hover:text-grey dark:text-white dark:hover:text-white">Coin</h4>
+                <h4 className="info-14 hover:text-grey dark:text-white dark:hover:text-white">
+                  Coin
+                </h4>
                 <div className="border border-border-clr ">
                   <SelectMenu selectMenu={coinData} />
                 </div>
               </div>
               <div className="">
-                <h4 className="info-14 hover:text-grey dark:text-white dark:hover:text-white">Time</h4>
+                <h4 className="info-14 hover:text-grey dark:text-white dark:hover:text-white">
+                  Time
+                </h4>
                 <div className="border border-border-clr">
                   <SelectMenu selectMenu={dateFilter} />
                 </div>
               </div>
 
-              <div className="flex gap-3 h-[40px] self-end px-1 border border-border-clr dark:bg-black-v-4" >
-                <input type="date" className="focus:outline-none bg-transparent  dark:text-white" />
-                <input type="date" className="focus:outline-none bg-transparent dark:text-white " />
+              <div className="flex gap-3 h-[40px] self-end px-1 border border-border-clr dark:bg-black-v-4">
+                <input
+                  type="date"
+                  className="focus:outline-none bg-transparent  dark:text-white"
+                />
+                <input
+                  type="date"
+                  className="focus:outline-none bg-transparent dark:text-white "
+                />
               </div>
             </div>
             {/* dataTable */}
