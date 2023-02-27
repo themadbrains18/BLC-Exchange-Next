@@ -81,10 +81,14 @@ const Step1 = ({countryName}) => {
                         <div className="!text-red-700 info-12">{errors.lname?.message}</div>
                     </div>
                 </div>
-                <div className='flex flex-col gap-4 mt-6 relative' onClick={(e) => { setShowId(!showId) }}>
+                <div className='flex flex-col gap-4 mt-6 relative ' onClick={(e) => { setShowId(!showId) }}>
                     <label className='info-12'>Identity Document Type</label>
-                    <input type='text' placeholder='ID Card' autoComplete="off" value={userId} {...register('doctype')} className='border-b-2 border-border-clr  bg-transparent   text-black dark:text-white outline-none focus:!border-primary dark:border-white rounded' />
+                    <span className='cursor-pointer border-b-2 border-border-clr hover:border-primary relative max-w-md w-full flex items-center gap-2  justify-between ' >
+                    <input type='text' placeholder='ID Card' autoComplete="off" value={userId} {...register('doctype')} className="text-black dark:text-white bg-transparent outline-none" />
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
+                    
                     {showId && <SearchDropdown setShowDropdown={setShowId} idData={idData} selectId={selectId} />}
+                    </span>
                 </div>
                 <div className="!text-red-700 info-12">{errors.doctype?.message}</div>
                 <div className='flex flex-col gap-4 mt-6 '>
