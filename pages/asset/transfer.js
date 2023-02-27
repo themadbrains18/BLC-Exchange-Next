@@ -91,6 +91,7 @@ const Transfer = ({ assets }) => {
                   <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
                     Trading Pair
                   </h4>
+                  
                   <div className="border-b border-border-clr">
                     <div className="relative">
                       <div
@@ -136,6 +137,7 @@ const Transfer = ({ assets }) => {
                       )}
                     </div>
                   </div>
+
                 </div>
                 <div className="mt-8 ">
                   <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
