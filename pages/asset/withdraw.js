@@ -6,9 +6,12 @@ import SearchDropdown from "/components/snippets/search-dropdown";
 import Context from "/components/contexts/context";
 import SelectMenu from "/components/snippets/selectMenu";
 import AdImage from "/components/snippets/adImage";
+import Link from "next/link";
 
 const Withdraw = ({ assets }) => {
   const { mode } = useContext(Context);
+  let dateFilter = ["Last 7 Days", "Last 30 Days"];
+  let coinData = ["All", "BGB", "BTC"];
   let network = ["BTC", "Bsc "];
   const [show, setShow] = useState(1);
   const [rotate, setRotate] = useState(false);
@@ -152,6 +155,52 @@ const Withdraw = ({ assets }) => {
           </div>
           <AdImage/>
          </div>
+         {/* history  */}
+         <div className="grow p-4 md:p-8">
+            <div className="flex gap-3 justify-between items-center">
+              <h3 className="section-secondary-heading font-noto hidden md:block mb-4 ">
+                Deposit History
+              </h3>
+              {/* faq pending */}
+              <Link
+                href={"/faq"}
+                className="info-14 hover:text-grey dark:text-white dark:hover:text-white"
+              >
+                Haven't received your deposit?
+              </Link>
+            </div>
+            <div className="flex gap-4 flex-wrap">
+              <div className="">
+                <h4 className="info-14 hover:text-grey dark:text-white dark:hover:text-white">
+                  Coin
+                </h4>
+                <div className="border border-border-clr ">
+                  <SelectMenu selectMenu={coinData} />
+                </div>
+              </div>
+              <div className="">
+                <h4 className="info-14 hover:text-grey dark:text-white dark:hover:text-white">
+                  Time
+                </h4>
+                <div className="border border-border-clr">
+                  <SelectMenu selectMenu={dateFilter} />
+                </div>
+              </div>
+
+              <div className="flex gap-3 h-[40px] self-end px-1 border border-border-clr dark:bg-black-v-4">
+                <input
+                  type="date"
+                  className="focus:outline-none bg-transparent  dark:text-white"
+                />
+                <input
+                  type="date"
+                  className="focus:outline-none bg-transparent dark:text-white "
+                />
+              </div>
+            </div>
+            {/* dataTable */}
+            {/* <DepositTable data={data} /> */}
+          </div>
         </div>
       </Layout>
     </>

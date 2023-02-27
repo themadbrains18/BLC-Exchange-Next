@@ -18,16 +18,12 @@ const Deposit = ({ assets }) => {
   const [dropDown, setDropDown] = useState(false);
   const [open, setOpen] = useState(false);
   const [showQr, setShowQr] = useState(false);
-
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
-
   const { mode } = useContext(Context);
   const ref = useRef(null);
-
-  let network = ["BTC", "Bsc "];
+  let network = ["BTC", "Bsc", "prince"];
   let autoTransfer = ["Spot", "Bsc "];
-
   const selectCoin = async (item) => {
     setCoin(item.name);
     setCoinImg(item.image);

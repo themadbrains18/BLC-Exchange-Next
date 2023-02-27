@@ -9,7 +9,7 @@ import NavAccordian from "../snippets/navAccordian";
 
 const SideBar = ({ data, name }) => {
   const router = useRouter();
-  console.log(router, "============fhidhsfifhisdh");
+
   const { click, setClick, mode } = useContext(Context);
   const [show, setShow] = useState(false);
   const [active, setActive] = useState(0);
@@ -91,7 +91,7 @@ const SideBar = ({ data, name }) => {
                     className={`${
                       !e.menu &&
                       pageActive === e.linkUrl &&
-                      "md:border-b-2 md:border-t-2 md:border-primary md:bg-active-clr"
+                      "md:border-b-2 md:border-t-2 md:border-primary md:bg-active-clr dark:md:bg-black-v-5 "
                     } ${
                       e.menu ? "flex items-center" : " border-transparent"
                     }  `}
@@ -106,9 +106,7 @@ const SideBar = ({ data, name }) => {
                       }}
                     >
                       <div
-                        className={`flex ${
-                          e.menu ? "self-start" : "pl-6"
-                        } items-center`}
+                        className={`flex gap-3 p-5`}
                       >
                         {!e.menu && (
                           <div className="">
@@ -116,7 +114,11 @@ const SideBar = ({ data, name }) => {
                           </div>
                         )}
                         {!e.menu && (
-                          <span className=" p-6 pl-2 w-full info-14">
+                          <span className={` w-full info-14  text-black  hover:!text-black dark:text-white dark:hover:!text-white ${
+                            !e.menu &&
+                            pageActive === e.linkUrl &&
+                            "md:!text-primary md:hover:!text-primary"
+                          }`}>
                             {e.linkText}
                           </span>
                         )}
@@ -124,13 +126,13 @@ const SideBar = ({ data, name }) => {
                     </Link>
                     }
                     {e.menu && (
-                      <div className="flex p-4  gap-3 h-full">
+                      <div className="flex py-2 px-4   gap-3 h-full w-full">
                        <div className="flex items-center h-auto max-h-12">
 
                           <Icons type={e.svgType} />
                        </div>
                       
-                        <div className=" ">
+                        <div className="grow">
                           <NavAccordian
                             heading={e.linkText}
                             className={

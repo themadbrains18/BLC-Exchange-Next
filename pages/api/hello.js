@@ -11,6 +11,7 @@ export default async function handler(req, res) {
   let specialNav = await fs.readFile(process.cwd()+'/staticData/header-footer/specialNav.json',"utf8",{});
   let coinList = await fs.readFile(process.cwd()+'/staticData/snippet/coins.json',"utf8",{});
   let currency = await fs.readFile(process.cwd()+'/staticData/snippet/currency.json',"utf8",{});
+  let banksList = await fs.readFile(process.cwd()+'/staticData/snippet/banks.json',"utf8",{});
 
   res.status(200).json({
     nav: JSON.parse(nav),
@@ -20,5 +21,6 @@ export default async function handler(req, res) {
     specialNav: JSON.parse(specialNav),
     coinList: JSON.parse(coinList),
     currency: JSON.parse(currency),
+    banksList: JSON.parse(banksList),
   });
 }

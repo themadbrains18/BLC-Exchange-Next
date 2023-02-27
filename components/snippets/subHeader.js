@@ -11,7 +11,7 @@ const SubHeader = () => {
     <>
     
       <section className='py-10  px-5 sm:px-10  dark:bg-black-v-3'>
-        <div className='container flex flex-col md:flex-row justify-between gap-4 lg:gap-8'>
+        <div className='container flex flex-col md:flex-row justify-between gap-4 lg:gap-8 flex-wrap	xl:flex-nowrap'>
           <div className='flex flex-wrap sm:flex-nowrap  gap-4 sm:gap-8 '>
             <button className={`info-14-20 border-b-2 border-transparent text-start whitespace-nowrap pb-1  ${show === 1 ? " !border-primary !text-primary" : ""}`} onClick={() => { setShow(1) }}>Quick Buy/ Express</button>
             <button className={`info-14-20 border-b-2 border-transparent text-start whitespace-nowrap pb-1  ${show === 2 ? " !border-primary  !text-primary " : ""}`} onClick={() => { setShow(2) }}>P2P Trading</button>

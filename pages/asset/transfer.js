@@ -9,6 +9,7 @@ import Context from "/components/contexts/context";
 import SearchDropdown from "/components/snippets/search-dropdown";
 import TransferDataTable from "/components/asset/transfer/transferDataTable";
 import AdImage from "/components/snippets/adImage";
+import Icons from "@/components/snippets/icons";
 
 const Transfer = ({ assets }) => {
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
@@ -79,12 +80,15 @@ const Transfer = ({ assets }) => {
                     setSwitch(!Switch);
                   }}
                 >
-                  <Image
+                  <div className="-rotate-90 ">
+                    <Icons type="transfer" stroke="stroke-primary"/>
+                  </div>
+                  {/* <Image
                     src={"/assets/icons/switch.svg"}
                     height={24}
                     width={24}
                     alt=""
-                  />
+                  /> */}
                 </button>
               </div>
               <div>
