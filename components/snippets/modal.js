@@ -149,7 +149,7 @@ const Modal = (props) => {
         let profile = getValues('profile')
         let obj = {
             idfront: file, idback: profile, country: dataForm.country, user_id: session?.user?.id, fname: dataForm.fname, lname: dataForm.lname
-            , doctype: dataForm.doctype, docnumber: dataForm.docnumber, dob: dataForm.dob, phone: data.phone
+            , doctype: dataForm.doctype, docnumber: dataForm.docnumber, dob: dataForm.birthDate, phone: data.phone
         }
 
         let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/kyc/create`, {
