@@ -8,6 +8,8 @@ import Context from "/components/contexts/context";
 
 import SearchDropdown from "/components/snippets/search-dropdown";
 import TransferDataTable from "/components/asset/transfer/transferDataTable";
+import AdImage from "/components/snippets/adImage";
+import Icons from "@/components/snippets/icons";
 
 const Transfer = ({ assets }) => {
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
@@ -41,7 +43,7 @@ const Transfer = ({ assets }) => {
     <>
       <Layout data={assets} name="Transfer">
         <div className="grow p-4 md:p-8">
-          <div className="grid lg:grid-cols-2  p-4 md:p-8 gap-10">
+          <div className="grid lg:grid-cols-2  gap-10">
             <div>
               <h3 className="section-secondary-heading font-noto hidden md:block mb-4 ">
                 Transfer
@@ -78,12 +80,15 @@ const Transfer = ({ assets }) => {
                     setSwitch(!Switch);
                   }}
                 >
-                  <Image
+                  <div className="-rotate-90 ">
+                    <Icons type="transfer" stroke="stroke-primary"/>
+                  </div>
+                  {/* <Image
                     src={"/assets/icons/switch.svg"}
                     height={24}
                     width={24}
                     alt=""
-                  />
+                  /> */}
                 </button>
               </div>
               <div>
@@ -231,15 +236,7 @@ const Transfer = ({ assets }) => {
               </p>
               <button className="cta mt-8 w-full rounded-xl">Confirm</button>
             </div>
-
-            <div className="hidden lg:block">
-              <Image
-                src="/assets/images/launchPadOffer.png"
-                height={360}
-                width={360}
-                alt=""
-              />
-            </div>
+<AdImage/>
           </div>
           <div className="grow p-4 md:p-8">
             <div className="flex gap-3 justify-between items-center">

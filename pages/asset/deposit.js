@@ -21,12 +21,9 @@ const Deposit = ({ assets, tokens, networks }) => {
 
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
-
   const { mode } = useContext(Context);
   const ref = useRef(null);
-
   let autoTransfer = ["Spot", "Bsc "];
-
   const selectCoin = async (item) => {
     setCoin(item.symbol);
     setCoinImg(item.image);
