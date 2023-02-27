@@ -4,16 +4,12 @@ import Context from "../contexts/context";
 const SelectMenu = ({ selectMenu }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
-  const [value, setValue] = useState(selectMenu[0]);
+  const [value, setValue] = useState('Select Network');
   const [overlay, setOverlay] = useState(false);
   const ref = useRef(null);
   const {mode} =useContext(Context)
 
-  // document.addEventListener("click",(()=>{
-  //   if(!ref.current){
-
-  //   }
-  // }))
+  console.log(value,'========selected Network value')
   return (
     <>
       <div ref={ref} className={`relative pr-2  ${open && "md:z-[2]"}`}>
@@ -87,10 +83,10 @@ const SelectMenu = ({ selectMenu }) => {
                     }`}
                     onClick={() => {
                       setActive(i);
-                      setValue(e);
+                      setValue(e.networkName);
                     }}
                   >
-                    {e}
+                    {e.networkName}
                   </button>
                 );
               })}
