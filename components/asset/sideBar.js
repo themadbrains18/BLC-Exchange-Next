@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Context from "../contexts/context";
 import Dropdown from "../snippets/dropdown";
 import Icons from "../snippets/icons";
@@ -9,16 +9,22 @@ import NavAccordian from "../snippets/navAccordian";
 
 const SideBar = ({ data, name }) => {
   const router = useRouter();
-  const { click, setClick,mode } = useContext(Context);
+  console.log(router, "============fhidhsfifhisdh");
+  const { click, setClick, mode } = useContext(Context);
   const [show, setShow] = useState(false);
   const [active, setActive] = useState(0);
-  const handleClick = (i,e) => {
+  const [pageActive, setPageActive] = useState();
+  const handleClick = (i, e) => {
     setActive(i);
     if (!e.menu) {
       setClick(false);
       setShow(false);
     }
   };
+  useEffect(() => {
+    setPageActive(router.pathname);
+    // console.log()
+  }, []);
   return (
     <>
       <div
@@ -26,25 +32,24 @@ const SideBar = ({ data, name }) => {
           show && "z-[5]"
         } bg-white dark:bg-black-v-3 overflow-x-auto table_box  w-fit px-3 md:px-0  `}
       >
-        {
-          name &&
-        <button
-          className="flex items-center md:hidden capitalize"
-          onClick={() => {
-            setShow(true);
-            setClick(true);
-          }}
-        >
-          <h3 className="section-secondary-heading font-noto ">{name}</h3>
+        {name && (
+          <button
+            className="flex items-center md:hidden capitalize"
+            onClick={() => {
+              setShow(true);
+              setClick(true);
+            }}
+          >
+            <h3 className="section-secondary-heading font-noto ">{name}</h3>
 
-          <Image
-            src={"/assets/icons/rightArrowSmall.svg"}
-            width={24}
-            height={24}
-            alt=""
-          ></Image>
-        </button>
-        }
+            <Image
+              src={"/assets/icons/rightArrowSmall.svg"}
+              width={24}
+              height={24}
+              alt=""
+            ></Image>
+          </button>
+        )}
 
         <div
           className={` absolute top-0  duration-300 md:static w-[calc(100%-4rem)] overflow-x-auto table_box bg-white dark:bg-black-v-5 md:w-fit h-[100vh] md:h-auto ${
@@ -64,7 +69,7 @@ const SideBar = ({ data, name }) => {
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
-                stroke={mode==="dark"?"white":"currentcolor"}
+                stroke={mode === "dark" ? "white" : "currentcolor"}
                 className="w-6 h-6 mr-0 ml-auto "
               >
                 <path
@@ -76,49 +81,70 @@ const SideBar = ({ data, name }) => {
             </button>
           </div>
 
-          <ul className="menu_box md:border-r h-[100vh]  md:border-primary dark:bg-black-v-4">
+          <div className="menu_box md:border-r h-[100vh]  md:border-primary dark:bg-black-v-4">
             {data &&
               data !== undefined &&
               data.subMenu &&
               data.subMenu.map((e, i) => {
                 return (
-                  <li
-                    key={i}
-                    className={`md:max-w-[250px] w-full ${
-                      e.menu
-                        ? "flex items-center"
-                        : "md:border-b md:hover:border-primary  border-transparent"
-                    } `}
-                    onClick={() => {
-                      handleClick(i,e);
-                    }}
+                  <div key={i}
+                    className={`${
+                      !e.menu &&
+                      pageActive === e.linkUrl &&
+                      "md:border-b-2 md:border-t-2 md:border-primary md:bg-active-clr"
+                    } ${
+                      e.menu ? "flex items-center" : " border-transparent"
+                    }  `}
                   >
-                    <div className="flex p-6 gap-3 self-start">
-                      <Icons type={e.svgType} />
-                      {!e.menu && (
-                        <Link href={`/${e.linkUrl}`} className="w-full info-14">
-                          {e.linkText}
-                        </Link>
-                      )}
-                    </div>
-                    {e.menu && (
+                    {
+                      !e.menu && <Link
+                      
+                      href={`${e.linkUrl}`}
+                      className={`md:max-w-[250px] w-full `}
+                      onClick={() => {
+                        handleClick(i, e);
+                      }}
+                    >
                       <div
-                        className="w-full py-3 pr-4"
-                        
+                        className={`flex ${
+                          e.menu ? "self-start" : "pl-6"
+                        } items-center`}
                       >
-                        <NavAccordian
-                          heading={e.linkText}
-                          className={
-                            "info-14 dark:!text-white text-black hover:!text-black dark:hover:!text-white"
-                          }
-                          content={e.menu}
-                        />
+                        {!e.menu && (
+                          <div className="">
+                            <Icons type={e.svgType} />
+                          </div>
+                        )}
+                        {!e.menu && (
+                          <span className=" p-6 pl-2 w-full info-14">
+                            {e.linkText}
+                          </span>
+                        )}
+                      </div>
+                    </Link>
+                    }
+                    {e.menu && (
+                      <div className="flex p-4  gap-3 h-full">
+                       <div className="flex items-center h-auto max-h-12">
+
+                          <Icons type={e.svgType} />
+                       </div>
+                      
+                        <div className=" ">
+                          <NavAccordian
+                            heading={e.linkText}
+                            className={
+                              "info-14 dark:!text-white text-black hover:!text-black dark:hover:!text-white"
+                            }
+                            content={e.menu}
+                          />
+                        </div>
                       </div>
                     )}
-                  </li>
+                  </div>
                 );
               })}
-          </ul>
+          </div>
         </div>
       </div>
     </>

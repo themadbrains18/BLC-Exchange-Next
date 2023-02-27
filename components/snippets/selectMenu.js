@@ -95,7 +95,7 @@ const SelectMenu = ({ selectMenu }) => {
                 );
               })}
             <button
-              className="fixed bottom-0 p-4 w-full border-t-4"
+              className="fixed bottom-0 p-4 w-full border-t-4 md:hidden"
               onClick={() => {
                 setOpen(!open);
                 setOverlay(!overlay);
