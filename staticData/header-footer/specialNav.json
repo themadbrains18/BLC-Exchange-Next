@@ -146,7 +146,7 @@
             },
             {
                 "linkText": "Transfer",
-                "linkUrl": "asset/transfer",
+                "linkUrl": "/asset/transfer",
                 "svgType": "transfer"
             },
             {

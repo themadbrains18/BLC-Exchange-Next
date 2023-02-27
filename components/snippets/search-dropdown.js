@@ -1,5 +1,5 @@
 import { Fragment, useState, useEffect } from 'react'
-const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone,setCountryName, setCurrencyList, coin, currency, idData, selectId, selectCoin, setDialCode }) => {
+const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone,setCountryName, setCurrencyList, coin, currency, idData, selectId, selectCoin,setDialCode }) => {
     // const[showDropdown,setShowDropdown] = useState(false);
     // const[DropdownPhone,setDropdownPhone] = useState(false);
 

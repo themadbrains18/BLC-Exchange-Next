@@ -16,7 +16,7 @@ const SelectMenu = ({ selectMenu }) => {
   // }))
   return (
     <>
-      <div ref={ref} className={`relative pr-2  ${open && "md:z-[2]"}`}>
+      <div ref={ref} className={`relative pr-2  ${open && "md:z-[8]"}`}>
         <div className="flex bg-transparent justify-between items-center">
           <input
             type="text"
@@ -95,7 +95,7 @@ const SelectMenu = ({ selectMenu }) => {
                 );
               })}
             <button
-              className="fixed bottom-0 p-4 w-full border-t-4"
+              className="fixed bottom-0 p-4 w-full border-t-4 md:hidden"
               onClick={() => {
                 setOpen(!open);
                 setOverlay(!overlay);
