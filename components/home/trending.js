@@ -10,7 +10,7 @@ const Trending = () => {
       <div className="container">
         <div className="flex flex-col lg:flex-row items-start gap-8">
           <div className="max-w-full grow xl:max-w-[70%] w-full">
-            <div className={`flex items-end gap-5 mb-[40px]`}>
+            <div className={`flex items-end gap-5 mb-10`}>
               <button
                 className={`${
                   show === 1 ? "hero-heading" : "section-secondary-heading"

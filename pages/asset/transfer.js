@@ -12,7 +12,7 @@ import TransferDataTable from "/components/asset/transfer/transferDataTable";
 const Transfer = ({ assets }) => {
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
-  const [data, setData]=useState(true)
+  const [data, setData] = useState(true);
   let fromMenu = ["isolated"];
   let toMenu = ["USDT-Ⓜ"];
   const [dropDown, setDropDown] = useState(false);
@@ -25,6 +25,8 @@ const Transfer = ({ assets }) => {
   const [coin, setCoin] = useState("USD");
   const [coin2, setCoin2] = useState("USD");
   let tradingPair = ["BTC/USDT", "ETH/USDT", "BTC/USDT", "BTC/USDT"];
+  const [Switch, setSwitch] = useState(false);
+
   const selectCoin = async (item) => {
     setCoin(item.name);
     setCoinImg(item.image);
@@ -54,26 +56,41 @@ const Transfer = ({ assets }) => {
                   <div className="border-b border-border-clr flex gap-4 items-center w-max">
                     <span className="info-12">From</span>
 
-                    <SelectMenu selectMenu={fromMenu} />
+                    <div className={`${Switch ? "hidden" : "block"}`}>
+                      <SelectMenu selectMenu={toMenu} />
+                    </div>
+                    <div className={`${!Switch ? "hidden" : "block"}`}>
+                      <SelectMenu selectMenu={fromMenu} />
+                    </div>
                   </div>
                   <div className=" flex gap-4 items-center justify-between">
                     <span className="info-12">To</span>
-
-                    <SelectMenu selectMenu={toMenu} />
+                    <div className={`  ${!Switch ? "hidden" : "block"}`}>
+                      <SelectMenu selectMenu={toMenu} />
+                    </div>
+                    <div className={`${Switch ? "hidden" : "block"}`}>
+                      <SelectMenu selectMenu={fromMenu} />
+                    </div>
                   </div>
                 </div>
-                <div>
+                <button
+                  onClick={() => {
+                    setSwitch(!Switch);
+                  }}
+                >
                   <Image
                     src={"/assets/icons/switch.svg"}
                     height={24}
                     width={24}
                     alt=""
                   />
-                </div>
+                </button>
               </div>
               <div>
                 <div className="mt-8">
-                  <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">Trading Pair</h4>
+                  <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
+                    Trading Pair
+                  </h4>
                   <div className="border-b border-border-clr">
                     <div className="relative">
                       <div
@@ -121,7 +138,9 @@ const Transfer = ({ assets }) => {
                   </div>
                 </div>
                 <div className="mt-8 ">
-                  <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">Coin</h4>
+                  <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
+                    Coin
+                  </h4>
                   <div className="border-b border-border-clr ">
                     <div className="relative">
                       <div
@@ -180,15 +199,39 @@ const Transfer = ({ assets }) => {
                   </div>
                 </div>
                 <div className="mt-4 flex justify-between info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
-                      <span>Available USDC USDT: 0.00000000 </span>
-                      <span>Available Trading Bonus: 0 USDC</span>
-                    </div>
+                  <span>Available USDC USDT: 0.00000000 </span>
+                  <span>Available Trading Bonus: 0 USDC</span>
+                </div>
               </div>
-              <p className="mt-4 text-orange-300 font-noto"><Image className="inline" src={"/assets/icons/warning.svg"} height={24} width={24} alt=""/>  After transferring, all existing trading bonuses will become invalid, and your account equity will be reduced accordingly. Be aware the changes in risk if you have any open positions. </p>
-              <p className="mt-4 text-orange-300 font-noto"><Image className="inline" src={"/assets/icons/warning.svg"} height={24} width={24} alt=""/>  You will lose your trading bonuses if they are applied after transferring any assets, which may affect your positions and open orders. Your positions may be reduced (or liquidated), and open orders will not be kept. Carefully consider this before proceeding with any further transfers. </p>
+              <p className="mt-4 text-orange-300 font-noto">
+                <Image
+                  className="inline"
+                  src={"/assets/icons/warning.svg"}
+                  height={24}
+                  width={24}
+                  alt=""
+                />{" "}
+                After transferring, all existing trading bonuses will become
+                invalid, and your account equity will be reduced accordingly. Be
+                aware the changes in risk if you have any open positions.{" "}
+              </p>
+              <p className="mt-4 text-orange-300 font-noto">
+                <Image
+                  className="inline"
+                  src={"/assets/icons/warning.svg"}
+                  height={24}
+                  width={24}
+                  alt=""
+                />{" "}
+                You will lose your trading bonuses if they are applied after
+                transferring any assets, which may affect your positions and
+                open orders. Your positions may be reduced (or liquidated), and
+                open orders will not be kept. Carefully consider this before
+                proceeding with any further transfers.{" "}
+              </p>
               <button className="cta mt-8 w-full rounded-xl">Confirm</button>
             </div>
-          
+
             <div className="hidden lg:block">
               <Image
                 src="/assets/images/launchPadOffer.png"
@@ -203,8 +246,6 @@ const Transfer = ({ assets }) => {
               <h3 className="section-secondary-heading font-noto hidden md:block mb-4 ">
                 Transfer History
               </h3>
-         
-              
             </div>
             <div className="flex gap-4 flex-wrap">
               <div className="">
