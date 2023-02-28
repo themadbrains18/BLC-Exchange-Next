@@ -7,14 +7,14 @@ const nextConfig = {
 
   //     return config;
   //   },
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'http://demo.blcexchange.net/api/:path*',
-      },
-    ]
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: '/api/:path*',
+  //       destination: 'http://demo.blcexchange.net/api/:path*',
+  //     },
+  //   ]
+  // },
 
   eslint: {
     dirs: ['pages', 'utils'], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
