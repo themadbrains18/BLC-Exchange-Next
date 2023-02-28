@@ -104,6 +104,7 @@ const Transfer = ({ assets, tokens, sessions, tokenAssets }) => {
                   <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
                     Trading Pair
                   </h4>
+                  
                   <div className="border-b border-border-clr">
                     <div className="relative">
                       <div
