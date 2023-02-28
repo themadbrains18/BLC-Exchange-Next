@@ -2,14 +2,12 @@ import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react'
 import SearchDropdown from '../snippets/search-dropdown';
 import Step1 from './step1';
-import { useSession } from 'next-auth/react';
 
-const VerificationType = () => {
+const VerificationType = ({session}) => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [active, setActive] = useState(1)
     const [countryName, setCountryName] = useState('Botswana')
     const [step, setStep] = useState(0)
-    const { data: session } = useSession()
     const dropdown = useRef(null);
 
     useEffect(() => {
@@ -32,7 +30,7 @@ const VerificationType = () => {
                 <p className='section-secondary-heading'>ID Verification</p>
                 <p className='info-12 bg-border-clr  rounded-sm'>Unverified</p>
             </div>
-            {session?.user?.kycstatus === false || session?.user?.kycstatus === null ?
+            {session?.kycstatus === false || session?.kycstatus === null ?
                 step == 0 ?
                     <>
                         <div className='mt-11'>

@@ -11,7 +11,7 @@ const Hall = () => {
   const [rotate, setRotate] = useState(false);
   const [rotate2, setRotate2] = useState(false);
   const { mode } = useContext(Context);
-  const [coinImg, setCoinImg] = useState("bnb.png");
+  const [coinImg, setCoinImg] = useState("");
   // const [coinImg2, setCoinImg2] = useState("bnb.png");
   const [coin, setCoin] = useState("USD");
   // const [coin2, setCoin2] = useState("USD");
@@ -20,9 +20,9 @@ const Hall = () => {
   let [bankname, setBankName] = useState("Money");
   // let tradingPair = ["BTC/USDT", "ETH/USDT", "BTC/USDT", "BTC/USDT"];
   // const [Switch, setSwitch] = useState(false);
-  let coinData = ["USD", "BGB", "BTC", "EUR", "TRY", "JPY", "ARS"];
+  let coinDataList = ["USD", "BGB", "BTC", "EUR", "TRY", "JPY", "ARS"];
   const selectCoin = async (item) => {
-    setCoin(item.name);
+    setCoin(item.symbol);
     setCoinImg(item.image);
     setRotate(false);
   };
@@ -88,7 +88,7 @@ const Hall = () => {
                         height={24}
                         width={24}
                         alt="Coin Image"
-                        src={`/assets/images/${coinImg}`}
+                        src={`${coinImg}`}
                       ></Image>
                       <p className="info-14-16 font-bold">{coin}</p>
                     </div>
@@ -125,7 +125,7 @@ const Hall = () => {
                   <input placeholder="Enter amount" className="h-[43px] px-[10px] max-w-full outline-none rounded-md dark:bg-transparent bg-transparent dark:text-white" type="number" />
                 </div>
                 <div className="max-w-full md:max-w-[80px] w-full" >
-                  <SelectMenu selectMenu={coinData} />
+                  <SelectMenu selectMenu={coinDataList} />
                 </div>
               </div>
 

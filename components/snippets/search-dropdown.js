@@ -1,6 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
 const SearchDropdown = ({
-  JsonData,
   country,
   code,
   setShowDropdown,
@@ -13,26 +12,33 @@ const SearchDropdown = ({
   selectId,
   selectCoin,
   setDialCode,
+  tokens,
   selectBank,bank
+
 }) => {
   // const[showDropdown,setShowDropdown] = useState(false);
   // const[DropdownPhone,setDropdownPhone] = useState(false);
-  
 
   const [Data, setData] = useState([]);
   const [coinData, setCoinData] = useState([]);
   const [currencyData, setCurrencyData] = useState([]);
   const [countryList, setCountryList] = useState([]);
   let [BanksList, setBanksList] = useState([]);
- 
 
   useEffect(() => {
     (async () => {
+      let tokenList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`, {
+        method: "GET"
+      }).then(response => response.json());
+
+      console.log(tokenList,'================')
+
+      setCoinData(tokenList)
+
       await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello")
         .then((res) => res.json())
         .then((data) => {
           setData(data.counteryList);
-          setCoinData(data.coinList);
           setCurrencyData(data.currency);
           setCountryList(data.counteryList);
           setBanksList(data.banksList);
@@ -47,7 +53,6 @@ const SearchDropdown = ({
   const handleChange = (e) => {
     let search = e.target.value;
     let obj = countryList.filter(function handleClick(obj) {
-      
       return obj.country.toLowerCase().includes(search.toLowerCase());
     });
     setData(obj);
@@ -68,7 +73,6 @@ const SearchDropdown = ({
     countryCode.innerHTML = SelectedValue;
     // setDialCode(SelectedValue)
   };
-  
 
   return (
     <>
@@ -131,10 +135,10 @@ const SearchDropdown = ({
                       }}
                     >
                       <img
-                        src={`/assets/images/${e.image}`}
+                        src={`${e.image}`}
                         className="max-w-[24px] w-full h-auto"
                       ></img>
-                      <span>{e.name}</span>
+                      <span>{e.symbol}</span>
                     </li>
                   )}
                 </Fragment>
@@ -171,12 +175,12 @@ const SearchDropdown = ({
               );
             })}
 
-          {BanksList  &&
+          {BanksList &&
             BanksList.map((e, i) => {
               return (
                 <Fragment key={i}>
-                {bank && (
-                    <li 
+                  {bank && (
+                    <li
                       className="cursor-pointer info-14 !text-black flex gap-2 p-3 dark:!text-white px-4 hover:bg-[#cccccc1f]"
                       onClick={() => {
                         selectBank(e), setShowDropdown(false);
@@ -188,11 +192,10 @@ const SearchDropdown = ({
                       ></img>
                       <span>{e.name}</span>
                     </li>
-                )}
+                  )}
                 </Fragment>
               );
             })}
-
         </ul>
       </div>
     </>
@@ -204,10 +207,5 @@ const SearchDropdown = ({
 //   const res = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
 //   const JsonData = await res.json();
 //   // console.log(ctx+"===========")
-
-//   return {
-//     JsonData: JsonData
-//   };
-// };
 
 export default SearchDropdown;

@@ -1,10 +1,10 @@
 import React, { useContext, useRef, useState,useEffect } from "react";
 
 import Context from "../contexts/context";
-const SelectMenu = ({ selectMenu }) => {
+const SelectMenu = ({ selectMenu,selectMenuList }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
-  const [value, setValue] = useState(selectMenu[0]);
+  const [value, setValue] = useState('Select Network');
   const [overlay, setOverlay] = useState(false);
   const ref = useRef(null);
   const {mode} =useContext(Context)
@@ -101,12 +101,12 @@ const SelectMenu = ({ selectMenu }) => {
                     }`}
                     onClick={() => {
                       
-                      setValue(e);
+                      setValue(e.networkName);
                       setOpen(false)
                       setActive(i);
                     }}
                   >
-                    {e}
+                    {e.networkName}
                   </button>
                 );
               })}
