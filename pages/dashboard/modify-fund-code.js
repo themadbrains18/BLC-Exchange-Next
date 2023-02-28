@@ -1,6 +1,6 @@
 
 import { getProviders, getSession } from "next-auth/react";
-import Layout from '/components/layout/layout'
+import Layout from 'components/layout/Layout'
 import FundPassWordCom from '../../components/dashboard/fundpass';
 import ChangeFundCode from '../../components/dashboard/change-fund-code';
 

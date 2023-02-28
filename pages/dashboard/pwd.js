@@ -1,5 +1,5 @@
-import Layout from '@/components/layout/layout'
-import ModifyPass from './../../components/dashboard/modify-pass';
+import Layout from 'components/layout/Layout'
+import ModifyPass from '../../components/dashboard/modify-pass';
 import { getProviders, getSession } from "next-auth/react"
 const Pwd = ({account , sessions}) => {
   return (
@@ -16,7 +16,7 @@ export async function getServerSideProps(context) {
   const session = await getSession({ req });
   const providers = await getProviders()
   if (session) {
-    let data = await fetch("http://localhost:3000/api/hello");
+    let data = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/hello`);
   
     let menu = await data.json();
     return { 

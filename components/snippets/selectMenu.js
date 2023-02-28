@@ -1,34 +1,26 @@
 import React, { useContext, useRef, useState,useEffect } from "react";
 
 import Context from "../contexts/context";
-const SelectMenu = ({ selectMenu }) => {
+const SelectMenu = ({ selectMenu, getDepositAddress }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [value, setValue] = useState('Select Network');
   const [overlay, setOverlay] = useState(false);
   const ref = useRef(null);
   const {mode} =useContext(Context)
-  console.log(value,"valuswe")
   const dropdown = useRef(null);
-
-
 
   useEffect(() => {
       function handleClick(event) {
           if (dropdown.current && !dropdown.current.contains(event.target)) {
             setOpen(false);
           }
-        
       }
       window.addEventListener("click", handleClick);
       // clean up
       return () => window.removeEventListener("click", handleClick);
   }, [])
-  // document.addEventListener("click",(()=>{
-  //   if(!ref.current){
-
-  //   }
-  // }))
+  
   return (
     <>
       <div ref={dropdown} className={`relative pr-2  ${open && "md:z-[2]"}`}>
@@ -100,7 +92,7 @@ const SelectMenu = ({ selectMenu }) => {
                       "bg-blue-50 text-primary dark:!text-primary"
                     }`}
                     onClick={() => {
-                      
+                      getDepositAddress(e.type)
                       setValue(e.networkName);
                       setOpen(false)
                       setActive(i);

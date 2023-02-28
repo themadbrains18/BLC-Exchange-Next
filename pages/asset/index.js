@@ -1,4 +1,4 @@
-import Layout from "/components/layout/Layout";
+import Layout from "components/layout/Layout";
 import ActiveCta from "/components/snippets/activeCta";
 import Link from "next/link";
 import React, { useContext, useState, useEffect } from "react";
