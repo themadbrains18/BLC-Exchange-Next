@@ -3,7 +3,7 @@ import DataTable from "../snippets/dataTable";
 import Image from "next/image";
 import Link from "next/link";
 
-const P2P = ({ show, dataShow, tokenList }) => {
+const P2P = ({ show, dataShow, tokenList, assetData }) => {
   const headings = ['Coin','Available','On Order','BTC Value','Operation']
   return (
     <>
@@ -30,7 +30,7 @@ const P2P = ({ show, dataShow, tokenList }) => {
         </span>
         </div>
         {dataShow ? (
-             <DataTable heading={headings} data={tokenList} cta={false}/>
+             <DataTable heading={headings} data={tokenList} assetData={assetData}  cta={false}/>
           ) : (
             <div className="grid place-content-center w-full h-96 ">
               <Image

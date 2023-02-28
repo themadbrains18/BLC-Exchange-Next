@@ -1,30 +1,23 @@
 import Layout from "components/layout/Layout";
 import ActiveCta from "/components/snippets/activeCta";
 import Link from "next/link";
-import React, { useContext, useState, useEffect } from "react";
-import Spot from "/components/asset/spot";
-import Margin from "/components/asset/margin";
-import P2P from "/components/asset/p2p";
-import Earn from "/components/asset/earn";
+import React, { useContext, useState } from "react";
+import Spot from "components/asset/spot";
+import Margin from "components/asset/margin";
+import P2P from "components/asset/p2p";
+import Earn from "components/asset/earn";
 import { getProviders, getSession } from "next-auth/react";
 import Context from "/components/contexts/context";
 import Icons from "/components/snippets/icons";
-import Image from "next/image";
-// import {  useSession } from "next-auth/react"
 
-const Asset = ({ assets, assetData,tokens }) => {
+
+const Asset = ({ assets, assetData,tokens, sessions }) => {
   const { setClick, mode } = useContext(Context);
   const [active, setActive] = useState(0);
   const [popUp, setPopUp] = useState(false);
   const [show, setShow] = useState(true);
   const [index, setIndex] = useState(0);
   const [dataShow, setDataShow] = useState(true);
-  const [tokenList, setTokenList] = useState()
-  const [assetList, setAssetList] = useState()
-  // const { data: session } = useSession()
-
-  console.log("====assetList", assetData)
-  console.log("===========tokens",tokens)
 
   let obj = [
     { name: "Deposit", link: "" },
@@ -293,19 +286,19 @@ const Asset = ({ assets, assetData,tokens }) => {
           </div>
           <div className="mt-3">
             {active === 0 && (
-              <Spot setDataShow={setDataShow} show={show} dataShow={dataShow} tokenList={tokens} assetList ={assetList}/>
+              <Spot setDataShow={setDataShow} show={show} dataShow={dataShow} tokenList={tokens} assetData={assetData}/>
             )}
             {active === 1 && (
               <Margin
                 setDataShow={setDataShow}
                 show={show}
                 dataShow={dataShow}
-                tokenList={tokenList}
-                assetList ={assetList}
+                tokenList={tokens}
+                assetData={assetData}
               />
             )}
             {active === 2 && (
-              <P2P setDataShow={setDataShow} show={show} dataShow={dataShow}  tokenList={tokenList} assetList ={assetList}/>
+              <P2P setDataShow={setDataShow} show={show} dataShow={dataShow}  tokenList={tokens} assetData={assetData}/>
             )}
             {active === 3 && (
               <Earn setDataShow={setDataShow} show={show} dataShow={dataShow} />
@@ -331,6 +324,7 @@ export async function getServerSideProps(context) {
     let assetList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/assets/${session?.user?.id}`, {
       method: "GET"
     }).then(response => response.json());
+
     return {
       props: {
         tokens: tokenList,

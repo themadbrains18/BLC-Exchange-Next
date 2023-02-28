@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import Link from "next/link";
 import ActiveCta from "../snippets/activeCta";
-const Margin = ({ show, dataShow, tokenList }) => {
+const Margin = ({ show, dataShow, tokenList,assetData }) => {
   const [active, setActive] = useState(0);
   const headings = ['Coin','Total Amount','On Order','Available','Debt','Net assets', 'Operation']
 
@@ -50,6 +50,7 @@ const Margin = ({ show, dataShow, tokenList }) => {
           {dataShow ? (
             <DataTable  heading={headings}
             data={tokenList}
+             assetData={assetData}
             cta={true} />
           ) : (
             <div className="grid place-content-center w-full h-96 ">
