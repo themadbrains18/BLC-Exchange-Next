@@ -29,7 +29,7 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
     const handleChange = (e) => {
         let search = e.target.value
         let obj = countryList.filter(function handleClick(obj) {
-            console.log(search)
+        
             return obj.country.toLowerCase().includes(search.toLowerCase());
         })
         setData(obj)
@@ -82,7 +82,7 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setC
                     }
                     {
 
-                        coinData.length > 0 &&
+                        coinData &&
                         coinData.map((e, i) => {
                             return (
                                 <Fragment key={i}>

@@ -1,4 +1,4 @@
-import Layout from '@/components/layout/layout'
+import Layout from '@/components/layout/Layout'
 import ModifyPass from './../../components/dashboard/modify-pass';
 import LinkMobile from "../../components/dashboard/link-mobile";
 import { getProviders, getSession } from "next-auth/react"

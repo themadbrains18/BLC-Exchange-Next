@@ -1,6 +1,6 @@
 import React from 'react'
 import { useContext, useState } from 'react'
-import Layout from '@/components/layout/layout'
+import Layout from '@/components/layout/Layout'
 import Context from '@/components/contexts/context';
 import Link from 'next/link';
 import VerificationCode from './../../components/login-register/verification-code';

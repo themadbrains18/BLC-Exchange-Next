@@ -30,7 +30,7 @@ const {setClick} = useContext(Context)
         
         onClick={setHeight}
       >
-        <span className={`${props.className && props.className }  ` }>{props.heading}</span>
+        <span className={`${props.className && props.className } whitespace-nowrap ` }>{props.heading}</span>
         {props.blue
         ?
         <Image
@@ -60,7 +60,7 @@ const {setClick} = useContext(Context)
                   <li  className="mt-3" onClick={() => {
                     setClick(false);
                   }}>
-                    <Link href={elem.linkUrl} className={`info-14 ${props.className && " hover:border-r-2 hover:border-primary block"}`}>
+                    <Link href={elem.linkUrl} className={`whitespace-nowrap info-14 ${props.className && " hover:border-r-2 hover:border-primary block"}`}>
                       {elem.linkText}
                     </Link>
                   </li>

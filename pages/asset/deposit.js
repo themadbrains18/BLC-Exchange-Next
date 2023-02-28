@@ -25,6 +25,7 @@ const Deposit = ({ assets, tokens, networks }) => {
   const ref = useRef(null);
   let autoTransfer = ["Spot", "Bsc "];
   const [filterShow, setfilterShow] = useState(false);
+  console.log(network,"==========")
   const selectCoin = async (item) => {
     setCoin(item.symbol);
     setCoinImg(item.image);
@@ -244,9 +245,9 @@ const Deposit = ({ assets, tokens, networks }) => {
                 Haven't received your deposit?
               </Link>
             </div>
-            <div className="flex gap-4 flex-wrap">
+            <div className="flex gap-4 justify-between lg:justify-start mt-2">
               <div className="">
-                <h4 className="info-14 hover:text-grey dark:text-white dark:hover:text-white">
+                <h4 className="info-14 hidden lg:block hover:text-grey dark:text-white dark:hover:text-white">
                   Coin
                 </h4>
                 <div className="border border-border-clr ">
@@ -288,7 +289,6 @@ const Deposit = ({ assets, tokens, networks }) => {
                   <path d="M440 896q-17 0-28.5-11.5T400 856V616L168 320q-15-20-4.5-42t36.5-22h560q26 0 36.5 22t-4.5 42L560 616v240q0 17-11.5 28.5T520 896h-80Zm40-308 198-252H282l198 252Zm0 0Z" />
                 </svg>
               </button>
-
               <div
                 className={`fixed -bottom-[100%] duration-500 right-0 w-full bg-white h-[100vh] dark:bg-black-v-1 ${
                   filterShow && "bottom-[0%] z-[4] "
@@ -375,7 +375,7 @@ export async function getServerSideProps(context) {
       method: "GET"
     }).then(response => response.json());
 
-    console.log(tokenList, '======token List')
+ 
 
     let networkList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/network`, {
       method: "GET"
