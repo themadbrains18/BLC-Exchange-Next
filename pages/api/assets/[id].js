@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import {getData} from "../../../libs/requestMethod";
+
 
 export const config = {
   api: {
@@ -17,17 +17,19 @@ const handler = nc({
   },
 })
 
-// ============================================================//
- // get token list
- // ============================================================//
-  .get(async (req, res) => {
+.get(async (req, res) => {
     try {
-      let data = await getData(`${process.env.NEXT_PUBLIC_APIURL}/token`)
+      let data = await getData(`${process.env.NEXT_PUBLIC_APIURL}/assets/${req.params.id}`)
       res.status(200).send({data});
     } catch (error) {
       console.log(error)
        res.status(401).send({error: error})
     }
   })
+.put(() =>{
 
+})
+.patch((req,res) =>{
+
+})
 export default handler;

@@ -41,7 +41,7 @@ const Competiton = () => {
             })}
             </div>
             <div>
-              <DataTable heading={headings1}  cta={false}/>
+              <DataTable heading={headings1} />
               <div className='py-20 '>
                 <img src='/assets/icons/no-data2.svg' alt='error' className='mx-auto'></img>
                 <p className='info-14 text-center mt-5'>No Data</p>
@@ -53,7 +53,7 @@ const Competiton = () => {
           {active === 1 && (
             <>
             <div>
-              <DataTable heading={headings2}  cta={true}/>
+              <DataTable heading={headings2}/>
               <div className='py-20 '>
                 <img src='/assets/icons/no-data2.svg' alt='error' className='mx-auto'></img>
                 <p className='info-14 text-center mt-5'>No Data</p>
@@ -65,7 +65,7 @@ const Competiton = () => {
           {active === 2 && (
             <>
             <div>
-              <DataTable heading={headings3}  cta={true}/>
+              <DataTable heading={headings3}/>
               <div className='py-20 '>
                 <img src='/assets/icons/no-data2.svg' alt='error' className='mx-auto'></img>
                 <p className='info-14 text-center mt-5'>No Data</p>

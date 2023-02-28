@@ -1,4 +1,4 @@
-import Layout from "/components/layout/layout";
+import Layout from "components/layout/Layout";
 import Image from "next/image";
 import React, { useState, useContext } from "react";
 import { getProviders, getSession } from "next-auth/react";
@@ -166,7 +166,7 @@ const Withdraw = ({ assets }) => {
                 href={"/faq"}
                 className="info-14 hover:text-grey dark:text-white dark:hover:text-white"
               >
-                Haven't received your deposit?
+                Have not received your deposit?
               </Link>
             </div>
             <div className="flex gap-4 flex-wrap">

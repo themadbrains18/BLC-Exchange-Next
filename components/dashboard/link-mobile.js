@@ -169,7 +169,7 @@ const LinkMobile = ({ sessions }) => {
                                 }
                             </div>
                             <p role="alert" className="!text-red-700 info-12">{errors.phone?.message}</p>
-                            <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>SMS Verification</p>
+                            {/* <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>SMS Verification</p> */}
                             <div className='mt-5'>
                                 <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>SMS Verification Code</span> <span></span></label>
                                 <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper">

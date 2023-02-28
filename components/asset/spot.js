@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DataTable from "../snippets/dataTable";
 import Image from "next/image";
 
 import Link from "next/link";
 
-const Spot = ({ show, dataShow, setDataShow }) => {
+const Spot = ({ show, dataShow, setDataShow, tokenList, assetList }) => {
+  const headings = ['Coin', 'Available', 'On Order', 'BTC Value', 'Operation']
+
+
   return (
     <>
       <div >
@@ -19,8 +22,8 @@ const Spot = ({ show, dataShow, setDataShow }) => {
               </h4>
               <span className="section-secondary-heading font-noto">
                 {show ? <span>0.00000000</span> : <span>****</span>} BTC <span className="info-12 ">
-              ≈$ {show ? <span>0</span> : <span>****</span>}
-            </span>
+                  ≈$ {show ? <span>0</span> : <span>****</span>}
+                </span>
               </span>
             </div>
           </div>
@@ -29,7 +32,7 @@ const Spot = ({ show, dataShow, setDataShow }) => {
               <h4 className="info-14 hover:!text-grey ">Today is PNL </h4>
             </Link>
             <span className="section-secondary-heading font-noto">
-              {show ? <span>0</span> : <span>****</span>} BTC 
+              {show ? <span>0</span> : <span>****</span>} BTC
             </span>
             <span className="info-12 ">
               ≈$ {show ? <span>0</span> : <span>****</span>}
@@ -57,8 +60,8 @@ const Spot = ({ show, dataShow, setDataShow }) => {
               <span className="ml-2 info-12 text-black">Hide</span>
             </label>
           </button>
-          <span>0 Balances</span>
-          <Link href={""}>Convert Small Balances into BGB</Link>
+          <span className='info-12'>0 Balances</span>
+          <Link href={""} className='info-12'>Convert Small Balances into BGB</Link>
         </div>
         <div className="flex items-center gap-2 justify-between border-b border-border-clr py-3">
           <span className=" info-12 text-primary ">BGB fee Discount-20%</span>
@@ -77,8 +80,20 @@ const Spot = ({ show, dataShow, setDataShow }) => {
         </div>
       </div>
       <div className="">
+      
+     
         {dataShow ? (
-          <DataTable />
+          <>
+            <DataTable heading={headings} data={tokenList} assetList={assetList} cta={false}/>
+            {/* {tokenList.length && 
+              tokenList.map((elem)=>{
+                console.log("elem.fullName",elem.fullName)
+                return (
+                  <DataTable  data={[elem.fullName]} cta={false}/>
+                  )
+              })
+            } */}
+          </>
         ) : (
           <div className="grid place-content-center w-full h-96 ">
             <Image
@@ -90,6 +105,8 @@ const Spot = ({ show, dataShow, setDataShow }) => {
             <h4 className="info-14 text-disable-clr text-center">No Data</h4>
           </div>
         )}
+
+
       </div>
     </>
   );

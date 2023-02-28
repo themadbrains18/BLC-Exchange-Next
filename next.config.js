@@ -7,6 +7,14 @@ const nextConfig = {
 
   //     return config;
   //   },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://demo.blcexchange.net/api/:path*',
+      },
+    ]
+  },
 
   images: {
     remotePatterns: [
