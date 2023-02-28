@@ -23,7 +23,6 @@ const SideBar = ({ data, name }) => {
   };
   useEffect(() => {
     setPageActive(router.pathname);
-    // console.log()
   }, []);
   return (
     <>

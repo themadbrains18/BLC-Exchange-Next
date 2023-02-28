@@ -43,10 +43,7 @@ const Modal = (props) => {
         mode: "onChange",
         resolver: yupResolver(schema),
     });
-    console.log("====props", props)
     const handleFileChange = function (e) {
-
-        console.log("====files", e.target.files)
         if (!e.target.files) {
             setStep(step)
             return;

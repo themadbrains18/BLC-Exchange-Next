@@ -4,9 +4,8 @@ import Image from "next/image";
 
 import Link from "next/link";
 
-const Spot = ({ show, dataShow, setDataShow, tokenList, assetList }) => {
+const Spot = ({ show, dataShow, setDataShow, tokenList, assetData }) => {
   const headings = ['Coin', 'Available', 'On Order', 'BTC Value', 'Operation']
-
 
   return (
     <>
@@ -84,15 +83,7 @@ const Spot = ({ show, dataShow, setDataShow, tokenList, assetList }) => {
      
         {dataShow ? (
           <>
-            <DataTable heading={headings} data={tokenList} assetList={assetList} cta={false}/>
-            {/* {tokenList.length && 
-              tokenList.map((elem)=>{
-                console.log("elem.fullName",elem.fullName)
-                return (
-                  <DataTable  data={[elem.fullName]} cta={false}/>
-                  )
-              })
-            } */}
+            <DataTable heading={headings} data={tokenList} assetData={assetData} cta={false}/>
           </>
         ) : (
           <div className="grid place-content-center w-full h-96 ">
