@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 import Image from 'next/image';
-import Link from 'next/Link';
+import Link from 'next/link';
 import passHide from '../../public/assets/icons/pass-hide.svg';
 import passShow from '../../public/assets/icons/pass-show.svg';
 import Context from '@/components/contexts/context';

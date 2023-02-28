@@ -1,4 +1,4 @@
-import Layout from "/components/layout/layout";
+import Layout from "components/layout/Layout";
 import React, { useState } from "react";
 import { getProviders, getSession } from "next-auth/react";
 import SelectMenu from "/components/snippets/selectMenu";

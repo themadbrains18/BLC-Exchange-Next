@@ -1,9 +1,7 @@
-import Layout from "/components/layout/layout";
+import Layout from "components/layout/Layout";
 import React, { useState } from "react";
 import { getProviders, getSession } from "next-auth/react";
-import SelectMenu from "/components/snippets/selectMenu";
-import MegaSwapTable from "/components/asset/megaSwap/megaSwapTable";
-import AuditTable from "/components/asset/audit/auditTable";
+import AuditTable from "components/asset/audit/auditTable";
 
 const Audit = ({ assets }) => {
   let [data, setData] = useState(true);

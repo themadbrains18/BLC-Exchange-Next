@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from '/components/layout/layout';
+import Layout from 'components/layout/Layout';
 import { getProviders, getSession } from "next-auth/react";
 import DeviceManagement from "../../components/dashboard/device-management";
 const Devices = ({account}) => {

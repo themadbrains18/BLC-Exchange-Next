@@ -1,5 +1,4 @@
-import Layout from '@/components/layout/layout'
-import ModifyPass from './../../components/dashboard/modify-pass';
+import Layout from 'components/layout/Layout'
 import LinkMobile from "../../components/dashboard/link-mobile";
 import { getProviders, getSession } from "next-auth/react"
 const Bindmobile = ({ account,sessions }) => {

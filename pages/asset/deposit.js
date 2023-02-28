@@ -1,7 +1,7 @@
 import SearchDropdown from "components/snippets/search-dropdown";
 import React, { useContext, useRef, useState } from "react";
 import Image from "next/image";
-import Layout from "/components/layout/Layout";
+import Layout from "components/layout/Layout";
 import { getProviders, getSession } from "next-auth/react";
 import Context from "/components/contexts/context";
 import SelectMenu from "components/snippets/selectMenu";
@@ -9,43 +9,58 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DepositTable from "/components/asset/deposit/depositTable";
 import Link from "next/link";
-const Deposit = ({ assets, tokens, networks }) => {
+const Deposit = ({ assets, tokens, networks, sessions }) => {
   let [data, setData] = useState(true);
 
-  const [coin, setCoin] = useState("BLC");
+  const [coin, setCoin] = useState("Select Coin");
   const [rotate, setRotate] = useState(false);
   const [coinImg, setCoinImg] = useState("https://bitlivecoinnetwork.com/images/logo.png");
   const [dropDown, setDropDown] = useState(false);
   const [showQr, setShowQr] = useState(false);
   const [network, setNetwork] = useState([]);
+  const [address, setAddress] = useState('');
 
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
   const { mode } = useContext(Context);
   const ref = useRef(null);
   let autoTransfer = ["Spot", "Bsc "];
+
+
   const selectCoin = async (item) => {
     setCoin(item.symbol);
     setCoinImg(item.image);
-    let selectedToken = tokens.filter((token)=>{
+
+    let selectedToken = tokens.filter((token) => {
       return item.id === token.id
     })
 
     let filternetwork = [];
-    for(const tokennet of JSON.parse(selectedToken[0].networks) ){
-      networks.filter((net)=>{
-        if(net.id === tokennet.id){
+
+    for (const tokennet of JSON.parse(selectedToken[0].networks)) {
+      networks.filter((net) => {
+        if (net.id === tokennet.id) {
           filternetwork.push(net);
         }
       })
     }
 
     setNetwork(filternetwork);
+  };
 
+  const getDepositAddress = async (type) => {
+    let result = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/users/address/${sessions.user.id}/${type}`, {
+      method: "GET"
+    }).then(response => response.json());
+
+    if(result.status === 200){
+      setAddress(result.deposit_address);
+    }
+    else{
+      console.log(result);
+    }
   };
-  const selectId = async (item) => {
-    setNetworks(item);
-  };
+
   return (
     <>
       <ToastContainer />
@@ -94,7 +109,7 @@ const Deposit = ({ assets, tokens, networks }) => {
                     setShowDropdown={setDropDown}
                     coin={true}
                     selectCoin={selectCoin}
-                    tokens ={tokens}
+                    tokens={tokens}
                   />
                 )}
               </div>
@@ -103,7 +118,7 @@ const Deposit = ({ assets, tokens, networks }) => {
                   Networks
                 </h6>
                 <div className="font-bold mt-2 border md:border-t-0 md:border-r-0 md:border-l-0  border-border-clr">
-                  <SelectMenu selectMenu={network} tokens ={tokens}  />
+                  <SelectMenu selectMenu={network} getDepositAddress={getDepositAddress} />
                 </div>
               </div>
 
@@ -116,7 +131,7 @@ const Deposit = ({ assets, tokens, networks }) => {
                 >
                   <div className="flex gap-3 ">
                     <p ref={ref} className="info-14-16 font-bold">
-                      fsdgvbd
+                      {address}
                     </p>
                   </div>
 
@@ -178,11 +193,11 @@ const Deposit = ({ assets, tokens, networks }) => {
                     {/* qr code  */}
                     <div
                       className={` hidden md:block md:absolute md:right-0 md:transition-[opacity] md:duration-300  md:bg-white md:rounded-lg  place-items-center md:shadow-2xl  p-2 ${showQr
-                          ? "visible opacity-1 z-[3] "
-                          : "invisible opacity-0 "
+                        ? "visible opacity-1 z-[3] "
+                        : "invisible opacity-0 "
                         } mt-4`}
                     >
-                      <img src="/assets/images/qr.png" alt="" />
+                      <img src={'https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=' + address} alt="" />
                     </div>
                   </div>
                 </div>
@@ -191,14 +206,14 @@ const Deposit = ({ assets, tokens, networks }) => {
                   <img src="/assets/images/qr.png" alt="" />
                 </div>
               </div>
-              <div className="mt-4">
+              {/* <div className="mt-4">
                 <h6 className="info-12 dark:hover:text-white dark:text-white">
                   Automatically transfer to
                 </h6>
                 <div className="font-bold mt-2 border md:border-t-0 md:border-r-0 md:border-l-0  border-border-clr">
                   <SelectMenu selectMenu={autoTransfer} />
                 </div>
-              </div>
+              </div> */}
               <div className="p-4 bg-light-hover dark:bg-black-v-2 info-14 mt-4 hover:!text-grey dark:text-white  dark:hover:!text-white">
                 <h6>Please note:</h6>
                 <p>
@@ -240,7 +255,7 @@ const Deposit = ({ assets, tokens, networks }) => {
                 href={"/faq"}
                 className="info-14 hover:text-grey dark:text-white dark:hover:text-white"
               >
-                Haven't received your deposit?
+                Have not received your deposit?
               </Link>
             </div>
             <div className="flex gap-4 flex-wrap">
@@ -292,20 +307,17 @@ export async function getServerSideProps(context) {
       method: "GET"
     }).then(response => response.json());
 
-    console.log(tokenList, '======token List')
-
     let networkList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/network`, {
       method: "GET"
     }).then(response => response.json());
-
-    console.log(networkList, '======token List')
 
     let menu = await data.json();
     return {
       props: {
         assets: menu.specialNav.assets,
-        tokens : tokenList,
-        networks : networkList
+        tokens: tokenList,
+        networks: networkList,
+        sessions: session
       }, // will be passed to the page component as props
     };
   }
