@@ -1,5 +1,5 @@
 import SearchDropdown from "/components/snippets/search-dropdown";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Layout from "/components/layout/Layout";
 import { getProviders, getSession } from "next-auth/react";
@@ -35,6 +35,9 @@ const Deposit = ({ assets }) => {
   const selectId = async (item) => {
     setNetworks(item);
   };
+
+
+
   return (
     <>
       <ToastContainer />
@@ -165,11 +168,10 @@ const Deposit = ({ assets }) => {
                     </div>
                     {/* qr code  */}
                     <div
-                      className={` hidden md:block md:absolute md:right-0 md:transition-[opacity] md:duration-300  md:bg-white md:rounded-lg  place-items-center md:shadow-2xl  p-2 ${
-                        showQr
+                      className={` hidden md:block md:absolute md:right-0 md:transition-[opacity] md:duration-300  md:bg-white md:rounded-lg  place-items-center md:shadow-2xl  p-2 ${showQr
                           ? "visible opacity-1 z-[3] "
                           : "invisible opacity-0 "
-                      } mt-4`}
+                        } mt-4`}
                     >
                       <img src="/assets/images/qr.png" alt="" />
                     </div>

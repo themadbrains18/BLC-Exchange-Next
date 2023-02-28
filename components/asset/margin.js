@@ -4,47 +4,9 @@ import Image from "next/image";
 
 import Link from "next/link";
 import ActiveCta from "../snippets/activeCta";
-const Margin = ({ show, dataShow }) => {
+const Margin = ({ show, dataShow, tokenList }) => {
   const [active, setActive] = useState(0);
-  //   let data = [
-  //     {
-  //       heading: "Coin",
-  //       rowData: [
-  //         "core",
-  //         "0.00000000",
-  //         "0.00000000",
-  //         "0.00000000",
-  //         "0.00000000",
-  //         "0.00000000",
-  //       ],
-  //       ctas:["Transfer","WithDraw"]
-
-  //     },
-
-  //     {
-  //       heading: "Total Amount",
-  //       rowData: [
-  //         "core",
-  //         "0.00000000",
-  //         "0.00000000",
-  //         "0.00000000",
-  //         "0.00000000",
-  //         "0.00000000",
-  //       ],
-  //     },
-  //     {
-  //       heading: "On Order",
-  //     },
-  //     {
-  //       heading: "Available",
-  //     },
-  //     {
-  //       heading: "Debt",
-  //     },
-  //     {
-  //       heading: "Net assets",
-  //     },
-  //   ];
+  const headings = ['Coin','Total Amount','On Order','Available','Debt','Net assets', 'Operation']
 
   return (
     <>
@@ -86,7 +48,9 @@ const Margin = ({ show, dataShow }) => {
             ≈$ {show ? <span>0</span> : <span>****</span>}
           </span>
           {dataShow ? (
-            <DataTable />
+            <DataTable  heading={headings}
+            data={tokenList}
+            cta={true} />
           ) : (
             <div className="grid place-content-center w-full h-96 ">
               <Image

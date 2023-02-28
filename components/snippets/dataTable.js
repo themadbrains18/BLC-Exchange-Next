@@ -1,6 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-const DataTable = ({ heading, data, cta }) => {
+const DataTable = ({ heading, data, assetList, cta }) => {
+  const [balance,setBalance] = useState()
+  console.log("====data", data)
+  console.log("====assetList", assetList)
+  useEffect(()=>{
+       data &&  data.map((e)=>{
+         assetList && assetList.map((elem)=>{
+            if(e.symbol=== elem.network){
+              setBalance(elem.balance)
+            }
+            else{
+              setBalance('0.00000')
+            }
+          })
+        })
+  })
+  console.log("=====balance", balance)
   return (
     <>
       <div className='overflow-x-auto table_box'>
@@ -8,11 +24,14 @@ const DataTable = ({ heading, data, cta }) => {
         <div className="table mt-4 w-max md:w-full border border-border-clr rounded-sm ">
           {
             heading &&
-            <div className={`head_row bg-table-bg grid ${cta ? 'grid-cols-3 ': 'grid-cols-5 ' } gap-4  border-b border-border-clr `}>
+            <div
+              className={`head_row bg-table-bg grid ${`grid-cols-${heading.length} `} gap-4  border-b border-border-clr dark:bg-black-v-4 `}
+            >
+
               {heading.map((e, i) => {
                 return (
                   <>
-                    <div className="head_col p-3 info-12 max-w-[130px]">{e}</div>
+                    <div className="head_col p-3 info-12 text-base dark:text-white">{e}</div>
                   </>
 
                   // <div className="head_col p-3 info-12 max-w-[130px]">sdfdrf</div>
@@ -20,19 +39,64 @@ const DataTable = ({ heading, data, cta }) => {
                   // <div className="head_col p-3 info-12 max-w-[130px]">sdfdrf</div>
                   // <div className="head_col p-3 info-12 max-w-[130px]">sdfdsfcsdggp  bfdgfdj cgh  vhf vszh sfs hf sg wasgrf</div>
                 )
-                })
+              })
               }
             </div>
 
           }
           {
             data &&
-            <div className="row grid bg-white grid-cols-5 gap-4 justify-between border-b border-border-clr ">
-              <div className="col info-12 max-w-[130px] p-3 text-black"> dfdssg</div>
-              <div className="col info-12 max-w-[130px] p-3 text-black"> dfd hfdug</div>
-              <div className="col info-12 max-w-[130px] p-3 text-black"> dfdssg</div>
-              <div className="col info-12 max-w-[130px] p-3 text-black"> dfdssg</div>
-              <div className="col info-12 max-w-[130px] p-3 text-black"> dfdssg</div>
+            <div className={`row grid bg-white ${`grid-cols-${heading.length} `} gap-4 justify-between border-b border-border-clr dark:bg-black-v-1 `}>
+
+              {!cta ?
+                data.length &&
+                data.map((elem) => {
+                  return (
+                    <>
+
+                      <div className="col info-14-16 max-w-[130px] flex gap-2 p-3 text-black">
+                        <img src={elem.image} alt='token' className='w-6 h-6'></img>
+                        {elem.symbol}
+                      </div>
+                      <div className="col info-14-16 max-w-[130px] p-3 text-black dark:text-white"> 0.000000</div>
+                      <div className="col info-14-16 max-w-[130px] p-3 text-black dark:text-white"> 0.000000</div>
+                      <div className="col info-14-16 max-w-[130px] p-3 text-black dark:text-white">0.000000</div>
+                      <div className="col info-14-16 max-w-[130px] flex justify-between gap-5 p-3 text-black dark:text-white">
+                        <button className='info-12 text-primary'>Transfer</button>
+                        <button className='info-12 text-primary'>Deposit</button>
+                        <button className='info-12 text-primary'>Withdraw</button>
+
+                      </div>
+                    </>
+                  )
+                }) :
+                data.length &&
+                data.map((elem) => {
+                  return (
+                    <>
+
+                      <div className="col info-14-16 max-w-[130px] flex gap-2 p-3 text-black dark:text-white">
+                        <img src={elem.image} alt='token' className='w-6 h-6'></img>
+                        {elem.symbol}
+                      </div>
+                      <div className="col info-14-16 max-w-[130px] p-3 text-black dark:text-white"> 0.000000</div>
+                      <div className="col info-14-16 max-w-[130px] p-3 text-black dark:text-white"> 0.000000</div>
+                      <div className="col info-14-16 max-w-[130px] p-3 text-black dark:text-white">0.000000</div>
+                      <div className="col info-14-16 max-w-[130px] p-3 text-black dark:text-white">0.000000</div>
+                      <div className="col info-14-16 max-w-[130px] p-3 text-black">0.000000</div>
+                      <div className="col info-14-16 max-w-[130px] flex justify-between dark:text-white gap-5 p-3 text-black">
+                        <button className='info-12 text-primary'>Transfer</button>
+                        <button className='info-12 text-primary'>Deposit</button>
+                        <button className='info-12 text-primary'>Withdraw</button>
+
+                      </div>
+                    </>
+                  )
+                })
+              }
+
+
+
             </div>
           }
 

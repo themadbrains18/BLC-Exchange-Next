@@ -1,7 +1,7 @@
 import Layout from "/components/layout/Layout";
 import ActiveCta from "/components/snippets/activeCta";
 import Link from "next/link";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Spot from "/components/asset/spot";
 import Margin from "/components/asset/margin";
 import P2P from "/components/asset/p2p";
@@ -10,14 +10,31 @@ import { getProviders, getSession } from "next-auth/react";
 import Context from "/components/contexts/context";
 import Icons from "/components/snippets/icons";
 import Image from "next/image";
+// import {  useSession } from "next-auth/react"
 
-const Asset = ({ assets }) => {
+const Asset = ({ assets, session }) => {
   const { setClick, mode } = useContext(Context);
   const [active, setActive] = useState(0);
   const [popUp, setPopUp] = useState(false);
   const [show, setShow] = useState(true);
   const [index, setIndex] = useState(0);
   const [dataShow, setDataShow] = useState(true);
+  const [tokenList, setTokenList] = useState()
+  const [assetList, setAssetList] = useState()
+  // const { data: session } = useSession()
+
+  console.log("====session", session)
+  useEffect( ()=>{
+    getTokenList()
+},[]);
+  
+const getTokenList=(async()=>{
+  const value = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`).then(response => response.json());
+  setTokenList(value)
+  const value2 = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/assets/${session?.user?.id}`).then(response => response.json());
+  setAssetList(value2)
+})
+
   let obj = [
     { name: "Deposit", link: "" },
     { name: "Buy Crypto", link: "" },
@@ -25,7 +42,7 @@ const Asset = ({ assets }) => {
     { name: "Transfer", link: "asset/transfer" },
     { name: "MegaSwap", link: "asset/mega-swap" },
   ];
-  let activeCta = ["Spot", "Margin", "P2P", "Earn", "Coupons", "Merge Swap"];
+  let activeCta = ["Main", "Feature", "Funding"];
   return (
     <>
       <Layout data={assets} name="asset">
@@ -98,7 +115,7 @@ const Asset = ({ assets }) => {
                     strokeWidth={1.5}
                     stroke="white"
                     fill="transparent"
-                    // className="w-4 h-4"
+                  // className="w-4 h-4"
                   >
                     <path
                       strokeLinecap="round"
@@ -163,11 +180,10 @@ const Asset = ({ assets }) => {
                 <Link
                   key={i}
                   href={e.link}
-                  className={`w-max text-center py-2 px-4 font-noto text-sm whitespace-nowrap rounded-lg dark:text-white ${
-                    index === i
+                  className={`w-max text-center py-2 px-4 font-noto text-sm whitespace-nowrap rounded-lg dark:text-white ${index === i
                       ? "bg-primary text-white"
                       : " border border-border-clr"
-                  }`}
+                    }`}
                   onClick={() => {
                     e.name = "Buy Crypto" && setPopUp(true);
                     setClick(true);
@@ -184,25 +200,25 @@ const Asset = ({ assets }) => {
                     <h4 className="section-secondary-heading font-noto">
                       Buy Crypto
                     </h4>
-                   <button onClick={()=>{
-                    setClick(false)
-                    setPopUp(false)
-                   }}>
-                   <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke={mode === "dark" ? "white" : "currentcolor"}
-                      className="w-6 h-6 "
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                      ></path>
-                    </svg>
-                   </button>
+                    <button onClick={() => {
+                      setClick(false)
+                      setPopUp(false)
+                    }}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke={mode === "dark" ? "white" : "currentcolor"}
+                        className="w-6 h-6 "
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M6 18L18 6M6 6l12 12"
+                        ></path>
+                      </svg>
+                    </button>
                   </div>
                   <div className="mt-8">
                     <Link
@@ -239,7 +255,7 @@ const Asset = ({ assets }) => {
                       <div className="grow">
                         <h4 className="info-14-16">Credit/Debit card</h4>
                         <p className="info-14 hover:!text-grey dark:text-white">
-                   
+
                           Support buying crypto with multiple fiats
                         </p>
                       </div>
@@ -286,17 +302,19 @@ const Asset = ({ assets }) => {
           </div>
           <div className="mt-3">
             {active === 0 && (
-              <Spot setDataShow={setDataShow} show={show} dataShow={dataShow} />
+              <Spot setDataShow={setDataShow} show={show} dataShow={dataShow} tokenList={tokenList} assetList ={assetList}/>
             )}
             {active === 1 && (
               <Margin
                 setDataShow={setDataShow}
                 show={show}
                 dataShow={dataShow}
+                tokenList={tokenList}
+                assetList ={assetList}
               />
             )}
             {active === 2 && (
-              <P2P setDataShow={setDataShow} show={show} dataShow={dataShow} />
+              <P2P setDataShow={setDataShow} show={show} dataShow={dataShow}  tokenList={tokenList} assetList ={assetList}/>
             )}
             {active === 3 && (
               <Earn setDataShow={setDataShow} show={show} dataShow={dataShow} />
@@ -317,6 +335,7 @@ export async function getServerSideProps(context) {
     let menu = await data.json();
     return {
       props: {
+        session:session,
         assets: menu.specialNav.assets,
       }, // will be passed to the page component as props
     };
