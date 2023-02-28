@@ -8,6 +8,8 @@ import * as yup from 'yup';
 import { useSession } from "next-auth/react"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/router';
+
 
 // const schema = yup
 //     .object()
@@ -29,6 +31,7 @@ const schema = yup.object().shape({
 }).required();
 
 const Modal = (props) => {
+    const router = useRouter();
     const { click, setClick } = useContext(Context)
     const { data: session } = useSession()
     const [DropdownPhone, setDropdownPhone] = useState(false);
@@ -160,10 +163,11 @@ const Modal = (props) => {
             toast.success(result.data.message, {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             })
-             setStep(11)            
+            setStep(11)
             setTimeout(() => {
                 props.setShow(false)
-            setClick(false)
+                setClick(false)
+                router.push('/dashboard/verified')
             }, 3000);
         }
         else {
@@ -405,7 +409,7 @@ const Modal = (props) => {
                                         <p className='info-14-16 self-center dark:text-black mt-4'>That's all we need to verify</p>
                                         <p className='info-14-16 self-center dark:text-black'>your account</p>
 
-                                        
+
                                     </div>
                                 }
                             </div>
