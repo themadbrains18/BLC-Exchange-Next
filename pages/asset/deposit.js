@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DepositTable from "/components/asset/deposit/depositTable";
 import Link from "next/link";
+
 const Deposit = ({ assets }) => {
   let [data, setData] = useState(true);
 
@@ -24,6 +25,7 @@ const Deposit = ({ assets }) => {
   const ref = useRef(null);
   let network = ["BTC", "Bsc", "prince"];
   let autoTransfer = ["Spot", "Bsc "];
+  const [filterShow, setfilterShow] = useState(false);
   const selectCoin = async (item) => {
     setCoin(item.name);
     setCoinImg(item.image);
@@ -237,16 +239,16 @@ const Deposit = ({ assets }) => {
                   <SelectMenu selectMenu={coinData} />
                 </div>
               </div>
-              <div className="">
+              <div className="hidden lg:block">
                 <h4 className="info-14 hover:text-grey dark:text-white dark:hover:text-white">
                   Time
                 </h4>
-                <div className="border border-border-clr">
+                <div className="hidden lg:block border border-border-clr">
                   <SelectMenu selectMenu={dateFilter} />
                 </div>
               </div>
 
-              <div className="flex gap-3 h-[40px] self-end px-1 border border-border-clr dark:bg-black-v-4">
+              <div className="hidden lg:flex gap-3 h-[40px] self-end px-1 border border-border-clr dark:bg-black-v-4">
                 <input
                   type="date"
                   className="focus:outline-none bg-transparent  dark:text-white"
@@ -255,6 +257,88 @@ const Deposit = ({ assets }) => {
                   type="date"
                   className="focus:outline-none bg-transparent dark:text-white "
                 />
+              </div>
+              <button
+                className="lg:hidden"
+                onClick={() => {
+                  setfilterShow(true);
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height={24}
+                  viewBox="0 96 960 960"
+                  width={24}
+                  fill={mode === "dark" ? "white" : "currentcolor"}
+                >
+                  <path d="M440 896q-17 0-28.5-11.5T400 856V616L168 320q-15-20-4.5-42t36.5-22h560q26 0 36.5 22t-4.5 42L560 616v240q0 17-11.5 28.5T520 896h-80Zm40-308 198-252H282l198 252Zm0 0Z" />
+                </svg>
+              </button>
+
+              <div
+                className={`fixed -bottom-[100%] duration-500 right-0 w-full bg-white h-[100vh] dark:bg-black-v-1 ${
+                  filterShow && "bottom-[0%] z-[4] "
+                } `}
+              >
+                <div className="flex justify-between mb-4  p-4 border-b lg:hidden border-t border-border-clr">
+                  <h3 className="info-14-20">Filter</h3>
+
+                  <button
+                    className="ml-auto mr-0"
+                    onClick={() => {
+                      setfilterShow(false);
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke={mode === "dark" ? "white" : "currentcolor"}
+                      className="w-6 h-6 mr-0 ml-auto "
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+                <div className="mt-4 px-2 ">
+                  <div className="border border-border-clr">
+                  <SelectMenu selectMenu={coinData} />
+
+                  </div>
+                </div>
+                <div className="mt-4 px-2">
+                <div className="border border-border-clr">
+                  <SelectMenu selectMenu={dateFilter} />
+
+                  </div>
+                  <div className="mt-4 px-2 ">
+                <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
+                  Start Time:
+                </h4>
+                <input
+                  type="date"
+                  className="w-full border border-border-clr p-2 mt-2  bg-transparent dark:text-white"
+                />
+              </div>
+              <div className="mt-4 px-2 ">
+                <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
+                  End Time:
+                </h4>
+                <input
+                  type="date"
+                  className="w-full border border-border-clr p-2 mt-2 bg-transparent dark:text-white"
+                />
+              </div>
+                </div>
+                <div className="mt-4 px-2 flex gap-4 ">
+                  <button className="cta2 w-full">Reset</button>
+                  <button className="cta w-full">Confirm</button>
+                </div>
               </div>
             </div>
             {/* dataTable */}

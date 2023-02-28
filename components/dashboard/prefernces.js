@@ -127,7 +127,7 @@ const Prefernces = () => {
                                         className="sr-only peer"
                                         defaultChecked=""
                                     />
-                                    <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                    <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary " />
                                 </label></button>
                         </div>
                     </div>
@@ -159,7 +159,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
@@ -176,7 +176,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
@@ -193,7 +193,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
@@ -210,7 +210,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
@@ -227,7 +227,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
@@ -244,7 +244,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
@@ -261,7 +261,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
@@ -278,7 +278,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
@@ -295,7 +295,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
@@ -312,7 +312,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
@@ -329,7 +329,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
                     </div>
 
@@ -346,7 +346,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
@@ -364,7 +364,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
@@ -396,7 +396,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
@@ -413,7 +413,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
@@ -430,7 +430,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
@@ -447,7 +447,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
@@ -464,7 +464,7 @@ const Prefernces = () => {
                                     className="sr-only peer"
                                     defaultChecked=""
                                 />
-                                <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                             </label></button>
 
                     </div>
