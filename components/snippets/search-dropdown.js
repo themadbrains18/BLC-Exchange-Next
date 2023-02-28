@@ -76,7 +76,7 @@ const SearchDropdown = ({
 
   return (
     <>
-      <div className="bg-white dark:bg-black-v-5 animate-bottom duration-500 absolute top-[100%] rounded-t-3xl md:rounded-none left-0 w-full border border-grey max-h-[350px] overflow-auto z-10">
+      <div className="bg-white dark:bg-black-v-5 animate-bottom duration-500 absolute top-[100%]  left-0 w-full border border-grey max-h-[350px] overflow-auto z-10">
         <div
           className={`p-4 sticky top-0 left-0 w-full bg-white dark:bg-black-v-5 ${
             idData ? "hidden" : "block"

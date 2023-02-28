@@ -1678,6 +1678,10 @@ const Icons = ({ type,stroke   }) => {
 </svg>
   )}
 
+  
+
+
+
     </>
   );
 };
