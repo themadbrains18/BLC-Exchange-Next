@@ -388,11 +388,6 @@ export async function getServerSideProps(context) {
       method: "GET"
     }).then(response => response.json());
 
-<<<<<<< HEAD
- 
-
-=======
->>>>>>> 44011de46af2fb5ccaf28b668e5b2cc1e4c25518
     let networkList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/network`, {
       method: "GET"
     }).then(response => response.json());
