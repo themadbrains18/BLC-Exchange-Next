@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState,useEffect } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 
 import Context from "../contexts/context";
 const SelectMenu = ({ selectMenu, getDepositAddress }) => {
@@ -7,20 +7,20 @@ const SelectMenu = ({ selectMenu, getDepositAddress }) => {
   const [value, setValue] = useState('Select Network');
   const [overlay, setOverlay] = useState(false);
   const ref = useRef(null);
-  const {mode} =useContext(Context)
+  const { mode } = useContext(Context)
   const dropdown = useRef(null);
 
   useEffect(() => {
-      function handleClick(event) {
-          if (dropdown.current && !dropdown.current.contains(event.target)) {
-            setOpen(false);
-          }
+    function handleClick(event) {
+      if (dropdown.current && !dropdown.current.contains(event.target)) {
+        setOpen(false);
       }
-      window.addEventListener("click", handleClick);
-      // clean up
-      return () => window.removeEventListener("click", handleClick);
+    }
+    window.addEventListener("click", handleClick);
+    // clean up
+    return () => window.removeEventListener("click", handleClick);
   }, [])
-  
+
   return (
     <>
       <div ref={dropdown} className={`relative pr-2  ${open && "md:z-[2]"}`}>
@@ -35,10 +35,10 @@ const SelectMenu = ({ selectMenu, getDepositAddress }) => {
               setOpen(!open);
               setOverlay(!overlay);
             }}
-            // onBlur={() => {
-            //   setOpen(!open);
-            //   setOverlay(!overlay);
-            // }}
+          // onBlur={() => {
+          //   setOpen(!open);
+          //   setOverlay(!overlay);
+          // }}
           ></input>
 
           <svg
@@ -47,8 +47,8 @@ const SelectMenu = ({ selectMenu, getDepositAddress }) => {
             className={` ${open && "rotate-90"} duration-300 w-6 h-6`}
             viewBox="0 0 24 24"
             strokeWidth={1.5}
-            stroke={mode==="dark" ?"white":"currentColor"}
-      
+            stroke={mode === "dark" ? "white" : "currentColor"}
+
           >
             <path
               strokeLinecap="round"
@@ -58,24 +58,21 @@ const SelectMenu = ({ selectMenu, getDepositAddress }) => {
           </svg>
         </div>
         <div
-          className={`  md:absolute  bg-white  w-full ${
-            open
+          className={`  md:absolute  bg-white  w-full ${open
               ? "top-[140%] visible opacity-100 "
               : " invisible opacity-0 top-[100%]"
-          } border  duration-300 `}
+            } border  duration-300 `}
         >
           <div className="relative  ">
             <div className="hidden md:block p-1 -mt-[5px] z-0 bg-white -rotate-45 absolute left-10 dark:bg-black-v-4"></div>
           </div>
           <div
-            className={` bg-black  opacity-0 invisible transition-[opacity] duration-300 fixed top-0 left-0 h-full w-full ${
-              overlay && "!visible opacity-75 z-[3] md:hidden"
-            }`}
+            className={` bg-black  opacity-0 invisible transition-[opacity] duration-300 fixed top-0 left-0 h-full w-full ${overlay && "!visible opacity-75 z-[3] md:hidden"
+              }`}
           ></div>
           <div
-            className={`h-[50%] rounded-t-xl md:static md:rounded-none md:w-[unset] fixed -bottom-[100%] left-0 w-full bg-white dark:bg-black dark:text-white transition-[bottom] ${
-              open && "bottom-[0%] z-[4]"
-            }`}
+            className={`h-[50%] rounded-t-xl md:static md:rounded-none md:w-[unset] fixed -bottom-[100%] left-0 w-full bg-white dark:bg-black dark:text-white transition-[bottom] ${open && "bottom-[0%] z-[4]"
+              }`}
           >
             <span className="block md:hidden my-2 p-2 rounded-xl">
               Please Select
@@ -85,12 +82,10 @@ const SelectMenu = ({ selectMenu, getDepositAddress }) => {
                 return (
                   <button
                     key={i}
-                    className={`md:relative ${
-                      open && "z-[2]"
-                    } info-14-16 block w-full text-left p-2 dark:text-white dark:bg-black  ${
-                      active === i &&
+                    className={`md:relative ${open && "z-[2]"
+                      } info-14-16 block w-full text-left p-2 dark:text-white dark:bg-black  ${active === i &&
                       "bg-blue-50 text-primary dark:!text-primary"
-                    }`}
+                      }`}
                     onClick={() => {
                       getDepositAddress(e.type)
                       setValue(e.networkName);
@@ -101,7 +96,8 @@ const SelectMenu = ({ selectMenu, getDepositAddress }) => {
                     {e.networkName}
                   </button>
                 );
-              })}
+              })
+            }
             <button
               className="fixed bottom-0 p-4 w-full border-t-4 md:hidden"
               onClick={() => {

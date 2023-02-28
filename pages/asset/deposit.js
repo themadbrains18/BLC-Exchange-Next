@@ -118,7 +118,7 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
                   Networks
                 </h6>
                 <div className="font-bold mt-2 border md:border-t-0 md:border-r-0 md:border-l-0  border-border-clr">
-                  <SelectMenu selectMenu={network} getDepositAddress={getDepositAddress} />
+                  <SelectMenu deposit={true} selectMenu={network} getDepositAddress={getDepositAddress} />
                 </div>
               </div>
 

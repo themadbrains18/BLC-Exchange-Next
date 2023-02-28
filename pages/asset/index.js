@@ -331,6 +331,7 @@ export async function getServerSideProps(context) {
     let assetList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/assets/${session?.user?.id}`, {
       method: "GET"
     }).then(response => response.json());
+    
     return {
       props: {
         tokens: tokenList,

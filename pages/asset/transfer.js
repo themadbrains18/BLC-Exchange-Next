@@ -11,7 +11,7 @@ import TransferDataTable from "components/asset/transfer/transferDataTable";
 import AdImage from "components/snippets/adImage";
 import Icons from "@/components/snippets/icons";
 
-const Transfer = ({ assets, tokens, sessions }) => {
+const Transfer = ({ assets, tokens, sessions, tokenAssets }) => {
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
   const [data, setData] = useState(true);
@@ -28,16 +28,24 @@ const Transfer = ({ assets, tokens, sessions }) => {
   const [coin2, setCoin2] = useState("Select Coin");
   let tradingPair = ["BTC/USDT", "ETH/USDT", "BTC/USDT", "BTC/USDT"];
   const [Switch, setSwitch] = useState(false);
+  const [assetBalance, setAssetBalance] = useState(0.00);
 
-  const selectCoin = async (item) => {
-    setCoin(item.name);
-    setCoinImg(item.image);
-    setRotate(false);
-  };
+  // const selectCoin = async (item) => {
+  //   setCoin(item.name);
+  //   setCoinImg(item.image);
+  //   setRotate(false);
+  // };
   const selectCoin2 = async (item) => {
     setCoin2(item.symbol);
     setCoinImg2(item.image);
     setRotate2(false);
+
+    let asset = tokenAssets.filter((ass)=>{
+      return ass.token_id === item.id;
+    })
+
+    setAssetBalance(asset[0]?.balance.toFixed(2));
+    console.log(asset[0].balance)
   };
   return (
     <>
@@ -202,13 +210,13 @@ const Transfer = ({ assets, tokens, sessions }) => {
                       type="text"
                       className="caret-primary w-full bg-transparent  outline-none"
                     />
-                    <span className="text-black dark:text-white">USDC</span>
+                    <span className="text-black dark:text-white">{coin2}</span>
                     <span className="text-primary ml-2">All</span>
                   </div>
                 </div>
                 <div className="mt-4 flex justify-between info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
-                  <span>Available USDC USDT: 0.00000000 </span>
-                  <span>Available Trading Bonus: 0 USDC</span>
+                  <span>Available {coin2}: {assetBalance} </span>
+                  {/* <span>Available Trading Bonus: 0 {coin2}</span> */}
                 </div>
               </div>
               <p className="mt-4 text-orange-300 font-noto">
@@ -296,20 +304,23 @@ export async function getServerSideProps(context) {
     }).then(response => response.json());
     
     let menu = await data.json();
+
+    let assetList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/assets/${session?.user?.id}`, {
+      method: "GET"
+    }).then(response => response.json());
+
+    console.log(assetList,'===========asset list')
     
     return {
       props: {
         assets: menu.specialNav.assets,
         tokens: tokenList,
-        sessions: session
+        sessions: session,
+        tokenAssets : assetList
       }, // will be passed to the page component as props
     };
   }
-  // return {
-  //     props: {
-  //         providers,
-  //     },
-  // }
+ 
   return {
     redirect: { destination: "/" },
   };
