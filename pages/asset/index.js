@@ -12,7 +12,7 @@ import Icons from "/components/snippets/icons";
 import Image from "next/image";
 // import {  useSession } from "next-auth/react"
 
-const Asset = ({ assets, session }) => {
+const Asset = ({ assets, assetData,tokens }) => {
   const { setClick, mode } = useContext(Context);
   const [active, setActive] = useState(0);
   const [popUp, setPopUp] = useState(false);
@@ -23,17 +23,8 @@ const Asset = ({ assets, session }) => {
   const [assetList, setAssetList] = useState()
   // const { data: session } = useSession()
 
-  console.log("====session", session)
-  useEffect( ()=>{
-    getTokenList()
-},[]);
-  
-const getTokenList=(async()=>{
-  const value = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`).then(response => response.json());
-  setTokenList(value)
-  const value2 = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/assets/${session?.user?.id}`).then(response => response.json());
-  setAssetList(value2)
-})
+  console.log("====assetList", assetData)
+  console.log("===========tokens",tokens)
 
   let obj = [
     { name: "Deposit", link: "" },
@@ -302,7 +293,7 @@ const getTokenList=(async()=>{
           </div>
           <div className="mt-3">
             {active === 0 && (
-              <Spot setDataShow={setDataShow} show={show} dataShow={dataShow} tokenList={tokenList} assetList ={assetList}/>
+              <Spot setDataShow={setDataShow} show={show} dataShow={dataShow} tokenList={tokens} assetList ={assetList}/>
             )}
             {active === 1 && (
               <Margin
@@ -333,9 +324,18 @@ export async function getServerSideProps(context) {
   if (session) {
     let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
     let menu = await data.json();
+    let tokenList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`, {
+      method: "GET"
+    }).then(response => response.json());
+
+    let assetList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/assets/${session?.user?.id}`, {
+      method: "GET"
+    }).then(response => response.json());
     return {
       props: {
-        session:session,
+        tokens: tokenList,
+        assetData: assetList,
+        sessions: session,
         assets: menu.specialNav.assets,
       }, // will be passed to the page component as props
     };
