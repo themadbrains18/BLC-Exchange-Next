@@ -166,9 +166,9 @@ const LinkEmail = ({ sessions }) => {
                 
               </div>
               <p role="alert" className="!text-red-700 info-12">{errors.email?.message}</p>
-              <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>SMS Verification</p>
+              {/* <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>SMS Verification</p> */}
               <div className='mt-5'>
-                <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>SMS Verification Code</span> <span></span></label>
+                <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Email Verification Code</span> <span></span></label>
                 <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper">
                   <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
                   <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />

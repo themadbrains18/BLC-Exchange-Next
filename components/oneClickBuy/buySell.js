@@ -16,7 +16,7 @@ const BuySell = () => {
     }
 
     return (
-        <section className='dark:bg-black-v-3 px-10 py-10 md:py-20'>
+        <section className='dark:bg-black-v-3 px-0 py-0 md:py-20'>
             <div className='container place-items-start grid grid-cols gird lg:grid-cols-2 justify-between gap-11'>
                 <div className='order-last lg:order-first'>
                     <h1 className='hero-heading'>Buy Crypto In One Click</h1>
@@ -55,7 +55,7 @@ const BuySell = () => {
                 </div>
 
                 <div className='rounded-lg '>
-                    <div className='bg-white  shadow-lg  dark:bg-black-v-3 shadow-[#e2e2e2] dark:shadow-[#000] rounded-lg max-w-md mr-0 ml-auto w-full'>
+                    <div className='bg-white  shadow-lg  dark:bg-black-v-3 shadow-[#e2e2e2] dark:shadow-[#000] rounded-lg max-w-full w-full mr-0 ml-auto w-full'>
                         <div className='flex items-center rounded-lg dark:bg-black-v-3 bg-white'>
                             <button className={`w-full info-14-20 rounded-lg  py-5 ${show === 1 ? "bg-white dark:bg-black-v-3" : "bg-[#f9f9f9] dark:bg-black-v-5"}`} onClick={() => { setShow(1) }}>Buy</button>
                             <button className={`w-full info-14-20 rounded-lg  py-5 ${show === 2 ? "bg-white dark:bg-black-v-3" : "bg-[#f9f9f9] dark:bg-black-v-5"}`} onClick={() => { setShow(2) }}>Sell</button>

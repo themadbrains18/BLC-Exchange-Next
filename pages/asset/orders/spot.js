@@ -1,11 +1,11 @@
-import Layout from "/components/layout/layout";
+import Layout from "components/layout/Layout";
 import { useState, useContext } from "react";
 import { getProviders, getSession } from "next-auth/react";
-import ActiveCta from "/components/snippets/activeCta";
-import SelectMenu from "@/components/snippets/selectMenu";
+import ActiveCta from "components/snippets/activeCta";
+import SelectMenu from "components/snippets/selectMenu";
 import Image from "next/image";
-import Context from "/components/contexts/context";
-import Table from "@/components/asset/order/table";
+import Context from "components/contexts/context";
+import Table from "components/asset/order/table";
 
 const Spot = ({ assets }) => {
   let activeCta = ["Open Orders", "Order History", "Trading Details"];

@@ -7,6 +7,48 @@ const nextConfig = {
 
   //     return config;
   //   },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: '/api/:path*',
+  //       destination: 'http://demo.blcexchange.net/api/:path*',
+  //     },
+  //   ]
+  // },
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'tokens.pancakeswap.finance',
+        port: '',
+        pathname: '/**',
+        
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.coingecko.com',
+        port: '',
+        pathname: '/**',
+        
+      },
+      {
+        protocol: 'https',
+        hostname: 'bitlivecoinnetwork.com',
+        port: '',
+        pathname: '/**',
+        
+      }
+      
+      
+    ],
+  },
 
   eslint: {
     dirs: ['pages', 'utils'], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)

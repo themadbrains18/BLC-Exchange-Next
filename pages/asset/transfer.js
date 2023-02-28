@@ -1,17 +1,17 @@
 import React, { useContext, useRef, useState } from "react";
 import Link from "next/link";
 import { getProviders, getSession } from "next-auth/react";
-import Layout from "/components/layout/layout";
-import SelectMenu from "/components/snippets/selectMenu";
+import Layout from "components/layout/Layout";
+import SelectMenu from "components/snippets/selectMenu";
 import Image from "next/image";
-import Context from "/components/contexts/context";
+import Context from "components/contexts/context";
 
-import SearchDropdown from "/components/snippets/search-dropdown";
-import TransferDataTable from "/components/asset/transfer/transferDataTable";
-import AdImage from "/components/snippets/adImage";
+import SearchDropdown from "components/snippets/search-dropdown";
+import TransferDataTable from "components/asset/transfer/transferDataTable";
+import AdImage from "components/snippets/adImage";
 import Icons from "@/components/snippets/icons";
 
-const Transfer = ({ assets }) => {
+const Transfer = ({ assets, tokens, sessions, tokenAssets }) => {
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
   const [data, setData] = useState(true);
@@ -23,22 +23,30 @@ const Transfer = ({ assets }) => {
   const [rotate2, setRotate2] = useState(false);
   const { mode } = useContext(Context);
   const [coinImg, setCoinImg] = useState("bnb.png");
-  const [coinImg2, setCoinImg2] = useState("bnb.png");
+  const [coinImg2, setCoinImg2] = useState('');
   const [coin, setCoin] = useState("USD");
-  const [coin2, setCoin2] = useState("USD");
+  const [coin2, setCoin2] = useState("Select Coin");
   let tradingPair = ["BTC/USDT", "ETH/USDT", "BTC/USDT", "BTC/USDT"];
   const [Switch, setSwitch] = useState(false);
   const [filterShow, setfilterShow] = useState(false);
+  const [assetBalance, setAssetBalance] = useState(0.00);
 
-  const selectCoin = async (item) => {
-    setCoin(item.name);
-    setCoinImg(item.image);
-    setRotate(false);
-  };
+  // const selectCoin = async (item) => {
+  //   setCoin(item.name);
+  //   setCoinImg(item.image);
+  //   setRotate(false);
+  // };
   const selectCoin2 = async (item) => {
-    setCoin2(item.name);
+    setCoin2(item.symbol);
     setCoinImg2(item.image);
     setRotate2(false);
+
+    let asset = tokenAssets.filter((ass)=>{
+      return ass.token_id === item.id;
+    })
+
+    setAssetBalance(asset[0]?.balance.toFixed(2));
+    console.log(asset[0].balance)
   };
   return (
     <>
@@ -93,10 +101,11 @@ const Transfer = ({ assets }) => {
                 </button>
               </div>
               <div>
-                <div className="mt-8">
+                {/* <div className="mt-8">
                   <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
                     Trading Pair
                   </h4>
+                  
                   <div className="border-b border-border-clr">
                     <div className="relative">
                       <div
@@ -142,7 +151,7 @@ const Transfer = ({ assets }) => {
                       )}
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div className="mt-8 ">
                   <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
                     Coin
@@ -157,21 +166,23 @@ const Transfer = ({ assets }) => {
                         }}
                       >
                         <div className="flex gap-3 ">
-                          <Image
-                            className="self-start"
-                            height={24}
-                            width={24}
-                            alt="Coin Image"
-                            src={`/assets/images/${coinImg2}`}
-                          ></Image>
+                          {coinImg2 !== '' &&
+                            <img
+                              className="self-start"
+                              height={24}
+                              width={24}
+                              alt="Coin Image"
+                              src={`${coinImg2}`}
+                            ></img>
+                          }
+
                           <p className="info-14-16 font-bold">{coin2}</p>
                         </div>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
-                          className={` ${
-                            rotate2 && "rotate-90"
-                          } duration-300 w-6 h-6`}
+                          className={` ${rotate2 && "rotate-90"
+                            } duration-300 w-6 h-6`}
                           viewBox="0 0 24 24"
                           strokeWidth={1.5}
                           stroke={mode === "dark" ? "white" : "currentColor"}
@@ -188,6 +199,7 @@ const Transfer = ({ assets }) => {
                           setShowDropdown={setDropDown2}
                           coin={true}
                           selectCoin={selectCoin2}
+                          tokens={tokens}
                         />
                       )}
                     </div>
@@ -200,13 +212,13 @@ const Transfer = ({ assets }) => {
                       type="text"
                       className="caret-primary w-full bg-transparent  outline-none"
                     />
-                    <span className="text-black dark:text-white">USDC</span>
+                    <span className="text-black dark:text-white">{coin2}</span>
                     <span className="text-primary ml-2">All</span>
                   </div>
                 </div>
                 <div className="mt-4 flex justify-between info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
-                  <span>Available USDC USDT: 0.00000000 </span>
-                  <span>Available Trading Bonus: 0 USDC</span>
+                  <span>Available {coin2}: {assetBalance} </span>
+                  {/* <span>Available Trading Bonus: 0 {coin2}</span> */}
                 </div>
               </div>
               <p className="mt-4 text-orange-300 font-noto">
@@ -367,18 +379,29 @@ export async function getServerSideProps(context) {
   const providers = await getProviders();
   if (session) {
     let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
+    
+    let tokenList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`, {
+      method: "GET"
+    }).then(response => response.json());
+    
     let menu = await data.json();
+
+    let assetList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/assets/${session?.user?.id}`, {
+      method: "GET"
+    }).then(response => response.json());
+
+    console.log(assetList,'===========asset list')
+    
     return {
       props: {
         assets: menu.specialNav.assets,
+        tokens: tokenList,
+        sessions: session,
+        tokenAssets : assetList
       }, // will be passed to the page component as props
     };
   }
-  // return {
-  //     props: {
-  //         providers,
-  //     },
-  // }
+ 
   return {
     redirect: { destination: "/" },
   };

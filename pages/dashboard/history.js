@@ -1,6 +1,6 @@
 import {useState,useContext} from 'react';
 import { getProviders, getSession } from "next-auth/react";
-import Layout from '/components/layout/layout';
+import Layout from 'components/layout/Layout';
 import HistoryTable from '../../components/dashboard/login-history-table';
 import SecurityHistoryTable from '../../components/dashboard/security-history-table';
 import ActiveCta from "../../components/snippets/activeCta";

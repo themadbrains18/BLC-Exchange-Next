@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '/components/layout/layout'
+import Layout from 'components/layout/Layout'
 import { getProviders, getSession } from "next-auth/react"
 import AntiFishingCode from './../../components/dashboard/anti-fishing-code';
 const AntiPhishing = ({account,sessions}) => {

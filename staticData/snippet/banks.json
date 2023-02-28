@@ -1,0 +1,21 @@
+[
+    {
+        "image": "bcp.png",
+        "name": "Money"
+     
+    }, {
+        "image": "perfect-money.png",
+        "name": "Perfect Money"
+
+    }, {
+        "image": "paypal.png",
+        "name": "Paypal"
+
+    }, {
+        "image": "interbank.png",
+        "name": "INTERBANK"
+    }, {
+        "image": "usdc.png",
+        "name": "BCP"
+    }
+]

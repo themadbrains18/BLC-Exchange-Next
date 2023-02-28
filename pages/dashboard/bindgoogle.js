@@ -1,7 +1,7 @@
 
 
 import BindGoogle from './../../components/dashboard/bind-google';
-import Layout from '/components/layout/layout'
+import Layout from 'components/layout/Layout'
 import { getProviders, getSession } from "next-auth/react"
 const Bindgoogle = ({ account, sessions }) => {
     return(

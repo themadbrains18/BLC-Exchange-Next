@@ -7,7 +7,7 @@ const ResetPassSuccess = ({antiFishing,emailAuth,bindGoogle,overlay,linkMobile})
   return (
     <div>
         <div className="container">
-            <div className="bg-white w-full p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto dark:bg-black-v-5" >
+            <div className="bg-white w-full p-3 sm:p-6 border border-grey max-w-[480px] mx-auto dark:bg-black-v-5" >
               <svg className='max-w-[40px] sm:max-w-[80px] w-full mx-auto' version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 50" style={{enableBackground: 'new 0 0 50 50'}} xmlSpace="preserve">
                       <circle style={{fill: '#25AE88'}} cx={25} cy={25} r={25} />
                       <polyline style={{fill: 'none', stroke: '#FFFFFF', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 10}} points="

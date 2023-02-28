@@ -1,5 +1,5 @@
 import { getProviders, getSession } from "next-auth/react"
-import Layout from '/components/layout/layout'
+import Layout from 'components/layout/Layout'
 import ForgetFundCode from 'components/dashboard/forget-fund-code';
 const ResetFundCode = ({ account, sessions }) => {
     return (
