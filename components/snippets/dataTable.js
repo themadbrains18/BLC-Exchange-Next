@@ -1,7 +1,8 @@
+import Link from 'next/link';
 import React from 'react'
 
 const DataTable = ({ heading, data, assetData, cta }) => {
- 
+
 
   return (
     <>
@@ -25,14 +26,14 @@ const DataTable = ({ heading, data, assetData, cta }) => {
           }
           {
             data &&
-            <div className={`row grid bg-white ${`grid-cols-${heading.length} `} gap-4 justify-between border-b border-border-clr dark:bg-black-v-1 `}>
+            <div className={`row grid bg-white ${cta?'grid-cols-7':`grid-cols-${heading.length}`} gap-4 justify-between border-b border-border-clr dark:bg-black-v-1 `}>
 
               {!cta ?
                 data.length &&
                 data.map((elem) => {
                   let balance = 0.00;
-                  assetData!==undefined && assetData.length>0 && assetData.filter((e) => {
-                    if(e.token_id === elem.id){
+                  assetData !== undefined && assetData.length > 0 && assetData.filter((e) => {
+                    if (e.token_id === elem.id) {
                       balance = e.balance
                     }
                   })
@@ -43,25 +44,25 @@ const DataTable = ({ heading, data, assetData, cta }) => {
                         <img src={elem.image} alt='token' className='w-6 h-6'></img>
                         {elem.symbol}
                       </div>
-                      <div className="col info-14-16 max-w-[130px] p-3 text-black dark:text-white"> 
-                      {balance}
+                      <div className="col info-14-16 max-w-[130px] p-3 text-black dark:text-white">
+                        {balance}
                       </div>
                       <div className="col info-14-16 max-w-[130px] p-3 text-black dark:text-white"> 0.000000</div>
                       <div className="col info-14-16 max-w-[130px] p-3 text-black dark:text-white">0.000000</div>
-                     <div className="col info-14-16 max-w-[130px] flex justify-between gap-5 p-3">  
-                     <button className='info-12 text-primary'>Transfer</button>
-                    <button className='info-12 text-primary'>Deposit</button>
-                      <button className='info-12 text-primary'>Withdraw</button>
-                     </div>
-                      
+                      <div className="col max-w-[130px] flex justify-between gap-5 p-3 info-12 !text-primary">
+                        <Link href="/asset/transfer" >Transfer</Link>
+                        <Link href='asset/deposit' >Deposit</Link>
+                        <Link href='asset/withdraw'>Withdraw</Link>
+                      </div>
+
                     </>
                   )
                 }) :
                 data.length &&
                 data.map((elem) => {
                   let balance = 0.00;
-                  assetData!==undefined && assetData.length>0 && assetData.filter((e) => {
-                    if(e.token_id === elem.id){
+                  assetData !== undefined && assetData.length > 0 && assetData.filter((e) => {
+                    if (e.token_id === elem.id) {
                       balance = e.balance
                     }
                   })
@@ -77,10 +78,10 @@ const DataTable = ({ heading, data, assetData, cta }) => {
                       <div className="col info-14-16 max-w-[130px] p-3 text-black dark:text-white">0.000000</div>
                       <div className="col info-14-16 max-w-[130px] p-3 text-black dark:text-white">0.000000</div>
                       <div className="col info-14-16 max-w-[130px] p-3 text-black">0.000000</div>
-                      <div className="col info-14-16 max-w-[130px] flex justify-between dark:text-white gap-5 p-3 text-black">
-                        <button className='info-12 text-primary'>Transfer</button>
-                        <button className='info-12 text-primary'>Deposit</button>
-                        <button className='info-12 text-primary'>Withdraw</button>
+                      <div className="col  max-w-[130px] flex justify-between  gap-5 p-3 !text-primary ">
+                        <Link href="/asset/transfer" className='info-12 !text-primary'>Transfer</Link>
+                        <Link href='asset/deposit' className='info-12 !text-primary'>Deposit</Link>
+                        <Link href='asset/withdraw' className='info-12 !text-primary'>Withdraw</Link>
 
                       </div>
                     </>

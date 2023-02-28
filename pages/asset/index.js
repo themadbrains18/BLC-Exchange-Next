@@ -20,7 +20,7 @@ const Asset = ({ assets, assetData,tokens, sessions }) => {
   const [dataShow, setDataShow] = useState(true);
 
   let obj = [
-    { name: "Deposit", link: "" },
+    { name: "Deposit", link: "asset/deposit" },
     { name: "Buy Crypto", link: "" },
     { name: "Withdraw", link: "asset/withdraw" },
     { name: "Transfer", link: "asset/transfer" },
@@ -169,8 +169,8 @@ const Asset = ({ assets, assetData,tokens, sessions }) => {
                       : " border border-border-clr"
                     }`}
                   onClick={() => {
-                    e.name = "Buy Crypto" && setPopUp(true);
-                    setClick(true);
+                    e.name === "Buy Crypto" && ( setPopUp(true), setClick(true))
+                    
                   }}
                 >
                   {e.name}
@@ -204,9 +204,13 @@ const Asset = ({ assets, assetData,tokens, sessions }) => {
                       </svg>
                     </button>
                   </div>
-                  <div className="mt-8">
+                  <div className="mt-8" >
                     <Link
                       href={"/"}
+                      onClick={(()=>{
+                        setClick(false)
+                        setPopUp(false)
+                      })}
                       className="p-6 border border-border-clr rounded-xl flex items-center gap-2 "
                     >
                       <Icons type="p2p" />
@@ -233,6 +237,10 @@ const Asset = ({ assets, assetData,tokens, sessions }) => {
                     </Link>
                     <Link
                       href={"/"}
+                      onClick={(()=>{
+                        setClick(false)
+                        setPopUp(false)
+                      })}
                       className="p-6 border mt-4 border-border-clr rounded-xl flex items-center gap-2 "
                     >
                       <Icons type="card" />
@@ -270,7 +278,7 @@ const Asset = ({ assets, assetData,tokens, sessions }) => {
           </div>
           <p className="bg-table-bg p-2 mt-3 rounded-lg">
             You currently have no assets.{" "}
-            <Link href="" className="text-primary">
+            <Link href="/asset/deposit" className="text-primary">
               {" "}
               Deposit
             </Link>{" "}
