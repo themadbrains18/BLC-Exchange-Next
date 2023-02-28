@@ -23,6 +23,7 @@ const handler = nc({
   .get(async (req, res) => {
     try {
       let data = await getData(`${process.env.NEXT_PUBLIC_APIURL}/token`)
+      console.log(data,'================================')
       res.status(200).send({data});
     } catch (error) {
       console.log(error)

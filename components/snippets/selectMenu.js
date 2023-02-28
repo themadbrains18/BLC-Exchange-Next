@@ -1,14 +1,29 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState,useEffect } from "react";
 
 import Context from "../contexts/context";
 const SelectMenu = ({ selectMenu }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
-  const [value, setValue] = useState(selectMenu[0]);
+  const [value, setValue] = useState('Select Network');
   const [overlay, setOverlay] = useState(false);
   const ref = useRef(null);
   const {mode} =useContext(Context)
+  console.log(value,"valuswe")
+  const dropdown = useRef(null);
 
+
+
+  useEffect(() => {
+      function handleClick(event) {
+          if (dropdown.current && !dropdown.current.contains(event.target)) {
+            setOpen(false);
+          }
+        
+      }
+      window.addEventListener("click", handleClick);
+      // clean up
+      return () => window.removeEventListener("click", handleClick);
+  }, [])
   // document.addEventListener("click",(()=>{
   //   if(!ref.current){
 
@@ -16,23 +31,22 @@ const SelectMenu = ({ selectMenu }) => {
   // }))
   return (
     <>
-      <div ref={ref} className={`relative pr-2  ${open && "md:z-[2]"}`}>
+      <div ref={dropdown} className={`relative pr-2  ${open && "md:z-[2]"}`}>
         <div className="flex bg-transparent justify-between items-center">
           <input
             type="text"
             name=""
             id=""
             className="caret-white p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
-            value={value}
-            onChange={() => {}}
-            onFocus={() => {
+            defaultValue={value}
+            onClick={() => {
               setOpen(!open);
               setOverlay(!overlay);
             }}
-            onBlur={() => {
-              setOpen(!open);
-              setOverlay(!overlay);
-            }}
+            // onBlur={() => {
+            //   setOpen(!open);
+            //   setOverlay(!overlay);
+            // }}
           ></input>
 
           <svg
@@ -86,16 +100,18 @@ const SelectMenu = ({ selectMenu }) => {
                       "bg-blue-50 text-primary dark:!text-primary"
                     }`}
                     onClick={() => {
+                      
+                      setValue(e.networkName);
+                      setOpen(false)
                       setActive(i);
-                      setValue(e);
                     }}
                   >
-                    {e}
+                    {e.networkName}
                   </button>
                 );
               })}
             <button
-              className="fixed bottom-0 p-4 w-full border-t-4"
+              className="fixed bottom-0 p-4 w-full border-t-4 md:hidden"
               onClick={() => {
                 setOpen(!open);
                 setOverlay(!overlay);

@@ -1,21 +1,21 @@
 import { Fragment, useState, useEffect } from 'react'
-const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone,setCountryName, setCurrencyList, coin, currency, idData, selectId, selectCoin, setDialCode }) => {
+const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone, setCountryName, setCurrencyList, coin, currency, idData, selectId, selectCoin, setDialCode, tokens }) => {
     // const[showDropdown,setShowDropdown] = useState(false);
     // const[DropdownPhone,setDropdownPhone] = useState(false);
 
     const [Data, setData] = useState([]);
-    const [coinData, setCoinData] = useState([]);
+    const [coinData, setCoinData] = useState(tokens);
     const [currencyData, setCurrencyData] = useState([]);
     const [countryList, setCountryList] = useState([])
 
 
     useEffect(() => {
         (async () => {
+            
             await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello")
                 .then((res) => res.json())
                 .then((data) => {
                     setData(data.counteryList);
-                    setCoinData(data.coinList);
                     setCurrencyData(data.currency);
                     setCountryList(data.counteryList)
                     /* process your data further */
@@ -89,8 +89,8 @@ const SearchDropdown = ({ country, code, setShowDropdown, setDropdownPhone,setCo
                                     {
                                         coin &&
                                         <li className="cursor-pointer info-14 !text-black flex gap-2 p-3 dark:!text-white px-4 hover:bg-[#cccccc1f]" onClick={() => { selectCoin(e), setShowDropdown(false) }}>
-                                            <img src={`/assets/images/${e.image}`} className='max-w-[24px] w-full h-auto'></img>
-                                            <span>{e.name}</span>
+                                            <img src={`${e.image}`} className='max-w-[24px] w-full h-auto'></img>
+                                            <span>{e.symbol}</span>
                                         </li>
                                     }
 

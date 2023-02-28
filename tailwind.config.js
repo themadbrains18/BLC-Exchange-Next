@@ -26,6 +26,7 @@ module.exports = {
         "border-clr":"#ebebeb",
         "disable-clr":"#a7b1bb",
         "table-bg":"#f9f9f9",
+        "active-clr":"#f9fbfb"
         
       },
       fontFamily: {

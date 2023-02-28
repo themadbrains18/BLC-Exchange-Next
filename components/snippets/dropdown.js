@@ -18,7 +18,6 @@ const Dropdown = ({
 }) => {
   const { mode, setLogin } = useContext(Context);
 
-  // console.log(location.pathname,'====location path name')
 
   return (
     <>
