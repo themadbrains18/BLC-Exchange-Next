@@ -109,7 +109,6 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
                     setShowDropdown={setDropDown}
                     coin={true}
                     selectCoin={selectCoin}
-                    tokens={tokens}
                   />
                 )}
               </div>
@@ -118,7 +117,7 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
                   Networks
                 </h6>
                 <div className="font-bold mt-2 border md:border-t-0 md:border-r-0 md:border-l-0  border-border-clr">
-                  <SelectMenu deposit={true} selectMenu={network} getDepositAddress={getDepositAddress} />
+                  <SelectMenu deposit={true} selectMenu={network} getDepositAddress={getDepositAddress} network={true}/>
                 </div>
               </div>
 

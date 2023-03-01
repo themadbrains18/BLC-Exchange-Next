@@ -10,12 +10,11 @@ import Link from "next/link";
 import WithDrawTable from "/components/asset/withDraw/withDrawTable";
 import ActiveCta from "/components/snippets/activeCta";
 
-const Withdraw = ({ assets }) => {
-
+const Withdraw = ({ assets, tokens, networks, sessions })  => {
   const { mode } = useContext(Context);
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
-  let network = ["BTC", "Bsc "];
+
   let ctas = ["Email", "Mobile"];
   const [show, setShow] = useState(1);
   const [active, setActive] = useState(0);
@@ -23,13 +22,44 @@ const Withdraw = ({ assets }) => {
   const [data, setData] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const [filterShow, setfilterShow] = useState(false);
-  const [coin, setCoin] = useState("USD");
-  const [coinImg, setCoinImg] = useState("bnb.png");
+  const [coin, setCoin] = useState("Select Coin");
+  const [coinImg, setCoinImg] = useState("https://bitlivecoinnetwork.com/images/logo.png");
+  const [network, setNetwork] = useState([]);
+  const [assetList, setAssetList] =useState()
+
   const selectCoin = async (item) => {
-    setCoin(item.name);
+    setCoin(item.symbol);
     setCoinImg(item.image);
-    setRotate(false);
+    getToken(item.id)
+    let selectedToken = tokens.filter((token) => {
+      return item.id === token.id
+    })
+    let filternetwork = []
+    for (const tokennet of JSON.parse(selectedToken[0].networks)) {
+      networks.filter((net) => {
+        if (net.id === tokennet.id) {
+          filternetwork.push(net);
+        }
+      })
+    }
+
+    setNetwork(filternetwork);
   };
+
+
+  const getToken = async (type) => {
+    let result = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/withdraw/getToken/${sessions.user.id}/${type}`, {
+      method: "GET"
+    }).then(response => response.json());
+
+    if(result.status === 200){
+      setAssetList(result.data);
+    }
+    else{
+      console.log(result);
+    }
+  };
+
   return (
     <>
       <Layout data={assets} name="Withdraw">
@@ -72,13 +102,13 @@ const Withdraw = ({ assets }) => {
                       }}
                     >
                       <div className="flex gap-3 ">
-                        <Image
-                          className="self-start"
-                          height={24}
-                          width={24}
-                          alt="Coin Image"
-                          src={`/assets/images/${coinImg}`}
-                        ></Image>
+                      <img
+                      className="self-start"
+                      height={24}
+                      width={24}
+                      alt="Coin Image"
+                      src={`${coinImg}`}
+                    ></img>
                         <p className="info-14-16 font-bold">{coin}</p>
                       </div>
                       <svg
@@ -126,7 +156,7 @@ const Withdraw = ({ assets }) => {
                       Networks
                     </h6>
                     <div className="font-bold mt-2 border md:border-t-0 md:border-r-0 md:border-l-0  border-border-clr">
-                      <SelectMenu selectMenu={network} />
+                      <SelectMenu selectMenu={network} network='true'/>
                     </div>
                   </div>
                 )}
@@ -163,7 +193,7 @@ const Withdraw = ({ assets }) => {
 
                     <span className="text-primary">All</span>
                   </div>
-                </div>
+              </div>
 
                 <div className="info-14 mt-2 flex justify-between hover:!text-grey dark:hover:!text-white dark:text-white">
                   <span>Available: 0.00000000</span>
@@ -220,7 +250,7 @@ const Withdraw = ({ assets }) => {
         <div className="grow px-4 md:px-8">
           <div className="flex gap-3 justify-between items-center">
             <h3 className="section-secondary-heading font-noto hidden md:block mb-4 ">
-              Withdrawals Records
+              Withdrawal Records
             </h3>
             {/* faq pending */}
             <Link
@@ -360,10 +390,22 @@ export async function getServerSideProps(context) {
   const providers = await getProviders();
   if (session) {
     let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
+
+    let tokenList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`, {
+      method: "GET"
+    }).then(response => response.json());
+
+    let networkList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/network`, {
+      method: "GET"
+    }).then(response => response.json());
+
     let menu = await data.json();
     return {
       props: {
         assets: menu.specialNav.assets,
+        tokens: tokenList,
+        networks: networkList,
+        sessions: session
       }, // will be passed to the page component as props
     };
   }
