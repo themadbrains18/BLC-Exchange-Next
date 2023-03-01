@@ -1857,11 +1857,9 @@ const Icons = ({ type, stroke }) => {
     />
   </g>
 </svg>
-
         )
       }
     </>
-    
   );
 };
 

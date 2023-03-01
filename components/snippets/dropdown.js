@@ -22,7 +22,7 @@ const Dropdown = ({
   return (
     <>
       <div
-        className={`p-4 absolute top-[92.3%] invisible shadow-2xl group-hover:animate-open bg-white rounded-xl opacity-0 group-hover:opacity-100 group-hover:visible overflow-x-auto  ${height && "h-[100vh]"
+        className={`p-4 absolute top-[92.3%] invisible shadow-2xl group-hover:animate-open bg-white rounded-xl opacity-0 group-hover:opacity-100 group-hover:visible overflow-x-auto group-hover:z-[99]  ${height && "h-[100vh]"
           } dark:bg-black-v-4 ${right && "right-0"}`}
         style={{ maxHeight: "calc(100vh - 120px)" }} >
         {specialMenu && specialMenu != undefined &&
