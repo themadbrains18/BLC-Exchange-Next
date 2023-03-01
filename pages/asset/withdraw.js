@@ -1,5 +1,5 @@
 import Layout from "components/layout/Layout";
-
+import Image from "next/image";
 import React, { useState, useContext } from "react";
 import { getProviders, getSession } from "next-auth/react";
 import SearchDropdown from "/components/snippets/search-dropdown";
@@ -7,38 +7,27 @@ import Context from "/components/contexts/context";
 import SelectMenu from "/components/snippets/selectMenu";
 import AdImage from "/components/snippets/adImage";
 import Link from "next/link";
-import ActiveCta from "components/snippets/activeCta";
-
-const Withdraw = ({ assets, tokens, networks, sessions }) => {
+import WithDrawTable from "/components/asset/withDraw/withDrawTable";
+import ActiveCta from "/components/snippets/activeCta";
+​
+const Withdraw = ({ assets }) => {
   const { mode } = useContext(Context);
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
-  
+  let network = ["BTC", "Bsc "];
+  let ctas = ["Email", "Mobile"];
   const [show, setShow] = useState(1);
+  const [active, setActive] = useState(0);
   const [rotate, setRotate] = useState(false);
+  const [data, setData] = useState(false);
   const [dropDown, setDropDown] = useState(false);
-  const [network, setNetwork] = useState([]);
-  const [coin, setCoin] = useState("Select Coin");
-  const [coinImg, setCoinImg] = useState("https://bitlivecoinnetwork.com/images/logo.png");
+  const [filterShow, setfilterShow] = useState(false);
+  const [coin, setCoin] = useState("USD");
+  const [coinImg, setCoinImg] = useState("bnb.png");
   const selectCoin = async (item) => {
-    setCoin(item.symbol);
+    setCoin(item.name);
     setCoinImg(item.image);
-
-    let selectedToken = tokens.filter((token) => {
-      return item.id === token.id
-    })
-
-    let filternetwork = [];
-
-    for (const tokennet of JSON.parse(selectedToken[0].networks)) {
-      networks.filter((net) => {
-        if (net.id === tokennet.id) {
-          filternetwork.push(net);
-        }
-      })
-    }
-
-    setNetwork(filternetwork);
+    setRotate(false);
   };
   return (
     <>
@@ -82,13 +71,13 @@ const Withdraw = ({ assets, tokens, networks, sessions }) => {
                       }}
                     >
                       <div className="flex gap-3 ">
-                      <img
-                      className="self-start"
-                      height={24}
-                      width={24}
-                      alt="Coin Image"
-                      src={`${coinImg}`}
-                    ></img>
+                        <Image
+                          className="self-start"
+                          height={24}
+                          width={24}
+                          alt="Coin Image"
+                          src={`/assets/images/${coinImg}`}
+                        ></Image>
                         <p className="info-14-16 font-bold">{coin}</p>
                       </div>
                       <svg
@@ -118,7 +107,7 @@ const Withdraw = ({ assets, tokens, networks, sessions }) => {
                   </div>
                 </div>
               </div>
-
+​
               <div>
                 {show === 2 && (
                   <div className="mt-8">
@@ -170,25 +159,25 @@ const Withdraw = ({ assets, tokens, networks, sessions }) => {
                           : "Minimum withdrawal amount: 0.001"
                       }
                     />
-
+​
                     <span className="text-primary">All</span>
                   </div>
                 </div>
-
+​
                 <div className="info-14 mt-2 flex justify-between hover:!text-grey dark:hover:!text-white dark:text-white">
                   <span>Available: 0.00000000</span>
                   <span className="text-primary">
                     Withdrawal Limit: - - Increase Limit
                   </span>
                 </div>
-
+​
                 <span className="info-14 mt-4  hover:!text-grey dark:hover:!text-white dark:text-white block">
                   Fee Free
                 </span>
                 <span className="info-14 mt-2 hover:!text-grey dark:hover:!text-white dark:text-white block">
                   To Receive - - BTC
                 </span>
-
+​
                 <div className="mt-8">
                   <button className="cta w-full">Submit</button>
                   {show === 2 && (
@@ -222,7 +211,7 @@ const Withdraw = ({ assets, tokens, networks, sessions }) => {
             </div>
             <AdImage />
           </div>
-
+​
           {/* dataTable */}
           {/* <DepositTable data={data} /> */}
         </div>
@@ -230,7 +219,7 @@ const Withdraw = ({ assets, tokens, networks, sessions }) => {
         <div className="grow px-4 md:px-8">
           <div className="flex gap-3 justify-between items-center">
             <h3 className="section-secondary-heading font-noto hidden md:block mb-4 ">
-              Withdrawals Records
+              Withdrawal Records
             </h3>
             {/* faq pending */}
             <Link
@@ -257,7 +246,7 @@ const Withdraw = ({ assets, tokens, networks, sessions }) => {
                 <SelectMenu selectMenu={dateFilter} />
               </div>
             </div>
-
+​
             <div className="hidden lg:flex  gap-3 h-[40px] self-end px-1 border border-border-clr dark:bg-black-v-4">
               <input
                 type="date"
@@ -292,7 +281,7 @@ const Withdraw = ({ assets, tokens, networks, sessions }) => {
             >
               <div className="flex justify-between mb-4  p-4 border-b lg:hidden border-t border-border-clr">
                 <h3 className="info-14-20">Filter</h3>
-
+​
                 <button className="ml-auto mr-0"
                   onClick={() => {
                     setfilterShow(false);
@@ -349,10 +338,10 @@ const Withdraw = ({ assets, tokens, networks, sessions }) => {
                   className="w-full border border-border-clr p-2 mt-2 bg-transparent dark:text-white"
                 />
               </div>
-
+​
               <div className="mt-4 px-2 flex gap-4">
                 <button className="cta2 w-full">Reset</button>
-                <button className="cta w-full">Confirm yes</button>
+                <button className="cta w-full">Confirm</button>
               </div>
             </div>
           </div>
@@ -370,22 +359,10 @@ export async function getServerSideProps(context) {
   const providers = await getProviders();
   if (session) {
     let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
-
-    let tokenList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`, {
-      method: "GET"
-    }).then(response => response.json());
-
-    let networkList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/network`, {
-      method: "GET"
-    }).then(response => response.json());
-
     let menu = await data.json();
     return {
       props: {
         assets: menu.specialNav.assets,
-        tokens: tokenList,
-        networks: networkList,
-        sessions: session
       }, // will be passed to the page component as props
     };
   }
