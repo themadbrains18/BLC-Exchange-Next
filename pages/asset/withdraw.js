@@ -11,6 +11,7 @@ import WithDrawTable from "/components/asset/withDraw/withDrawTable";
 import ActiveCta from "/components/snippets/activeCta";
 
 const Withdraw = ({ assets }) => {
+  
   const { mode } = useContext(Context);
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
