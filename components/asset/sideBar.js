@@ -23,7 +23,6 @@ const SideBar = ({ data, name }) => {
   };
   useEffect(() => {
     setPageActive(router.pathname);
-    // console.log()
   }, []);
   return (
     <>
@@ -101,6 +100,7 @@ const SideBar = ({ data, name }) => {
                       
                       href={`${e.linkUrl}`}
                       className={`md:max-w-[250px] w-full `}
+                      target={e.blank && "_blank"}
                       onClick={() => {
                         handleClick(i, e);
                       }}

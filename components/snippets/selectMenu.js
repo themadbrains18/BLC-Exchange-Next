@@ -1,7 +1,11 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 
 import Context from "../contexts/context";
-const SelectMenu = ({ selectMenu, getDepositAddress, deposit, transfer,from, to,setFromWallet,setToWallet,fromValue }) => {
+<<<<<<< HEAD
+const SelectMenu = ({ selectMenu, getDepositAddress, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
+=======
+const SelectMenu = ({ selectMenu, getDepositAddress, network }) => {
+>>>>>>> 554e554b0d94d3f698179b39f619c99a4fa45232
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [value, setValue] = useState('Please Select');
@@ -20,16 +24,16 @@ const SelectMenu = ({ selectMenu, getDepositAddress, deposit, transfer,from, to,
     // clean up
     return () => window.removeEventListener("click", handleClick);
   }, [])
-  
 
-  const onSelectOption=(e,i)=>{
+
+  const onSelectOption = (e, i) => {
     setValue(e.name);
     setOpen(false)
     setActive(i);
-    if(from === true){
+    if (from === true) {
       setFromWallet(e)
     }
-    if(to === true){
+    if (to === true) {
       setToWallet(e)
     }
   }
@@ -43,15 +47,15 @@ const SelectMenu = ({ selectMenu, getDepositAddress, deposit, transfer,from, to,
             name=""
             id=""
             className="caret-white p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
-            value={fromValue !==''?fromValue: value}
+            value={fromValue !== '' ? fromValue : value}
             onClick={() => {
               setOpen(!open);
               setOverlay(!overlay);
             }}
-            onChange={()=>{
+            onChange={() => {
               console.log('')
             }}
-          
+
           ></input>
 
           <svg
@@ -89,7 +93,8 @@ const SelectMenu = ({ selectMenu, getDepositAddress, deposit, transfer,from, to,
             <span className="block md:hidden my-2 p-2 rounded-xl">
               Please Select
             </span>
-            {deposit === true &&
+
+            {transfer !== true &&
               <>
                 {selectMenu &&
                   selectMenu.map((e, i) => {
@@ -101,19 +106,20 @@ const SelectMenu = ({ selectMenu, getDepositAddress, deposit, transfer,from, to,
                           "bg-blue-50 text-primary dark:!text-primary"
                           }`}
                         onClick={() => {
-                          getDepositAddress(e.type)
-                          setValue(e.networkName);
+                          getDepositAddress && getDepositAddress(e.type)
+                          network ? setValue(e.networkName) : setValue(e);
                           setOpen(false)
                           setActive(i);
                         }}
                       >
-                        {e.networkName}
+                        {network ? e.networkName : e}
                       </button>
                     );
                   })
                 }
               </>
             }
+
 
             {transfer === true &&
               <>
@@ -128,7 +134,7 @@ const SelectMenu = ({ selectMenu, getDepositAddress, deposit, transfer,from, to,
                           }`}
                         onClick={(e) => {
                           e.preventDefault()
-                          onSelectOption(item,i)
+                          onSelectOption(item, i)
                         }}
                       >
                         {item.name}

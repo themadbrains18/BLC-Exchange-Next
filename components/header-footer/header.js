@@ -172,7 +172,6 @@ const Header = (props) => {
             </Link>
 
             <div
-              href={""}
               className={`hidden relative   group  hover:pb-8 hover:-mb-8  ${
                 login2 === true ? "lg:block" : "lg:hidden"
               }`}
