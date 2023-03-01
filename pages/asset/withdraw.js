@@ -9,7 +9,7 @@ import AdImage from "/components/snippets/adImage";
 import Link from "next/link";
 import WithDrawTable from "/components/asset/withDraw/withDrawTable";
 import ActiveCta from "/components/snippets/activeCta";
-​
+
 const Withdraw = ({ assets }) => {
   const { mode } = useContext(Context);
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
@@ -107,7 +107,7 @@ const Withdraw = ({ assets }) => {
                   </div>
                 </div>
               </div>
-​
+
               <div>
                 {show === 2 && (
                   <div className="mt-8">
@@ -159,25 +159,25 @@ const Withdraw = ({ assets }) => {
                           : "Minimum withdrawal amount: 0.001"
                       }
                     />
-​
+
                     <span className="text-primary">All</span>
                   </div>
-                </div>
-​
+              </div>
+
                 <div className="info-14 mt-2 flex justify-between hover:!text-grey dark:hover:!text-white dark:text-white">
                   <span>Available: 0.00000000</span>
                   <span className="text-primary">
                     Withdrawal Limit: - - Increase Limit
                   </span>
                 </div>
-​
+
                 <span className="info-14 mt-4  hover:!text-grey dark:hover:!text-white dark:text-white block">
                   Fee Free
                 </span>
                 <span className="info-14 mt-2 hover:!text-grey dark:hover:!text-white dark:text-white block">
                   To Receive - - BTC
                 </span>
-​
+
                 <div className="mt-8">
                   <button className="cta w-full">Submit</button>
                   {show === 2 && (
@@ -211,7 +211,7 @@ const Withdraw = ({ assets }) => {
             </div>
             <AdImage />
           </div>
-​
+
           {/* dataTable */}
           {/* <DepositTable data={data} /> */}
         </div>
@@ -246,7 +246,7 @@ const Withdraw = ({ assets }) => {
                 <SelectMenu selectMenu={dateFilter} />
               </div>
             </div>
-​
+
             <div className="hidden lg:flex  gap-3 h-[40px] self-end px-1 border border-border-clr dark:bg-black-v-4">
               <input
                 type="date"
@@ -281,7 +281,7 @@ const Withdraw = ({ assets }) => {
             >
               <div className="flex justify-between mb-4  p-4 border-b lg:hidden border-t border-border-clr">
                 <h3 className="info-14-20">Filter</h3>
-​
+
                 <button className="ml-auto mr-0"
                   onClick={() => {
                     setfilterShow(false);
@@ -338,7 +338,7 @@ const Withdraw = ({ assets }) => {
                   className="w-full border border-border-clr p-2 mt-2 bg-transparent dark:text-white"
                 />
               </div>
-​
+
               <div className="mt-4 px-2 flex gap-4">
                 <button className="cta2 w-full">Reset</button>
                 <button className="cta w-full">Confirm</button>
