@@ -4,7 +4,7 @@ import Context from "../contexts/context";
 const SelectMenu = ({ selectMenu, getDepositAddress,network, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
-  const [value, setValue] = useState('Please Select');
+  const [value, setValue] = useState('');
   const [overlay, setOverlay] = useState(false);
   const ref = useRef(null);
   const { mode } = useContext(Context)
@@ -43,7 +43,7 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network, deposit, transfer, 
             name=""
             id=""
             className="caret-white p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
-            value={fromValue !== '' ? fromValue : value}
+            value={fromValue !== '' && fromValue !== undefined ? fromValue : value}
             onClick={() => {
               setOpen(!open);
               setOverlay(!overlay);
