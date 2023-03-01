@@ -9,7 +9,8 @@ const StepsCardSec = ({ cardData }) => {
           <h4 className="section-secondary-heading font-noto text-center mb-4 md:mb-8">
             How It Works?
           </h4>
-          <div className="flex table_box gap-2 md:gap-4 justify-between px-4 py-4 ">
+          <div className="flex flex-col xl:flex-row gap-8 xl:gap-4 justify-between px-4 py-4 ">
+            
             {cardData &&
               cardData.map((e, i) => {
                 return (
