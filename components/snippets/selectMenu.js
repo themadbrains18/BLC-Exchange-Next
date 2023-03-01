@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 
 import Context from "../contexts/context";
-const SelectMenu = ({ selectMenu, getDepositAddress }) => {
+const SelectMenu = ({ selectMenu, getDepositAddress, network }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [value, setValue] = useState('Select Network');
@@ -87,13 +87,13 @@ const SelectMenu = ({ selectMenu, getDepositAddress }) => {
                       "bg-blue-50 text-primary dark:!text-primary"
                       }`}
                     onClick={() => {
-                      getDepositAddress(e.type)
-                      setValue(e.networkName);
+                      getDepositAddress && getDepositAddress(e.type)
+                      network ? setValue(e.networkName): setValue(e);
                       setOpen(false)
                       setActive(i);
                     }}
                   >
-                    {e.networkName}
+                    {network ? e.networkName : e}
                   </button>
                 );
               })
