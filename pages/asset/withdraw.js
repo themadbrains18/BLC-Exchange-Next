@@ -11,6 +11,7 @@ import WithDrawTable from "/components/asset/withDraw/withDrawTable";
 import ActiveCta from "/components/snippets/activeCta";
 
 const Withdraw = ({ assets }) => {
+
   const { mode } = useContext(Context);
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
@@ -219,7 +220,7 @@ const Withdraw = ({ assets }) => {
         <div className="grow px-4 md:px-8">
           <div className="flex gap-3 justify-between items-center">
             <h3 className="section-secondary-heading font-noto hidden md:block mb-4 ">
-              Withdrawal Records
+              Withdrawals Records
             </h3>
             {/* faq pending */}
             <Link
