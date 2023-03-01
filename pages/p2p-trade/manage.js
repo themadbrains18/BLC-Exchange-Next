@@ -1,7 +1,8 @@
+import SubHeader from '/components/snippets/subHeader';
 const Manage = () => {
     return (
         <>
-
+            <SubHeader />
         </>
     )
 }

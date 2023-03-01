@@ -39,7 +39,7 @@ const Dropdown = ({
                         
                         return (
                           <Link
-                            href={`/${elem.linkUrl}`}
+                            href={`${elem.linkUrl}`}
                             key={index}
                             className={`items-center rounded flex gap-6 min-w-[330px] p-4 group/arrow  ${mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
                               } `}
