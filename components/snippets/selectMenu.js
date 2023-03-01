@@ -1,11 +1,7 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 
 import Context from "../contexts/context";
-<<<<<<< HEAD
-const SelectMenu = ({ selectMenu, getDepositAddress, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
-=======
-const SelectMenu = ({ selectMenu, getDepositAddress, network }) => {
->>>>>>> 554e554b0d94d3f698179b39f619c99a4fa45232
+const SelectMenu = ({ selectMenu, getDepositAddress,network, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [value, setValue] = useState('Please Select');
