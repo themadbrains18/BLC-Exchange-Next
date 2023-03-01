@@ -6,7 +6,7 @@ import Link from 'next/link'
 const Assets = () => {
     const [show, setShow] = useState(true);
     return (
-        <section className=' px-8 py-3 md:py-5'>
+        <section className='py-3 md:py-5'>
 
              <div className='my-10 p-4 border rounded-md border-clr-2 gap-7 flex justify-between items-center'>
                 <div>

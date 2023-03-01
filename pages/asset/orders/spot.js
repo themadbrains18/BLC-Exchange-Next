@@ -27,7 +27,7 @@ const Spot = ({ assets }) => {
           <div className="flex justify-between items-center gap-3 md:bg-table-bg mt-2 md:mt-4 ">
 
          
-          <div className="  p-2 flex justify-between lg:justify-start gap-4 md:flex-wrap grow">
+          <div className="  p-2 flex justify-between lg:justify-start gap-4 md:flex-wrap grow dark:bg-black-v-4">
            {
             active!=2 &&
             <SelectMenu selectMenu={selectMenu} />
@@ -35,7 +35,7 @@ const Spot = ({ assets }) => {
           
             {/* search */}
             <div className="hidden lg:flex items-center gap-2">
-              <div className="relative text-gray-600 focus-within:text-gray-400">
+              <div className="relative text-gray-600 focus-within:text-gray-400 ">
                 <span className="absolute inset-y-0 left-0 flex items-center pl-2">
                   <button
                     type="submit"

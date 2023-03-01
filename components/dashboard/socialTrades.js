@@ -8,7 +8,7 @@ const SocialTrades = () => {
   const { mode } = useContext(Context);
 
   return (
-    <section className=' px-8 py-10 md:py-20'>
+    <section className='py-10 md:py-20'>
       <div>
         <p className='section-secondary-heading'>My social trades</p>
         <div className='flex justify-between items-start my-8'>

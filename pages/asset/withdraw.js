@@ -1,5 +1,5 @@
 import Layout from "components/layout/Layout";
-import Image from "next/image";
+
 import React, { useState, useContext } from "react";
 import { getProviders, getSession } from "next-auth/react";
 import SearchDropdown from "/components/snippets/search-dropdown";
@@ -8,20 +8,36 @@ import SelectMenu from "/components/snippets/selectMenu";
 import AdImage from "/components/snippets/adImage";
 import Link from "next/link";
 
-const Withdraw = ({ assets }) => {
+const Withdraw = ({ assets, tokens, networks, sessions }) => {
   const { mode } = useContext(Context);
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
-  let network = ["BTC", "Bsc "];
+  
   const [show, setShow] = useState(1);
   const [rotate, setRotate] = useState(false);
   const [dropDown, setDropDown] = useState(false);
-  const [coin, setCoin] = useState("USD");
-  const [coinImg, setCoinImg] = useState("bnb.png");
+  const [network, setNetwork] = useState([]);
+  const [coin, setCoin] = useState("Select Coin");
+  const [coinImg, setCoinImg] = useState("https://bitlivecoinnetwork.com/images/logo.png");
   const selectCoin = async (item) => {
-    setCoin(item.name);
+    setCoin(item.symbol);
     setCoinImg(item.image);
-    setRotate(false);
+
+    let selectedToken = tokens.filter((token) => {
+      return item.id === token.id
+    })
+
+    let filternetwork = [];
+
+    for (const tokennet of JSON.parse(selectedToken[0].networks)) {
+      networks.filter((net) => {
+        if (net.id === tokennet.id) {
+          filternetwork.push(net);
+        }
+      })
+    }
+
+    setNetwork(filternetwork);
   };
   return (
     <>
@@ -65,13 +81,13 @@ const Withdraw = ({ assets }) => {
                   }}
                 >
                   <div className="flex gap-3 ">
-                    <Image
+                  <img
                       className="self-start"
                       height={24}
                       width={24}
                       alt="Coin Image"
-                      src={`/assets/images/${coinImg}`}
-                    ></Image>
+                      src={`${coinImg}`}
+                    ></img>
                     <p className="info-14-16 font-bold">{coin}</p>
                   </div>
                   <svg
@@ -212,10 +228,22 @@ export async function getServerSideProps(context) {
   const providers = await getProviders();
   if (session) {
     let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
+
+    let tokenList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`, {
+      method: "GET"
+    }).then(response => response.json());
+
+    let networkList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/network`, {
+      method: "GET"
+    }).then(response => response.json());
+
     let menu = await data.json();
     return {
       props: {
         assets: menu.specialNav.assets,
+        tokens: tokenList,
+        networks: networkList,
+        sessions: session
       }, // will be passed to the page component as props
     };
   }
