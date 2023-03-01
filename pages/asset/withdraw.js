@@ -2,13 +2,13 @@ import Layout from "components/layout/Layout";
 
 import React, { useState, useContext } from "react";
 import { getProviders, getSession } from "next-auth/react";
-import SearchDropdown from "/components/snippets/search-dropdown";
-import Context from "/components/contexts/context";
-import SelectMenu from "/components/snippets/selectMenu";
-import AdImage from "/components/snippets/adImage";
+import SearchDropdown from "components/snippets/search-dropdown";
+import Context from "components/contexts/context";
+import SelectMenu from "components/snippets/selectMenu";
+import AdImage from "components/snippets/adImage";
 import Link from "next/link";
-import WithDrawTable from "/components/asset/withDraw/withDrawTable";
-import ActiveCta from "/components/snippets/activeCta";
+import WithDrawTable from "components/asset/withDraw/withDrawTable";
+import ActiveCta from "components/snippets/activeCta";
 
 const Withdraw = ({ assets, tokens, networks, sessions }) => {
   const { mode } = useContext(Context);
@@ -132,6 +132,7 @@ const Withdraw = ({ assets, tokens, networks, sessions }) => {
                         setShowDropdown={setDropDown}
                         coin={true}
                         selectCoin={selectCoin}
+                        
                       />
                     )}
                   </div>
@@ -155,7 +156,7 @@ const Withdraw = ({ assets, tokens, networks, sessions }) => {
                       Networks
                     </h6>
                     <div className="font-bold mt-2 border md:border-t-0 md:border-r-0 md:border-l-0  border-border-clr">
-                      <SelectMenu selectMenu={network} network='true'/>
+                      <SelectMenu selectMenu={network} network={true}/>
                     </div>
                   </div>
                 )}
@@ -265,7 +266,7 @@ const Withdraw = ({ assets, tokens, networks, sessions }) => {
                 Coin
               </h4>
               <div className="border border-border-clr ">
-                <SelectMenu selectMenu={coinData} />
+                <SelectMenu selectMenu={coinData}/>
               </div>
             </div>
             <div className="hidden lg:block">

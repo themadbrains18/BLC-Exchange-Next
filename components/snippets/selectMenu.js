@@ -43,7 +43,7 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network, deposit, transfer, 
             name=""
             id=""
             className="caret-white p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
-            value={fromValue !== '' ? fromValue : value}
+            value={ (transfer && fromValue !== '') ? fromValue : value}
             onClick={() => {
               setOpen(!open);
               setOverlay(!overlay);
@@ -90,7 +90,7 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network, deposit, transfer, 
               Please Select
             </span>
 
-            {transfer !== true &&
+            {!transfer &&
               <>
                 {selectMenu &&
                   selectMenu.map((e, i) => {
@@ -102,6 +102,7 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network, deposit, transfer, 
                           "bg-blue-50 text-primary dark:!text-primary"
                           }`}
                         onClick={() => {
+                          console.log("-====network", network)
                           getDepositAddress && getDepositAddress(e.type)
                           network ? setValue(e.networkName) : setValue(e);
                           setOpen(false)

@@ -17,7 +17,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const RegisterForm = () => {
     const [show, setShow] = useState(1);
-    const [active, setActive] = useState(false);
+    const [active, setActive] = useState();
     const [showDropdown, setShowDropdown] = useState(false);
     const [DropdownPhone, setDropdownPhone] = useState(false);
     const [showVerification, setShowVerification] = useState(0);
@@ -25,12 +25,14 @@ const RegisterForm = () => {
     const [registerForm, setRegisterForm] = useState();
     const [dialCode, setDialCode] = useState(91)
 
+
     const dropdown = useRef(null);
     const codedropdown = useRef(null);
 
     const router = useRouter();
-
+    
     useEffect(() => {
+
         function handleClick(event) {
             if (dropdown.current && !dropdown.current.contains(event.target)) {
                 setShowDropdown(false);
@@ -46,6 +48,8 @@ const RegisterForm = () => {
 
     let { register, setValue, handleSubmit, watch, setError, formState: { errors } } = useForm();
 
+
+    const code = router.query.referal
 
     const showPass = (e) => {
         if (!e.currentTarget.classList.contains("hidden")) {
@@ -245,7 +249,7 @@ const RegisterForm = () => {
                                     </label>
                                     {
                                         active != false &&
-                                        <input type="tel" {...register('referal_code', { required: false })} placeholder="Referral Code (Optional)" className="block px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="referelCode" />
+                                        <input type="tel" {...register('referal_code', { required: false })} value={`${code ? code:''}`} placeholder="Referral Code (Optional)" className="block px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="referelCode" />
                                     }
                                 </div>
 

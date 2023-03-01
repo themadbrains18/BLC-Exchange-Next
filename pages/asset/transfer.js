@@ -9,7 +9,7 @@ import Context from "components/contexts/context";
 import SearchDropdown from "components/snippets/search-dropdown";
 import TransferDataTable from "components/asset/transfer/transferDataTable";
 import AdImage from "components/snippets/adImage";
-import Icons from "@/components/snippets/icons";
+import Icons from "components/snippets/icons";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -264,7 +264,6 @@ const Transfer = ({ assets, sessions, tokenAssets }) => {
                                 src={`${coinImg2}`}
                               ></img>
                             }
-                            in
                             <p className="info-14-16 font-bold" >{coin2}</p>
                           </div>
                           <svg

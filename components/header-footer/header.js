@@ -49,7 +49,7 @@ const Header = (props) => {
   
   return (
     <>
-      <header className="header w-full border-b border-primary ">
+      <header className="header w-full ">
         {/* <div className="">
           {  (session != "" && session!=undefined ) && (
             <>
