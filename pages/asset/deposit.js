@@ -109,7 +109,6 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
                     setShowDropdown={setDropDown}
                     coin={true}
                     selectCoin={selectCoin}
-                    tokens={tokens}
                   />
                 )}
               </div>

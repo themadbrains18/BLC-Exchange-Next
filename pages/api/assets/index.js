@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import {getData} from "../../../libs/requestMethod";
+import {getData, postData} from "../../../libs/requestMethod";
 
 export const config = {
   api: {
@@ -27,6 +27,17 @@ const handler = nc({
     } catch (error) {
       console.log(error)
        res.status(401).send({error: error})
+    }
+  })
+
+  .post(async (req,res) =>{
+    try {
+      // console.log( req.body,'========================')
+      let data = await postData(`${process.env.NEXT_PUBLIC_APIURL}/assets/wallettransfer`, JSON.parse(req.body));
+      res.status(200).send({data});
+    } catch (error) {
+      console.log(error)
+       res.status(500).send({error: error})
     }
   })
 
