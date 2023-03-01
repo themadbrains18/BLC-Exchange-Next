@@ -16,7 +16,7 @@ const Layout = ({ children, name, data }) => {
     <>
       <div className={`flex  flex-col md:flex-row dark:bg-black-v-5 `}>
         <SideBar data={data} name={name} />
-        <div className="md:w-[calc(100%-225px)] md:ml-auto">{children}</div>
+        <div className="md:w-[calc(100%-225px)] md:ml-auto ">{children}</div>
       </div>
     </>
   );

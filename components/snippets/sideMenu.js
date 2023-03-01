@@ -73,7 +73,9 @@ const SideMenu = ({ show, setShow, data, }) => {
               {
                 handelMode();
               }
+              
             }}
+            // checked={mode==="dark" && "checked"}
             className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer "
           />
 
