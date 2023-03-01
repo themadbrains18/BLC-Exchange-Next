@@ -35,6 +35,28 @@ const ActiveCta = ({ data, active, setActive, type }) => {
                 }}
                 className={` info-14-16 leading-[1] py-2 whitespace-nowrap ${
                   active === index
+                    ? "cta2 p-4"
+                    : "transparent-cta bg-table-bg ml-2 rounded dark:text-black border border-transparent p-4 hover:!text-grey"
+                }`}
+                href={""}
+                key={index}
+              >
+                {elem}
+              </Link>
+            );
+          })}
+        </div>
+      )}
+      {type === "third" && (
+        <div className="flex gap-3  ">
+          {data.map((elem, index) => {
+            return (
+              <Link
+                onClick={() => {
+                  setActive(index);
+                }}
+                className={` info-14-16 leading-[1] py-2 whitespace-nowrap ${
+                  active === index
                     ? "cta2 "
                     : "transparent-cta bg-table-bg ml-2 rounded dark:text-black "
                 }`}

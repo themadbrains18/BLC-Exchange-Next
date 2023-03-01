@@ -11,7 +11,7 @@ import TransferDataTable from "components/asset/transfer/transferDataTable";
 import AdImage from "components/snippets/adImage";
 import Icons from "@/components/snippets/icons";
 
-const Transfer = ({ assets, tokens, sessions }) => {
+const Transfer = ({ assets, tokens, sessions, tokenAssets }) => {
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
   const [data, setData] = useState(true);
@@ -28,16 +28,25 @@ const Transfer = ({ assets, tokens, sessions }) => {
   const [coin2, setCoin2] = useState("Select Coin");
   let tradingPair = ["BTC/USDT", "ETH/USDT", "BTC/USDT", "BTC/USDT"];
   const [Switch, setSwitch] = useState(false);
+  const [filterShow, setfilterShow] = useState(false);
+  const [assetBalance, setAssetBalance] = useState(0.00);
 
-  const selectCoin = async (item) => {
-    setCoin(item.name);
-    setCoinImg(item.image);
-    setRotate(false);
-  };
+  // const selectCoin = async (item) => {
+  //   setCoin(item.name);
+  //   setCoinImg(item.image);
+  //   setRotate(false);
+  // };
   const selectCoin2 = async (item) => {
     setCoin2(item.symbol);
     setCoinImg2(item.image);
     setRotate2(false);
+
+    let asset = tokenAssets.filter((ass)=>{
+      return ass.token_id === item.id;
+    })
+
+    setAssetBalance(asset[0]?.balance.toFixed(2));
+    console.log(asset[0].balance)
   };
   return (
     <>
@@ -203,13 +212,13 @@ const Transfer = ({ assets, tokens, sessions }) => {
                       type="text"
                       className="caret-primary w-full bg-transparent  outline-none"
                     />
-                    <span className="text-black dark:text-white">USDC</span>
+                    <span className="text-black dark:text-white">{coin2}</span>
                     <span className="text-primary ml-2">All</span>
                   </div>
                 </div>
                 <div className="mt-4 flex justify-between info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
-                  <span>Available USDC USDT: 0.00000000 </span>
-                  <span>Available Trading Bonus: 0 USDC</span>
+                  <span>Available {coin2}: {assetBalance} </span>
+                  {/* <span>Available Trading Bonus: 0 {coin2}</span> */}
                 </div>
               </div>
               <p className="mt-4 text-orange-300 font-noto">
@@ -250,14 +259,14 @@ const Transfer = ({ assets, tokens, sessions }) => {
             </div>
             <div className="flex gap-4 flex-wrap">
               <div className="">
-                <h4 className="info-14 hover:text-grey dark:text-white dark:hover:text-white">
+                <h4 className="info-14 hidden lg:block hover:text-grey dark:text-white dark:hover:text-white">
                   Coin
                 </h4>
                 <div className="border border-border-clr ">
                   <SelectMenu selectMenu={coinData} />
                 </div>
               </div>
-              <div className="">
+              <div className="hidden lg:block">
                 <h4 className="info-14 hover:text-grey dark:text-white dark:hover:text-white">
                   Time
                 </h4>
@@ -266,7 +275,7 @@ const Transfer = ({ assets, tokens, sessions }) => {
                 </div>
               </div>
 
-              <div className="flex gap-3 h-[40px] self-end px-1 border border-border-clr dark:bg-black-v-4">
+              <div className=" gap-3 h-[40px] hidden lg:flex self-end px-1 border border-border-clr dark:bg-black-v-4">
                 <input
                   type="date"
                   className="focus:outline-none bg-transparent  dark:text-white"
@@ -275,6 +284,85 @@ const Transfer = ({ assets, tokens, sessions }) => {
                   type="date"
                   className="focus:outline-none bg-transparent dark:text-white "
                 />
+              </div>
+              <button
+                className="lg:hidden"
+                onClick={() => {
+                  setfilterShow(true);
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height={24}
+                  viewBox="0 96 960 960"
+                  width={24}
+                  fill={mode === "dark" ? "white" : "currentcolor"}
+                >
+                  <path d="M440 896q-17 0-28.5-11.5T400 856V616L168 320q-15-20-4.5-42t36.5-22h560q26 0 36.5 22t-4.5 42L560 616v240q0 17-11.5 28.5T520 896h-80Zm40-308 198-252H282l198 252Zm0 0Z" />
+                </svg>
+              </button>
+              <div
+                className={`fixed -bottom-[100%] duration-500 right-0 w-full bg-white h-[100vh] dark:bg-black-v-1 ${
+                  filterShow && "bottom-[0%] z-[4] "
+                } `}
+              >
+                <div className="flex justify-between mb-4  p-4 border-b lg:hidden border-t border-border-clr">
+                  <h3 className="info-14-20">Filter</h3>
+
+                  <button
+                    className="ml-auto mr-0"
+                    onClick={() => {
+                      setfilterShow(false);
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke={mode === "dark" ? "white" : "currentcolor"}
+                      className="w-6 h-6 mr-0 ml-auto "
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+                <div className="mt-4 px-2 ">
+                  <div className="border border-border-clr">
+                    <SelectMenu selectMenu={coinData} />
+                  </div>
+                </div>
+                <div className="mt-4 px-2">
+                  <div className="border border-border-clr">
+                    <SelectMenu selectMenu={dateFilter} />
+                  </div>
+                  <div className="mt-4 px-2 ">
+                    <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
+                      Start Time:
+                    </h4>
+                    <input
+                      type="date"
+                      className="w-full border border-border-clr p-2 mt-2  bg-transparent dark:text-white"
+                    />
+                  </div>
+                  <div className="mt-4 px-2 ">
+                    <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
+                      End Time:
+                    </h4>
+                    <input
+                      type="date"
+                      className="w-full border border-border-clr p-2 mt-2 bg-transparent dark:text-white"
+                    />
+                  </div>
+                </div>
+                <div className="mt-4 px-2 flex gap-4 ">
+                  <button className="cta2 w-full">Reset</button>
+                  <button className="cta w-full">Confirm</button>
+                </div>
               </div>
             </div>
             {/* dataTable */}
@@ -297,20 +385,23 @@ export async function getServerSideProps(context) {
     }).then(response => response.json());
     
     let menu = await data.json();
+
+    let assetList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/assets/${session?.user?.id}`, {
+      method: "GET"
+    }).then(response => response.json());
+
+    console.log(assetList,'===========asset list')
     
     return {
       props: {
         assets: menu.specialNav.assets,
         tokens: tokenList,
-        sessions: session
+        sessions: session,
+        tokenAssets : assetList
       }, // will be passed to the page component as props
     };
   }
-  // return {
-  //     props: {
-  //         providers,
-  //     },
-  // }
+ 
   return {
     redirect: { destination: "/" },
   };

@@ -1,6 +1,6 @@
 import VerificationType from 'components/verified/verificationType'
 import React from 'react'
-import Layout from 'components/layout/Layout'
+import Layout from '@/components/layout/Layout'
 import { getProviders, getSession } from "next-auth/react"
 const Verified = ({ account, sessions }) => {
     return (

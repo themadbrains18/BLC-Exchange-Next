@@ -4,9 +4,8 @@ import Image from "next/image";
 
 import Link from "next/link";
 
-const Spot = ({ show, dataShow, setDataShow, tokenList, assetList }) => {
+const Spot = ({ show, dataShow, setDataShow, tokenList, assetData }) => {
   const headings = ['Coin', 'Available', 'On Order', 'BTC Value', 'Operation']
-
 
   return (
     <>
@@ -75,7 +74,7 @@ const Spot = ({ show, dataShow, setDataShow, tokenList, assetList }) => {
               className="sr-only peer"
               defaultChecked=""
             />
-            <div className="-z-[1] duration-500 w-9 h-5 bg-gray-200 rounded-full   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
+            <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full  dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
           </label>
         </div>
       </div>
@@ -84,15 +83,7 @@ const Spot = ({ show, dataShow, setDataShow, tokenList, assetList }) => {
      
         {dataShow ? (
           <>
-            <DataTable heading={headings} data={tokenList} assetList={assetList} cta={false}/>
-            {/* {tokenList.length && 
-              tokenList.map((elem)=>{
-                console.log("elem.fullName",elem.fullName)
-                return (
-                  <DataTable  data={[elem.fullName]} cta={false}/>
-                  )
-              })
-            } */}
+            <DataTable heading={headings} data={tokenList} assetData={assetData} cta={false}/>
           </>
         ) : (
           <div className="grid place-content-center w-full h-96 ">
