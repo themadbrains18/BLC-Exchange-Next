@@ -5,7 +5,7 @@ import Layout from "components/layout/Layout";
 import SelectMenu from "components/snippets/selectMenu";
 import Image from "next/image";
 import Context from "components/contexts/context";
-
+import { useRouter } from "next/router";
 import SearchDropdown from "components/snippets/search-dropdown";
 import TransferDataTable from "components/asset/transfer/transferDataTable";
 import AdImage from "components/snippets/adImage";
@@ -27,10 +27,11 @@ const schema = yup
   })
   .required();
 
-const Transfer = ({ assets, sessions, tokenAssets }) => {
+const Transfer = ({ assets, sessions, tokenAssets,history,tokens }) => {
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
   const [data, setData] = useState(true);
+  const router = useRouter();
 
   let fromMenu = [{ "id": 1, "name": "Main Account", "wallet": "main_wallet" },
   { "id": 2, "name": "Trading Account", "wallet": "trading_wallet" },
@@ -76,10 +77,10 @@ const Transfer = ({ assets, sessions, tokenAssets }) => {
     setRotate2(false);
     
     let asset = tokenAssets.filter((ass) => {
-      return ass.token_id === item.id;
+      return ass.token_id === item.id && ass.walletType === first_wallet_name;
     })
 
-    setAssetBalance(asset !== undefined ? asset[0]?.balance.toFixed(2) : "0.00");
+    setAssetBalance(asset !== undefined && asset.length>0 ? asset[0]?.balance.toFixed(2) : 0.00);
 
     setValue('token_id', item.id);
   };
@@ -119,6 +120,12 @@ const Transfer = ({ assets, sessions, tokenAssets }) => {
 
     setValue('from_wallet', second_wallet_name);
     setValue('to_wallet', first_wallet_name);
+
+    setCoin2('');
+    setCoinImg2('');
+    setValue('token_id', '')
+    setValue('value',0)
+    setAssetBalance(0.00)
   }
 
   const onSubmit = async(data) => {
@@ -138,6 +145,12 @@ const Transfer = ({ assets, sessions, tokenAssets }) => {
     }).then(response => response.json());
 
     console.log(transferResponse);
+    if(transferResponse.data.status === 200){
+      toast.success(transferResponse.data.message, {
+        position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+      })
+      router.push('/asset/transfer');
+    }
   }
 
   return (
@@ -355,7 +368,7 @@ const Transfer = ({ assets, sessions, tokenAssets }) => {
                   Coin
                 </h4>
                 <div className="border border-border-clr ">
-                  <SelectMenu selectMenu={coinData} />
+                  <SelectMenu selectMenu={tokens} />
                 </div>
               </div>
               <div className="hidden lg:block">
@@ -458,7 +471,7 @@ const Transfer = ({ assets, sessions, tokenAssets }) => {
               </div>
             </div>
             {/* dataTable */}
-            <TransferDataTable data={data} />
+            <TransferDataTable data={history} />
           </div>
         </div>
       </Layout>
@@ -472,9 +485,16 @@ export async function getServerSideProps(context) {
   if (session) {
     let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
 
-    // let tokenList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`, {
-    //   method: "GET"
-    // }).then(response => response.json());
+    let tokenList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`, {
+      method: "GET"
+    }).then(response => response.json());
+
+    let tokens=[]
+    for(const item of tokenList){
+      tokens.push(item.symbol);
+    }
+
+    console.log(tokens)
 
     let menu = await data.json();
 
@@ -482,13 +502,17 @@ export async function getServerSideProps(context) {
       method: "GET"
     }).then(response => response.json());
 
-    console.log(assetList, '===========asset list')
+    let transferList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/assets/history/${session?.user?.id}`, {
+      method: "GET"
+    }).then(response => response.json());
 
     return {
       props: {
         assets: menu.specialNav.assets,
         sessions: session,
-        tokenAssets: assetList
+        tokenAssets: assetList,
+        history : transferList.data,
+        tokens : tokens
       }, // will be passed to the page component as props
     };
   }

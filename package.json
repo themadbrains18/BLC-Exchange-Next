@@ -16,7 +16,11 @@
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
     "fs": "^0.0.1-security",
+<<<<<<< HEAD
+    "moment": "^2.29.4",
+=======
     "fs-extra": "^11.1.0",
+>>>>>>> 642bae51bb2b2acc98f498437216872a4b193b37
     "multer": "^1.4.5-lts.1",
     "next": "13.1.6",
     "next-auth": "^4.19.2",

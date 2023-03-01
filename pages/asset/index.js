@@ -11,7 +11,7 @@ import Context from "/components/contexts/context";
 import Icons from "/components/snippets/icons";
 
 
-const Asset = ({ assets, assetData,tokens, sessions }) => {
+const Asset = ({ assets, assetData,tokens, sessions,overview,convertPrice }) => {
   const { setClick, mode } = useContext(Context);
   const [active, setActive] = useState(0);
   const [popUp, setPopUp] = useState(false);
@@ -133,8 +133,8 @@ const Asset = ({ assets, assetData,tokens, sessions }) => {
             </div>
             <div className="info-16-22 !text-white mt-2">
               <div className="flex gap-2">
-                {show ? <span>0</span> : <span>****</span>}{" "}
-                <h4 className="font-bold ">BTC </h4>
+                {show ? <span>{overview.overall}</span> : <span>****</span>}{" "}
+                <h4 className="font-bold ">USDT </h4>
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +153,7 @@ const Asset = ({ assets, assetData,tokens, sessions }) => {
                 </span>
               </div>
               <h4 className="mt-2">
-                $ {show ? <span>0</span> : <span>****</span>}
+                $ {show ? <span>{overview.overall}</span> : <span>****</span>}
               </h4>
             </div>
           </div>
@@ -294,7 +294,7 @@ const Asset = ({ assets, assetData,tokens, sessions }) => {
           </div>
           <div className="mt-3">
             {active === 0 && (
-              <Spot setDataShow={setDataShow} show={show} dataShow={dataShow} tokenList={tokens} assetData={assetData}/>
+              <Spot setDataShow={setDataShow} show={show} dataShow={dataShow} tokenList={tokens} assetData={assetData} overview={overview}/>
             )}
             {active === 1 && (
               <Margin
@@ -303,10 +303,11 @@ const Asset = ({ assets, assetData,tokens, sessions }) => {
                 dataShow={dataShow}
                 tokenList={tokens}
                 assetData={assetData}
+                overview={overview}
               />
             )}
             {active === 2 && (
-              <P2P setDataShow={setDataShow} show={show} dataShow={dataShow}  tokenList={tokens} assetData={assetData}/>
+              <P2P setDataShow={setDataShow} show={show} dataShow={dataShow}  tokenList={tokens} assetData={assetData} funding ={true} overview={overview}/>
             )}
             {active === 3 && (
               <Earn setDataShow={setDataShow} show={show} dataShow={dataShow} />
@@ -332,6 +333,10 @@ export async function getServerSideProps(context) {
     let assetList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/assets/${session?.user?.id}`, {
       method: "GET"
     }).then(response => response.json());
+
+    let assetOverview = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/assets/overview/${session?.user?.id}/USDT`,{
+      method :"GET"
+    }).then(response => response.json());
     
     return {
       props: {
@@ -339,6 +344,7 @@ export async function getServerSideProps(context) {
         assetData: assetList,
         sessions: session,
         assets: menu.specialNav.assets,
+        overview : assetOverview.data
       }, // will be passed to the page component as props
     };
   }

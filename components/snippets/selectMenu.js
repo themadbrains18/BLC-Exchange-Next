@@ -4,7 +4,7 @@ import Context from "../contexts/context";
 const SelectMenu = ({ selectMenu, getDepositAddress,network, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
-  const [value, setValue] = useState('Please Select');
+  const [value, setValue] = useState('');
   const [overlay, setOverlay] = useState(false);
   const ref = useRef(null);
   const { mode } = useContext(Context)
