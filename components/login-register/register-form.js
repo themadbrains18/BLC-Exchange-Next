@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ref } from 'yup';
 
 // import { checkUserRequest, registerRequest, sendOtp } from '@/Api';
 
@@ -28,6 +29,7 @@ const RegisterForm = () => {
 
     const dropdown = useRef(null);
     const codedropdown = useRef(null);
+    const ref= useRef(null)
 
     const router = useRouter();
     
@@ -249,7 +251,7 @@ const RegisterForm = () => {
                                     </label>
                                     {
                                         active != false &&
-                                        <input type="tel" {...register('referal_code', { required: false })} value={`${code ? code:''}`} placeholder="Referral Code (Optional)" className="block px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="referelCode" />
+                                        <input type="tel" ref={ref} {...register('referal_code', { required: false })} value={`${code ? code:''}`} placeholder="Referral Code (Optional)" className="block px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="referelCode" />
                                     }
                                 </div>
 

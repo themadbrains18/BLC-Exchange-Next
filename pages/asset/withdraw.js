@@ -10,7 +10,8 @@ import Link from "next/link";
 import WithDrawTable from "components/asset/withDraw/withDrawTable";
 import ActiveCta from "components/snippets/activeCta";
 
-const Withdraw = ({ assets, tokens, networks, sessions }) => {
+const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
+
   const { mode } = useContext(Context);
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
@@ -25,11 +26,29 @@ const Withdraw = ({ assets, tokens, networks, sessions }) => {
   const [coinImg, setCoinImg] = useState("https://bitlivecoinnetwork.com/images/logo.png");
   const [network, setNetwork] = useState([]);
   const [assetList, setAssetList] =useState()
+  const [tokenBalance, setTokenBlance] = useState(0)
 
   const selectCoin = async (item) => {
     setCoin(item.symbol);
     setCoinImg(item.image);
-    getToken(item.id)
+    console.log(item)
+    // ==== get token balances
+    if(tokenBalnces.length > 0){
+      let flag = false;
+      tokenBalnces.forEach((token,index) => {
+         if(token.token_id === item.id){
+          setTokenBlance(token['sum(balance)'])
+          flag = true;
+         }
+      })
+
+      if(flag === false)
+        setTokenBlance(0)
+    }
+
+    // get balance end
+
+
     let selectedToken = tokens.filter((token) => {
       return item.id === token.id
     })
@@ -46,18 +65,6 @@ const Withdraw = ({ assets, tokens, networks, sessions }) => {
   };
 
 
-  const getToken = async (type) => {
-    let result = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/withdraw/getToken/${sessions.user.id}/${type}`, {
-      method: "GET"
-    }).then(response => response.json());
-
-    if(result.status === 200){
-      setAssetList(result.data);
-    }
-    else{
-      console.log(result);
-    }
-  };
 
   return (
     <>
@@ -196,7 +203,7 @@ const Withdraw = ({ assets, tokens, networks, sessions }) => {
               </div>
 
                 <div className="info-14 mt-2 flex justify-between hover:!text-grey dark:hover:!text-white dark:text-white">
-                  <span>Available: 0.00000000</span>
+                  <span>Available: {(tokenBalance > 0) ? tokenBalance : '0.000000' }</span>
                   <span className="text-primary">
                     Withdrawal Limit: - - Increase Limit
                   </span>
@@ -388,16 +395,33 @@ export async function getServerSideProps(context) {
   const { req } = context;
   const session = await getSession({ req });
   const providers = await getProviders();
+
   if (session) {
+
+
+    // =================== get menus add header/foooter links ================== //
     let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
 
+
+    // =================== get token lsit ================================//
     let tokenList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`, {
       method: "GET"
     }).then(response => response.json());
 
+
+    // ================== get networks ===========================// 
+
     let networkList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/network`, {
       method: "GET"
     }).then(response => response.json());
+
+
+    // =============== get token balances by user id ============ //
+
+    let tokenBalnces = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token/balances/${session.user.id}`, {
+      method: "GET"
+    }).then(response => response.json());
+
 
     let menu = await data.json();
     return {
@@ -405,7 +429,8 @@ export async function getServerSideProps(context) {
         assets: menu.specialNav.assets,
         tokens: tokenList,
         networks: networkList,
-        sessions: session
+        sessions: session,
+        tokenBalnces : tokenBalnces
       }, // will be passed to the page component as props
     };
   }
