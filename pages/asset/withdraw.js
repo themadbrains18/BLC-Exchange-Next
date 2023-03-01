@@ -341,7 +341,7 @@ const Withdraw = ({ assets }) => {
 
               <div className="mt-4 px-2 flex gap-4">
                 <button className="cta2 w-full">Reset</button>
-                <button className="cta w-full">Confirm</button>
+                <button className="cta w-full">Confirm yes</button>
               </div>
             </div>
           </div>
