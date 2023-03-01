@@ -10,6 +10,7 @@ const StepsCardSec = ({ cardData }) => {
             How It Works?
           </h4>
           <div className="flex table_box gap-2 md:gap-4 justify-between px-4 py-4 ">
+            
             {cardData &&
               cardData.map((e, i) => {
                 return (
