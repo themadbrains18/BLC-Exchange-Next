@@ -25,7 +25,7 @@ const Spot = ({ assets }) => {
             <ActiveCta data={activeCta} active={active} setActive={setActive} />
           </div>
           <div className="flex justify-between items-center gap-3 md:bg-table-bg mt-2 md:mt-4 ">
-            <div className="  p-2 flex justify-between lg:justify-start gap-4 md:flex-wrap grow">
+            <div className="  p-2 flex justify-between lg:justify-start gap-4 md:flex-wrap grow dark:bg-black-v-4">
               {active != 2 && <SelectMenu selectMenu={selectMenu} />}
 
               {/* search */}

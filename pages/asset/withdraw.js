@@ -1,34 +1,71 @@
 import Layout from "components/layout/Layout";
-import Image from "next/image";
+
 import React, { useState, useContext } from "react";
 import { getProviders, getSession } from "next-auth/react";
-import SearchDropdown from "/components/snippets/search-dropdown";
-import Context from "/components/contexts/context";
-import SelectMenu from "/components/snippets/selectMenu";
-import AdImage from "/components/snippets/adImage";
+import SearchDropdown from "components/snippets/search-dropdown";
+import Context from "components/contexts/context";
+import SelectMenu from "components/snippets/selectMenu";
+import AdImage from "components/snippets/adImage";
 import Link from "next/link";
-import WithDrawTable from "/components/asset/withDraw/withDrawTable";
-import ActiveCta from "/components/snippets/activeCta";
+import WithDrawTable from "components/asset/withDraw/withDrawTable";
+import ActiveCta from "components/snippets/activeCta";
 
-const Withdraw = ({ assets }) => {
+const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
+
   const { mode } = useContext(Context);
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
-  let network = ["BTC", "Bsc "];
-  let ctas = ["Email", "Mobile"];
+  
   const [show, setShow] = useState(1);
   const [active, setActive] = useState(0);
   const [rotate, setRotate] = useState(false);
   const [data, setData] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const [filterShow, setfilterShow] = useState(false);
-  const [coin, setCoin] = useState("USD");
-  const [coinImg, setCoinImg] = useState("bnb.png");
+  const [coin, setCoin] = useState("Select Coin");
+  const [coinImg, setCoinImg] = useState("https://bitlivecoinnetwork.com/images/logo.png");
+  const [network, setNetwork] = useState([]);
+  const [assetList, setAssetList] =useState()
+  const [tokenBalance, setTokenBlance] = useState(0)
+
   const selectCoin = async (item) => {
-    setCoin(item.name);
+    setCoin(item.symbol);
     setCoinImg(item.image);
-    setRotate(false);
+    console.log(item)
+    // ==== get token balances
+    if(tokenBalnces.length > 0){
+      let flag = false;
+      tokenBalnces.forEach((token,index) => {
+         if(token.token_id === item.id){
+          setTokenBlance(token['sum(balance)'])
+          flag = true;
+         }
+      })
+
+      if(flag === false)
+        setTokenBlance(0)
+    }
+
+    // get balance end
+
+
+    let selectedToken = tokens.filter((token) => {
+      return item.id === token.id
+    })
+    let filternetwork = []
+    for (const tokennet of JSON.parse(selectedToken[0].networks)) {
+      networks.filter((net) => {
+        if (net.id === tokennet.id) {
+          filternetwork.push(net);
+        }
+      })
+    }
+
+    setNetwork(filternetwork);
   };
+
+
+
   return (
     <>
       <Layout data={assets} name="Withdraw">
@@ -71,13 +108,13 @@ const Withdraw = ({ assets }) => {
                       }}
                     >
                       <div className="flex gap-3 ">
-                        <Image
-                          className="self-start"
-                          height={24}
-                          width={24}
-                          alt="Coin Image"
-                          src={`/assets/images/${coinImg}`}
-                        ></Image>
+                      <img
+                      className="self-start"
+                      height={24}
+                      width={24}
+                      alt="Coin Image"
+                      src={`${coinImg}`}
+                    ></img>
                         <p className="info-14-16 font-bold">{coin}</p>
                       </div>
                       <svg
@@ -102,6 +139,7 @@ const Withdraw = ({ assets }) => {
                         setShowDropdown={setDropDown}
                         coin={true}
                         selectCoin={selectCoin}
+                        
                       />
                     )}
                   </div>
@@ -125,7 +163,7 @@ const Withdraw = ({ assets }) => {
                       Networks
                     </h6>
                     <div className="font-bold mt-2 border md:border-t-0 md:border-r-0 md:border-l-0  border-border-clr">
-                      <SelectMenu selectMenu={network} />
+                      <SelectMenu selectMenu={network} network={true}/>
                     </div>
                   </div>
                 )}
@@ -165,7 +203,7 @@ const Withdraw = ({ assets }) => {
               </div>
 
                 <div className="info-14 mt-2 flex justify-between hover:!text-grey dark:hover:!text-white dark:text-white">
-                  <span>Available: 0.00000000</span>
+                  <span>Available: {(tokenBalance > 0) ? tokenBalance : '0.000000' }</span>
                   <span className="text-primary">
                     Withdrawal Limit: - - Increase Limit
                   </span>
@@ -235,7 +273,7 @@ const Withdraw = ({ assets }) => {
                 Coin
               </h4>
               <div className="border border-border-clr ">
-                <SelectMenu selectMenu={coinData} />
+                <SelectMenu selectMenu={coinData}/>
               </div>
             </div>
             <div className="hidden lg:block">
@@ -357,12 +395,42 @@ export async function getServerSideProps(context) {
   const { req } = context;
   const session = await getSession({ req });
   const providers = await getProviders();
+
   if (session) {
+
+
+    // =================== get menus add header/foooter links ================== //
     let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
+
+
+    // =================== get token lsit ================================//
+    let tokenList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`, {
+      method: "GET"
+    }).then(response => response.json());
+
+
+    // ================== get networks ===========================// 
+
+    let networkList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/network`, {
+      method: "GET"
+    }).then(response => response.json());
+
+
+    // =============== get token balances by user id ============ //
+
+    let tokenBalnces = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token/balances/${session.user.id}`, {
+      method: "GET"
+    }).then(response => response.json());
+
+
     let menu = await data.json();
     return {
       props: {
         assets: menu.specialNav.assets,
+        tokens: tokenList,
+        networks: networkList,
+        sessions: session,
+        tokenBalnces : tokenBalnces
       }, // will be passed to the page component as props
     };
   }

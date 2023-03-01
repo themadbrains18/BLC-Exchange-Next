@@ -8,7 +8,7 @@ const Tranding = () => {
     const [show, setShow] = useState(1);
 
     return (
-        <section className='px-8 py-10'>
+        <section className=' py-10'>
             <div className="max-w-full grow  w-full">
                 <div className='flex justify-between  mb-[40px]'>
 

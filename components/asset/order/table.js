@@ -7,7 +7,7 @@ const Table = ({data}) => {
      <div className="overflow-x-auto table_box mt-2 ">
             <div className="table mt-4 w-max border border-border-clr rounded-sm ">
               <div
-                className={`head_row bg-table-bg grid grid-cols-10 gap-4  border-b border-border-clr `}
+                className={`head_row bg-table-bg grid grid-cols-10 gap-4  border-b border-border-clr dark:bg-black-v-4 `}
               >
                 <div className="head_col p-3 info-12 dark:text-white">Time</div>
                 <div className="head_col p-3 info-12 dark:text-white">Type Source</div>

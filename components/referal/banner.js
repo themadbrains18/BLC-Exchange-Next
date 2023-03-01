@@ -4,7 +4,7 @@ import Context from "/components/contexts/context";
 const Banner = () => {
     let {mode} =useContext(Context)
     return (
-    <section className="py-10 md:py-20 bg-secondary dark:bg-black-v-5">
+    <section className="py-8 md:py-16 bg-secondary dark:bg-black-v-5">
     <div className="container">
       <div className="text-center">
         <h4 className="section-primary-heading">

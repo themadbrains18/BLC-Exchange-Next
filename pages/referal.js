@@ -1,7 +1,7 @@
-import ReferCard from "/components/referal/referCard";
-import Banner from "/components/referal/banner";
-import StepsCardSec from "/components/referal/stepsCard";
-import FaqSec from "/components/referal/faqSec";
+import ReferCard from "components/referal/referCard";
+import Banner from "components/referal/banner";
+import StepsCardSec from "components/referal/stepsCard";
+import FaqSec from "components/referal/faqSec";
 
 const Referal = () => {
   let cardData = [
