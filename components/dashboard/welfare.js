@@ -22,7 +22,7 @@ const Welfare = () => {
                 <div className='text-center'>
                     <span className='info-14-20 dark:text-black'>Earn up to <span className='text-[#FFB800]'>5000 USDT</span>  for your first deposit</span>
                 </div>
-                    <button className=' info-14 dark:text-black bg-primary text-white w-full text-center inline-block mt-2 rounded-md py-2 px-4'>Get Started</button>
+                    <button className=' info-14 dark:text-black bg-primary hover:!text-black  text-white w-full text-center inline-block mt-2 rounded-md py-2 px-4'>Get Started</button>
               
             </div>
         </section>

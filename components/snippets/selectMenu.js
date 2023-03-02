@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 
 import Context from "../contexts/context";
-const SelectMenu = ({ selectMenu, getDepositAddress,network, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
+const SelectMenu = ({ selectMenu, getDepositAddress,network,all, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue, selectNetwork }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [value, setValue] = useState('');
@@ -11,6 +11,7 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network, deposit, transfer, 
   const dropdown = useRef(null);
 
   useEffect(() => {
+    all & setActive("all")
     function handleClick(event) {
       if (dropdown.current && !dropdown.current.contains(event.target)) {
         setOpen(false);
@@ -92,6 +93,24 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network, deposit, transfer, 
 
             {!transfer &&
               <>
+              {
+                all && 
+                <button
+                        className={`md:relative ${open && "z-[2]"
+                          } info-14-16 block w-full text-left p-2 dark:text-white dark:bg-black  ${active === "all" &&
+                          "bg-blue-50 text-primary dark:!text-primary"
+                          }`}
+                        onClick={() => {
+                          console.log("-====network", network)
+                          setValue("ALL");
+                          selectNetwork("all")
+                          setOpen(false)
+                          setActive("all");
+                        }}
+                      >
+                   ALL
+                      </button>
+              }
                 {selectMenu &&
                   selectMenu.map((e, i) => {
                     return (
@@ -105,6 +124,7 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network, deposit, transfer, 
                           console.log("-====network", network)
                           getDepositAddress && getDepositAddress(e.type)
                           network ? setValue(e.networkName) : setValue(e);
+                          selectNetwork && selectNetwork(e)
                           setOpen(false)
                           setActive(i);
                         }}

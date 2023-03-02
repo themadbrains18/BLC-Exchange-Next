@@ -19,8 +19,8 @@ const Dashboard = ({ account, sessions }) => {
           <div>
             <Profile sessions={sessions.user}/>
           </div>
-          <div className='flex w-full '>
-            <div className=' w-full'>
+          <div className='flex w-full  '>
+            <div className=' w-full px-4'>
               <Assets />
               <SocialTrades />
               <Tranding />

@@ -10,8 +10,8 @@ const BuySell = () => {
     const [coinImg, setCoinImg] = useState(false)
 
     const selectCoin = async (item) => {
-
-        setCoin(item.name)
+console.log("==========item", item)
+        setCoin(item.symbol)
         setCoinImg(item.image)
     }
 
@@ -84,7 +84,16 @@ const BuySell = () => {
                                     :
                                     <div>
                                         <div className='flex cursor-pointer ' onClick={() => { setDropDown(!dropDown) }}>
-                                            <p className='info-14-16 font-bold'>{coin}</p>
+                                        <div className="flex gap-3 ">
+                                                <img
+                                                    className="self-start"
+                                                    height={24}
+                                                    width={24}
+                                                    alt="Coin Image"
+                                                    src={`${coinImg}`}
+                                                ></img>
+                                                <p className="info-14-16 font-bold">{coin}</p>
+                                            </div>
                                             <img src='/assets/icons/down.svg' ></img>
                                         </div>
                                         {

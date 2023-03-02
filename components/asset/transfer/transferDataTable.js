@@ -5,8 +5,8 @@ import moment from 'moment';
 const TransferDataTable = ({data}) => {
   return (
     <>
-      <div className="overflow-x-auto table_box  ">
-        <div className="table mt-4 w-max md:w-full border border-border-clr rounded-sm ">
+      <div className="overflow-x-auto duration-300 table_box  ">
+        <div className="table mt-8 w-max md:w-full border border-border-clr rounded-sm ">
           <div
             className={`head_row bg-table-bg grid grid-cols-5 gap-4  border-b border-border-clr dark:bg-black-v-4 `}
           >
@@ -26,7 +26,7 @@ const TransferDataTable = ({data}) => {
               To
             </h4>
           </div>
-          {data ? (
+          {data && data.length > 0 ? (
             <div>
               {data.map((item)=>{
                 return <div className="row grid bg-white grid-cols-5 gap-4 justify-between border-b border-border-clr dark:bg-black-v-1">
