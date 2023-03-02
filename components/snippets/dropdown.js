@@ -16,7 +16,7 @@ const Dropdown = ({
   specialMenu,
   svgType
 }) => {
-  const { mode, setLogin } = useContext(Context);
+  const { mode, setLogin, heightUpdate } = useContext(Context);
 
 
   return (
@@ -44,6 +44,7 @@ const Dropdown = ({
                             className={`items-center rounded flex gap-6 min-w-[330px] p-4 group/arrow  ${mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
                               } `}
                             style={{ maxHeight: "calc(100vh - 120px)" }}
+                            onClick={()=>heightUpdate()}
                           >
                             <Icons type={elem.svgType} />
                             <div className="grow">
@@ -78,7 +79,7 @@ const Dropdown = ({
                 href={{pathname : `${e.linkUrl}`}}
                 key={index}
                 className={`items-center rounded flex gap-6 min-w-[330px] p-4 group/arrow  ${mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
-                  }`}
+                  }`} onClick={()=>heightUpdate()}
               >
                 <Icons type={e.svgType} />
                 <div className="grow">

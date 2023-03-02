@@ -15,7 +15,7 @@ const Header = (props) => {
   const router = useRouter()
   const { data: session } = useSession()
 
-  const { mode, setMode, login, topBar, setClick } = useContext(Context);
+  const { mode, setMode, login, topBar, setClick,heightUpdate } = useContext(Context);
   const [login2, setLogin2] = useState(login)
   // console.log(session,' session session session')
   const [show, setShow] = useState(true);
@@ -159,14 +159,14 @@ const Header = (props) => {
             <Link
               href="/register"
               className={`transparent-cta hidden ${login2 === true ? "lg:hidden" : "lg:block"
-                }`}
+                }`} onClick={()=>heightUpdate()}
             >
               sign up
             </Link>
             <Link
               href="/login"
               className={`cta hidden ${login2 === true ? "lg:hidden" : "lg:block"
-                }`}
+                }`} onClick={()=>heightUpdate()}
             >
               Log-in
             </Link>
