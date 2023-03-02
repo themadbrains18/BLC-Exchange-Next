@@ -46,8 +46,8 @@ const SideMenu = ({ show, setShow, data, }) => {
       </div>
      
       <div className="mx-3">
-        <button className="transparent-cta w-full">sign up</button>
-        <button className="cta w-full ">Login</button>
+        <Link href="/register" className="transparent-cta w-full text-center max-w-full block" >sign up</Link>
+        <Link href="/login" className="cta w-full text-center">Login</Link>
       </div>
 
       {data &&
