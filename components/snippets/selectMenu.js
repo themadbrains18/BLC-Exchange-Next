@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 
 import Context from "../contexts/context";
-const SelectMenu = ({ selectMenu, getDepositAddress,network, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
+const SelectMenu = ({ clear, selectMenu,selectedNetwork, getDepositAddress,network, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [value, setValue] = useState('Please Select');
@@ -17,9 +17,15 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network, deposit, transfer, 
       }
     }
     window.addEventListener("click", handleClick);
+    if(clear)
+      setValue('Please Select')
+    
+    console.log(clear)
     // clean up
     return () => window.removeEventListener("click", handleClick);
-  }, [])
+
+      
+  }, [clear])
 
 
   const onSelectOption = (e, i) => {
@@ -107,6 +113,7 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network, deposit, transfer, 
                           network ? setValue(e.networkName) : setValue(e);
                           setOpen(false)
                           setActive(i);
+                          selectedNetwork(e)
                         }}
                       >
                         {network ? e.networkName : e}

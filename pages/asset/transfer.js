@@ -17,15 +17,6 @@ import * as yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const schema = yup
-  .object()
-  .shape({
-    from_wallet: yup.string().required('File is required'),
-    to_wallet: yup.string().required('File is required'),
-    token_id: yup.number().required('File is required'),
-    value: yup.number().positive().required('This field is required'),
-  })
-  .required();
 
 const Transfer = ({ assets, sessions, tokenAssets }) => {
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
@@ -41,6 +32,8 @@ const Transfer = ({ assets, sessions, tokenAssets }) => {
 
   let { register, setValue, handleSubmit, watch, setError, formState: { errors } } = useForm({ resolver: yupResolver(schema) });
 
+
+  
   const [bindFromMenu, setFromMenu] = useState(fromMenu)
 
   const [bindToMenu, setToMenu] = useState(toMenu)

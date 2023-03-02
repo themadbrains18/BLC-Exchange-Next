@@ -1,6 +1,6 @@
 import Layout from "components/layout/Layout";
 
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, use } from "react";
 import { getProviders, getSession } from "next-auth/react";
 import SearchDropdown from "components/snippets/search-dropdown";
 import Context from "components/contexts/context";
@@ -10,7 +10,24 @@ import Link from "next/link";
 import WithDrawTable from "components/asset/withDraw/withDrawTable";
 import ActiveCta from "components/snippets/activeCta";
 
-const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
+import { useRouter } from 'next/router'
+
+
+
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+import { useEffect } from "react";
+
+
+
+
+const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces, getWithdrawlist })  => {
+
+  
+  const router=useRouter()
+
 
   const { mode } = useContext(Context);
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
@@ -19,18 +36,71 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
   const [show, setShow] = useState(1);
   const [active, setActive] = useState(0);
   const [rotate, setRotate] = useState(false);
-  const [data, setData] = useState(false);
+  const [data, setData] = useState(true);
   const [dropDown, setDropDown] = useState(false);
   const [filterShow, setfilterShow] = useState(false);
   const [coin, setCoin] = useState("Select Coin");
   const [coinImg, setCoinImg] = useState("https://bitlivecoinnetwork.com/images/logo.png");
   const [network, setNetwork] = useState([]);
   const [assetList, setAssetList] =useState()
+
   const [tokenBalance, setTokenBlance] = useState(0)
+  const [selectedNetworkID, setselectedNetworkID] = useState(0)
+
+  const [clearnextwork, setClearNetwork] = useState(false)
+
+  const [selectedTokens, setselectedTokens] = useState()
+  const [addfee, setFee] = useState(0)
+  const [yourecived, setyourecived] = useState(0)
+
+  const [validAmount, setValidamount] = useState('')
+
+  
+  useEffect(() => {
+    if(validAmount != ""){
+      var numb = validAmount.match(/\d/g).join("");
+      setValue('withdrawAmont',  numb);
+      setyourecived(numb-addfee)
+    }
+
+    if(sessions){
+      setValue('userid',sessions.user.id)
+    }
+
+  },[validAmount])
+
+
+  const schema = yup
+  .object()
+  .shape({
+    usertoken: yup.mixed().required('Please select at least one item...'),
+    usernetwork : yup.string().required('Please Select network'),
+    userwallet: yup.string().required('Please enter crypto waller address'),
+    withdrawAmont: yup.number().positive().min(0.2).max(tokenBalance-addfee).required('Please enter amount'),
+  })
+  .required();
+
+
+
+  let { register, setValue,getValues, handleSubmit, reset, watch, setError, formState: { errors } } = useForm({ resolver: yupResolver(schema) });
+
+
+
 
   const selectCoin = async (item) => {
     setCoin(item.symbol);
     setCoinImg(item.image);
+    setselectedNetworkID(0)
+    setNetwork([])
+    setClearNetwork(true)
+    setselectedTokens(item)
+    setFee(0)
+
+    setValue('usertoken', item);
+
+    
+
+
     console.log(item)
     // ==== get token balances
     if(tokenBalnces.length > 0){
@@ -52,6 +122,8 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
     let selectedToken = tokens.filter((token) => {
       return item.id === token.id
     })
+
+
     let filternetwork = []
     for (const tokennet of JSON.parse(selectedToken[0].networks)) {
       networks.filter((net) => {
@@ -60,10 +132,55 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
         }
       })
     }
-
     setNetwork(filternetwork);
   };
 
+
+  const selectedNetwork = (e) => {
+   
+    setClearNetwork(false)
+    if(JSON.parse(selectedTokens.networks).length > 0){
+      JSON.parse(selectedTokens.networks).forEach(ele => {
+        if(e.id === ele.id){
+          setFee(ele.fee)
+        }
+      })
+    }
+    
+    setselectedNetworkID(e.id)
+    setValue('usernetwork', e.id);
+
+  }
+
+  // on submit handle  
+  const onSubmit = async(data) => {
+   
+    await fetch(`${process.env.NEXT_PUBLIC_APIURL}/withdraw/add`,{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(res => res.json())
+    .then(results => {
+
+         // console.log(results)
+        router.push('/asset/withdraw')
+        setselectedNetworkID(0)
+        setNetwork([])
+        setClearNetwork(true)
+        setselectedTokens({})
+        setFee(0)
+        reset();
+
+
+     }).catch((err) => {
+       console.log(err)
+     })
+
+
+
+  }
 
 
   return (
@@ -71,7 +188,8 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
       <Layout data={assets} name="Withdraw">
         <div className="grow p-4 md:p-8 font-noto ">
           <div className="grid lg:grid-cols-2 gap-8">
-            <div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+
               <div className={`flex items-end gap-5 mb-10`}>
                 <button
                   className={`section-secondary-heading font-noto ${
@@ -144,6 +262,12 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
                     )}
                   </div>
                 </div>
+
+                <div className="!text-red-700 info-12">{errors.usertoken?.message}</div>
+               
+
+                
+
               </div>
 
               <div>
@@ -163,9 +287,11 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
                       Networks
                     </h6>
                     <div className="font-bold mt-2 border md:border-t-0 md:border-r-0 md:border-l-0  border-border-clr">
-                      <SelectMenu selectMenu={network} network={true}/>
+                      <SelectMenu selectedNetwork={selectedNetwork}  selectMenu={network} network={true} clear={clearnextwork} />
                     </div>
+                     <div className="!text-red-700 info-12">{errors.usernetwork?.message}</div>
                   </div>
+                  
                 )}
                 <div className="border-b mt-8 info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
                   <div>
@@ -182,24 +308,37 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
                           ? "Enter Withdrawl Addresss"
                           : "Enter a Bitget account email"
                       }
+                      onChange={ (e) => {
+                        setValue('userwallet', e.target.value);
+                      }}
                     />
                   </div>
+                  <div className="!text-red-700 info-12">{errors.userwallet?.message}</div>
                 </div>
                 <div className="border-b mt-8 info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
                   <h4 className="">Amount</h4>
                   <div className="flex  mt-4 items-end ">
                     <input
                       type="number"
+                    // pattern="^[0-9]+[0-9]*$"
                       className="caret-primary w-full bg-transparent  outline-none"
                       placeholder={
                         show === 1
                           ? "Enter Withdrawl Amount"
                           : "Minimum withdrawal amount: 0.001"
                       }
+                      onChange={ (e) => {
+                        setValidamount(e.target.value)
+                       
+                      }}
+                      // value={validAmount}
+                      
                     />
 
                     <span className="text-primary">All</span>
                   </div>
+                  <div className="!text-red-700 info-12">{errors.withdrawAmont?.message}</div>
+
               </div>
 
                 <div className="info-14 mt-2 flex justify-between hover:!text-grey dark:hover:!text-white dark:text-white">
@@ -210,10 +349,10 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
                 </div>
 
                 <span className="info-14 mt-4  hover:!text-grey dark:hover:!text-white dark:text-white block">
-                  Fee Free
+                  Fee Free {addfee} {(selectedTokens) ? selectedTokens.symbol : ''}
                 </span>
                 <span className="info-14 mt-2 hover:!text-grey dark:hover:!text-white dark:text-white block">
-                  To Receive - - BTC
+                  To Receive - {yourecived} - {(selectedTokens) ? selectedTokens.symbol : ''}
                 </span>
 
                 <div className="mt-8">
@@ -246,7 +385,7 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
                   )}
                 </div>
               </div>
-            </div>
+            </form>
             <AdImage />
           </div>
 
@@ -384,7 +523,7 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
             </div>
           </div>
           <div className="mb-16 ">
-            <WithDrawTable data={data} />
+            <WithDrawTable data={getWithdrawlist} /> 
           </div>
         </div>
       </Layout>
@@ -423,6 +562,15 @@ export async function getServerSideProps(context) {
     }).then(response => response.json());
 
 
+    // ================ get withdraw list 
+
+
+    let getWithdrawlist = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/withdraw/list/${session.user.id}`, {
+      method: "GET"
+    }).then(response => response.json());
+
+
+
     let menu = await data.json();
     return {
       props: {
@@ -430,7 +578,8 @@ export async function getServerSideProps(context) {
         tokens: tokenList,
         networks: networkList,
         sessions: session,
-        tokenBalnces : tokenBalnces
+        tokenBalnces : tokenBalnces,
+        getWithdrawlist : getWithdrawlist
       }, // will be passed to the page component as props
     };
   }
