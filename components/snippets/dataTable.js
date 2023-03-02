@@ -44,7 +44,7 @@ const DataTable = ({ heading, data, assetData, spot,trade,convertPrice }) => {
                     <>
 
                       <div className="col info-14-16 max-w-[130px] flex gap-2 p-3 text-black">
-                        <img src={elem.image} alt='token' className='w-6 h-6'></img>
+                        <img src={elem.image} alt='token' className='w-6 h-6 rounded-full'></img>
                         {elem.symbol}
                       </div>
                       <div className="col info-14-16 max-w-[130px] p-3 text-black dark:text-white">

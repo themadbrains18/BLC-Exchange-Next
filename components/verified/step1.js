@@ -40,7 +40,7 @@ const Step1 = ({ countryName }) => {
 
 
     const [show, setShow] = useState(false)
-    const { click, setClick } = useContext(Context)
+    const { click, setClick, mode } = useContext(Context)
 
     const idData = [' ID card', 'Passport', 'Drivers License']
 
@@ -67,7 +67,7 @@ const Step1 = ({ countryName }) => {
                     <p className='info-14'>Country / Region</p>
                     <span className='cursor-pointer border-b-2 border-border-clr hover:border-primary relative max-w-md w-full flex items-center gap-2  justify-between mt-4' >
                         <input type='text' className="text-black dark:text-white bg-transparent outline-none" id="countryName" value={countryName} {...register('country')}></input>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
+                        {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg> */}
                         {/* {
                             showDropdown != false &&
                             <SearchDropdown setShowDropdown={setShowDropdown} country={true}  />
@@ -97,7 +97,7 @@ const Step1 = ({ countryName }) => {
                     <label className='info-12'>Identity Document Type</label>
                     <span className='cursor-pointer border-b-2 border-border-clr hover:border-primary relative max-w-md w-full flex items-center gap-2  justify-between ' >
                     <input type='text' placeholder='ID Card' autoComplete="off" value={userId} {...register('doctype')} className="text-black dark:text-white bg-transparent outline-none" />
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke= {mode === "dark" ? "white" : "currentcolor"} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                     
                     {showId && <SearchDropdown setShowDropdown={setShowId} idData={idData} selectId={selectId} />}
                     </span>

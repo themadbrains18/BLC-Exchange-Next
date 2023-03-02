@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { getProviders, getSession } from "next-auth/react";
 import Layout from "components/layout/Layout";
@@ -13,7 +13,6 @@ import Icons from "components/snippets/icons";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -27,7 +26,7 @@ const schema = yup
   })
   .required();
 
-const Transfer = ({ assets, sessions, tokenAssets,history,tokens }) => {
+const Transfer = ({ assets, sessions, tokenAssets, history, tokens }) => {
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
   const [data, setData] = useState(true);
@@ -65,22 +64,39 @@ const Transfer = ({ assets, sessions, tokenAssets,history,tokens }) => {
   const [second_wallet_name, setsecond_wallet_name] = useState('');
   const [filterShow, setfilterShow] = useState(false);
   const [assetBalance, setAssetBalance] = useState(0.00);
+  const [historyList, setHistoryList] = useState()
 
-  // const selectCoin = async (item) => {
-  //   setCoin(item.name);
-  //   setCoinImg(item.image);
-  //   setRotate(false);
-  // };
+  useEffect(() => {
+     setHistoryList(history)
+  }, []);
+
+  const selectNetwork = async (item) => {
+    let filterCoin = item;
+
+    let filterList = [];
+    // console.log("==========history", history)
+  
+    history.filter((item) => {
+      if (filterCoin === "all") {
+        filterList.push(item)
+      }
+      else if(item.symbol === filterCoin) {
+        filterList.push(item)
+      }
+    })
+    setHistoryList(filterList)
+
+  };
   const selectCoin2 = async (item) => {
     setCoin2(item.symbol);
     setCoinImg2(item.image);
     setRotate2(false);
-    
+
     let asset = tokenAssets.filter((ass) => {
       return ass.token_id === item.id && ass.walletType === first_wallet_name;
     })
 
-    setAssetBalance(asset !== undefined && asset.length>0 ? asset[0]?.balance.toFixed(2) : 0.00);
+    setAssetBalance(asset !== undefined && asset.length > 0 ? asset[0]?.balance.toFixed(2) : 0.00);
 
     setValue('token_id', item.id);
   };
@@ -124,13 +140,13 @@ const Transfer = ({ assets, sessions, tokenAssets,history,tokens }) => {
     setCoin2('');
     setCoinImg2('');
     setValue('token_id', '')
-    setValue('value',0)
+    setValue('value', 0)
     setAssetBalance(0.00)
   }
 
-  const onSubmit = async(data) => {
-    
-    if(data.value > assetBalance){
+  const onSubmit = async (data) => {
+
+    if (data.value > assetBalance) {
       toast.error('Value must be less than your current balance', {
         position: toast.POSITION.TOP_RIGHT, autoClose: 5000
       })
@@ -145,7 +161,7 @@ const Transfer = ({ assets, sessions, tokenAssets,history,tokens }) => {
     }).then(response => response.json());
 
     console.log(transferResponse);
-    if(transferResponse.data.status === 200){
+    if (transferResponse.data.status === 200) {
       toast.success(transferResponse.data.message, {
         position: toast.POSITION.TOP_RIGHT, autoClose: 5000
       })
@@ -155,7 +171,7 @@ const Transfer = ({ assets, sessions, tokenAssets,history,tokens }) => {
 
   return (
     <>
-    <ToastContainer />
+      <ToastContainer />
       <Layout data={assets} name="Transfer">
         <div className="grow p-4 md:p-8">
           <div className="grid lg:grid-cols-2  gap-10">
@@ -311,12 +327,12 @@ const Transfer = ({ assets, sessions, tokenAssets,history,tokens }) => {
                     <div className="flex  mt-4 items-end ">
                       <input
                         type="text"
-                        className="caret-primary w-full bg-transparent  outline-none" onChange={(e)=>{setValue('value',e.target.value)}}
+                        className="caret-primary w-full bg-transparent  outline-none" onChange={(e) => { setValue('value', e.target.value) }}
                       />
                       <span className="text-black dark:text-white">{coin2}</span>
                       <span className="text-primary ml-2">All</span>
                     </div>
-                    
+
                   </div>
                   <div className="!text-red-700 info-12">{errors.value?.message}</div>
                   <div className="mt-4 flex justify-between info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
@@ -368,7 +384,7 @@ const Transfer = ({ assets, sessions, tokenAssets,history,tokens }) => {
                   Coin
                 </h4>
                 <div className="border border-border-clr ">
-                  <SelectMenu selectMenu={tokens} />
+                  <SelectMenu selectMenu={tokens} selectNetwork={selectNetwork} all={true} />
                 </div>
               </div>
               <div className="hidden lg:block">
@@ -407,9 +423,8 @@ const Transfer = ({ assets, sessions, tokenAssets,history,tokens }) => {
                 </svg>
               </button>
               <div
-                className={`fixed -bottom-[100%] duration-500 right-0 w-full bg-white h-[100vh] dark:bg-black-v-1 ${
-                  filterShow && "bottom-[0%] z-[4] "
-                } `}
+                className={`fixed -bottom-[100%] duration-500 right-0 w-full bg-white h-[100vh] dark:bg-black-v-1 ${filterShow && "bottom-[0%] z-[4] "
+                  } `}
               >
                 <div className="flex justify-between mb-4  p-4 border-b lg:hidden border-t border-border-clr">
                   <h3 className="info-14-20">Filter</h3>
@@ -471,7 +486,8 @@ const Transfer = ({ assets, sessions, tokenAssets,history,tokens }) => {
               </div>
             </div>
             {/* dataTable */}
-            <TransferDataTable data={history} />
+
+            <TransferDataTable data={historyList} />
           </div>
         </div>
       </Layout>
@@ -489,8 +505,8 @@ export async function getServerSideProps(context) {
       method: "GET"
     }).then(response => response.json());
 
-    let tokens=[]
-    for(const item of tokenList){
+    let tokens = []
+    for (const item of tokenList) {
       tokens.push(item.symbol);
     }
 
@@ -506,13 +522,14 @@ export async function getServerSideProps(context) {
       method: "GET"
     }).then(response => response.json());
 
+
     return {
       props: {
         assets: menu.specialNav.assets,
         sessions: session,
         tokenAssets: assetList,
-        history : transferList.data,
-        tokens : tokens
+        history: transferList.data,
+        tokens: tokens
       }, // will be passed to the page component as props
     };
   }
