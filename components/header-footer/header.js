@@ -14,7 +14,7 @@ import { useSession } from "next-auth/react";
 const Header = (props) => {
   const router = useRouter();
   const { data: session } = useSession();
-\
+
 
   const { mode, setMode, login, topBar, setClick,heightUpdate } = useContext(Context);
   const [login2, setLogin2] = useState(login)
