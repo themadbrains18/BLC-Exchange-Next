@@ -29,11 +29,11 @@ const SideBar = ({ data, name }) => {
       <div
         className={`md:sticky top-[80px] md:h-[100vh] ${
           show && "z-[5]"
-        } bg-white dark:bg-black-v-3 overflow-x-auto table_box  w-fit px-3 md:px-0  `}
+        } bg-white dark:bg-black-v-5 overflow-x-auto table_box  w-fit px-3 md:px-0  `}
       >
         {name && (
           <button
-            className="flex items-center md:hidden capitalize"
+            className="flex items-center md:hidden capitalize mt-[15px] ml-[4px]"
             onClick={() => {
               setShow(true);
               setClick(true);
@@ -41,12 +41,15 @@ const SideBar = ({ data, name }) => {
           >
             <h3 className="section-secondary-heading font-noto ">{name}</h3>
 
-            <Image
+            <svg className="mt-[3px]" width={20} height={20} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill={mode === "dark" ? "white" : "currentcolor"} d="M11.2341 16.5873L14.6179 12.9779C15.1274 12.4344 15.1274 11.5564 14.6179 11.0129L11.2341 7.40354C10.411 6.53952 9 7.1527 9 8.39299V15.5979C9 16.8521 10.411 17.4653 11.2341 16.5873Z" />
+            </svg>
+            {/* <Image
               src={"/assets/icons/rightArrowSmall.svg"}
               width={24}
               height={24}
               alt=""
-            ></Image>
+            ></Image> */}
           </button>
         )}
 

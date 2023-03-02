@@ -112,7 +112,7 @@ const Step1 = ({ countryName }) => {
                     <label className='info-12'>Date of Birth.</label>
                     <span>
 
-                        <input type='date' placeholder='Please select Date of Birth' autoComplete="off" {...register('birthDate')} className='border-b-2 border-border-clr bg-transparent  dark:bg-grey border  text-black dark:text-white outline-none focus:!border-primary dark:border-white rounded' />
+                        <input type='date' placeholder='Please select Date of Birth' autoComplete="off" {...register('birthDate')} className='border-b-2 px-[12px] border-border-clr bg-transparent  dark:bg-grey border  text-black dark:text-white outline-none focus:!border-primary dark:border-white rounded' />
                     </span>
                 </div>
                 <div className="!text-red-700 info-12">{errors.birthDate?.message}</div>

@@ -13,7 +13,7 @@ import React from 'react'
 const Dashboard = ({ account, sessions, lastLogin }) => {
   return (
     <>
-      <Layout data={account} link="dashboard">
+      <Layout data={account} name="dashboard">
         <div className='grow max-w-full p-4 md:p-8 bg-white dark:bg-black-v-5'>
           <div>
             <Profile sessions={sessions.user} lastLogin={lastLogin}/>

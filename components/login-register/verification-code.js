@@ -164,6 +164,11 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                 if (values[0].status === 200 && values[1].status === 200) {
                     signIn("credentials", loginData);
                 }
+                else {
+                    toast.error(values[0].message, {
+                        position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+                    });
+                }
             });
         }
         if (loginData.email !== "" && loginData.number === "") {
@@ -172,6 +177,9 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                 if (values[0].status === 200) {
                     signIn("credentials", loginData);
                 }
+                toast.error(values[0].message, {
+                    position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+                });
             });
         }
         if (loginData.email === "" && loginData.number !== "") {
@@ -180,6 +188,9 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                 if (values[0].status === 200) {
                     signIn("credentials", loginData);
                 }
+                toast.error(values[0].message, {
+                    position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+                });
             });
         }
     }
@@ -263,7 +274,7 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                                 {/* emails verification code feilds */}
                                 {loginData.email !== "" &&
                                     <div className='mt-5'>
-                                        <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Email verification</span> <span>({loginData.email} which is registred)</span></label>
+                                        <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Email verification</span> <span>({loginData.email})</span></label>
                                         <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper input_wrapper_email">
                                             <input type="number" className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
                                             <input type="number" className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
@@ -278,7 +289,7 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                                 {/* phone verification code feilds */}
                                 {loginData.number !== "" &&
                                     <div className='mt-5'>
-                                        <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Phone verification</span> <span>({loginData.number} which is registred)</span></label>
+                                        <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Phone verification</span> <span>({loginData.number} )</span></label>
                                         <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper input_wrapper_mobile">
                                             <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
                                             <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />

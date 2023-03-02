@@ -329,7 +329,7 @@ const Transfer = ({ assets, sessions, tokenAssets, history, tokens }) => {
                         type="text"
                         className="caret-primary w-full bg-transparent  outline-none" onChange={(e) => { setValue('value', e.target.value) }}
                       />
-                      <span className="text-black dark:text-white">{coin2}</span>
+                      <span className="text-black dark:text-white block max-w-fit w-full">{coin2}</span>
                       <span className="text-primary ml-2">All</span>
                     </div>
 

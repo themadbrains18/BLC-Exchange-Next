@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect, useContext } from 'react'
 import SearchDropdown from '../snippets/search-dropdown';
 import Step1 from './step1';
 import Context from '../contexts/context';
+import Link from "next/link";
 
 const VerificationType = ({session}) => {
     const [showDropdown, setShowDropdown] = useState(false);
@@ -63,9 +64,12 @@ const VerificationType = ({session}) => {
 
                         </div>
                         <div className='flex flex-col lg:flex-row mt-5 gap-7'>
-                            <div className={`p-6  border-2 box-border border-primary rounded-lg flex gap-2 ${active === 1 ? 'border-2 ' : 'border-none'} `} onClick={() => { setActive(1) }}>
+                            <div className={`p-6  border-2 box-border border-primary rounded-lg flex gap-2 ${active === 1 ? 'border-2 ' : 'border-transparent'} `} onClick={() => { setActive(1) }}>
                                 <div>
                                     <input type='checkbox' checked={active === 1 ? 'checked' : ''} />
+
+                                    
+
                                 </div>
                                 <div>
                                     <p className='info-14-24'>Individual Verification</p>
@@ -89,7 +93,7 @@ const VerificationType = ({session}) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className={`p-6  border-2 box-border border-primary rounded-lg flex gap-2 ${active === 2 ? 'border-2 ' : 'border-none'} `} onClick={() => { setActive(2) }}>
+                            <div className={`p-6  border-2 box-border border-primary rounded-lg flex gap-2 ${active === 2 ? 'border-2 ' : 'border-transparent'} `} onClick={() => { setActive(2) }}>
                                 <div>
                                     <input type='checkbox' checked={active === 2 ? 'checked' : ''} />
                                 </div>
