@@ -23,7 +23,7 @@ const Coupon = () => {
   const data1 = ['All', 'Coupons', 'Trading Bonus', 'Crypto Vouchers']
   const data2 = ['All', 'Go to use', 'No longer valid', 'Expired', 'To be claimed']
   return (
-    <section className="w-full px-[24px]">
+    <section className="w-full">
       <div>
         <p className='section-secondary-heading'>Coupons Center</p>
         <div className='flex flex-col lg:flex-row justify-between'>

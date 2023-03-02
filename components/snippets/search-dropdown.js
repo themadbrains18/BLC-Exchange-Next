@@ -31,8 +31,6 @@ const SearchDropdown = ({
         method: "GET"
       }).then(response => response.json());
 
-      console.log(tokenList,'================')
-
       setCoinData(tokenList)
 
       await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello")

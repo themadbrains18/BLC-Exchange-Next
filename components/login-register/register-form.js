@@ -12,10 +12,12 @@ import { useRouter } from 'next/router';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ref } from 'yup';
 
 // import { checkUserRequest, registerRequest, sendOtp } from '@/Api';
 
 const RegisterForm = () => {
+    const router = useRouter();
     const [show, setShow] = useState(1);
     const [active, setActive] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -24,13 +26,19 @@ const RegisterForm = () => {
     const [isLoding, setLoading] = useState(false);
     const [registerForm, setRegisterForm] = useState();
     const [dialCode, setDialCode] = useState(91)
-
+    const [referCode, setReferCode] = useState('')
     const dropdown = useRef(null);
     const codedropdown = useRef(null);
+    const ref = useRef()
 
-    const router = useRouter();
+
 
     useEffect(() => {
+        if (router.query.referal !== undefined) {
+            // setActive(false)
+            setActive(true)
+        }
+
         function handleClick(event) {
             if (dropdown.current && !dropdown.current.contains(event.target)) {
                 setShowDropdown(false);
@@ -45,6 +53,7 @@ const RegisterForm = () => {
     }, [])
 
     let { register, setValue, handleSubmit, watch, setError, formState: { errors } } = useForm();
+
 
 
     const showPass = (e) => {
@@ -73,7 +82,7 @@ const RegisterForm = () => {
                 password: data.password,
                 requestType: 'email',
                 resetPassword: false,
-                referal_code: data.referal_code,
+                referal_code: referCode === '' ? router.query.referal : referCode,
                 number: ''
             };
 
@@ -91,7 +100,7 @@ const RegisterForm = () => {
                 password: data.password,
                 requestType: 'mobile',
                 resetPassword: false,
-                referal_code: data.referal_code,
+                referal_code: referCode === '' ? router.query.referal : referCode,
                 email: ''
             };
 
@@ -214,7 +223,7 @@ const RegisterForm = () => {
                                                 <span className="text-black dark:text-white" id="counteryCode">+ <span>{dialCode}</span> </span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#656e6f" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                                             </div>
-                                            <input type="tel" placeholder="Mobile number" onFocus={()=>setDropdownPhone(false)} className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone"
+                                            <input type="tel" placeholder="Mobile number" onFocus={() => setDropdownPhone(false)} className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone"
                                                 {...register('phone', { required: show === 2 ? true : false, maxLength: 15 })} />
                                             {
                                                 DropdownPhone != false &&
@@ -243,13 +252,15 @@ const RegisterForm = () => {
                                         <span>Referral Code (Optional)</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                                     </label>
-                                    {
-                                        active != false &&
-                                        <input type="tel" {...register('referal_code', { required: false })} placeholder="Referral Code (Optional)" className="block px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="referelCode" />
+                                    {/* dsfvdjskbfjdgbjdfgbkld */}
+                                    {(router.query.referal !== undefined || active === true) &&
+                                        <input type="tel" ref={ref} value={router.query.referal} onChange={(e) => setReferCode(e.target.value)} placeholder="Referral Code (Optional)" className={` px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary`} name="referal_code" />
                                     }
+
+
                                 </div>
 
-                                <button type="submit" className={`relative cta mt-5  w-full ${isLoding === true ? 'hide_text' : ''} `}>
+                                <button type="submit" className={`relative cta mt-5  w-full ${isLoding === true ? 'hide_text' : ''}  `}>
                                     <span>Create Account</span>
                                     {/* spinner */}
                                     <div className="hidden w-8 h-8 rounded-full animate-spin border-4 border-solid border-purple-500 border-t-transparent absolute top-[50%] left-[50%] mt-[-16px] ml-[-15px] z-10"></div>

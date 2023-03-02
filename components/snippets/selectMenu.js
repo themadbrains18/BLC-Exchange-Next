@@ -1,10 +1,10 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 
 import Context from "../contexts/context";
-const SelectMenu = ({ selectMenu, getDepositAddress, network }) => {
+const SelectMenu = ({ selectMenu, getDepositAddress,network, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
-  const [value, setValue] = useState('Select Network');
+  const [value, setValue] = useState('');
   const [overlay, setOverlay] = useState(false);
   const ref = useRef(null);
   const { mode } = useContext(Context)
@@ -21,6 +21,19 @@ const SelectMenu = ({ selectMenu, getDepositAddress, network }) => {
     return () => window.removeEventListener("click", handleClick);
   }, [])
 
+
+  const onSelectOption = (e, i) => {
+    setValue(e.name);
+    setOpen(false)
+    setActive(i);
+    if (from === true) {
+      setFromWallet(e)
+    }
+    if (to === true) {
+      setToWallet(e)
+    }
+  }
+
   return (
     <>
       <div ref={dropdown} className={`relative pr-2  ${open && "md:z-[2]"}`}>
@@ -30,15 +43,15 @@ const SelectMenu = ({ selectMenu, getDepositAddress, network }) => {
             name=""
             id=""
             className="caret-white p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
-            defaultValue={value}
+            value={ (transfer && fromValue !== '') ? fromValue : value}
             onClick={() => {
               setOpen(!open);
               setOverlay(!overlay);
             }}
-          // onBlur={() => {
-          //   setOpen(!open);
-          //   setOverlay(!overlay);
-          // }}
+            onChange={() => {
+              console.log('')
+            }}
+
           ></input>
 
           <svg
@@ -59,10 +72,9 @@ const SelectMenu = ({ selectMenu, getDepositAddress, network }) => {
         </div>
         <div
           className={`  md:absolute  bg-white  w-full ${open
-              ? "top-[140%] visible opacity-100 "
-              : " invisible opacity-0 top-[100%]"
-            } border  duration-300 `}
-        >
+            ? "top-[140%] visible opacity-100 "
+            : " invisible opacity-0 top-[100%]"
+            } border  duration-300 `}>
           <div className="relative  ">
             <div className="hidden md:block p-1 -mt-[5px] z-0 bg-white -rotate-45 absolute left-10 dark:bg-black-v-4"></div>
           </div>
@@ -77,27 +89,59 @@ const SelectMenu = ({ selectMenu, getDepositAddress, network }) => {
             <span className="block md:hidden my-2 p-2 rounded-xl">
               Please Select
             </span>
-            {selectMenu &&
-              selectMenu.map((e, i) => {
-                return (
-                  <button
-                    key={i}
-                    className={`md:relative ${open && "z-[2]"
-                      } info-14-16 block w-full text-left p-2 dark:text-white dark:bg-black  ${active === i &&
-                      "bg-blue-50 text-primary dark:!text-primary"
-                      }`}
-                    onClick={() => {
-                      getDepositAddress && getDepositAddress(e.type)
-                      network ? setValue(e.networkName): setValue(e);
-                      setOpen(false)
-                      setActive(i);
-                    }}
-                  >
-                    {network ? e.networkName : e}
-                  </button>
-                );
-              })
+
+            {!transfer &&
+              <>
+                {selectMenu &&
+                  selectMenu.map((e, i) => {
+                    return (
+                      <button
+                        key={i}
+                        className={`md:relative ${open && "z-[2]"
+                          } info-14-16 block w-full text-left p-2 dark:text-white dark:bg-black  ${active === i &&
+                          "bg-blue-50 text-primary dark:!text-primary"
+                          }`}
+                        onClick={() => {
+                          console.log("-====network", network)
+                          getDepositAddress && getDepositAddress(e.type)
+                          network ? setValue(e.networkName) : setValue(e);
+                          setOpen(false)
+                          setActive(i);
+                        }}
+                      >
+                        {network ? e.networkName : e}
+                      </button>
+                    );
+                  })
+                }
+              </>
             }
+
+
+            {transfer === true &&
+              <>
+                {selectMenu &&
+                  selectMenu.map((item, i) => {
+                    return (
+                      <button type="button"
+                        key={i}
+                        className={`md:relative ${open && "z-[2]"
+                          } info-14-16 block w-full text-left p-2 dark:text-white dark:bg-black  ${active === i &&
+                          "bg-blue-50 text-primary dark:!text-primary"
+                          }`}
+                        onClick={(e) => {
+                          e.preventDefault()
+                          onSelectOption(item, i)
+                        }}
+                      >
+                        {item.name}
+                      </button>
+                    );
+                  })
+                }
+              </>
+            }
+
             <button
               className="fixed bottom-0 p-4 w-full border-t-4 md:hidden"
               onClick={() => {

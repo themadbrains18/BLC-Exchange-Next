@@ -5,29 +5,31 @@ import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import Image from "next/image";
 import PopUpSnippet from "./popUpSnippet";
+import { useSession } from "next-auth/react";
+
 const ReferCard = () => {
   let { mode, setClick} = useContext(Context);
   let ref=useRef(null)
   let ref2=useRef(null)
   const [popUp, setPopUp]=useState(false)
+
+  const {data:session}= useSession()
+  const code = session?.user?.own_code
+  const referLink = `http://localhost:3000/register?referal=${code}`
   return (
 
     <>
     <ToastContainer />
-      <section className="py-10 md:py-20 dark:bg-black-v-2 ">
+      <section className="py-8 md:py-16 dark:bg-black-v-2 ">
         <div className="container">
           <div className="card px-8 md:px-16 py-8 md:py-12 border border-border-clr rounded-2xl">
             <h4 className="section-secondary-heading font-noto">
               Invite Friends Now
             </h4>
-            <div className="border border-border-clr rounded-xl mt-4 md:mt-8 flex">
-              <input
-                type="text"
-                placeholder="Referral Code"
-                className="bg-transparent text-black dark:text-white placeholder:text-black dark:placeholder:text-white p-3 outline-none  w-full"
-              />
-              <div className="flex items-center gap-2 p-3">
-                <span ref={ref} className="info-14-20">MC3PB1N2</span>
+            <div className="border border-border-clr rounded-xl mt-4 md:mt-8 flex items-center justify-between gap-2 p-2">
+              <span className="info-14 hover:!text-grey">Referral Code</span>
+              <div className="flex items-center gap-2 ">
+                <span ref={ref} className="info-14 hover:!text-grey">{code}</span>
                 <button
                   onClick={() => {
                     navigator.clipboard.writeText(ref.current.innerText);
@@ -53,14 +55,10 @@ const ReferCard = () => {
                 </button>
               </div>
             </div>
-            <div className="border border-border-clr rounded-xl mt-4 md:mt-8 flex ">
-              <input
-                type="text"
-                placeholder="Referral Link"
-                className="bg-transparent text-black dark:text-white placeholder:text-black dark:placeholder:text-white p-3 outline-none  w-full"
-              />
-              <div className="inline-flex items-center gap-2 p-3 ">
-                <span className="info-14-20 truncate max-w-[70px] md:max-w-full" ref={ref2}>https://blcexchange.net</span>
+            <div className="border border-border-clr rounded-xl p-2 mt-2 md:mt-5 flex items-center justify-between gap-2">
+             <span className="info-14 hover:!text-grey">Referral Link</span>
+              <div className="inline-flex items-center gap-2">
+                <span className="info-14 hover:!text-grey truncate max-w-[70px] md:max-w-[150px]" ref={ref2}>{referLink}</span>
                 <button
                   onClick={() => {
                     navigator.clipboard.writeText(ref2.current.innerText);
