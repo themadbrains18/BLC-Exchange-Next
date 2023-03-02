@@ -11,15 +11,16 @@ import { getProviders, getSession } from "next-auth/react"
 
 import React from 'react'
 const Dashboard = ({ account, sessions }) => {
+// console.log(sessions,'================sessions dashboard')
   return (
     <>
-      <Layout data={account} link="dashboard">
+      <Layout data={account} name="dashboard">
         <div className='grow max-w-full p-4 md:p-8 bg-white dark:bg-black-v-5'>
           <div>
             <Profile sessions={sessions.user}/>
           </div>
-          <div className='flex w-full '>
-            <div className=' w-full'>
+          <div className='flex w-full  '>
+            <div className=' w-full px-4'>
               <Assets />
               <SocialTrades />
               <Tranding />

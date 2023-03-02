@@ -1,7 +1,9 @@
 import Image from 'next/image';
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import SearchDropdown from '../snippets/search-dropdown';
 import Step1 from './step1';
+import Context from '../contexts/context';
+import Link from "next/link";
 
 const VerificationType = ({session}) => {
     const [showDropdown, setShowDropdown] = useState(false);
@@ -9,7 +11,7 @@ const VerificationType = ({session}) => {
     const [countryName, setCountryName] = useState('Botswana')
     const [step, setStep] = useState(0)
     const dropdown = useRef(null);
-
+    const { mode } = useContext(Context)
     useEffect(() => {
         function handleClick(event) {
             if (dropdown.current && !dropdown.current.contains(event.target)) {
@@ -24,8 +26,10 @@ const VerificationType = ({session}) => {
         <section className=' dark:bg-black-v-5 '>
 
             <div className='flex gap-4 items-center'>
-                <button className={`${step === 1 ? 'block' : 'hidden'}`} onClick={() => setStep(step - 1)}>
-                    <img src='/assets/icons/back-arrow.svg'></img>
+                <button className={`${(step === 1 && session?.kycstatus === false) ? 'block' : 'hidden'}`} onClick={() => setStep(step - 1)}>
+                <svg className="max-w-[24px] w-full" enableBackground="new 0 0 32 32" version="1.1" viewBox="0 0 32 32" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                                    <path fill={mode === "dark" ? "white" : "#121313"} clipRule="evenodd" d="M31.106,15H3.278l8.325-8.293  c0.391-0.391,0.391-1.024,0-1.414c-0.391-0.391-1.024-0.391-1.414,0l-9.9,9.899c-0.385,0.385-0.385,1.029,0,1.414l9.9,9.9  c0.391,0.391,1.024,0.391,1.414,0c0.391-0.391,0.391-1.024,0-1.414L3.278,17h27.828c0.552,0,1-0.448,1-1  C32.106,15.448,31.658,15,31.106,15z" fillRule="evenodd" />
+                                </svg>
                 </button>
                 <p className='section-secondary-heading'>ID Verification</p>
                 <p className='info-12 bg-border-clr  rounded-sm'>Unverified</p>
@@ -48,7 +52,7 @@ const VerificationType = ({session}) => {
                                     <div className='info-14 hover:!text-grey inline-flex items-center gap-3 cursor-pointer border-b-2 border-border-clr hover:border-primary w-full' onClick={(e) => { setShowDropdown(!showDropdown) }} >
                                         <div className="flex items-center gap-2 justify-between w-full">
                                             <p className="text-black dark:text-white text-end" id="countryName">{countryName}</p>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke={mode === "dark" ? "white" : "#121313"} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                                         </div>
                                     </div>
                                     {
@@ -60,9 +64,12 @@ const VerificationType = ({session}) => {
 
                         </div>
                         <div className='flex flex-col lg:flex-row mt-5 gap-7'>
-                            <div className={`p-6  border-2 box-border border-primary rounded-lg flex gap-2 ${active === 1 ? 'border-2 ' : 'border-none'} `} onClick={() => { setActive(1) }}>
+                            <div className={`p-6  border-2 box-border border-primary rounded-lg flex gap-2 ${active === 1 ? 'border-2 ' : 'border-transparent'} `} onClick={() => { setActive(1) }}>
                                 <div>
                                     <input type='checkbox' checked={active === 1 ? 'checked' : ''} />
+
+                                    
+
                                 </div>
                                 <div>
                                     <p className='info-14-24'>Individual Verification</p>
@@ -86,7 +93,7 @@ const VerificationType = ({session}) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className={`p-6  border-2 box-border border-primary rounded-lg flex gap-2 ${active === 2 ? 'border-2 ' : 'border-none'} `} onClick={() => { setActive(2) }}>
+                            <div className={`p-6  border-2 box-border border-primary rounded-lg flex gap-2 ${active === 2 ? 'border-2 ' : 'border-transparent'} `} onClick={() => { setActive(2) }}>
                                 <div>
                                     <input type='checkbox' checked={active === 2 ? 'checked' : ''} />
                                 </div>
