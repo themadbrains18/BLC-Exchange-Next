@@ -84,7 +84,7 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network,all, deposit, transf
               }`}
           ></div>
           <div
-            className={`h-[50%] rounded-t-xl md:static md:rounded-none md:w-[unset] fixed -bottom-[100%] left-0 w-full bg-white dark:bg-black dark:text-white transition-[bottom] ${open && "bottom-[0%] z-[4]"
+            className={`h-[50%] rounded-t-xl md:static md:rounded-none md:w-[unset] fixed -bottom-[100%] left-0 w-full bg-white dark:bg-black dark:text-white dur ${open && "bottom-[0%] z-[4]"
               }`}
           >
             <span className="block md:hidden my-2 p-2 rounded-xl">
