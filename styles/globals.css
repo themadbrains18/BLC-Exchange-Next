@@ -420,6 +420,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* loadere */
 
-
+.Search::-webkit-search-cancel-button{
+display: none;
+}
 
 @tailwind utilities;

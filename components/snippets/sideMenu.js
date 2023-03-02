@@ -3,8 +3,8 @@ import Context from "../contexts/context";
 import NavAccordian from "../snippets/navAccordian";
 import Link from "next/link";
 
-const SideMenu = ({ show, setShow, data, }) => {
-  const { mode, setMode,setClick,click } = useContext(Context);
+const SideMenu = ({ show, setShow, data,session }) => {
+  const { mode, setMode, setClick, click } = useContext(Context);
   const handelMode = () => {
     if (mode === "light") {
       localStorage.setItem("mode", "dark");
@@ -14,53 +14,59 @@ const SideMenu = ({ show, setShow, data, }) => {
       setMode("light");
     }
   };
+
   return (
     <div
-      className={`fixed w-[calc(100%-4rem)] ${click && "z-10"} overflow-x-auto table_box h-[100vh] duration-300 top-0 bg-white dark:bg-black ${
-        show === false ? "right-0" : "right-[-100%]"
-      }`}
+      className={`fixed w-[calc(100%-4rem)] ${click && "z-10"} overflow-x-auto table_box h-[100vh] duration-300 top-0 bg-white dark:bg-black ${show === false ? "right-0" : "right-[-100%]"
+        }`}
     >
+      
       <div className={`p-5 pb-2  right-0 `}>
-      <button
-     
-        onClick={() => {
-          setShow(true);
-          setClick(false)
-        }}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke={mode === "dark" ? "white" : "currentcolor"}
-          className="w-6 h-6 mr-0 ml-auto "
+        <button
+
+          onClick={() => {
+            setShow(true);
+            setClick(false)
+          }}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke={mode === "dark" ? "white" : "currentcolor"}
+            className="w-6 h-6 mr-0 ml-auto "
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
       </div>
-     
-      <div className="mx-3">
-        <button className="transparent-cta w-full">sign up</button>
-        <button className="cta w-full ">Login</button>
-      </div>
+
+      {session === null && 
+        <div className="mx-3">
+          <Link href="/register" className="transparent-cta w-full text-center max-w-full block" onClick={()=>{setShow(true);setClick(false)}}>sign up</Link>
+          <Link href="/login" className="cta w-full text-center" onClick={()=>{setShow(true);setClick(false)}}>Login</Link>
+        </div>
+      }
+      
 
       {data &&
         data.map((e, i) => {
           return (
             <div className="mt-2 px-3" key={i}>
-              <NavAccordian heading={e.name} content={e.subMenu} />
+              <NavAccordian heading={e.name} content={e.subMenu}  setShow={setShow} />
             </div>
           );
         })}
       <div
         className="relative flex justify-between m-3
          align-middle select-none transition duration-200 ease-in"
+
+         onClick={()=>{setShow(true)}}
       >
         <span className="info-14-20 ">Dark Mode</span>
         <div>
@@ -73,7 +79,7 @@ const SideMenu = ({ show, setShow, data, }) => {
               {
                 handelMode();
               }
-              
+
             }}
             // checked={mode==="dark" && "checked"}
             className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer "
@@ -87,7 +93,7 @@ const SideMenu = ({ show, setShow, data, }) => {
       </div>
       <div className="px-3">
         {/* download */}
-        <div className="flex gap-3 mb-4">
+        <div className="flex gap-3 mb-4" onClick={()=>{setShow(true)}}>
           <Link href="">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +114,7 @@ const SideMenu = ({ show, setShow, data, }) => {
         </div>
         {/* bell   */}
 
-        <div className="flex gap-3 mb-4">
+        <div className="flex gap-3 mb-4" onClick={()=>{setShow(true)}}>
           <Link href="">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +135,7 @@ const SideMenu = ({ show, setShow, data, }) => {
         </div>
 
         {/* global  */}
-        <div className="flex gap-3 mb-4">
+        <div className="flex gap-3 mb-4" onClick={()=>{setShow(true)}}>
           <button>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -149,7 +155,7 @@ const SideMenu = ({ show, setShow, data, }) => {
           <h3 className="info-14-20">English</h3>
         </div>
         {/* currency change */}
-        <div className="flex gap-3">
+        <div className="flex gap-3" onClick={()=>{setShow(true)}}> 
           <Link href={""}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

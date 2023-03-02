@@ -7,12 +7,10 @@ import SocialTrades from 'components/dashboard/socialTrades'
 import Tranding from 'components/dashboard/tranding'
 import Welfare from 'components/dashboard/welfare'
 import Layout from '@/components/layout/Layout'
-import SideMenu from 'components/snippets/sideMenu'
 import { getProviders, getSession } from "next-auth/react"
 
 import React from 'react'
 const Dashboard = ({ account, sessions }) => {
-console.log(sessions,'================sessions dashboard')
   return (
     <>
       <Layout data={account} link="dashboard">

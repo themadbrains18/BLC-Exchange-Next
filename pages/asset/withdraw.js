@@ -264,7 +264,7 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
               href={"/faq"}
               className="info-14 hover:text-grey dark:text-white dark:hover:text-white"
             >
-              Haven't received your deposit?
+              Have not received your deposit?
             </Link>
           </div>
           <div className="flex gap-4 flex-wrap justify-between lg:justify-start">
