@@ -37,7 +37,7 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network,all, deposit, transf
 
   return (
     <>
-      <div ref={dropdown} className={`relative pr-2  ${open && "md:z-[2]"}`}>
+      <div ref={dropdown} className={`relative pr-2 z-initial  ${open && "md:z-[2]"}`}>
         <div className="flex bg-transparent justify-between items-center">
           <input
             type="text"
@@ -126,6 +126,7 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network,all, deposit, transf
                           network ? setValue(e.networkName) : setValue(e);
                           selectNetwork && selectNetwork(e)
                           setOpen(false)
+                          setOverlay(!overlay);
                           setActive(i);
                         }}
                       >

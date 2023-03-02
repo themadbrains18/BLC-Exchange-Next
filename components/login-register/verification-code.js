@@ -164,6 +164,11 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                 if (values[0].status === 200 && values[1].status === 200) {
                     signIn("credentials", loginData);
                 }
+                else {
+                    toast.error(values[0].message, {
+                        position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+                    });
+                }
             });
         }
         if (loginData.email !== "" && loginData.number === "") {
@@ -172,6 +177,9 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                 if (values[0].status === 200) {
                     signIn("credentials", loginData);
                 }
+                toast.error(values[0].message, {
+                    position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+                });
             });
         }
         if (loginData.email === "" && loginData.number !== "") {
@@ -180,6 +188,9 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                 if (values[0].status === 200) {
                     signIn("credentials", loginData);
                 }
+                toast.error(values[0].message, {
+                    position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+                });
             });
         }
     }
