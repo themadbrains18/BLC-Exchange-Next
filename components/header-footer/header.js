@@ -46,6 +46,7 @@ const Header = (props) => {
 
   }, [session]);
 
+
   
   return (
     <>
@@ -367,7 +368,7 @@ const Header = (props) => {
 
         </nav>
           {/* header-Menu  */}
-          <SideMenu show={show} setShow={setShow} data={Data} />
+          <SideMenu show={show} setShow={setShow} data={Data} session={session} />
       </header>
     </>
   );
