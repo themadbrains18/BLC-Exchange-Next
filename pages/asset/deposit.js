@@ -129,7 +129,7 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
                   className={`flex cursor-pointer items-center justify-between w-full border md:border-t-0 md:border-r-0 md:border-l-0  border-border-clr rounded p-2 mt-2 `}
                 >
                   <div className="flex gap-3 ">
-                    <p ref={ref} className="info-14-16 font-bold">
+                    <p ref={ref} className="info-12 dark:!text-white md:info-14-16 font-bold">
                       {address}
                     </p>
                   </div>
