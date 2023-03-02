@@ -86,6 +86,7 @@ export const authOptions = {
             }).then(response => response.json());
 
             session.user = datauser.data.data;
+            session.lastlogin = datauser.data.lastLogin;
             return session;
         }
 
