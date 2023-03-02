@@ -57,10 +57,11 @@ const {setClick} = useContext(Context)
             return (
               <Fragment key={index} >
                 {elem.linkUrl && elem.linkText && (
-                  <li  className="mt-3" onClick={() => {
+                  <li  className="mt-3" >
+                    <Link href={elem.linkUrl} className={`whitespace-nowrap info-14 ${props.className && " hover:border-r-2 hover:border-primary block"}`} onClick={() => {
                     setClick(false);
+                    props.setShow(true);
                   }}>
-                    <Link href={elem.linkUrl} className={`whitespace-nowrap info-14 ${props.className && " hover:border-r-2 hover:border-primary block"}`}>
                       {elem.linkText}
                     </Link>
                   </li>

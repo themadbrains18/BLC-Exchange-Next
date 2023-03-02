@@ -28,7 +28,7 @@ const Explore = () => {
     ]
 
   return (
-    <section className='px-8 py-10 md:py-5'>
+    <section className=' py-10 md:py-5'>
         <div>
             <p className='section-secondary-heading'>Exploration</p>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mt-9 '>

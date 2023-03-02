@@ -6,7 +6,7 @@ import Link from 'next/link'
 const Assets = () => {
     const [show, setShow] = useState(true);
     return (
-        <section className=' px-8 py-3 md:py-5'>
+        <section className='py-3 md:py-5'>
 
              <div className='my-10 p-4 border rounded-md border-clr-2 gap-7 flex justify-between items-center'>
                 <div>
@@ -79,9 +79,9 @@ const Assets = () => {
                     </div>
                 </div>
                 <div className='flex mt-4 md:mt-0 items-end gap-4'>
-                    <button className='border border-primary info-14-16 !text-white px-2 py-1 w-max md:w-full bg-primary rounded hover:!text-white'>Buy Crypto</button>
-                    <button className='border border-primary info-14-16 px-2 py-1 rounded text-primary'>Deposit</button>
-                    <button className='border border-primary info-14-16 px-2 py-1 rounded text-primary'>Withdraw</button>
+                    <Link href='' className='border border-primary info-14-16 !text-white px-2 py-1 w-max md:w-full bg-primary rounded hover:!text-white'>Buy Crypto</Link>
+                    <Link href='/asset/deposit' className='border border-primary info-14-16 px-2 py-1 rounded text-primary'>Deposit</Link>
+                    <Link href='/asset/withdraw' className='border border-primary info-14-16 px-2 py-1 rounded text-primary'>Withdraw</Link>
 
                 </div>
             </div>

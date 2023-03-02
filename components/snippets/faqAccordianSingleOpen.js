@@ -1,6 +1,6 @@
 import React from "react";
 
-const FaqAccordianSingleOpen = ({setHeight,index,rotate,setRotate}) => {
+const FaqAccordianSingleOpen = ({setHeight,index,rotate,setRotate, quest,ans}) => {
   
   return (
     
@@ -17,7 +17,7 @@ const FaqAccordianSingleOpen = ({setHeight,index,rotate,setRotate}) => {
               aria-expanded="false"
               aria-controls="flush-collapseOne"
             >
-              Accordion Item #1
+             {quest}
               <span className="ml-auto -mr-1 h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -45,10 +45,7 @@ const FaqAccordianSingleOpen = ({setHeight,index,rotate,setRotate}) => {
             data-te-parent="#accordionFlushExample"
           >
             <div className="pb-4 px-5 info-14-16">
-              Placeholder content for this accordion, which is intended to
-              demonstrate the
-              <code>.accordion-flush</code> class. This is the first item's
-              accordion body.
+             {ans}
             </div>
           </div>
         </div>

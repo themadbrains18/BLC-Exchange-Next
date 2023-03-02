@@ -9,6 +9,7 @@ import { useSession } from "next-auth/react"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router';
+// import fs from 'fs'
 
 
 // const schema = yup
@@ -26,8 +27,7 @@ const schema = yup.object().shape({
     profile: yup.mixed().test("type", "We only support jpeg", (value) => {
         return value && value[0].type === "image/jpeg" || 'image/png' || 'image/jpg';
     }),
-    phone: yup.number().required("This Field is required")
-
+    statement: yup.mixed()
 }).required();
 
 const Modal = (props) => {
@@ -38,6 +38,7 @@ const Modal = (props) => {
     const [step, setStep] = useState(1)
     const [imagesrc, setImageSource] = useState('');
     const [imagesrc2, setImageSource2] = useState('');
+    const [imagesrc3, setImageSource3] = useState('');
 
     const { register, setValue, getValues, handleSubmit, formState: { errors }, } = useForm({
         mode: "onChange",
@@ -48,6 +49,8 @@ const Modal = (props) => {
             setStep(step)
             return;
         }
+        
+
         var file = e.target.files[0];
         setValue('file', e.target.files, { shouldValidate: true });
         var reader = new FileReader();
@@ -86,7 +89,7 @@ const Modal = (props) => {
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = function (e) {
-            setImageSource(reader.result);
+            setImageSource2(reader.result);
 
         }.bind(this);
 
@@ -107,19 +110,47 @@ const Modal = (props) => {
             }
         );
     }
+    const handleStatement = function (e) {
 
+        if (!e.target.files) {
+            setStep(step)
+            return;
+        }
+        var file = e.target.files[0];
+        setValue('statement', e.target.files, { shouldValidate: true });
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = function (e) {
+            setImageSource3(reader.result);
+            setStep(step + 1)
+        }.bind(this);
+
+    }
+
+    const handleRedo =  async(e) => {
+            setStep(step - 1)
+   }
 
     const handleUpload = async (data, e) => {
         const formData = new FormData();
         let file = getValues('file')
         let profile = getValues('profile')
-        if (file !== undefined && step === 3) {
+        let statement = getValues('statement')
 
+        if (file !== undefined && step === 3) {
+            console.log("idfront[0]",file[0]);
             formData.append("idfront", file[0]);
         }
-        if (profile !== undefined) {
+        if (profile !== undefined && step === 5) {
+            console.log("idback[0]",profile[0]);
             formData.append("idback", profile[0]);
         }
+        if (statement !== undefined) {
+            console.log("statement[0]",statement[0]);
+            formData.append("statement", statement[0]);
+        }
+        
+
         let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/file/fileupload`, {
             method: "POST",
             body: formData
@@ -134,6 +165,9 @@ const Modal = (props) => {
             if (step === 5) {
                 setValue('profile', result.data)
             }
+            if (step === 7) {
+                setValue('statement', result.data)
+            }
         }
         else {
             toast.error(result.message, {
@@ -147,9 +181,10 @@ const Modal = (props) => {
         const dataForm = props.formData;
         let file = getValues('file')
         let profile = getValues('profile')
+        let statement = getValues('statement')
         let obj = {
             idfront: file, idback: profile, country: dataForm.country, user_id: session?.user?.id, fname: dataForm.fname, lname: dataForm.lname
-            , doctype: dataForm.doctype, docnumber: dataForm.docnumber, dob: dataForm.birthDate, phone: data.phone
+            , doctype: dataForm.doctype, docnumber: dataForm.docnumber, dob: dataForm.birthDate, statement: statement
         }
 
         let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/kyc/create`, {
@@ -160,7 +195,7 @@ const Modal = (props) => {
             toast.success(result.data.message, {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             })
-            setStep(11)
+            setStep(9)
             setTimeout(() => {
                 props.setShow(false)
                 setClick(false)
@@ -263,59 +298,22 @@ const Modal = (props) => {
                                 {step === 6 &&
 
                                     <div className='flex flex-col mt-8 p-4 '>
-                                        <p className='section-secondary-heading self-center dark:text-black'>Continue on your phone</p>
-                                        <p className='info-14-16 self-center dark:text-black'>Here’s how to do it:</p>
-                                        <div className='flex flex-col gap-4 justify-center p-4 mt-6'>
-
-                                            <div className='flex gap-4'>
-                                                <span className='bg-border-clr p-1 self-center rounded-[50%]'>
-
-                                                    <Image src='/assets/icons/step1kyc.svg' alt='error' width={48} height={48}></Image>
-                                                </span>
-                                                <p className='self-center info-14-16 dark:text-black'>Send a secure link to your phone</p>
-                                            </div>
-                                            <div className='flex gap-4'>
-                                                <span className='bg-border-clr p-1 self-center rounded-[50%]'>
-
-                                                    <Image src='/assets/icons/srep2kyc.svg' alt='error' width={48} height={48}></Image>
-                                                </span>
-                                                <p className='self-center info-14-16 dark:text-black'>Open the link and complete the tasks</p>
-                                            </div>
-                                            <div className='flex gap-4'>
-                                                <span className='bg-border-clr p-1 self-center rounded-[50%]'>
-
-                                                    <Image src='/assets/icons/step3kyc.svg' alt='error' width={48} height={48}></Image>
-                                                </span>
-                                                <p className='self-center info-14-16 dark:text-black'>Check back here to finish the submission</p>
-                                            </div>
+                                        <p className='section-secondary-heading self-center dark:text-black'>Submit Statement</p>
+                                        <p className='info-14-16 self-center dark:text-black'>Take a photo with your phone</p>
+                                        <div className='my-14 bg-border-clr p-8 self-center rounded-[50%]'>
+                                            <Image src='/assets/icons/take-photo.svg' alt='error' width={72} height={72}></Image>
                                         </div>
-
-
+                                        {errors.statement?.message && <p className="!text-red-700 info-12">{errors.statement?.message}</p>}
                                     </div>
                                 }
                                 {step === 7 &&
 
-                                    <div className='flex flex-col mt-8 p-4 justify-center items-center'>
-                                        <p className='section-secondary-heading self-center dark:text-black'>Get your secure link</p>
-                                        <p className='info-14-16 self-center dark:text-black'>Scan the QR code with your phone</p>
-                                        <Image src='/assets/images/qr.png' alt='error' width={120} height={80} className='mt-5 '></Image>
-                                        <div className='flex gap-2  mt-6'>
-                                            <Image src='/assets/icons/questionmark.svg' alt='error' width={20} height={20}></Image>
-                                            <p className='underline info-14 text-black dark:text-black'>How to scan a QR code</p>
+                                    <div className='flex flex-col mt-8 p-4 '>
+                                        <p className='section-secondary-heading self-center dark:text-black'>Check your pdf</p>
+                                        <div className='my-14 bg-border-clr py-6 px-8 self-center '>
+                                            {imagesrc3 !== '' && <iframe src={imagesrc3} style={{ width: '250px', height: '100px' }} />}
                                         </div>
-                                        <p className='info-14 mt-6'>Choose an alternative method</p>
-                                        <div className='flex gap-4 mt-9'>
-                                            <div className='flex' onClick={() => { setStep(9) }}>
-                                                <Image src='/assets/icons/message.svg' alt='error' width={20} height={20}></Image>
-                                                <p className='underline info-14 text-black dark:text-black'>Get link via SMS</p>
-                                            </div>
-                                            <div className='flex'>
-                                                <Image src='/assets/icons/link.svg' alt='error' width={20} height={20}></Image>
-                                                <p className='underline info-14 text-black dark:text-black'>Copy link</p>
-                                            </div>
-
-                                        </div>
-
+                                        <p className='info-14-16 self-center dark:text-black'>Make sure your deatils are clear and unobstruced</p>
                                     </div>
                                 }
 
@@ -331,7 +329,7 @@ const Modal = (props) => {
                                             </div>
                                             <div className='flex gap-3'>
                                                 <Image src='/assets/icons/tick.svg' alt='error' width={20} height={20}></Image>
-                                                <p className='dark:text-black'>Selfie</p>
+                                                <p className='dark:text-black'>Statement</p>
                                             </div>
                                         </div>
 
@@ -341,65 +339,6 @@ const Modal = (props) => {
                                 }
 
                                 {step === 9 &&
-
-                                    <div className='flex flex-col mt-8 p-4 justify-center items-center'>
-                                        <p className='section-secondary-heading self-center dark:text-black'>Get your secure link</p>
-                                        <p className='info-14-16 self-center dark:text-black'>Send this one-time link to your phone</p>
-
-                                        <div className="border border-black  rounded my-20 min-h-[46px] pl-4 flex items-center relative">
-                                            <div className="flex items-center gap-2  min-w-[90px] cursor-pointer" onClick={() => { setDropdownPhone(!DropdownPhone) }}>
-                                                <span className="text-black" id="counteryCode">+ <span>91</span> </span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#656e6f" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
-                                            </div>
-                                            <input type="tel" placeholder="Mobile number" className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone"
-                                                {...register('phone')} />
-                                            <button type='button' className='cta max-w-[110px] w-full'
-                                                onClick={() => {
-                                                    setStep(8)
-                                                }}>Send Link</button>
-                                            {
-                                                DropdownPhone &&
-                                                <SearchDropdown code={true} setDropdownPhone={setDropdownPhone} />
-                                            }
-                                        </div>
-                                        {errors.phone && (
-                                            <span role="alert" className="!text-red-700 info-12">This is required</span>
-                                        )}
-
-                                        <p className='info-14 mt-6'>Choose an alternative method</p>
-                                        <div className='flex gap-4 mt-9'>
-                                            <div className='flex' onClick={() => { setStep(9) }}>
-                                                <Image src='/assets/icons/message.svg' alt='error' width={20} height={20}></Image>
-                                                <p className='underline info-14 text-black dark:text-black'>Get link via SMS</p>
-                                            </div>
-                                            <div className='flex'>
-                                                <Image src='/assets/icons/link.svg' alt='error' width={20} height={20}></Image>
-                                                <p className='underline info-14 text-black dark:text-black'>Copy link</p>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                }
-
-                                {step === 10 &&
-
-                                    <div className='flex flex-col mt-8 p-4 justify-center items-center'>
-                                        <p className='section-secondary-heading self-center dark:text-black'>Check your mobile</p>
-                                        <p className='info-14-16 self-center dark:text-black'>We’ve sent a secure link to +917814104310</p>
-                                        <p className='info-14-16 self-center dark:text-black'>It may take a few minutes to arrive</p>
-
-                                        <div className='my-11 bg-border-clr p-8 self-center rounded-[50%]'>
-                                            <Image src='/assets/icons/phoneverify.svg' alt='error' width={72} height={72}></Image>
-                                        </div>
-                                        <div className='border-2 mb-2 rounded-2xl p-4'>
-                                            <p className='info-14-16'>Keep this window open while using your mobile</p>
-                                            <p className='info-14-16'>  Your link will expire in one hour</p>
-                                        </div>
-                                        <a className='info-14 underline cursor-pointer'>Resend Link</a>
-                                    </div>
-                                }
-                                {step === 11 &&
 
                                     <div className='flex flex-col mt-40 p-4 justify-center items-center'>
                                         <p className=' mt-7 section-secondary-heading self-center dark:text-black'>Thank You</p>
@@ -413,9 +352,9 @@ const Modal = (props) => {
                         </div>
 
                         {
-                            step === 3 || step === 5 ?
+                            step === 3 || step === 5 || step === 7 ?
                                 <div className='my-7 flex justify-between mx-4 gap-5'>
-                                    <button type='button' className='cta w-full' onClick={() => { setStep(step - 1) }}>Redo</button>
+                                    <button type='button' className='cta w-full' onClick={() => { handleRedo() }}>Redo</button>
                                     <button type='button' className='cta w-full ' onClick={() => { handleUpload() }} >Upload</button>
                                 </div>
 
@@ -435,15 +374,19 @@ const Modal = (props) => {
                                             }
 
 
-                                        }} >{step === 1 ? 'Choose Document' : step === 2 ? 'Continue on Phone' : step === 4 ? 'Continue on Phone' : step === 6 ? 'Get Secure Link' : ''}</button>
+                                        }} >{step === 1 ? 'Choose Document' : ''}</button>
                                     }
-                                    <div className={`mx-auto mt-3 ${step === 2 ? 'block' : 'hidden'}`} >
+                                    <div className={`mx-auto  ${step === 2 ? 'block' : 'hidden'}`} >
                                         <input id='fileUpload' type='file' placeholder='or upload photo' className='hidden' {...register('fileUpload')} onChange={(e) => { handleFileChange(e) }} ></input>
-                                        <label htmlFor='fileUpload' className='underline '>or Choose file </label>
+                                        <label htmlFor='fileUpload' className=' cta cursor-pointer'> Choose file </label>
                                     </div>
-                                    <div className={`mx-auto mt-3 ${step === 4 ? 'block' : 'hidden'}`} >
+                                    <div className={`mx-auto ${step === 4 ? 'block' : 'hidden'}`} >
                                         <input name='backfile' id='backfile' type='file' placeholder='or upload photo'  {...register('fileUpload2')} className='hidden' onChange={(e) => { handleBackFile(e) }}  ></input>
-                                        <label htmlFor='backfile' className='underline '>or Choose file  </label>
+                                        <label htmlFor='backfile' className='cta cursor-pointer'> Choose file  </label>
+                                    </div>
+                                    <div className={`mx-auto ${step === 6 ? 'block' : 'hidden'}`} >
+                                        <input name='statement' id='statement' type='file' placeholder='or upload photo'  {...register('fileUpload3')} className='hidden' onChange={(e) => { handleStatement(e) }}  ></input>
+                                        <label htmlFor='statement' className='cta cursor-pointer'> Choose file  </label>
                                     </div>
                                 </div>
 
@@ -453,7 +396,7 @@ const Modal = (props) => {
                     </div>
 
                 </form>
-            </div>
+            </div >
         </>
 
     )

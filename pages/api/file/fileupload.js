@@ -1,5 +1,14 @@
 import nc from 'next-connect'
 import fileUpload from "../../../libs/fileUploads"
+import multer from 'multer'
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "../auth/[...nextauth]"
+
+
+import { getProviders } from "next-auth/react"
+import fs from 'fs'
+// import { getServerSession } from "next-auth/next"
+// import { authOptions } from "../auth/[...nextauth]"
 
 
 export const config = {
@@ -18,29 +27,55 @@ const handler = nc({
     res.status(404).end("Page is not found");
   },
 })
-  .use(fileUpload('/kyc').fields([{
-    name: 'idfront', maxCount: 1
-  }, {
-    name: 'idback', maxCount: 1
-  }]))
+  .post(async (req, res) => {
+    const session = await getServerSession(req, res, authOptions)
+    if (session != null) {
 
-  .post((req, res) => {
-    try {
-      if(!req.errortype ){
-
-        res.status(200).send({ 'message': 'file upload successfully...', data: req.name, status: 200 })
+      // ================================================================ //
+      // file upload handler
+      // ================================================================ // 
+      let userID = session.user.id;
+      const upload = fileUpload('/kyc', userID).fields([{
+        name: 'idfront', maxCount: 1
+      },
+      {
+        name: 'idback', maxCount: 1
+      },
+      {
+        name: 'statement', maxCount: 1
       }
-      else{
-        res.status(400).send({ message: 'Only .png, .jpg and .jpeg format allowed!', status: 400 })
-      }
-    }
-    catch(error) {
-      console.log("=error",error)
-      
-    }
 
+      ])
+
+      upload(req, res, function (err) {
+        if (req.errortype) {
+          // A Multer error occurred when uploading.
+          res.status(400).send({ message: req.errortype, status: 400 })
+        } else if (err) {
+          console.log(err)
+          res.status(400).send({ message: req.errortype, status: 400 })
+          // An unknown error occurred when uploading.
+        }
+        else {
+          res.status(200).send({ 'message': 'file upload successfully...', data: req.name, status: 200 })
+        }
+        // working fine
+        console.log(req.name)
+        console.log(req.fileuserid)
+
+      })
+
+      // ================================================================ //
+      // file upload handler
+      // ================================================================ // 
+
+    } else {
+      res.status(401).send('Opps! You are not authorized to access this application')
+    }
   })
-
+  .delete(async(req,res)=>{
+    console.log("======request", req)
+  })
 
 
 export default handler;

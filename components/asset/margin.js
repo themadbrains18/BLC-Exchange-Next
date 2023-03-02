@@ -4,9 +4,9 @@ import Image from "next/image";
 
 import Link from "next/link";
 import ActiveCta from "../snippets/activeCta";
-const Margin = ({ show, dataShow, tokenList,assetData }) => {
+const Margin = ({ show, dataShow, tokenList,assetData,overview }) => {
   const [active, setActive] = useState(0);
-  const headings = ['Coin','Total Amount','On Order','Available','Debt','Net assets', 'Operation']
+  const headings = ['Coin', 'Available', 'On Order', 'USDT Value', 'Operation']
 
   return (
     <>
@@ -19,9 +19,9 @@ const Margin = ({ show, dataShow, tokenList,assetData }) => {
             Total assets in margin account
           </h4>
           <span className="section-secondary-heading font-noto">
-            {show ? <span>0.00000000</span> : <span>****</span>} BTC{" "}
+            {show ? <span>{overview.trade}</span> : <span>****</span>} USDT{" "}
             <span className="info-12 ">
-              ≈$ {show ? <span>0</span> : <span>****</span>}
+              ≈$ {show ? <span>{overview.trade}</span> : <span>****</span>}
             </span>
           </span>
         </div>
@@ -34,7 +34,7 @@ const Margin = ({ show, dataShow, tokenList,assetData }) => {
           />
         </div>
         <div>
-          <h4
+          {/* <h4
             className="info-14 hover:!text-grey
                   "
           >
@@ -46,12 +46,12 @@ const Margin = ({ show, dataShow, tokenList,assetData }) => {
           </span>
           <span className="info-12 ">
             ≈$ {show ? <span>0</span> : <span>****</span>}
-          </span>
+          </span> */}
           {dataShow ? (
             <DataTable  heading={headings}
             data={tokenList}
              assetData={assetData}
-            cta={true} />
+            cta={true} trade ={true} convertPrice={overview.convertPrice}/>
           ) : (
             <div className="grid place-content-center w-full h-96 ">
               <Image

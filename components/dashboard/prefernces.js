@@ -1,11 +1,7 @@
 import React from 'react'
 import { useContext, useState } from 'react'
-<<<<<<< HEAD
-import Layout from '@/components/layout/Layout'
-=======
 import Layout from 'components/layout/Layout'
->>>>>>> 44011de46af2fb5ccaf28b668e5b2cc1e4c25518
-import Context from '@/components/contexts/context';
+import Context from 'components/contexts/context';
 import Link from 'next/link';
 import VerificationCode from './../../components/login-register/verification-code';
 import Image from 'next/image';
@@ -15,7 +11,7 @@ const Prefernces = () => {
     const [showSafteyV, setShowSafteyV] = useState(0);
     const [SetState, showSetState] = useState(0);
     return (
-        <section className="w-full px-[24px] ">
+        <section className="w-full  ">
             <div className="mb-[20px]">
                 <h3 className="section-secondary-heading mb-6"> Settings</h3>
                 <div className="divide-y px-[24px] shadow-lg dark:shadow-[#1da2b41c] rounded-lg	">
@@ -121,18 +117,11 @@ const Prefernces = () => {
                         </div>
                         <div className='flex gap-6 items-center'>
                             <button  >
-                                <label
-                                    className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                                >
-                                    {" "}
-                                    <input
-                                        type="checkbox"
-                                        defaultValue=""
-                                        className="sr-only peer"
-                                        defaultChecked=""
-                                    />
-                                    <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary " />
-                                </label></button>
+                                <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                    <input type="checkbox" className="sr-only peer" value="" />
+                                    <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                                </label>
+                            </button>
                         </div>
                     </div>
 
@@ -153,223 +142,120 @@ const Prefernces = () => {
                     <div className="flex items-center flex-row pt-[20px] pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Second confirmation of limit order</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label>
+                        </button>
 
                     </div>
                     <div className="flex items-center  flex-row pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Second confirmation of flash order</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
 
                     </div>
                     <div className="flex items-center  flex-row  pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Second confirmation of trigger order</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
 
                     </div>
                     <div className="flex items-center  flex-row  pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Second confirmation of TP and SL</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
 
                     </div>
                     <div className="flex items-center  flex-row  pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Futures transaction notifications</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
 
                     </div>
                     <div className="flex items-center  flex-row  pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Futures transaction notification sound</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
 
                     </div>
                     <div className="flex items-center  flex-row pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Spot transaction notifications</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
 
                     </div>
                     <div className="flex items-center  flex-row pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Spot transaction notification sound</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
 
                     </div>
                     <div className="flex items-center  flex-row  pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Whether to include pending orders</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
 
                     </div>
                     <div className="flex items-center  flex-row pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Second confirmation of trailing stop</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
 
                     </div>
                     <div className="flex items-center  flex-row  pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Futures Unit Setting</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
                     </div>
 
                     <div className="flex items-center  flex-row  pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Futures price alert</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
 
                     </div>
 
                     <div className="flex items-center  flex-row  pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Futures price alert sound</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
 
                     </div>
 
@@ -390,86 +276,46 @@ const Prefernces = () => {
                     <div className="flex items-center flex-row pt-[20px] pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Second confirmation of limit order</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
 
                     </div>
                     <div className="flex items-center  flex-row pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Second confirmation of market order</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
 
                     </div>
                     <div className="flex items-center  flex-row  pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Second confirmation of trigger order</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
 
                     </div>
                     <div className="flex items-center  flex-row  pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Spot price alert</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
 
                     </div>
                     <div className="flex items-center  flex-row  pb-6 gap-5 justify-between">
                         <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Spot price alert sound</p>
                         <button className='leading-[0]' >
-                            <label
-                                className={`relative inline-flex  items-center  cursor-pointer duration-500`}
-                            >
-                                {" "}
-                                <input
-                                    type="checkbox"
-                                    defaultValue=""
-                                    className="sr-only peer"
-                                    defaultChecked=""
-                                />
-                                <div className=" duration-500 w-9 h-5 bg-gray-200 rounded-full leading-[0]   dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] dark:after:bg-black after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
-                            </label></button>
+                            <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                <input type="checkbox" className="sr-only peer" value="" />
+                                <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                            </label> </button>
 
                     </div>
 

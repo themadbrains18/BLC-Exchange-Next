@@ -27,8 +27,8 @@ const Profile = ({ sessions }) => {
     }, [show])
 
     return (
-        <section className=' px-8 pt-5 pb-3 md:py-8 dashboardProfileqwe' >
-            <div className='flex px-5 gap-2 justify-between'>
+        <section className=' pt-5 pb-3 md:py-8 dashboardProfileqwe' >
+            <div className='flex  gap-2 justify-between'>
                 <div className='flex gap-4'>
                     <div className='cursor-pointer'>
                         <Image src='/assets/images/avatar-default.jpg' width={80} height={80} alt='error' className='rounded-full'></Image>

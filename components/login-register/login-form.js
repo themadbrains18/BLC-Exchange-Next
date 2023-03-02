@@ -141,7 +141,7 @@ const LoginForm = () => {
                     </div>
                     {/* login part */}
                     {show !== 3 &&
-                        <div className='className="max-w-full md:max-w-[50%] w-full" p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto'>
+                        <div className='className="max-w-full md:max-w-[50%] w-full" md:p-3 sm:p-6 md:border border-grey max-w-[480px] w-full mx-auto'>
                             <h4 className='section-secondary-heading mb-5'>Welcome back</h4>
                             <div className='flex gap-8 mb-8'>
                                 <button className={`info-14 border-b-2 border-transparent pb-1  ${show === 1 ? " !border-primary !text-primary" : ""}`} onClick={() => { setShow(1) }}>Email / Mobile number</button>

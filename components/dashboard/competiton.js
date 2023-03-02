@@ -14,7 +14,7 @@ const Competiton = () => {
     
 
   return (
-    <section className="w-full px-[24px]">
+    <section className="w-full ">
       <div>
         <p className='section-secondary-heading'>Competitions</p>
 
