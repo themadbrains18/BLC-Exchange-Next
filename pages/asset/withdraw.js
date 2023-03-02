@@ -10,8 +10,8 @@ import Link from "next/link";
 import WithDrawTable from "components/asset/withDraw/withDrawTable";
 import ActiveCta from "components/snippets/activeCta";
 
-const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
-
+const Withdraw = ({assets, tokens, networks, sessions, tokenBalnces })  => {
+  let ctas = ["Email","Mobile","UID"];
   const { mode } = useContext(Context);
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
@@ -72,7 +72,7 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
         <div className="grow p-4 md:p-8 font-noto ">
           <div className="grid lg:grid-cols-2 gap-8">
             <div>
-              <div className={`flex items-end gap-5 mb-10`}>
+              <div className={`hidden md:flex items-start sm:items-end sm:flex-row flex-col gap-5 mb-10`}>
                 <button
                   className={`section-secondary-heading font-noto ${
                     show === 2 && "text-disable-clr"
@@ -83,7 +83,7 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
                 >
                   Withdraw
                 </button>
-                <button
+                {/* <button
                   className={`section-secondary-heading font-noto ${
                     show === 1 && "text-disable-clr"
                   }`}
@@ -92,7 +92,7 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
                   }}
                 >
                   Internal Funds Transfer
-                </button>
+                </button> */}
               </div>
               <div>
                 <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
@@ -147,16 +147,16 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
               </div>
 
               <div>
-                {show === 2 && (
-                  <div className="mt-8">
-                    <ActiveCta
-                      type="second"
-                      data={ctas}
-                      active={active}
-                      setActive={setActive}
-                    />
-                  </div>
-                )}
+                {/* {show === 2 && (
+                  // <div className="mt-8">
+                  //   <ActiveCta
+                  //     type="second"
+                  //     data={ctas}
+                  //     active={active}
+                  //     setActive={setActive}
+                  //   />
+                  // </div>
+                )} */}
                 {show === 1 && (
                   <div className="mt-4">
                     <h6 className="info-12 dark:hover:text-white dark:text-white">
@@ -264,7 +264,7 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces })  => {
               href={"/faq"}
               className="info-14 hover:text-grey dark:text-white dark:hover:text-white"
             >
-              Haven't received your deposit?
+              Have not received your deposit?
             </Link>
           </div>
           <div className="flex gap-4 flex-wrap justify-between lg:justify-start">

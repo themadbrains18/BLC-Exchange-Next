@@ -14,20 +14,23 @@ import { useSession } from "next-auth/react";
 const Header = (props) => {
   const router = useRouter();
   const { data: session } = useSession();
+\
 
-  const { mode, setMode, login, topBar, setClick } = useContext(Context);
-  const [login2, setLogin2] = useState(login);
-
+  const { mode, setMode, login, topBar, setClick,heightUpdate } = useContext(Context);
+  const [login2, setLogin2] = useState(login)
+  // console.log(session,' session session session')
   const [show, setShow] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const [Data, setData] = useState([]);
   const [specialData, setSpecialData] = useState([]);
   useEffect(() => {
     (async () => {
+
       if (session != "" && session != undefined) {
-        setLogin2(true);
-      } else {
-        setLogin2(false);
+        setLogin2(true)
+      }
+      else {
+        setLogin2(false)
       }
 
       await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello")
@@ -60,7 +63,8 @@ const Header = (props) => {
         </div> */}
 
         {/* top bar */}
-        {router.pathname === "/" && <TopBar />}
+        {router.pathname === "/" &&
+          <TopBar />}
         {/* main Navbar */}
         <nav className="navbar flex bg-white justify-between px-4 dark:bg-black-v-4 z-10">
           <div className="flex items-center gap-4">
@@ -99,7 +103,11 @@ const Header = (props) => {
                 </svg>
               </Link>
               {specialData.grid != undefined && specialData.grid && (
-                <Dropdown specialMenu={specialData.grid} />
+
+                <Dropdown
+
+                  specialMenu={specialData.grid}
+                />
               )}
             </div>
 
@@ -143,25 +151,22 @@ const Header = (props) => {
           <div className="flex gap-5 items-center">
             <Link
               href="/register"
-              className={`transparent-cta hidden ${
-                login2 === true ? "lg:hidden" : "lg:block"
-              }`}
+              className={`transparent-cta hidden ${login2 === true ? "lg:hidden" : "lg:block"
+                }`} onClick={()=>heightUpdate()}
             >
               sign up
             </Link>
             <Link
               href="/login"
-              className={`cta hidden ${
-                login2 === true ? "lg:hidden" : "lg:block"
-              }`}
+              className={`cta hidden ${login2 === true ? "lg:hidden" : "lg:block"
+                }`} onClick={()=>heightUpdate()}
             >
               Log-in
             </Link>
 
             <div
-              className={`hidden relative   group  hover:pb-8 hover:-mb-8  ${
-                login2 === true ? "lg:block" : "lg:hidden"
-              }`}
+              className={`hidden relative   group  hover:pb-8 hover:-mb-8  ${login2 === true ? "lg:block" : "lg:hidden"
+                }`}
             >
               <Link href={"/asset"} className="lg:flex lg:items-center">
                 <span className="info-14-16 duration-300 group-hover:text-primary ">
@@ -186,41 +191,48 @@ const Header = (props) => {
               {specialData.assets != undefined && specialData.assets && (
                 <Dropdown subMenu={specialData.assets.subMenu} right={true} />
               )}
+
+
             </div>
             {/* account */}
-            <div
-              className={` ${login2 === true ? "block" : "hidden"}`}
-              onClick={() => {
-                setShowMenu(true);
-              }}
-            >
-              <Link href={""}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke={mode === "dark" ? "white" : "currentcolor"}
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-                  />
-                </svg>
-              </Link>
+            {session !== null &&
+              <div
+                href=""
+                className={`group  hover:pb-8 hover:-mb-8 ${login2 === true ? "lg:block" : "lg:hidden"
+                  }`}
+              >
+                <Link href={""}>
 
-              {specialData.account != undefined && specialData.account && (
-                <SideMenu2
-                  subMenu={specialData.account.subMenu}
-                  fixed_cta="Log Out"
-                  svgType="log_out"
-                  showMenu={showMenu}
-                  setShowMenu={setShowMenu}
-                />
-              )}
-            </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke={mode === "dark" ? "white" : "currentcolor"}
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                    />
+                  </svg>
+                </Link>
+
+                {specialData.account != undefined && specialData.account && (
+                  <Dropdown
+                    subMenu={specialData.account.subMenu}
+                    right={true}
+                    arrow={true}
+                    height={true}
+                    fixed_cta="Log Out"
+                    svgType="log_out"
+                  />
+                )}
+              </div>
+            }
+
+
             {/* hamburger  */}
             <button
               className={`${show === false ? "hidden" : "none"} lg:hidden`}
@@ -246,8 +258,11 @@ const Header = (props) => {
             </button>
 
             <div className=" border-l border-line-clr  hidden lg:flex items-center gap-[10px]">
+
+
               {/* bell   */}
               <button className="ml-3 group relative">
+
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -345,7 +360,7 @@ const Header = (props) => {
           </div>
         </nav>
         {/* header-Menu  */}
-        <SideMenu show={show} setShow={setShow} data={Data} />
+        <SideMenu show={show} setShow={setShow} data={Data} session={session} />
       </header>
     </>
   );

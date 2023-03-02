@@ -13,7 +13,7 @@ const SearchDropdown = ({
   selectCoin,
   setDialCode,
   tokens,
-  selectBank,bank
+  selectBank, bank
 
 }) => {
   // const[showDropdown,setShowDropdown] = useState(false);
@@ -27,11 +27,6 @@ const SearchDropdown = ({
 
   useEffect(() => {
     (async () => {
-      let tokenList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`, {
-        method: "GET"
-      }).then(response => response.json());
-
-      setCoinData(tokenList)
 
       await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello")
         .then((res) => res.json())
@@ -43,6 +38,15 @@ const SearchDropdown = ({
           /* process your data further */
         })
         .catch((error) => console.error(error));
+
+      let tokenList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`, {
+        method: "GET"
+      }).then(response => response.json()).then((data) => {
+        setCoinData(data)
+      }).catch((error) => {
+        console.error(error)
+      });
+
     })().catch((err) => {
       console.log(err);
     });
@@ -76,9 +80,8 @@ const SearchDropdown = ({
     <>
       <div className="bg-white dark:bg-black-v-5 animate-bottom duration-500 absolute top-[100%]  left-0 w-full border border-grey max-h-[350px] overflow-auto z-10">
         <div
-          className={`p-4 sticky top-0 left-0 w-full bg-white dark:bg-black-v-5 ${
-            idData ? "hidden" : "block"
-          }`}
+          className={`p-4 sticky top-0 left-0 w-full bg-white dark:bg-black-v-5 ${idData ? "hidden" : "block"
+            }`}
         >
           <input
             type="search"
@@ -134,7 +137,7 @@ const SearchDropdown = ({
                     >
                       <img
                         src={`${e.image}`}
-                        className="max-w-[24px] w-full h-auto"
+                        className="max-w-[24px] w-full h-auto rounded-full"
                       ></img>
                       <span>{e.symbol}</span>
                     </li>

@@ -33,7 +33,7 @@ const SubHeader = () => {
   return (
     <>
     
-      <section className='py-10  px-5 sm:px-10 mt-[40px]  dark:bg-black-v-3'>
+      <section className='py-10  px-5 sm:px-10 dark:bg-black-v-3'>
         <div className='container flex flex-row justify-between gap-4 lg:gap-8 flex-wrap	xl:flex-nowrap !p-0'>
           <div className='flex flex-wrap sm:flex-nowrap  gap-4 sm:gap-8 '>
             <button className={`info-14-20 border-b-2 border-transparent text-start whitespace-nowrap pb-1  ${show === 1 ? " !border-primary !text-primary" : ""}`} onClick={() => { setShow(1) }}>Quick Buy/ Express</button>

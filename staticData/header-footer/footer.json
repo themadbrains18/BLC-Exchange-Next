@@ -33,7 +33,7 @@
         "content":[
             {
                 "linkText":"Buy Crypto",
-                "linkUrl":"p2p-trade/quick"
+                "linkUrl":"/p2p-trade/quick"
             },
             {
                 "linkText":"Futures",
