@@ -11,9 +11,9 @@ const ActiveCta = ({ data, active, setActive, type }) => {
                 onClick={() => {
                   setActive(index);
                 }}
-                className={`pb-3 info-14-16 whitespace-nowrap ${
+                className={`pb-1 info-14-16 whitespace-nowrap ${
                   active === index
-                    ? "border-b-2 border-primary text-black-v-3"
+                    ? "border-b-4 border-primary text-black-v-3"
                     : ""
                 }`}
                 href={""}
