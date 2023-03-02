@@ -10,8 +10,8 @@ const SearchBox = ({open,setOpen}) => {
   const { mode } = useContext(Context);
   return (
     <>
-      <aside className={`absolute bg-white  bottom-[100%] ${open && "!bottom-[0%] z-[2] h-[70%] w-full"}  md:static  dark:bg-black-v-3 overflow-y-auto h-[100vh] overscroll-none` }>
-        <div>
+      <aside className={`absolute bg-white border-b-4 border-primary-hover bottom-[100%] ${open && "!bottom-[0%] z-[4] h-[70%] w-full"}  lg:static  dark:bg-black-v-3 ` }>
+        <div className=" overscroll-none overflow-y-auto h-[100vh]">
           <div className="flex gap-4 p-3">
             <div className="flex  grow">
               <div className="w-full">
@@ -66,8 +66,7 @@ const SearchBox = ({open,setOpen}) => {
                       id="Layer_1"
                       xmlns="http://www.w3.org/2000/svg"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
-                      x="px"
-                      y="0px"
+                     
                       height={12}
                       width={12}
                       fill={
@@ -93,8 +92,7 @@ const SearchBox = ({open,setOpen}) => {
                       id="Layer_1"
                       xmlns="http://www.w3.org/2000/svg"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
-                      x="px"
-                      y="0px"
+                
                       fill={
                         mode === "dark"
                           ? iconChange === 1
@@ -137,8 +135,7 @@ const SearchBox = ({open,setOpen}) => {
                       id="Layer_1"
                       xmlns="http://www.w3.org/2000/svg"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
-                      x="px"
-                      y="0px"
+                     
                       height={12}
                       width={12}
                       fill={
@@ -164,8 +161,7 @@ const SearchBox = ({open,setOpen}) => {
                       id="Layer_1"
                       xmlns="http://www.w3.org/2000/svg"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
-                      x="px"
-                      y="0px"
+                  
                       fill={
                         mode === "dark"
                           ? iconChange1 === 1
@@ -205,8 +201,7 @@ const SearchBox = ({open,setOpen}) => {
                       id="Layer_1"
                       xmlns="http://www.w3.org/2000/svg"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
-                      x="px"
-                      y="0px"
+                  
                       height={12}
                       width={12}
                       fill={
@@ -232,8 +227,7 @@ const SearchBox = ({open,setOpen}) => {
                       id="Layer_1"
                       xmlns="http://www.w3.org/2000/svg"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
-                      x="px"
-                      y="0px"
+                   
                       fill={
                         mode === "dark"
                           ? iconChange2 === 1
