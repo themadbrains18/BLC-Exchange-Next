@@ -184,7 +184,7 @@ const RegisterForm = () => {
                     {/* register part */}
                     {showVerification === 0 &&
                         <div className="max-w-full md:max-w-[50%] w-full p-3 sm:p-6 border border-grey mx-auto">
-                            <h4 className='section-secondary-heading mb-5'>Welcome back</h4>
+                            <h4 className='section-secondary-heading mb-5'>Welcome to Blc-Exchange</h4>
                             <div className="my-8 relative" ref={dropdown}>
                                 <p className='info-14 hover:!text-grey inline-flex items-center gap-3 cursor-pointer' onClick={(e) => { setShowDropdown(!showDropdown) }}>
                                     <span>Country / Region:</span>

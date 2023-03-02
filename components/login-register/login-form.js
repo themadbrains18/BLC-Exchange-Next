@@ -142,7 +142,7 @@ const LoginForm = () => {
                     {/* login part */}
                     {show !== 3 &&
                         <div className='className="max-w-full md:max-w-[50%] w-full" p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto'>
-                            <h4 className='section-secondary-heading mb-5'>Welcome back</h4>
+                            <h4 className='section-secondary-heading mb-5'>Welcome to Blc-Exchange</h4>
                             <div className='flex gap-8 mb-8'>
                                 <button className={`info-14 border-b-2 border-transparent pb-1  ${show === 1 ? " !border-primary !text-primary" : ""}`} onClick={() => { setShow(1) }}>Email / Mobile number</button>
                                 <button className={`info-14 border-b-2 border-transparent pb-1  ${show === 2 ? " !border-primary  !text-primary " : ""}`} onClick={() => { setShow(2) }}>QR code</button>

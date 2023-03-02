@@ -15,12 +15,12 @@ const SideMenu = ({ show, setShow, data,session }) => {
     }
   };
 
-  console.log(session,'===============sesion side menu')
   return (
     <div
       className={`fixed w-[calc(100%-4rem)] ${click && "z-10"} overflow-x-auto table_box h-[100vh] duration-300 top-0 bg-white dark:bg-black ${show === false ? "right-0" : "right-[-100%]"
         }`}
     >
+      
       <div className={`p-5 pb-2  right-0 `}>
         <button
 

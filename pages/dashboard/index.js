@@ -11,7 +11,6 @@ import { getProviders, getSession } from "next-auth/react"
 
 import React from 'react'
 const Dashboard = ({ account, sessions }) => {
-console.log(sessions,'================sessions dashboard')
   return (
     <>
       <Layout data={account} link="dashboard">
