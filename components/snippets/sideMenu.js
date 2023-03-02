@@ -20,6 +20,7 @@ const SideMenu = ({ show, setShow, data,session }) => {
       className={`fixed w-[calc(100%-4rem)] ${click && "z-10"} overflow-x-auto table_box h-[100vh] duration-300 top-0 bg-white dark:bg-black ${show === false ? "right-0" : "right-[-100%]"
         }`}
     >
+      
       <div className={`p-5 pb-2  right-0 `}>
         <button
 
@@ -65,7 +66,7 @@ const SideMenu = ({ show, setShow, data,session }) => {
         className="relative flex justify-between m-3
          align-middle select-none transition duration-200 ease-in"
 
-         onClick={()=>{setShow(true)}}
+         onClick={()=>{setShow(true);setClick(false)}}
       >
         <span className="info-14-20 ">Dark Mode</span>
         <div>
@@ -92,7 +93,7 @@ const SideMenu = ({ show, setShow, data,session }) => {
       </div>
       <div className="px-3">
         {/* download */}
-        <div className="flex gap-3 mb-4" onClick={()=>{setShow(true)}}>
+        <div className="flex gap-3 mb-4" onClick={()=>{setShow(true);setClick(false)}}>
           <Link href="">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +114,7 @@ const SideMenu = ({ show, setShow, data,session }) => {
         </div>
         {/* bell   */}
 
-        <div className="flex gap-3 mb-4" onClick={()=>{setShow(true)}}>
+        <div className="flex gap-3 mb-4" onClick={()=>{setShow(true);setClick(false)}}>
           <Link href="">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +135,7 @@ const SideMenu = ({ show, setShow, data,session }) => {
         </div>
 
         {/* global  */}
-        <div className="flex gap-3 mb-4" onClick={()=>{setShow(true)}}>
+        <div className="flex gap-3 mb-4" onClick={()=>{setShow(true);setClick(false)}}>
           <button>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -154,7 +155,7 @@ const SideMenu = ({ show, setShow, data,session }) => {
           <h3 className="info-14-20">English</h3>
         </div>
         {/* currency change */}
-        <div className="flex gap-3" onClick={()=>{setShow(true)}}> 
+        <div className="flex gap-3" onClick={()=>{setShow(true);setClick(false)}}> 
           <Link href={""}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

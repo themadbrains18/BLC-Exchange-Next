@@ -5,7 +5,7 @@ import Competiton from 'components/dashboard/competiton';
 const Competitions = ({ account }) => {
   return (
     <>
-            <Layout data={account} slug="dashboard">
+            <Layout data={account} name="Competitions">
                 <div className='p-4 md:p-8 grow '>
                  <Competiton />
                 </div>

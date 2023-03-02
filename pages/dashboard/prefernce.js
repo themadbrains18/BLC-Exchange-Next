@@ -6,7 +6,7 @@ const Prefernce = ({ account }) => {
   return (
     
        <>
-            <Layout data={account} slug="dashboard" >
+            <Layout data={account} name="Prefernce" >
                 <div className='p-4 md:p-8 grow '>
                     <Prefernces />
                 </div>
