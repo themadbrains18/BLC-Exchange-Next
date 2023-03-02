@@ -10,13 +10,13 @@ import Layout from '@/components/layout/Layout'
 import { getProviders, getSession } from "next-auth/react"
 
 import React from 'react'
-const Dashboard = ({ account, sessions }) => {
+const Dashboard = ({ account, sessions, lastLogin }) => {
   return (
     <>
       <Layout data={account} link="dashboard">
         <div className='grow max-w-full p-4 md:p-8 bg-white dark:bg-black-v-5'>
           <div>
-            <Profile sessions={sessions.user}/>
+            <Profile sessions={sessions.user} lastLogin={lastLogin}/>
           </div>
           <div className='flex w-full  '>
             <div className=' w-full px-4'>
@@ -48,7 +48,8 @@ export async function getServerSideProps(context) {
     return {
       props: {
         account: menu.specialNav.account,
-        sessions: session
+        sessions: session,
+        lastLogin : session.lastlogin
       },
     };
   }
