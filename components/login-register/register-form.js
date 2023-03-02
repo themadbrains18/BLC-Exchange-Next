@@ -175,7 +175,7 @@ const RegisterForm = () => {
 
 
     return (
-        <section className='dark:bg-black-v-5 !Wpt-10 lg:!pt-20' >
+        <section className='dark:bg-black-v-5 !py-10 lg:!py-20' >
             <ToastContainer />
             <div className='container'>
                 <div className="flex flex-col md:flex-row items-start gap-10">
@@ -183,7 +183,7 @@ const RegisterForm = () => {
                     <LeftSide />
                     {/* register part */}
                     {showVerification === 0 &&
-                        <div className="max-w-full md:max-w-[50%] w-full p-3 sm:p-6 border border-grey mx-auto">
+                        <div className="max-w-full md:max-w-[50%] w-full md:p-3 sm:p-6 md:border border-grey mx-auto">
                             <h4 className='section-secondary-heading mb-5'>Welcome to Blc-Exchange</h4>
                             <div className="my-8 relative" ref={dropdown}>
                                 <p className='info-14 hover:!text-grey inline-flex items-center gap-3 cursor-pointer' onClick={(e) => { setShowDropdown(!showDropdown) }}>
@@ -266,7 +266,7 @@ const RegisterForm = () => {
                                     <div className="hidden w-8 h-8 rounded-full animate-spin border-4 border-solid border-purple-500 border-t-transparent absolute top-[50%] left-[50%] mt-[-16px] ml-[-15px] z-10"></div>
                                     {/* spinner */}
                                 </button>
-                                <div className="relative mb-5 inline-block">
+                                <div className="relative mb-5 inline-block mt-[8px]">
                                     <input id="checkbox" type="checkbox" className="hidden agree_cta" />
                                     <label htmlFor="checkbox" className="relative info-14 hover:!text-grey pl-[25px] after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-[16px] after:h-[16px] cursor-pointer">I agree to the <Link href="#" className="text-primary">Terms of Use</Link></label>
                                 </div>

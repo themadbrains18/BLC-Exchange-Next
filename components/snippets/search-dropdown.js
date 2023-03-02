@@ -134,7 +134,7 @@ const SearchDropdown = ({
                     >
                       <img
                         src={`${e.image}`}
-                        className="max-w-[24px] w-full h-auto"
+                        className="max-w-[24px] w-full h-auto rounded-full"
                       ></img>
                       <span>{e.symbol}</span>
                     </li>
