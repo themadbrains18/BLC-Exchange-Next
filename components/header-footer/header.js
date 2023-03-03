@@ -48,7 +48,6 @@ const Header = (props) => {
       console.log(err);
     });
   }, [session]);
-console.log(showMenuOpen)
   // const testfunction = (e) => {
   //   setShowMenu(e)
   // }

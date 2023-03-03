@@ -9,7 +9,7 @@ import Welfare from 'components/dashboard/welfare'
 import Layout from '@/components/layout/Layout'
 import { getProviders, getSession } from "next-auth/react"
 
-import React from 'react'
+
 const Dashboard = ({ account, sessions, lastLogin }) => {
   return (
     <>
@@ -49,14 +49,13 @@ export async function getServerSideProps(context) {
       props: {
         account: menu.specialNav.account,
         sessions: session,
-        // lastLogin : session.lastlogin
+        lastLogin : session.lastlogin
       },
     };
   }
   return {
     redirect: { destination: "/" },
   };
-
 
 }
 export default Dashboard

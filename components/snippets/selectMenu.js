@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 
 import Context from "../contexts/context";
-const SelectMenu = ({ clear, selectMenu,selectedNetwork, getDepositAddress,network, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
+const SelectMenu = ({ clear,returnvals, type, all, selectMenu,selectNetwork, getDepositAddress,network, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [value, setValue] = useState('');
@@ -20,8 +20,6 @@ const SelectMenu = ({ clear, selectMenu,selectedNetwork, getDepositAddress,netwo
     window.addEventListener("click", handleClick);
     if(clear)
       setValue('Please Select')
-    
-    console.log(clear)
     // clean up
     return () => window.removeEventListener("click", handleClick);
 
@@ -40,6 +38,34 @@ const SelectMenu = ({ clear, selectMenu,selectedNetwork, getDepositAddress,netwo
       setToWallet(e)
     }
   }
+
+  // ===================== eventmanger ====================== // 
+
+  const eventManager = (e, i) => {
+      if(type=="withdraw") {
+        setValue(e.symbol) 
+        returnvals({"type": "token" , "obj" : e})
+
+      }else if(type == "days"){  // please add other event under if else block
+        setValue(e)
+        returnvals({"type": "days" , "obj" : e})
+      }
+      else{
+        (network ? setValue(e.networkName) : setValue(e))
+        selectNetwork && selectNetwork(e)
+        selectNetwork(e)
+      }
+    
+    
+        getDepositAddress && getDepositAddress(e.type)
+
+        setOpen(false)
+        setOverlay(!overlay);
+
+        setActive(i);
+
+  }
+
 
   return (
     <>
@@ -118,26 +144,24 @@ const SelectMenu = ({ clear, selectMenu,selectedNetwork, getDepositAddress,netwo
                       </button>
               }
                 {selectMenu &&
+                  
                   selectMenu.map((e, i) => {
                     return (
                       <button
                         key={i}
+                        type="button"
                         className={`md:relative ${open && "z-[2]"
                           } info-14-16 block w-full text-left p-2 dark:text-white dark:bg-black  ${active === i &&
                           "bg-blue-50 text-primary dark:!text-primary"
                           }`}
                         onClick={() => {
-                          console.log("-====network", network)
-                          getDepositAddress && getDepositAddress(e.type)
-                          network ? setValue(e.networkName) : setValue(e);
-                          selectNetwork && selectNetwork(e)
-                          setOpen(false)
-                          setOverlay(!overlay);
-                          setActive(i);
-                          selectedNetwork(e)
+                            eventManager(e,i)
+
                         }}
                       >
-                        {network ? e.networkName : e}
+                        
+                        {(type=="withdraw") ? e.symbol : (network ? e.networkName : e)} 
+
                       </button>
                     );
                   })

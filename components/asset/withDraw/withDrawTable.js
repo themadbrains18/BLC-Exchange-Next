@@ -3,7 +3,6 @@ import Image from 'next/image'
 
 const WithDrawTable = ({data}) => {
 
-  console.log(data, ' == data')
   return (
 <>
 <div className="overflow-x-auto table_box  ">
