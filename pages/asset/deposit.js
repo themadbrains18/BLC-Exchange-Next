@@ -210,7 +210,7 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
                   <SelectMenu selectMenu={autoTransfer} />
                 </div>
               </div> */}
-              <div className="p-4 bg-light-hover dark:bg-black-v-2 info-14 mt-4 hover:!text-grey dark:text-white  dark:hover:!text-white">
+              {/* <div className="p-4 bg-light-hover dark:bg-black-v-2 info-14 mt-4 hover:!text-grey dark:text-white  dark:hover:!text-white">
                 <h6>Please note:</h6>
                 <p>
                   - Please don’t deposit any other digital assets except BTC to
@@ -229,7 +229,11 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
                   Make sure that your device and browser are secure and your
                   information is protected from being tampered with or leaked.{" "}
                 </p>
-              </div>
+              </div> */}
+              {/* qr code  */}
+                <div className={`grid place-items-center p-2 mt-4 md:hidden`}>
+                  <img src="/assets/images/qr.png" alt="" />
+                </div>
             </div>
 
             <div className="hidden lg:block">
