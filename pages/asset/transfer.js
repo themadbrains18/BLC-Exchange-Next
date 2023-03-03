@@ -180,14 +180,14 @@ const Transfer = ({ assets, sessions, tokenAssets, history, tokens }) => {
                 <h3 className="section-secondary-heading font-noto hidden md:block mb-4 ">
                   Transfer
                 </h3>
-                <div className="bg-[#f9faff] dark:bg-black-v-4 p-2 flex items-center w-fit gap-4">
-                  <div className="p-4">
+                <div className="bg-[#f9faff] dark:bg-black-v-4 p-2 flex items-center w-fit gap-2 md:gap-4">
+                  <div className="p-2 md:p-4">
                     <div className="bg-primary w-1 h-1 rounded-xl"></div>
                     <div className="bg-border-clr w-[1px] h-10 m-auto"></div>
                     <div className="bg-primary w-1 h-1 rounded-xl"></div>
                   </div>
                   <div className="">
-                    <div className="border-b border-border-clr flex gap-4 items-center w-max">
+                    <div className="border-b border-border-clr flex gap-2 md:gap-4 items-center w-max">
                       <span className="info-12">From</span>
                       <div className={`${Switch ? "hidden" : "block"}`}>
                         <SelectMenu selectMenu={bindFromMenu} transfer={true} from={true} to={false} setFromWallet={setFromWallet} fromValue={first_wallet} />
@@ -207,7 +207,7 @@ const Transfer = ({ assets, sessions, tokenAssets, history, tokens }) => {
                       switchWallet(e);
                     }}
                   >
-                    <div className="-rotate-90 ">
+                    <div className="-rotate-90">
                       <Icons type="transfer" stroke="stroke-primary" />
                     </div>
                     {/* <Image
@@ -452,12 +452,20 @@ const Transfer = ({ assets, sessions, tokenAssets, history, tokens }) => {
                   </button>
                 </div>
                 <div className="mt-4 px-2 ">
+                <h4 className="info-14 hover:text-grey dark:text-white dark:hover:text-white">
+                  Coin
+                </h4>
                   <div className="border border-border-clr">
+                 
                     <SelectMenu selectMenu={coinData} />
                   </div>
                 </div>
                 <div className="mt-4 px-2">
+                <h4 className="info-14 hover:text-grey dark:text-white dark:hover:text-white">
+                  Time
+                </h4>
                   <div className="border border-border-clr">
+                
                     <SelectMenu selectMenu={dateFilter} />
                   </div>
                   <div className="mt-4 px-2 ">
