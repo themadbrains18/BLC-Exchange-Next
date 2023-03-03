@@ -200,10 +200,7 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
                     </div>
                   </div>
                 </div>
-                {/* qr code  */}
-                <div className={`grid place-items-center p-2 mt-4 md:hidden`}>
-                  <img src="/assets/images/qr.png" alt="" />
-                </div>
+                
               </div>
               {/* <div className="mt-4">
                 <h6 className="info-12 dark:hover:text-white dark:text-white">

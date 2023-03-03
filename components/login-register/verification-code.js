@@ -235,7 +235,7 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                 <div className="container !p-0">
                     {
                         showSuccess === 1 &&
-                        <div className="dark:bg-black-v-5 bg-white p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto" >
+                        <div className="dark:bg-black-v-5 bg-white p-3 sm:p-6 border border-grey md:max-w-[480px] max-w-full w-full mx-auto" >
                             {
                                 CloseCta &&
                                 <div className="max-w-[24px] w-full ml-auto cursor-pointer" onClick={() => { showSetState(false); setClick(false) }}>
