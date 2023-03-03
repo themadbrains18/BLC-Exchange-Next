@@ -93,7 +93,7 @@ const LinkMobile = ({ sessions }) => {
     //====================================================================
     const Submit = async (e) => {
         e.preventDefault();
-
+setClick(true)
         let formdata = { email: "", number: filledNumber, dial_code: dialCode }
         let userExist = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/check`, {
             method: "POST",
@@ -132,6 +132,7 @@ const LinkMobile = ({ sessions }) => {
             toast.success('Bind Successfully!', {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             });
+            setClick(false)
             setShowver(false)
             router.push('/dashboard/setting');
         }

@@ -56,7 +56,7 @@ const FundPassWordCom = ({ session }) => {
 
 
     const onSubmit = async (data) => {
-
+        setClick(true)
         let obj = { tradingPassword: data.code, id: session.id };
         setFormData(obj);
         setLoading(true)
@@ -75,6 +75,7 @@ const FundPassWordCom = ({ session }) => {
 
             if (emailotpResponse.data.status === 200 && emailotpResponse != undefined) {
                 emailResponse = true;
+               
             }
 
         }
@@ -88,6 +89,7 @@ const FundPassWordCom = ({ session }) => {
 
             if (smsotpResponse.data.status === 200 && smsotpResponse != undefined) {
                 numberResponse = true;
+               
             }
         }
 
@@ -120,6 +122,7 @@ const FundPassWordCom = ({ session }) => {
             toast.success('Bind Successfully!', {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             });
+            setClick(false)
             setShow(false)
             router.push('/dashboard/setting');
         }
