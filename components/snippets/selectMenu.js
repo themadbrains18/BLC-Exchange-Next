@@ -55,7 +55,6 @@ const SelectMenu = ({ clear,returnvals, type, all, selectMenu,selectNetwork, get
       else{
         (network ? setValue(e.networkName) : setValue(e))
         selectNetwork && selectNetwork(e)
-        selectNetwork(e)
       }
     
     
