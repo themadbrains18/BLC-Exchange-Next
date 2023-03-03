@@ -20,7 +20,7 @@ const formSchema = Yup.object().shape({
 const LinkMobile = ({ sessions }) => {
     const { mode, setClick } = useContext(Context);
     const [DropdownPhone, setDropdownPhone] = useState(false);
-    const [showver, setShowver] = useState(0);
+    const [showver, setShowver] = useState(false);
     const [show, setShow] = useState(true);
     const [fillOtp, setOtp] = useState();
     const [dialCode, setDialCode] = useState(91);
@@ -148,7 +148,7 @@ const LinkMobile = ({ sessions }) => {
             <section className="dark:bg-black-v-5 sm:min-h-[calc(100vh-200px)] sm:h-full sm:py-0 py-10 flex">
                 <div className="container m-auto">
                     <div className="md:max-w-[480px] p-3 sm:p-6 max-w-[480px] w-full mx-auto" >
-                        <h4 className='section-secondary-heading mb-1 flex items-center gap-4 flex-row-reverse justify-end'>
+                        <h4 className='section-secondary-heading font-noto mb-1 flex items-center gap-4 flex-row-reverse justify-end'>
                             <span>Link Mobile</span>
                             <Link href="setting">
                                 <svg className="max-w-[24px] w-full" enableBackground="new 0 0 32 32" version="1.1" viewBox="0 0 32 32" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -157,7 +157,7 @@ const LinkMobile = ({ sessions }) => {
                             </Link>
                         </h4>
                         <form onSubmit={handleSubmit(sendOtp)}>
-                            <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>Mobile Number</p>
+                            <p className='info-12 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>Mobile Number</p>
                             <div className="border border-black dark:border-white rounded min-h-[46px] px-4 flex items-center relative">
                                 <div className="flex items-center gap-2  min-w-[90px] cursor-pointer" onClick={() => { setDropdownPhone(!DropdownPhone) }}>
                                     <span className="text-black dark:text-white" id="counteryCode">+ <span>{dialCode}</span> </span>
@@ -187,6 +187,7 @@ const LinkMobile = ({ sessions }) => {
                     </div>
                 </div>
             </section>
+           
             {showver &&
 
                 <VerificationCode CloseCta={true} fixed={true} bindMobile={true} showState={show} showSetState={setShowver} loginData={sessions.user} updateUser={updateUser} />
