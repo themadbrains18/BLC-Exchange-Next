@@ -51,6 +51,7 @@ const AntiFishingCode = ({ session }) => {
     const onSubmit = async (data) => {
 
         let obj = { antiphishing: data.code, id: session.id };
+        setClick(true)
         setFormData(obj);
         setLoading(true)
         sendOtp();
@@ -110,6 +111,7 @@ const AntiFishingCode = ({ session }) => {
 
         console.log(response, '====after fun code update');
         if (response.status === 200 && response != undefined) {
+            setClick(false)
             toast.success('Bind Successfully!', {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             });
@@ -127,20 +129,32 @@ const AntiFishingCode = ({ session }) => {
         <ToastContainer />
             <section className="dark:bg-black-v-5 sm:min-h-[calc(100vh-200px)] sm:h-full sm:py-0 py-10 flex sm:pb-[40px]">
                 <div className="container m-auto">
-                    <div className="p-3 sm:p-6 max-w-[500px] w-full mx-auto" >
-                        <h4 className='section-secondary-heading mb-1 flex items-center gap-4 flex-row-reverse justify-end mb-[30px]'>
+                    <div className="p-0 md:p-6 max-w-full md:max-w-[500px] w-full mx-0 md:mx-auto" >
+                        <h4 className='section-secondary-heading font-noto mb-1 flex items-center gap-4 flex-row-reverse justify-end mb-[30px]'>
                             <span>Set Anti-phishing Code</span>
                             <Link href="setting">
-                                <svg className="max-w-[24px] w-full" enableBackground="new 0 0 32 32" version="1.1" viewBox="0 0 32 32" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                                    <path fill={mode === "dark" ? "white" : "#121313"} clipRule="evenodd" d="M31.106,15H3.278l8.325-8.293  c0.391-0.391,0.391-1.024,0-1.414c-0.391-0.391-1.024-0.391-1.414,0l-9.9,9.899c-0.385,0.385-0.385,1.029,0,1.414l9.9,9.9  c0.391,0.391,1.024,0.391,1.414,0c0.391-0.391,0.391-1.024,0-1.414L3.278,17h27.828c0.552,0,1-0.448,1-1  C32.106,15.448,31.658,15,31.106,15z" fillRule="evenodd" />
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    className="rotate-180 w-6 h-6"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={1.5}
+                                    stroke={mode === "dark" ? "white" : "currentColor"}
+
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                                    />
                                 </svg>
                             </Link>
                         </h4>
-                        <div className="mb-[20px]">
+                        <div className="my-7">
                             <p className="info-14 !text-[#212833] hover:!text-[#212833] dark:!text-white dark:hover:!text-white">What is an anti-phishing code?</p>
                             <p className="info-12">The anti-phishing code is a string of characters that you set yourself to protect yourself from fake websites and emails.</p>
                         </div>
-                        <div className="mb-[20px]">
+                        <div className="my-7">
                             <p className="info-14 !text-[#212833] hover:!text-[#212833] dark:!text-white dark:hover:!text-white">Where does the anti-phishing code appear?</p>
                             <p className="info-12">When set, this code will be included in emails from Bitget. Any other emails without this code are scams.</p>
                         </div>
@@ -149,9 +163,9 @@ const AntiFishingCode = ({ session }) => {
                         <div>
                             <label className="info-12 !text-grey">Anti-phishing code</label>
                             <div className="relative">
-                                <input type="password" {...register('code')} name="code" className="mt-[8px] block px-4 w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Enter 8-32 letters or numbers" />
-                                <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
-                                <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }} />
+                                <input type="password" {...register('code')} name="code" className="mt-[8px] info-14 block px-4 w-full bg-transparent border  border-border-clr dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Enter 8-32 letters or numbers" />
+                                {/* <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
+                                <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }} /> */}
                             </div>
                             <p role="alert" className="!text-red-700 info-12">{errors.code?.message}</p>
                         </div>

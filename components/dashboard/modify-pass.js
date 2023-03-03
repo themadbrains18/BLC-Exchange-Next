@@ -12,6 +12,7 @@ import { signOut } from "next-auth/react";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Icons from '../snippets/icons';
 
 const formSchema = Yup.object().shape({
     oldpassword: Yup.string()
@@ -55,20 +56,20 @@ const ModifyPass = ({ session }) => {
 
     // confirPassword
     const onSubmit = async (data) => {
-
-        let obj = {oldpassword : data.oldpassword, id : session.id};
+        setClick(true)
+        let obj = { oldpassword: data.oldpassword, id: session.id };
         setFormData(data);
-        console.log(obj,'===confirm password===');
+        console.log(obj, '===confirm password===');
         setLoading(true);
         let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/password`, {
             method: "POST",
             body: JSON.stringify(obj)
         }).then(response => response.json());
 
-        if(result.data.status === 200){
+        if (result.data.status === 200) {
             sendOtp();
         }
-        else{
+        else {
             setLoading(false);
             toast.error(result.data.message, {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
@@ -77,7 +78,7 @@ const ModifyPass = ({ session }) => {
 
     }
 
-    const sendOtp=async()=>{
+    const sendOtp = async () => {
         let emailResponse = false;
         let numberResponse = false;
         if (session.email !== "") {
@@ -88,9 +89,10 @@ const ModifyPass = ({ session }) => {
             }).then(response => response.json());
 
             if (emailotpResponse.data.status === 200 && emailotpResponse != undefined) {
+           
                 emailResponse = true;
             }
-            
+
         }
 
         if (session.number !== "") {
@@ -101,6 +103,7 @@ const ModifyPass = ({ session }) => {
             }).then(response => response.json());
 
             if (smsotpResponse.data.status === 200 && smsotpResponse != undefined) {
+               
                 numberResponse = true;
             }
         }
@@ -127,7 +130,7 @@ const ModifyPass = ({ session }) => {
 
     const updateUserPassword = async () => {
 
-        let obj = {newpassword : formData.newpassword, id: session.id};
+        let obj = { newpassword: formData.newpassword, id: session.id };
         let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/password`, {
             method: "PUT",
             body: JSON.stringify(obj)
@@ -138,6 +141,7 @@ const ModifyPass = ({ session }) => {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 3000
             });
             setShow(false);
+            setClick(false)
             setTimeout(() => {
                 signOut();
             }, 3000);
@@ -154,36 +158,64 @@ const ModifyPass = ({ session }) => {
             <ToastContainer />
             <section className="dark:bg-black-v-5 sm:min-h-[calc(100vh-200px)] sm:h-full py-10 sm:py-0 flex">
                 <div className="container m-auto">
-                    <div className="md:max-w-[480px] p-3 sm:p-6 max-w-[480px] w-full mx-auto" >
-                        <h4 className='section-secondary-heading mb-1 flex items-center gap-4 flex-row-reverse justify-end'>
+                    <div className="md:max-w-[480px] p-0 sm:p-6 max-w-full w-full mx-0 md:mx-auto" >
+                        <h4 className='section-secondary-heading font-noto mb-1 flex items-center gap-2 flex-row-reverse justify-end'>
                             <span>Modify login password</span>
                             <Link href="setting">
-                                <svg className="max-w-[24px] w-full" enableBackground="new 0 0 32 32" version="1.1" viewBox="0 0 32 32" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                                {/* <svg className="max-w-[24px] w-full" enableBackground="new 0 0 32 32" version="1.1" viewBox="0 0 32 32" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                     <path fill={mode === "dark" ? "white" : "#121313"} clipRule="evenodd" d="M31.106,15H3.278l8.325-8.293  c0.391-0.391,0.391-1.024,0-1.414c-0.391-0.391-1.024-0.391-1.414,0l-9.9,9.899c-0.385,0.385-0.385,1.029,0,1.414l9.9,9.9  c0.391,0.391,1.024,0.391,1.414,0c0.391-0.391,0.391-1.024,0-1.414L3.278,17h27.828c0.552,0,1-0.448,1-1  C32.106,15.448,31.658,15,31.106,15z" fillRule="evenodd" />
+                                </svg> */}
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    className="rotate-180 w-6 h-6"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={1.5}
+                                    stroke={mode === "dark" ? "white" : "currentColor"}
+
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                                    />
                                 </svg>
                             </Link>
                         </h4>
-                        <p className='info-14 !text-[#ff7b1b]  hover:!text-[#ff7b1b] dark:hover:!text-[#ff7b1b]'>It won’t able to withdraw coins in 24 hours after modifying the password</p>
+                        <div className='mt-4 p-3 bg-[#fff8e6]'>
+                            <p className='info-12 !text-[#ff7b1b]  hover:!text-[#ff7b1b] dark:hover:!text-[#ff7b1b]'>It won’t able to withdraw coins in 24 hours after modifying the password</p>
+                        </div>
+
 
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className='mt-5'>
                                 <div className="relative mb-3">
-                                    <input type="password" {...register('oldpassword')} id="pass_input1" placeholder="Current password" className="block  px-4 !pr-[45px] max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="oldpassword" />
-                                    <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
-                                    <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }} />
+                                    <p className='info-12 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>Current password</p>
+                                    <input type="password" {...register('oldpassword')} id="pass_input1" placeholder="" className="block info-12  px-4 !pr-[45px] max-w-full  w-full bg-transparent border  border-border-clr dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="oldpassword" />
+                                    <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[70%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
+                                    <div className="cursor-pointer absolute top-[70%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }}>
+                                        <Icons type='close-eye' />
+                                    </div>
+                                    {/* <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[70%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }} /> */}
                                 </div>
                                 <p role="alert" className="!text-red-700 info-12">{errors.oldpassword?.message}</p>
                                 <div className="relative mb-3">
-                                    <input type="password" {...register('newpassword')} id="pass_input2" placeholder="New password" className="block  px-4 !pr-[45px] max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="newpassword" />
-                                    <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
-                                    <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }} />
+                                    <p className='info-12 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>New password</p>
+                                    <input type="password" {...register('newpassword')} id="pass_input2" placeholder="" className="block  px-4 !pr-[45px] max-w-full  w-full bg-transparent border  border-border-clr dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="newpassword" />
+                                    <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[70%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
+                                    <div className="cursor-pointer absolute top-[70%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }}>
+                                        <Icons type='close-eye' />
+                                    </div>
                                 </div>
                                 <p role="alert" className="!text-red-700 info-12">{errors.newpassword?.message}</p>
                                 <p className="info-12 mt-[8px] mb-[15px] leading-[16px]">Please ensure the password consists of 8 to 32 characters, at least 1 number, 1 uppercase letter, and 1 special character</p>
                                 <div className="relative">
-                                    <input type="password" {...register('confirmpassword')} id="pass_input3" placeholder="Confirm new password" className="block  px-4 !pr-[45px] max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="confirmpassword" />
-                                    <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
-                                    <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }} />
+                                    <p className='info-12 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>Confirm new password</p>
+                                    <input type="password" {...register('confirmpassword')} id="pass_input3" placeholder="" className="block  px-4 !pr-[45px] max-w-full  w-full bg-transparent border  border-border-clr dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="confirmpassword" />
+                                    <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[70%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
+                                    <div className="cursor-pointer absolute top-[70%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }}>
+                                        <Icons type='close-eye' />
+                                    </div>
                                 </div>
                                 <p role="alert" className="!text-red-700 info-12">{errors.confirmpassword?.message}</p>
                                 {/* <span className='info-12 mt-1 block !text-[#f7647e]'>Please enter Account</span> */}

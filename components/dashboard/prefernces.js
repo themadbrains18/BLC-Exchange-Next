@@ -14,40 +14,40 @@ const Prefernces = () => {
         <section className="w-full  ">
             <div className="mb-[20px]">
                 <h3 className="section-secondary-heading mb-6"> Settings</h3>
-                <div className="divide-y px-[24px] shadow-lg dark:shadow-[#1da2b41c] rounded-lg	">
+                <div className="divide-y px-0 sm:px-[24px] shadow-lg dark:shadow-[#1da2b41c] rounded-lg	">
                     <div className="py-[20px]">
                         <p className="info-14-20 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Profile</p>
                     </div>
                     <div>
-                        <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-5 ">
-                            <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
-                                <div className='sm:text-start text-center'>
+                        <div className="flex items-center flex-row  justify-between py-[20px] gap-5 ">
+                            <div className="flex gap-[18px] flex-row grow md:items-center">
+                                <div className='text-start'>
                                     <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Avatar</p>
                                     <p className="info-12 ">Customize your avatar</p>
                                 </div>
                             </div>
-                            <div className='flex gap-6 items-center'>
+                            <div className='flex gap-3 md:gap-6 items-center'>
                                 <Image src='/assets/images/avatar-default.jpg' width={30} height={30} className='rounded-3xl'></Image>
                                 <Link className='cta' href="bindmobile">Change</Link>
                             </div>
                         </div>
 
-                        <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-5">
-                            <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
-                                <div className='sm:text-start text-center'>
+                        <div className="flex items-center flex-row  justify-between py-[20px] gap-5">
+                            <div className="flex gap-[18px] flex-row  grow items-center">
+                                <div className='text-start '>
                                     <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Username</p>
                                     <p className="info-12 ">Set your own username</p>
                                 </div>
                             </div>
-                            <div className='flex gap-6 items-center'>
+                            <div className='flex gap-3 md:gap-6 items-center'>
                                 <p className='info-14'>BGUSER-NVQPH393</p>
                                 <button className='cta' onClick={() => { setClick(true); setShowSafteyV(1) }}> Change</button>
                             </div>
                         </div>
 
-                        <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-5">
-                            <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
-                                <div className='sm:text-start text-center'>
+                        <div className="flex items-center flex-row  justify-between py-[20px] gap-5">
+                            <div className="flex gap-[18px] flex-row  grow items-center">
+                                <div className='text-start '>
                                     <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Time of registration</p>
                                     <p className="info-12 ">The time you register for the BLC-Exchange account</p>
                                 </div>
@@ -55,9 +55,9 @@ const Prefernces = () => {
                             <p className='info-14'>2023-02-16 13:28:29</p>
                         </div>
 
-                        <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-5 ">
-                            <div className="flex gap-[18px] grow flex-col sm:flex-row  items-center">
-                                <div className='sm:text-start text-center'>
+                        <div className="flex items-center flex-row  justify-between py-[20px] gap-5 ">
+                            <div className="flex gap-[18px] grow flex-row  items-center">
+                                <div className='text-start '>
                                     <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Country/region of residence</p>
                                     <p className="info-12 ">The country you select when registering.</p>
                                 </div>
@@ -72,16 +72,16 @@ const Prefernces = () => {
                 </div>
             </div>
 
-            <div className="divide-y px-[24px] shadow-lg dark:shadow-[#1da2b41c] rounded-lg">
+            <div className="divide-y shadow-lg dark:shadow-[#1da2b41c] rounded-lg">
 
                 <div className="py-[20px]">
                     <p className="info-14-20 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Notifications</p>
                 </div>
 
                 <div>
-                    <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-5">
-                        <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
-                            <div className='sm:text-start text-center'>
+                    <div className="flex items-center flex-row  justify-between py-[20px] gap-5">
+                        <div className="flex gap-[18px] flex-row  grow items-center">
+                            <div className='text-start'>
                                 <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Notification Type</p>
                                 <p className="info-12 ">Due to SMS having restrictions in certain regions, email notifications will be turned on by default.</p>
                             </div>
@@ -108,9 +108,9 @@ const Prefernces = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-5">
-                        <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
-                            <div className='sm:text-start text-center'>
+                    <div className="flex items-center   justify-between py-[20px] gap-5">
+                        <div className="flex gap-[18px]  grow items-center">
+                            <div className='text-start '>
                                 <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Promotional Emails</p>
                                 <p className="info-12 ">Turn on to receive promotional notifications from BLC-Exchange</p>
                             </div>
@@ -132,7 +132,7 @@ const Prefernces = () => {
 
 
             </div>
-            <div className="divide-y px-[24px] mt-4 shadow-lg dark:shadow-[#1da2b41c] rounded-lg	">
+            <div className="divide-y  mt-4 shadow-lg dark:shadow-[#1da2b41c] rounded-lg	">
 
                 <div className="py-[20px]">
                     <p className="info-14-20 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Futures Trading Settings</p>
@@ -265,7 +265,7 @@ const Prefernces = () => {
 
 
             </div>
-            <div className="divide-y px-[24px] mt-4 shadow-lg dark:shadow-[#1da2b41c] rounded-lg ">
+            <div className="divide-y mt-4 shadow-lg dark:shadow-[#1da2b41c] rounded-lg ">
                 <div className=" grow  py-[20px]">
 
                     <p className="info-14-20 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Spot Trading Settings</p>

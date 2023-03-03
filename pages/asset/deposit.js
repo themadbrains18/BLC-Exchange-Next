@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DepositTable from "/components/asset/deposit/depositTable";
 import Link from "next/link";
-const Deposit = ({ assets, tokens, networks, sessions }) => {
+const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
   let [data, setData] = useState(true);
 
   const [coin, setCoin] = useState("Select Coin");
@@ -22,6 +22,7 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
 
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
+  let coinData2 = ["Last 7 days", "Last 3 Months"];
   const { mode } = useContext(Context);
   const ref = useRef(null);
   let autoTransfer = ["Spot", "Bsc "];
@@ -49,12 +50,13 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
   };
 
   const getDepositAddress = async (type) => {
-    let result = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/users/address/${sessions.user.id}/${type}`, {
+    let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/walletadd?userid=${sessions.user.id}&&type=${type}`, {
       method: "GET"
     }).then(response => response.json());
 
-    if(result.status === 200){
-      setAddress(result.deposit_address);
+
+    if(result.data.status === 200){
+      setAddress(result.data.deposit_address);
     }
     else{
       console.log(result);
@@ -81,7 +83,7 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
                 >
                   <div className="flex gap-3 ">
                     <img
-                      className="self-start"
+                      className="self-start rounded-full"
                       height={24}
                       width={24}
                       alt="Coin Image"
@@ -200,10 +202,7 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
                     </div>
                   </div>
                 </div>
-                {/* qr code  */}
-                <div className={`grid place-items-center p-2 mt-4 md:hidden`}>
-                  <img src="/assets/images/qr.png" alt="" />
-                </div>
+                
               </div>
               {/* <div className="mt-4">
                 <h6 className="info-12 dark:hover:text-white dark:text-white">
@@ -213,7 +212,7 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
                   <SelectMenu selectMenu={autoTransfer} />
                 </div>
               </div> */}
-              <div className="p-4 bg-light-hover dark:bg-black-v-2 info-14 mt-4 hover:!text-grey dark:text-white  dark:hover:!text-white">
+              {/* <div className="p-4 bg-light-hover dark:bg-black-v-2 info-14 mt-4 hover:!text-grey dark:text-white  dark:hover:!text-white">
                 <h6>Please note:</h6>
                 <p>
                   - Please don’t deposit any other digital assets except BTC to
@@ -232,7 +231,11 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
                   Make sure that your device and browser are secure and your
                   information is protected from being tampered with or leaked.{" "}
                 </p>
-              </div>
+              </div> */}
+              {/* qr code  */}
+                <div className={`grid place-items-center p-2 mt-4 md:hidden`}>
+                  <img src="/assets/images/qr.png" alt="" />
+                </div>
             </div>
 
             <div className="hidden lg:block">
@@ -263,7 +266,7 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
                   Coin
                 </h4>
                 <div className="border border-border-clr ">
-                  <SelectMenu selectMenu={coinData} />
+                  <SelectMenu selectMenu={tokenSymbol} all={true}/>
                 </div>
               </div>
               <div className="hidden lg:block">
@@ -387,17 +390,24 @@ export async function getServerSideProps(context) {
       method: "GET"
     }).then(response => response.json());
 
-    let networkList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/network`, {
+    let networkList = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/network`, {
       method: "GET"
     }).then(response => response.json());
 
     let menu = await data.json();
+
+    let tokens = []
+    for (const item of tokenList.data) {
+      tokens.push(item.symbol);
+    }
+
     return {
       props: {
         assets: menu.specialNav.assets,
         tokens: tokenList.data,
-        networks: networkList,
-        sessions: session
+        networks: networkList.data,
+        sessions: session,
+        tokenSymbol : tokens
       }, // will be passed to the page component as props
     };
   }

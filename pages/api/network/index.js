@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import {postData} from "../../../libs/requestMethod";
+import {getDataWithoutBody} from "../../../libs/requestMethod";
 
 export const config = {
   api: {
@@ -17,15 +17,14 @@ const handler = nc({
   },
 })
 
-  // ============================================================//
- // check user if already register
+// ============================================================//
+ // get token list
  // ============================================================//
-
-  .post(async (req, res) => {
+  .get(async (req, res) => {
     try {
+      let data = await getDataWithoutBody(`${process.env.NEXT_PUBLIC_APIURL}/network`)
 
-      console.log(req.body,'============check user body')
-      let data = await postData(`${process.env.NEXT_PUBLIC_APIURL}/users`, JSON.parse(req.body) )
+      // console.log(data,'=======token data');
       res.status(200).send({data});
     } catch (error) {
       console.log(error)

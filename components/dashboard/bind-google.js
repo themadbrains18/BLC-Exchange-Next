@@ -65,6 +65,7 @@ const BindGoogle = ({ session }) => {
     const { mode, setClick } = useContext(Context);
 
     const VerifyGoogleAuthenticate = async (data) => {
+        setClick(true)
         const token = data.code;
         let obj = { secret, token };
         setLoading(true);
@@ -74,6 +75,7 @@ const BindGoogle = ({ session }) => {
         }).then(response => response.json());
 
         if (response.data.status === 200 && response.data.message === true) {
+            
             if (session.email !== "") {
                 let emailOtpForm = { 'email': session.email };
                 await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`, {
@@ -91,6 +93,7 @@ const BindGoogle = ({ session }) => {
             }
             setLoading(false);
             setShow(true);
+            setClick(false)
 
         }
         else {
@@ -111,16 +114,28 @@ const BindGoogle = ({ session }) => {
             <ToastContainer />
             <section className="dark:bg-black-v-5 sm:min-h-[calc(100vh-200px)] sm:h-full sm:py-0 py-10 flex sm:pb-[40px]">
                 <div className="container m-auto">
-                    <div className="p-3 sm:p-6 max-w-[500px] w-full mx-auto" >
-                        <h4 className='section-secondary-heading mb-1 flex items-center gap-4 flex-row-reverse justify-end mb-[30px]'>
+                    <div className="p-0 sm:p-6 max-w-full md:max-w-[500px] w-full mx-0 md:mx-auto" >
+                        <h4 className='section-secondary-heading font-noto flex items-center gap-4 flex-row-reverse justify-end '>
                             <span>Link Google Authenticator</span>
                             <Link href="setting">
-                                <svg className="max-w-[24px] w-full" enableBackground="new 0 0 32 32" version="1.1" viewBox="0 0 32 32" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                                    <path fill={mode === "dark" ? "white" : "#121313"} clipRule="evenodd" d="M31.106,15H3.278l8.325-8.293  c0.391-0.391,0.391-1.024,0-1.414c-0.391-0.391-1.024-0.391-1.414,0l-9.9,9.899c-0.385,0.385-0.385,1.029,0,1.414l9.9,9.9  c0.391,0.391,1.024,0.391,1.414,0c0.391-0.391,0.391-1.024,0-1.414L3.278,17h27.828c0.552,0,1-0.448,1-1  C32.106,15.448,31.658,15,31.106,15z" fillRule="evenodd" />
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    className="rotate-180 w-6 h-6"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={1.5}
+                                    stroke={mode === "dark" ? "white" : "currentColor"}
+
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                                    />
                                 </svg>
                             </Link>
                         </h4>
-                        <p className="info-12">Google Authenticator is a dynamic password tool like SMS dynamic verification. A dynamic verification code is generated every 30s once bound and can be used for security verification of operations, such as logging in, withdrawing coins, and modifying security settings.</p>
+                        <p className="info-12 mt-7">Google Authenticator is a dynamic password tool like SMS dynamic verification. A dynamic verification code is generated every 30s once bound and can be used for security verification of operations, such as logging in, withdrawing coins, and modifying security settings.</p>
                         <div className="flex items-start gap-[12px] mt-[14px]">
                             <div className="bg-grey min-w-[24px] min-h-[24px] rounded-full flex">
                                 <span className="m-auto">1</span>
@@ -191,14 +206,14 @@ const BindGoogle = ({ session }) => {
                             <div className='mt-5'>
                                 <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row">Google Authenticator</label>
                                 <div className="input_wrapper_google">
-                                    <input type="number" {...register('code')} name="code" className="block px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Enter your code" />
+                                    <input type="number" {...register('code')} name="code" className="block px-4 max-w-full w-full bg-transparent border  border-border-clr dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Enter your code" />
                                 </div>
                             </div>
                             <p role="alert" className="!text-red-700 info-12">{errors.code?.message}</p>
                             <button type="submit" className={`relative cta mt-5  w-full ${isLoding === true ? 'hide_text' : ''} `}>
                                 <span>Submit</span>
                                 <div className="hidden w-8 h-8 rounded-full animate-spin border-4 border-solid border-purple-500 border-t-transparent absolute top-[50%] left-[50%] mt-[-16px] ml-[-15px] z-10"></div>
-                                
+
                             </button>
                         </form>
                     </div>

@@ -15,6 +15,7 @@ const SelectMenu = ({ clear,returnvals, type, all, selectMenu,selectNetwork, get
     function handleClick(event) {
       if (dropdown.current && !dropdown.current.contains(event.target)) {
         setOpen(false);
+        setOverlay(false);
       }
     }
     window.addEventListener("click", handleClick);
@@ -31,6 +32,7 @@ const SelectMenu = ({ clear,returnvals, type, all, selectMenu,selectNetwork, get
     setValue(e.name);
     setOpen(false)
     setActive(i);
+    setOverlay(false);
     if (from === true) {
       setFromWallet(e)
     }
@@ -69,13 +71,14 @@ const SelectMenu = ({ clear,returnvals, type, all, selectMenu,selectNetwork, get
 
   return (
     <>
-      <div ref={dropdown} className={`relative pr-2 z-initial  ${open && "md:z-[2]"}`}>
+      <div ref={dropdown} className={`relative pr-2 z-initial   ${open && "md:z-[2]"}`}>
         <div className="flex bg-transparent justify-between items-center">
           <input
             type="text"
             name=""
             id=""
-            className="caret-white p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
+            className= "max-w-[150px] sm:max-w-none caret-white placeholder:text-disable-clr p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
+            placeholder="Please Select"
             value={ (transfer && fromValue !== '') ? fromValue : value}
             onClick={() => {
               setOpen(!open);

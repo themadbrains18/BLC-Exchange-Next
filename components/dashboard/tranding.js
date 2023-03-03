@@ -584,9 +584,7 @@ const Tranding = () => {
                         </>
                     )}
             </div>
-            <div className='mt-8 block xl:hidden '>
-                <Referral />
-            </div>
+            
         </section>
     )
 }

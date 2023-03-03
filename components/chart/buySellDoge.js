@@ -15,8 +15,10 @@ const BuySellDoge = () => {
         setActive={setActive}
       />
       <div className="mt-4  flex gap-10">
-       <BuySellCard menu={selectMenu}/>
-       <BuySellCard menu={selectMenu} sell={true}/>
+       <BuySellCard menu={selectMenu} active={active}
+        setActive={setActive}/>
+       <BuySellCard menu={selectMenu} sell={true} active={active}
+        setActive={setActive}/>
       </div>
     </>
   );

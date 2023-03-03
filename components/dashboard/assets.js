@@ -15,9 +15,9 @@ const Assets = () => {
                 </div>
                 <Link href="/dashboard/verified" className='text-primary border border-primary rounded-lg px-3 py-2'>Verify</Link>
             </div>
-            <div className='xl:hidden'>
+            {/* <div className='xl:hidden'>
                 <Welfare/>
-            </div>
+            </div> */}
             <div className='mt-5 xl:mt-0 flex justify-between flex-wrap'>
                 <div>
                     <div className='flex flex-col gap-8'>
