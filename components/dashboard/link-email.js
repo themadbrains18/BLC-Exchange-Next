@@ -197,7 +197,7 @@ const LinkEmail = ({ sessions }) => {
               <button className="info-14-16 !text-primary mt-[15px]" type='submit'>{count === 0 ? 'Send Code' : 'Send Again'} </button>
             </form>
 
-            <button className="cta mt-[30px] w-full" onClick={Submit}>Submit</button>
+            <button className="cta mt-[30px] w-full disabled:" onClick={Submit}>Submit</button>
           </div>
         </div>
       </section>

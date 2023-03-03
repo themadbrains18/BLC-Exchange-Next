@@ -43,7 +43,8 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network,all, deposit, transf
             type="text"
             name=""
             id=""
-            className="caret-white p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
+            className="caret-white placeholder:text-disable-clr p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
+            placeholder="Please Select"
             value={ (transfer && fromValue !== '') ? fromValue : value}
             onClick={() => {
               setOpen(!open);
