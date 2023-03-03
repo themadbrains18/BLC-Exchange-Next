@@ -452,12 +452,20 @@ const Transfer = ({ assets, sessions, tokenAssets, history, tokens }) => {
                   </button>
                 </div>
                 <div className="mt-4 px-2 ">
+                <h4 className="info-14 hover:text-grey dark:text-white dark:hover:text-white">
+                  Coin
+                </h4>
                   <div className="border border-border-clr">
+                 
                     <SelectMenu selectMenu={coinData} />
                   </div>
                 </div>
                 <div className="mt-4 px-2">
+                <h4 className="info-14 hover:text-grey dark:text-white dark:hover:text-white">
+                  Time
+                </h4>
                   <div className="border border-border-clr">
+                
                     <SelectMenu selectMenu={dateFilter} />
                   </div>
                   <div className="mt-4 px-2 ">
