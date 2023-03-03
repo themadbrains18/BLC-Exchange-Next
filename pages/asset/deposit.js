@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DepositTable from "/components/asset/deposit/depositTable";
 import Link from "next/link";
-const Deposit = ({ assets, tokens, networks, sessions }) => {
+const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
   let [data, setData] = useState(true);
 
   const [coin, setCoin] = useState("Select Coin");
@@ -49,12 +49,13 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
   };
 
   const getDepositAddress = async (type) => {
-    let result = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/users/address/${sessions.user.id}/${type}`, {
+    let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/walletadd?userid=${sessions.user.id}&&type=${type}`, {
       method: "GET"
     }).then(response => response.json());
 
-    if(result.status === 200){
-      setAddress(result.deposit_address);
+
+    if(result.data.status === 200){
+      setAddress(result.data.deposit_address);
     }
     else{
       console.log(result);
@@ -263,7 +264,7 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
                   Coin
                 </h4>
                 <div className="border border-border-clr ">
-                  <SelectMenu selectMenu={coinData} />
+                  <SelectMenu selectMenu={tokenSymbol} all={true}/>
                 </div>
               </div>
               <div className="hidden lg:block">
@@ -387,17 +388,24 @@ export async function getServerSideProps(context) {
       method: "GET"
     }).then(response => response.json());
 
-    let networkList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/network`, {
+    let networkList = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/network`, {
       method: "GET"
     }).then(response => response.json());
 
     let menu = await data.json();
+
+    let tokens = []
+    for (const item of tokenList.data) {
+      tokens.push(item.symbol);
+    }
+
     return {
       props: {
         assets: menu.specialNav.assets,
         tokens: tokenList.data,
-        networks: networkList,
-        sessions: session
+        networks: networkList.data,
+        sessions: session,
+        tokenSymbol : tokens
       }, // will be passed to the page component as props
     };
   }
