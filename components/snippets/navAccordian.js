@@ -101,7 +101,7 @@ const NavAccordian = (props) => {
 
                       {elem.heading === 'Last Login' &&
                         <>
-                        {props.lastLogin}
+                          {props.lastLogin}
                         </>
                       }
 
