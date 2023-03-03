@@ -10,7 +10,7 @@ const BuySell = () => {
     const [coinImg, setCoinImg] = useState(false)
 
     const selectCoin = async (item) => {
-console.log("==========item", item)
+// console.log("==========item", item)
         setCoin(item.symbol)
         setCoinImg(item.image)
     }
@@ -62,9 +62,9 @@ console.log("==========item", item)
                         </div>
 
 
-                        <form className='px-7 pb-3'>
+                        <form className='md:px-7 px-[12px] pb-3'>
                             <div className={`mt-8 border-2  rounded-lg px-4 relative flex justify-between items-center ${active === 1 ? '!border-primary' : 'border-[#e4e4e4]'} `} onClick={() => { setActive(1) }}>
-                                <div className='pt-3 flex flex-col'>
+                                <div className='pt-3 flex flex-col md:max-w-[70%] max-w-[66%] w-full'>
                                     <label className='info-14 text-black'>{show === 1 ? 'I want to pay' : 'I want to sell'} </label>
                                     <input type='text' placeholder={show === 1 ? '10.000-500.000' : 'Enter Amount'} className='dark:bg-black-v-3 outline-none py-3 info-14-20 '></input>
                                 </div>
@@ -86,7 +86,7 @@ console.log("==========item", item)
                                         <div className='flex cursor-pointer ' onClick={() => { setDropDown(!dropDown) }}>
                                         <div className="flex gap-3 ">
                                                 <img
-                                                    className="self-start"
+                                                    className="self-start rounded-full"
                                                     height={24}
                                                     width={24}
                                                     alt="Coin Image"
@@ -108,7 +108,7 @@ console.log("==========item", item)
                                 <a className='info-14 text-primary cursor-pointer'>Transfer Now</a>
                             </div>
                             <div className={`mt-8 border-2  rounded-lg px-4 flex justify-between items-center relative ${active === 2 ? '!border-primary' : 'border-[#e4e4e4]'} `} onClick={() => { setActive(2) }}>
-                                <div className='pt-3 flex flex-col'>
+                                <div className='pt-3 flex flex-col grow max-w-[66%] md:max-w-[70%] w-full '>
                                     <label className='info-14 text-black'>I will get ≈</label>
                                     <input type='text' placeholder={show === 2 ? '10.000-500.000' : 'Enter Amount'} className='dark:bg-black-v-3 outline-none py-3 info-14-20 '></input>
                                 </div>
@@ -117,7 +117,7 @@ console.log("==========item", item)
                                         <div className='flex cursor-pointer ' onClick={() => { setDropDown(!dropDown) }}>
                                             <div className="flex gap-3 ">
                                                 <img
-                                                    className="self-start"
+                                                    className="self-start rounded-full"
                                                     height={24}
                                                     width={24}
                                                     alt="Coin Image"
