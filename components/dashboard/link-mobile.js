@@ -94,7 +94,7 @@ const LinkMobile = ({ sessions }) => {
     const Submit = async (e) => {
         e.preventDefault();
 
-        let formdata = { email: "", number: filledNumber, dial_Code: dialCode }
+        let formdata = { email: "", number: filledNumber, dial_code: dialCode }
         let userExist = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/check`, {
             method: "POST",
             body: JSON.stringify(formdata)
@@ -106,7 +106,7 @@ const LinkMobile = ({ sessions }) => {
 
         if (result.status === 200) {
 
-            toast.success(result.data.message, {
+            toast.success(result.message, {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             })
 
@@ -147,7 +147,7 @@ const LinkMobile = ({ sessions }) => {
             <ToastContainer />
             <section className="dark:bg-black-v-5 sm:min-h-[calc(100vh-200px)] sm:h-full sm:py-0 py-10 flex">
                 <div className="container m-auto">
-                    <div className="md:max-w-[480px] p-0 md:p-6 max-w-full w-full" >
+                    <div className="md:max-w-[480px] p-0 md:p-6 max-w-full w-full mx-0 md:mx-auto" >
                         <h4 className='section-secondary-heading font-noto mb-1 flex items-center gap-4 flex-row-reverse justify-end'>
                             <span>Link Mobile</span>
                             <Link href="setting">
