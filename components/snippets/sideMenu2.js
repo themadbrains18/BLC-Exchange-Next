@@ -26,7 +26,7 @@ const SideMenu2 = ({ subMenu, assetMenu, setShowMenuOpen, showMenuOpen }) => {
         }`}
       >
         <ToastContainer />
-       <div className="bg-white dark:bg-black fixed top-0 py-4 px-2 w-full">
+       <div className="bg-white dark:bg-black absolute left-[5px] top-0 py-4 px-2 w-full ">
        <button
           onClick={() => {
             setShowMenuOpen(!showMenuOpen);
