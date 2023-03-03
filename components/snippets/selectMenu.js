@@ -15,6 +15,7 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network,all, deposit, transf
     function handleClick(event) {
       if (dropdown.current && !dropdown.current.contains(event.target)) {
         setOpen(false);
+        setOverlay(false);
       }
     }
     window.addEventListener("click", handleClick);
@@ -27,6 +28,7 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network,all, deposit, transf
     setValue(e.name);
     setOpen(false)
     setActive(i);
+    setOverlay(false);
     if (from === true) {
       setFromWallet(e)
     }
