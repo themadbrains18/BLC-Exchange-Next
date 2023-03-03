@@ -9,7 +9,7 @@ import Welfare from 'components/dashboard/welfare'
 import Layout from '@/components/layout/Layout'
 import { getProviders, getSession } from "next-auth/react"
 
-import React from 'react'
+
 const Dashboard = ({ account, sessions, lastLogin }) => {
   return (
     <>
@@ -18,7 +18,7 @@ const Dashboard = ({ account, sessions, lastLogin }) => {
           <div>
             <Profile sessions={sessions.user} lastLogin={lastLogin}/>
           </div>
-          <div className='flex w-full  '>
+          <div className='flex w-full gap-8'>
             <div className=' w-full'>
               <Assets />
               <SocialTrades />
@@ -60,7 +60,6 @@ export async function getServerSideProps(context) {
   return {
     redirect: { destination: "/" },
   };
-
 
 }
 export default Dashboard

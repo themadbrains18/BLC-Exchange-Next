@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 
 const WithDrawTable = ({data}) => {
+
   return (
 <>
 <div className="overflow-x-auto table_box  ">
@@ -27,50 +28,32 @@ const WithDrawTable = ({data}) => {
           </div>
           {data ? (
             <div>
-              <div className="row grid bg-white grid-cols-5 gap-4 justify-between border-b border-border-clr dark:bg-black-v-1">
-                <h4 className="col info-12  p-3 text-black dark:text-white">
-                  {" "}
-                  no data{" "}
-                </h4>
-                <h4 className="col info-12  p-3 text-black dark:text-white">
-                  {" "}
-                  no data
-                </h4>
-                <h4 className="col info-12  p-3 text-black dark:text-white">
-                  {" "}
-                  no data
-                </h4>
-                <h4 className="col info-12  p-3 text-black dark:text-white">
-                  {" "}
-                  no data
-                </h4>
-                <h4 className="col info-12  p-3 text-black dark:text-white">
-                  {" "}
-                  no data
-                </h4>
-              </div>
-              <div className="row grid bg-white grid-cols-5 gap-4 justify-between border-b border-border-clr dark:bg-black-v-1">
-                <h4 className="col info-12  p-3 text-black dark:text-white">
-                  {" "}
-                  no data
-                </h4>
-                <h4 className="col info-12  p-3 text-black dark:text-white">
-                  {" "}
-                  no data
-                </h4>
-                <h4 className="col info-12  p-3 text-black dark:text-white">
-                  {" "}
-                  no data
-                </h4>
-                <h4 className="col info-12  p-3 text-black dark:text-white">
-                  {" "}
-                  no data
-                </h4>
-                <h4 className="col info-12  p-3 text-black dark:text-white">
-                  {" "}
-                  no data
-                </h4>
-              </div>
+               {
+                data.map((row, index) => {
+                  return ( <>
+                  <div className="row grid bg-white grid-cols-5 gap-4 justify-between border-b border-border-clr dark:bg-black-v-1">
+                  <h4 className="col info-12  p-3 text-black dark:text-white">
+                    {row.updatedAt}
+                  </h4>
+                  <h4 className="col info-12  p-3 text-black dark:text-white">
+                    {row.symbol}
+                  </h4>
+                  <h4 className="col info-12  p-3 text-black dark:text-white">
+                    {row.amount}
+                  </h4>
+                  <h4 className="col info-12  p-3 text-black dark:text-white">
+                    {row.status}
+                  </h4>
+                  <h4 className="col info-12  p-3 text-black dark:text-white">
+                    
+                  </h4>
+                </div>
+                </>
+                  )
+                })
+               }
+             
+             
             </div>
           ) : (
             <div className="xl:grid xl:place-content-center w-full p-4">

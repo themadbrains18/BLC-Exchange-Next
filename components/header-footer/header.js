@@ -219,11 +219,11 @@ const Header = (props) => {
             
              <div
            
-             className={`group hidden  hover:pb-8 hover:-mb-8 ${
+             className={`group hidden relative  hover:pb-8 hover:-mb-8 ${
                login2 === true ? "lg:block" : "hidden"
              }`}
            >
-             <Link href={""}>
+             <Link href={""} className="block">
 
              <svg
                xmlns="http://www.w3.org/2000/svg"
@@ -231,7 +231,7 @@ const Header = (props) => {
                viewBox="0 0 24 24"
                strokeWidth={1.5}
                stroke={mode === "dark" ? "white" : "currentcolor"}
-               className="w-6 h-6"
+               className="w-6 h-7"
              >
                <path
                  strokeLinecap="round"
@@ -259,6 +259,7 @@ const Header = (props) => {
                 }`}
                   onClick={(()=>{
                     setShowMenuOpen(true)
+                    setClick(true)
 
                   })}
               >
@@ -270,7 +271,7 @@ const Header = (props) => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke={mode === "dark" ? "white" : "currentcolor"}
-                    className="w-6 h-6"
+                    className="w-6 h-7"
                   >
                     <path
                       strokeLinecap="round"
@@ -304,6 +305,7 @@ const Header = (props) => {
                     svgType="log_out"
                     setShowMenuOpen={setShowMenuOpen}
                     showMenuOpen={showMenuOpen}
+                    session={session}
                     />
                 )}
 

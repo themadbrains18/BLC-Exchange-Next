@@ -258,10 +258,10 @@
                 "linkUrl": "/dashboard/verified"
             },
             {
-                "linkText": "API Management",
+                "linkText": "Markets",
                 "desc": "Market trends from experts",
                 "svgType": "API_management",
-                "linkUrl": "earn"
+                "linkUrl": "/chart"
             },
             {
                 "linkText": "My Compition",

@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCta, showSetState, bindMobile,
-    showState, bindEmail, fixed, modifyPass,bindFunCode, loginData, updateUser, resgister, createUser }) => {
+    showState, bindEmail, fixed, modifyPass,bindFunCode, loginData, updateUser, resgister, createUser,withdraw }) => {
 
     const { mode, setClick } = useContext(Context);
     const [fillOtp, setOtp] = useState();
@@ -106,7 +106,7 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
         //==============================================================================
         // Bind Google Authentication Request OTP Authenticate=======================
         //============================================================================== 
-        if (bindGoogle === true || modifyPass === true || bindFunCode === true || antiFishing === true) {
+        if (bindGoogle === true || modifyPass === true || bindFunCode === true || antiFishing === true || withdraw === true) {
             if (loginData.email !== "" && loginData.number !== "") {
                 let mobileOtpMatch = await otpMatch({ username: loginData.number, otp: fillOtp, time: new Date() });
                 let emailOtpMatch = await otpMatch({ username: loginData.email, otp: emailOtp, time: new Date() });
@@ -247,7 +247,9 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                                     </svg>
                                 </div>
                             }
+                            
                             <h4 className='section-secondary-heading mb-1'>You're almost there</h4>
+
                             <p className='info-14 text-black dark:!text-white dark:hover:!text-white hover:!text-black'>Enter the verification code below.</p>
 
                             <div className="relative hidden md:flex flex-col items-center group">
@@ -343,7 +345,7 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
 
 
                                 </div>
-                                <button className='cta mt-5 w-full' onClick={(e) => confirmOtp(e)}>Confirm</button>
+                                <button type="button" className='cta mt-5 w-full' onClick={(e) => confirmOtp(e)}>Confirm</button>
                                 {/* {
                                 // { This Cta for Dashboard modifiy password verifiction }
                                 modifyPass &&
