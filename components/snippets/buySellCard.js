@@ -12,7 +12,7 @@ const BuySellCard = ({ active, menu, sell, show, setShow }) => {
   return (
     <>
       <div
-        className={`fixed -bottom-[100%] z-[4]  bg-white dark:bg-black-v-3 p-4  duration-300 lg:static w-full py-4 ${
+        className={`fixed -bottom-[100%] z-[4] md:z-0  bg-white dark:bg-black-v-3 p-4  duration-300 lg:static w-full py-4 ${
           show && "!bottom-[0%]"
         }`}
       >
@@ -108,7 +108,7 @@ const BuySellCard = ({ active, menu, sell, show, setShow }) => {
           </div>
         </div>
         <div className="flex  mt-4 items-center border border-deep-blue info-14 hover:!text-grey dark:hover:!text-white dark:text-white px-4">
-          <h4 className="">Amount</h4>s
+          <h4 className="">Amount</h4>
           <input
             type="number"
             className="caret-primary w-full bg-transparent  outline-none p-2"
@@ -118,7 +118,39 @@ const BuySellCard = ({ active, menu, sell, show, setShow }) => {
         </div>
         {active === 0 && (
           <>
-            <div>slider</div>
+            <div className="my-8">
+
+            <div className="mx-auto">
+              <div className="bg-gray-200 dark:bg-deep-blue h-1 flex items-center justify-between">
+                <div className="w-1/3 bg-primary h-1 flex items-center">
+                  <div className="bg-primary h-6 w-6 rounded-full shadow flex items-center justify-center">
+                    <img
+                      src="/assets/icons/trueTick.svg"
+                      alt="check"
+                    />
+                  </div>
+                </div>
+                <div className="w-1/3 flex justify-between bg-primary h-1 items-center relative">
+                  <div className="absolute right-0 -mr-2">
+                   
+                  </div>
+                  <div className="bg-primary h-6 w-6 rounded-full shadow flex items-center justify-center -ml-2">
+                    <img
+                       src="/assets/icons/trueTick.svg"
+                      alt="check"
+                    />
+                  </div>
+                  <div className="bg-deep-blue dark:bg-deep-blue h-6 w-6 rounded-full shadow flex items-center justify-center -mr-3 relative">
+                    <div className="h-3 w-3 bg-primary rounded-full" />
+                  </div>
+                </div>
+                <div className="w-1/3 flex justify-end">
+                  <div className="bg-deep-blue dark:bg-deep-blue h-6 w-6 rounded-full shadow" />
+                </div>
+              </div>
+            </div>
+            </div>
+
             <div className="flex gap-2">
               <div className="flex items-center mr-4 mb-4 whitespace-nowrap ">
                 <input
