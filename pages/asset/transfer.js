@@ -494,12 +494,12 @@ export async function getServerSideProps(context) {
   if (session) {
     let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
 
-    let tokenList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`, {
+    let tokenList = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/token`, {
       method: "GET"
     }).then(response => response.json());
 
     let tokens = []
-    for (const item of tokenList) {
+    for (const item of tokenList.data) {
       tokens.push(item.symbol);
     }
 

@@ -383,7 +383,7 @@ export async function getServerSideProps(context) {
   if (session) {
     let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
 
-    let tokenList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`, {
+    let tokenList = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/token`, {
       method: "GET"
     }).then(response => response.json());
 
@@ -395,7 +395,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         assets: menu.specialNav.assets,
-        tokens: tokenList,
+        tokens: tokenList.data,
         networks: networkList,
         sessions: session
       }, // will be passed to the page component as props
