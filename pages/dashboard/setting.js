@@ -12,7 +12,7 @@ const Setting = ({ account, sessions }) => {
   const [SetState, showSetState] = useState(0);
   const [activePopup, SetActivePopup] = useState(false);
 
-
+  console.log(sessions.user.antiphishing, '===========anti phishing')
 
   return (
     <Layout data={account} name="Setting">
@@ -214,12 +214,12 @@ const Setting = ({ account, sessions }) => {
                   <p className="info-12 ">To protect yourself from counterfeit emails, the emails you receive from BLC-Exchange will contain the anti-phishing code you have set</p>
                 </div>
               </div>
-              {sessions.user.antiphishing === '' &&
+              {sessions.user.antiphishing === null &&
                 <Link className='cta  leading-[36px] md:leading-[46px]' href="anti-phishing">Settings</Link>
               }
-              {sessions.user.antiphishing !== '' &&
+              {sessions.user.antiphishing !== null &&
                 <div>
-                  <p className='info-14-16 !text-primary flex items-center'><span className="flex items-center"><span>{sessions.user.antiphishing}</span>{ sessions.user.antiphishing ? <span className="block max-w-[2px] bg-primary h-[20px] w-[2px] mx-[10px]"></span> : ""}</span> </p> <Link className='info-14-16 !text-primary' href="modify-anti-phishing">Modify</Link>
+                  <p className='info-14-16 !text-primary flex items-center'><span className="flex items-center"><span>{sessions.user.antiphishing}</span>{sessions.user.antiphishing ? <span className="block max-w-[2px] bg-primary h-[20px] w-[2px] mx-[10px]"></span> : ""}</span> </p> <Link className='info-14-16 !text-primary' href="modify-anti-phishing">Modify</Link>
                 </div>
               }
             </div>
