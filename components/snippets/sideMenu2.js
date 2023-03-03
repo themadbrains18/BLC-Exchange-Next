@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import NavAccordian from "./navAccordian";
 
 const SideMenu2 = ({ subMenu, assetMenu, setShowMenuOpen, showMenuOpen }) => {
-  const { mode, setLogin } = useContext(Context);
+  const { mode, setLogin,setClick } = useContext(Context);
   const router = useRouter();
   const ref=useRef(null)
 
@@ -30,6 +30,7 @@ const SideMenu2 = ({ subMenu, assetMenu, setShowMenuOpen, showMenuOpen }) => {
        <button
           onClick={() => {
             setShowMenuOpen(!showMenuOpen);
+            setClick(false)
           }}
           className=" "
         >
@@ -101,7 +102,7 @@ const SideMenu2 = ({ subMenu, assetMenu, setShowMenuOpen, showMenuOpen }) => {
                 onClick={() => {
                   setShowMenuOpen(false);
                 }}
-                className={`items-center rounded flex gap-6 min-w-[330px] p-4   ${
+                className={`items-center rounded flex gap-6 min-w-[280px] p-4   ${
                   mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
                 }`}
               >

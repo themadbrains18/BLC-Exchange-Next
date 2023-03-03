@@ -259,6 +259,7 @@ const Header = (props) => {
                 }`}
                   onClick={(()=>{
                     setShowMenuOpen(true)
+                    setClick(true)
 
                   })}
               >

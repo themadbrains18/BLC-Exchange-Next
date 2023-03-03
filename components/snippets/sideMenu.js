@@ -17,7 +17,7 @@ const SideMenu = ({ show, setShow, data,session }) => {
 
   return (
     <div
-      className={`fixed w-[calc(100%-4rem)] ${click && "z-10"} overflow-x-auto table_box h-[100vh] duration-300 top-0 bg-white dark:bg-black ${show === true ? "right-0" : "right-[-100%]"
+      className={`fixed max-w-[320px] w-full ${click && "z-10"} overflow-x-auto table_box h-[100vh] duration-300 top-0 bg-white dark:bg-black ${show === true ? "right-0" : "right-[-100%]"
         }`}
     >
       
@@ -66,7 +66,6 @@ const SideMenu = ({ show, setShow, data,session }) => {
         className="relative flex justify-between m-3
          align-middle select-none transition duration-200 ease-in"
 
-         onClick={()=>{setShow(false);setClick(false)}}
       >
         <span className="info-14-20 ">Dark Mode</span>
         <div>
