@@ -18,7 +18,7 @@ const Dashboard = ({ account, sessions, lastLogin }) => {
           <div>
             <Profile sessions={sessions.user} lastLogin={lastLogin}/>
           </div>
-          <div className='flex w-full  '>
+          <div className='flex w-full gap-8'>
             <div className=' w-full'>
               <Assets />
               <SocialTrades />

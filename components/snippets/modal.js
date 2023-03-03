@@ -39,6 +39,7 @@ const Modal = (props) => {
     const [imagesrc, setImageSource] = useState('');
     const [imagesrc2, setImageSource2] = useState('');
     const [imagesrc3, setImageSource3] = useState('');
+    const [loader, setLoader] = useState(false)
 
     const { register, setValue, getValues, handleSubmit, formState: { errors }, } = useForm({
         mode: "onChange",
@@ -133,6 +134,7 @@ const Modal = (props) => {
 
     const handleUpload = async (data, e) => {
         const formData = new FormData();
+        setLoader(true)
         let file = getValues('file')
         let profile = getValues('profile')
         let statement = getValues('statement')
@@ -158,6 +160,7 @@ const Modal = (props) => {
         if (result.status == 200) {
             console.log("file upload sucessfully")
             setStep(step + 1)
+            setLoader(false)
             if (step === 3) {
 
                 setValue('file', result.data);
@@ -355,7 +358,13 @@ const Modal = (props) => {
                             step === 3 || step === 5 || step === 7 ?
                                 <div className='my-7 flex justify-between mx-4 gap-5'>
                                     <button type='button' className='cta w-full' onClick={() => { handleRedo() }}>Redo</button>
-                                    <button type='button' className='cta w-full ' onClick={() => { handleUpload() }} >Upload</button>
+                                    {/* <button type='button' className='cta w-full ' onClick={() => { handleUpload() }} >Upload</button> */}
+                                    <button type='button' className={`relative cta  w-full ${loader === true ? 'hide_text' : ''} `} onClick={() => { handleUpload() }}>
+                                            <span>Upload</span>
+                                            {/* spinner */}
+                                            <div className="hidden w-8 h-8 rounded-full animate-spin border-4 border-solid border-purple-500 border-t-transparent absolute top-[50%] left-[50%] mt-[-16px] ml-[-15px] z-10"></div>
+                                            {/* spinner */}
+                                        </button>
                                 </div>
 
                                 :
