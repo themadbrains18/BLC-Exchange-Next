@@ -89,7 +89,7 @@ const ModifyPass = ({ session }) => {
             }).then(response => response.json());
 
             if (emailotpResponse.data.status === 200 && emailotpResponse != undefined) {
-                setClick(false)
+           
                 emailResponse = true;
             }
 
@@ -103,7 +103,7 @@ const ModifyPass = ({ session }) => {
             }).then(response => response.json());
 
             if (smsotpResponse.data.status === 200 && smsotpResponse != undefined) {
-                setClick(false)
+               
                 numberResponse = true;
             }
         }
@@ -141,6 +141,7 @@ const ModifyPass = ({ session }) => {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 3000
             });
             setShow(false);
+            setClick(false)
             setTimeout(() => {
                 signOut();
             }, 3000);
