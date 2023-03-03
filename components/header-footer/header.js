@@ -50,7 +50,6 @@ const Header = (props) => {
       console.log(err);
     });
   }, [session]);
-
   // const testfunction = (e) => {
   //   setShowMenu(e)
   // }
