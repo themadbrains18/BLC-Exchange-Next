@@ -53,7 +53,7 @@ export async function getServerSideProps(context) {
       props: {
         account: menu.specialNav.account,
         sessions: session,
-        // lastLogin : session.lastlogin
+        lastLogin : session.lastlogin
       },
     };
   }

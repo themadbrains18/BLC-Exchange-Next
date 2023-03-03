@@ -12,12 +12,13 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
 const Header = (props) => {
+  
   const router = useRouter();
   const { data: session } = useSession();
   const { mode, setMode, login, topBar, setClick,heightUpdate } = useContext(Context);
   const [login2, setLogin2] = useState(login)
   // console.log(session,' session session session')
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const [showMenuOpen, setShowMenuOpen] = useState(false);
   
 
@@ -42,13 +43,14 @@ const Header = (props) => {
           setData(data.nav);
 
           setSpecialData(data.specialNav);
+          
         })
         .catch((error) => console.error(error));
     })().catch((err) => {
       console.log(err);
     });
   }, [session]);
-console.log(showMenuOpen)
+
   // const testfunction = (e) => {
   //   setShowMenu(e)
   // }
@@ -155,7 +157,7 @@ console.log(showMenuOpen)
               })}
           </div>
 
-          <div className="flex gap-5 items-center">
+          <div className="flex gap-2 items-center">
             <Link
               href="/register"
               className={`transparent-cta hidden ${login2 === true ? "lg:hidden" : "lg:block"
@@ -202,11 +204,60 @@ console.log(showMenuOpen)
 
             </div>
             {/* account */}
+            
+
+
+
+
+
+            
+              
+            
+
+
             {session !== null &&
+            <>
+            
+             <div
+           
+             className={`group hidden  hover:pb-8 hover:-mb-8 ${
+               login2 === true ? "lg:block" : "hidden"
+             }`}
+           >
+             <Link href={""}>
+
+             <svg
+               xmlns="http://www.w3.org/2000/svg"
+               fill="none"
+               viewBox="0 0 24 24"
+               strokeWidth={1.5}
+               stroke={mode === "dark" ? "white" : "currentcolor"}
+               className="w-6 h-6"
+             >
+               <path
+                 strokeLinecap="round"
+                 strokeLinejoin="round"
+                 d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+               />
+             </svg>
+             </Link>
+
+             {specialData.account != undefined && specialData.account && (
+               <Dropdown
+                 subMenu={specialData.account.subMenu}
+                 right={true}
+                 arrow={true}
+                 height={true}
+                 fixed_cta="Log Out"
+                 svgType="log_out"
+               />
+             )}
+           </div>
               <div
-                href=""
-                className={`${login2 === true ? "lg:block" : "lg:hidden"
-                  }`}
+            
+                className={`lg:hidden ${
+                  login2 === true ? "block" : "hidden"
+                }`}
                   onClick={(()=>{
                     setShowMenuOpen(true)
 
@@ -231,11 +282,25 @@ console.log(showMenuOpen)
                 </Link>
 
                
+               {specialData.account != undefined && specialData.account && (
+                <Dropdown
+                  subMenu={specialData.account.subMenu}
+                  right={true}
+                  arrow={true}
+                  height={true}
+                  fixed_cta="Log Out"
+                  svgType="log_out"
+                />
+              )}
+              
               </div>
+            </>
+
             }
              {specialData.account != undefined && specialData.account && (
                   <SideMenu2
                     subMenu={specialData.account.subMenu}
+                    assetMenu={specialData.assets.subMenu}
                     fixed_cta="Log Out"
                     svgType="log_out"
                     setShowMenuOpen={setShowMenuOpen}
@@ -246,9 +311,9 @@ console.log(showMenuOpen)
 
             {/* hamburger  */}
             <button
-              className={`${show === false ? "hidden" : "none"} lg:hidden`}
+              className={`${show === true ? "hidden" : "none"} lg:hidden`}
               onClick={() => {
-                setShow(false);
+                setShow(true);
                 setClick(true);
               }}
             >

@@ -5,7 +5,9 @@ import { getProviders, getSession } from "next-auth/react"
 const Verified = ({ account, sessions }) => {
     return (
         <>
-            <Layout data={account} name="Verified" >
+            <Layout data={account} name="ID Verification" verify_cta={true} >
+              
+           
                 <div className='p-4 md:p-8 grow '>
                     <VerificationType session={sessions.user}/>
                 </div>
