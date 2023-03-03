@@ -22,6 +22,7 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
 
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
+  let coinData2 = ["Last 7 days", "Last 3 Months"];
   const { mode } = useContext(Context);
   const ref = useRef(null);
   let autoTransfer = ["Spot", "Bsc "];
@@ -263,8 +264,13 @@ const Deposit = ({ assets, tokens, networks, sessions }) => {
                 <h4 className="info-14 hidden lg:block hover:text-grey dark:text-white dark:hover:text-white">
                   Coin
                 </h4>
-                <div className="border border-border-clr ">
-                  <SelectMenu selectMenu={coinData} />
+                <div className=" flex items-center gap-[15px]">
+                  <div className="border border-border-clr">
+                    <SelectMenu selectMenu={coinData} />
+                  </div>
+                  <div className="border border-border-clr md:hidden">
+                    <SelectMenu selectMenu={coinData2} />
+                  </div>
                 </div>
               </div>
               <div className="hidden lg:block">
