@@ -510,8 +510,6 @@ export async function getServerSideProps(context) {
       tokens.push(item.symbol);
     }
 
-    console.log(tokens)
-
     let menu = await data.json();
 
     let assetList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/assets/${session?.user?.id}`, {
