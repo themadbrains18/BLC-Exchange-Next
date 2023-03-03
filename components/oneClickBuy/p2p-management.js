@@ -21,10 +21,10 @@ const P2PManagement = () => {
             <div className="container">
                 <div className="flex items-start">
                     <div className="max-w-[200px] w-full md:block hidden">
-                        <u l>
+                        <ul>
                             <li className="border-r-[4px] border-primary pl-[15px] bg-[#1da2b41f]"><Link className="info-14-16 py-[10px] block " href="manage">P2P management</Link></li>
                             <li className=" pl-[15px] "><Link className="info-14-16 py-[10px] block" href="orderlist">My order</Link></li>
-                        </u>              
+                        </ul>              
                     </div>
                     <div className="max-w-[100%-200px] w-full md:border-l border-grey md:pl-[20px]">
                         {/* about */}

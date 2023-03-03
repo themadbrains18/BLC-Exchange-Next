@@ -404,7 +404,7 @@ export async function getServerSideProps(context) {
 
 
     // =================== get token lsit ================================//
-    let tokenList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`, {
+    let tokenList = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/token`, {
       method: "GET"
     }).then(response => response.json());
 
@@ -427,7 +427,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         assets: menu.specialNav.assets,
-        tokens: tokenList,
+        tokens: tokenList.data,
         networks: networkList,
         sessions: session,
         tokenBalnces : tokenBalnces

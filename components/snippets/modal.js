@@ -217,8 +217,8 @@ const Modal = (props) => {
             <div className='h-[100vh] w-full grid place-items-center absolute top-0 right-0 rounded-2xl'>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
-                    className={`bg-white  ${click && 'z-20'} rounded-lg md:rounded-2xl grow`} >
-                    <div className={`md:min-w-[500px] md:w-full min-w-[300px] h-[600px] flex flex-col justify-between`} >
+                    className={`bg-white  ${click && 'z-20'} rounded-lg md:rounded-2xl grow md:max-w-[500px] max-w-full w-[calc(100%-30px)]  h-[600px]`} >
+                    <div className={`md:w-full  flex flex-col justify-between`} >
                         <div>
                             <div className='flex justify-between p-4 '>
                                 <button type='button' className={`${step !== 1 ? 'block' : 'hidden'}`} onClick={() => setStep(step - 1)}>
