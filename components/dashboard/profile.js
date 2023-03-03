@@ -3,11 +3,13 @@ import Link from 'next/link'
 import React, { useEffect, useState, useContext } from 'react'
 import NavAccordian from '../snippets/navAccordian'
 import Context from '../contexts/context';
-import moment from 'moment';
+import dateFormat, { masks } from "dateformat";
 
 const Profile = ({ sessions, lastLogin }) => {
     const [show, setShow] = useState(false)
-    const {  mode } = useContext(Context)
+    const { mode } = useContext(Context)
+
+    let lastLoginDate = dateFormat(lastLogin, "dddd, mmmm dS, yyyy, h:MM:ss TT");
     const cardData = [
         {
             "heading": 'Email',
@@ -74,7 +76,9 @@ const Profile = ({ sessions, lastLogin }) => {
                             </div>
                             <div>
                                 <p className='info-14'>Last Login</p>
-                                <p className='info-14 text-black'>{moment(lastLogin).format('MMMM Do YYYY, h:mm:ss a') } (India-Punjab-Bathinda)</p>
+                                <p className='info-14 text-black'>
+                                    {lastLoginDate}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -84,7 +88,7 @@ const Profile = ({ sessions, lastLogin }) => {
                 </div>
             </div>
             <div>
-                <NavAccordian data={cardData} showAccordian={true} lastLogin={lastLogin} sessions={sessions} ></NavAccordian>
+                <NavAccordian data={cardData} showAccordian={true} lastLogin={lastLoginDate} sessions={sessions} ></NavAccordian>
             </div>
         </section>
     )
@@ -93,4 +97,4 @@ const Profile = ({ sessions, lastLogin }) => {
 export default Profile
 
 
-{/* <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" fill= {mode === "dark" ? "white" : "currentcolor"} width="20"><path d="m375 816-43-43 198-198-198-198 43-43 241 241-241 241Z"/></svg> */}
+{/* <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" fill= {mode === "dark" ? "white" : "currentcolor"} width="20"><path d="m375 816-43-43 198-198-198-198 43-43 241 241-241 241Z"/></svg> */ }

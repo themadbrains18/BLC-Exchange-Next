@@ -39,13 +39,11 @@ const SearchDropdown = ({
         })
         .catch((error) => console.error(error));
 
-      let tokenList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/token`, {
+      let tokenList = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/token`, {
         method: "GET"
-      }).then(response => response.json()).then((data) => {
-        setCoinData(data)
-      }).catch((error) => {
-        console.error(error)
-      });
+      }).then(response => response.json());
+
+      setCoinData(tokenList.data);
 
     })().catch((err) => {
       console.log(err);
