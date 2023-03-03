@@ -196,8 +196,12 @@ const Header = (props) => {
             {session !== null &&
               <div
                 href=""
-                className={`group  hover:pb-8 hover:-mb-8 ${login2 === true ? "lg:block" : "lg:hidden"
+                className={`${login2 === true ? "lg:block" : "lg:hidden"
                   }`}
+                  onClick={(()=>{
+                    setShowMenu(true)
+                    
+                  })}
               >
                 <Link href={""}>
 
@@ -218,14 +222,13 @@ const Header = (props) => {
                 </Link>
 
                 {specialData.account != undefined && specialData.account && (
-                  <Dropdown
+                  <SideMenu2
                     subMenu={specialData.account.subMenu}
-                    right={true}
-                    arrow={true}
-                    height={true}
                     fixed_cta="Log Out"
                     svgType="log_out"
-                  />
+                    setShowMenu={setShowMenu}
+                    showMenu={showMenu}
+                    />
                 )}
               </div>
             }

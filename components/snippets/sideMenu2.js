@@ -12,13 +12,14 @@ const SideMenu2 = ({ subMenu, fixed_cta, setShowMenu, svgType, showMenu }) => {
   return (
     <>
       <div
-        className={`fixed w-[calc(100%-4rem)] overflow-x-auto table_box h-[100vh] duration-300 top-0 bg-white dark:bg-black ${
+        className={`fixed overflow-x-auto table_box h-[100vh] duration-300 top-0 bg-white dark:bg-black ${
             showMenu  ? "right-[0%]" : "-right-[100%]"
           }`}
       >
         <button
           onClick={() => {
             setShowMenu(false);
+            console.log(showMenu)
           }}
         >
           <svg
