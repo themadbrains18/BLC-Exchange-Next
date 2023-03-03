@@ -259,6 +259,7 @@ const Header = (props) => {
                 }`}
                   onClick={(()=>{
                     setShowMenuOpen(true)
+                    setClick(true)
 
                   })}
               >
@@ -304,6 +305,7 @@ const Header = (props) => {
                     svgType="log_out"
                     setShowMenuOpen={setShowMenuOpen}
                     showMenuOpen={showMenuOpen}
+                    session={session}
                     />
                 )}
 

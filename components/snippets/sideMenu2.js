@@ -10,8 +10,8 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import NavAccordian from "./navAccordian";
 
-const SideMenu2 = ({ subMenu, assetMenu, setShowMenuOpen, showMenuOpen }) => {
-  const { mode, setLogin } = useContext(Context);
+const SideMenu2 = ({ subMenu, assetMenu, setShowMenuOpen, showMenuOpen,session }) => {
+  const { mode, setLogin, setClick } = useContext(Context);
   const router = useRouter();
   const ref=useRef(null)
 
@@ -30,6 +30,7 @@ const SideMenu2 = ({ subMenu, assetMenu, setShowMenuOpen, showMenuOpen }) => {
        <button
           onClick={() => {
             setShowMenuOpen(!showMenuOpen);
+            setClick(false)
           }}
           className=" "
         >
@@ -50,7 +51,7 @@ const SideMenu2 = ({ subMenu, assetMenu, setShowMenuOpen, showMenuOpen }) => {
         </button>
        </div>
         <div className="mt-12">
-          <h4 className="section-secondary-heading font-noto">BGUSER-MC3PB1N2</h4>
+          <h4 className="section-secondary-heading font-noto">BGUSER-{session && session.user.own_code}</h4>
           <span className="flex gap-2 items-center mt-3">
           <span className="info-14-20">UID </span>
           <span className="info-14-20" ref={ref}>5936496768 </span>
@@ -100,8 +101,9 @@ const SideMenu2 = ({ subMenu, assetMenu, setShowMenuOpen, showMenuOpen }) => {
                 key={index}
                 onClick={() => {
                   setShowMenuOpen(false);
+                  setClick(false)
                 }}
-                className={`items-center rounded flex gap-6 min-w-[330px] p-4   ${
+                className={`items-center rounded flex gap-6 min-w-[280px] p-4   ${
                   mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
                 }`}
               >

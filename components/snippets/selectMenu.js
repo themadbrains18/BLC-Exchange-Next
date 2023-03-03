@@ -39,13 +39,13 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network,all, deposit, transf
 
   return (
     <>
-      <div ref={dropdown} className={`relative pr-2 z-initial  ${open && "md:z-[2]"}`}>
+      <div ref={dropdown} className={`relative pr-2 z-initial   ${open && "md:z-[2]"}`}>
         <div className="flex bg-transparent justify-between items-center">
           <input
             type="text"
             name=""
             id=""
-            className="caret-white placeholder:text-disable-clr p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
+            className= "max-w-[150px] sm:max-w-none caret-white placeholder:text-disable-clr p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
             placeholder="Please Select"
             value={ (transfer && fromValue !== '') ? fromValue : value}
             onClick={() => {
