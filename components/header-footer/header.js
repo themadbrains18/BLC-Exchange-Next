@@ -18,9 +18,14 @@ const Header = (props) => {
   const [login2, setLogin2] = useState(login)
   // console.log(session,' session session session')
   const [show, setShow] = useState(true);
-  const [showMenu, setShowMenu] = useState(false);
+  const [showMenuOpen, setShowMenuOpen] = useState(false);
+  
+
+
   const [Data, setData] = useState([]);
   const [specialData, setSpecialData] = useState([]);
+
+
   useEffect(() => {
     (async () => {
 
@@ -43,6 +48,10 @@ const Header = (props) => {
       console.log(err);
     });
   }, [session]);
+console.log(showMenuOpen)
+  // const testfunction = (e) => {
+  //   setShowMenu(e)
+  // }
 
   return (
     <>
@@ -199,8 +208,8 @@ const Header = (props) => {
                 className={`${login2 === true ? "lg:block" : "lg:hidden"
                   }`}
                   onClick={(()=>{
-                    setShowMenu(true)
-                    
+                    setShowMenuOpen(true)
+
                   })}
               >
                 <Link href={""}>
@@ -221,17 +230,18 @@ const Header = (props) => {
                   </svg>
                 </Link>
 
-                {specialData.account != undefined && specialData.account && (
+               
+              </div>
+            }
+             {specialData.account != undefined && specialData.account && (
                   <SideMenu2
                     subMenu={specialData.account.subMenu}
                     fixed_cta="Log Out"
                     svgType="log_out"
-                    setShowMenu={setShowMenu}
-                    showMenu={showMenu}
+                    setShowMenuOpen={setShowMenuOpen}
+                    showMenuOpen={showMenuOpen}
                     />
                 )}
-              </div>
-            }
 
 
             {/* hamburger  */}
