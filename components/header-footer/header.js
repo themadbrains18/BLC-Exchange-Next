@@ -4,21 +4,21 @@ import Link from "next/link";
 import Context from "../contexts/context";
 import Dropdown from "../snippets/dropdown";
 import SideMenu from "../snippets/sideMenu";
+import SideMenu2 from "../snippets/sideMenu2";
 import NotificationHover from "../snippets/notificationHover";
 import TopBar from "../snippets/topBar";
 import { useRouter } from "next/router";
 
-import { useSession } from "next-auth/react"
-
+import { useSession } from "next-auth/react";
 
 const Header = (props) => {
-  const router = useRouter()
-  const { data: session } = useSession()
-
+  const router = useRouter();
+  const { data: session } = useSession();
   const { mode, setMode, login, topBar, setClick,heightUpdate } = useContext(Context);
   const [login2, setLogin2] = useState(login)
   // console.log(session,' session session session')
   const [show, setShow] = useState(true);
+  const [showMenu, setShowMenu] = useState(false);
   const [Data, setData] = useState([]);
   const [specialData, setSpecialData] = useState([]);
   useEffect(() => {
@@ -42,13 +42,8 @@ const Header = (props) => {
     })().catch((err) => {
       console.log(err);
     });
-
-
   }, [session]);
 
-
-
-  
   return (
     <>
       <header className="header w-full ">
@@ -78,9 +73,7 @@ const Header = (props) => {
                 alt="Company Logo"
               />
             </Link>
-            <div
-              className=" relative hover:pb-8 hover:-mb-8 group "
-            >
+            <div className=" relative hover:pb-8 hover:-mb-8 group ">
               {/* grid icon  */}
               <Link href={""} className=" hidden lg:flex lg:items-center">
                 <svg
@@ -121,12 +114,10 @@ const Header = (props) => {
               Data.map((e, i) => {
                 return (
                   <div
-
                     className="hidden relative  lg:flex lg:items-center group  hover:pb-8 hover:-mb-8"
                     key={i}
                   >
                     <Link href={e.link}>
-
                       {e.name && (
                         <h3 className="info-14-16 duration-300 group-hover:text-primary ">
                           {e.name}
@@ -176,7 +167,6 @@ const Header = (props) => {
                 }`}
             >
               <Link href={"/asset"} className="lg:flex lg:items-center">
-
                 <span className="info-14-16 duration-300 group-hover:text-primary ">
                   Assets
                 </span>
@@ -246,7 +236,7 @@ const Header = (props) => {
               className={`${show === false ? "hidden" : "none"} lg:hidden`}
               onClick={() => {
                 setShow(false);
-                setClick(true)
+                setClick(true);
               }}
             >
               <svg
@@ -366,7 +356,6 @@ const Header = (props) => {
               )}
             </div>
           </div>
-
         </nav>
         {/* header-Menu  */}
         <SideMenu show={show} setShow={setShow} data={Data} session={session} />

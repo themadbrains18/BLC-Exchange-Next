@@ -1,11 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import NavAccordian from '../snippets/navAccordian'
+import Context from '../contexts/context';
+import moment from 'moment';
 
-const Profile = ({ sessions }) => {
+const Profile = ({ sessions, lastLogin }) => {
     const [show, setShow] = useState(false)
-
+    const {  mode } = useContext(Context)
     const cardData = [
         {
             "heading": 'Email',
@@ -72,7 +74,7 @@ const Profile = ({ sessions }) => {
                             </div>
                             <div>
                                 <p className='info-14'>Last Login</p>
-                                <p className='info-14 text-black'>2023-02-17 14:59:25 (India-Punjab-Bathinda)</p>
+                                <p className='info-14 text-black'>{moment(lastLogin).format('MMMM Do YYYY, h:mm:ss a') } (India-Punjab-Bathinda)</p>
                             </div>
                         </div>
                     </div>
@@ -82,10 +84,13 @@ const Profile = ({ sessions }) => {
                 </div>
             </div>
             <div>
-                <NavAccordian data={cardData} showAccordian={true} sessions={sessions}></NavAccordian>
+                <NavAccordian data={cardData} showAccordian={true} lastLogin={lastLogin} sessions={sessions} ></NavAccordian>
             </div>
         </section>
     )
 }
 
 export default Profile
+
+
+{/* <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" fill= {mode === "dark" ? "white" : "currentcolor"} width="20"><path d="m375 816-43-43 198-198-198-198 43-43 241 241-241 241Z"/></svg> */}

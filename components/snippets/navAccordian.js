@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import Context from "../contexts/context";
+import moment from 'moment';
 
 const NavAccordian = (props) => {
   const ref = useRef(null);
@@ -101,7 +102,7 @@ const NavAccordian = (props) => {
 
                       {elem.heading === 'Last Login' &&
                         <>
-                          {elem.desc}
+                          {props.sessions !== undefined && props.sessions?.lastLogin !== '' &&moment(props.sessions?.lastLogin).format('MMMM Do YYYY, h:mm:ss a') }
                         </>
                       }
 
