@@ -9,7 +9,7 @@ const multer2 = (folderPath,userID) => {
         storage: multer.diskStorage({
             // destination: process.cwd() + '/public/' + folderPath,
             destination:(req, file, callback) => {
-                let type = (file.mimetype === 'application/pdf') ? '/statement' :'/documents' ;
+                let type = '/documents' ;
                 let path = process.cwd() + '/public' + folderPath + type;
                 if (!fs.existsSync(path)) {
                     // Do something
@@ -27,23 +27,29 @@ const multer2 = (folderPath,userID) => {
         }),
       
         fileFilter: (req, file, cb) => {
-            if(file.fieldname!== 'statement'){
-                if ( file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
-                    cb(null, true);
-                } else {
-                    req.errortype = 'Only .png, .jpg and .jpeg format allowed!'
-                    cb(null, false);
-                }
+            if ( file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg" || file.mimetype == "application/pdf") {
+                cb(null, true);
+            } else {
+                req.errortype = 'Only .png, .jpg and .jpeg .pdf format allowed!'
+                cb(null, false);
             }
-            else{
-                if ( file.mimetype == "application/pdf" ) {
-                    cb(null, true);
-                } else {
-                    req.errortype = 'Only .pdf format allowed!'
-                    cb(null, false);
+            // if(file.fieldname!== 'statement'){
+            //     if ( file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+            //         cb(null, true);
+            //     } else {
+            //         req.errortype = 'Only .png, .jpg and .jpeg format allowed!'
+            //         cb(null, false);
+            //     }
+            // }
+            // else{
+            //     if ( file.mimetype == "application/pdf" ) {
+            //         cb(null, true);
+            //     } else {
+            //         req.errortype = 'Only .pdf format allowed!'
+            //         cb(null, false);
                    
-                }
-            }
+            //     }
+            // }
             
         }
 
