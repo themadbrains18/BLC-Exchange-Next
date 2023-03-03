@@ -20,11 +20,11 @@ const Setting = ({ account, sessions }) => {
       <div className="py-20  w-full px-[24px] ">
         <div className="mb-[20px]">
           <h3 className="section-secondary-heading mb-6">Security Settings</h3>
-          <div className="divide-y px-[24px] shadow-lg dark:shadow-[#1da2b41c] rounded-lg	">
+          <div className="divide-y md:px-[24px] md:shadow-lg md:dark:shadow-[#1da2b41c] rounded-lg">
 
-            <div className="flex items-center flex-col sm:flex-row justify-between py-[20px] gap-[20px]">
-              <div className="flex gap-[18px] flex-col sm:flex-row grow items-center">
-                <div className="max-w-[38px] w-full">
+            <div className="flex items-center  justify-start py-[20px] md:gap-[20px] gap-[10px]">
+              <div className="flex gap-[10px] md:gap-[18px] items-center grow ">
+                <div className="max-w-[24px] md:max-w-[38px] w-full">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 50" xmlSpace="preserve">
                     <g>
                       <g>
@@ -38,7 +38,7 @@ const Setting = ({ account, sessions }) => {
                     </g>
                   </svg>
                 </div>
-                <div className='sm:text-start text-center'>
+                <div className='text-start'>
                   <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Password</p>
                   <p className="info-12 ">Password to log into your account</p>
                 </div>
@@ -46,9 +46,9 @@ const Setting = ({ account, sessions }) => {
               <Link href="pwd" className='info-14-16 !text-primary'>Modify</Link>
             </div>
 
-            <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">
-              <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
-                <div className="max-w-[38px] w-full">
+            <div className="flex items-center  justify-start py-[20px] md:gap-[20px] gap-[10px]">
+              <div className="flex gap-[10px] md:gap-[18px] items-center grow ">
+                <div className="max-w-[24px] md:max-w-[38px] w-full">
 
                   <svg xmlns="http://www.w3.org/2000/svg" fill='none' viewBox="0 0 24 24">
                     <line className="a" x1="18.5" y1="19.5" x2="5.5" y2="19.5" stroke={mode === "dark" ? "white" : "#000"} />
@@ -57,7 +57,7 @@ const Setting = ({ account, sessions }) => {
                   </svg>
 
                 </div>
-                <div className='sm:text-start text-center'>
+                <div className='text-start'>
                   <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Mobile</p>
                   <p className="info-12 ">Used to log in, withdraw, retrieve passwords, modify security settings, and perform security verification when managing APIs</p>
                 </div>
@@ -66,15 +66,15 @@ const Setting = ({ account, sessions }) => {
                 <Link className='cta' href="bindmobile">Settings</Link>
               }
               {sessions.user.number !== '' &&
-                <>
-                  <p className='info-14-16 !text-primary'>{sessions.user.number} |</p> <Link className='info-14-16 !text-primary' href="bindmobile">Modify</Link>
-                </>
+                <div className='flex flex-col md:flex-row'>
+                  <p className='info-14-16 !text-primary info-14-16 !text-primary flex items-center'><span className="flex items-center"><span>{sessions.user.number}</span><span className="block max-w-[2px] bg-primary h-[20px] w-[2px] mx-[10px]">  </span></span></p> <Link className='info-14-16 !text-primary' href="bindmobile">Modify</Link>
+                </div>
               }
             </div>
 
-            <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">
-              <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
-                <div className="max-w-[38px] w-full">
+            <div className="flex items-center  justify-start py-[20px] md:gap-[20px] gap-[10px]">
+              <div className="flex gap-[10px] md:gap-[18px] items-center grow ">
+                <div className="max-w-[24px] md:max-w-[38px] w-full">
 
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" xmlSpace="preserve">
                     <path fill={mode === "dark" ? "white" : "#000"} d="M93,19H7c-1.1,0-2,0.9-2,2v58c0,0,0,0,0,0.1c0,0.1,0,0.1,0,0.2c0,0.1,0,0.1,0,0.2c0,0.1,0,0.1,0.1,0.2c0,0.1,0,0.1,0.1,0.2
@@ -88,7 +88,7 @@ const Setting = ({ account, sessions }) => {
                   </svg>
 
                 </div>
-                <div className='sm:text-start text-center'>
+                <div className='text-start'>
                   <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Email</p>
                   <p className="info-12 ">Used to log in, withdraw, retrieve passwords, modify security settings, and perform security verification when managing APIs</p>
                 </div>
@@ -98,16 +98,16 @@ const Setting = ({ account, sessions }) => {
                 <Link className='cta' href="bindemail">Settings</Link>
               }
               {sessions.user.email !== '' &&
-                <>
-                  <p className='info-14-16 !text-primary'>{sessions.user.email} |</p> <Link className='info-14-16 !text-primary' href="bindemail">Modify</Link>
-                </>
+                <div className='flex flex-col md:flex-row'>
+                  <p className='info-14-16 !text-primary flex items-center'><span className="flex items-center"><span> {sessions.user.email}</span><span className="block max-w-[2px] bg-primary h-[20px] w-[2px] mx-[10px]">  </span></span> </p> <Link className='info-14-16 !text-primary' href="bindemail">Modify</Link>
+                </div>
               }
 
             </div>
 
-            <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">
-              <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
-                <div className="max-w-[38px] w-full">
+            <div className="flex items-center  justify-start py-[20px] md:gap-[20px] gap-[10px]">
+              <div className="flex gap-[10px] md:gap-[18px] items-center grow ">
+                <div className="max-w-[24px] md:max-w-[38px] w-full">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 475.092 475.092" xmlSpace="preserve">
                     <g>
                       <g>
@@ -145,7 +145,7 @@ const Setting = ({ account, sessions }) => {
 
 
                 </div>
-                <div className='sm:text-start text-center'>
+                <div className='text-start'>
                   <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Google Authenticator</p>
                   <p className="info-12 ">Used to log in, withdraw, retrieve passwords, modify security settings, and perform security verification when managing APIs</p>
                 </div>
@@ -164,7 +164,7 @@ const Setting = ({ account, sessions }) => {
 
             </div>
 
-            <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">
+            <div className="flex items-center   justify-between py-[20px] gap-[20px]">
               <div className="flex gap-[18px] grow flex-col sm:flex-row  items-center">
                 <div className="max-w-[38px] w-full">
 
@@ -198,7 +198,7 @@ const Setting = ({ account, sessions }) => {
 
             </div>
 
-            <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">
+            <div className="flex items-center   justify-between py-[20px] gap-[20px]">
               <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
                 <div className="max-w-[38px] w-full">
 
@@ -223,6 +223,7 @@ const Setting = ({ account, sessions }) => {
                 </>
               }
             </div>
+
           </div>
         </div>
 
