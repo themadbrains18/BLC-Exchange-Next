@@ -20,7 +20,7 @@ const formSchema = Yup.object().shape({
 const LinkMobile = ({ sessions }) => {
     const { mode, setClick } = useContext(Context);
     const [DropdownPhone, setDropdownPhone] = useState(false);
-    const [showver, setShowver] = useState(0);
+    const [showver, setShowver] = useState(false);
     const [show, setShow] = useState(true);
     const [fillOtp, setOtp] = useState();
     const [dialCode, setDialCode] = useState(91);
@@ -94,7 +94,7 @@ const LinkMobile = ({ sessions }) => {
     const Submit = async (e) => {
         e.preventDefault();
 
-        let formdata = { email: "", number: filledNumber, dial_Code: dialCode }
+        let formdata = { email: "", number: filledNumber, dial_code: dialCode }
         let userExist = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/check`, {
             method: "POST",
             body: JSON.stringify(formdata)
@@ -106,7 +106,7 @@ const LinkMobile = ({ sessions }) => {
 
         if (result.status === 200) {
 
-            toast.success(result.data.message, {
+            toast.success(result.message, {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             })
 
@@ -147,23 +147,38 @@ const LinkMobile = ({ sessions }) => {
             <ToastContainer />
             <section className="dark:bg-black-v-5 sm:min-h-[calc(100vh-200px)] sm:h-full sm:py-0 py-10 flex">
                 <div className="container m-auto">
-                    <div className="md:max-w-[480px] p-3 sm:p-6 max-w-[480px] w-full mx-auto" >
-                        <h4 className='section-secondary-heading mb-1 flex items-center gap-4 flex-row-reverse justify-end'>
+                    <div className="md:max-w-[480px] p-0 md:p-6 max-w-full w-full mx-0 md:mx-auto" >
+                        <h4 className='section-secondary-heading font-noto mb-1 flex items-center gap-4 flex-row-reverse justify-end'>
                             <span>Link Mobile</span>
                             <Link href="setting">
-                                <svg className="max-w-[24px] w-full" enableBackground="new 0 0 32 32" version="1.1" viewBox="0 0 32 32" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                                {/* <svg className="max-w-[24px] w-full" enableBackground="new 0 0 32 32" version="1.1" viewBox="0 0 32 32" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                     <path fill={mode === "dark" ? "white" : "#121313"} clipRule="evenodd" d="M31.106,15H3.278l8.325-8.293  c0.391-0.391,0.391-1.024,0-1.414c-0.391-0.391-1.024-0.391-1.414,0l-9.9,9.899c-0.385,0.385-0.385,1.029,0,1.414l9.9,9.9  c0.391,0.391,1.024,0.391,1.414,0c0.391-0.391,0.391-1.024,0-1.414L3.278,17h27.828c0.552,0,1-0.448,1-1  C32.106,15.448,31.658,15,31.106,15z" fillRule="evenodd" />
+                                </svg> */}
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    className= "rotate-180 w-6 h-6" 
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={1.5}
+                                    stroke={mode === "dark" ? "white" : "currentColor"}
+
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                                    />
                                 </svg>
                             </Link>
                         </h4>
-                        <form onSubmit={handleSubmit(sendOtp)}>
-                            <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>Mobile Number</p>
-                            <div className="border border-black dark:border-white rounded min-h-[46px] px-4 flex items-center relative">
-                                <div className="flex items-center gap-2  min-w-[90px] cursor-pointer" onClick={() => { setDropdownPhone(!DropdownPhone) }}>
-                                    <span className="text-black dark:text-white" id="counteryCode">+ <span>{dialCode}</span> </span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#656e6f" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
+                        <form onSubmit={handleSubmit(sendOtp)} className='mt-6'>
+                            <p className='info-12 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>Mobile Number</p>
+                            <div className="border border-border-clr dark:border-white rounded min-h-[46px] px-4 flex items-center relative">
+                                <div className="flex items-center gap-2  min-w-max cursor-pointer" onClick={() => { setDropdownPhone(!DropdownPhone) }}>
+                                    <span className=" info-14 hover:!text-black text-black dark:text-white" id="counteryCode">+ <span>{dialCode}</span> </span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#656e6f" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[14px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                                 </div>
-                                <input type="tel" {...register('phone')} name="phone" placeholder="Mobile number" className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" />
+                                <input type="tel" {...register('phone')} name="phone" placeholder="Mobile number" className=" block px-4 max-w-full w-full bg-transparent info-14 hover:!text-black text-black dark:text-white outline-none  focus:!border-primary" />
                                 {DropdownPhone &&
                                     <SearchDropdown code={true} setDropdownPhone={setDropdownPhone} setDialCode={setDialCode} />
                                 }
@@ -171,7 +186,7 @@ const LinkMobile = ({ sessions }) => {
                             <p role="alert" className="!text-red-700 info-12">{errors.phone?.message}</p>
                             {/* <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>SMS Verification</p> */}
                             <div className='mt-5'>
-                                <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>SMS Verification Code</span> <span></span></label>
+                                <label className="info-12 text-black dark:text-white hover:!text-black mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>SMS Verification Code</span> <span></span></label>
                                 <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper">
                                     <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
                                     <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
@@ -187,6 +202,7 @@ const LinkMobile = ({ sessions }) => {
                     </div>
                 </div>
             </section>
+
             {showver &&
 
                 <VerificationCode CloseCta={true} fixed={true} bindMobile={true} showState={show} showSetState={setShowver} loginData={sessions.user} updateUser={updateUser} />

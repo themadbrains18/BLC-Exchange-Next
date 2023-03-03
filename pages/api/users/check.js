@@ -23,6 +23,8 @@ const handler = nc({
 
   .post(async (req, res) => {
     try {
+
+      console.log(req.body,'============check user body')
       let data = await postData(`${process.env.NEXT_PUBLIC_APIURL}/users`, JSON.parse(req.body) )
       res.status(200).send({data});
     } catch (error) {

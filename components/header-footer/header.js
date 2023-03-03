@@ -18,9 +18,14 @@ const Header = (props) => {
   const [login2, setLogin2] = useState(login)
   // console.log(session,' session session session')
   const [show, setShow] = useState(true);
-  const [showMenu, setShowMenu] = useState(false);
+  const [showMenuOpen, setShowMenuOpen] = useState(false);
+  
+
+
   const [Data, setData] = useState([]);
   const [specialData, setSpecialData] = useState([]);
+
+
   useEffect(() => {
     (async () => {
 
@@ -43,6 +48,10 @@ const Header = (props) => {
       console.log(err);
     });
   }, [session]);
+console.log(showMenuOpen)
+  // const testfunction = (e) => {
+  //   setShowMenu(e)
+  // }
 
   return (
     <>
@@ -196,8 +205,12 @@ const Header = (props) => {
             {session !== null &&
               <div
                 href=""
-                className={`group  hover:pb-8 hover:-mb-8 ${login2 === true ? "lg:block" : "lg:hidden"
+                className={`${login2 === true ? "lg:block" : "lg:hidden"
                   }`}
+                  onClick={(()=>{
+                    setShowMenuOpen(true)
+
+                  })}
               >
                 <Link href={""}>
 
@@ -217,18 +230,18 @@ const Header = (props) => {
                   </svg>
                 </Link>
 
-                {specialData.account != undefined && specialData.account && (
-                  <Dropdown
-                    subMenu={specialData.account.subMenu}
-                    right={true}
-                    arrow={true}
-                    height={true}
-                    fixed_cta="Log Out"
-                    svgType="log_out"
-                  />
-                )}
+               
               </div>
             }
+             {specialData.account != undefined && specialData.account && (
+                  <SideMenu2
+                    subMenu={specialData.account.subMenu}
+                    fixed_cta="Log Out"
+                    svgType="log_out"
+                    setShowMenuOpen={setShowMenuOpen}
+                    showMenuOpen={showMenuOpen}
+                    />
+                )}
 
 
             {/* hamburger  */}

@@ -22,6 +22,7 @@ const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
 
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
+  let coinData2 = ["Last 7 days", "Last 3 Months"];
   const { mode } = useContext(Context);
   const ref = useRef(null);
   let autoTransfer = ["Spot", "Bsc "];
@@ -82,7 +83,7 @@ const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
                 >
                   <div className="flex gap-3 ">
                     <img
-                      className="self-start"
+                      className="self-start rounded-full"
                       height={24}
                       width={24}
                       alt="Coin Image"
@@ -201,10 +202,7 @@ const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
                     </div>
                   </div>
                 </div>
-                {/* qr code  */}
-                <div className={`grid place-items-center p-2 mt-4 md:hidden`}>
-                  <img src="/assets/images/qr.png" alt="" />
-                </div>
+                
               </div>
               {/* <div className="mt-4">
                 <h6 className="info-12 dark:hover:text-white dark:text-white">
@@ -214,7 +212,7 @@ const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
                   <SelectMenu selectMenu={autoTransfer} />
                 </div>
               </div> */}
-              <div className="p-4 bg-light-hover dark:bg-black-v-2 info-14 mt-4 hover:!text-grey dark:text-white  dark:hover:!text-white">
+              {/* <div className="p-4 bg-light-hover dark:bg-black-v-2 info-14 mt-4 hover:!text-grey dark:text-white  dark:hover:!text-white">
                 <h6>Please note:</h6>
                 <p>
                   - Please don’t deposit any other digital assets except BTC to
@@ -233,7 +231,11 @@ const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
                   Make sure that your device and browser are secure and your
                   information is protected from being tampered with or leaked.{" "}
                 </p>
-              </div>
+              </div> */}
+              {/* qr code  */}
+                <div className={`grid place-items-center p-2 mt-4 md:hidden`}>
+                  <img src="/assets/images/qr.png" alt="" />
+                </div>
             </div>
 
             <div className="hidden lg:block">
