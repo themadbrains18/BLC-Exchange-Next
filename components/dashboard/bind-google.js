@@ -65,6 +65,7 @@ const BindGoogle = ({ session }) => {
     const { mode, setClick } = useContext(Context);
 
     const VerifyGoogleAuthenticate = async (data) => {
+        setClick(true)
         const token = data.code;
         let obj = { secret, token };
         setLoading(true);
@@ -74,6 +75,7 @@ const BindGoogle = ({ session }) => {
         }).then(response => response.json());
 
         if (response.data.status === 200 && response.data.message === true) {
+            
             if (session.email !== "") {
                 let emailOtpForm = { 'email': session.email };
                 await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`, {
@@ -91,6 +93,7 @@ const BindGoogle = ({ session }) => {
             }
             setLoading(false);
             setShow(true);
+            setClick(false)
 
         }
         else {

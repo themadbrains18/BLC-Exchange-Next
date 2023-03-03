@@ -17,7 +17,7 @@ const SideMenu = ({ show, setShow, data,session }) => {
 
   return (
     <div
-      className={`fixed w-[calc(100%-4rem)] ${click && "z-10"} overflow-x-auto table_box h-[100vh] duration-300 top-0 bg-white dark:bg-black ${show === false ? "right-0" : "right-[-100%]"
+      className={`fixed w-[calc(100%-4rem)] ${click && "z-10"} overflow-x-auto table_box h-[100vh] duration-300 top-0 bg-white dark:bg-black ${show === true ? "right-0" : "right-[-100%]"
         }`}
     >
       
@@ -25,7 +25,7 @@ const SideMenu = ({ show, setShow, data,session }) => {
         <button
 
           onClick={() => {
-            setShow(true);
+            setShow(false);
             setClick(false)
           }}
         >
@@ -48,8 +48,8 @@ const SideMenu = ({ show, setShow, data,session }) => {
 
       {session === null && 
         <div className="mx-3">
-          <Link href="/register" className="transparent-cta w-full text-center max-w-full block" onClick={()=>{setShow(true);setClick(false)}}>sign up</Link>
-          <Link href="/login" className="cta w-full text-center" onClick={()=>{setShow(true);setClick(false)}}>Login</Link>
+          <Link href="/register" className="transparent-cta w-full text-center max-w-full block" onClick={()=>{setShow(false);setClick(false)}}>sign up</Link>
+          <Link href="/login" className="cta w-full text-center" onClick={()=>{setShow(false);setClick(false)}}>Login</Link>
         </div>
       }
       
@@ -66,7 +66,7 @@ const SideMenu = ({ show, setShow, data,session }) => {
         className="relative flex justify-between m-3
          align-middle select-none transition duration-200 ease-in"
 
-         onClick={()=>{setShow(true);setClick(false)}}
+         onClick={()=>{setShow(false);setClick(false)}}
       >
         <span className="info-14-20 ">Dark Mode</span>
         <div>
@@ -93,7 +93,7 @@ const SideMenu = ({ show, setShow, data,session }) => {
       </div>
       <div className="px-3">
         {/* download */}
-        <div className="flex gap-3 mb-4" onClick={()=>{setShow(true);setClick(false)}}>
+        <div className="flex gap-3 mb-4" onClick={()=>{setShow(false);setClick(false)}}>
           <Link href="">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,7 @@ const SideMenu = ({ show, setShow, data,session }) => {
         </div>
         {/* bell   */}
 
-        <div className="flex gap-3 mb-4" onClick={()=>{setShow(true);setClick(false)}}>
+        <div className="flex gap-3 mb-4" onClick={()=>{setShow(false);setClick(false)}}>
           <Link href="">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +135,7 @@ const SideMenu = ({ show, setShow, data,session }) => {
         </div>
 
         {/* global  */}
-        <div className="flex gap-3 mb-4" onClick={()=>{setShow(true);setClick(false)}}>
+        <div className="flex gap-3 mb-4" onClick={()=>{setShow(false);setClick(false)}}>
           <button>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -155,7 +155,7 @@ const SideMenu = ({ show, setShow, data,session }) => {
           <h3 className="info-14-20">English</h3>
         </div>
         {/* currency change */}
-        <div className="flex gap-3" onClick={()=>{setShow(true);setClick(false)}}> 
+        <div className="flex gap-3" onClick={()=>{setShow(false);setClick(false)}}> 
           <Link href={""}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

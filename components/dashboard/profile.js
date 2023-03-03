@@ -9,7 +9,6 @@ const Profile = ({ sessions, lastLogin }) => {
     const [show, setShow] = useState(false)
     const { mode } = useContext(Context)
 
-    let lastLoginDate = dateFormat(lastLogin, "dddd, mmmm dS, yyyy, h:MM:ss TT");
     const cardData = [
         {
             "heading": 'Email',
@@ -77,7 +76,7 @@ const Profile = ({ sessions, lastLogin }) => {
                             <div>
                                 <p className='info-14'>Last Login</p>
                                 <p className='info-14 text-black'>
-                                    {lastLoginDate}
+                                    {lastLogin}
                                 </p>
                             </div>
                         </div>
@@ -88,7 +87,7 @@ const Profile = ({ sessions, lastLogin }) => {
                 </div>
             </div>
             <div>
-                <NavAccordian data={cardData} showAccordian={true} lastLogin={lastLoginDate} sessions={sessions} ></NavAccordian>
+                <NavAccordian data={cardData} showAccordian={true} lastLogin={lastLogin} sessions={sessions} ></NavAccordian>
             </div>
         </section>
     )

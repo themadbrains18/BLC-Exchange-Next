@@ -1,31 +1,37 @@
 import Icons from "../snippets/icons";
 import Image from "next/image";
 import Context from "../contexts/context";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
+import NavAccordian from "./navAccordian";
 
-const SideMenu2 = ({ subMenu, fixed_cta, setShowMenuOpen, svgType, showMenuOpen }) => {
+const SideMenu2 = ({ subMenu, assetMenu, setShowMenuOpen, showMenuOpen }) => {
   const { mode, setLogin } = useContext(Context);
-const router=useRouter()
-
+  const router = useRouter();
+  const ref=useRef(null)
 
   return (
     <>
+     
       <div
-        className={`fixed overflow-x-auto table_box h-[100vh] p-5 z-[1] duration-300 ${router.pathname === "/" ? "top-[6%] md:top-[12.9%]": "top-[6%] md:top-[7.5%] "} bg-white dark:bg-black ${
-          showMenuOpen  ? "right-[0%]" : "!-right-[100%] "
-          }`}
-         
+        className={`fixed overflow-x-auto table_box h-[calc(100vh-58px)] p-5 z-[1] duration-300 ${
+          router.pathname === "/" ? "top-0" : "top-0  "
+        } bg-white dark:bg-black ${
+          showMenuOpen ? "right-[0%]" : "!-right-[100%] "
+        }`}
       >
-        <button
-         onClick={() => {
-          setShowMenuOpen(!showMenuOpen);
-         
-        }}
-        
+        <ToastContainer />
+       <div className="bg-white dark:bg-black fixed top-0 py-4 px-2 w-full">
+       <button
+          onClick={() => {
+            setShowMenuOpen(!showMenuOpen);
+          }}
+          className=" "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +48,47 @@ const router=useRouter()
             />
           </svg>
         </button>
-
+       </div>
+        <div className="mt-12">
+          <h4 className="section-secondary-heading font-noto">BGUSER-MC3PB1N2</h4>
+          <span className="flex gap-2 items-center mt-3">
+          <span className="info-14-20">UID </span>
+          <span className="info-14-20" ref={ref}>5936496768 </span>
+         
+          <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(ref.current.innerText);
+                    toast.success("Copied to Clipboard", {
+                      autoClose: 1000,
+                    });
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke={mode === "dark" ? "white" : "currentColor"}
+                    className="w-4 h-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75"
+                    />
+                  </svg>
+                </button>
+                </span>
+        </div>
+        {assetMenu && (
+          <div className="px-4 pt-4 lg:hidden">
+            <NavAccordian
+              heading={"Assets"}
+              setShow={setShowMenuOpen}
+              content={assetMenu}
+            />
+          </div>
+        )}
         {subMenu != undefined &&
           subMenu != "" &&
           subMenu &&
@@ -52,6 +98,9 @@ const router=useRouter()
               <Link
                 href={{ pathname: `${e.linkUrl}` }}
                 key={index}
+                onClick={() => {
+                  setShowMenuOpen(false);
+                }}
                 className={`items-center rounded flex gap-6 min-w-[330px] p-4   ${
                   mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
                 }`}
@@ -65,22 +114,19 @@ const router=useRouter()
             );
           })}
 
-        {fixed_cta && (
-          <div className="border-t fixed bottom-0 pt-2  z-[1] border-grey w-full rounded-b-xl  -ml-4 bg-white dark:bg-black-v-2">
-            <button
-              className={`info-14-16 items-center rounded  flex gap-6 w-full p-4   ${
-                mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
-              }`}
-              onClick={() => {
-                signOut();
-                setLogin(false);
-              }}
-            >
-              {" "}
-              <Icons type={svgType} /> {fixed_cta}
-            </button>
-          </div>
-        )}
+        <div className="border-t fixed bottom-0 pt-2  z-[1] border-grey w-full rounded-b-xl  -ml-5 bg-white dark:bg-black-v-2">
+          <button
+            className={`info-14-16 items-center rounded  flex gap-6 w-full p-4   ${
+              mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
+            }`}
+            onClick={() => {
+              signOut();
+              setLogin(false);
+            }}
+          >
+            <Icons type="log_out" /> Log Out
+          </button>
+        </div>
       </div>
     </>
   );

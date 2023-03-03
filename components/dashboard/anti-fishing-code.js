@@ -51,6 +51,7 @@ const AntiFishingCode = ({ session }) => {
     const onSubmit = async (data) => {
 
         let obj = { antiphishing: data.code, id: session.id };
+        setClick(true)
         setFormData(obj);
         setLoading(true)
         sendOtp();
@@ -110,6 +111,7 @@ const AntiFishingCode = ({ session }) => {
 
         console.log(response, '====after fun code update');
         if (response.status === 200 && response != undefined) {
+            setClick(false)
             toast.success('Bind Successfully!', {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             });
