@@ -17,7 +17,7 @@ const Setting = ({ account, sessions }) => {
   return (
     <Layout data={account} name="Setting">
 
-      <div className="py-20  w-full px-[24px] ">
+      <div className="md:py-20 py-8 w-full md:px-[24px] px-[16px] ">
         <div className="mb-[20px]">
           <h3 className="section-secondary-heading mb-6">Security Settings</h3>
           <div className="divide-y md:px-[24px] md:shadow-lg md:dark:shadow-[#1da2b41c] rounded-lg">
@@ -63,7 +63,7 @@ const Setting = ({ account, sessions }) => {
                 </div>
               </div>
               {sessions.user.number === '' &&
-                <Link className='cta' href="bindmobile">Settings</Link>
+                <Link className='cta  leading-[36px] md:leading-[46px]' href="bindmobile">Settings</Link>
               }
               {sessions.user.number !== '' &&
                 <div className='flex flex-col md:flex-row'>
@@ -95,11 +95,11 @@ const Setting = ({ account, sessions }) => {
               </div>
 
               {sessions.user.email === '' &&
-                <Link className='cta' href="bindemail">Settings</Link>
+                <Link className='cta  leading-[36px] md:leading-[46px]' href="bindemail">Settings</Link>
               }
               {sessions.user.email !== '' &&
                 <div className='flex flex-col md:flex-row'>
-                  <p className='info-14-16 !text-primary flex items-center'><span className="flex items-center"><span> {sessions.user.email}</span><span className="block max-w-[2px] bg-primary h-[20px] w-[2px] mx-[10px]">  </span></span> </p> <Link className='info-14-16 !text-primary' href="bindemail">Modify</Link>
+                  <p className='info-14-16 !text-primary flex items-center'><span className="flex items-center"><span> {sessions.user.email}</span>{sessions.user.email ? <span className="block max-w-[2px] bg-primary h-[20px] w-[2px] mx-[10px]"></span> : ""}</span> </p> <Link className='info-14-16 !text-primary' href="bindemail">Modify</Link>
                 </div>
               }
 
@@ -151,7 +151,7 @@ const Setting = ({ account, sessions }) => {
                 </div>
               </div>
               {sessions.user.TwoFA === 'disable' &&
-                <Link href="bindgoogle" className='cta'>Settings</Link>
+                <Link href="bindgoogle" className='cta  leading-[36px] md:leading-[46px]'>Settings</Link>
               }
 
               {sessions.user.TwoFA === 'enable' &&
@@ -164,9 +164,9 @@ const Setting = ({ account, sessions }) => {
 
             </div>
 
-            <div className="flex items-center   justify-between py-[20px] gap-[20px]">
-              <div className="flex gap-[18px] grow flex-col sm:flex-row  items-center">
-                <div className="max-w-[38px] w-full">
+            <div className="flex items-center  justify-start py-[20px] md:gap-[20px] gap-[10px]">
+              <div className="flex gap-[10px] md:gap-[18px] items-center grow ">
+                <div className="max-w-[24px] md:max-w-[38px] w-full">
 
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clipPath="url(#clip0)">
@@ -180,13 +180,13 @@ const Setting = ({ account, sessions }) => {
                   </svg>
 
                 </div>
-                <div className='sm:text-start text-center'>
+                <div className='text-start'>
                   <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Fund Code</p>
                   <p className="info-12 ">Protect your account from unauthorized withdrawals and P2P trading.</p>
                 </div>
               </div>
               {sessions.user.tradingPassword === '' &&
-                <Link href="fund-password" className='cta'>Settings</Link>
+                <Link href="fund-password" className='cta  leading-[36px] md:leading-[46px]'>Settings</Link>
               }
 
               {sessions.user.tradingPassword !== '' &&
@@ -198,9 +198,9 @@ const Setting = ({ account, sessions }) => {
 
             </div>
 
-            <div className="flex items-center   justify-between py-[20px] gap-[20px]">
-              <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
-                <div className="max-w-[38px] w-full">
+            <div className="flex items-center  justify-start py-[20px] md:gap-[20px] gap-[10px]">
+              <div className="flex gap-[10px] md:gap-[18px] items-center grow ">
+                <div className="max-w-[24px] md:max-w-[38px] w-full">
 
                   <svg version={1.0} id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enableBackground="new 0 0 100 100" xmlSpace="preserve">
                     <path fill={mode === "dark" ? "white" : "#000"} d="M60,10.001c-7.363,0-13.333,5.97-13.333,13.333c0,6.204,4.258,11.373,10,12.861v35.471c0,6.445-5.225,11.666-11.667,11.666
@@ -209,18 +209,18 @@ const Setting = ({ account, sessions }) => {
                 c-3.682,0-6.667-2.984-6.667-6.666s2.985-6.667,6.667-6.667s6.667,2.985,6.667,6.667S63.682,30,60,30z" />
                   </svg>
                 </div>
-                <div className='sm:text-start text-center'>
+                <div className='text-start'>
                   <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Anti-phishing code</p>
                   <p className="info-12 ">To protect yourself from counterfeit emails, the emails you receive from BLC-Exchange will contain the anti-phishing code you have set</p>
                 </div>
               </div>
               {sessions.user.antiphishing === '' &&
-                <Link className='cta' href="anti-phishing">Settings</Link>
+                <Link className='cta  leading-[36px] md:leading-[46px]' href="anti-phishing">Settings</Link>
               }
               {sessions.user.antiphishing !== '' &&
-                <>
-                  <p className='info-14-16 !text-primary'>{sessions.user.antiphishing} |</p> <Link className='info-14-16 !text-primary' href="modify-anti-phishing">Modify</Link>
-                </>
+                <div>
+                  <p className='info-14-16 !text-primary flex items-center'><span className="flex items-center"><span>{sessions.user.antiphishing}</span>{ sessions.user.antiphishing ? <span className="block max-w-[2px] bg-primary h-[20px] w-[2px] mx-[10px]"></span> : ""}</span> </p> <Link className='info-14-16 !text-primary' href="modify-anti-phishing">Modify</Link>
+                </div>
               }
             </div>
 
@@ -237,14 +237,14 @@ const Setting = ({ account, sessions }) => {
               <h4 className="section-secondary-heading mb-[20px]" >Account Activity</h4>
               <button className="info-14-16 !text-primary" onClick={(e) => { setClick(true); SetActivePopup(true) }} >Delete Account</button>
             </div>
-            <Link href="history" className="cta">More</Link>
+            <Link href="history" className="cta  leading-[36px] md:leading-[46px]">More</Link>
           </div>
 
           <div className="p-[20px] shadow-lg dark:shadow-[#1da2b41c] flex items-center justify-between rounded-lg">
             <div>
-              <h4 className="section-secondary-heading mb-[20px]" >Device Management</h4>
+              <h4 className="section-secondary-heading" >Device Management</h4>
             </div>
-            <Link href="devices" className="cta">Manage</Link>
+            <Link href="devices" className="cta  leading-[36px] md:leading-[46px]">Manage</Link>
           </div>
 
         </div>
@@ -252,9 +252,10 @@ const Setting = ({ account, sessions }) => {
         <div className="p-[20px] shadow-lg dark:shadow-[#1da2b41c] rounded-lg">
           <h4 className="section-secondary-heading mb-[20px]" >Third-party Account Management</h4>
           <div className="divide-y">
-            <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">
-              <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
-                <div className="max-w-[38px] w-full">
+
+            <div className="flex items-center  justify-start py-[20px] md:gap-[20px] gap-[10px]">
+              <div className="flex gap-[10px] md:gap-[18px] items-center grow ">
+                <div className="max-w-[24px] md:max-w-[38px] w-full">
                   <svg viewBox="0 0 47 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                     <g id="Page-1" stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
                       <g id="Social-Icons---Isolated" transform="translate(-389.000000, -727.000000)">
@@ -268,7 +269,7 @@ const Setting = ({ account, sessions }) => {
                     </g>
                   </svg>
                 </div>
-                <div className='sm:text-start text-center'>
+                <div className='text-start'>
                   <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Google account</p>
                   <p className="info-12 ">For quick login to your account</p>
                 </div>
@@ -276,9 +277,10 @@ const Setting = ({ account, sessions }) => {
               <Link href="#" className='info-14-16 !text-primary'>Change</Link>
             </div>
 
-            <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">
-              <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
-                <div className="max-w-[38px] w-full">
+            <div className="flex items-center  justify-start py-[20px] md:gap-[20px] gap-[10px]">
+              <div className="flex gap-[10px] md:gap-[18px] items-center grow ">
+                <div className="max-w-[24px] md:max-w-[38px] w-full">
+
                   <svg viewBox="0 0 41 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                     <g id="Page-1" stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
                       <g id="Social-Icons---Isolated" transform="translate(-55.000000, -951.000000)" fill="#0B0B0A">
@@ -287,7 +289,7 @@ const Setting = ({ account, sessions }) => {
                     </g>
                   </svg>
                 </div>
-                <div className='sm:text-start text-center'>
+                <div className='text-start'>
                   <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Apple ID</p>
                   <p className="info-12 ">To protect yourself from counterfeit emails, the emails you receive from BLC-Exchange will contain the anti-phishing code you have set</p>
                 </div>
@@ -295,14 +297,14 @@ const Setting = ({ account, sessions }) => {
               <Link href="#" className='info-14-16 !text-primary'>Set</Link>
             </div>
 
-            <div className="flex items-center flex-col sm:flex-row  justify-between py-[20px] gap-[20px]">
-              <div className="flex gap-[18px] flex-col sm:flex-row  grow items-center">
-                <div className="max-w-[38px] w-full">
+            <div className="flex items-center  justify-start py-[20px] md:gap-[20px] gap-[10px]">
+              <div className="flex gap-[10px] md:gap-[18px] items-center grow ">
+                <div className="max-w-[24px] md:max-w-[38px] w-full">
                   <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" clipRule="evenodd" d="M0 24C0 37.2548 10.7452 48 24 48C37.2548 48 48 37.2548 48 24C48 10.7452 37.2548 0 24 0C10.7452 0 0 10.7452 0 24ZM19.6 35L20.0083 28.8823L20.008 28.882L31.1369 18.839C31.6253 18.4055 31.0303 18.1941 30.3819 18.5873L16.6473 27.2523L10.7147 25.4007C9.4335 25.0084 9.4243 24.128 11.0023 23.4951L34.1203 14.5809C35.1762 14.1015 36.1953 14.8345 35.7922 16.4505L31.8552 35.0031C31.5803 36.3215 30.7837 36.6368 29.68 36.0278L23.6827 31.5969L20.8 34.4C20.7909 34.4088 20.7819 34.4176 20.7729 34.4264C20.4505 34.7403 20.1837 35 19.6 35Z" fill={mode === "dark" ? "white" : "#000"} />
                   </svg>
                 </div>
-                <div className='sm:text-start text-center'>
+                <div className='text-start'>
                   <p className="info-14 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Telegram assistant</p>
                   <p className="info-12 ">Subscribe to the BLC-Exchange Assistant to get push notifications</p>
                 </div>
@@ -318,7 +320,7 @@ const Setting = ({ account, sessions }) => {
       </div>
       {
         showSafteyV === 1 &&
-        <VerificationCode emailAuth={true} CloseCta={true} fixed={true} showSetState={setShowSafteyV} />
+        <VerificationCode emailAuth={true} Closecta={true} fixed={true} showSetState={setShowSafteyV} />
       }
       {
         activePopup &&
