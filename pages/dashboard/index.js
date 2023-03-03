@@ -19,17 +19,21 @@ const Dashboard = ({ account, sessions, lastLogin }) => {
             <Profile sessions={sessions.user} lastLogin={lastLogin}/>
           </div>
           <div className='flex w-full  '>
-            <div className=' w-full px-4'>
+            <div className=' w-full'>
               <Assets />
               <SocialTrades />
               <Tranding />
               <Explore />
+              <div className="md:hidden mt-[-40px]">
+                <Referral sessions={sessions.user} />
+              </div>
 
             </div>
             <div className='hidden xl:block max-w-xs w-full '>
               <Welfare />
               <Referral sessions={sessions.user} />
               <Announcements />
+              
             </div>
           </div>
         </div>

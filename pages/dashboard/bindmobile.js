@@ -29,4 +29,4 @@ export async function getServerSideProps(context) {
   
 }
 
-export default Bindmobile;
+export default Bindmobile; 

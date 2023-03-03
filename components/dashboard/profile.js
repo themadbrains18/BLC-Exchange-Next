@@ -31,19 +31,19 @@ const Profile = ({ sessions, lastLogin }) => {
     }, [show])
 
     return (
-        <section className=' pt-5 pb-3 md:py-8 dashboardProfileqwe' >
-            <div className='flex  gap-2 justify-between'>
-                <div className='flex gap-4'>
+        <section className=' pt-5 pb-3 md:py-8 dashboardProfileqwe relative' >
+            <div className='flex  gap-2 justify-between items-center'>
+                <div className='flex gap-4 items-center'>
                     <div className='cursor-pointer'>
-                        <Image src='/assets/images/avatar-default.jpg' width={80} height={80} alt='error' className='rounded-full'></Image>
-                        <p className='info-12 mt-3 text-primary'>Sub account</p>
+                        <Image src='/assets/images/avatar-default.jpg' width={80} height={80} alt='error' className='md:max-w-[80px] max-w-[56px] w-full rounded-full'></Image>
+                        <p className='info-12 mt-3 text-primary absolute top-[-20px] right-[0]'>Sub account</p>
                     </div>
                     <div className='pl-0 md:pl-8 relative'>
                         <div className='flex'>
                             <p className='info-14-24'>BGUSER-{sessions !== undefined && sessions.own_code}</p>
                             <img src='/assets/icons/edit.svg' alt='error' className='pl-1 cursor-pointer'></img>
                         </div>
-                        <div className='mt-1 mb-4 flex gap-2 items-center'>
+                        <div className='mt-1  flex gap-2 items-center'>
                             <div className='flex items-center'>
                                 <Image src='/assets/icons/viip.svg' alt='error' width={18} height={22}></Image>
                                 <p className='info-12 bg-border-clr px-1'>VIP 0</p>
