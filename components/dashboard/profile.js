@@ -32,10 +32,10 @@ const Profile = ({ sessions, lastLogin }) => {
 
     return (
         <section className=' pt-5 pb-3 md:py-8 dashboardProfileqwe relative' >
-            <div className='flex  gap-2 justify-between'>
+            <div className='flex  gap-2 justify-between items-center'>
                 <div className='flex gap-4 items-center'>
                     <div className='cursor-pointer'>
-                        <Image src='/assets/images/avatar-default.jpg' width={80} height={80} alt='error' className='rounded-full'></Image>
+                        <Image src='/assets/images/avatar-default.jpg' width={80} height={80} alt='error' className='md:max-w-[80px] max-w-[56px] w-full rounded-full'></Image>
                         <p className='info-12 mt-3 text-primary absolute top-[-20px] right-[0]'>Sub account</p>
                     </div>
                     <div className='pl-0 md:pl-8 relative'>
