@@ -18,7 +18,7 @@ const formSchema = Yup.object().shape({
 
 const LinkEmail = ({ sessions }) => {
   const { mode, setClick } = useContext(Context);
-  const [showver, setShowver] = useState(0);
+  const [showver, setShowver] = useState(false);
   const [show, setShow] = useState(true);
   const [fillOtp, setOtp] = useState();
   const [filledEmail, setEmail] = useState();
@@ -150,7 +150,7 @@ const LinkEmail = ({ sessions }) => {
       <section className="dark:bg-black-v-5 sm:min-h-[calc(100vh-200px)] sm:h-full sm:py-0 py-10 flex">
         <div className="container m-auto">
           <div className="md:max-w-[480px] p-3 sm:p-6 max-w-[480px] w-full mx-auto" >
-            <h4 className='section-secondary-heading mb-1 flex items-center gap-4 flex-row-reverse justify-end'>
+            <h4 className='section-secondary-heading font-noto mb-1 flex items-center gap-4 flex-row-reverse justify-end'>
               <span>Link Email</span>
               <Link href="setting">
                 <svg className="max-w-[24px] w-full" enableBackground="new 0 0 32 32" version="1.1" viewBox="0 0 32 32" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -160,7 +160,7 @@ const LinkEmail = ({ sessions }) => {
             </h4>
 
             <form onSubmit={handleSubmit(sendOtp)}>
-              <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>Email</p>
+              <p className='info-12 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>Email</p>
               <div className="border border-black dark:border-white rounded min-h-[46px] px-4 flex items-center relative">
                 <input type="tel" {...register('email')} name="email" placeholder="Email" className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none"  />
                 
@@ -168,7 +168,7 @@ const LinkEmail = ({ sessions }) => {
               <p role="alert" className="!text-red-700 info-12">{errors.email?.message}</p>
               {/* <p className='info-14 text-black dark:text-white hover:!text-black dark:hover:!text-white mb-4'>SMS Verification</p> */}
               <div className='mt-5'>
-                <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Email Verification Code</span> <span></span></label>
+                <label className="info-12 text-black dark:text-white hover:!text-black mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Email Verification Code</span> <span></span></label>
                 <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper">
                   <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
                   <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
@@ -185,6 +185,7 @@ const LinkEmail = ({ sessions }) => {
           </div>
         </div>
       </section>
+     
       {showver &&
 
         <VerificationCode CloseCta={true} fixed={true} bindEmail={true} showState={show} showSetState={setShowver} loginData={sessions.user} updateUser={updateUser} />
