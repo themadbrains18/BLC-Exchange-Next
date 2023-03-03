@@ -56,7 +56,7 @@ const ModifyPass = ({ session }) => {
 
     // confirPassword
     const onSubmit = async (data) => {
-
+        setClick(true)
         let obj = { oldpassword: data.oldpassword, id: session.id };
         setFormData(data);
         console.log(obj, '===confirm password===');
@@ -89,6 +89,7 @@ const ModifyPass = ({ session }) => {
             }).then(response => response.json());
 
             if (emailotpResponse.data.status === 200 && emailotpResponse != undefined) {
+                setClick(false)
                 emailResponse = true;
             }
 
@@ -102,6 +103,7 @@ const ModifyPass = ({ session }) => {
             }).then(response => response.json());
 
             if (smsotpResponse.data.status === 200 && smsotpResponse != undefined) {
+                setClick(false)
                 numberResponse = true;
             }
         }
