@@ -34,7 +34,7 @@ const Explore = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mt-9 '>
             { cardData && cardData.map((e,i)=>{
                     return(
-                        <div className=''>
+                        <div className='' key={i}>
                          <div key={i}  className={`relative flex justify-center flex-col items-center p-8 sm:p-10 ${i == 0 ? mode === 'dark' ? 'blue-gradient'  : 'blue-gradient-active' :''} rounded-xl text-center ${i == 1 ? mode === 'dark' ? 'yellow-gradient'  : 'yellow-gradient-active' :''}  ${i == 2 ? 'bg-purple col-span-1 lg:col-span-2' : '' }`}>
                                 <div className="absolute top-8 left-8" >
                                     <h3 className='info-14-16 mb-3 sm:mb-5'>{e.cardHeading}</h3>
