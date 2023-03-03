@@ -13,7 +13,7 @@ const SearchDropdown = ({
   selectCoin,
   setDialCode,
   tokens,
-  selectBank, bank
+  selectBank, bank,selectedCountry
 
 }) => {
   // const[showDropdown,setShowDropdown] = useState(false);
@@ -64,6 +64,10 @@ const SearchDropdown = ({
     setShowDropdown(false);
     countryName.innerHTML = SelectedValue;
     setCountryName(SelectedValue);
+    if(selectedCountry !== undefined ){
+      selectedCountry(SelectedValue);
+    }
+    
   };
   const selectCounteryCode = (event) => {
     let countryCode = document.querySelector("#counteryCode span");

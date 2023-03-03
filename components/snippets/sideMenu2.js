@@ -10,7 +10,7 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import NavAccordian from "./navAccordian";
 
-const SideMenu2 = ({ subMenu, assetMenu, setShowMenuOpen, showMenuOpen }) => {
+const SideMenu2 = ({ subMenu, assetMenu, setShowMenuOpen, showMenuOpen,session }) => {
   const { mode, setLogin } = useContext(Context);
   const router = useRouter();
   const ref=useRef(null)
@@ -50,7 +50,7 @@ const SideMenu2 = ({ subMenu, assetMenu, setShowMenuOpen, showMenuOpen }) => {
         </button>
        </div>
         <div className="mt-12">
-          <h4 className="section-secondary-heading font-noto">BGUSER-MC3PB1N2</h4>
+          <h4 className="section-secondary-heading font-noto">BGUSER-{session && session.user.own_code}</h4>
           <span className="flex gap-2 items-center mt-3">
           <span className="info-14-20">UID </span>
           <span className="info-14-20" ref={ref}>5936496768 </span>

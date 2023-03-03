@@ -304,6 +304,7 @@ const Header = (props) => {
                     svgType="log_out"
                     setShowMenuOpen={setShowMenuOpen}
                     showMenuOpen={showMenuOpen}
+                    session={session}
                     />
                 )}
 
