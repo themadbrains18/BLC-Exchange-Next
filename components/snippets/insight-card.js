@@ -1,12 +1,12 @@
 import React from 'react'
 import Image from 'next/image';
-import cardImage from "../../public/assets/images/card-img-new.png";
+// import cardImage from "../../public/assets/images/card-img-new.png";
 const InsightCard = () => {
   return (
     <div className="py-[24px] border-y border-grey">
        <div className="flex items-center justify-between mb-[30px]">
           <div className='flex gap-3 items-center'>
-              <Image src={cardImage} alt="" width={32} height={32} />
+              <Image src='/assets/images/card-img-new.png' alt="" width={32} height={32} />
               <p className='info-14-16'>BLC-Exchange Branding</p>
           </div>
           <button className="cta">Follow</button>
