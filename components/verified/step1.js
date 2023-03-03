@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useRef, useEffect } from 'react'
 import SearchDropdown from '../snippets/search-dropdown';
 import DropdownWallet from '../snippets/dropdownWallet';
 import Modal from '../snippets/modal';
@@ -31,14 +31,14 @@ const schema = yup
     })
     .required();
 
-const Step1 = ({ countryName }) => {
+const Step1 = ({ country }) => {
 
     const { register, setValue, getValues, handleSubmit, formState: { errors }, } = useForm({
         mode: "onChange",
         resolver: yupResolver(schema),
     });
 
-
+    
     const [show, setShow] = useState(false)
     const { click, setClick, mode } = useContext(Context)
 
@@ -48,7 +48,19 @@ const Step1 = ({ countryName }) => {
     const [showId, setShowId] = useState(false);
     const [userId, setUserId] = useState('ID Card');
     const [formData, setFormData] = useState({});
-
+    const [countryName, setCountryName] = useState('Botswana')
+    const dropdown = useRef(null);
+    useEffect(() => {
+        country && setCountryName(country)
+        function handleClick(event) {
+            if (dropdown.current && !dropdown.current.contains(event.target)) {
+                setShowDropdown(false);
+            }
+        }
+        window.addEventListener("click", handleClick);
+        // clean up
+        return () => window.removeEventListener("click", handleClick);
+    }, [])
     const submitForm = (data) => {
         formData.doctype = userId
         setFormData(data);
@@ -65,14 +77,19 @@ const Step1 = ({ countryName }) => {
             <form onSubmit={handleSubmit(submitForm)}>
                 <span>
                     <p className='info-14'>Country / Region</p>
-                    <span className='cursor-pointer border-b-2 border-border-clr hover:border-primary relative max-w-md w-full flex items-center gap-2  justify-between mt-4' >
-                        <input type='text' className="text-black dark:text-white bg-transparent outline-none" id="countryName" value={countryName} {...register('country')}></input>
-                        {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg> */}
-                        {/* {
-                            showDropdown != false &&
-                            <SearchDropdown setShowDropdown={setShowDropdown} country={true}  />
-                        } */}
-                    </span>
+                    
+                    <div className="my-8 relative" ref={dropdown}>
+                                    <div className='info-14 hover:!text-grey inline-flex items-center gap-3 cursor-pointer border-b-2 border-border-clr hover:border-primary w-full' onClick={(e) => { setShowDropdown(!showDropdown) }} >
+                                        <div className="flex items-center gap-2 justify-between w-full">
+                                            <p className="text-black dark:text-white text-end" id="countryName">{countryName}</p>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke={mode === "dark" ? "white" : "#121313"} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
+                                        </div>
+                                    </div>
+                                    {
+                                        showDropdown != false &&
+                                        <SearchDropdown setShowDropdown={setShowDropdown} country={true} setCountryName={setCountryName} />
+                                    }
+                                </div>
                     <div className="!text-red-700 info-12">{errors.country?.message}</div>
                 </span>
 

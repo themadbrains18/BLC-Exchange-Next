@@ -58,7 +58,7 @@ const ForgetFundCode = ({ session }) => {
   } = useForm({ resolver: yupResolver(formSchema) });
 
   const onSubmit = async (data) => {
-
+      setClick(true)
     let obj = { oldpassword: data.password, id: session.id };
 
     let text = data.email;
@@ -157,6 +157,7 @@ const ForgetFundCode = ({ session }) => {
         position: toast.POSITION.TOP_RIGHT, autoClose: 5000
       });
       setShow(false)
+      setClick(false)
       router.push('/dashboard/setting');
     }
     else {
@@ -192,10 +193,11 @@ const ForgetFundCode = ({ session }) => {
                 </svg>
               </Link>
             </h4>
-            <p className="text-12 !text-[#FF7B1B]">For your asset security your are not allowed to withdraw or coin P2P with in 24 hours after changing the fund code.</p>
-
+            <div className='mt-4 p-3 bg-[#fff8e6]'>
+              <p className="info-12 !text-[#FF7B1B]">For your asset security your are not allowed to withdraw or coin P2P with in 24 hours after changing the fund code.</p>
+            </div>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div>
+              <div className="mt-[24px]">
                 <label className="info-12 !text-grey">Mobil/Email</label>
                 <input type="text" {...register('email')} name="email" className="mt-[8px] block px-4 w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Enter your Email/password " />
                 <p role="alert" className="!text-red-700 info-12">{errors.email?.message}</p>
@@ -205,9 +207,9 @@ const ForgetFundCode = ({ session }) => {
                 <div className="relative">
                   <input type="password" {...register('password')} name="password" className="mt-[8px] block px-4 w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Enter your login password" />
                   <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
-                  <div className="cursor-pointer absolute top-[70%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }}>
-                                        <Icons type='close-eye' />
-                                    </div>
+                  <div className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }}>
+                    <Icons type='close-eye' />
+                  </div>
                 </div>
                 <p role="alert" className="!text-red-700 info-12">{errors.password?.message}</p>
               </div>
@@ -216,9 +218,9 @@ const ForgetFundCode = ({ session }) => {
                 <div className="relative">
                   <input type="password" {...register('code')} name="code" className="mt-[8px] block px-4 w-full bg-transparent border  border-border-clr dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Enter your fund code" />
                   <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
-                  <div className="cursor-pointer absolute top-[70%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }}>
-                                        <Icons type='close-eye' />
-                                    </div>
+                  <div className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }}>
+                    <Icons type='close-eye' />
+                  </div>
                 </div>
                 <p role="alert" className="!text-red-700 info-12">{errors.code?.message}</p>
               </div>
@@ -227,9 +229,9 @@ const ForgetFundCode = ({ session }) => {
                 <div className="relative">
                   <input type="password" {...register('confirmcode')} name="confirmcode" className="mt-[8px] block px-4 w-full bg-transparent border  border-border-clr dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Confirm fund code" />
                   <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
-                  <div className="cursor-pointer absolute top-[70%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }}>
-                                        <Icons type='close-eye' />
-                                    </div>
+                  <div className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }}>
+                    <Icons type='close-eye' />
+                  </div>
                 </div>
                 <p role="alert" className="!text-red-700 info-12">{errors.confirmcode?.message}</p>
               </div>

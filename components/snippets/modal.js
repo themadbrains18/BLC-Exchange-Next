@@ -214,7 +214,7 @@ const Modal = (props) => {
     return (
         <>
             <ToastContainer />
-            <div className='h-[100vh] w-full grid place-items-center absolute top-0 right-0 rounded-2xl'>
+            <div className='h-[100vh] w-full grid place-items-center fixed z-[99] top-0 right-0 rounded-2xl'>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     className={`bg-white  ${click && 'z-20'} rounded-lg md:rounded-2xl grow md:max-w-[500px] max-w-full w-[calc(100%-30px)]  h-[600px]`} >
@@ -267,7 +267,7 @@ const Modal = (props) => {
                                     <div className='flex flex-col mt-8 p-4 '>
                                         <p className='section-secondary-heading self-center dark:text-black'>Check your image</p>
                                         <div className='my-14 bg-border-clr self-center '>
-                                            {imagesrc !== '' && <img src={imagesrc} style={{ width: '250px', height: '100px' }} />}
+                                            {imagesrc !== '' && <img src={imagesrc} className="max-w-[300px] w-full h-[120px]" />}
                                         </div>
                                         <p className='info-14-16 self-center dark:text-black'>Make sure your deatils are clear and unobstruced</p>
                                     </div>

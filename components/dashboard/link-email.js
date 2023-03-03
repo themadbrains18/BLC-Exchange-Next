@@ -90,7 +90,7 @@ const LinkEmail = ({ sessions }) => {
   //====================================================================
   const Submit = async (e) => {
     e.preventDefault();
-
+      setClick(true)
     let formdata = { email: filledEmail, number: "" }
     let userExist = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/check`, {
       method: "POST",
@@ -134,6 +134,7 @@ const LinkEmail = ({ sessions }) => {
       toast.success('Bind Successfully!', {
         position: toast.POSITION.TOP_RIGHT, autoClose: 5000
       });
+      setClick(false)
       setShowver(false)
       router.push('/dashboard/setting');
     }
@@ -196,7 +197,7 @@ const LinkEmail = ({ sessions }) => {
               <button className="info-14-16 !text-primary mt-[15px]" type='submit'>{count === 0 ? 'Send Code' : 'Send Again'} </button>
             </form>
 
-            <button className="cta mt-[30px] w-full" onClick={Submit}>Submit</button>
+            <button className="cta mt-[30px] w-full disabled:" onClick={Submit}>Submit</button>
           </div>
         </div>
       </section>

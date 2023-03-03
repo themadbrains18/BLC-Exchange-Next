@@ -15,6 +15,7 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network,all, deposit, transf
     function handleClick(event) {
       if (dropdown.current && !dropdown.current.contains(event.target)) {
         setOpen(false);
+        setOverlay(false);
       }
     }
     window.addEventListener("click", handleClick);
@@ -27,6 +28,7 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network,all, deposit, transf
     setValue(e.name);
     setOpen(false)
     setActive(i);
+    setOverlay(false);
     if (from === true) {
       setFromWallet(e)
     }
@@ -43,7 +45,8 @@ const SelectMenu = ({ selectMenu, getDepositAddress,network,all, deposit, transf
             type="text"
             name=""
             id=""
-            className="caret-white p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
+            className="caret-white placeholder:text-disable-clr p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
+            placeholder="Please Select"
             value={ (transfer && fromValue !== '') ? fromValue : value}
             onClick={() => {
               setOpen(!open);
