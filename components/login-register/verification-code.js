@@ -230,9 +230,8 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
     return (
         <>
             <ToastContainer />
-
-            <div className={`${fixed === true ? "z-[20] fixed top-[50%] left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%]" : ""}`}>
-                <div className="container !p-0">
+            <div className={`${fixed === true ? "z-[20] fixed top-[50%] left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%]" : "w-full"}`}>
+                <div className="w-full">
                     {
                         showSuccess === 1 &&
                         <div className="dark:bg-black-v-5 bg-white p-3 sm:p-6 border border-grey md:max-w-[480px] max-w-full w-full mx-auto" >

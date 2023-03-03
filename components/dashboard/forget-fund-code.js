@@ -157,6 +157,7 @@ const ForgetFundCode = ({ session }) => {
         position: toast.POSITION.TOP_RIGHT, autoClose: 5000
       });
       setShow(false)
+      setClick(false)
       router.push('/dashboard/setting');
     }
     else {
