@@ -101,6 +101,7 @@ const SideMenu2 = ({ subMenu, assetMenu, setShowMenuOpen, showMenuOpen,session }
                 key={index}
                 onClick={() => {
                   setShowMenuOpen(false);
+                  setClick(false)
                 }}
                 className={`items-center rounded flex gap-6 min-w-[280px] p-4   ${
                   mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
