@@ -7,7 +7,7 @@ import Dropdown from "../snippets/dropdown";
 import Icons from "../snippets/icons";
 import NavAccordian from "../snippets/navAccordian";
 
-const SideBar = ({ data, name }) => {
+const SideBar = ({ data, name,verify_cta }) => {
   const router = useRouter();
 
   const { click, setClick, mode } = useContext(Context);
@@ -44,6 +44,9 @@ const SideBar = ({ data, name }) => {
             <svg className="mt-[3px]" width={20} height={20} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill={mode === "dark" ? "white" : "currentcolor"} d="M11.2341 16.5873L14.6179 12.9779C15.1274 12.4344 15.1274 11.5564 14.6179 11.0129L11.2341 7.40354C10.411 6.53952 9 7.1527 9 8.39299V15.5979C9 16.8521 10.411 17.4653 11.2341 16.5873Z" />
             </svg>
+            {
+              verify_cta &&  <p className='info-12 bg-border-clr  rounded-sm'>Unverified</p>
+            }
             {/* <Image
               src={"/assets/icons/rightArrowSmall.svg"}
               width={24}

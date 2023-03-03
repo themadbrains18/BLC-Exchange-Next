@@ -27,7 +27,6 @@ const NavAccordian = (props) => {
         style={{
           display: props.showAccordian ? 'none' : 'flex'
         }}
-
         onClick={setHeight}
       >
         <span className={`${props.className && props.className} whitespace-nowrap `}>{props.heading}</span>
@@ -60,7 +59,7 @@ const NavAccordian = (props) => {
                   <li className="mt-3" >
                     <Link href={elem.linkUrl} className={`whitespace-nowrap info-14 ${props.className && " hover:border-r-2 hover:border-primary block"}`} onClick={() => {
                       setClick(false);
-                      props.setShow(true);
+                      props.setShow && props.setShow(false);
                     }}>
                       {elem.linkText}
                     </Link>
