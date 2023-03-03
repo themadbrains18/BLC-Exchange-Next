@@ -4,13 +4,14 @@ import Context from "../contexts/context";
 const SelectMenu = ({ clear, selectMenu,selectedNetwork, getDepositAddress,network, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
-  const [value, setValue] = useState('Please Select');
+  const [value, setValue] = useState('');
   const [overlay, setOverlay] = useState(false);
   const ref = useRef(null);
   const { mode } = useContext(Context)
   const dropdown = useRef(null);
 
   useEffect(() => {
+    all & setActive("all")
     function handleClick(event) {
       if (dropdown.current && !dropdown.current.contains(event.target)) {
         setOpen(false);
@@ -42,7 +43,7 @@ const SelectMenu = ({ clear, selectMenu,selectedNetwork, getDepositAddress,netwo
 
   return (
     <>
-      <div ref={dropdown} className={`relative pr-2  ${open && "md:z-[2]"}`}>
+      <div ref={dropdown} className={`relative pr-2 z-initial  ${open && "md:z-[2]"}`}>
         <div className="flex bg-transparent justify-between items-center">
           <input
             type="text"
@@ -89,7 +90,7 @@ const SelectMenu = ({ clear, selectMenu,selectedNetwork, getDepositAddress,netwo
               }`}
           ></div>
           <div
-            className={`h-[50%] rounded-t-xl md:static md:rounded-none md:w-[unset] fixed -bottom-[100%] left-0 w-full bg-white dark:bg-black dark:text-white transition-[bottom] ${open && "bottom-[0%] z-[4]"
+            className={`h-[50%] rounded-t-xl md:static md:rounded-none md:w-[unset] fixed -bottom-[100%] left-0 w-full bg-white dark:bg-black dark:text-white dur ${open && "bottom-[0%] z-[4]"
               }`}
           >
             <span className="block md:hidden my-2 p-2 rounded-xl">
@@ -98,6 +99,24 @@ const SelectMenu = ({ clear, selectMenu,selectedNetwork, getDepositAddress,netwo
 
             {!transfer &&
               <>
+              {
+                all && 
+                <button
+                        className={`md:relative ${open && "z-[2]"
+                          } info-14-16 block w-full text-left p-2 dark:text-white dark:bg-black  ${active === "all" &&
+                          "bg-blue-50 text-primary dark:!text-primary"
+                          }`}
+                        onClick={() => {
+                          console.log("-====network", network)
+                          setValue("ALL");
+                          selectNetwork("all")
+                          setOpen(false)
+                          setActive("all");
+                        }}
+                      >
+                   ALL
+                      </button>
+              }
                 {selectMenu &&
                   selectMenu.map((e, i) => {
                     return (
@@ -111,7 +130,9 @@ const SelectMenu = ({ clear, selectMenu,selectedNetwork, getDepositAddress,netwo
                           console.log("-====network", network)
                           getDepositAddress && getDepositAddress(e.type)
                           network ? setValue(e.networkName) : setValue(e);
+                          selectNetwork && selectNetwork(e)
                           setOpen(false)
+                          setOverlay(!overlay);
                           setActive(i);
                           selectedNetwork(e)
                         }}

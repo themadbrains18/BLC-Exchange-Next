@@ -5,7 +5,7 @@ import { getProviders, getSession } from "next-auth/react"
 const Verified = ({ account, sessions }) => {
     return (
         <>
-            <Layout data={account} slug="dashboard" >
+            <Layout data={account} name="Verified" >
                 <div className='p-4 md:p-8 grow '>
                     <VerificationType session={sessions.user}/>
                 </div>

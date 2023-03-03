@@ -4,34 +4,34 @@ import Link from "next/link";
 import Context from "../contexts/context";
 import Dropdown from "../snippets/dropdown";
 import SideMenu from "../snippets/sideMenu";
+import SideMenu2 from "../snippets/sideMenu2";
 import NotificationHover from "../snippets/notificationHover";
 import TopBar from "../snippets/topBar";
 import { useRouter } from "next/router";
 
-import {  useSession } from "next-auth/react"
-
+import { useSession } from "next-auth/react";
 
 const Header = (props) => {
-  const router = useRouter()
-  const { data: session } = useSession()
-
-  const { mode, setMode, login,topBar,setClick } = useContext(Context);
-  const [login2,setLogin2] = useState(login)
+  const router = useRouter();
+  const { data: session } = useSession();
+  const { mode, setMode, login, topBar, setClick,heightUpdate } = useContext(Context);
+  const [login2, setLogin2] = useState(login)
   // console.log(session,' session session session')
   const [show, setShow] = useState(true);
+  const [showMenu, setShowMenu] = useState(false);
   const [Data, setData] = useState([]);
   const [specialData, setSpecialData] = useState([]);
   useEffect(() => {
     (async () => {
 
-      if(session !="" && session != undefined){
+      if (session != "" && session != undefined) {
         setLogin2(true)
       }
-      else{
+      else {
         setLogin2(false)
       }
 
-      await fetch(process.env.NEXT_PUBLIC_BASEURL+ "/hello")
+      await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello")
         .then((res) => res.json())
         .then((data) => {
           setData(data.nav);
@@ -42,11 +42,8 @@ const Header = (props) => {
     })().catch((err) => {
       console.log(err);
     });
- 
-
   }, [session]);
 
-  
   return (
     <>
       <header className="header w-full ">
@@ -64,8 +61,8 @@ const Header = (props) => {
         </div> */}
 
         {/* top bar */}
-        {router.pathname==="/" &&
-        <TopBar/>}
+        {router.pathname === "/" &&
+          <TopBar />}
         {/* main Navbar */}
         <nav className="navbar flex bg-white justify-between px-4 dark:bg-black-v-4 z-10">
           <div className="flex items-center gap-4">
@@ -76,39 +73,37 @@ const Header = (props) => {
                 alt="Company Logo"
               />
             </Link>
-            <div
-              className=" relative hover:pb-8 hover:-mb-8 group "
-            >
+            <div className=" relative hover:pb-8 hover:-mb-8 group ">
               {/* grid icon  */}
               <Link href={""} className=" hidden lg:flex lg:items-center">
-              <svg
-                className="duration-300 group-hover:fill-primary"
-                xmlns="http://www.w3.org/2000/svg"
-                height="26"
-                width="26"
-                fill={mode === "dark" ? "white" : "currentcolor"}
-              >
-                <path d="M6 20q-.825 0-1.412-.587Q4 18.825 4 18q0-.825.588-1.413Q5.175 16 6 16t1.412.587Q8 17.175 8 18q0 .825-.588 1.413Q6.825 20 6 20Zm6 0q-.825 0-1.412-.587Q10 18.825 10 18q0-.825.588-1.413Q11.175 16 12 16t1.413.587Q14 17.175 14 18q0 .825-.587 1.413Q12.825 20 12 20Zm6 0q-.825 0-1.413-.587Q16 18.825 16 18q0-.825.587-1.413Q17.175 16 18 16q.825 0 1.413.587Q20 17.175 20 18q0 .825-.587 1.413Q18.825 20 18 20ZM6 14q-.825 0-1.412-.588Q4 12.825 4 12t.588-1.413Q5.175 10 6 10t1.412.587Q8 11.175 8 12q0 .825-.588 1.412Q6.825 14 6 14Zm6 0q-.825 0-1.412-.588Q10 12.825 10 12t.588-1.413Q11.175 10 12 10t1.413.587Q14 11.175 14 12q0 .825-.587 1.412Q12.825 14 12 14Zm6 0q-.825 0-1.413-.588Q16 12.825 16 12t.587-1.413Q17.175 10 18 10q.825 0 1.413.587Q20 11.175 20 12q0 .825-.587 1.412Q18.825 14 18 14ZM6 8q-.825 0-1.412-.588Q4 6.825 4 6t.588-1.412Q5.175 4 6 4t1.412.588Q8 5.175 8 6t-.588 1.412Q6.825 8 6 8Zm6 0q-.825 0-1.412-.588Q10 6.825 10 6t.588-1.412Q11.175 4 12 4t1.413.588Q14 5.175 14 6t-.587 1.412Q12.825 8 12 8Zm6 0q-.825 0-1.413-.588Q16 6.825 16 6t.587-1.412Q17.175 4 18 4q.825 0 1.413.588Q20 5.175 20 6t-.587 1.412Q18.825 8 18 8Z" />
-              </svg>
-              <svg
-                className="duration-300 group-hover:rotate-90"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  className="group-hover:fill-primary"
-                  d="M11.2341 16.5873L14.6179 12.9779C15.1274 12.4344 15.1274 11.5564 14.6179 11.0129L11.2341 7.40354C10.411 6.53952 9 7.1527 9 8.39299V15.5979C9 16.8521 10.411 17.4653 11.2341 16.5873Z"
-                  fill="#B5B5C3"
-                />
-              </svg>
+                <svg
+                  className="duration-300 group-hover:fill-primary"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="26"
+                  width="26"
+                  fill={mode === "dark" ? "white" : "currentcolor"}
+                >
+                  <path d="M6 20q-.825 0-1.412-.587Q4 18.825 4 18q0-.825.588-1.413Q5.175 16 6 16t1.412.587Q8 17.175 8 18q0 .825-.588 1.413Q6.825 20 6 20Zm6 0q-.825 0-1.412-.587Q10 18.825 10 18q0-.825.588-1.413Q11.175 16 12 16t1.413.587Q14 17.175 14 18q0 .825-.587 1.413Q12.825 20 12 20Zm6 0q-.825 0-1.413-.587Q16 18.825 16 18q0-.825.587-1.413Q17.175 16 18 16q.825 0 1.413.587Q20 17.175 20 18q0 .825-.587 1.413Q18.825 20 18 20ZM6 14q-.825 0-1.412-.588Q4 12.825 4 12t.588-1.413Q5.175 10 6 10t1.412.587Q8 11.175 8 12q0 .825-.588 1.412Q6.825 14 6 14Zm6 0q-.825 0-1.412-.588Q10 12.825 10 12t.588-1.413Q11.175 10 12 10t1.413.587Q14 11.175 14 12q0 .825-.587 1.412Q12.825 14 12 14Zm6 0q-.825 0-1.413-.588Q16 12.825 16 12t.587-1.413Q17.175 10 18 10q.825 0 1.413.587Q20 11.175 20 12q0 .825-.587 1.412Q18.825 14 18 14ZM6 8q-.825 0-1.412-.588Q4 6.825 4 6t.588-1.412Q5.175 4 6 4t1.412.588Q8 5.175 8 6t-.588 1.412Q6.825 8 6 8Zm6 0q-.825 0-1.412-.588Q10 6.825 10 6t.588-1.412Q11.175 4 12 4t1.413.588Q14 5.175 14 6t-.587 1.412Q12.825 8 12 8Zm6 0q-.825 0-1.413-.588Q16 6.825 16 6t.587-1.412Q17.175 4 18 4q.825 0 1.413.588Q20 5.175 20 6t-.587 1.412Q18.825 8 18 8Z" />
+                </svg>
+                <svg
+                  className="duration-300 group-hover:rotate-90"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    className="group-hover:fill-primary"
+                    d="M11.2341 16.5873L14.6179 12.9779C15.1274 12.4344 15.1274 11.5564 14.6179 11.0129L11.2341 7.40354C10.411 6.53952 9 7.1527 9 8.39299V15.5979C9 16.8521 10.411 17.4653 11.2341 16.5873Z"
+                    fill="#B5B5C3"
+                  />
+                </svg>
               </Link>
               {specialData.grid != undefined && specialData.grid && (
-      
+
                 <Dropdown
-            
+
                   specialMenu={specialData.grid}
                 />
               )}
@@ -119,17 +114,15 @@ const Header = (props) => {
               Data.map((e, i) => {
                 return (
                   <div
-                    
                     className="hidden relative  lg:flex lg:items-center group  hover:pb-8 hover:-mb-8"
                     key={i}
                   >
                     <Link href={e.link}>
-
-                    {e.name && (
-                      <h3 className="info-14-16 duration-300 group-hover:text-primary ">
-                        {e.name}
-                      </h3>
-                    )}
+                      {e.name && (
+                        <h3 className="info-14-16 duration-300 group-hover:text-primary ">
+                          {e.name}
+                        </h3>
+                      )}
                     </Link>
 
                     {e.subMenu && <Dropdown subMenu={e.subMenu} />}
@@ -156,95 +149,94 @@ const Header = (props) => {
           <div className="flex gap-5 items-center">
             <Link
               href="/register"
-              className={`transparent-cta hidden ${
-                login2 === true ? "lg:hidden" : "lg:block"
-              }`}
+              className={`transparent-cta hidden ${login2 === true ? "lg:hidden" : "lg:block"
+                }`} onClick={()=>heightUpdate()}
             >
               sign up
             </Link>
             <Link
               href="/login"
-              className={`cta hidden ${
-                login2 === true ? "lg:hidden" : "lg:block"
-              }`}
+              className={`cta hidden ${login2 === true ? "lg:hidden" : "lg:block"
+                }`} onClick={()=>heightUpdate()}
             >
               Log-in
             </Link>
 
             <div
-              className={`hidden relative   group  hover:pb-8 hover:-mb-8  ${
-                login2 === true ? "lg:block" : "lg:hidden"
-              }`}
+              className={`hidden relative   group  hover:pb-8 hover:-mb-8  ${login2 === true ? "lg:block" : "lg:hidden"
+                }`}
             >
               <Link href={"/asset"} className="lg:flex lg:items-center">
-
-              <span className="info-14-16 duration-300 group-hover:text-primary ">
-                Assets
-              </span>
-              <svg
-                className="duration-300 group-hover:rotate-90"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  className="group-hover:fill-primary"
-                  d="M11.2341 16.5873L14.6179 12.9779C15.1274 12.4344 15.1274 11.5564 14.6179 11.0129L11.2341 7.40354C10.411 6.53952 9 7.1527 9 8.39299V15.5979C9 16.8521 10.411 17.4653 11.2341 16.5873Z"
-                  fill="#B5B5C3"
-                />
-              </svg>
+                <span className="info-14-16 duration-300 group-hover:text-primary ">
+                  Assets
+                </span>
+                <svg
+                  className="duration-300 group-hover:rotate-90"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    className="group-hover:fill-primary"
+                    d="M11.2341 16.5873L14.6179 12.9779C15.1274 12.4344 15.1274 11.5564 14.6179 11.0129L11.2341 7.40354C10.411 6.53952 9 7.1527 9 8.39299V15.5979C9 16.8521 10.411 17.4653 11.2341 16.5873Z"
+                    fill="#B5B5C3"
+                  />
+                </svg>
               </Link>
 
               {specialData.assets != undefined && specialData.assets && (
                 <Dropdown subMenu={specialData.assets.subMenu} right={true} />
               )}
 
-              
+
             </div>
             {/* account */}
-            <div
-              href=""
-              className={`group  hover:pb-8 hover:-mb-8 ${
-                login2 === true ? "lg:block" : "lg:hidden"
-              }`}
-            >
-              <Link href={""}>
-
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke={mode === "dark" ? "white" : "currentcolor"}
-                className="w-6 h-6"
+            {session !== null &&
+              <div
+                href=""
+                className={`group  hover:pb-8 hover:-mb-8 ${login2 === true ? "lg:block" : "lg:hidden"
+                  }`}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-                />
-              </svg>
-              </Link>
+                <Link href={""}>
 
-              {specialData.account != undefined && specialData.account && (
-                <Dropdown
-                  subMenu={specialData.account.subMenu}
-                  right={true}
-                  arrow={true}
-                  height={true}
-                  fixed_cta="Log Out"
-                  svgType="log_out"
-                />
-              )}
-            </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke={mode === "dark" ? "white" : "currentcolor"}
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                    />
+                  </svg>
+                </Link>
+
+                {specialData.account != undefined && specialData.account && (
+                  <Dropdown
+                    subMenu={specialData.account.subMenu}
+                    right={true}
+                    arrow={true}
+                    height={true}
+                    fixed_cta="Log Out"
+                    svgType="log_out"
+                  />
+                )}
+              </div>
+            }
+
+
             {/* hamburger  */}
             <button
               className={`${show === false ? "hidden" : "none"} lg:hidden`}
               onClick={() => {
                 setShow(false);
-                setClick(true)
+                setClick(true);
               }}
             >
               <svg
@@ -264,11 +256,11 @@ const Header = (props) => {
             </button>
 
             <div className=" border-l border-line-clr  hidden lg:flex items-center gap-[10px]">
-            
+
 
               {/* bell   */}
               <button className="ml-3 group relative">
-              
+
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -364,10 +356,9 @@ const Header = (props) => {
               )}
             </div>
           </div>
-
         </nav>
-          {/* header-Menu  */}
-          <SideMenu show={show} setShow={setShow} data={Data} />
+        {/* header-Menu  */}
+        <SideMenu show={show} setShow={setShow} data={Data} session={session} />
       </header>
     </>
   );

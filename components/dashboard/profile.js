@@ -1,11 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import NavAccordian from '../snippets/navAccordian'
+import Context from '../contexts/context';
+import moment from 'moment';
 
-const Profile = ({ sessions }) => {
+const Profile = ({ sessions, lastLogin }) => {
     const [show, setShow] = useState(false)
-
+    const {  mode } = useContext(Context)
     const cardData = [
         {
             "heading": 'Email',
@@ -15,7 +17,7 @@ const Profile = ({ sessions }) => {
             "desc": 'SetUp'
         },
         {
-            "heading": 'User Login',
+            "heading": 'UserID',
             "desc": '1222295006'
         }, {
             "heading": 'Last Login',
@@ -36,7 +38,7 @@ const Profile = ({ sessions }) => {
                     </div>
                     <div className='pl-0 md:pl-8 relative'>
                         <div className='flex'>
-                            <p className='info-14-24'>BGUSER-{sessions!==undefined && sessions.own_code}</p>
+                            <p className='info-14-24'>BGUSER-{sessions !== undefined && sessions.own_code}</p>
                             <img src='/assets/icons/edit.svg' alt='error' className='pl-1 cursor-pointer'></img>
                         </div>
                         <div className='mt-1 mb-4 flex gap-2 items-center'>
@@ -50,12 +52,19 @@ const Profile = ({ sessions }) => {
                         <div className='hidden flex-wrap md:flex justify-between xl:justify-self-auto xl:flex-nowrap gap-9 xl:gap-10'>
                             <div>
                                 <p className='info-14'>Email</p>
-                                <p className='info-14 text-black'>{sessions!==undefined && sessions?.email !=='' ? sessions.email : 'SetUp'}</p>
+                                <p className='info-14 text-black'>
+                                    <Link href={sessions !== undefined && sessions?.email == '' ? 'dashboard/bindemail' : ''}>
+                                        {sessions !== undefined && sessions?.email !== '' ? sessions.email : 'SetUp'}
+                                    </Link>
+                                </p>
                             </div>
                             <div>
                                 <p className='info-14'>Phone</p>
                                 <div className='flex cursor-pointer items-center'>
-                                    <p className='info-14 text-black'><Link href={sessions!==undefined && sessions?.number==''? 'dashboard/bindmobile':''}>{sessions!==undefined && sessions?.number !=='' ? sessions.number : 'SetUp'}</Link></p>
+                                    <p className='info-14 text-black'>
+                                        <Link href={sessions !== undefined && sessions?.number == '' ? 'dashboard/bindmobile' : ''}>{sessions !== undefined && sessions?.number !== '' ? sessions.number : 'SetUp'}
+                                        </Link>
+                                    </p>
                                     <img src='/assets/icons/navigate.svg' alt='error'></img>
                                 </div>
                             </div>
@@ -65,7 +74,7 @@ const Profile = ({ sessions }) => {
                             </div>
                             <div>
                                 <p className='info-14'>Last Login</p>
-                                <p className='info-14 text-black'>2023-02-17 14:59:25 (India-Punjab-Bathinda)</p>
+                                <p className='info-14 text-black'>{moment(lastLogin).format('MMMM Do YYYY, h:mm:ss a') } (India-Punjab-Bathinda)</p>
                             </div>
                         </div>
                     </div>
@@ -75,10 +84,13 @@ const Profile = ({ sessions }) => {
                 </div>
             </div>
             <div>
-                <NavAccordian data={cardData} showAccordian={true} ></NavAccordian>
+                <NavAccordian data={cardData} showAccordian={true} lastLogin={lastLogin} sessions={sessions} ></NavAccordian>
             </div>
         </section>
     )
 }
 
 export default Profile
+
+
+{/* <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" fill= {mode === "dark" ? "white" : "currentcolor"} width="20"><path d="m375 816-43-43 198-198-198-198 43-43 241 241-241 241Z"/></svg> */}

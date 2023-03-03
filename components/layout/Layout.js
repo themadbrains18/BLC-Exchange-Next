@@ -1,4 +1,4 @@
-import SideBar from "@/components/asset/sideBar";
+import SideBar from "/components/asset/sideBar";
 import { useContext, useEffect, useRef, useState } from "react";
 import Context from "../contexts/context";
 const Layout = ({ children, name, data }) => {

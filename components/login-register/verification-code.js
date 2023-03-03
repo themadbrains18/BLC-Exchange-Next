@@ -164,6 +164,11 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                 if (values[0].status === 200 && values[1].status === 200) {
                     signIn("credentials", loginData);
                 }
+                else {
+                    toast.error(values[0].message, {
+                        position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+                    });
+                }
             });
         }
         if (loginData.email !== "" && loginData.number === "") {
@@ -172,6 +177,9 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                 if (values[0].status === 200) {
                     signIn("credentials", loginData);
                 }
+                toast.error(values[0].message, {
+                    position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+                });
             });
         }
         if (loginData.email === "" && loginData.number !== "") {
@@ -180,6 +188,9 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                 if (values[0].status === 200) {
                     signIn("credentials", loginData);
                 }
+                toast.error(values[0].message, {
+                    position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+                });
             });
         }
     }
@@ -234,12 +245,12 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                             <h4 className='section-secondary-heading mb-1'>You're almost there</h4>
                             <p className='info-14 text-black dark:!text-white dark:hover:!text-white hover:!text-black'>Enter the verification code below.</p>
 
-                            <div class="relative hidden md:flex flex-col items-center group">
-                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill={mode === "dark" ? "white" : "currentcolor"} viewBox="0 0 20 20" >
+                            <div className="relative hidden md:flex flex-col items-center group">
+                                <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill={mode === "dark" ? "white" : "currentcolor"} viewBox="0 0 20 20" >
                                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
                                 </svg>
-                                <div class="absolute bottom-0  flex-col items-center hidden mb-6 group-hover:flex min-w-[350px] w-full p-[10px] bg-black">
-                                    <div class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap shadow-lg">
+                                <div className="absolute bottom-0  flex-col items-center hidden mb-6 group-hover:flex min-w-[350px] w-full p-[10px] bg-black">
+                                    <div className="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap shadow-lg">
 
                                         <p className="mb-2">That's frustrating. Have you tried these steps?</p>
                                         <ul>
@@ -255,7 +266,7 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                                         </ul>
                                         <p className="mt-3">if you still haven’t received your code, contact our customer service.</p>
                                     </div>
-                                    <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                                    <div className="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
                                 </div>
                             </div>
 
@@ -263,7 +274,7 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                                 {/* emails verification code feilds */}
                                 {loginData.email !== "" &&
                                     <div className='mt-5'>
-                                        <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Email verification</span> <span>({loginData.email} which is registred)</span></label>
+                                        <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Email verification</span> <span>({loginData.email})</span></label>
                                         <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper input_wrapper_email">
                                             <input type="number" className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
                                             <input type="number" className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
@@ -278,7 +289,7 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                                 {/* phone verification code feilds */}
                                 {loginData.number !== "" &&
                                     <div className='mt-5'>
-                                        <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Phone verification</span> <span>({loginData.number} which is registred)</span></label>
+                                        <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Phone verification</span> <span>({loginData.number} )</span></label>
                                         <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper input_wrapper_mobile">
                                             <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
                                             <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />

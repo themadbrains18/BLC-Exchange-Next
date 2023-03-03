@@ -17,23 +17,27 @@ import { ref } from 'yup';
 // import { checkUserRequest, registerRequest, sendOtp } from '@/Api';
 
 const RegisterForm = () => {
+    const router = useRouter();
     const [show, setShow] = useState(1);
-    const [active, setActive] = useState();
+    const [active, setActive] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const [DropdownPhone, setDropdownPhone] = useState(false);
     const [showVerification, setShowVerification] = useState(0);
     const [isLoding, setLoading] = useState(false);
     const [registerForm, setRegisterForm] = useState();
     const [dialCode, setDialCode] = useState(91)
-
-
+    const [referCode, setReferCode] = useState('')
     const dropdown = useRef(null);
     const codedropdown = useRef(null);
-    const ref= useRef(null)
+    const ref = useRef()
 
-    const router = useRouter();
-    
+
+
     useEffect(() => {
+        if (router.query.referal !== undefined) {
+            // setActive(false)
+            setActive(true)
+        }
 
         function handleClick(event) {
             if (dropdown.current && !dropdown.current.contains(event.target)) {
@@ -51,7 +55,6 @@ const RegisterForm = () => {
     let { register, setValue, handleSubmit, watch, setError, formState: { errors } } = useForm();
 
 
-    const code = router.query.referal
 
     const showPass = (e) => {
         if (!e.currentTarget.classList.contains("hidden")) {
@@ -79,7 +82,7 @@ const RegisterForm = () => {
                 password: data.password,
                 requestType: 'email',
                 resetPassword: false,
-                referal_code: data.referal_code,
+                referal_code: referCode === '' ? router.query.referal : referCode,
                 number: ''
             };
 
@@ -97,7 +100,7 @@ const RegisterForm = () => {
                 password: data.password,
                 requestType: 'mobile',
                 resetPassword: false,
-                referal_code: data.referal_code,
+                referal_code: referCode === '' ? router.query.referal : referCode,
                 email: ''
             };
 
@@ -172,7 +175,7 @@ const RegisterForm = () => {
 
 
     return (
-        <section className='dark:bg-black-v-5 !Wpt-10 lg:!pt-20' >
+        <section className='dark:bg-black-v-5 !py-10 lg:!py-20' >
             <ToastContainer />
             <div className='container'>
                 <div className="flex flex-col md:flex-row items-start gap-10">
@@ -180,8 +183,8 @@ const RegisterForm = () => {
                     <LeftSide />
                     {/* register part */}
                     {showVerification === 0 &&
-                        <div className="max-w-full md:max-w-[50%] w-full p-3 sm:p-6 border border-grey mx-auto">
-                            <h4 className='section-secondary-heading mb-5'>Welcome back</h4>
+                        <div className="max-w-full md:max-w-[50%] w-full md:p-3 sm:p-6 md:border border-grey mx-auto">
+                            <h4 className='section-secondary-heading mb-5'>Welcome to Blc-Exchange</h4>
                             <div className="my-8 relative" ref={dropdown}>
                                 <p className='info-14 hover:!text-grey inline-flex items-center gap-3 cursor-pointer' onClick={(e) => { setShowDropdown(!showDropdown) }}>
                                     <span>Country / Region:</span>
@@ -220,7 +223,7 @@ const RegisterForm = () => {
                                                 <span className="text-black dark:text-white" id="counteryCode">+ <span>{dialCode}</span> </span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#656e6f" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                                             </div>
-                                            <input type="tel" placeholder="Mobile number" onFocus={()=>setDropdownPhone(false)} className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone"
+                                            <input type="tel" placeholder="Mobile number" onFocus={() => setDropdownPhone(false)} className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone"
                                                 {...register('phone', { required: show === 2 ? true : false, maxLength: 15 })} />
                                             {
                                                 DropdownPhone != false &&
@@ -249,19 +252,21 @@ const RegisterForm = () => {
                                         <span>Referral Code (Optional)</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                                     </label>
-                                    {
-                                        active != false &&
-                                        <input type="tel" ref={ref} {...register('referal_code', { required: false })} value={`${code ? code:''}`} placeholder="Referral Code (Optional)" className="block px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="referelCode" />
+                                    {/* dsfvdjskbfjdgbjdfgbkld */}
+                                    {(router.query.referal !== undefined || active === true) &&
+                                        <input type="tel" ref={ref} value={router.query.referal} onChange={(e) => setReferCode(e.target.value)} placeholder="Referral Code (Optional)" className={` px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary`} name="referal_code" />
                                     }
+
+
                                 </div>
 
-                                <button type="submit" className={`relative cta mt-5  w-full ${isLoding === true ? 'hide_text' : ''} `}>
+                                <button type="submit" className={`relative cta mt-5  w-full ${isLoding === true ? 'hide_text' : ''}  `}>
                                     <span>Create Account</span>
                                     {/* spinner */}
                                     <div className="hidden w-8 h-8 rounded-full animate-spin border-4 border-solid border-purple-500 border-t-transparent absolute top-[50%] left-[50%] mt-[-16px] ml-[-15px] z-10"></div>
                                     {/* spinner */}
                                 </button>
-                                <div className="relative mb-5 inline-block">
+                                <div className="relative mb-5 inline-block mt-[8px]">
                                     <input id="checkbox" type="checkbox" className="hidden agree_cta" />
                                     <label htmlFor="checkbox" className="relative info-14 hover:!text-grey pl-[25px] after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-[16px] after:h-[16px] cursor-pointer">I agree to the <Link href="#" className="text-primary">Terms of Use</Link></label>
                                 </div>

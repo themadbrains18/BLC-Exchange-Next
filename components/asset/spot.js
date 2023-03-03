@@ -4,8 +4,8 @@ import Image from "next/image";
 
 import Link from "next/link";
 
-const Spot = ({ show, dataShow, setDataShow, tokenList, assetData }) => {
-  const headings = ['Coin', 'Available', 'On Order', 'BTC Value', 'Operation']
+const Spot = ({ show, dataShow, setDataShow, tokenList, assetData,overview }) => {
+  const headings = ['Coin', 'Available', 'On Order', 'USDT Value', 'Operation']
 
   return (
     <>
@@ -20,13 +20,13 @@ const Spot = ({ show, dataShow, setDataShow, tokenList, assetData }) => {
                 Estimated Spot Balance
               </h4>
               <span className="section-secondary-heading font-noto">
-                {show ? <span>0.00000000</span> : <span>****</span>} BTC <span className="info-12 ">
-                  ≈$ {show ? <span>0</span> : <span>****</span>}
+                {show ? <span>{overview.main}</span> : <span>****</span>} USDT <span className="info-12 ">
+                  ≈$ {show ? <span>{overview.main}</span> : <span>****</span>}
                 </span>
               </span>
             </div>
           </div>
-          <div>
+          {/* <div>
             <Link href={""}>
               <h4 className="info-14 hover:!text-grey ">Today is PNL </h4>
             </Link>
@@ -36,7 +36,7 @@ const Spot = ({ show, dataShow, setDataShow, tokenList, assetData }) => {
             <span className="info-12 ">
               ≈$ {show ? <span>0</span> : <span>****</span>}
             </span>
-          </div>
+          </div> */}
         </div>
         <div className="flex flex-col md:flex-row gap-2 mt-4 md:items-center">
           <input
@@ -83,7 +83,7 @@ const Spot = ({ show, dataShow, setDataShow, tokenList, assetData }) => {
      
         {dataShow ? (
           <>
-            <DataTable heading={headings} data={tokenList} assetData={assetData} cta={false}/>
+            <DataTable heading={headings} data={tokenList} assetData={assetData} cta={false} spot={true} convertPrice={overview.convertPrice}/>
           </>
         ) : (
           <div className="grid place-content-center w-full h-96 ">

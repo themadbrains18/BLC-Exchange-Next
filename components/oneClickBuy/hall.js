@@ -215,7 +215,7 @@ const Hall = () => {
                         {/* about user */}
                         <div className="my-[24px] flex items-center gap-[10px] grow-[1.6]">
                           <div className="w-[48px] h-[48px] rounded-full bg-[#e8f6f7] flex">
-                            <span className="m-auto text-primary info-14-16">F</span>
+                            <span className="m-auto text-primary dark:text-primary info-14-16">F</span>
                           </div>
                           <div className="">
                             <p className="info-14 !text-black hover:!text-black dark:!text-white">Fahim</p>
@@ -265,7 +265,7 @@ const Hall = () => {
                         {/* about user */}
                         <div className="my-[24px] flex items-center gap-[10px] grow-[1.6]">
                           <div className="w-[48px] h-[48px] rounded-full bg-[#e8f6f7] flex">
-                            <span className="m-auto text-primary info-14-16">F</span>
+                            <span className="m-auto text-primary info-14-16 dark:text-primary">F</span>
                           </div>
                           <div className="">
                             <p className="info-14 !text-black hover:!text-black dark:!text-white">Fahim</p>
@@ -321,7 +321,7 @@ const Hall = () => {
                   {/* about user */}
                   <div className="mb-[10px] flex items-center gap-[10px]">
                     <div className="w-[24px] h-[24px] rounded-full bg-[#e8f6f7] flex">
-                        <span className="m-auto text-primary info-12">F</span>
+                        <span className="m-auto text-primary info-12 dark:text-primary">F</span>
                     </div>
                     <div className="flex items-center justify-between w-full">
                         <p className="info-14 !text-black hover:!text-black dark:!text-white">Fahim</p>
@@ -382,7 +382,7 @@ const Hall = () => {
                         {/* about user */}
                         <div className="my-[24px] flex items-center gap-[10px] grow-[1.6]">
                           <div className="w-[48px] h-[48px] rounded-full bg-[#e8f6f7] flex">
-                            <span className="m-auto text-primary info-14-16">C</span>
+                            <span className="m-auto text-primary dark:text-primary info-14-16">C</span>
                           </div>
                           <div className="">
                             <p className="info-14 !text-black hover:!text-black dark:!text-white">CoinzJet.com</p>
@@ -432,7 +432,7 @@ const Hall = () => {
                         {/* about user */}
                         <div className="my-[24px] flex items-center gap-[10px] grow-[1.6]">
                           <div className="w-[48px] h-[48px] rounded-full bg-[#e8f6f7] flex">
-                            <span className="m-auto text-primary info-14-16">C</span>
+                            <span className="m-auto text-primary dark:text-primary info-14-16">C</span>
                           </div>
                           <div className="">
                             <p className="info-14 !text-black hover:!text-black dark:!text-white">CoinzJet.com</p>
@@ -489,7 +489,7 @@ const Hall = () => {
                   {/* about user */}
                   <div className="mb-[10px] flex items-center gap-[10px]">
                     <div className="w-[24px] h-[24px] rounded-full bg-[#e8f6f7] flex">
-                        <span className="m-auto text-primary info-12">F</span>
+                        <span className="m-auto text-primary info-12 dark:text-primary">F</span>
                     </div>
                     <div className="flex items-center justify-between w-full">
                         <p className="info-14 !text-black hover:!text-black dark:!text-white">Fahim</p>

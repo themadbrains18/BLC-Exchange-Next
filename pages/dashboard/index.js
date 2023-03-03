@@ -7,21 +7,19 @@ import SocialTrades from 'components/dashboard/socialTrades'
 import Tranding from 'components/dashboard/tranding'
 import Welfare from 'components/dashboard/welfare'
 import Layout from '@/components/layout/Layout'
-import SideMenu from 'components/snippets/sideMenu'
 import { getProviders, getSession } from "next-auth/react"
 
 import React from 'react'
-const Dashboard = ({ account, sessions }) => {
-console.log(sessions,'================sessions dashboard')
+const Dashboard = ({ account, sessions, lastLogin }) => {
   return (
     <>
-      <Layout data={account} link="dashboard">
+      <Layout data={account} name="dashboard">
         <div className='grow max-w-full p-4 md:p-8 bg-white dark:bg-black-v-5'>
           <div>
-            <Profile sessions={sessions.user}/>
+            <Profile sessions={sessions.user} lastLogin={lastLogin}/>
           </div>
-          <div className='flex w-full '>
-            <div className=' w-full'>
+          <div className='flex w-full  '>
+            <div className=' w-full px-4'>
               <Assets />
               <SocialTrades />
               <Tranding />
@@ -50,7 +48,8 @@ export async function getServerSideProps(context) {
     return {
       props: {
         account: menu.specialNav.account,
-        sessions: session
+        sessions: session,
+        lastLogin : session.lastlogin
       },
     };
   }

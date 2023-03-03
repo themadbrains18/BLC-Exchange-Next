@@ -29,6 +29,7 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces, getWithdra
   const router=useRouter()
 
 
+  let ctas = ["Email","Mobile","UID"];
   const { mode } = useContext(Context);
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
@@ -191,6 +192,8 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces, getWithdra
             <form onSubmit={handleSubmit(onSubmit)}>
 
               <div className={`flex items-end gap-5 mb-10`}>
+            <div>
+              <div className={`hidden md:flex items-start sm:items-end sm:flex-row flex-col gap-5 mb-10`}>
                 <button
                   className={`section-secondary-heading font-noto ${
                     show === 2 && "text-disable-clr"
@@ -201,7 +204,7 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces, getWithdra
                 >
                   Withdraw
                 </button>
-                <button
+                {/* <button
                   className={`section-secondary-heading font-noto ${
                     show === 1 && "text-disable-clr"
                   }`}
@@ -210,7 +213,7 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces, getWithdra
                   }}
                 >
                   Internal Funds Transfer
-                </button>
+                </button> */}
               </div>
               <div>
                 <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
@@ -271,16 +274,16 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces, getWithdra
               </div>
 
               <div>
-                {show === 2 && (
-                  <div className="mt-8">
-                    <ActiveCta
-                      type="second"
-                      data={ctas}
-                      active={active}
-                      setActive={setActive}
-                    />
-                  </div>
-                )}
+                {/* {show === 2 && (
+                  // <div className="mt-8">
+                  //   <ActiveCta
+                  //     type="second"
+                  //     data={ctas}
+                  //     active={active}
+                  //     setActive={setActive}
+                  //   />
+                  // </div>
+                )} */}
                 {show === 1 && (
                   <div className="mt-4">
                     <h6 className="info-12 dark:hover:text-white dark:text-white">
@@ -385,6 +388,8 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces, getWithdra
                   )}
                 </div>
               </div>
+            </div>
+            </div>
             </form>
             <AdImage />
           </div>
@@ -403,7 +408,7 @@ const Withdraw = ({ assets, tokens, networks, sessions, tokenBalnces, getWithdra
               href={"/faq"}
               className="info-14 hover:text-grey dark:text-white dark:hover:text-white"
             >
-              Haven't received your deposit?
+              Have not received your deposit?
             </Link>
           </div>
           <div className="flex gap-4 flex-wrap justify-between lg:justify-start">
