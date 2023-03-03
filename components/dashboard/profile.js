@@ -3,7 +3,6 @@ import Link from 'next/link'
 import React, { useEffect, useState, useContext } from 'react'
 import NavAccordian from '../snippets/navAccordian'
 import Context from '../contexts/context';
-import dateFormat, { masks } from "dateformat";
 
 const Profile = ({ sessions, lastLogin }) => {
     const [show, setShow] = useState(false)
