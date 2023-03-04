@@ -14,7 +14,8 @@ const Dropdown = ({
   height,
   fixed_cta,
   specialMenu,
-  svgType
+  svgType,
+  padding_bottom
 }) => {
   const { mode, setLogin, heightUpdate } = useContext(Context);
 
@@ -22,7 +23,7 @@ const Dropdown = ({
   return (
     <>
       <div
-        className={`p-4 absolute top-[92.3%] invisible shadow-2xl group-hover:animate-open bg-white rounded-xl opacity-0 group-hover:opacity-100 group-hover:visible overflow-x-auto group-hover:z-[99]  ${height && "h-[100vh]"
+        className={`p-4 absolute top-[92.3%] invisible ${ padding_bottom ? "md:!pb-[60px]":""}  shadow-2xl group-hover:animate-open bg-white rounded-xl opacity-0 group-hover:opacity-100 group-hover:visible overflow-x-auto group-hover:z-[99]  ${height && "h-[100vh]"
           } dark:bg-black-v-4 ${right && "right-0"}`}
         style={{ maxHeight: "calc(100vh - 90px)" }} >
         {specialMenu && specialMenu != undefined &&
@@ -100,9 +101,9 @@ const Dropdown = ({
           })}
 
         {fixed_cta && (
-          <div className="border-t fixed bottom-0 pt-2  z-[1] border-grey w-[380px] rounded-b-xl  -ml-4 bg-white dark:bg-black-v-2">
+          <div className="border-t fixed bottom-0 pt-2  z-[1] border-grey rounded-b-xl max-w-[366px] w-full -ml-4 bg-white dark:bg-black-v-2">
             <button
-              className={`info-14-16 items-center rounded  flex gap-6 min-w-[330px] p-4  group/arrow  ${mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
+              className={`info-14-16 items-center rounded  flex gap-6 w-full max-w-full p-4  group/arrow  ${mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
                 }`}
               onClick={() => {
                 signOut()

@@ -249,6 +249,7 @@ const Header = (props) => {
                  height={true}
                  fixed_cta="Log Out"
                  svgType="log_out"
+                 padding_bottom={true}
                />
              )}
            </div>
