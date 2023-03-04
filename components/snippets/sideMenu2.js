@@ -51,10 +51,10 @@ const SideMenu2 = ({ subMenu, assetMenu, setShowMenuOpen, showMenuOpen,session }
         </button>
        </div>
         <div className="mt-12">
-          <h4 className="section-secondary-heading font-noto">BGUSER-{session && session.user.own_code}</h4>
+          <h4 className="section-secondary-heading font-noto">BGUSER-{session && session?.user?.own_code}</h4>
           <span className="flex gap-2 items-center mt-3">
           <span className="info-14-20">UID </span>
-          <span className="info-14-20" ref={ref}>5936496768 </span>
+          <span className="info-14-20" ref={ref}>{session && session?.user?.UID} </span>
          
           <button
                   onClick={() => {

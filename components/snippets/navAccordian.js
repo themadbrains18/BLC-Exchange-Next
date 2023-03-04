@@ -94,7 +94,7 @@ const NavAccordian = (props) => {
 
                       {elem.heading === 'UserID' &&
                         <>
-                          {elem.desc}
+                          {props.sessions !== undefined && props.sessions?.UID}
                         </>
                       }
 
