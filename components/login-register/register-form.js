@@ -14,6 +14,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { min } from 'moment';
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 const schema = yup.object().shape({
     email: yup.string().email().required("Must enter email address"),
@@ -22,9 +24,9 @@ const schema = yup.object().shape({
 
 const phoneschema = yup.object().shape({
     password: yup.string().min(8).max(32).required(),
-    phone: yup.number()
-    .typeError('Mobile must be required')
-    .required("Please provide mobile number.")
+    phone: yup.string().matches(phoneRegExp, 'Phone number is not valid')
+    .min(10)
+    .max(10)
 });
 
 const RegisterForm = () => {
