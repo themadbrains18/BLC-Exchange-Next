@@ -26,7 +26,7 @@ const WithDrawTable = ({data}) => {
               Operation
             </h4>
           </div>
-          {data ? (
+          {data && data.length >0 ? (
             <div>
                {
                 data.map((row, index) => {
