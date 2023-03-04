@@ -117,7 +117,7 @@ const SideMenu2 = ({ subMenu, assetMenu, setShowMenuOpen, showMenuOpen,session }
           })}
 
       </div>
-        <div className="border-t fixed right-0 max-w-[320px] w-full bottom-0 pt-2  z-[9] border-grey  -ml-5 bg-white dark:bg-black-v-2">
+        <div className={`${showMenuOpen ? "right-[0%]" : "!-right-[100%] "} duration-300 border-t fixed right-0 max-w-[320px] w-full bottom-0 pt-2  z-[9] border-grey  -ml-5 bg-white dark:bg-black-v-2`}>
           <button
             className={`info-14-16 items-center rounded  flex gap-6 w-full p-4   ${
               mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
