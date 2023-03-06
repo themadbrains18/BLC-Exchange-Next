@@ -48,7 +48,7 @@ const Step1 = ({ country }) => {
     const [showId, setShowId] = useState(false);
     const [userId, setUserId] = useState('ID Card');
     const [formData, setFormData] = useState({});
-    const [countryName, setCountryName] = useState('Botswana')
+    const [countryName, setCountryName] = useState('India')
     const dropdown = useRef(null);
     useEffect(() => {
         country && setCountryName(country); setValue('country', country);

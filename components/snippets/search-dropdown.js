@@ -58,7 +58,7 @@ const SearchDropdown = ({
     setData(obj);
   };
 
-  const selectCounteryName = (event) => {
+  const selectCounteryName = (event,code) => {
     let countryName = document.querySelector("#countryName");
     let SelectedValue = event.target.innerHTML;
     setShowDropdown(false);
@@ -66,6 +66,9 @@ const SearchDropdown = ({
     setCountryName(SelectedValue);
     if(selectedCountry !== undefined ){
       selectedCountry(SelectedValue);
+    }
+    if(setDialCode !=undefined){
+      setDialCode(code)
     }
     
   };
@@ -75,7 +78,7 @@ const SearchDropdown = ({
       event.currentTarget.querySelector("#codeValue").innerHTML;
     setDropdownPhone(false);
     countryCode.innerHTML = SelectedValue;
-    // setDialCode(SelectedValue)
+    setDialCode(SelectedValue)
   };
 
   return (
@@ -104,7 +107,7 @@ const SearchDropdown = ({
                     <li
                       className="cursor-pointer info-14 !text-black dark:!text-white px-4 hover:bg-[#cccccc1f]"
                       onClick={(event) => {
-                        selectCounteryName(event);
+                        selectCounteryName(event, e.code);
                       }}
                     >
                       {e.country}

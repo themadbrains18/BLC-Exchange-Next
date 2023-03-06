@@ -8,7 +8,7 @@ import Link from "next/link";
 const VerificationType = ({session}) => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [active, setActive] = useState(1)
-    const [countryName, setCountryName] = useState('Botswana')
+    const [countryName, setCountryName] = useState('India')
     const [step, setStep] = useState(0)
     const dropdown = useRef(null);
     const { mode } = useContext(Context)

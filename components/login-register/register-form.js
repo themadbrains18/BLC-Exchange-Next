@@ -19,14 +19,16 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 
 const schema = yup.object().shape({
     email: yup.string().email().required("Must enter email address"),
-    password: yup.string().min(8).max(32).required()
+    password: yup.string().min(8).max(32).required(),
+    terms: yup.bool().oneOf([true], 'Checkbox Terms of Use is required')
 });
 
 const phoneschema = yup.object().shape({
     password: yup.string().min(8).max(32).required(),
     phone: yup.string().matches(phoneRegExp, 'Phone number is not valid')
-    .min(10)
-    .max(10)
+        .min(10)
+        .max(10),
+    terms: yup.bool().oneOf([true], 'Checkbox Terms of Use is required')
 });
 
 const RegisterForm = () => {
@@ -42,6 +44,7 @@ const RegisterForm = () => {
     const [referCode, setReferCode] = useState('')
     const dropdown = useRef(null);
     const codedropdown = useRef(null);
+    const [countryName, setCountryName] = useState('India')
     const ref = useRef()
 
 
@@ -191,7 +194,7 @@ const RegisterForm = () => {
     }
 
 
-    const validateNumber=(e)=>{
+    const validateNumber = (e) => {
         var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
 
         console.log(x);
@@ -214,18 +217,18 @@ const RegisterForm = () => {
                                 <p className='info-14 hover:!text-grey inline-flex items-center gap-3 cursor-pointer' onClick={(e) => { setShowDropdown(!showDropdown) }}>
                                     <span>Country / Region:</span>
                                     <span className="flex items-center gap-2 ">
-                                        <span className="text-black dark:text-white" id="countryName">Botswana</span>
+                                        <span className="text-black dark:text-white" id="countryName">{countryName}</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                                     </span>
                                 </p>
                                 {
                                     showDropdown != false &&
-                                    <SearchDropdown setShowDropdown={setShowDropdown} country={true} />
+                                    <SearchDropdown setShowDropdown={setShowDropdown} setCountryName={setCountryName} country={true} setDialCode={setDialCode} />
                                 }
                             </div>
                             <div className='flex gap-8 mb-8'>
-                                <button onClick={() => { setShow(1);}} name="preferredContact" className={`info-14 border-b-2 border-transparent pb-1  ${show === 1 ? " !border-primary !text-primary" : ""}`}>Email</button>
-                                <button onClick={() => { setShow(2); }} name="preferredContact" className={`info-14 border-b-2 border-transparent pb-1  ${show === 2 ? " !border-primary  !text-primary " : ""}`} >Mobile number</button>
+                                <button onClick={() => { setShow(1); setValue('password',''); }} name="preferredContact" className={`info-14 border-b-2 border-transparent pb-1  ${show === 1 ? " !border-primary !text-primary" : ""}`}>Email</button>
+                                <button onClick={() => { setShow(2); setValue('password','') }} name="preferredContact" className={`info-14 border-b-2 border-transparent pb-1  ${show === 2 ? " !border-primary  !text-primary " : ""}`} >Mobile number</button>
                             </div>
 
                             {/* form */}
@@ -298,9 +301,10 @@ const RegisterForm = () => {
                                     {/* spinner */}
                                 </button>
                                 <div className="relative mb-5 inline-block mt-[8px]">
-                                    <input id="checkbox" type="checkbox" className="hidden agree_cta" />
+                                    <input id="checkbox" name='terms' type="checkbox" className="hidden agree_cta" {...register('terms')} />
                                     <label htmlFor="checkbox" className="relative info-14 hover:!text-grey pl-[25px] after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-[16px] after:h-[16px] cursor-pointer">I agree to the <Link href="#" className="text-primary">Terms of Use</Link></label>
                                 </div>
+                                <p className="!text-red-700 info-12">{errors.terms?.message}</p>
                             </form>
 
 
