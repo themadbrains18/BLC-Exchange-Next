@@ -6,6 +6,7 @@ import Faq from '@/components/oneClickBuy/faq'
 import Hall from '../oneClickBuy/hall';
 import Dropdown from './dropdown';
 import {  useSession } from "next-auth/react"
+import VerificationPopup from "./verification-popup";
 
 const SubHeader = () => {
   const { mode, setMode, login,topBar,setClick } = useContext(Context);
@@ -28,8 +29,19 @@ const SubHeader = () => {
       svgType : "overview",
       linkUrl : "manage"
     },
+    {
+      linkText: "Post ad",
+      svgType : "ad",
+      linkUrl : "manage",
+      compName : "VerificationPopup"
+    },
+    {
+      linkText: "My ads",
+      svgType : "myad",
+      linkUrl : "manage"
+    },
   ];
-
+  const [popup, showPopup] = useState(false);
   return (
     <>
     
@@ -56,9 +68,10 @@ const SubHeader = () => {
                 
               </div>
               <div>
-                  <Dropdown subMenu={dropDownItems} right={true}  />b 
+                  <Dropdown subMenu={dropDownItems} right={true} showPopup={showPopup}/>
               </div>
             </div>
+            <VerificationPopup popupData={{popup,showPopup}}/>
         </div>
       </section>
       {show===1 &&
