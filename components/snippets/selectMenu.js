@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 
 import Context from "../contexts/context";
-const SelectMenu = ({ clear, returnvals, type, all, selectMenu, selectNetwork, getDepositAddress, network, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
+const SelectMenu = ({ clear, returnvals, type, all, selectMenu, selectNetwork,selectTime,selectMethod, getDepositAddress, network, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [value, setValue] = useState('');
@@ -46,7 +46,6 @@ const SelectMenu = ({ clear, returnvals, type, all, selectMenu, selectNetwork, g
   const eventManager = (e, i) => {
     if (type == "withdraw") {
       setValue(e.symbol)
-      returnvals({ "type": "token", "obj": e })
 
     } else if (type == "days") {  // please add other event under if else block
       setValue(e)
@@ -55,6 +54,12 @@ const SelectMenu = ({ clear, returnvals, type, all, selectMenu, selectNetwork, g
     else {
       (network ? setValue(e.networkName) : setValue(e))
       selectNetwork && selectNetwork(e)
+      selectMethod && selectMethod(e)
+      if(type== 'deposit'){
+        setValue(e)
+        returnvals({ "type": "token", "obj": e })
+      }
+      selectTime && selectTime(e)
     }
 
 
@@ -76,7 +81,7 @@ const SelectMenu = ({ clear, returnvals, type, all, selectMenu, selectNetwork, g
             type="text"
             name=""
             id=""
-            className="max-w-[150px] sm:max-w-none caret-white placeholder:text-disable-clr p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
+            className=" max-w-none caret-white placeholder:text-disable-clr p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
             placeholder="Please Select"
             value={(transfer && fromValue !== '') ? fromValue : value}
             onClick={() => {
@@ -137,7 +142,8 @@ const SelectMenu = ({ clear, returnvals, type, all, selectMenu, selectNetwork, g
                     onClick={() => {
                       console.log("-====network", network)
                       setValue("ALL");
-                      selectNetwork("all")
+                      selectNetwork && selectNetwork('all')
+                      returnvals({ "type": "token", "obj": 'all' })
                       setOpen(false)
                       setActive("all");
                     }}

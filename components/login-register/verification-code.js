@@ -13,6 +13,8 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
     const [fillOtp, setOtp] = useState();
     const [emailOtp, setEmailOtp] = useState();
     const [showSuccess, setShowSuccess] = useState(1);
+    const [sendAgainEmailOtp1, setSendAgainEmailOtp1] = useState("Send Again");
+    const [sendAgainMobileOtp1, setSendAgainMobileOtp1] = useState("Send Again");
 
     // console.log(loginData, '=======login Data')
 
@@ -209,6 +211,10 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
             body: JSON.stringify(emailOtpForm)
         }).then(response => response.json());
 
+        if(otpResponse){
+            setSendAgainEmailOtp1("OTP resent to your registered email.")
+        }
+
         if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
 
         }
@@ -221,6 +227,10 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
             method: "POST",
             body: JSON.stringify(smsOtpForm)
         }).then(response => response.json());
+        if(otpResponse){
+
+            setSendAgainMobileOtp1("OTP resent to your registered Mobile No.")
+        }
 
         if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
 
@@ -253,9 +263,6 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                             <p className='info-14 text-black dark:!text-white dark:hover:!text-white hover:!text-black'>Enter the verification code below.</p>
 
                             <div className="relative hidden md:flex flex-col items-center group">
-                                <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill={mode === "dark" ? "white" : "currentcolor"} viewBox="0 0 20 20" >
-                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-                                </svg>
                                 <div className="absolute bottom-0  flex-col items-center hidden mb-6 group-hover:flex min-w-[350px] w-full p-[10px] bg-black">
                                     <div className="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap shadow-lg">
 
@@ -290,7 +297,7 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                                             <input type="number" className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border text-center  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code5" />
                                             <input type="number" className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
                                         </div>
-                                        <button className='info-14 block mt-[10px]' onClick={(e) => sendAgainEmailOtp(e)}>Send Again</button>
+                                        <button className='info-14 block mt-[10px]' onClick={(e) => sendAgainEmailOtp(e)}>{ sendAgainEmailOtp1 }</button>
                                     </div>
                                 }
                                 {/* phone verification code feilds */}
@@ -306,7 +313,7 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                                             <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
                                         </div>
                                         <p></p>
-                                        <button className='info-14 block mt-[10px]' onClick={(e) => sendAgainMobileOtp(e)}>Send Again</button>
+                                        <button className='info-14 block mt-[10px]' onClick={(e) => sendAgainMobileOtp(e)}>{ sendAgainMobileOtp1 }</button>
                                     </div>
                                 }
 

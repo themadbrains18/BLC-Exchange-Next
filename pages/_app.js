@@ -12,6 +12,7 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
   //  const mode=useContext(UserContext)
 
   const [mode, setMode] = useState("dark");
+  const [verifyData, setVerifyData] = useState(false);
   const [login, setLogin] = useState(false);
   const [click, setClick] = useState(false);
   const [loader, setLoader] = useState(true);
@@ -72,6 +73,8 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
               padding,
               topBar,
               setTopBar,
+              verifyData,
+              setVerifyData
             }}
           >
             <div
