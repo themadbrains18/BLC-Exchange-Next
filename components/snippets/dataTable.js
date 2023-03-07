@@ -43,15 +43,15 @@ const DataTable = ({ heading, data, assetData, spot,trade,convertPrice }) => {
                   return (
                     <>
 
-                      <div className="col info-14-16 flex text-center gap-2 p-3 text-black">
+                      <div className="col info-14-16 flex  gap-2 p-3 text-black">
                         <img src={elem.image} alt='token' className='w-6 h-6 rounded-full'></img>
                         {elem.symbol}
                       </div>
-                      <div className="col info-14-16 text-center p-3 text-black dark:text-white">
+                      <div className="col info-14-16  p-3 text-black dark:text-white">
                         {balance}
                       </div>
-                      <div className="col info-14-16  p-3 text-center text-black dark:text-white"> 0.000000</div>
-                      <div className="col info-14-16  p-3 text-center text-black dark:text-white">{usdtValue}</div>
+                      <div className="col info-14-16  p-3  text-black dark:text-white"> 0.000000</div>
+                      <div className="col info-14-16  p-3  text-black dark:text-white">{usdtValue}</div>
                       <div className="col flex  justify-between gap-5 p-3 info-12 !text-primary">
                         <Link href="/asset/transfer" >Transfer</Link>
                         <Link href='asset/deposit' >Deposit</Link>

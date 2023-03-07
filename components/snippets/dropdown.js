@@ -1,11 +1,11 @@
+
 import Icons from "../snippets/icons";
 import Image from "next/image";
 import Context from "../contexts/context";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
-
-import { signOut } from "next-auth/react"
-
+import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
 const Dropdown = ({
   subMenu,
@@ -15,10 +15,16 @@ const Dropdown = ({
   fixed_cta,
   specialMenu,
   svgType,
+  showPopup,
   padding_bottom
 }) => {
-  const { mode, setLogin, heightUpdate } = useContext(Context);
-
+  const { mode, setLogin, heightUpdate, verifyData, setVerifyData } = useContext(Context);
+  const { data: session } = useSession()
+  useEffect(() => {
+    if (session?.user?.email !== '' && session?.user?.kycstatus !== undefined && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
+      setVerifyData(true)
+    }
+  })
 
   return (
     <>
@@ -37,7 +43,7 @@ const Dropdown = ({
                     {
                       e.subMenu &&
                       e.subMenu.map((elem, index) => {
-                        
+
                         return (
                           <Link
                             href={`${elem.linkUrl}`}
@@ -45,7 +51,7 @@ const Dropdown = ({
                             className={`items-center rounded flex gap-6 min-w-[330px] p-4 group/arrow  ${mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
                               } `}
                             style={{ maxHeight: "calc(100vh - 120px)" }}
-                            onClick={()=>heightUpdate()}
+                            onClick={() => heightUpdate()}
                           >
                             <Icons type={elem.svgType} />
                             <div className="grow">
@@ -74,30 +80,54 @@ const Dropdown = ({
           subMenu != "" &&
           subMenu &&
           subMenu.map((e, index) => {
-            return (
-              // `${e.linkUrl}`
-              <Link
-                href={{pathname : `${e.linkUrl}`}}
-                key={index}
-                className={`items-center rounded flex gap-6 min-w-[330px] p-4 group/arrow  ${mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
-                  }`} onClick={()=>heightUpdate()}
-              >
-                <Icons type={e.svgType} />
-                <div className="grow">
-                  <h3 className="info-14-16">{e.linkText}</h3>
-                  <p className="info-12 mt-1 max-w-[135px] w-full">{e.desc}</p>
+            if (e.compName == 'VerificationPopup' && !verifyData) {
+              return (
+                <div
+                  key={index}
+                  className={`items-center rounded flex gap-6 min-w-[330px] p-4 group/arrow  ${mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"}`}
+                  onClick={() => { showPopup(true) }}>
+                  <Icons type={e.svgType} />
+                  <div className="grow">
+                    <h3 className="info-14-16">{e.linkText}</h3>
+                    <p className="info-12 mt-1 max-w-[135px] w-full">{e.desc}</p>
+                  </div>
+                  {!arrow && (
+                    <Image
+                      className="hidden group-hover/arrow:block "
+                      src="/assets/icons/rightArrow.svg"
+                      height={25}
+                      width={25}
+                      alt="Right Arrow"
+                    />
+                  )}
                 </div>
-                {!arrow && (
-                  <Image
-                    className="hidden group-hover/arrow:block "
-                    src="/assets/icons/rightArrow.svg"
-                    height={25}
-                    width={25}
-                    alt="Right Arrow"
-                  />
-                )}
-              </Link>
-            );
+              )
+            }
+            else {
+              return (
+                <Link
+                  href={{ pathname: `${e.linkUrl}` }}
+                  key={index}
+                  className={`items-center rounded flex gap-6 min-w-[330px] p-4 group/arrow  ${mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
+                    }`} onClick={() => heightUpdate()}
+                >
+                  <Icons type={e.svgType} />
+                  <div className="grow">
+                    <h3 className="info-14-16">{e.linkText}</h3>
+                    <p className="info-12 mt-1 max-w-[135px] w-full">{e.desc}</p>
+                  </div>
+                  {!arrow && (
+                    <Image
+                      className="hidden group-hover/arrow:block "
+                      src="/assets/icons/rightArrow.svg"
+                      height={25}
+                      width={25}
+                      alt="Right Arrow"
+                    />
+                  )}
+                </Link>
+              );
+            }
           })}
 
         {fixed_cta && (

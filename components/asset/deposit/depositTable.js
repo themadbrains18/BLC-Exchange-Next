@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import moment from 'moment';
 
 const DepositTable = ({ data }) => {
   return (
@@ -25,52 +26,34 @@ const DepositTable = ({ data }) => {
               Operation
             </h4>
           </div>
-          {data ? (
+          {data && data.length > 0 ? (
             <div>
-              <div className="row grid bg-white grid-cols-5 gap-4 justify-between border-b border-border-clr dark:bg-black-v-1">
+              {data.map((item)=>{
+                return <div className="row grid bg-white grid-cols-5 gap-4 justify-between border-b border-border-clr dark:bg-black-v-1">
                 <h4 className="col info-12  p-3 text-black dark:text-white">
                   {" "}
-                  no data{" "}
+                  {moment(item.createdAt).format('MMMM Do YYYY, h:mm:ss a') }
                 </h4>
                 <h4 className="col info-12  p-3 text-black dark:text-white">
                   {" "}
-                  no data
+                  {item.coinName}
                 </h4>
                 <h4 className="col info-12  p-3 text-black dark:text-white">
                   {" "}
-                  no data
+                  {item.amount}
                 </h4>
                 <h4 className="col info-12  p-3 text-black dark:text-white">
                   {" "}
-                  no data
+                  {item.successful == 1? 'Success' : 'Pending'}
                 </h4>
-                <h4 className="col info-12  p-3 text-black dark:text-white">
+                <h4 className="col info-12  p-3 text-black dark:text-white text-ellipsis break-words whitespace-nowrap overflow-hidden">
                   {" "}
-                  no data
-                </h4>
-              </div>
-              <div className="row grid bg-white grid-cols-5 gap-4 justify-between border-b border-border-clr dark:bg-black-v-1">
-                <h4 className="col info-12  p-3 text-black dark:text-white">
-                  {" "}
-                  no data
-                </h4>
-                <h4 className="col info-12  p-3 text-black dark:text-white">
-                  {" "}
-                  no data
-                </h4>
-                <h4 className="col info-12  p-3 text-black dark:text-white">
-                  {" "}
-                  no data
-                </h4>
-                <h4 className="col info-12  p-3 text-black dark:text-white">
-                  {" "}
-                  no data
-                </h4>
-                <h4 className="col info-12  p-3 text-black dark:text-white">
-                  {" "}
-                  no data
+                  {item.tx_hash}
                 </h4>
               </div>
+              })}
+              
+              
             </div>
           ) : (
             <div className="xl:grid xl:place-content-center w-full p-4">
