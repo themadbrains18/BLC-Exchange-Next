@@ -11,12 +11,15 @@ const Signup = () => {
         <>
             {session === null &&
                 <form className="flex items-center gap-3 max-w-[485px] w-full mt-8 mx-auto md:mx-0 flex-col md:flex-row	">
-                    <Link href="/login" className='cta max-w-full md:max-w-[27%] w-full' type='submit' onClick={()=>heightUpdate()}>Log In</Link>
-                    <Link href="/register" className='cta max-w-full md:max-w-[27%] w-full' type='submit' onClick={()=>heightUpdate()}>Sign up</Link>
+                    <Link href="/login" className='cta max-w-full md:max-w-[27%] text-center w-full' type='submit' onClick={()=>heightUpdate()}>Log In</Link>
+                    <Link href="/register" className='cta max-w-full md:max-w-[27%] w-full text-center' type='submit' onClick={()=>heightUpdate()}>Sign up</Link>
                 </form>
             }
 
-            <div className='flex gap-3 mt-8 justify-between sm:justify-start '>
+
+             {/* /* it is icons of google and apple and it is temporary hide */}
+
+            {/* <div className='flex gap-3 mt-8 justify-between sm:justify-start '>
                 <Link href="#" className='p-3 bg-black-v-4 block max-w-[48%] md:md:max-w-none w-full md:w-auto md:inline-block rounded'>
                     <svg width={20} height={21} className="mx-auto" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_610_15204)">
@@ -44,7 +47,7 @@ const Signup = () => {
                         </defs>
                     </svg>
                 </Link>
-            </div>
+            </div> */}
         </>
     )
 }

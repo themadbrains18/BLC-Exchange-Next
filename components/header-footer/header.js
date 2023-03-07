@@ -157,21 +157,21 @@ const Header = (props) => {
           </div>
 
           <div className="flex gap-2 items-center">
-            <Link
-              href="/register"
-              className={`transparent-cta hidden ${login2 === true ? "lg:hidden" : "lg:block"
-                }`} onClick={()=>heightUpdate()}
-            >
-              sign up
-            </Link>
-            <Link
+          <Link
               href="/login"
-              className={`cta hidden ${login2 === true ? "lg:hidden" : "lg:block"
+              className={`border border-primary info-14-16 px-[20.5px] py-[8.75px] rounded hidden ${login2 === true ? "lg:hidden" : "lg:block"
                 }`} onClick={()=>heightUpdate()}
             >
               Log-in
             </Link>
-
+            <Link
+              href="/register"
+              className={` cta  hidden ${login2 === true ? "lg:hidden" : "lg:block"
+                }`} onClick={()=>heightUpdate()}
+            >
+              sign up
+            </Link>
+        
             <div
               className={`hidden relative   group  hover:pb-8 hover:-mb-8  ${login2 === true ? "lg:block" : "lg:hidden"
                 }`}
@@ -339,7 +339,7 @@ const Header = (props) => {
 
 
               {/* bell   */}
-              <button className="ml-3 group relative">
+              <button className="pl-3 group relative hover:pb-8 hover:-mb-8">
 
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -376,7 +376,7 @@ const Header = (props) => {
               </button>
 
               {/* global  */}
-              <button className="group relative">
+              <button className="group  relative">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
