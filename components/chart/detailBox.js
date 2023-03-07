@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import Context from "../contexts/context";
 import ActiveCta from "../snippets/activeCta";
-import Graph from "/components/chart/graph";
+import Graph from "components/chart/graph";
+
 const DetailBox = ({ mobile }) => {
   let ctas = ["Order Book", "Markets Trades"];
   let ctaMobile = ["Chart", "Order Book", "Markets Trades"];
@@ -14,7 +15,7 @@ const DetailBox = ({ mobile }) => {
   return (
     <>
       <section
-        className={` dark:bg-black-v-3 h-full border-b-4 border-primary-hover ${
+        className={` dark:bg-black-v-3 h-full border-b-4 ${mode === 'dark' ? 'border-black' : 'border-gray-200'} ${
           mobile ? "w-full" : "min-w-[340px]"
         }`}
       >

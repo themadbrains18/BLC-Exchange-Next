@@ -1,13 +1,15 @@
 // TradingViewWidget.jsx
 
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef,useState } from 'react';
 import Context from '../contexts/context';
 
 let tvScriptLoadingPromise;
 
-export default function Graph() {
+export default function Graph({symbol}) {
   const onLoadScriptRef = useRef();
-const {mode}=useContext(Context)
+  const { mode } = useContext(Context);
+  const [width, setWidth] = useState(1024)
+
   useEffect(
     () => {
       onLoadScriptRef.current = createWidget;
@@ -24,6 +26,10 @@ const {mode}=useContext(Context)
         });
       }
 
+      let innerWidth = window.innerWidth;
+
+      setWidth(innerWidth);
+
       tvScriptLoadingPromise.then(() => onLoadScriptRef.current && onLoadScriptRef.current());
 
       return () => onLoadScriptRef.current = null;
@@ -32,28 +38,28 @@ const {mode}=useContext(Context)
         if (document.getElementById('tradingview_19574') && 'TradingView' in window) {
           new window.TradingView.widget({
             autosize: true,
-            symbol: "NASDAQ:AAPL",
+            symbol: symbol,
             interval: "D",
             timezone: "Etc/UTC",
-            theme: (mode === "dark") ? "dark": "light",
+            theme: (mode === "dark") ? "dark" : "light",
             style: "1",
             locale: "in",
             toolbar_bg: "#f1f3f6",
             enable_publishing: false,
             allow_symbol_change: true,
+            hide_side_toolbar: innerWidth < 768 ? true : false,
             container_id: "tradingview_19574"
           });
         }
       }
     },
-    [mode]
+    [symbol,mode]
   );
 
   return (
     <div className='tradingview-widget-container '>
-      <div id='tradingview_19574' className='h-[700px]' />
+      <div id='tradingview_19574' className={width < 768 ? 'h-[320px]' : 'h-[500px]' } />
       <div className="tradingview-widget-copyright">
-        
       </div>
     </div>
   );

@@ -1,19 +1,29 @@
 import Image from "next/image";
 import { useContext } from "react";
 import Context from "/components/contexts/context";
+import Router from "next/router";
 
-const Header = ({setOpen,open}) => {
+const Header = ({setOpen,open,coins, symbol}) => {
   const { mode } = useContext(Context);
+
+  let filterCoinData = [];
+  if(coins !==undefined){
+    filterCoinData = coins.filter((item)=>{
+      return item.SYMBOL === symbol
+    });
+  }
+  
+
   return (
     <>
-      <section className="p-5 dark:bg-black-v-1 border-t-[3px] border-b-4 border-primary-hover">
+      <section className={`p-5 dark:bg-black-v-1 border-t-[3px] border-b-4 ${mode === 'dark' ? 'border-black' : 'border-gray-200'}`}>
         <div className="flex gap-3 justify-between items-center">
           <div className="grid grid-cols-3 md:grid-cols-6 gap-3 justify-items-center items-center ">
             <button className="flex items-center gap-2 info-14-20 " onClick={(()=>{
                 setOpen(!open)
                 
             })}>
-              DOGE / USDT
+              {symbol !==undefined  ? symbol : ''} / USDT
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -32,26 +42,26 @@ const Header = ({setOpen,open}) => {
             <div className="">
               <h4 className="info-14 leading-3 hover:!text-grey">Last Price</h4>
               <span className="info-14 leading-3 !text-primary">
-                0.082041 ≈$ 0.082041
+              {filterCoinData && filterCoinData.length>0 ? filterCoinData[0].PRICE : 0} ≈$ {filterCoinData && filterCoinData.length>0 ? filterCoinData[0].PRICE : 0}
               </span>
             </div>
             <div className="">
               <h4 className="info-14 leading-3 hover:!text-grey">Change</h4>
-              <span className="info-14 leading-3 !text-primary">+ 1.47 %</span>
+              <span className="info-14 leading-3 !text-primary">{filterCoinData && filterCoinData.length>0 ? filterCoinData[0].CHANGE24HOUR : 0}</span>
             </div>
             <div className="">
               <h4 className="info-14 leading-3 hover:!text-grey">24H VOL</h4>
               <span className="info-14 leading-3 !text-primary">
-                45087579.8379 DOGE
+              {filterCoinData && filterCoinData.length>0 ? filterCoinData[0].VOLUME24HOUR : 0}
               </span>
             </div>
             <div className="">
               <h4 className="info-14 leading-3 hover:!text-grey">High</h4>
-              <span className="info-14 leading-3 !text-primary">0.083085</span>
+              <span className="info-14 leading-3 !text-primary">{filterCoinData && filterCoinData.length>0 ? filterCoinData[0].HIGH24HOUR : 0}</span>
             </div>
             <div className="">
               <h4 className="info-14 leading-3 hover:!text-grey">Low</h4>
-              <span className="info-14 leading-3 !text-primary">0.079910</span>
+              <span className="info-14 leading-3 !text-primary">{filterCoinData && filterCoinData.length>0 ? filterCoinData[0].LOW24HOUR  : 0}</span>
             </div>
             <div></div>
           </div>

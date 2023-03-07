@@ -1,14 +1,14 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import Hero from "/components/home/hero";
-import Aizone from "/components/home/ai-zone";
-import Trustworthy from "/components/home/trustworthy";
-import Tutorials from "/components/home/tutorials";
-import Sponsor from "/components/home/sponsor";
-import FlowSliderSec from "/components/home/flowSliderSec";
-import Trending from "/components/home/trending";
-import Download from "/components/home/download";
+import Hero from "components/home/hero";
+import Aizone from "components/home/ai-zone";
+import Trustworthy from "components/home/trustworthy";
+import Tutorials from "components/home/tutorials";
+import Sponsor from "components/home/sponsor";
+import FlowSliderSec from "components/home/flowSliderSec";
+import Trending from "components/home/trending";
+import Download from "components/home/download";
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -26,7 +26,7 @@ export default function Home(props) {
       <Hero /> 
       <FlowSliderSec />
       <Aizone />
-      <Trending />
+      <Trending coins={props.coins}/>
       <Trustworthy />
       <Download /> 
       <Tutorials />
@@ -36,8 +36,15 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
+  
+  let tokenList = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/token/marketcoin`, {
+    method: "GET"
+  }).then(response => response.json());
+
   return {
-    props: { name: "prince" }, // will be passed to the page component as props
+    props: { 
+      coins: tokenList.data.data,
+     }, // will be passed to the page component as props
   };
 }
 

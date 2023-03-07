@@ -37,13 +37,14 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
       setLoader(false);
     }, 1000);
 
-    window.addEventListener("resize", ()=>{
-      if(ref.current!==null){
-        padding = ref?.current?.offsetHeight;
-      } 
-      // console.log(padding)
-      setPad(padding);
-      ref2.current.setAttribute("style", `padding-top: ${padding}px`);
+    window.addEventListener("resize", () => {
+      if (ref.current !== null) {
+        padding = ref.current.offsetHeight;
+        // console.log(padding)
+        setPad(padding);
+        ref2.current.setAttribute("style", `padding-top: ${padding}px`);
+      }
+
     });
   }, []);
 

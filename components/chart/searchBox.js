@@ -2,15 +2,31 @@ import React, { useContext, useState } from "react";
 import Icons from "../snippets/icons";
 import Image from "next/image";
 import Context from "../contexts/context";
-const SearchBox = ({open,setOpen}) => {
-  const [data, setData] = useState(true);
+import Link from "next/link";
+
+const SearchBox = ({ open, coins }) => {
+  const [data, setData] = useState(coins);
   const [iconChange, setIconChange] = useState(2);
   const [iconChange1, setIconChange1] = useState(2);
   const [iconChange2, setIconChange2] = useState(2);
   const { mode } = useContext(Context);
+
+  const filterCoins=(e)=>{
+
+    if(e.target.value === ''){
+      setData(coins);
+      return;
+    }
+    let filterData = coins.filter((item)=>{
+      return item.SYMBOL.toLowerCase().includes(e.target.value) 
+    })
+
+    setData(filterData);
+  }
+
   return (
     <>
-      <aside className={`absolute bg-white border-b-4 border-primary-hover bottom-[100%] ${open && "!bottom-[0%] z-[4] h-[70%] w-full"}  lg:static  dark:bg-black-v-3 ` }>
+      <aside className={`absolute bg-white border-b-4 ${mode === 'dark' ? 'border-black' : 'border-gray-200'} bottom-[100%] ${open && "!bottom-[0%] z-[4] h-[70%] w-full"}  lg:static  dark:bg-black-v-3 `}>
         <div className=" overscroll-none overflow-y-auto h-[100vh]">
           <div className="flex gap-4 p-3">
             <div className="flex  grow">
@@ -21,7 +37,7 @@ const SearchBox = ({open,setOpen}) => {
                     className="Search form-control relative flex-auto min-w-0 block w-full pl-7 pr-2 py-1 text-base font-normal text-gray-700 bg-transparent bg-clip-padding border border-solid border-grey rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-transparent focus:border-primary hover:border-primary focus:outline-none dark:text-white"
                     placeholder="Search"
                     aria-label="Search"
-                    aria-describedby="button-addon2"
+                    aria-describedby="button-addon2" onChange={(e)=>filterCoins(e)}
                   />
                   <svg
                     aria-hidden="true"
@@ -55,8 +71,8 @@ const SearchBox = ({open,setOpen}) => {
                     iconChange === 0
                       ? setIconChange(1)
                       : iconChange === 1
-                      ? setIconChange(2)
-                      : setIconChange(0);
+                        ? setIconChange(2)
+                        : setIconChange(0);
                   }}
                 >
                   <span>Coin</span>
@@ -66,7 +82,7 @@ const SearchBox = ({open,setOpen}) => {
                       id="Layer_1"
                       xmlns="http://www.w3.org/2000/svg"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
-                     
+
                       height={12}
                       width={12}
                       fill={
@@ -92,7 +108,7 @@ const SearchBox = ({open,setOpen}) => {
                       id="Layer_1"
                       xmlns="http://www.w3.org/2000/svg"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
-                
+
                       fill={
                         mode === "dark"
                           ? iconChange === 1
@@ -121,8 +137,8 @@ const SearchBox = ({open,setOpen}) => {
                     iconChange1 === 0
                       ? setIconChange1(1)
                       : iconChange1 === 1
-                      ? setIconChange1(2)
-                      : setIconChange1(0);
+                        ? setIconChange1(2)
+                        : setIconChange1(0);
                   }}
                 >
                   <div>
@@ -135,7 +151,7 @@ const SearchBox = ({open,setOpen}) => {
                       id="Layer_1"
                       xmlns="http://www.w3.org/2000/svg"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
-                     
+
                       height={12}
                       width={12}
                       fill={
@@ -161,7 +177,7 @@ const SearchBox = ({open,setOpen}) => {
                       id="Layer_1"
                       xmlns="http://www.w3.org/2000/svg"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
-                  
+
                       fill={
                         mode === "dark"
                           ? iconChange1 === 1
@@ -190,8 +206,8 @@ const SearchBox = ({open,setOpen}) => {
                     iconChange2 === 0
                       ? setIconChange2(1)
                       : iconChange2 === 1
-                      ? setIconChange2(2)
-                      : setIconChange2(0);
+                        ? setIconChange2(2)
+                        : setIconChange2(0);
                   }}
                 >
                   <span>Change</span>
@@ -201,7 +217,7 @@ const SearchBox = ({open,setOpen}) => {
                       id="Layer_1"
                       xmlns="http://www.w3.org/2000/svg"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
-                  
+
                       height={12}
                       width={12}
                       fill={
@@ -227,7 +243,7 @@ const SearchBox = ({open,setOpen}) => {
                       id="Layer_1"
                       xmlns="http://www.w3.org/2000/svg"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
-                   
+
                       fill={
                         mode === "dark"
                           ? iconChange2 === 1
@@ -243,41 +259,31 @@ const SearchBox = ({open,setOpen}) => {
                     >
                       {" "}
                       <polygon points="0,96.879 193.129,289.379 386.257,96.879 " />{" "}
-                   
+
                     </svg>
                   </div>
                 </button>
               </div>
-              {data ? (
+              {data && data.length > 0 ? (
                 <div>
-                  <div className="row  bg-white flex justify-between border-b w-full  border-border-clr dark:bg-black-v-1">
-                    <h4 className="col info-12  p-3 text-black dark:text-white">
-                      {" "}
-                      no data
-                    </h4>
-                    <h4 className="col info-12  p-3 text-black dark:text-white">
-                      {" "}
-                      no data
-                    </h4>
-                    <h4 className="col info-12  p-3 text-black dark:text-white">
-                      {" "}
-                      no data
-                    </h4>
-                  </div>
-                  <div className="row  bg-white flex justify-between border-b border-border-clr dark:bg-black-v-1">
-                    <h4 className="col info-12  p-3 text-black dark:text-white">
-                      {" "}
-                      no data
-                    </h4>
-                    <h4 className="col info-12  p-3 text-black dark:text-white">
-                      {" "}
-                      no data
-                    </h4>
-                    <h4 className="col info-12  p-3 text-black dark:text-white">
-                      {" "}
-                      no data
-                    </h4>
-                  </div>
+                  {data.map((item) => {
+                    return <Link href={'/chart/'+item.SYMBOL}> <div className="row  bg-white flex justify-between border-b w-full  border-border-clr dark:bg-black-v-1">
+                      <h4 className="col info-12  p-3 text-black dark:text-white">
+                        {" "}
+                        {item.SYMBOL}
+                      </h4>
+                      <h4 className="col info-12  p-3 text-black dark:text-white">
+                        {" "}
+                        {item.PRICE.toFixed(2)}
+                      </h4>
+                      <h4 className="col info-12  p-3 text-black dark:text-white">
+                        {" "}
+                        {item.CHANGE24HOUR.toFixed(4)}
+                      </h4>
+                    </div></Link>
+                  })}
+
+
                 </div>
               ) : (
                 <div className="xl:grid xl:place-content-center w-full ">

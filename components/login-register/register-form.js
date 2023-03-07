@@ -12,9 +12,24 @@ import { useRouter } from 'next/router';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ref } from 'yup';
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { min } from 'moment';
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
-// import { checkUserRequest, registerRequest, sendOtp } from '@/Api';
+const schema = yup.object().shape({
+    email: yup.string().email().required("Must enter email address"),
+    password: yup.string().min(8).max(32).required(),
+    terms: yup.bool().oneOf([true], 'Checkbox Terms of Use is required')
+});
+
+const phoneschema = yup.object().shape({
+    password: yup.string().min(8).max(32).required(),
+    phone: yup.string().matches(phoneRegExp, 'Phone number is not valid')
+        .min(10)
+        .max(10),
+    terms: yup.bool().oneOf([true], 'Checkbox Terms of Use is required')
+});
 
 const RegisterForm = () => {
     const router = useRouter();
@@ -29,6 +44,7 @@ const RegisterForm = () => {
     const [referCode, setReferCode] = useState('')
     const dropdown = useRef(null);
     const codedropdown = useRef(null);
+    const [countryName, setCountryName] = useState('India')
     const ref = useRef()
 
 
@@ -48,12 +64,17 @@ const RegisterForm = () => {
             }
         }
         window.addEventListener("click", handleClick);
+
+
         // clean up
         return () => window.removeEventListener("click", handleClick);
+
+
     }, [])
 
-    let { register, setValue, handleSubmit, watch, setError, formState: { errors } } = useForm();
-
+    let { register, setValue, handleSubmit, watch, setError, formState: { errors } } = useForm({
+        resolver: yupResolver(show === 1 ? schema : phoneschema),
+    });
 
 
     const showPass = (e) => {
@@ -173,6 +194,13 @@ const RegisterForm = () => {
     }
 
 
+    const validateNumber = (e) => {
+        var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+
+        console.log(x);
+    }
+
+
 
     return (
         <section className='dark:bg-black-v-5 !py-10 lg:!py-20' >
@@ -189,18 +217,18 @@ const RegisterForm = () => {
                                 <p className='info-14 hover:!text-grey inline-flex items-center gap-3 cursor-pointer' onClick={(e) => { setShowDropdown(!showDropdown) }}>
                                     <span>Country / Region:</span>
                                     <span className="flex items-center gap-2 ">
-                                        <span className="text-black dark:text-white" id="countryName">Botswana</span>
+                                        <span className="text-black dark:text-white" id="countryName">{countryName}</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                                     </span>
                                 </p>
                                 {
                                     showDropdown != false &&
-                                    <SearchDropdown setShowDropdown={setShowDropdown} country={true} />
+                                    <SearchDropdown setShowDropdown={setShowDropdown} setCountryName={setCountryName} country={true} setDialCode={setDialCode} />
                                 }
                             </div>
                             <div className='flex gap-8 mb-8'>
-                                <button onClick={() => { setShow(1); setValue("preferredContact", 'Email') }} name="preferredContact" className={`info-14 border-b-2 border-transparent pb-1  ${show === 1 ? " !border-primary !text-primary" : ""}`}>Email</button>
-                                <button onClick={() => { setShow(2); setValue("preferredContact", 'Phone') }} name="preferredContact" className={`info-14 border-b-2 border-transparent pb-1  ${show === 2 ? " !border-primary  !text-primary " : ""}`} >Mobile number</button>
+                                <button onClick={() => { setShow(1); setValue('password',''); }} name="preferredContact" className={`info-14 border-b-2 border-transparent pb-1  ${show === 1 ? " !border-primary !text-primary" : ""}`}>Email</button>
+                                <button onClick={() => { setShow(2); setValue('password','') }} name="preferredContact" className={`info-14 border-b-2 border-transparent pb-1  ${show === 2 ? " !border-primary  !text-primary " : ""}`} >Mobile number</button>
                             </div>
 
                             {/* form */}
@@ -208,11 +236,13 @@ const RegisterForm = () => {
                                 {
                                     show === 1 &&
                                     <div className=' mb-4'>
-                                        <input type="email" placeholder="Email" className="block  px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="email"
-                                            {...register('email', { required: show === 1 ? true : false })} />
-                                        {errors.email && errors.email.type === "required" && (
+                                        <input type="email" placeholder="Email" className="block  px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary"
+                                            name={show === 1 ? "email" : ''}
+                                            {...register('email')} aria-invalid={errors.email ? "true" : "false"} />
+                                        {/* {errors.email && errors.email.type === "required" && (
                                             <span role="alert" className="!text-red-700 info-12">This is required</span>
-                                        )}
+                                        )} */}
+                                        <p className="!text-red-700 info-12">{errors.email?.message}</p>
                                     </div>
                                 }
                                 {
@@ -223,30 +253,34 @@ const RegisterForm = () => {
                                                 <span className="text-black dark:text-white" id="counteryCode">+ <span>{dialCode}</span> </span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#656e6f" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                                             </div>
-                                            <input type="tel" placeholder="Mobile number" onFocus={() => setDropdownPhone(false)} className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary" name="phone"
-                                                {...register('phone', { required: show === 2 ? true : false, maxLength: 15 })} />
+                                            <input type="number" maxLength={99999999999} placeholder="Mobile number" onFocus={() => setDropdownPhone(false)} className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary"
+                                                name={show === 2 ? "phone" : ''}
+                                                {...register('phone')} />
                                             {
                                                 DropdownPhone != false &&
                                                 <SearchDropdown setDropdownPhone={setDropdownPhone} code={true} setDialCode={setDialCode} />
                                             }
 
                                         </div>
-                                        {errors.phone && errors.phone.type === "required" && (
+                                        {/* {errors.phone && errors.phone.type === "required" && (
                                             <span role="alert" className="!text-red-700 info-12">This is required</span>
-                                        )}
+                                        )} */}
+                                        <p className="!text-red-700 info-12">{errors.phone?.message}</p>
                                     </>
 
                                 }
 
                                 <div className="relative">
-                                    <input type="password" placeholder="Set password" id="pass_input" className="block  px-4 max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="password" {...register('password', { required: true })} />
+                                    <input type="password" placeholder="Set password" id="pass_input" className="block  px-4 max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="password" {...register('password')} />
                                     <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
                                     <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }} />
                                 </div>
 
-                                {errors.password && errors.password.type === "required" && (
+                                {/* {errors.password && errors.password.type === "required" && (
                                     <span role="alert" className="!text-red-700 info-12">This is required</span>
-                                )}
+                                )} */}
+                                <p className="!text-red-700 info-12">{errors.password?.message}</p>
+
                                 <div className="mt-5">
                                     <label className="inline-flex items-center gap-3 info-14 hover:!text-grey mb-3 cursor-pointer" onClick={() => { setActive(!active) }}>
                                         <span>Referral Code (Optional)</span>
@@ -267,9 +301,10 @@ const RegisterForm = () => {
                                     {/* spinner */}
                                 </button>
                                 <div className="relative mb-5 inline-block mt-[8px]">
-                                    <input id="checkbox" type="checkbox" className="hidden agree_cta" />
+                                    <input id="checkbox" name='terms' type="checkbox" className="hidden agree_cta" {...register('terms')} />
                                     <label htmlFor="checkbox" className="relative info-14 hover:!text-grey pl-[25px] after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-[16px] after:h-[16px] cursor-pointer">I agree to the <Link href="#" className="text-primary">Terms of Use</Link></label>
                                 </div>
+                                <p className="!text-red-700 info-12">{errors.terms?.message}</p>
                             </form>
 
 

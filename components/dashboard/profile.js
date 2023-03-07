@@ -70,7 +70,7 @@ const Profile = ({ sessions, lastLogin }) => {
                             </div>
                             <div>
                                 <p className='info-14'>User ID</p>
-                                <p className='info-14 text-black'>1222295006</p>
+                                <p className='info-14 text-black'>{sessions?.UID}</p>
                             </div>
                             <div>
                                 <p className='info-14'>Last Login</p>
