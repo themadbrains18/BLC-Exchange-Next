@@ -31,7 +31,7 @@ const P2PManagement = ({ tokenBalnces, session }) => {
     const schema = yup
         .object()
         .shape({
-            usertoken: yup.mixed().required('Please select at least one item...'),
+            usertoken: yup.string().required('Please select at least one item...'),
             amount: yup.number().positive("Value must be greater than 0 ").typeError('Please enter amount'),
             quantity: yup.number().positive("Value must be greater than 0 ").typeError('Please enter quantity'),
             min_limit: yup.number().positive("Value must be greater than 0 ").typeError('Please enter minimum limit'),
@@ -51,7 +51,7 @@ const P2PManagement = ({ tokenBalnces, session }) => {
         handleSubmit,
         reset,
         watch,
-        setError,
+        setError,clearErrors,
         formState: { errors },
     } = useForm({ resolver: yupResolver(schema) })
 
@@ -72,14 +72,18 @@ const P2PManagement = ({ tokenBalnces, session }) => {
                 }
             }
         }
+
+        clearErrors("usertoken")
     };
 
     const selectedMethod = async (item) => {
         setValue('method', item)
+        clearErrors("method")
     };
 
     const selectedNetwork = async (item) => {
         setValue('deadline', item)
+        clearErrors("deadline")
     };
 
     const onSubmit = async (data) => {
@@ -118,7 +122,7 @@ const P2PManagement = ({ tokenBalnces, session }) => {
                                 <li className={`${active === 3 ? 'border-r-[4px] border-primary pl-[15px] bg-[#1da2b41f]' : 'pl-[15px]'}`} ><Link className="info-14-16 py-[10px] block" href="" onClick={
                                     () => {
                                         let verified = false;
-                                        if (session?.user?.email !== '' && session?.user?.kycstatus !== null && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
+                                        if (session?.user?.email !== '' && session?.user?.kycstatus === 'success' && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
                                             verified = true;
                                         }
                                         if(verified){
@@ -173,7 +177,20 @@ const P2PManagement = ({ tokenBalnces, session }) => {
 
                             <div className="flex items-center justify-between  gap-[20px] mt-[50px]">
                                 <p className="info-16-22 dark:!text-white !text-black">Payment methods</p>
-                                <p className="info-14 cursor-pointer dark:!text-primary !text-primary" onClick={() => { showPopup(true); setClick(true) }}>+ Add payment methods</p>
+                                <p className="info-14 cursor-pointer dark:!text-primary !text-primary" onClick={() => {
+                                    let verified = false;
+                                    if (session?.user?.email !== '' && session?.user?.kycstatus === 'success' && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
+                                        verified = true;
+                                    }
+                                    if(verified){
+                                        // setClick(true)
+                                        alert('Add you payment now')
+                                    }
+                                    else{
+                                        showPopup(true);
+                                    }
+                                    // showPopup(true); setClick(true) 
+                                     }}>+ Add payment methods</p>
                             </div>
                             <div className="grid place-content-center w-full p-4 mt-[50px]">
                                 <div className="inline-grid">
@@ -268,8 +285,9 @@ const P2PManagement = ({ tokenBalnces, session }) => {
                                     </label>
                                 </div>
                             </div>
-                            <VerificationPopup popupData={{ popup, showPopup }} />
-                        </div>}
+                            
+                        </div>
+                        }
                         {active === 3 && <div className="max-w-[100%-200px] w-full md:border-l border-grey md:pl-[20px]">
                             {/* about */}
 
@@ -510,7 +528,9 @@ const P2PManagement = ({ tokenBalnces, session }) => {
                             <AdTable />
 
 
-                        </div>}
+                        </div>
+                        }
+                        <VerificationPopup popupData={{ popup, showPopup }} />
                     </div>
                 </div>
             </section>
