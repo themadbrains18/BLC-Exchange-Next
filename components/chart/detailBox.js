@@ -1,22 +1,20 @@
 import React, { useContext, useState } from "react";
 import Context from "../contexts/context";
 import ActiveCta from "../snippets/activeCta";
-import Graph from "/components/chart/graph";
-const DetailBox = ({ mobile }) => {
+import Graph from "components/chart/graph";
+import Image from "next/image";
+
+const DetailBox = ({ mobile, orders, coin }) => {
   let ctas = ["Order Book", "Markets Trades"];
   let ctaMobile = ["Chart", "Order Book", "Markets Trades"];
   const [active, setActive] = useState(0);
   const { mode } = useContext(Context);
-  const [data, setData] = useState(true);
 
-  let arr = [1, 1, 1, 1, 1, 1];
-  // if(window.innerWidth)
   return (
     <>
       <section
-        className={` dark:bg-black-v-3 h-full border-b-4 border-primary-hover ${
-          mobile ? "w-full" : "min-w-[340px]"
-        }`}
+        className={` dark:bg-black-v-3 h-full border-b-4 ${mode === 'dark' ? 'border-black' : 'border-gray-200'} ${mobile ? "w-full" : "min-w-[340px]"
+          }`}
       >
         <div className="">
           <div className="bg-table-bg dark:bg-transparent px-4 pt-3">
@@ -49,10 +47,10 @@ const DetailBox = ({ mobile }) => {
                   Amount(ETH)
                 </h4>
               </div>
-              {data ? (
+              {orders && orders.length > 0 ? (
                 <div>
-                  {arr &&
-                    arr.map((e, i) => {
+                  {orders.map((e, i) => {
+                    if (e.order_type === 'sell') {
                       return (
                         <div
                           key={i}
@@ -64,20 +62,46 @@ const DetailBox = ({ mobile }) => {
                           </h4>
                           <h4 className="col info-12  p-3 text-black dark:text-white">
                             {" "}
-                            data
+                            {e.limit_usdt}
                           </h4>
+                          <h4 className="col info-12  p-3 text-black dark:text-white">
+                            {" "}
+                            {e.token_amount.toFixed(2)}
+                          </h4>
+                        </div>
+                      );
+                    }
+
+                  })}
+                  <div className="grid my-8 mx-4">
+                    <span className="info-14-24 !text-primary">{coin.PRICE}</span>
+                    <span className="info-14-20 ">≈$ {coin.PRICE}</span>
+                  </div>
+                  {orders.map((e, i) => {
+                    if (e.order_type === 'buy') {
+                      return (
+                        <div
+                          key={i}
+                          className="row  bg-white flex justify-between border-b w-full  border-border-clr dark:bg-black-v-1"
+                        >
                           <h4 className="col info-12  p-3 text-black dark:text-white">
                             {" "}
                             data
                           </h4>
+                          <h4 className="col info-12  p-3 text-black dark:text-white">
+                            {" "}
+                            {e.limit_usdt}
+                          </h4>
+                          <h4 className="col info-12  p-3 text-black dark:text-white">
+                            {" "}
+                            {e.token_amount.toFixed(2)}
+                          </h4>
                         </div>
                       );
-                    })}
-                  <div className="grid my-8 mx-4">
-                    <span className="info-14-24 !text-primary">1653.58</span>
-                    <span className="info-14-20 ">≈$ 1653.85</span>
-                  </div>
-                  <div className="row  bg-white flex justify-between border-b border-border-clr dark:bg-black-v-1">
+                    }
+
+                  })}
+                  {/* <div className="row  bg-white flex justify-between border-b border-border-clr dark:bg-black-v-1">
                     <h4 className="col info-12  p-3 text-black dark:text-white">
                       {" "}
                       no data
@@ -90,7 +114,7 @@ const DetailBox = ({ mobile }) => {
                       {" "}
                       no data
                     </h4>
-                  </div>
+                  </div> */}
                 </div>
               ) : (
                 <div className="xl:grid xl:place-content-center w-full ">
@@ -127,29 +151,31 @@ const DetailBox = ({ mobile }) => {
                   Amount(ETH)
                 </h4>
               </div>
-              {data ? (
+              {orders ? (
                 <div className="overflow-y-auto  overscroll-none">
-                  {arr &&
-                    arr.map((e, i) => {
-                      return (
-                        <div
-                          key={i}
-                          className="row  bg-white flex justify-between border-b w-full  border-border-clr dark:bg-black-v-1 "
-                        >
-                          <h4 className="col info-12  p-3 text-black dark:text-white">
-                            {i}
-                            no data
-                          </h4>
-                          <h4 className="col info-12  p-3 text-black dark:text-white">
-                            {" "}
-                            no data
-                          </h4>
-                          <h4 className="col info-12  p-3 text-black dark:text-white">
-                            {" "}
-                            no data
-                          </h4>
-                        </div>
-                      );
+                  {orders &&
+                    orders.map((e, i) => {
+                        return (
+                          <div
+                            key={i}
+                            className="row  bg-white flex justify-between border-b w-full  border-border-clr dark:bg-black-v-1"
+                          >
+                            <h4 className="col info-12  p-3 text-black dark:text-white">
+                              {" "}
+                              {e.createdAt}
+                            </h4>
+                            <h4 className="col info-12  p-3 text-black dark:text-white">
+                              {" "}
+                              {e.limit_usdt}
+                            </h4>
+                            <h4 className="col info-12  p-3 text-black dark:text-white">
+                              {" "}
+                              {e.token_amount.toFixed(2)}
+                            </h4>
+                          </div>
+                        );
+                      
+  
                     })}
                 </div>
               ) : (

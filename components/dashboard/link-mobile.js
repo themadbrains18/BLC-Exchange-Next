@@ -197,7 +197,7 @@ setClick(true)
                                     <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border  border-border-clr dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
                                 </div>
                             </div>
-                            <button className="info-14-16 !text-primary mt-[15px]">{count === 0 ? 'Send Code' : 'Send Again'} </button>
+                            <button className="info-14-16 !text-primary mt-[15px]">{count === 0 ? 'Send Code' : 'OTP resent to your registered Mobile No.'} </button>
                         </form>
                         <button className="cta mt-[30px] w-full" onClick={Submit}>Submit</button>
                     </div>

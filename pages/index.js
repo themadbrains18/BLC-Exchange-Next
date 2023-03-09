@@ -26,7 +26,7 @@ export default function Home(props) {
       <Hero /> 
       <FlowSliderSec />
       <Aizone />
-      <Trending />
+      <Trending coins={props.coins}/>
       <Trustworthy />
       <Download /> 
       <Tutorials />
@@ -36,8 +36,15 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
+  
+  let tokenList = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/token/marketcoin`, {
+    method: "GET"
+  }).then(response => response.json());
+
   return {
-    props: { name: "prince" }, // will be passed to the page component as props
+    props: { 
+      coins: tokenList.data.data,
+     }, // will be passed to the page component as props
   };
 }
 

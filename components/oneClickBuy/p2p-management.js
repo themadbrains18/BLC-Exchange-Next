@@ -1,84 +1,182 @@
-import {useState,useContext} from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Link from "next/link";
 import Image from "next/image";
 import Context from "/components/contexts/context";
 import SearchDropdown from "/components/snippets/search-dropdown";
-
 import Paymentmodal from '../../components/payments/payment-modal';
+import SelectMenu from '../snippets/selectMenu';
 
-const P2PManagement = ({paymentods, userpaymentods}) => {
-    console.log(userpaymentods, 'userpaymentods')
-    const { mode ,setClick} = useContext(Context);
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+import VerificationPopup from '../snippets/verification-popup';
+import AdTable from './ad/adTable';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+const P2PManagement = ({ tokenBalnces, session,paymentods, userpaymentods }) => {
+    const { mode, setClick, verifyData, setVerifyData } = useContext(Context);
     const [rotate, setRotate] = useState(false);
+    
     const [dropDown, setDropDown] = useState(false);
-    const [coinImg, setCoinImg] = useState("");
+    const [active, setActive] = useState(1);
+    const [coinImg, setCoinImg] = useState("https://bitlivecoinnetwork.com/images/logo.png");
     const [coin, setCoin] = useState("USD");
-    const [popup,showPopup] = useState(false);
+    const [popup, showPopup] = useState(false);
+    const pm_duration = ['15 minute', '20 minute']
+    const pm_method = ['UPI', 'Google Pay']
+    const [tokenBalance, setTokenBlance] = useState(0)
+    const [minLimit, setMinLimit] = useState(0)
+    const [maxLimit, setMaxLimit] = useState(0)
+    const [balanceMessage, setBalanceMessage] = useState(0)
+    const schema = yup
+        .object()
+        .shape({
+            usertoken: yup.mixed().required('Please select at least one item...'),
+            amount: yup.number().positive("Value must be greater than 0 ").typeError('Please enter amount'),
+            quantity: yup.number().positive("Value must be greater than 0 ").typeError('Please enter quantity'),
+            min_limit: yup.number().positive("Value must be greater than 0 ").typeError('Please enter minimum limit'),
+            max_limit: yup.number().positive("Value must be greater than 0 ").typeError('Maximum limit must be less than Balance'),
+            deadline: yup.string().required('Please select Payment duration'),
+            method: yup.string().required('Please select at least one payment method'),
+            notes: yup.string(),
+            checked: yup.boolean().oneOf([true], 'This field must be checked')
+            // withdrawAmont: yup
+
+            //     .required('Please enter amount'),
+        }).required()
+    let {
+        register,
+        setValue,
+        getValues,
+        handleSubmit,
+        reset,
+        watch,
+        setError,
+        formState: { errors },
+    } = useForm({ resolver: yupResolver(schema) })
+
     const selectCoin = async (item) => {
-        setCoin(item.symbol);  
+        setCoin(item.symbol);
         setCoinImg(item.image);
         setRotate(false);
+        setValue('usertoken', item.symbol)
+        if (tokenBalnces) {
+
+            for (const token of tokenBalnces) {
+                if (token.token_id === item.id) {
+                    setTokenBlance(token['balance'])
+                    return;
+                }
+                else {
+                    setTokenBlance(0)
+                }
+            }
+        }
     };
 
-    return(
-        
-        <section className="dark:bg-black-v-3 py-10 md:py-20 ">
+    const selectedMethod = async (item) => {
+        setValue('method', item)
+    };
+
+    const selectedNetwork = async (item) => {
+        setValue('deadline', item)
+    };
+
+    const onSubmit = async (data) => {
+
+        console.log('i am here!', data)
+        data['user_id'] = session?.user?.id
+        let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/post/create`, {
+            method: "POST",
+            body: JSON.stringify(data)
+        }).then(response => response.json())
+        if (result.data.status === 200 && result.data != undefined) {
+            toast.success(result.data.message, {
+                position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+            })
+            reset()
+            setBalanceMessage(0)
+        }
+        else {
+            toast.error(result.data.message, {
+                position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+            })
+        }
+
+    }
+
+
+    return (
+        <>
+            <ToastContainer />
+            <section className="dark:bg-black-v-3 py-10 md:py-20 ">
             <Paymentmodal paymentods={paymentods}  />
-            <div className="container">
-                <div className="flex items-start">
-                    <div className="max-w-[200px] w-full md:block hidden">
-                        <ul>
-                            <li className="border-r-[4px] border-primary pl-[15px] bg-[#1da2b41f]"><Link className="info-14-16 py-[10px] block " href="manage">P2P management</Link></li>
-                            <li className=" pl-[15px] "><Link className="info-14-16 py-[10px] block" href="orderlist">My order</Link></li>
-                        </ul>              
-                    </div>
-                    <div className="max-w-[100%-200px] w-full md:border-l border-grey md:pl-[20px]">
-                        {/* about */}
-                        <div className="flex md:items-center justify-between flex-col md:flex-row	gap-[20px]">
-                            <div className="flex items-center gap-[18px]">
-                                <div className="w-[48px] h-[48px] rounded-full bg-[#1da2b41a] flex">
-                                    <span className="m-auto text-primary dark:text-primary info-16-22">S</span>
+                <div className="container">
+                    <div className="flex items-start">
+                        <div className="max-w-[200px] w-full md:block hidden">
+                            <ul>
+                                <li className={`${active === 1 ? 'border-r-[4px] border-primary pl-[15px] bg-[#1da2b41f]' : 'pl-[15px]'}`} ><Link className="info-14-16 py-[10px] block " href="manage" onClick={() => { setActive(1) }}>P2P management</Link></li>
+                                <li className={`${active === 2 ? 'border-r-[4px] border-primary pl-[15px] bg-[#1da2b41f]' : 'pl-[15px]'}`} ><Link className="info-14-16 py-[10px] block" href="" onClick={() => { setActive(2) }}>My order</Link></li>
+                                <li className={`${active === 3 ? 'border-r-[4px] border-primary pl-[15px] bg-[#1da2b41f]' : 'pl-[15px]'}`} ><Link className="info-14-16 py-[10px] block" href="" onClick={
+                                    () => {
+                                        let verified = false;
+                                        if (session?.user?.email !== '' && session?.user?.kycstatus !== null && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
+                                            verified = true;
+                                        }
+                                        if(verified){
+                                            setActive(3)
+                                        }
+                                        else{
+                                            showPopup(true);
+                                        }
+                                        
+                                    }}>Post Ad</Link></li>
+                                <li className={`${active === 4 ? 'border-r-[4px] border-primary pl-[15px] bg-[#1da2b41f]' : 'pl-[15px]'}`} ><Link className="info-14-16 py-[10px] block" href="" onClick={() => { setActive(4) }}>My Ads</Link></li>
+                            </ul>
+                        </div>
+                        {active === 1 && <div className="max-w-[100%-200px] w-full md:border-l border-grey md:pl-[20px]">
+                            {/* about */}
+                            <div className="flex md:items-center justify-between flex-col md:flex-row	gap-[20px]">
+                                <div className="flex items-center gap-[18px]">
+                                    <div className="w-[48px] h-[48px] rounded-full bg-[#1da2b41a] flex">
+                                        <span className="m-auto text-primary dark:text-primary info-16-22">S</span>
+                                    </div>
+                                    <div className="">
+                                        <p className="info-16-22 !text-black hover:!text-black dark:!text-white">Surinder Kumar</p>
+                                    </div>
                                 </div>
-                                <div className="">
-                                    <p className="info-16-22 !text-black hover:!text-black dark:!text-white">Surinder Kumar</p>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-[50px] ">
-                                <div>
-                                    <p className="info-12 !text-[14px] mb-[10px]">Total trades:</p>
-                                    <span >
-                                        <span className="info-12 !text-[18px] mr-[10px] dark:!text-white !text-black">0</span> 
-                                        <span className="info-12">
-                                            Buy 0
-                                            <span className="info-12 !text-[14px]">&nbsp;|&nbsp;</span>
-                                            Sell 0
+                                <div className="flex items-center gap-[50px] ">
+                                    <div>
+                                        <p className="info-12 !text-[14px] mb-[10px]">Total trades:</p>
+                                        <span >
+                                            <span className="info-12 !text-[18px] mr-[10px] dark:!text-white !text-black">0</span>
+                                            <span className="info-12">
+                                                Buy 0
+                                                <span className="info-12 !text-[14px]">&nbsp;|&nbsp;</span>
+                                                Sell 0
+                                            </span>
                                         </span>
-                                    </span>
-                                </div>
-                                <div>
-                                    <p className="info-12 !text-[14px] mb-[10px]">30-day trades:</p>
-                                    <span >
-                                        <span className="info-12 !text-[18px] mr-[10px] dark:!text-white !text-black">0</span> 
-                                        {/* <span className="info-12">
+                                    </div>
+                                    <div>
+                                        <p className="info-12 !text-[14px] mb-[10px]">30-day trades:</p>
+                                        <span >
+                                            <span className="info-12 !text-[18px] mr-[10px] dark:!text-white !text-black">0</span>
+                                            {/* <span className="info-12">
                                             Buy 0
                                             <span className="info-12 !text-[14px]">&nbsp;|&nbsp;</span>
                                             Sell 0
                                         </span> */}
-                                    </span>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        {/* Payment methods */}
+                            {/* Payment methods */}
 
-                        <div className="flex items-center justify-between  gap-[20px] mt-[50px]">
-                            <p className="info-16-22 dark:!text-white !text-black">Payment methods</p>
-                            <p className="info-14 cursor-pointer dark:!text-primary !text-primary" onClick={()=>{showPopup(true);setClick(true)}}>+ Add payment methods</p>
-                        </div>
-
-
-{/* payment method list here! */}
-                                <div className=" w-full border border-[#919899] mt-4 rounded-lg">
+                            {/* payment method list here! */}
+                            <div className=" w-full border border-[#919899] mt-4 rounded-lg">
                                         <div className="py-3 px-4 text-black dark:!text-white border-b border-[#919899]">
                                             Make sure to use your account with your real name. During the transaction, only one payment method is allowed to be enabled for the same type
                                         </div>
@@ -127,213 +225,350 @@ const P2PManagement = ({paymentods, userpaymentods}) => {
                                     </div>
 {/* payment method list here! end */}
 
-
-                        <div className="grid place-content-center w-full p-4 mt-[50px]">
-
-                               
-                            <div className="inline-grid">
-                                
-
-                                    
-
-                                <Image
-                                src={"/assets/icons/noData.svg"}
-                                alt="No Data"
-                                className=""
-                                height={80}
-                                width={80}
-                                />
-                                <h4 className="info-14  md:p-0 text-disable-clr dark:text-white text-center">
-                                No Data
-                                </h4>
+                            <div className="flex items-center justify-between  gap-[20px] mt-[50px]">
+                                <p className="info-16-22 dark:!text-white !text-black">Payment methods</p>
+                                <p className="info-14 cursor-pointer dark:!text-primary !text-primary" onClick={() => { showPopup(true); setClick(true) }}>+ Add payment methods</p>
                             </div>
-                        </div>
+                            <div className="grid place-content-center w-full p-4 mt-[50px]">
+                                <div className="inline-grid">
+                                    <Image
+                                        src={"/assets/icons/noData.svg"}
+                                        alt="No Data"
+                                        className=""
+                                        height={80}
+                                        width={80}
+                                    />
+                                    <h4 className="info-14  md:p-0 text-disable-clr dark:text-white text-center">
+                                        No Data
+                                    </h4>
+                                </div>
+                            </div>
 
-                        {/* Other settings */}
-                        <div className="mt-[30px]">
-                            <p className="info-14-16 mb-[20px]">Other settings</p>
-                            <div className="border border-grey p-[20px] rounded-lg flex md:flex-row flex-col items-center justify-between">
-                                <div className="flex items-center gap-[18px] w-full">
-                                    <div className="min-w-[48px] min-h-[48px] rounded-full bg-[#1da2b41a] flex">
-                                        <span className="m-auto text-primary dark:text-primary info-16-22">$</span>
+                            {/* Other settings */}
+                            <div className="mt-[30px]">
+                                <p className="info-14-16 mb-[20px]">Other settings</p>
+                                <div className="border border-grey p-[20px] rounded-lg flex md:flex-row flex-col items-center justify-between">
+                                    <div className="flex items-center gap-[18px] w-full">
+                                        <div className="min-w-[48px] min-h-[48px] rounded-full bg-[#1da2b41a] flex">
+                                            <span className="m-auto text-primary dark:text-primary info-16-22">$</span>
+                                        </div>
+                                        <div>
+                                            <p className="info-16 !text-black hover:!text-black dark:!text-white">Fiat preferred</p>
+                                            <p className="info-12 ">The default fiat when trading or binding the payment method, you can set it to the commonly used fiat</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p className="info-16 !text-black hover:!text-black dark:!text-white">Fiat preferred</p>
-                                        <p className="info-12 ">The default fiat when trading or binding the payment method, you can set it to the commonly used fiat</p>
+                                    <div className="relative max-w-full md:mt-[0] mt-[20px] md:max-w-[180px] w-full">
+                                        <div
+                                            className="flex cursor-pointer justify-between w-full rounded p-2"
+                                            onClick={() => {
+                                                setDropDown(!dropDown);
+                                                setRotate(!rotate);
+                                            }}
+                                        >
+                                            <div className="flex gap-3 ">
+                                                <Image
+                                                    className="self-start rounded-full"
+                                                    height={24}
+                                                    width={24}
+                                                    alt="Coin Image"
+                                                    src={`${coinImg}`}
+                                                ></Image>
+                                                <p className="info-14-16 font-bold">{coin}</p>
+                                            </div>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                className={`mt-[2px] ${rotate && "rotate-90"
+                                                    } duration-300 w-6 h-6`}
+                                                viewBox="0 0 24 24"
+                                                strokeWidth={1.5}
+                                                stroke={mode === "dark" ? "white" : "currentColor"}
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                                                />
+                                            </svg>
+                                        </div>
+                                        {dropDown != false && (
+                                            <SearchDropdown
+                                                setShowDropdown={setDropDown}
+                                                selectCoin={selectCoin}
+                                                coin={true}
+                                            />
+                                        )}
                                     </div>
                                 </div>
-                                <div className="relative max-w-full md:mt-[0] mt-[20px] md:max-w-[180px] w-full">
-                                    <div
-                                        className="flex cursor-pointer justify-between w-full rounded p-2"
-                                        onClick={() => {
-                                        setDropDown(!dropDown);
-                                        setRotate(!rotate);
-                                        }}
-                                    >
-                                        <div className="flex gap-3 ">
+
+                            </div>
+                            {/* Message notificatoin */}
+                            <div className="mt-[30px]">
+                                <p className="info-14-16 mb-[20px]">Message notification</p>
+                                <div className="border border-grey p-[20px] rounded-lg flex items-center justify-between">
+                                    <div className="flex items-center gap-[18px]">
+                                        <div className="w-[32px] h-[32px]">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-message-circle">
+                                                <path stroke={mode === "dark" ? "white" : "currentColor"} d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p className="info-16 !text-black hover:!text-black dark:!text-white">Notification</p>
+                                        </div>
+                                    </div>
+                                    <label className="relative inline-flex  items-center cursor-pointer duration-500">
+                                        <input type="checkbox" className="sr-only peer" value="" />
+                                        <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
+                                    </label>
+                                </div>
+                            </div>
+                            <VerificationPopup popupData={{ popup, showPopup }} />
+                        </div>}
+                        {active === 3 && <div className="max-w-[100%-200px] w-full md:border-l border-grey md:pl-[20px]">
+                            {/* about */}
+
+
+                            <div className=''>
+                                <p className='section-secondary-heading font-noto text-center'>Sell Ads</p>
+                                <form onSubmit={handleSubmit(onSubmit)}>
+                                    <div className="relative flex gap-2 justify-between max-w-full md:mt-[0] mt-[20px] md:max-w-[180px] w-full">
+
                                         <Image
-                                            className="self-start rounded-full"
-                                            height={24}
-                                            width={24}
+                                            className=" self-center max-w-[30px] w-full rounded-full"
+                                            height={40}
+                                            width={40}
                                             alt="Coin Image"
                                             src={`${coinImg}`}
                                         ></Image>
-                                        <p className="info-14-16 font-bold">{coin}</p>
-                                        </div>
-                                        <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        className={`mt-[2px] ${
-                                            rotate && "rotate-90"
-                                        } duration-300 w-6 h-6`}
-                                        viewBox="0 0 24 24"
-                                        strokeWidth={1.5}
-                                        stroke={mode === "dark" ? "white" : "currentColor"}
+
+
+                                        <div
+                                            className="flex cursor-pointer justify-between w-full rounded p-2"
+                                            onClick={() => {
+                                                setDropDown(!dropDown);
+                                                setRotate(!rotate);
+                                            }}
                                         >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                                        />
-                                        </svg>
+                                            <div className='w-max'>
+                                                <div className="flex gap-2 ">
+                                                    <p className="info-14-16 font-bold">{coin}</p>
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        fill="none"
+                                                        className={`mt-[2px] ${rotate && "rotate-90"
+                                                            } duration-300 w-3 h-3 self-center`}
+                                                        viewBox="0 0 24 24"
+                                                        strokeWidth={1.5}
+                                                        stroke={mode === "dark" ? "white" : "currentColor"}
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                                                        />
+                                                    </svg>
+                                                </div>
+
+                                                <div>
+                                                    <span className='info-14'>Reference Price $1.08</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        {dropDown != false && (
+                                            <SearchDropdown
+                                                setShowDropdown={setDropDown}
+                                                selectCoin={selectCoin}
+                                                coin={true}
+                                            />
+                                        )}
                                     </div>
-                                    {dropDown != false && (
-                                        <SearchDropdown
-                                        setShowDropdown={setDropDown}
-                                        selectCoin={selectCoin}
-                                        coin={true}
-                                        />
-                                    )}
-                                    </div>
-                            </div>
-                           
-                        </div>
-                        {/* Message notificatoin */}
-                        <div className="mt-[30px]">
-                            <p className="info-14-16 mb-[20px]">Message notificatoin</p>
-                            <div className="border border-grey p-[20px] rounded-lg flex items-center justify-between">
-                                <div className="flex items-center gap-[18px]">
-                                    <div className="w-[32px] h-[32px]">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-message-circle">
-                                            <path stroke={mode === "dark" ? "white" : "currentColor"} d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-                                        </svg>
+                                    <div className="!text-red-700 info-12">
+                                        {errors.usertoken?.message}
                                     </div>
                                     <div>
-                                        <p className="info-16 !text-black hover:!text-black dark:!text-white">Notification</p>
+                                        <div className='mt-8'>
+                                            <h4 className="info-14-16">Trading Price</h4>
+                                            <div className="border-b  info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
+                                                <div className="flex  mt-4 items-end ">
+                                                    <input
+                                                        type="number"
+                                                        step='0.0001'
+                                                        className="caret-primary w-full bg-transparent  outline-none"
+                                                        placeholder='Enter Trading Price' {...register('amount')}
+                                                    />
+                                                    <span className='info-14'>USD</span>
+                                                </div>
+                                            </div>
+                                            <span className='info-12'> Price Limit  </span>
+                                            <div className="!text-red-700 info-12">
+                                                {errors.amount?.message}
+                                            </div>
+                                        </div>
+                                        <div className='mt-8'>
+                                            <h4 className="info-14-16">Trading Quantity</h4>
+                                            <div className="border-b info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
+                                                <div className="flex  mt-4 items-end ">
+                                                    <input
+                                                        type="number"
+                                                        step='0.0001'
+                                                        className="caret-primary w-full bg-transparent  outline-none"
+                                                        placeholder='Enter Trading Quantity' {...register('quantity')}
+                                                        onChange={(e) => {
+                                                            if (e.target.value > tokenBalance) {
+                                                                setBalanceMessage(1)
+                                                            }
+                                                            else {
+                                                                setBalanceMessage(false)
+                                                                setValue('quantity', e.target.value)
+                                                            }
+                                                        }}
+                                                    />
+                                                    <span className='info-14'>{coin}</span>
+                                                </div>
+                                            </div>
+                                            <span className='info-12'>{tokenBalance} {coin} </span>
+                                            <div className="!text-red-700 info-12">
+                                                {errors.quantity?.message}
+                                            </div>
+                                            {balanceMessage === 1 && <div className="!text-red-700 info-12">
+                                                You have unsufficient balance
+                                            </div>}
+                                        </div>
+                                        <div className='mt-8'>
+                                            <h4 className="info-14-16">Single Order Limit</h4>
+                                            <div className=' flex justify-between gap-8 md:gap-20'>
+                                                <div className="info-14 w-full hover:!text-grey dark:hover:!text-white dark:text-white">
+                                                    <div className="flex border-b   mt-4 items-end ">
+                                                        <input
+                                                            type="number"
+                                                            step='0.0001'
+                                                            className="caret-primary w-full bg-transparent  outline-none"
+                                                            placeholder='Enter Min Limit' {...register('min_limit')}
+                                                            onChange={(e) => {
+
+                                                                setValue('min_limit', e.target.value)
+                                                                setMinLimit(e.target.value)
+                                                            }}
+                                                        />
+                                                        <span className='info-14'>USD</span>
+                                                    </div>
+                                                    <div className="!text-red-700 info-12">
+                                                        {errors.min_limit?.message}
+                                                    </div>{balanceMessage === 2 && <div className="!text-red-700 info-12">
+                                                        Amount must be less than maximum value
+                                                    </div>}
+                                                </div>
+
+                                                <div className='border-b w-10 h-1 mt-5 self-center'>
+                                                </div>
+                                                <div className="info-14 w-full hover:!text-grey dark:hover:!text-white dark:text-white">
+                                                    <div className="flex border-b  mt-4 items-end ">
+                                                        <input
+                                                            type="number"
+                                                            step='0.0001'
+                                                            className="caret-primary w-full bg-transparent  outline-none"
+                                                            placeholder='Enter max limit' {...register('max_limit')}
+                                                            onChange={(e) => {
+                                                                if (e.target.value <= minLimit) {
+                                                                    setBalanceMessage(3)
+                                                                }
+                                                                else {
+                                                                    setValue('max_limit', e.target.value)
+                                                                    setMaxLimit(e.target.value)
+                                                                }
+                                                            }}
+                                                        />
+                                                        <span className='info-14'>USD</span>
+                                                    </div>
+                                                    <div className="!text-red-700 info-12">
+                                                        {errors.max_limit?.message}
+                                                    </div>
+                                                    {balanceMessage === 3 && <div className="!text-red-700 info-12">
+                                                        Amount must be greater than mimimum value
+                                                    </div>}
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div className='mt-8'>
+                                            <h4 className="info-14-16">Payment Deadline</h4>
+                                            <div className="border-b info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
+                                                <SelectMenu selectMenu={pm_duration} selectNetwork={selectedNetwork} />
+                                                {/* <div className="flex  mt-4 items-end ">
+                                                <input
+                                                    type="number"
+                                                    className="caret-primary w-full bg-transparent  outline-none"
+                                                    placeholder='Enter Trading Price'
+                                                />
+                                            </div> */}
+                                            </div>
+                                            <div className="!text-red-700 info-12">
+                                                {errors.deadline?.message}
+                                            </div>
+                                        </div>
+                                        <div className='mt-8'>
+                                            <h4 className="info-14-16">Payment Methods</h4>
+                                            <div className="border-b info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
+                                                <SelectMenu selectMenu={pm_method} selectMethod={selectedMethod} />
+                                                {/* <div className="flex  mt-4 items-end ">
+                                                <input
+                                                    type="number"
+                                                    className="caret-primary w-full bg-transparent  outline-none"
+                                                    placeholder='Enter Trading Price'
+                                                />
+                                                
+                                            </div> */}
+                                            </div>
+                                            <div className="!text-red-700 info-12">
+                                                {errors.method?.message}
+                                            </div>
+                                        </div>
+                                        <div className='mt-8'>
+                                            <h4 className="info-14-16">Notes (Optional)</h4>
+                                            <div className="border-b info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
+                                                <div className="flex  mt-4 items-end ">
+                                                    <input
+                                                        type="text"
+                                                        className="caret-primary w-full bg-transparent  outline-none"
+                                                        placeholder='Enter Trading Price' {...register("notes")}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="relative mb-5 inline-block mt-[8px]">
+                                            <input id="checkbox" type="checkbox" className="hidden agree_cta" {...register('checked')} />
+                                            <label htmlFor="checkbox" className="relative info-14 hover:!text-grey pl-[25px] after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-[16px] after:h-[16px] cursor-pointer">I hereby acknowledge and agree to this  <Link href="#" className="text-primary">Trading Rules</Link></label>
+                                        </div>
+                                        <div className="!text-red-700 info-12">
+                                            {errors.checked?.message}
+                                        </div>
+                                        <button type="submit" className={`relative cta mt-5  w-full  `}>
+                                            <span>Post</span>
+                                            {/* spinner */}
+                                            <div className="hidden w-8 h-8 rounded-full animate-spin border-4 border-solid border-purple-500 border-t-transparent absolute top-[50%] left-[50%] mt-[-16px] ml-[-15px] z-10"></div>
+                                            {/* spinner */}
+                                        </button>
+
                                     </div>
-                                </div>
-                                <label className="relative inline-flex  items-center cursor-pointer duration-500">
-                                    <input type="checkbox" className="sr-only peer" value="" />
-                                    <div className="duration-500 w-9 h-5 bg-gray-200 rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary border-gray-600" ></div>
-                                </label> 
-                               
-                            </div>
-                           
-                        </div>
-
-                        
-                         <div className={`${popup ? "opacity-1 visible fixed top-[50%]":"opacity-0 invisible top-[55%]" }  duration-300 z-[20] fixed  left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%] dark:bg-black-v-5 bg-white p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto`}>
-                            <div className="max-w-[24px] w-full ml-auto cursor-pointer" onClick={()=>{setClick(false);showPopup(false)}}>
-                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60.963 60.842" style={{ enableBackground: 'new 0 0 60.963 60.842' }} xmlSpace="preserve">
-                                    <path fill={mode === "dark" ? "white" : "#231F20"} d="M59.595,52.861L37.094,30.359L59.473,7.98c1.825-1.826,1.825-4.786,0-6.611
-                                        c-1.826-1.825-4.785-1.825-6.611,0L30.483,23.748L8.105,1.369c-1.826-1.825-4.785-1.825-6.611,0c-1.826,1.826-1.826,4.786,0,6.611
-                                        l22.378,22.379L1.369,52.861c-1.826,1.826-1.826,4.785,0,6.611c0.913,0.913,2.109,1.369,3.306,1.369s2.393-0.456,3.306-1.369
-                                        l22.502-22.502l22.501,22.502c0.913,0.913,2.109,1.369,3.306,1.369s2.393-0.456,3.306-1.369
-                                        C61.42,57.647,61.42,54.687,59.595,52.861z" />
-                                </svg>
-                            </div>
-                            <p className="info-16-22 dark:!text-white !text-black mt-[15px] text-center">P2P trading requires the following verification to be completed first</p>
-                            
-                            <div className="flex items-center justify-between gap-[15px] mt-[24px]">
-                                <div className="flex items-center gap-[15px] grow">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill={mode === "dark" ? "#1da2b4" : "currentcolor"}
-                                        height="24"
-                                        width="24"
-                                        >
-                                        <path d="M1 20v-2.8q0-.85.438-1.563.437-.712 1.162-1.087 1.55-.775 3.15-1.163Q7.35 13 9 13t3.25.387q1.6.388 3.15 1.163.725.375 1.162 1.087Q17 16.35 17 17.2V20Zm18 0v-3q0-1.1-.612-2.113-.613-1.012-1.738-1.737 1.275.15 2.4.512 1.125.363 2.1.888.9.5 1.375 1.112Q23 16.275 23 17v3ZM9 12q-1.65 0-2.825-1.175Q5 9.65 5 8q0-1.65 1.175-2.825Q7.35 4 9 4q1.65 0 2.825 1.175Q13 6.35 13 8q0 1.65-1.175 2.825Q10.65 12 9 12Zm10-4q0 1.65-1.175 2.825Q16.65 12 15 12q-.275 0-.7-.062-.425-.063-.7-.138.675-.8 1.037-1.775Q15 9.05 15 8q0-1.05-.363-2.025Q14.275 5 13.6 4.2q.35-.125.7-.163Q14.65 4 15 4q1.65 0 2.825 1.175Q19 6.35 19 8ZM3 18h12v-.8q0-.275-.137-.5-.138-.225-.363-.35-1.35-.675-2.725-1.013Q10.4 15 9 15t-2.775.337Q4.85 15.675 3.5 16.35q-.225.125-.362.35-.138.225-.138.5Zm6-8q.825 0 1.413-.588Q11 8.825 11 8t-.587-1.412Q9.825 6 9 6q-.825 0-1.412.588Q7 7.175 7 8t.588 1.412Q8.175 10 9 10Zm0 8ZM9 8Z" />
-                                    </svg>
-                                    <p className="info-14 !text-grey hover:!text-grey grow ">KYC</p>
-                                </div>
-                                <div>
-                                    <Link className="info-12 !text-primary" href="/dashboard/verified" onClick={()=>{setClick(false)}}>Set Now</Link>
-                                </div>
+                                </form>
                             </div>
 
-                            <div className="flex items-center justify-between gap-[15px] mt-[24px]">
-                                <div className="flex items-center gap-[15px] grow">
-                                    <div className="max-w-[22px] w-full">
-                                        <svg className=" w-full" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100.354 100.352" style={{enableBackground: 'new 0 0 100.354 100.352'}} xmlSpace="preserve">
-                                            <path fill={mode === "dark" ? "#1da2b4" : "currentcolor"} d="M93.09,76.224c0.047-0.145,0.079-0.298,0.079-0.459V22.638c0-0.162-0.032-0.316-0.08-0.462
-                                            c-0.007-0.02-0.011-0.04-0.019-0.06c-0.064-0.171-0.158-0.325-0.276-0.46c-0.008-0.009-0.009-0.02-0.017-0.029
-                                            c-0.005-0.005-0.011-0.007-0.016-0.012c-0.126-0.134-0.275-0.242-0.442-0.323c-0.013-0.006-0.023-0.014-0.036-0.02
-                                            c-0.158-0.071-0.33-0.111-0.511-0.123c-0.018-0.001-0.035-0.005-0.053-0.005c-0.017-0.001-0.032-0.005-0.049-0.005H8.465
-                                            c-0.017,0-0.033,0.004-0.05,0.005c-0.016,0.001-0.032,0.004-0.048,0.005c-0.183,0.012-0.358,0.053-0.518,0.125
-                                            c-0.01,0.004-0.018,0.011-0.028,0.015c-0.17,0.081-0.321,0.191-0.448,0.327c-0.005,0.005-0.011,0.006-0.016,0.011
-                                            c-0.008,0.008-0.009,0.019-0.017,0.028c-0.118,0.135-0.213,0.29-0.277,0.461c-0.008,0.02-0.012,0.04-0.019,0.061
-                                            c-0.048,0.146-0.08,0.3-0.08,0.462v53.128c0,0.164,0.033,0.32,0.082,0.468c0.007,0.02,0.011,0.039,0.018,0.059
-                                            c0.065,0.172,0.161,0.327,0.28,0.462c0.007,0.008,0.009,0.018,0.016,0.026c0.006,0.007,0.014,0.011,0.021,0.018
-                                            c0.049,0.051,0.103,0.096,0.159,0.14c0.025,0.019,0.047,0.042,0.073,0.06c0.066,0.046,0.137,0.083,0.21,0.117
-                                            c0.018,0.008,0.034,0.021,0.052,0.028c0.181,0.077,0.38,0.121,0.589,0.121h83.204c0.209,0,0.408-0.043,0.589-0.121
-                                            c0.028-0.012,0.054-0.03,0.081-0.044c0.062-0.031,0.124-0.063,0.181-0.102c0.03-0.021,0.057-0.048,0.086-0.071
-                                            c0.051-0.041,0.101-0.082,0.145-0.129c0.008-0.008,0.017-0.014,0.025-0.022c0.008-0.009,0.01-0.021,0.018-0.03
-                                            c0.117-0.134,0.211-0.288,0.275-0.458C93.078,76.267,93.083,76.246,93.09,76.224z M9.965,26.04l25.247,23.061L9.965,72.346V26.04z
-                                            M61.711,47.971c-0.104,0.068-0.214,0.125-0.301,0.221c-0.033,0.036-0.044,0.083-0.073,0.121l-11.27,10.294L12.331,24.138h75.472
-                                            L61.711,47.971z M37.436,51.132l11.619,10.613c0.287,0.262,0.649,0.393,1.012,0.393s0.725-0.131,1.011-0.393l11.475-10.481
-                                            l25.243,23.002H12.309L37.436,51.132z M64.778,49.232L90.169,26.04v46.33L64.778,49.232z" />
-                                        </svg>
-                                    </div>
-                                    <p className="info-14 !text-grey hover:!text-grey grow ">Bind email</p>
-                                </div>
-                                <div>
-                                    <Link className="info-12 !text-primary" href="/dashboard/bindemail" onClick={()=>{setClick(false)}}>Bind</Link>
-                                </div>
-                            </div>
 
-                            <div className="flex items-center justify-between gap-[15px] mt-[24px]">
-                                <div className="flex items-center gap-[15px] grow">
-                                    <div className="max-w-[22px] w-full">
-                                        <svg   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-phone">
-                                            <path stroke={mode === "dark" ? "#1da2b4" : "currentcolor"} d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                                        </svg>
-                                    </div>
-                                    <p className="info-14 !text-grey hover:!text-grey grow ">Bind Phone Number</p>
-                                </div>
-                                <div>
-                                    <Link className="info-12 !text-primary" href="/dashboard/bindmobile" onClick={()=>{setClick(false)}}>Set Now</Link>
-                                </div>
-                            </div>
-                            
-                            <div className="flex items-center justify-between gap-[15px] mt-[24px]">
-                                <div className="flex items-center gap-[15px] grow">
-                                    <div className="max-w-[22px] w-full">
-                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 203.096 203.096" style={{enableBackground: 'new 0 0 203.096 203.096'}} xmlSpace="preserve">
-                                            <g>
-                                            <path fill={mode === "dark" ? "#1da2b4" : "currentcolor"} d="M153.976,73.236h-3.308V49.115C150.669,22.033,128.634,0,101.549,0C74.465,0,52.43,22.033,52.43,49.115v24.121H49.12
-                                            c-9.649,0-17.5,7.851-17.5,17.5v94.859c0,9.649,7.851,17.5,17.5,17.5h104.856c9.649,0,17.5-7.851,17.5-17.5V90.736
-                                            C171.476,81.087,163.626,73.236,153.976,73.236z M67.43,49.115C67.43,30.304,82.736,15,101.549,15
-                                            c18.813,0,34.119,15.304,34.119,34.115v24.121H67.43V49.115z M156.476,185.596c0,1.355-1.145,2.5-2.5,2.5H49.12
-                                            c-1.355,0-2.5-1.145-2.5-2.5V90.736c0-1.355,1.145-2.5,2.5-2.5H59.93h83.238h10.808c1.355,0,2.5,1.145,2.5,2.5V185.596z" />
-                                            <path fill={mode === "dark" ? "#1da2b4" : "currentcolor"} d="M101.547,116.309c-4.142,0-7.5,3.357-7.5,7.5v28.715c0,4.143,3.358,7.5,7.5,7.5c4.142,0,7.5-3.357,7.5-7.5v-28.715
-                                            C109.047,119.666,105.689,116.309,101.547,116.309z" />
-                                            </g>
-                                        </svg>
-                                    </div>
-                                    <p className="info-14 !text-grey hover:!text-grey grow ">Fund password</p>
-                                </div>
-                                <div>
-                                    <Link className="info-12 !text-primary" href="/dashboard/fund-password" onClick={()=>{setClick(false)}}>Set Now</Link>
-                                </div>
-                            </div>
+                        </div>}
+                        {active === 4 && <div className="max-w-[100%-200px] w-full md:border-l border-grey md:pl-[20px]">
+                            {/* about */}
 
-                         </div>   
-                        
 
+                            <AdTable />
+
+
+                        </div>}
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </>
     )
 }
 

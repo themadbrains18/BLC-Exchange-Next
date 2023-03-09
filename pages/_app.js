@@ -12,6 +12,7 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
   //  const mode=useContext(UserContext)
 
   const [mode, setMode] = useState("dark");
+  const [verifyData, setVerifyData] = useState(false);
   const [login, setLogin] = useState(false);
   const [click, setClick] = useState(false);
   const [loader, setLoader] = useState(true);
@@ -36,11 +37,14 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
       setLoader(false);
     }, 1000);
 
-    window.addEventListener("resize", ()=>{
-      padding = ref.current.offsetHeight;
-      // console.log(padding)
-      setPad(padding);
-      ref2.current.setAttribute("style", `padding-top: ${padding}px`);
+    window.addEventListener("resize", () => {
+      if (ref.current !== null) {
+        padding = ref.current.offsetHeight;
+        // console.log(padding)
+        setPad(padding);
+        ref2.current.setAttribute("style", `padding-top: ${padding}px`);
+      }
+
     });
   }, []);
 
@@ -69,6 +73,8 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
               padding,
               topBar,
               setTopBar,
+              verifyData,
+              setVerifyData
             }}
           >
             <div

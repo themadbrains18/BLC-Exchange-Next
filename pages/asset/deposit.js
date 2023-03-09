@@ -1,5 +1,5 @@
 import SearchDropdown from "components/snippets/search-dropdown";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Layout from "components/layout/Layout";
 import { getProviders, getSession } from "next-auth/react";
@@ -7,9 +7,9 @@ import Context from "/components/contexts/context";
 import SelectMenu from "components/snippets/selectMenu";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import DepositTable from "/components/asset/deposit/depositTable";
+import DepositTable from "components/asset/deposit/depositTable";
 import Link from "next/link";
-const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
+const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol, deposit }) => {
   let [data, setData] = useState(true);
 
   const [coin, setCoin] = useState("Select Coin");
@@ -19,19 +19,82 @@ const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
   const [showQr, setShowQr] = useState(false);
   const [network, setNetwork] = useState([]);
   const [address, setAddress] = useState('');
+  const [historyList, setHistoryList] = useState()
+  // const [coin, setCoin] = useState('')
+  const [tokenFilter, setTokenFilter] = useState(0)
+  const [status, setStatus] = useState('')
+  const [date, setDate] = useState('')
+  const [endDate, setEndDate] = useState('')
+
 
   let dateFilter = ["Last 7 Days", "Last 30 Days"];
   let coinData = ["All", "BGB", "BTC"];
-  let coinData2 = ["Last 7 days", "Last 3 Months"];
   const { mode } = useContext(Context);
   const ref = useRef(null);
   let autoTransfer = ["Spot", "Bsc "];
   const [filterShow, setfilterShow] = useState(false);
-  console.log(network,"==========")
+
+
+  useEffect(() => {
+    setHistoryList(deposit)
+  }, []);
+
+  // const returnToSelected = (vls) => {
+  //   if (vls?.type === 'token') {
+  //     // check filter name is token
+  //     setTokenFilter(vls?.obj?.id)
+  //     setWithdrawList(
+  //       getWithdrawlist.filter((e) => {
+  //         return e.tokenID === vls?.obj?.id
+  //       }),
+  //     )
+  //     console.log(getWithdrawlist)
+  //   } else if (vls?.type === 'days') {
+  //     // check if days filter
+  //     console.log(vls)
+  //   }
+  // }
+  const selectNetwork = async (item) => {
+    console.log("=========item", item)
+    let filterCoin = item.obj;
+
+    let filterList = [];
+
+    if (item.type !== '') {
+      deposit.filter((e) => {
+        if (filterCoin == "all") {
+          filterList.push(e)
+        }
+        else if (item.type === 'token') {
+          if (e.coinName === filterCoin) {
+            filterList.push(e)
+          }
+        }
+        else if (item.type === 'days') {
+          if (filterCoin === 'Last 7 Days') {
+            var today = new Date();
+            var priorDate = new Date(new Date().setDate(today.getDate() - 7));
+            if (new Date(e.createdAt) > priorDate) {
+              filterList.push(e)
+            }
+          }
+          else {
+            var today = new Date();
+            var priorDate = new Date(new Date().setDate(today.getDate() - 7));
+            if (new Date(e.createdAt) > priorDate) {
+              filterList.push(e)
+            }
+          }
+        }
+
+      })
+    }
+    setHistoryList(filterList)
+
+  };
   const selectCoin = async (item) => {
     setCoin(item.symbol);
     setCoinImg(item.image);
-
     let selectedToken = tokens.filter((token) => {
       return item.id === token.id
     })
@@ -55,10 +118,10 @@ const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
     }).then(response => response.json());
 
 
-    if(result.data.status === 200){
+    if (result.data.status === 200) {
       setAddress(result.data.deposit_address);
     }
-    else{
+    else {
       console.log(result);
     }
   };
@@ -119,7 +182,7 @@ const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
                   Networks
                 </h6>
                 <div className="font-bold mt-2 border md:border-t-0 md:border-r-0 md:border-l-0  border-border-clr">
-                  <SelectMenu deposit={true} selectMenu={network} getDepositAddress={getDepositAddress} network={true}/>
+                  <SelectMenu deposit={true} selectMenu={network} getDepositAddress={getDepositAddress} network={true} />
                 </div>
               </div>
 
@@ -202,7 +265,7 @@ const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
                     </div>
                   </div>
                 </div>
-                
+
               </div>
               {/* <div className="mt-4">
                 <h6 className="info-12 dark:hover:text-white dark:text-white">
@@ -233,9 +296,9 @@ const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
                 </p>
               </div> */}
               {/* qr code  */}
-                <div className={`grid place-items-center p-2 mt-4 md:hidden`}>
-                  <img src="/assets/images/qr.png" alt="" />
-                </div>
+              <div className={`grid place-items-center p-2 mt-4 md:hidden`}>
+                <img src="/assets/images/qr.png" alt="" />
+              </div>
             </div>
 
             <div className="hidden lg:block">
@@ -266,7 +329,8 @@ const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
                   Coin
                 </h4>
                 <div className="border border-border-clr ">
-                  <SelectMenu selectMenu={tokenSymbol} all={true}/>
+                  <SelectMenu selectMenu={tokenSymbol} returnvals={selectNetwork} all={true} type={'deposit'} />
+                  {/* <SelectMenu selectMenu={tokenSymbol} all={true}/> */}
                 </div>
               </div>
               <div className="hidden lg:block">
@@ -274,7 +338,7 @@ const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
                   Time
                 </h4>
                 <div className="hidden lg:block border border-border-clr">
-                  <SelectMenu selectMenu={dateFilter} />
+                  <SelectMenu selectMenu={dateFilter} returnvals={selectNetwork} type={'days'} />
                 </div>
               </div>
 
@@ -305,9 +369,8 @@ const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
                 </svg>
               </button>
               <div
-                className={`fixed -bottom-[100%] duration-500 right-0 w-full bg-white h-[100vh] dark:bg-black-v-1 ${
-                  filterShow && "bottom-[0%] z-[4] "
-                } `}
+                className={`fixed -bottom-[100%] duration-500 right-0 w-full bg-white h-[100vh] dark:bg-black-v-1 ${filterShow && "bottom-[0%] z-[4] "
+                  } `}
               >
                 <div className="flex justify-between mb-4  p-4 border-b lg:hidden border-t border-border-clr">
                   <h3 className="info-14-20">Filter</h3>
@@ -336,33 +399,33 @@ const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
                 </div>
                 <div className="mt-4 px-2 ">
                   <div className="border border-border-clr">
-                  <SelectMenu selectMenu={coinData} />
+                    <SelectMenu selectMenu={coinData} />
 
                   </div>
                 </div>
                 <div className="mt-4 px-2">
-                <div className="border border-border-clr">
-                  <SelectMenu selectMenu={dateFilter} />
+                  <div className="border border-border-clr">
+                    <SelectMenu selectMenu={dateFilter} />
 
                   </div>
                   <div className="mt-4 px-2 ">
-                <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
-                  Start Time:
-                </h4>
-                <input
-                  type="date"
-                  className="w-full border border-border-clr p-2 mt-2  bg-transparent dark:text-white"
-                />
-              </div>
-              <div className="mt-4 px-2 ">
-                <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
-                  End Time:
-                </h4>
-                <input
-                  type="date"
-                  className="w-full border border-border-clr p-2 mt-2 bg-transparent dark:text-white"
-                />
-              </div>
+                    <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
+                      Start Time:
+                    </h4>
+                    <input
+                      type="date"
+                      className="w-full border border-border-clr p-2 mt-2  bg-transparent dark:text-white"
+                    />
+                  </div>
+                  <div className="mt-4 px-2 ">
+                    <h4 className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
+                      End Time:
+                    </h4>
+                    <input
+                      type="date"
+                      className="w-full border border-border-clr p-2 mt-2 bg-transparent dark:text-white"
+                    />
+                  </div>
                 </div>
                 <div className="mt-4 px-2 flex gap-4 ">
                   <button className="cta2 w-full">Reset</button>
@@ -371,7 +434,7 @@ const Deposit = ({ assets, tokens, networks, sessions, tokenSymbol }) => {
               </div>
             </div>
             {/* dataTable */}
-            <DepositTable data={data} />
+            <DepositTable data={historyList} />
           </div>
         </div>
       </Layout>
@@ -394,6 +457,10 @@ export async function getServerSideProps(context) {
       method: "GET"
     }).then(response => response.json());
 
+    let depositList = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/deposit/list/${session?.user?.id}`, {
+      method: "GET"
+    }).then(response => response.json());
+
     let menu = await data.json();
 
     let tokens = []
@@ -407,7 +474,8 @@ export async function getServerSideProps(context) {
         tokens: tokenList.data,
         networks: networkList.data,
         sessions: session,
-        tokenSymbol : tokens
+        tokenSymbol: tokens,
+        deposit: depositList.data
       }, // will be passed to the page component as props
     };
   }

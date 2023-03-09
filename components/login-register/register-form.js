@@ -211,7 +211,7 @@ const RegisterForm = () => {
                     <LeftSide />
                     {/* register part */}
                     {showVerification === 0 &&
-                        <div className="max-w-full md:max-w-[50%] w-full md:p-3 sm:p-6 md:border border-grey mx-auto">
+                        <div className="max-w-full md:max-w-[500px] w-full md:p-8 sm:p-6 md:border border-grey mx-auto">
                             <h4 className='section-secondary-heading mb-5'>Welcome to Blc-Exchange</h4>
                             <div className="my-8 relative" ref={dropdown}>
                                 <p className='info-14 hover:!text-grey inline-flex items-center gap-3 cursor-pointer' onClick={(e) => { setShowDropdown(!showDropdown) }}>
@@ -236,7 +236,7 @@ const RegisterForm = () => {
                                 {
                                     show === 1 &&
                                     <div className=' mb-4'>
-                                        <input type="email" placeholder="Email" className="block  px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary"
+                                        <input type="email" placeholder="Email" className="block  px-4 max-w-full w-full font-noto bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary"
                                             name={show === 1 ? "email" : ''}
                                             {...register('email')} aria-invalid={errors.email ? "true" : "false"} />
                                         {/* {errors.email && errors.email.type === "required" && (
@@ -253,7 +253,7 @@ const RegisterForm = () => {
                                                 <span className="text-black dark:text-white" id="counteryCode">+ <span>{dialCode}</span> </span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#656e6f" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down max-w-[24px] w-full"><polyline points="6 9 12 15 18 9" /></svg>
                                             </div>
-                                            <input type="number" maxLength={99999999999} placeholder="Mobile number" onFocus={() => setDropdownPhone(false)} className=" block  px-4 max-w-full w-full bg-transparent  text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary"
+                                            <input type="number" maxLength={99999999999} placeholder="Mobile number" onFocus={() => setDropdownPhone(false)} className=" block  px-4 max-w-full w-full bg-transparent font-noto text-black dark:text-white outline-none border-l-[1px] border-grey focus:!border-primary"
                                                 name={show === 2 ? "phone" : ''}
                                                 {...register('phone')} />
                                             {
@@ -271,7 +271,7 @@ const RegisterForm = () => {
                                 }
 
                                 <div className="relative">
-                                    <input type="password" placeholder="Set password" id="pass_input" className="block  px-4 max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="password" {...register('password')} />
+                                    <input type="password" placeholder="Set password" id="pass_input" className="block  px-4 max-w-full  font-noto w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="password" {...register('password')} />
                                     <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
                                     <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }} />
                                 </div>
@@ -288,7 +288,7 @@ const RegisterForm = () => {
                                     </label>
                                     {/* dsfvdjskbfjdgbjdfgbkld */}
                                     {(router.query.referal !== undefined || active === true) &&
-                                        <input type="tel" ref={ref} value={router.query.referal} onChange={(e) => setReferCode(e.target.value)} placeholder="Referral Code (Optional)" className={` px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary`} name="referal_code" />
+                                        <input type="tel" ref={ref} value={router.query.referal} onChange={(e) => setReferCode(e.target.value)} placeholder="Referral Code (Optional)" className={` px-4 max-w-full font-noto w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary`} name="referal_code" />
                                     }
 
 
@@ -301,7 +301,7 @@ const RegisterForm = () => {
                                     {/* spinner */}
                                 </button>
                                 <div className="relative mb-5 inline-block mt-[8px]">
-                                    <input id="checkbox" name='terms' type="checkbox" className="hidden agree_cta" {...register('terms')} />
+                                    <input id="checkbox" name='terms' type="checkbox" className="hidden agree_cta font-noto " {...register('terms')} />
                                     <label htmlFor="checkbox" className="relative info-14 hover:!text-grey pl-[25px] after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-[16px] after:h-[16px] cursor-pointer">I agree to the <Link href="#" className="text-primary">Terms of Use</Link></label>
                                 </div>
                                 <p className="!text-red-700 info-12">{errors.terms?.message}</p>
@@ -310,7 +310,7 @@ const RegisterForm = () => {
 
                             <div className='bg-grey w-full h-[1px] my-5'></div>
                             <div className='text-center mt-[-33px] mb-[20px]'>
-                                <p className='mt-[-33px] text-grey bg-white dark:bg-black-v-5 inline-block px-3 -translate-y-35'>Or login with</p>
+                                <p className='mt-[-33px] text-grey bg-white dark:bg-black-v-5 inline-block px-3 -translate-y-35'>Or Sign-Up with</p>
                             </div>
                             <div className='flex gap-3 mt-8 justify-between sm:justify-start mb-5'>
                                 <Link href="#" className='p-3 bg-black-v-4 block   w-full rounded'>

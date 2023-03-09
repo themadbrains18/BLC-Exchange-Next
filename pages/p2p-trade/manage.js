@@ -1,34 +1,37 @@
 import SubHeader from '/components/snippets/subHeader';
+import { getProviders, getSession } from 'next-auth/react'
 import P2PManagement from './../../components/oneClickBuy/p2p-management';
-
-import { getSession } from "next-auth/react"
-
-
-
-const Manage = ({paymentods, userpaymentods}) => {
+const Manage = ({tokenBalnces,sessions, paymentods, userpaymentods }) => {
     return (
         <>
-            <P2PManagement paymentods={paymentods} userpaymentods={userpaymentods} />
+            <P2PManagement tokenBalnces={tokenBalnces} session={sessions} paymentods={paymentods} userpaymentods={userpaymentods}  />
         </>
     )
 }
-
 export default Manage;
 
+
+
+
+
 export async function getServerSideProps(context) {
-    
+  let session = await getSession(context)
+  if(session != null){
+
+  let tokenBalnces = await fetch(
+    `${process.env.NEXT_PUBLIC_APIURL}/post/balances/${session.user.id}`,
+    {
+      method: 'GET',
+    },
+  ).then((response) => response.json())
 
     const paymentods = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/payment`)
     .then(res => res.json())
 
-   
     let getPaymet = []
-    let session = await getSession(context)
 
-    if(session != null){
-         getPaymet = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/payment/get-method/${session.user.id}`) 
-        .then(res => res.json())
-    }
+    getPaymet = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/payment/get-method/${session.user.id}`) 
+  .then(res => res.json())
 
 
 
@@ -38,7 +41,17 @@ export async function getServerSideProps(context) {
     return {
        props : {
            paymentods: paymentods, // will be passed to the page component as props
-           userpaymentods : getPaymet
+           userpaymentods : getPaymet,
+           tokenBalnces: tokenBalnces,
+           sessions: session
         }
     }
   } 
+
+    return {
+      redirect: { destination: '/' },
+    }
+    
+  } 
+  
+

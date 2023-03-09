@@ -1,6 +1,10 @@
 import Link from "next/link";
+import { useState,useContext, useEffect } from "react";
+import Context from "../contexts/context";
 
 const ActiveCta = ({ data, active, setActive, type }) => {
+
+  const { mode ,setClick} = useContext(Context);
   return (
     <>
       {!type && (

@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 
 import Context from "../contexts/context";
-const SelectMenu = ({ clear, returnvals, type, all, selectMenu, selectNetwork, getDepositAddress, network, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
+const SelectMenu = ({height150,borderBottom, clear, returnvals, type, all, selectMenu, selectNetwork,selectTime,selectMethod, getDepositAddress, network, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [value, setValue] = useState('');
@@ -46,7 +46,6 @@ const SelectMenu = ({ clear, returnvals, type, all, selectMenu, selectNetwork, g
   const eventManager = (e, i) => {
     if (type == "withdraw") {
       setValue(e.symbol)
-      returnvals({ "type": "token", "obj": e })
 
     } else if (type == "days") {  // please add other event under if else block
       setValue(e)
@@ -57,6 +56,12 @@ const SelectMenu = ({ clear, returnvals, type, all, selectMenu, selectNetwork, g
     }else {
       (network ? setValue(e.networkName) : setValue(e))
       selectNetwork && selectNetwork(e)
+      selectMethod && selectMethod(e)
+      if(type== 'deposit'){
+        setValue(e)
+        returnvals({ "type": "token", "obj": e })
+      }
+      selectTime && selectTime(e)
     }
 
     getDepositAddress && getDepositAddress(e.type)
@@ -69,13 +74,13 @@ const SelectMenu = ({ clear, returnvals, type, all, selectMenu, selectNetwork, g
 
   return (
     <>
-      <div ref={dropdown} className={`relative pr-2 z-initial   ${open && "md:z-[2]"}`}>
+      <div ref={dropdown} className={`relative pr-2 z-initial  ${open && "md:z-[2]"} ${borderBottom ? "border-b border-grey":""}`}>
         <div className="flex bg-transparent justify-between items-center">
           <input
             type="text"
             name=""
             id=""
-            className="max-w-[150px] sm:max-w-none caret-white placeholder:text-disable-clr p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
+            className=" max-w-none font-noto caret-white placeholder:text-disable-clr p-2 pr-0 outline-none bg-transparent w-full  info-16 dark:text-white dark:caret-black"
             placeholder="Please Select"
             value={(transfer && fromValue !== '') ? fromValue : value}
             onClick={() => {
@@ -117,7 +122,7 @@ const SelectMenu = ({ clear, returnvals, type, all, selectMenu, selectNetwork, g
               }`}
           ></div>
           <div
-            className={`h-[50%] rounded-t-xl md:static md:rounded-none md:w-[unset] fixed -bottom-[100%] left-0 w-full bg-white dark:bg-black dark:text-white dur ${open && "bottom-[0%] z-[4]"
+            className={`${height150 ? "md:h-[150px] md:overflow-y-auto":""}  h-[250px] overflow-y-auto bottom-[60px] rounded-t-xl md:static md:rounded-none md:w-[unset] fixed -bottom-[100%] left-0 w-full bg-white dark:bg-black dark:text-white dur ${open && "bottom-[0%] z-[4]"
               }`}
           >
             <span className="block md:hidden my-2 p-2 rounded-xl">
@@ -129,14 +134,15 @@ const SelectMenu = ({ clear, returnvals, type, all, selectMenu, selectNetwork, g
                 {
                   all &&
                   <button
-                    className={`md:relative ${open && "z-[2]"
+                    className={`md:relative  ${open && "z-[2]"
                       } info-14-16 block w-full text-left p-2 dark:text-white dark:bg-black  ${active === "all" &&
                       "bg-blue-50 text-primary dark:!text-primary"
                       }`}
                     onClick={() => {
                       console.log("-====network", network)
                       setValue("ALL");
-                      selectNetwork("all")
+                      selectNetwork && selectNetwork('all')
+                      returnvals({ "type": "token", "obj": 'all' })
                       setOpen(false)
                       setActive("all");
                     }}
@@ -208,7 +214,7 @@ const SelectMenu = ({ clear, returnvals, type, all, selectMenu, selectNetwork, g
             }
 
             <button
-              className="fixed bottom-0 p-4 w-full border-t-4 md:hidden"
+              className="fixed bottom-0 p-4 dark:bg-[#000] bg-white w-full border-t-4 md:hidden"
               onClick={() => {
                 setOpen(!open);
                 setOverlay(!overlay);

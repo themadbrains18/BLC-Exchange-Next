@@ -169,6 +169,9 @@
 .transparent-cta {
     @apply p-[10px] font-normal font-noto capitalize text-black text-[14px] md:text-[16px] hover:text-primary dark:text-white
 }
+.border-cta{
+  @apply border-primary info-14-16 px-2 py-1 rounded
+}
 
 .container {
   @apply mx-auto max-w-[1240px] px-5;

@@ -199,13 +199,13 @@ const ForgetFundCode = ({ session }) => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mt-[24px]">
                 <label className="info-12 !text-grey">Mobil/Email</label>
-                <input type="text" {...register('email')} name="email" className="mt-[8px] block px-4 w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Enter your Email/password " />
+                <input type="text" {...register('email')} name="email" className="mt-[8px] block px-4 w-full bg-transparent border font-noto-display border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Enter your Email/password " />
                 <p role="alert" className="!text-red-700 info-12">{errors.email?.message}</p>
               </div>
               <div className="mt-[24px]">
                 <label className="info-12 !text-grey">Login Password</label>
                 <div className="relative">
-                  <input type="password" {...register('password')} name="password" className="mt-[8px] block px-4 w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Enter your login password" />
+                  <input type="password" {...register('password')} name="password" className="mt-[8px] block px-4 w-full bg-transparent border  font-noto-display border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Enter your login password" />
                   <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
                   <div className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }}>
                     <Icons type='close-eye' />
@@ -216,7 +216,7 @@ const ForgetFundCode = ({ session }) => {
               <div className="mt-[24px]">
                 <label className="info-12 !text-grey">Fund Code</label>
                 <div className="relative">
-                  <input type="password" {...register('code')} name="code" className="mt-[8px] block px-4 w-full bg-transparent border  border-border-clr dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Enter your fund code" />
+                  <input type="password" {...register('code')} name="code" className="mt-[8px] block px-4 w-full font-noto-display bg-transparent border  border-border-clr dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Enter your fund code" />
                   <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
                   <div className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }}>
                     <Icons type='close-eye' />
@@ -227,7 +227,7 @@ const ForgetFundCode = ({ session }) => {
               <div className="mt-[24px]">
                 <label className="info-12 !text-grey">Confirm Fund Code</label>
                 <div className="relative">
-                  <input type="password" {...register('confirmcode')} name="confirmcode" className="mt-[8px] block px-4 w-full bg-transparent border  border-border-clr dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Confirm fund code" />
+                  <input type="password" {...register('confirmcode')} name="confirmcode" className="mt-[8px] block px-4 w-full font-noto-display bg-transparent border  border-border-clr dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Confirm fund code" />
                   <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
                   <div className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }}>
                     <Icons type='close-eye' />

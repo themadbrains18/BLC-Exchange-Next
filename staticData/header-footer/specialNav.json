@@ -257,12 +257,7 @@
                 "svgType": "id_verfication",
                 "linkUrl": "/dashboard/verified"
             },
-            {
-                "linkText": "Markets",
-                "desc": "Market trends from experts",
-                "svgType": "API_management",
-                "linkUrl": "/chart"
-            },
+            
             {
                 "linkText": "My Compition",
                 "desc": "Market trends from experts",
