@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import { postData } from "../../../libs/requestMethod";
+import { getDataWithoutBody, postData,deleteMethod } from "../../../libs/requestMethod";
 
 export const config = {
     api: {
@@ -21,11 +21,34 @@ const handler = nc({
     // kyc register
     // ============================================================//
 
-    .post(async(req, res) => {
+    .post(async (req, res) => {
 
         try {
-            let data = await postData(`${process.env.NEXT_PUBLIC_APIURL}/post/create`,JSON.parse(req.body))
-            res.status(200).send({data});
+            let data = await postData(`${process.env.NEXT_PUBLIC_APIURL}/post/create`, JSON.parse(req.body))
+            res.status(200).send({ data });
+        } catch (error) {
+            console.log(error)
+            res.status(401).send({ error: error })
+        }
+    })
+
+    .get(async (req, res) => {
+        try {
+            let data = await getDataWithoutBody(`${process.env.NEXT_PUBLIC_APIURL}/post/balances/${req.query.userid}`)
+
+            res.status(200).send({ data });
+        } catch (error) {
+            console.log(error)
+            res.status(401).send({ error: error })
+        }
+    })
+
+    .delete(async (req,res) =>{
+        console.log(req.query.postid,'====delete post id')
+        try {
+            let data = await deleteMethod(`${process.env.NEXT_PUBLIC_APIURL}/post/delete/${req.query.postid}`)
+
+            res.status(200).send({ data });
         } catch (error) {
             console.log(error)
             res.status(401).send({ error: error })

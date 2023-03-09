@@ -13,23 +13,30 @@ import VerificationPopup from '../snippets/verification-popup';
 import AdTable from './ad/adTable';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from "next/router";
 
 
-const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) => {
+const P2PManagement = ({ session, paymentods, userpaymentods }) => {
     const { mode, setClick, verifyData, setVerifyData } = useContext(Context);
     const [rotate, setRotate] = useState(false);
+    const router = useRouter()
 
     const [dropDown, setDropDown] = useState(false);
     const [active, setActive] = useState(1);
     const [coinImg, setCoinImg] = useState("https://bitlivecoinnetwork.com/images/logo.png");
-    const [coin, setCoin] = useState("USD");
+    const [coin, setCoin] = useState("Select Coin");
     const [popup, showPopup] = useState(false);
     const pm_duration = ['15 minute', '20 minute']
     const pm_method = ['UPI', 'Google Pay']
     const [tokenBalance, setTokenBlance] = useState(0)
+    const [clear, setClear] = useState(false);
+
     // const [minLimit, setMinLimit] = useState(0)
     // const [maxLimit, setMaxLimit] = useState(0)
     const [balanceMessage, setBalanceMessage] = useState(0)
+    const [postData, setPostData]= useState([]);
+
+    
     const schema = yup
         .object()
         .shape({
@@ -53,7 +60,7 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
         handleSubmit,
         reset,
         watch,
-        setError, clearErrors,resetField,
+        setError, clearErrors, resetField,
         formState: { errors },
     } = useForm({ resolver: yupResolver(schema) })
 
@@ -63,9 +70,17 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
         setRotate(false);
         setValue('usertoken', item.id)
         clearErrors("usertoken")
-        if (tokenBalnces) {
 
-            for (const token of tokenBalnces) {
+        let tokenBalnces = await fetch(
+            `${process.env.NEXT_PUBLIC_BASEURL}/post/create?userid=${session.user.id}`,
+            {
+                method: 'GET',
+            },
+        ).then((response) => response.json())
+
+        if (tokenBalnces.data) {
+
+            for (const token of tokenBalnces.data) {
                 if (token.token_id === item.id) {
                     setTokenBlance(token['balance'])
                     return;
@@ -76,7 +91,7 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
             }
         }
 
-        
+
     };
 
     const selectedMethod = async (item) => {
@@ -102,9 +117,12 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             })
             reset()
-            setValue('method', '')
-            resetField('method')
+            resetField('usertoken', { defaultValue: 0 })
+            setCoin('Select Coin')
             setBalanceMessage(0)
+            setTokenBlance(0)
+            setClear(true);
+            // router.push('/p2p-trade/manage')
         }
         else {
             toast.error(result.data.message, {
@@ -113,6 +131,8 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
         }
 
     }
+
+    
 
 
     return (
@@ -133,14 +153,18 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
                                             verified = true;
                                         }
                                         if (verified) {
+                                            clearErrors(["usertoken","method","deadline","amount","quantity","min_limit","max_limit","checked"])
                                             setActive(3)
+                                            
                                         }
                                         else {
                                             showPopup(true);
                                         }
 
                                     }}>Post Ad</Link></li>
-                                <li className={`${active === 4 ? 'border-r-[4px] border-primary pl-[15px] bg-[#1da2b41f]' : 'pl-[15px]'}`} ><Link className="info-14-16 py-[10px] block" href="" onClick={() => { setActive(4) }}>My Ads</Link></li>
+                                <li className={`${active === 4 ? 'border-r-[4px] border-primary pl-[15px] bg-[#1da2b41f]' : 'pl-[15px]'}`} ><Link className="info-14-16 py-[10px] block" href="" onClick={() => {
+                                    setActive(4);
+                                }}>My Ads</Link></li>
                             </ul>
                         </div>
                         {active === 1 && <div className="max-w-[100%-200px] w-full md:border-l border-grey md:pl-[20px]">
@@ -467,11 +491,11 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
                                                             step='0.0001'
                                                             className="caret-primary w-full bg-transparent  outline-none"
                                                             placeholder='Enter Min Limit' {...register('min_limit')}
-                                                            // onChange={(e) => {
+                                                        // onChange={(e) => {
 
-                                                            //     setValue('min_limit', e.target.value)
-                                                            //     setMinLimit(e.target.value)
-                                                            // }}
+                                                        //     setValue('min_limit', e.target.value)
+                                                        //     setMinLimit(e.target.value)
+                                                        // }}
                                                         />
                                                         <span className='info-14'>USD</span>
                                                     </div>
@@ -492,15 +516,15 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
                                                             step='0.0001'
                                                             className="caret-primary w-full bg-transparent  outline-none"
                                                             placeholder='Enter max limit' {...register('max_limit')}
-                                                            // onChange={(e) => {
-                                                            //     if (e.target.value <= minLimit) {
-                                                            //         setBalanceMessage(3)
-                                                            //     }
-                                                            //     else {
-                                                            //         setValue('max_limit', e.target.value)
-                                                            //         setMaxLimit(e.target.value)
-                                                            //     }
-                                                            // }}
+                                                        // onChange={(e) => {
+                                                        //     if (e.target.value <= minLimit) {
+                                                        //         setBalanceMessage(3)
+                                                        //     }
+                                                        //     else {
+                                                        //         setValue('max_limit', e.target.value)
+                                                        //         setMaxLimit(e.target.value)
+                                                        //     }
+                                                        // }}
                                                         />
                                                         <span className='info-14'>USD</span>
                                                     </div>
@@ -517,7 +541,7 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
                                         <div className='mt-8'>
                                             <h4 className="info-14-16">Payment Deadline</h4>
                                             <div className="border-b info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
-                                                <SelectMenu selectMenu={pm_duration} selectNetwork={selectedNetwork} />
+                                                <SelectMenu selectMenu={pm_duration} clear={clear} selectNetwork={selectedNetwork} />
                                                 {/* <div className="flex  mt-4 items-end ">
                                                 <input
                                                     type="number"
@@ -533,7 +557,7 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
                                         <div className='mt-8'>
                                             <h4 className="info-14-16">Payment Methods</h4>
                                             <div className="border-b info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
-                                                <SelectMenu selectMenu={pm_method} selectMethod={selectedMethod} />
+                                                <SelectMenu selectMenu={pm_method} clear={clear} selectMethod={selectedMethod} />
                                                 {/* <div className="flex  mt-4 items-end ">
                                                 <input
                                                     type="number"
@@ -583,7 +607,7 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
                             {/* about */}
 
 
-                            <AdTable />
+                            <AdTable session={session}/>
 
 
                         </div>

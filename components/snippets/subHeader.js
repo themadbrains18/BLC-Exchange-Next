@@ -81,7 +81,7 @@ const SubHeader = () => {
           <Faq />
         </>
       }
-      {show===2 &&
+      {show === 2 &&
         <Hall />
       }
     </>
