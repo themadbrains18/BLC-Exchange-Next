@@ -9,6 +9,7 @@ import Sponsor from "components/home/sponsor";
 import FlowSliderSec from "components/home/flowSliderSec";
 import Trending from "components/home/trending";
 import Download from "components/home/download";
+// import Loader from 'components/snippets/loader';
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -31,6 +32,7 @@ export default function Home(props) {
       <Download /> 
       <Tutorials />
       <Sponsor />
+      {/* <Loader /> */}
     </>
   );
 }
