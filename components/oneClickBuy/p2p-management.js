@@ -33,7 +33,7 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
     const schema = yup
         .object()
         .shape({
-            usertoken: yup.string().required('Please select at least one item...'),
+            usertoken: yup.number().required('Please select at least one item...'),
             amount: yup.number().positive().typeError('Please enter amount'),
             quantity: yup.number().positive().typeError('Please enter quantity'),
             min_limit: yup.number().positive().typeError('Please enter minimum limit'),
@@ -61,7 +61,7 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
         setCoin(item.symbol);
         setCoinImg(item.image);
         setRotate(false);
-        setValue('usertoken', item.symbol)
+        setValue('usertoken', item.id)
         clearErrors("usertoken")
         if (tokenBalnces) {
 
