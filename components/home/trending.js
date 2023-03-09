@@ -41,8 +41,8 @@ const Trending = (props) => {
               {show === 1 && (
 
                 <>
-                  {props.coins.map((item) => {
-                    return <div onClick={() => {heightUpdate(); router.push('/chart/' + item.SYMBOL) }} className="p-[1px] rounded-lg hover:bg-gradient-to-r from-[#30bce8] cursor-pointer">
+                  {props.coins.map((item,index) => {
+                    return <div key={index} onClick={() => {heightUpdate(); router.push('/chart/' + item.SYMBOL) }} className="p-[1px] rounded-lg hover:bg-gradient-to-r from-[#30bce8] cursor-pointer">
                       <div className="grid grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:bg-black-v-4 rounded-lg hover:bg-gradient-to-r from-[#1da2b459]">
                         <div className="flex items-center gap-3">
                           <Image
