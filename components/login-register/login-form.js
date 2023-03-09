@@ -143,7 +143,7 @@ const LoginForm = () => {
                         </div>
                         {/* login part */}
                         {show !== 3 &&
-                            <div className='className="max-w-full md:max-w-[50%] w-full" md:p-3 sm:p-6 md:border border-grey max-w-[480px] w-full mx-auto'>
+                            <div className='className="max-w-full md:max-w-[500px] w-full md:p-8 sm:p-6 md:border border-grey max-w-[480px] w-full mx-auto'>
                                 <h4 className='section-secondary-heading mb-5'>Welcome to Blc-Exchange</h4>
                                 <div className='flex gap-8 mb-8'>
                                     <button className={`info-14 border-b-2 border-transparent pb-1  ${show === 1 ? " !border-primary !text-primary" : ""}`} onClick={() => { setShow(1) }}>Email / Mobile number</button>
@@ -153,10 +153,10 @@ const LoginForm = () => {
                                 {
                                     show === 1 &&
                                     <form onSubmit={handleSubmit(onSubmit)}>
-                                        <input type="text" placeholder="Email / Mobile number" name="username"  {...register('username')} className="block  mb-4 px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" />
+                                        <input type="text" placeholder="Email / Mobile number" name="username"  {...register('username')} className="block font-noto mb-4 px-4 max-w-full w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" />
                                         <div className="!text-red-700 info-12">{errors.username?.message}</div>
                                         <div className="relative">
-                                            <input type="password" {...register('password')} name="password" id="pass_input" placeholder="Enter your password" className="block  px-4 !pr-[45px] max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" />
+                                            <input type="password" {...register('password')} name="password" id="pass_input" placeholder="Enter your password" className="block font-noto  px-4 !pr-[45px] max-w-full  w-full bg-transparent border  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" />
                                             <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
                                             <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }} />
                                         </div>
@@ -169,7 +169,9 @@ const LoginForm = () => {
                                             <div className="hidden w-8 h-8 rounded-full animate-spin border-4 border-solid border-purple-500 border-t-transparent absolute top-[50%] left-[50%] mt-[-16px] ml-[-15px] z-10"></div>
                                             {/* spinner */}
                                         </button>
-                                        <Link href="/forget" className='info-14 !text-primary block text-end mt-4 cursor-pointer'>Forget password?</Link>
+                                        <div className='flex justify-end mt-4'>
+                                            <Link href="/forget" className='info-14 !text-primary  cursor-pointer'>Forgot password?</Link>
+                                        </div>s
                                     </form>
                                 }
                                 {/* qr part */}

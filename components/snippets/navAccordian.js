@@ -22,8 +22,9 @@ const NavAccordian = (props) => {
 
   return (
     <>
+    <div className="">
       <h4
-        className={`info-14-20 py-3 flex align-center gap-4 justify-between ${props.showAccordian ? "openAccordian" : ""}`}
+        className={`info-14-16 text-[14px] py-3 flex align-center gap-4 justify-between ${props.showAccordian ? "openAccordian" : ""}`}
         style={{
           display: props.showAccordian ? 'none' : 'flex'
         }}
@@ -50,13 +51,13 @@ const NavAccordian = (props) => {
         }
 
       </h4>
-      <ul ref={ref} className="h-0 pl-3 overflow-hidden duration-300">
+      <ul ref={ref} className="h-0 pl-[16px] overflow-hidden duration-300">
         {props.content &&
           props.content.map((elem, index) => {
             return (
               <Fragment key={index} >
                 {elem.linkUrl && elem.linkText && (
-                  <li className="mt-3" >
+                  <li className="mt-3 " >
                     <Link href={elem.linkUrl} className={`whitespace-nowrap info-14 ${props.className && " hover:border-r-2 hover:border-primary block"}`} onClick={() => {
                       setClick(false);
                       props.setShow && props.setShow(false);
@@ -68,9 +69,12 @@ const NavAccordian = (props) => {
               </Fragment>
             );
           })}
-        {props.desc && <li className="mt-3 text-left text-black-v-2 dark:text-white">{props.desc}</li>}
-        {props.date && <li className="mt-3 text-left info-12 dark:text-white">Notification Date</li>}
-        {props.cta && <li className=" mt-3 info-12 text-right cursor-pointer">Read more </li>}
+        {props.desc && <li className="mt-3 text-left md:info-14-16 text-[14px] text-black-v-2 dark:text-white relative before:absolute before:content before:bg-[#1da2b4] before:w-[8px] before:h-[8px] before:top-[50%] before:left-[-16px] before:rounded before:translate-y-[-50%]">
+      
+          {props.desc}
+          </li>}
+        {props.date && <li className="mt-3 text-left info-12 dark:text-grey">March 7th 2023, 12:32:08 pm</li>}
+        {props.cta && <li className=" mt-3 info-12 text-right cursor-pointer dark:text-white">Read more </li>}
         {props.data &&
           props.data.map((elem, index) => {
             return (
@@ -111,6 +115,7 @@ const NavAccordian = (props) => {
             );
           })}
       </ul>
+      </div>
     </>
   );
 };
