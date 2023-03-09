@@ -35,7 +35,7 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
     }
     setTimeout(() => {
       setLoader(false);
-    }, 1000);
+    }, 1500);
 
     window.addEventListener("resize", () => {
       if (ref.current !== null) {

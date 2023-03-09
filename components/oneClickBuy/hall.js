@@ -369,7 +369,7 @@ const Hall = () => {
 
           {/* buy coin popup start */}
             <div className={`${popup ? "top-[50%] opacity-1 visible":"top-[45%] opacity-0 invisible"} z-[9] duration-300 flex max-w-full h-full lg:h-auto lg:max-w-[740px] w-full mx-auto fixed  left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-lg overflow-hidden`}>
-              <div className="max-w-[40%] hidden lg:block w-full p-[22px] bg-white dark:bg-[#121314] dark:shadow-none shadow-md">
+              <div className="max-w-[40%] hidden lg:block w-full p-[22px] bg-white dark:bg-hover-black dark:shadow-none shadow-md">
                     {/* about user */}
                     <div className="my-[24px] flex items-center gap-[10px] grow-[1.6]">
                       <div className="min-w-[38px] min-h-[38px] rounded-full bg-[#e8f6f7] flex">
@@ -635,7 +635,7 @@ const Hall = () => {
 
         {/* sell coin popup start */}
           <div className={`${popup2 ? "top-[50%] opacity-1 visible":"top-[45%] opacity-0 invisible"} z-[9] duration-300 flex max-w-full h-full lg:h-auto lg:max-w-[740px] w-full mx-auto fixed  left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-lg overflow-hidden`}>
-            <div className="max-w-[40%] hidden lg:block w-full p-[22px] bg-white dark:bg-[#121314] dark:shadow-none shadow-md">
+            <div className="max-w-[40%] hidden lg:block w-full p-[22px] bg-white dark:bg-hover-black dark:shadow-none shadow-md">
                   {/* about user */}
                   <div className="my-[24px] flex items-center gap-[10px] grow-[1.6]">
                     <div className="min-w-[38px] min-h-[38px] rounded-full bg-[#e8f6f7] flex">
@@ -810,7 +810,7 @@ const Hall = () => {
                 C61.42,57.647,61.42,54.687,59.595,52.861z" />
             </svg>
           </div>
-          
+          <h4 className="info-16-22 text-center !text">Add payment method</h4>
           
         </div>
         {/* Add payment method popup */}
