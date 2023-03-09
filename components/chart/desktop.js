@@ -7,9 +7,12 @@ import Context from "/components/contexts/context";
 const Desktop = ({symbol, assets, coins, orders}) => {
   const { mode } = useContext(Context);
 
-  let coin = coins.filter((item)=>{
-    return item.SYMBOL === symbol
-  })
+  let coin = [];
+  if(coins !==undefined){
+    coin = coins.filter((item)=>{
+      return item.SYMBOL === symbol
+    });
+  }
 
   return (
     <>
