@@ -15,10 +15,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const P2PManagement = ({ tokenBalnces, session,paymentods, userpaymentods }) => {
+const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) => {
     const { mode, setClick, verifyData, setVerifyData } = useContext(Context);
     const [rotate, setRotate] = useState(false);
-    
+
     const [dropDown, setDropDown] = useState(false);
     const [active, setActive] = useState(1);
     const [coinImg, setCoinImg] = useState("https://bitlivecoinnetwork.com/images/logo.png");
@@ -27,17 +27,17 @@ const P2PManagement = ({ tokenBalnces, session,paymentods, userpaymentods }) => 
     const pm_duration = ['15 minute', '20 minute']
     const pm_method = ['UPI', 'Google Pay']
     const [tokenBalance, setTokenBlance] = useState(0)
-    const [minLimit, setMinLimit] = useState(0)
-    const [maxLimit, setMaxLimit] = useState(0)
+    // const [minLimit, setMinLimit] = useState(0)
+    // const [maxLimit, setMaxLimit] = useState(0)
     const [balanceMessage, setBalanceMessage] = useState(0)
     const schema = yup
         .object()
         .shape({
             usertoken: yup.string().required('Please select at least one item...'),
-            amount: yup.number().positive("Value must be greater than 0 ").typeError('Please enter amount'),
-            quantity: yup.number().positive("Value must be greater than 0 ").typeError('Please enter quantity'),
-            min_limit: yup.number().positive("Value must be greater than 0 ").typeError('Please enter minimum limit'),
-            max_limit: yup.number().positive("Value must be greater than 0 ").typeError('Maximum limit must be less than Balance'),
+            amount: yup.number().positive().typeError('Please enter amount'),
+            quantity: yup.number().positive().typeError('Please enter quantity'),
+            min_limit: yup.number().positive().typeError('Please enter minimum limit'),
+            max_limit: yup.number().positive().moreThan(yup.ref('min_limit')).typeError('Maximum limit must be greater than minimum limit'),
             deadline: yup.string().required('Please select Payment duration'),
             method: yup.string().required('Please select at least one payment method'),
             notes: yup.string(),
@@ -53,7 +53,7 @@ const P2PManagement = ({ tokenBalnces, session,paymentods, userpaymentods }) => 
         handleSubmit,
         reset,
         watch,
-        setError,clearErrors,
+        setError, clearErrors,resetField,
         formState: { errors },
     } = useForm({ resolver: yupResolver(schema) })
 
@@ -62,6 +62,7 @@ const P2PManagement = ({ tokenBalnces, session,paymentods, userpaymentods }) => 
         setCoinImg(item.image);
         setRotate(false);
         setValue('usertoken', item.symbol)
+        clearErrors("usertoken")
         if (tokenBalnces) {
 
             for (const token of tokenBalnces) {
@@ -75,7 +76,7 @@ const P2PManagement = ({ tokenBalnces, session,paymentods, userpaymentods }) => 
             }
         }
 
-        clearErrors("usertoken")
+        
     };
 
     const selectedMethod = async (item) => {
@@ -101,6 +102,8 @@ const P2PManagement = ({ tokenBalnces, session,paymentods, userpaymentods }) => 
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             })
             reset()
+            setValue('method', '')
+            resetField('method')
             setBalanceMessage(0)
         }
         else {
@@ -116,7 +119,7 @@ const P2PManagement = ({ tokenBalnces, session,paymentods, userpaymentods }) => 
         <>
             <ToastContainer />
             <section className="dark:bg-black-v-3 py-10 md:py-20 ">
-            <Paymentmodal paymentods={paymentods}  />
+                <Paymentmodal paymentods={paymentods} />
                 <div className="container">
                     <div className="flex items-start">
                         <div className="max-w-[200px] w-full md:block hidden">
@@ -129,13 +132,13 @@ const P2PManagement = ({ tokenBalnces, session,paymentods, userpaymentods }) => 
                                         if (session?.user?.email !== '' && session?.user?.kycstatus === 'success' && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
                                             verified = true;
                                         }
-                                        if(verified){
+                                        if (verified) {
                                             setActive(3)
                                         }
-                                        else{
+                                        else {
                                             showPopup(true);
                                         }
-                                        
+
                                     }}>Post Ad</Link></li>
                                 <li className={`${active === 4 ? 'border-r-[4px] border-primary pl-[15px] bg-[#1da2b41f]' : 'pl-[15px]'}`} ><Link className="info-14-16 py-[10px] block" href="" onClick={() => { setActive(4) }}>My Ads</Link></li>
                             </ul>
@@ -181,53 +184,53 @@ const P2PManagement = ({ tokenBalnces, session,paymentods, userpaymentods }) => 
 
                             {/* payment method list here! */}
                             <div className=" w-full border border-[#919899] mt-4 rounded-lg">
-                                        <div className="py-3 px-4 text-black dark:!text-white border-b border-[#919899]">
-                                            Make sure to use your account with your real name. During the transaction, only one payment method is allowed to be enabled for the same type
-                                        </div>
-                                      
+                                <div className="py-3 px-4 text-black dark:!text-white border-b border-[#919899]">
+                                    Make sure to use your account with your real name. During the transaction, only one payment method is allowed to be enabled for the same type
+                                </div>
 
-                                      {
-                                        userpaymentods.map((pm , index) => {
-                                            let dataInfo = JSON.parse(pm?.pmObject)
-                                            console.log(dataInfo)
-                                            return (
-                                                <div key={index}>
-                                                    <div className="flex  py-3 px-4 justify-between items-center">
-                                                        <div>
-                                                            <div className="flex space-x-3">
-                                                                <img src={pm?.icon} className="w-5" />
-                                                                <p className='text-black dark:!text-white'>{pm?.pm_name}</p>
-                                                            </div>
 
-                                                            <div className="flex space-x-3 mt-2">
-                                                                { dataInfo && 
-                                                                    Object.keys(dataInfo).map((keyName, i) => {
-
-                                                                        if(keyName === "selectoken" || keyName === "passcode" || typeof dataInfo[keyName] === "object") return
-
-                                                                        return (
-                                                                            <p   key={i} className='text-black dark:!text-[#919899]'>{dataInfo[keyName]}</p>
-                                                                        )
-                                                                     })
-                                                                }
-                                                                
-                                                            </div>
-
-                                                            
+                                {
+                                    userpaymentods.map((pm, index) => {
+                                        let dataInfo = JSON.parse(pm?.pmObject)
+                                        console.log(dataInfo)
+                                        return (
+                                            <div key={index}>
+                                                <div className="flex  py-3 px-4 justify-between items-center">
+                                                    <div>
+                                                        <div className="flex space-x-3">
+                                                            <img src={pm?.icon} className="w-5" />
+                                                            <p className='text-black dark:!text-white'>{pm?.pm_name}</p>
                                                         </div>
-                                                        
-                                                        <div className="flex text-black dark:!text-[#919899]">
-                                                        <i className="text-lg rounded-[20]">-</i> Delete
+
+                                                        <div className="flex space-x-3 mt-2">
+                                                            {dataInfo &&
+                                                                Object.keys(dataInfo).map((keyName, i) => {
+
+                                                                    if (keyName === "selectoken" || keyName === "passcode" || typeof dataInfo[keyName] === "object") return
+
+                                                                    return (
+                                                                        <p key={i} className='text-black dark:!text-[#919899]'>{dataInfo[keyName]}</p>
+                                                                    )
+                                                                })
+                                                            }
+
                                                         </div>
+
+
                                                     </div>
 
+                                                    <div className="flex text-black dark:!text-[#919899]">
+                                                        <i className="text-lg rounded-[20]">-</i> Delete
+                                                    </div>
                                                 </div>
-                                            )
-                                        })
-                                      }
-                                        
-                                    </div>
-{/* payment method list here! end */}
+
+                                            </div>
+                                        )
+                                    })
+                                }
+
+                            </div>
+                            {/* payment method list here! end */}
 
                             <div className="flex items-center justify-between  gap-[20px] mt-[50px]">
                                 <p className="info-16-22 dark:!text-white !text-black">Payment methods</p>
@@ -236,15 +239,15 @@ const P2PManagement = ({ tokenBalnces, session,paymentods, userpaymentods }) => 
                                     if (session?.user?.email !== '' && session?.user?.kycstatus === 'success' && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
                                         verified = true;
                                     }
-                                    if(verified){
+                                    if (verified) {
                                         // setClick(true)
                                         alert('Add you payment now')
                                     }
-                                    else{
+                                    else {
                                         showPopup(true);
                                     }
                                     // showPopup(true); setClick(true) 
-                                     }}>+ Add payment methods</p>
+                                }}>+ Add payment methods</p>
                             </div>
                             <div className="grid place-content-center w-full p-4 mt-[50px]">
                                 <div className="inline-grid">
@@ -339,7 +342,7 @@ const P2PManagement = ({ tokenBalnces, session,paymentods, userpaymentods }) => 
                                     </label>
                                 </div>
                             </div>
-                            
+
                         </div>
                         }
                         {active === 3 && <div className="max-w-[100%-200px] w-full md:border-l border-grey md:pl-[20px]">
@@ -464,19 +467,20 @@ const P2PManagement = ({ tokenBalnces, session,paymentods, userpaymentods }) => 
                                                             step='0.0001'
                                                             className="caret-primary w-full bg-transparent  outline-none"
                                                             placeholder='Enter Min Limit' {...register('min_limit')}
-                                                            onChange={(e) => {
+                                                            // onChange={(e) => {
 
-                                                                setValue('min_limit', e.target.value)
-                                                                setMinLimit(e.target.value)
-                                                            }}
+                                                            //     setValue('min_limit', e.target.value)
+                                                            //     setMinLimit(e.target.value)
+                                                            // }}
                                                         />
                                                         <span className='info-14'>USD</span>
                                                     </div>
                                                     <div className="!text-red-700 info-12">
                                                         {errors.min_limit?.message}
-                                                    </div>{balanceMessage === 2 && <div className="!text-red-700 info-12">
+                                                    </div>
+                                                    {/* {balanceMessage === 2 && <div className="!text-red-700 info-12">
                                                         Amount must be less than maximum value
-                                                    </div>}
+                                                    </div>} */}
                                                 </div>
 
                                                 <div className='border-b w-10 h-1 mt-5 self-center'>
@@ -488,24 +492,24 @@ const P2PManagement = ({ tokenBalnces, session,paymentods, userpaymentods }) => 
                                                             step='0.0001'
                                                             className="caret-primary w-full bg-transparent  outline-none"
                                                             placeholder='Enter max limit' {...register('max_limit')}
-                                                            onChange={(e) => {
-                                                                if (e.target.value <= minLimit) {
-                                                                    setBalanceMessage(3)
-                                                                }
-                                                                else {
-                                                                    setValue('max_limit', e.target.value)
-                                                                    setMaxLimit(e.target.value)
-                                                                }
-                                                            }}
+                                                            // onChange={(e) => {
+                                                            //     if (e.target.value <= minLimit) {
+                                                            //         setBalanceMessage(3)
+                                                            //     }
+                                                            //     else {
+                                                            //         setValue('max_limit', e.target.value)
+                                                            //         setMaxLimit(e.target.value)
+                                                            //     }
+                                                            // }}
                                                         />
                                                         <span className='info-14'>USD</span>
                                                     </div>
                                                     <div className="!text-red-700 info-12">
                                                         {errors.max_limit?.message}
                                                     </div>
-                                                    {balanceMessage === 3 && <div className="!text-red-700 info-12">
+                                                    {/* {balanceMessage === 3 && <div className="!text-red-700 info-12">
                                                         Amount must be greater than mimimum value
-                                                    </div>}
+                                                    </div>} */}
                                                 </div>
 
                                             </div>
