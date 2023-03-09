@@ -14,21 +14,17 @@ import { useRouter } from "next/router";
 
 
 
-const Paymentmodal = ({paymentods}) => {
-
+const Paymentmodal = ({paymentods, setpaymentPopup}) => {
+  
   const router = useRouter()
 
   const [modal, setModal] = useState(false)
-  const [popup , setPopup] = useState(false)
+  const [popup, setPopup] = useState(true)
+ 
   const { mode ,setClick} = useContext(Context);
   const [defaultVl, Setdefault] = useState(1)
   const formRef = useRef()
 
-
-  
-  useEffect(() => {
-
-  },[])
 
   
   const schema = yup
@@ -117,21 +113,15 @@ const Paymentmodal = ({paymentods}) => {
 
   return (
     <div>
-      <button
-        type="button"
-        className="inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-        data-te-toggle="modal"
-        data-te-target="#exampleModal"
-        data-te-ripple-init
-        data-te-ripple-color="light"
-        onClick={()=>{setPopup(true)}}
-      >
-        Launch demo modal
-      </button>
+     
 
       <div className={`${popup ? "opacity-1 visible fixed top-[50%]":"opacity-0 invisible top-[55%]" }  duration-300 z-[20] fixed  left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%] dark:bg-black-v-5 bg-white p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto`}>
                             
-                            <div className="max-w-[10px] w-full ml-auto cursor-pointer" onClick={()=>{setPopup(false)}}>
+                            <div className="max-w-[10px] w-full ml-auto cursor-pointer" onClick={()=>{
+                              setPopup(false)
+                              
+                              setpaymentPopup(false)
+                              }}>
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60.963 60.842" style={{ enableBackground: 'new 0 0 60.963 60.842' }} xmlSpace="preserve">
                                     <path fill={mode === "dark" ? "white" : "#231F20"} d="M59.595,52.861L37.094,30.359L59.473,7.98c1.825-1.826,1.825-4.786,0-6.611
                                         c-1.826-1.825-4.785-1.825-6.611,0L30.483,23.748L8.105,1.369c-1.826-1.825-4.785-1.825-6.611,0c-1.826,1.826-1.826,4.786,0,6.611
