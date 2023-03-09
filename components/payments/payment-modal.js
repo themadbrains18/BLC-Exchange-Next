@@ -118,9 +118,9 @@ const Paymentmodal = ({paymentods, setpaymentPopup}) => {
       <div className={`${popup ? "opacity-1 visible fixed top-[50%]":"opacity-0 invisible top-[55%]" }  duration-300 z-[20] fixed  left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%] dark:bg-black-v-5 bg-white p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto`}>
                             
                             <div className="max-w-[10px] w-full ml-auto cursor-pointer" onClick={()=>{
-                              setPopup(false)
-                              
-                              setpaymentPopup(false)
+                              setPopup(false);
+                              setClick(false);
+                              setpaymentPopup(false);
                               }}>
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60.963 60.842" style={{ enableBackground: 'new 0 0 60.963 60.842' }} xmlSpace="preserve">
                                     <path fill={mode === "dark" ? "white" : "#231F20"} d="M59.595,52.861L37.094,30.359L59.473,7.98c1.825-1.826,1.825-4.786,0-6.611
@@ -141,7 +141,7 @@ const Paymentmodal = ({paymentods, setpaymentPopup}) => {
                             {/* paymentods */}
                             <div className="border rounded border-[#b0a4b366] flex justify-between items-center">
                               <div className="w-[10] ml-3">
-                                <img src={paymentods[defaultVl].icon} className="w-10" />
+                                <img src={paymentods[defaultVl].icon} className="w-10" alt="" />
                               </div>
                               <div className="w-[90]">
                                 <SelectMenu selectMenu={paymentods} type={'paymentList'} returnvals={returnvals}  />

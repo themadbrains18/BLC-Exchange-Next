@@ -13,6 +13,7 @@ import VerificationPopup from '../snippets/verification-popup';
 import AdTable from './ad/adTable';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PaymentMethodModal from "/components/snippets/payment-method-modal";
 
 
 const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) => {
@@ -20,6 +21,7 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
     const [rotate, setRotate] = useState(false);
 
     const [dropDown, setDropDown] = useState(false);
+    const [paymentMethodModal, setPaymentMethodModal] = useState(false);
     const [active, setActive] = useState(1);
     const [coinImg, setCoinImg] = useState("https://bitlivecoinnetwork.com/images/logo.png");
     const [coin, setCoin] = useState("USD");
@@ -149,16 +151,16 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
                                 <li className={`${active === 3 ? 'border-r-[4px] border-primary pl-[15px] bg-[#1da2b41f]' : 'pl-[15px]'}`} ><Link className="info-14-16 py-[10px] block" href="" onClick={
                                     () => {
                                         let verified = false;
-                                        if (session?.user?.email !== '' && session?.user?.kycstatus === 'success' && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
-                                            verified = true;
-                                        }
-                                        if (verified) {
-                                            setActive(3)
-                                        }
-                                        else {
-                                            showPopup(true);
-                                        }
-
+                                        // if (session?.user?.email !== '' && session?.user?.kycstatus === 'success' && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
+                                        //     verified = true;
+                                        // }
+                                        // if (verified) {
+                                        //     setActive(3)
+                                        // }
+                                        // else {
+                                        //     showPopup(true);
+                                        // }
+                                        setActive(3)
                                     }}>Post Ad</Link></li>
                                 <li className={`${active === 4 ? 'border-r-[4px] border-primary pl-[15px] bg-[#1da2b41f]' : 'pl-[15px]'}`} ><Link className="info-14-16 py-[10px] block" href="" onClick={() => { setActive(4) }}>My Ads</Link></li>
                             </ul>
@@ -555,23 +557,23 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
                                                 {errors.deadline?.message}
                                             </div>
                                         </div>
+                                        {/* payment methods */}
                                         <div className='mt-8'>
                                             <h4 className="info-14-16">Payment Methods</h4>
-                                            <div className="border-b info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
-                                                <SelectMenu selectMenu={pm_method} selectMethod={selectedMethod} />
-                                                {/* <div className="flex  mt-4 items-end ">
-                                                <input
-                                                    type="number"
-                                                    className="caret-primary w-full bg-transparent  outline-none"
-                                                    placeholder='Enter Trading Price'
-                                                />
-                                                
-                                            </div> */}
+                                            <div className="border-b info-14 hover:!text-grey dark:hover:!text-white dark:text-white" >
+                                                {/* <SelectMenu selectMenu={pm_method} selectMethod={selectedMethod} /> */}
+                                                <p className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white" onClick={()=>{setClick(true); setPaymentMethodModal(true) }}>Please select an option</p>
+                                                {
+                                                    paymentMethodModal && 
+                                                    <PaymentMethodModal setPaymentMethodModal={setPaymentMethodModal} />
+                                                }
                                             </div>
                                             <div className="!text-red-700 info-12">
                                                 {errors.method?.message}
                                             </div>
                                         </div>
+                                        {/* payment methods */} 
+                                        
                                         <div className='mt-8'>
                                             <h4 className="info-14-16">Notes (Optional)</h4>
                                             <div className="border-b info-14 hover:!text-grey dark:hover:!text-white dark:text-white">

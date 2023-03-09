@@ -6,7 +6,9 @@ import SelectMenu from "/components/snippets/selectMenu";
 import PaymentMethods from "/public/assets/images/payment-methods.png";
 import Paymentmodal from '../../components/payments/payment-modal';
 
-const Hall = ({paymentods }) => {
+const Hall = ({paymentods,setpaymentPopup}) => {
+
+  
 
   const [showDropdown,setShowDropdown] = useState(false);
   const [dropDown, setDropDown] = useState(false);
@@ -802,8 +804,8 @@ const Hall = ({paymentods }) => {
         {/* fund transfer popup */}
 
         {/* Add payment method popup */}
-        <div className={`${paymentPopup ? "top-[50%] opacity-1 visible":"top-[45%] opacity-0 invisible"} dark:bg-hover-black p-[20px] z-[9] duration-300 max-w-full h-full lg:h-auto lg:max-w-[500px] w-full mx-auto fixed  left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-lg overflow-hidden bg-white shadow-lg dark:shadow-none`} > 
-          {/* <div className="max-w-[20px] mb-[15px] w-full ml-auto cursor-pointer" onClick={()=>{setClick(false);setPaymentPopup(false)}}>
+        {/* <div className={`${paymentPopup ? "top-[50%] opacity-1 visible":"top-[45%] opacity-0 invisible"} dark:bg-hover-black p-[20px] z-[9] duration-300 max-w-full h-full lg:h-auto lg:max-w-[500px] w-full mx-auto fixed  left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-lg overflow-hidden bg-white shadow-lg dark:shadow-none`} > 
+           <div className="max-w-[20px] mb-[15px] w-full ml-auto cursor-pointer" onClick={()=>{setClick(false);setPaymentPopup(false)}}>
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60.963 60.842" style={{ enableBackground: 'new 0 0 60.963 60.842' }} xmlSpace="preserve">
               <path fill={mode === "dark" ? "white" : "#231F20"} d="M59.595,52.861L37.094,30.359L59.473,7.98c1.825-1.826,1.825-4.786,0-6.611
                 c-1.826-1.825-4.785-1.825-6.611,0L30.483,23.748L8.105,1.369c-1.826-1.825-4.785-1.825-6.611,0c-1.826,1.826-1.826,4.786,0,6.611
@@ -812,10 +814,13 @@ const Hall = ({paymentods }) => {
                 C61.42,57.647,61.42,54.687,59.595,52.861z" />
             </svg>
           </div>
-          <h4 className="info-16-22 text-center !text">Add payment method</h4> */}
-          <Paymentmodal paymentods={paymentods} />
+          <h4 className="info-16-22 text-center !text">Add payment method</h4> 
           
-        </div>
+        </div> */}
+        {
+          paymentPopup &&
+          <Paymentmodal paymentods={paymentods} setpaymentPopup={setpaymentPopup}   />
+        }
         {/* Add payment method popup */}
         
         
