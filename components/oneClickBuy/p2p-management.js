@@ -30,6 +30,10 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
     // const [minLimit, setMinLimit] = useState(0)
     // const [maxLimit, setMaxLimit] = useState(0)
     const [balanceMessage, setBalanceMessage] = useState(0)
+
+
+    /// 
+   
     const schema = yup
         .object()
         .shape({
@@ -114,12 +118,28 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
 
     }
 
+    // 
+    // const [paymentPopup, setpaymentPopup] = useState(false)
+
+    const setpaymentPopup = (e)=>{
+        setpayment(false)
+    }
+
+
+    // enable and disable payment modal 
+    const [paymentPopup, setpayment] = useState(false)
+
 
     return (
         <>
             <ToastContainer />
             <section className="dark:bg-black-v-3 py-10 md:py-20 ">
-                <Paymentmodal paymentods={paymentods} />
+
+            {
+                paymentPopup && <Paymentmodal paymentods={paymentods} setpaymentPopup={setpaymentPopup}  />
+            }
+                
+
                 <div className="container">
                     <div className="flex items-start">
                         <div className="max-w-[200px] w-full md:block hidden">
@@ -182,6 +202,25 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
 
                             {/* Payment methods */}
 
+                            <div className="flex items-center justify-between  gap-[20px] mt-[50px]">
+                                <p className="info-16-22 dark:!text-white !text-black">Payment methods</p>
+                                {/* <p className="info-14 cursor-pointer dark:!text-primary !text-primary" onClick={() => { showPopup(true); setClick(true) }}>+ Add payment methods</p> */}
+                                <p className="info-14 cursor-pointer dark:!text-primary !text-primary" onClick={() => {
+                                    let verified = false;
+                                    if (session?.user?.email !== '' && session?.user?.kycstatus === 'success' && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
+                                        verified = true;
+                                    }
+                                    if (verified) {
+                                        // setClick(true)
+                                        setpayment(true)
+                                    }
+                                    else {
+                                        showPopup(true);
+                                    }
+                                    // showPopup(true); setClick(true) 
+                                }}>+ Add payment methods</p>
+                            </div>
+
                             {/* payment method list here! */}
                             <div className=" w-full border border-[#919899] mt-4 rounded-lg">
                                 <div className="py-3 px-4 text-black dark:!text-white border-b border-[#919899]">
@@ -232,37 +271,23 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
                             </div>
                             {/* payment method list here! end */}
 
-                            <div className="flex items-center justify-between  gap-[20px] mt-[50px]">
-                                <p className="info-16-22 dark:!text-white !text-black">Payment methods</p>
-                                <p className="info-14 cursor-pointer dark:!text-primary !text-primary" onClick={() => {
-                                    let verified = false;
-                                    if (session?.user?.email !== '' && session?.user?.kycstatus === 'success' && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
-                                        verified = true;
-                                    }
-                                    if (verified) {
-                                        // setClick(true)
-                                        alert('Add you payment now')
-                                    }
-                                    else {
-                                        showPopup(true);
-                                    }
-                                    // showPopup(true); setClick(true) 
-                                }}>+ Add payment methods</p>
+                        {
+                            (userpaymentods.length === 0) &&  <div className="grid place-content-center w-full p-4 mt-[50px]">
+                            <div className="inline-grid">
+                                <Image
+                                    src={"/assets/icons/noData.svg"}
+                                    alt="No Data"
+                                    className=""
+                                    height={80}
+                                    width={80}
+                                />
+                                <h4 className="info-14  md:p-0 text-disable-clr dark:text-white text-center">
+                                    No Data
+                                </h4>
                             </div>
-                            <div className="grid place-content-center w-full p-4 mt-[50px]">
-                                <div className="inline-grid">
-                                    <Image
-                                        src={"/assets/icons/noData.svg"}
-                                        alt="No Data"
-                                        className=""
-                                        height={80}
-                                        width={80}
-                                    />
-                                    <h4 className="info-14  md:p-0 text-disable-clr dark:text-white text-center">
-                                        No Data
-                                    </h4>
-                                </div>
-                            </div>
+                        </div>
+                        }
+                           
 
                             {/* Other settings */}
                             <div className="mt-[30px]">
