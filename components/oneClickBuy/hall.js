@@ -6,7 +6,7 @@ import SelectMenu from "/components/snippets/selectMenu";
 import PaymentMethods from "/public/assets/images/payment-methods.png";
 import Paymentmodal from '../../components/payments/payment-modal';
 
-const Hall = () => {
+const Hall = ({paymentods }) => {
 
   const [showDropdown,setShowDropdown] = useState(false);
   const [dropDown, setDropDown] = useState(false);
