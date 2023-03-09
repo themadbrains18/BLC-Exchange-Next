@@ -16,25 +16,22 @@ const PaymentMethodModal = ({setPaymentMethodModal}) => {
                 </svg>
             </div>
             <div className="mt-[40px]">
-               
                 <div className="relative mb-[10px] inline-block  w-full rounded-md cta--modifier" >
                     <input id="checkbox" name='terms' type="checkbox" className="hidden agree_cta font-noto " />
-                    <label htmlFor="checkbox" className="p-[15px] rounded-md cursor-pointer mb-[8px]  info-14-16  relative block pl-[25px] after:rounded-md after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-full after:h-full cursor-pointer"><span className="block z-[99] relative">UPI</span> </label>
+                    <label htmlFor="checkbox" className="p-[15px] rounded-md  mb-[8px]  info-14-16  relative block pl-[25px] after:rounded-md after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-full after:h-full cursor-pointer"><span className="block z-[99] relative">UPI</span> </label>
                 </div>
                 <div className="relative mb-[10px] inline-block  w-full rounded-md cta--modifier">
                     <input id="checkbox2" name='terms' type="checkbox" className="hidden agree_cta font-noto " />
-                    <label htmlFor="checkbox2" className="p-[15px] rounded-md cursor-pointer mb-[8px]  info-14-16  relative block pl-[25px] after:rounded-md after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-full after:h-full cursor-pointer"><span className="block z-[99] relative">Google Pay</span> </label>
+                    <label htmlFor="checkbox2" className="p-[15px] rounded-md   mb-[8px]  info-14-16  relative block pl-[25px] after:rounded-md after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-full after:h-full cursor-pointer"><span className="block z-[99] relative">Google Pay</span> </label>
                 </div>
                 <div className="relative mb-[10px] inline-block  w-full rounded-md cta--modifier">
                     <input id="checkbox3" name='terms' type="checkbox" className="hidden agree_cta font-noto " />
-                    <label htmlFor="checkbox3" className="p-[15px] rounded-md cursor-pointer mb-[8px]  info-14-16  relative block pl-[25px] after:rounded-md after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-full after:h-full cursor-pointer"><span className="block z-[99] relative">Phone Pay</span> </label>
+                    <label htmlFor="checkbox3" className="p-[15px] rounded-md mb-[8px]  info-14-16  relative block pl-[25px] after:rounded-md after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-full after:h-full cursor-pointer"><span className="block z-[99] relative">Phone Pay</span> </label>
                 </div>
                 <div className="relative  inline-block  w-full rounded-md cta--modifier">
                     <input id="checkbox4" name='terms' type="checkbox" className="hidden agree_cta font-noto " />
-                    <label htmlFor="checkbox4" className="p-[15px] rounded-md cursor-pointer mb-[8px]  info-14-16  relative block pl-[25px] after:rounded-md after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-full after:h-full cursor-pointer"><span className="block z-[99] relative">Paytm</span> </label>
+                    <label htmlFor="checkbox4" className="p-[15px] rounded-md mb-[8px]  info-14-16  relative block pl-[25px] after:rounded-md after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-full after:h-full cursor-pointer"><span className="block z-[99] relative">Paytm</span> </label>
                 </div>
-                 
-               
             </div>
         </div>
     )
