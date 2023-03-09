@@ -9,7 +9,7 @@ import ChartDataTable from "components/chart/chartDataTable";
 import { getProviders, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
-const Chart = ({ coins, sessions, assets }) => {
+const Chart = ({ coins, assets, orders }) => {
   let ctas = ["Open Orders", "Order History"];
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(false);
@@ -43,7 +43,7 @@ const Chart = ({ coins, sessions, assets }) => {
 
       <div className="flex ">
         <SearchBox open={open} setOpen={setOpen} coins={coins} />
-        {width < 1024 ? <Mobile symbol={slug} assets={assets} /> : <Desktop symbol={slug} assets={assets} />}
+        {width < 1024 ? <Mobile symbol={slug} assets={assets} coins={coins} orders={orders}/> : <Desktop symbol={slug} assets={assets} coins={coins} orders={orders}/>}
       </div>
       <div>
         <div className="dark:bg-black-v-3">
@@ -59,11 +59,17 @@ const Chart = ({ coins, sessions, assets }) => {
 };
 
 export async function getServerSideProps(context) {
-  const { req } = context;
+  const { req,params } = context;
   const session = await getSession({ req });
   const providers = await getProviders();
 
+  console.log(params.slug,'============slug')
+
   let tokenList = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/token/marketcoin`, {
+    method: "GET"
+  }).then(response => response.json());
+
+  let orders = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/market/create?token=${params.slug}`, {
     method: "GET"
   }).then(response => response.json());
 
@@ -77,7 +83,8 @@ export async function getServerSideProps(context) {
       props: {
         coins: tokenList.data.data,
         sessions: session.user,
-        assets: assetList.data
+        assets: assetList.data,
+        orders : orders.data.data
       }, // will be passed to the page component as props
     };
   }
@@ -85,7 +92,8 @@ export async function getServerSideProps(context) {
     props: {
       coins: tokenList.data.data,
       sessions: {},
-      assets: []
+      assets: [],
+      orders : orders.data.data
     }, // will be passed to the page component as props
   };
 

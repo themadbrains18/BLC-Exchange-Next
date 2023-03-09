@@ -11,15 +11,15 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const limitschema = yup.object().shape({
-  limit: yup.number().positive().integer().typeError('Limit value must be required'),
-  quantity: yup.number().positive().integer().typeError('Quantity value must be required'),
+  limit: yup.number().positive().typeError('Limit value must be required'),
+  quantity: yup.number().positive().typeError('Quantity value must be required'),
 });
 
 const marketschema = yup.object().shape({
-  quantity: yup.number().positive().integer().typeError('Quantity value must be required')
+  quantity: yup.number().positive().typeError('Quantity value must be required')
 });
 
-const BuySellCard = ({ active, menu, sell, show, setShow, symbol, usdtBal, tokenBal }) => {
+const BuySellCard = ({ active, menu, sell, show, setShow, symbol, usdtBal, tokenBal, token }) => {
 
   const [activeCta, setActiveCta] = useState(0);
   const [color, setColor] = useState(0);
@@ -27,20 +27,59 @@ const BuySellCard = ({ active, menu, sell, show, setShow, symbol, usdtBal, token
   const { mode, setClick } = useContext(Context);
   const [buyLimitPrice, setBuyLimitPrice] = useState(0.00)
   const [usdtPrice, setUsdtPrice] = useState(0)
+  const [errorMessage, setErrorMessage] = useState('');
 
   const { data: session } = useSession();
   const router = useRouter()
 
+  let { register,  resetField, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(active === 0 && activeCta === 0 ? limitschema : marketschema),
+  });
+
   const getCoinUsdtPrice = (e) => {
     setUsdtPrice(buyLimitPrice * e.target.value);
+    setErrorMessage('');
   }
 
-  let { register, setValue, handleSubmit, watch, setError, formState: { errors } } = useForm({
-    resolver: yupResolver(active === 0 && activeCta === 0 ? limitschema : marketschema),
-});
-
   const onSubmit = async (data) => {
-    alert(data.limit)
+    console.log(sell, 'check by sell')
+
+    if (usdtPrice > usdtBal && sell === undefined ) {
+      setErrorMessage('You have unsufficiant balance');
+      return;
+    }
+    
+    if(data.quantity > tokenBal && sell){
+      setErrorMessage(`You have unsufficiant ${symbol} balance` );
+      return;
+    }
+
+    else {
+      let obj = {
+        userid: session.user.id,
+        tokenid: token.ID,
+        market_type: active === 0 && activeCta === 0 ? 'limit' : 'market',
+        order_type: sell ? 'sell' : 'buy',
+        limit_usdt: active === 0 && activeCta === 0 ? data.limit : token.PRICE, // usdt limit price
+        volume_usdt: usdtPrice, // paid usdt amount
+        token_amount: data.quantity, // token value
+        status : false,
+        isCanceled : false
+      }
+
+      let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/market/create`, {
+        method: "POST",
+        body: JSON.stringify(obj)
+      }).then(response => response.json())
+
+      if(result.data.status === 200){
+        resetField('limit',{ defaultValue: '' })
+        resetField('quantity',{ defaultValue: '' })
+        setUsdtPrice(0)
+        console.log(result,'after market order creates');
+        router.push('/chart/'+symbol);
+      }
+    }
   }
 
   return (
@@ -146,10 +185,10 @@ const BuySellCard = ({ active, menu, sell, show, setShow, symbol, usdtBal, token
                 <h4 className="">Limit</h4>
                 <input
                   type="number"
-                  name="limit"
+                  name="limit" step="0.001"
                   className="caret-primary w-full bg-transparent  outline-none p-2"
-                  placeholder="" onChange={(e) => setBuyLimitPrice(e.target.value)}
-                  {...register('limit') }
+                  placeholder=""
+                  {...register('limit', { onChange: (e) => { setBuyLimitPrice(e.target.value) } })}
                 />
                 <span className="text-disable-clr ">USDT</span>
               </>
@@ -166,15 +205,16 @@ const BuySellCard = ({ active, menu, sell, show, setShow, symbol, usdtBal, token
           <div className="flex  mt-4 items-center border border-deep-blue info-14 hover:!text-grey dark:hover:!text-white dark:text-white px-4">
             <h4 className="">Amount</h4>
             <input
-              type="number"
+              type="number" step="0.001"
               className="caret-primary w-full bg-transparent  outline-none p-2"
-              placeholder="" onChange={(e) => getCoinUsdtPrice(e)}
+              placeholder=""
               name="quantity"
-              {...register('quantity',{ required: true, maxLength: 50 }) }
+              {...register('quantity', { onChange: (e) => { getCoinUsdtPrice(e) } })}
             />
             <span className="text-disable-clr ">{symbol}</span>
           </div>
           <p className="!text-red-700 info-12">{errors.quantity?.message}</p>
+
           {active === 0 && activeCta === 0 && (
             <>
               <div className="my-8">
@@ -287,6 +327,7 @@ const BuySellCard = ({ active, menu, sell, show, setShow, symbol, usdtBal, token
             <span className="info-14-20 text-disable-clr">Total</span>
             <span className="info-14-20 text-disable-clr">{usdtPrice} USDT</span>
           </div>
+          <p className="!text-red-700 info-12">{errorMessage}</p>
           <div className="flex gap-3 mt-4">
             {session && session?.user ?
               <button

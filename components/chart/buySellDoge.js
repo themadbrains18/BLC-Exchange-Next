@@ -2,7 +2,7 @@ import { useState } from "react";
 import ActiveCta from "components/snippets/activeCta";
 import BuySellCard from "../snippets/buySellCard";
 
-const BuySellDoge = ({ symbol, assets }) => {
+const BuySellDoge = ({ symbol, assets,coin }) => {
 
   const [active, setActive] = useState(0);
   let ctas = ["Limit Order", "Market Order"];
@@ -31,10 +31,10 @@ const BuySellDoge = ({ symbol, assets }) => {
       />
       <div className="mt-4  flex gap-10">
         <BuySellCard menu={selectMenu} active={active}
-          setActive={setActive} symbol={symbol} usdtBal={usdtAssets.length > 0 ? usdtAssets[0].balance : 0} tokenBal={tokenAssets.length > 0 ? tokenAssets[0].balance : 0} />
+          setActive={setActive} symbol={symbol} usdtBal={usdtAssets.length > 0 ? usdtAssets[0].balance : 0} tokenBal={tokenAssets.length > 0 ? tokenAssets[0].balance : 0} token={ coin } />
 
         <BuySellCard menu={selectMenu} sell={true} active={active}
-          setActive={setActive} symbol={symbol} usdtBal={usdtAssets.length > 0 ? usdtAssets[0].balance : 0} tokenBal={tokenAssets.length > 0 ? tokenAssets[0].balance : 0} />
+          setActive={setActive} symbol={symbol} usdtBal={usdtAssets.length > 0 ? usdtAssets[0].balance : 0} tokenBal={tokenAssets.length > 0 ? tokenAssets[0].balance : 0} token={coin} />
       </div>
     </>
   );
