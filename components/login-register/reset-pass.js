@@ -15,7 +15,7 @@ const ResetPassword = ({ formData }) => {
 
   const router = useRouter();
   const formSchema = Yup.object().shape({
-    newpassword: Yup.string()
+    newpassword: Yup.string().min(8).max(32)
       .required('Password is mendatory'),
     confirmpassword: Yup
       .string()

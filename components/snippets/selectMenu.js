@@ -50,8 +50,10 @@ const SelectMenu = ({height150,borderBottom, clear, returnvals, type, all, selec
     } else if (type == "days") {  // please add other event under if else block
       setValue(e)
       returnvals({ "type": "days", "obj": e })
-    }
-    else {
+    }else if(type  == "paymentList"){
+      setValue(e.payment_method)
+      returnvals({ "type": "paymentList", "obj": e })
+    }else {
       (network ? setValue(e.networkName) : setValue(e))
       selectNetwork && selectNetwork(e)
       selectMethod && selectMethod(e)
@@ -62,12 +64,9 @@ const SelectMenu = ({height150,borderBottom, clear, returnvals, type, all, selec
       selectTime && selectTime(e)
     }
 
-
     getDepositAddress && getDepositAddress(e.type)
-
     setOpen(false)
     setOverlay(!overlay);
-
     setActive(i);
 
   }
@@ -154,6 +153,17 @@ const SelectMenu = ({height150,borderBottom, clear, returnvals, type, all, selec
                 {selectMenu &&
 
                   selectMenu.map((e, i) => {
+                    let title;
+                    if(network){
+                      title = e.networkName
+                    }else if(type == "withdraw"){
+                      title = e.symbol
+                    }else if(type == "paymentList"){
+                      title = e.payment_method
+                    }else{
+                      title = e
+                    }
+
                     return (
                       <button
                         key={i}
@@ -167,8 +177,9 @@ const SelectMenu = ({height150,borderBottom, clear, returnvals, type, all, selec
 
                         }}
                       >
-
-                        {(type == "withdraw") ? e.symbol : (network ? e.networkName : e)}
+                        {title}
+{/*                        
+                        {(type == "withdraw") ? e.symbol : (network ? e.networkName : e)} */}
 
                       </button>
                     );
