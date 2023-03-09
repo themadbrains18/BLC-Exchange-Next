@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Context from "/components/contexts/context";
 import SearchDropdown from "/components/snippets/search-dropdown";
+import Paymentmodal from '../../components/payments/payment-modal';
 import SelectMenu from '../snippets/selectMenu';
 
 import { useForm } from 'react-hook-form'
@@ -14,9 +15,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const P2PManagement = ({ tokenBalnces, session }) => {
+const P2PManagement = ({ tokenBalnces, session,paymentods, userpaymentods }) => {
     const { mode, setClick, verifyData, setVerifyData } = useContext(Context);
     const [rotate, setRotate] = useState(false);
+    
     const [dropDown, setDropDown] = useState(false);
     const [active, setActive] = useState(1);
     const [coinImg, setCoinImg] = useState("https://bitlivecoinnetwork.com/images/logo.png");
@@ -109,10 +111,12 @@ const P2PManagement = ({ tokenBalnces, session }) => {
 
     }
 
+
     return (
         <>
             <ToastContainer />
             <section className="dark:bg-black-v-3 py-10 md:py-20 ">
+            <Paymentmodal paymentods={paymentods}  />
                 <div className="container">
                     <div className="flex items-start">
                         <div className="max-w-[200px] w-full md:block hidden">
@@ -174,6 +178,56 @@ const P2PManagement = ({ tokenBalnces, session }) => {
                             </div>
 
                             {/* Payment methods */}
+
+                            {/* payment method list here! */}
+                            <div className=" w-full border border-[#919899] mt-4 rounded-lg">
+                                        <div className="py-3 px-4 text-black dark:!text-white border-b border-[#919899]">
+                                            Make sure to use your account with your real name. During the transaction, only one payment method is allowed to be enabled for the same type
+                                        </div>
+                                      
+
+                                      {
+                                        userpaymentods.map((pm , index) => {
+                                            let dataInfo = JSON.parse(pm?.pmObject)
+                                            console.log(dataInfo)
+                                            return (
+                                                <div key={index}>
+                                                    <div className="flex  py-3 px-4 justify-between items-center">
+                                                        <div>
+                                                            <div className="flex space-x-3">
+                                                                <img src={pm?.icon} className="w-5" />
+                                                                <p className='text-black dark:!text-white'>{pm?.pm_name}</p>
+                                                            </div>
+
+                                                            <div className="flex space-x-3 mt-2">
+                                                                { dataInfo && 
+                                                                    Object.keys(dataInfo).map((keyName, i) => {
+
+                                                                        if(keyName === "selectoken" || keyName === "passcode" || typeof dataInfo[keyName] === "object") return
+
+                                                                        return (
+                                                                            <p   key={i} className='text-black dark:!text-[#919899]'>{dataInfo[keyName]}</p>
+                                                                        )
+                                                                     })
+                                                                }
+                                                                
+                                                            </div>
+
+                                                            
+                                                        </div>
+                                                        
+                                                        <div className="flex text-black dark:!text-[#919899]">
+                                                        <i className="text-lg rounded-[20]">-</i> Delete
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            )
+                                        })
+                                      }
+                                        
+                                    </div>
+{/* payment method list here! end */}
 
                             <div className="flex items-center justify-between  gap-[20px] mt-[50px]">
                                 <p className="info-16-22 dark:!text-white !text-black">Payment methods</p>

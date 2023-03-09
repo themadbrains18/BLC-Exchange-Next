@@ -30,6 +30,7 @@ module.exports = {
         "deep-blue":"#223141"
         
       },
+      
       fontFamily: {
         'noto': ['Noto Sans', 'sans-serif'],
         'noto-display': [ 'Noto Serif Display', 'serif'],
