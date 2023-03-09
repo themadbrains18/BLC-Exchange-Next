@@ -8,10 +8,18 @@ import Dropdown from './dropdown';
 import {  useSession } from "next-auth/react"
 import VerificationPopup from "./verification-popup";
 
-const SubHeader = () => {
+const SubHeader = ({paymentods}) => {
   const { mode, setMode, login,topBar,setClick } = useContext(Context);
   const [show, setShow] = useState(1);
   const [login2,setLogin2] = useState(login)
+
+  const setpaymentPopup = (e)=>{
+    setpayment(false)
+}
+
+
+// enable and disable payment modal 
+const [paymentPopup, setpayment] = useState(false)
 
   let dropDownItems = [
     {
@@ -81,11 +89,12 @@ const SubHeader = () => {
           <Faq />
         </>
       }
-      {show === 2 &&
-        <Hall />
+      {show===2 &&
+        <Hall paymentods={paymentods} setpaymentPopup={setpaymentPopup} />
       }
     </>
   )
 }
+
 
 export default SubHeader

@@ -14,6 +14,7 @@ import AdTable from './ad/adTable';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from "next/router";
+import PaymentMethodModal from "/components/snippets/payment-method-modal";
 
 
 const P2PManagement = ({ session, paymentods, userpaymentods }) => {
@@ -22,6 +23,7 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
     const router = useRouter()
 
     const [dropDown, setDropDown] = useState(false);
+    const [paymentMethodModal, setPaymentMethodModal] = useState(false);
     const [active, setActive] = useState(1);
     const [coinImg, setCoinImg] = useState("https://bitlivecoinnetwork.com/images/logo.png");
     const [coin, setCoin] = useState("Select Coin");
@@ -132,14 +134,28 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
 
     }
 
-    
+    // 
+    // const [paymentPopup, setpaymentPopup] = useState(false)
+
+    const setpaymentPopup = (e)=>{
+        setpayment(false)
+    }
+
+
+    // enable and disable payment modal 
+    const [paymentPopup, setpayment] = useState(false)
 
 
     return (
         <>
             <ToastContainer />
             <section className="dark:bg-black-v-3 py-10 md:py-20 ">
-                <Paymentmodal paymentods={paymentods} />
+
+            {
+                paymentPopup && <Paymentmodal paymentods={paymentods} setpaymentPopup={setpaymentPopup}  />
+            }
+                
+
                 <div className="container">
                     <div className="flex items-start">
                         <div className="max-w-[200px] w-full md:block hidden">
@@ -206,6 +222,25 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
 
                             {/* Payment methods */}
 
+                            <div className="flex items-center justify-between  gap-[20px] mt-[50px]">
+                                <p className="info-16-22 dark:!text-white !text-black">Payment methods</p>
+                                {/* <p className="info-14 cursor-pointer dark:!text-primary !text-primary" onClick={() => { showPopup(true); setClick(true) }}>+ Add payment methods</p> */}
+                                <p className="info-14 cursor-pointer dark:!text-primary !text-primary" onClick={() => {
+                                    let verified = false;
+                                    if (session?.user?.email !== '' && session?.user?.kycstatus === 'success' && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
+                                        verified = true;
+                                    }
+                                    if (verified) {
+                                        // setClick(true)
+                                        setpayment(true)
+                                    }
+                                    else {
+                                        showPopup(true);
+                                    }
+                                    // showPopup(true); setClick(true) 
+                                }}>+ Add payment methods</p>
+                            </div>
+
                             {/* payment method list here! */}
                             <div className=" w-full border border-[#919899] mt-4 rounded-lg">
                                 <div className="py-3 px-4 text-black dark:!text-white border-b border-[#919899]">
@@ -256,37 +291,23 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
                             </div>
                             {/* payment method list here! end */}
 
-                            <div className="flex items-center justify-between  gap-[20px] mt-[50px]">
-                                <p className="info-16-22 dark:!text-white !text-black">Payment methods</p>
-                                <p className="info-14 cursor-pointer dark:!text-primary !text-primary" onClick={() => {
-                                    let verified = false;
-                                    if (session?.user?.email !== '' && session?.user?.kycstatus === 'success' && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
-                                        verified = true;
-                                    }
-                                    if (verified) {
-                                        // setClick(true)
-                                        alert('Add you payment now')
-                                    }
-                                    else {
-                                        showPopup(true);
-                                    }
-                                    // showPopup(true); setClick(true) 
-                                }}>+ Add payment methods</p>
+                        {
+                            (userpaymentods.length === 0) &&  <div className="grid place-content-center w-full p-4 mt-[50px]">
+                            <div className="inline-grid">
+                                <Image
+                                    src={"/assets/icons/noData.svg"}
+                                    alt="No Data"
+                                    className=""
+                                    height={80}
+                                    width={80}
+                                />
+                                <h4 className="info-14  md:p-0 text-disable-clr dark:text-white text-center">
+                                    No Data
+                                </h4>
                             </div>
-                            <div className="grid place-content-center w-full p-4 mt-[50px]">
-                                <div className="inline-grid">
-                                    <Image
-                                        src={"/assets/icons/noData.svg"}
-                                        alt="No Data"
-                                        className=""
-                                        height={80}
-                                        width={80}
-                                    />
-                                    <h4 className="info-14  md:p-0 text-disable-clr dark:text-white text-center">
-                                        No Data
-                                    </h4>
-                                </div>
-                            </div>
+                        </div>
+                        }
+                           
 
                             {/* Other settings */}
                             <div className="mt-[30px]">
@@ -554,23 +575,23 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
                                                 {errors.deadline?.message}
                                             </div>
                                         </div>
+                                        {/* payment methods */}
                                         <div className='mt-8'>
                                             <h4 className="info-14-16">Payment Methods</h4>
-                                            <div className="border-b info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
-                                                <SelectMenu selectMenu={pm_method} clear={clear} selectMethod={selectedMethod} />
-                                                {/* <div className="flex  mt-4 items-end ">
-                                                <input
-                                                    type="number"
-                                                    className="caret-primary w-full bg-transparent  outline-none"
-                                                    placeholder='Enter Trading Price'
-                                                />
-                                                
-                                            </div> */}
+                                            <div className="border-b info-14 hover:!text-grey dark:hover:!text-white dark:text-white" >
+                                                {/* <SelectMenu selectMenu={pm_method} selectMethod={selectedMethod} /> */}
+                                                <p className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white" onClick={()=>{setClick(true); setPaymentMethodModal(true) }}>Please select an option</p>
+                                                {
+                                                    paymentMethodModal && 
+                                                    <PaymentMethodModal setPaymentMethodModal={setPaymentMethodModal} />
+                                                }
                                             </div>
                                             <div className="!text-red-700 info-12">
                                                 {errors.method?.message}
                                             </div>
                                         </div>
+                                        {/* payment methods */} 
+                                        
                                         <div className='mt-8'>
                                             <h4 className="info-14-16">Notes (Optional)</h4>
                                             <div className="border-b info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
