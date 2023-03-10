@@ -5,8 +5,9 @@ import { signIn } from "next-auth/react"
 import { otpMatch } from '../../libs/commanMethod';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ResetPassword from './reset-pass';
 
-const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCta, showSetState, bindMobile,
+const VerificationCode = ({ overlay, verifyCode, antiFishing, emailAuth, bindGoogle, CloseCta, showSetState, bindMobile,
     showState, bindEmail, fixed, modifyPass,bindFunCode, loginData, updateUser, resgister, createUser,withdraw }) => {
 
     const { mode, setClick } = useContext(Context);
@@ -17,6 +18,7 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
     const [sendAgainMobileOtp1, setSendAgainMobileOtp1] = useState("Send Again");
 
     // console.log(loginData, '=======login Data')
+
 
     useEffect(() => {
         const inputElements = document.querySelectorAll('.input_wrapper_mobile input');
@@ -81,6 +83,11 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
             return;
         }
 
+        if(verifyCode=== true){
+           setShowSuccess(3)
+           return ;
+            
+        }
         //==============================================================================
         // Bind Email Request OTP Authenticate=======================
         //============================================================================== 
@@ -210,9 +217,16 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
             method: "POST",
             body: JSON.stringify(emailOtpForm)
         }).then(response => response.json());
+       
+        const emailinputElements = document.querySelectorAll('.input_wrapper_email input');
+        emailinputElements.forEach((ele, index) => {
+            ele.value=''
+        })
+
 
         if(otpResponse){
             setSendAgainEmailOtp1("OTP resent to your registered email.")
+           
         }
 
         if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
@@ -227,8 +241,11 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
             method: "POST",
             body: JSON.stringify(smsOtpForm)
         }).then(response => response.json());
+        const inputElements = document.querySelectorAll('.input_wrapper_mobile input');
+        inputElements.forEach((ele, index) => {
+            ele.value=''
+        })
         if(otpResponse){
-
             setSendAgainMobileOtp1("OTP resent to your registered Mobile No.")
         }
 
@@ -290,12 +307,12 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                                     <div className='mt-5'>
                                         <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Email verification</span> <span>({loginData.email})</span></label>
                                         <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper input_wrapper_email">
-                                            <input type="number" className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
-                                            <input type="number" className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
-                                            <input type="number" className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code3" />
-                                            <input type="number" className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code4" />
+                                            <input type="number"  className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
+                                            <input type="number"  className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
+                                            <input type="number"  className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code3" />
+                                            <input type="number"  className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code4" />
                                             <input type="number" className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border text-center  border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code5" />
-                                            <input type="number" className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
+                                            <input type="number"  className="block px-2 md:px-4 w-[46px] dark:bg-black bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
                                         </div>
                                         <button className='info-14 block mt-[10px]' onClick={(e) => sendAgainEmailOtp(e)}>{ sendAgainEmailOtp1 }</button>
                                     </div>
@@ -306,13 +323,13 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                                         <label className="info-14-16 mb-2 flex items-start sm:items-center justify-between gap-0 sm:gap-2 flex-col sm:flex-row"><span>Phone verification</span> <span>({loginData.number} )</span></label>
                                         <div className="grid grid-cols-6 justify-between gap-[8px] sm:gap-[20px] input_wrapper input_wrapper_mobile">
                                             <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code1" />
-                                            <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
-                                            <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code3" />
-                                            <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code4" />
-                                            <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code5" />
-                                            <input type="number" className="block px-4 max-w-[46px] w-full bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
+                                            <input type="number"  className="block px-4 max-w-[46px] w-full bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code2" />
+                                            <input type="number"  className="block px-4 max-w-[46px] w-full bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code3" />
+                                            <input type="number"  className="block px-4 max-w-[46px] w-full bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code4" />
+                                            <input type="number"  className="block px-4 max-w-[46px] w-full bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code5" />
+                                            <input type="number"  className="block px-4 max-w-[46px] w-full bg-transparent border text-center border-black dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" name="code6" />
                                         </div>
-                                        <p></p>
+                                 <p></p>
                                         <button className='info-14 block mt-[10px]' onClick={(e) => sendAgainMobileOtp(e)}>{ sendAgainMobileOtp1 }</button>
                                     </div>
                                 }
@@ -402,6 +419,11 @@ const VerificationCode = ({ overlay, antiFishing, emailAuth, bindGoogle, CloseCt
                     } */}
                 </div>
                 {
+                    verifyCode ?
+
+                    showSuccess === 3 &&
+                    <ResetPassword formData={loginData} />
+                    :
                     modifyPass
 
                         ?

@@ -235,7 +235,7 @@ const LoginForm = () => {
                         }
 
                         {show === 3 &&
-                            <VerificationCode verifyCode={true} loginData={loginData} />
+                            <VerificationCode loginData={loginData} />
                         }
                     </div>
                     {showPopup === 1 &&

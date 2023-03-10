@@ -22,13 +22,12 @@ const ResetPassword = ({ formData }) => {
       .oneOf([Yup.ref('newpassword')], 'New password and confirm password must match')
       .required('Confirm PAssword Required field'),
   })
-
   let {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm({ resolver: yupResolver(formSchema) });
-
+console.log("=-==formData", formData);
   const showPass = (e) => {
     if (!e.currentTarget.classList.contains("hidden")) {
       e.currentTarget.classList.toggle("hidden");
@@ -47,7 +46,14 @@ const ResetPassword = ({ formData }) => {
   }
   const onSubmit = async (data) => {
     console.log("==hello")
-    let obj = { newpassword: data.newpassword, id: formData.id };
+    let useremail=  router?.query?.email
+    let obj =''
+    if(useremail!== undefined){
+     obj = { newpassword: data.newpassword, email: useremail };
+    }
+    else{
+      obj = { newpassword: data.newpassword, id: formData.id };
+    }
     let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/password`, {
         method: "PUT",
         body: JSON.stringify(obj)
@@ -71,7 +77,7 @@ const ResetPassword = ({ formData }) => {
      <ToastContainer />
       {
         show === 1 &&
-        <section className="dark:bg-black-v-5 py-[80px] ! lg:!pt-[204px]">
+        <section className="dark:bg-black-v-5 py-[80px] ">
           <div className="container">
             <div className="max-w-full sm:max-w-[480px] w-full p-3 sm:p-6 border border-grey  mx-auto" >
               <h4 className='section-secondary-heading mb-1'>Enter a new password</h4>

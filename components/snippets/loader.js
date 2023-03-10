@@ -5,17 +5,16 @@ const Loader = () => {
   return (
     <>
    
-<div className="absolute top-1/2 left-1/2 -mt-4 -ml-2 h-8 w-4 text-indigo-700">
-  <div className="absolute z-10 -ml-2 h-8 w-8 animate-bounce">
+<div className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-Y-[-50%] text-indigo-700">
+  <div>
     <svg
+     className="max-w-[60px] md:max-w-[100px] h-[60px] md:h-[100px] w-full"
       version="1.1"
       id="L7"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       x="0px"
       y="0px"
-      height={100}
-      width={100}
       viewBox="0 0 100 100"
       enableBackground="new 0 0 100 100"
       xmlSpace="preserve"

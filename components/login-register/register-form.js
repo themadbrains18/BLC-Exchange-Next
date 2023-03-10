@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import LeftSide from './left-side';
@@ -9,11 +9,12 @@ import passHide from '../../public/assets/icons/pass-hide.svg';
 import passShow from '../../public/assets/icons/pass-show.svg';
 import { FormProvider, useForm } from "react-hook-form";
 import { useRouter } from 'next/router';
-
+import Context from "../contexts/context";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { signIn } from "next-auth/react"
 import { min } from 'moment';
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -34,6 +35,7 @@ const phoneschema = yup.object().shape({
 const RegisterForm = () => {
     const router = useRouter();
     const [show, setShow] = useState(1);
+    const [showPopup, setShowPopup] = useState(false);
     const [active, setActive] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const [DropdownPhone, setDropdownPhone] = useState(false);
@@ -47,9 +49,10 @@ const RegisterForm = () => {
     const [countryName, setCountryName] = useState('India')
     const ref = useRef()
 
-
+    const { setClick } = useContext(Context);
 
     useEffect(() => {
+
         if (router.query.referal !== undefined) {
             // setActive(false)
             setActive(true)
@@ -174,7 +177,6 @@ const RegisterForm = () => {
     }
 
     const createUser = async (otp) => {
-
         registerForm.otp = otp;
         registerForm.time = new Date();
 
@@ -182,9 +184,20 @@ const RegisterForm = () => {
             method: "POST",
             body: JSON.stringify(registerForm)
         }).then(response => response.json())
-
         if (result.data.status === 200 && result.data != undefined) {
-            router.push('/login');
+            let userdata = result.data.data
+            setShowPopup(true)
+            setClick(true)
+            setTimeout(() => {
+              
+                setClick(false)
+                signIn("credentials", result.data);
+
+            }, 3000);
+            userdata.status = 200;
+            // console.log('All is well', result.data)
+            // signIn("credentials", result.data);
+
         }
         else {
             toast.error(result.data.message, {
@@ -227,8 +240,8 @@ const RegisterForm = () => {
                                 }
                             </div>
                             <div className='flex gap-8 mb-8'>
-                                <button onClick={() => { setShow(1); setValue('password',''); }} name="preferredContact" className={`info-14 border-b-2 border-transparent pb-1  ${show === 1 ? " !border-primary !text-primary" : ""}`}>Email</button>
-                                <button onClick={() => { setShow(2); setValue('password','') }} name="preferredContact" className={`info-14 border-b-2 border-transparent pb-1  ${show === 2 ? " !border-primary  !text-primary " : ""}`} >Mobile number</button>
+                                <button onClick={() => { setShow(1); setValue('password', ''); }} name="preferredContact" className={`info-14 border-b-2 border-transparent pb-1  ${show === 1 ? " !border-primary !text-primary" : ""}`}>Email</button>
+                                <button onClick={() => { setShow(2); setValue('password', '') }} name="preferredContact" className={`info-14 border-b-2 border-transparent pb-1  ${show === 2 ? " !border-primary  !text-primary " : ""}`} >Mobile number</button>
                             </div>
 
                             {/* form */}
@@ -345,10 +358,19 @@ const RegisterForm = () => {
                     }
                     {/* verification code  */}
                     {showVerification === 1 &&
-                        <VerificationCode verifyCode={true} loginData={registerForm} resgister={true} createUser={createUser} />
+                        <VerificationCode loginData={registerForm} resgister={true} createUser={createUser} />
                     }
 
                 </div>
+              <div className={`${showPopup? "opacity-1 visible top-[55%]":'opacity-0 invisible'}  duration-300 z-[20] fixed top-[50%]  left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%] dark:bg-black-v-5 bg-white p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill='#1da2b4'
+                        className="w-20 h-20 mx-auto">
+                        <path d="m6.17 35.16 4.23 2.44 2.44 4.23c.27.46.77.75 1.3.75h4.88l4.23 2.44c.23.13.49.2.75.2s.52-.07.75-.2l4.23-2.44h4.88c.53 0 1.03-.29 1.3-.75l2.44-4.23 4.23-2.44c.46-.27.75-.76.75-1.3v-4.88l2.44-4.23c.27-.46.27-1.04 0-1.5l-2.44-4.23v-4.88c0-.53-.29-1.03-.75-1.3L37.6 10.4l-2.44-4.23c-.27-.46-.76-.75-1.3-.75h-4.88l-4.23-2.44a1.49 1.49 0 0 0-1.5 0l-4.23 2.44h-4.88c-.53 0-1.03.29-1.3.75L10.4 10.4l-4.23 2.44c-.46.27-.75.76-.75 1.3v4.88l-2.44 4.23a1.49 1.49 0 0 0 0 1.5l2.44 4.23v4.88c0 .54.29 1.03.75 1.3zm2.05-14.99c.13-.23.2-.49.2-.75V15l3.83-2.21c.23-.13.42-.32.55-.55L15 8.42h4.42c.26 0 .52-.07.75-.2L24 6.01l3.83 2.21c.23.13.49.2.75.2H33l2.21 3.83c.13.23.32.42.55.55l3.82 2.2v4.42c0 .26.07.52.2.75L41.99 24l-2.21 3.83c-.13.23-.2.49-.2.75V33l-3.83 2.21c-.23.13-.42.32-.55.55L33 39.58h-4.42c-.26 0-.52.07-.75.2L24 41.99l-3.83-2.21c-.23-.13-.49-.2-.75-.2H15l-2.21-3.83c-.13-.23-.32-.42-.55-.55L8.42 33v-4.42c0-.26-.07-.52-.2-.75L6.01 24l2.21-3.83z" />
+                        <path d="M15.73 29.41c.26.49.77.79 1.32.79.25 0 .49-.06.7-.18l17.65-9.4c.73-.39 1.01-1.3.62-2.03-.19-.36-.5-.62-.89-.73-.38-.12-.79-.08-1.14.11l-16.33 8.7-3.06-5.74c-.19-.35-.5-.61-.89-.73-.38-.12-.79-.08-1.14.11-.73.39-1.01 1.3-.62 2.03l3.78 7.07z" />
+                    </svg>
+                    <p className='p-5 section-secondary-heading text-primary'>Thanks for Signing Up</p>
+                </div>
+
             </div>
         </section>
     )
