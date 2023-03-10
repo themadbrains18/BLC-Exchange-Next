@@ -37,9 +37,19 @@ export const authOptions = {
         // The name to display on the sign in form (e.g. "Sign in with...")
         name: "Credentials",
         async authorize(credentials, req) {
-
+            console.log(credentials, ' == credentials')
             if (credentials.status == 200) {
-                let user = credentials
+                let user;
+
+                const obj = JSON.parse(JSON.stringify(credentials))
+                // let user = credentials.data
+                 if(obj.hasOwnProperty('data')){
+                   user  = obj.data
+                 }else{
+                   user = credentials
+                 }
+
+                 console.log(user, ' === user')
                 return user;
             } else return null;
         },

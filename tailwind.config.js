@@ -30,7 +30,9 @@ module.exports = {
         "deep-blue":"#223141"
         
       },
-      
+      content: {
+        'completed-icon': 'url("../public/assets/icons/completed-icon.svg")',
+      },
       fontFamily: {
         'noto': ['Noto Sans', 'sans-serif'],
         'noto-display': [ 'Noto Serif Display', 'serif'],

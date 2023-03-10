@@ -38,7 +38,7 @@ const VerificationType = ({session}) => {
                 
               
             </div>
-            {session?.kycstatus === 'NA' || session?.kycstatus === null ?
+            {session?.kycstatus === 'NA' || session?.kycstatus === 'reject' ?
                 step == 0 ?
                     <>
                         <div className='mt-11'>
