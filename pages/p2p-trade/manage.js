@@ -1,47 +1,43 @@
 import SubHeader from '/components/snippets/subHeader';
 import { getProviders, getSession } from 'next-auth/react'
 import P2PManagement from './../../components/oneClickBuy/p2p-management';
-const Manage = ({tokenBalnces,sessions }) => {
-    return (
-        <>
-            <P2PManagement tokenBalnces={tokenBalnces} session={sessions}/>
-        </>
-    )
+const Manage = ({  sessions, paymentods, userpaymentods }) => {
+  return (
+    <>
+      <P2PManagement session={sessions} paymentods={paymentods} userpaymentods={userpaymentods} />
+    </>
+  )
 }
+export default Manage;
+
+
 export async function getServerSideProps(context) {
-    const { req } = context
-    const session = await getSession({ req })
-    const providers = await getProviders()
-  
-    if (session) {
-      // =================== get menus add header/foooter links ================== //
-   
-  
-      // =============== get token balances by user id ============ //
-  
-      let tokenBalnces = await fetch(
-        `${process.env.NEXT_PUBLIC_APIURL}/post/balances/${session.user.id}`,
-        {
-          method: 'GET',
-        },
-      ).then((response) => response.json())
-  
+  let session = await getSession(context)
+  if (session != null) {
 
+    const paymentods = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/payment`)
+      .then(res => res.json())
 
-      return {
-        props: {
-          tokenBalnces: tokenBalnces,
-          sessions: session
-        }, // will be passed to the page component as props
+    let getPaymet = []
+
+    getPaymet = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/payment/get-method/${session.user.id}`)
+      .then(res => res.json())
+
+    // selected menu return value 
+
+    return {
+      props: {
+        paymentods: paymentods, // will be passed to the page component as props
+        userpaymentods: getPaymet,
+        sessions: session
       }
     }
-    // return {
-    //     props: {
-    //         providers,
-    //     },
-    // }
-    return {
-      redirect: { destination: '/' },
-    }
   }
-export default Manage;
+
+  return {
+    redirect: { destination: '/' },
+  }
+
+}
+
+

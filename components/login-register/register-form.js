@@ -50,6 +50,7 @@ const RegisterForm = () => {
 
 
     useEffect(() => {
+        
         if (router.query.referal !== undefined) {
             // setActive(false)
             setActive(true)
@@ -310,7 +311,7 @@ const RegisterForm = () => {
 
                             <div className='bg-grey w-full h-[1px] my-5'></div>
                             <div className='text-center mt-[-33px] mb-[20px]'>
-                                <p className='mt-[-33px] text-grey bg-white dark:bg-black-v-5 inline-block px-3 -translate-y-35'>Or login with</p>
+                                <p className='mt-[-33px] text-grey bg-white dark:bg-black-v-5 inline-block px-3 -translate-y-35'>Or Sign-Up with</p>
                             </div>
                             <div className='flex gap-3 mt-8 justify-between sm:justify-start mb-5'>
                                 <Link href="#" className='p-3 bg-black-v-4 block   w-full rounded'>
@@ -345,7 +346,7 @@ const RegisterForm = () => {
                     }
                     {/* verification code  */}
                     {showVerification === 1 &&
-                        <VerificationCode verifyCode={true} loginData={registerForm} resgister={true} createUser={createUser} />
+                        <VerificationCode loginData={registerForm} resgister={true} createUser={createUser} />
                     }
 
                 </div>

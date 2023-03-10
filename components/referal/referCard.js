@@ -22,11 +22,11 @@ const ReferCard = () => {
     <ToastContainer />
       <section className="py-8 md:py-16 dark:bg-black-v-2 ">
         <div className="container">
-          <div className="card px-8 md:px-16 py-8 md:py-12 border border-border-clr rounded-2xl">
+          <div className="card px-8 md:px-16 py-8 md:py-12 border border-border-clr rounded-lg">
             <h4 className="section-secondary-heading font-noto">
               Invite Friends Now
             </h4>
-            <div className="border border-border-clr rounded-xl mt-4 md:mt-8 flex items-center justify-between gap-2 p-2">
+            <div className="border border-border-clr rounded-md mt-4 md:mt-8 flex items-center justify-between gap-2 p-2">
               <span className="info-14 hover:!text-grey">Referral Code</span>
               <div className="flex items-center gap-2 ">
                 <span ref={ref} className="info-14 hover:!text-grey">{code}</span>
@@ -55,7 +55,7 @@ const ReferCard = () => {
                 </button>
               </div>
             </div>
-            <div className="border border-border-clr rounded-xl p-2 mt-2 md:mt-5 flex items-center justify-between gap-2">
+            <div className="border border-border-clr rounded-md p-2 mt-2 md:mt-5 flex items-center justify-between gap-2">
              <span className="info-14 hover:!text-grey">Referral Link</span>
               <div className="inline-flex items-center gap-2">
                 <span className="info-14 hover:!text-grey truncate max-w-[70px] md:max-w-[150px]" ref={ref2}>{referLink}</span>

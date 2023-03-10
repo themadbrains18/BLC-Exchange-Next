@@ -19,12 +19,14 @@ const Dropdown = ({
   padding_bottom
 }) => {
   const { mode, setLogin, heightUpdate, verifyData, setVerifyData } = useContext(Context);
+
   const { data: session } = useSession()
-  useEffect(() => {
-    if (session?.user?.email !== '' && session?.user?.kycstatus !== undefined && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
-      setVerifyData(true)
-    }
-  })
+
+  // useEffect(() => {
+  //   if (session?.user?.email !== '' && (session?.user?.kycstatus !== undefined || session?.user?.kycstatus !== null ) && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
+  //     setVerifyData(true)
+  //   }
+  // })
 
   return (
     <>
@@ -80,7 +82,11 @@ const Dropdown = ({
           subMenu != "" &&
           subMenu &&
           subMenu.map((e, index) => {
-            if (e.compName == 'VerificationPopup' && !verifyData) {
+            let verified = false;
+            if (session?.user?.email !== '' &&  session?.user?.kycstatus !== null  && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
+              verified = true;
+            }
+            if (e.compName === 'VerificationPopup' && !verified) {
               return (
                 <div
                   key={index}
