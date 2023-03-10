@@ -83,11 +83,11 @@ const VerificationCode = ({ overlay, verifyCode, antiFishing, emailAuth, bindGoo
             return;
         }
 
-        if(verifyCode=== true){
-           setShowSuccess(3)
-           return ;
+        // if(verifyCode=== true){
+        //    setShowSuccess(3)
+        //    return ;
             
-        }
+        // }
         //==============================================================================
         // Bind Email Request OTP Authenticate=======================
         //============================================================================== 
