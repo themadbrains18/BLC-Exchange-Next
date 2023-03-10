@@ -27,9 +27,9 @@ let arrText = [
 const LuckyDraw = () => {
     return (
         <>
-            <section className="py-10 lg:pb-20 bg-white">
+            <section className="py-10 lg:pb-20 dark:bg-black">
                 <div className='container'>
-                    <div className='bg-[#e8f6f7] py-[30px] px-5 rounded-lg'>
+                    <div className='bg-[#e8f6f7]  py-[30px] px-5 rounded-lg'>
                         <div className='lg:flex justify-between items-center '>
                             <div>
                                 <h2 className='font-noto-display text-[24px] font-semibold mb-1 md:text-[32px]'>Daily Lucky Draw of 888 USDT</h2>
