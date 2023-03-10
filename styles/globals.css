@@ -131,10 +131,20 @@
 .section-primary-heading {
   @apply font-medium font-noto-display text-black text-[32px] leading-[42px] md:text-[56px] md:leading-[68px] dark:text-white;
 }
+.section-heading-32-48 {
+  @apply font-medium font-noto-display text-black text-[32px] leading-[42px] md:text-[48px] md:leading-[68px] dark:text-white;
+}
+.heading-28-40 {
+  @apply font-medium font-noto text-black text-[28px] leading-[36px] md:text-[40px] md:leading-[56px] dark:text-white;
+}
 
 .section-secondary-heading {
   @apply font-medium font-noto-display text-black text-[22px] leading-[30px] md:text-[32px] md:leading-[42px] dark:text-white;
 }
+
+.info-16-28 {
+  @apply font-normal font-noto text-black text-[16px] leading-[22px] md:text-[28px] md:leading-[32px] dark:text-white;
+}  
 
 .info-14-24 {
   @apply font-normal font-noto text-black text-[14px] leading-[22px] md:text-[24px] md:leading-[32px] dark:text-white;

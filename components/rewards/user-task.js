@@ -4,7 +4,7 @@ import Image from 'next/image';
 export const UserTask = () => {
     return (
         <>
-            <section className="py-10 md:pb-20 bg-white">
+            <section className="py-10 md:pb-20 dark:bg-black">
                 <div className='container'>
                     <div className='flex justify-between items-center mb-5 md:mb-9 lg:mb-12'>
                         <h2 className='font-noto-display text-[24px] md:text-[32px]'>New User Tasks</h2>
@@ -15,10 +15,10 @@ export const UserTask = () => {
                             <div>
                                 <img src='/assets/images/gift-user-task.png' alt='error' width={66} height={66} className='mb-3'></img>
                                 <div className='flex gap-2 items-center mb-[10px]'>
-                                    <p className='font-noto font-semibold text-xl md:text-[#1e1e1e] text-[24px]'>Sign up</p>
+                                    <p className='font-noto dark:text-white font-semibold text-xl md:text-[#1e1e1e] text-[24px]'>Sign up</p>
                                     <img src='/assets/icons/question.png' alt='error' width={16} height={16}></img>
                                 </div>
-                                <p className='font-noto  text-[13px] text-[#929899] mb-[10px] md:text-[#1e1e1e]  md:text-[16px]'>Sign up to begin your journey with Bitget</p>
+                                <p className='font-noto info-14-16  mb-[10px] '>Sign up to begin your journey with Bitget</p>
                             </div>
                             <button className='font-noto  text-white py-2 w-full bg-[#1da2b4] rounded-[4px] md:h-10 md:w-44 mt-3 lg:self-center '> Sign up</button>
                         </div>
@@ -27,10 +27,10 @@ export const UserTask = () => {
                             <div>
                                 <p className='mb-3 text-[40px] font-bold text-[#1da2b4]'>+5,000<span className='text-[14px] font-medium ml-1'>USDT</span></p>
                                 <div className='flex gap-2 items-center mb-[10px]'>
-                                    <p className='font-noto font-semibold text-xl md:text-[#1e1e1e] text-[24px]'>Deposit</p>
+                                    <p className='font-noto  dark:text-white font-semibold text-xl md:text-[#1e1e1e] text-[24px]'>Deposit</p>
                                     <img src='/assets/icons/question.png' alt='error' width={16} height={16}></img>
                                 </div>
-                                <p className='font-noto  text-[13px] text-[#929899] mb-[10px] md:text-[#1e1e1e] md:text-[16px]'>Earn rewards worth up to 5,000 USDT</p>
+                                <p className='font-noto info-14-16  mb-[10px]'>Earn rewards worth up to 5,000 USDT</p>
                             </div>
                             <Image src='/assets/icons/lock-new-task-user.svg' alt='error' width={40} height={40} className='self-start mt-3 lg:self-center'></Image>
                         </div>
@@ -39,10 +39,10 @@ export const UserTask = () => {
                             <div>
                                 <p className='mb-3 text-[40px] font-bold text-[#1da2b4]'>+5,000<span className='text-[14px] font-medium ml-1'>USDT</span></p>
                                 <div className='flex gap-2 items-center mb-[10px]'>
-                                    <p className='font-noto font-semibold text-xl md:text-[#1e1e1e] text-[24px]'>Deposit</p>
+                                    <p className='font-noto  dark:text-white font-semibold text-xl md:text-[#1e1e1e] text-[24px]'>Trade</p>
                                     <img src='/assets/icons/question.png' alt='error' width={16} height={16}></img>
                                 </div>
-                                <p className='font-noto  text-[13px] text-[#929899] mb-[10px] md:text-[#1e1e1e] md:text-[16px]'>Earn rewards worth up to 5,000 USDT</p>
+                                <p className='font-noto info-14-16  mb-[10px]'>Earn rewards worth up to 5,000 USDT</p>
                             </div>
                             <Image src='/assets/icons/lock-new-task-user.svg' alt='error' width={40} height={40} className='self-start mt-3 lg:self-center'></Image>
                         </div>

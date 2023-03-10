@@ -11,8 +11,8 @@ const Signup = () => {
         <>
             {session === null &&
                 <form className="flex items-center gap-3 max-w-[485px] w-full mt-8 mx-auto md:mx-0 flex-col md:flex-row	">
-                    <Link href="/login" className='cta max-w-full md:max-w-[27%] text-center w-full' type='submit' onClick={()=>heightUpdate()}>Log In</Link>
                     <Link href="/register" className='cta max-w-full md:max-w-[27%] w-full text-center' type='submit' onClick={()=>heightUpdate()}>Sign up</Link>
+                    <Link href="/login" className='cta2 max-w-full md:max-w-[27%] text-center w-full' type='submit' onClick={()=>heightUpdate()}>Log In</Link>
                 </form>
             }
 
