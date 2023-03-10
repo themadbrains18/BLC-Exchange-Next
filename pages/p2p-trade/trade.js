@@ -6,7 +6,7 @@ import { getProviders, getSession } from 'next-auth/react'
 import P2PBuySell from "components/oneClickBuy/p2pbuysell";
 
 const Trade = ({ paymentods }) => {
-  
+
   const [popup, showPopup] = useState(false);
 
   let dropDownItems = [
@@ -63,7 +63,7 @@ const Trade = ({ paymentods }) => {
         </div>
       </section>
       <>
-      <P2PBuySell paymentods={paymentods}/>
+        <P2PBuySell paymentods={paymentods} />
       </>
 
     </>
@@ -77,7 +77,7 @@ export async function getServerSideProps(context) {
   const paymentods = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/payment`)
     .then(res => res.json())
 
-    
+
 
   if (session != null) {
 
@@ -95,7 +95,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         paymentods: paymentods, // will be passed to the page component as props
-       // userpaymentods: getPaymet,
+        userpaymentods: getPaymet,
         //tokenBalnces: tokenBalnces,
         sessions: session
       }
@@ -105,8 +105,8 @@ export async function getServerSideProps(context) {
     return {
       props: {
         paymentods: paymentods, // will be passed to the page component as props
-       // userpaymentods: [],
-       // tokenBalnces: [],
+        userpaymentods: [],
+        // tokenBalnces: [],
         sessions: {}
       }
     }
