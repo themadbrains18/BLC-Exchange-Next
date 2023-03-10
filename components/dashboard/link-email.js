@@ -70,7 +70,10 @@ const LinkEmail = ({ sessions }) => {
       method: "POST",
       body: JSON.stringify(otpForm)
     }).then(response => response.json());
-
+    const inputElements = document.querySelectorAll('.input_wrapper input');
+    inputElements.forEach((ele, index) => {
+      ele.value=''
+    })
     if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
       setCount(count + 1);
 

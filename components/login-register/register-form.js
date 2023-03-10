@@ -50,6 +50,7 @@ const RegisterForm = () => {
 
 
     useEffect(() => {
+        
         if (router.query.referal !== undefined) {
             // setActive(false)
             setActive(true)
@@ -345,7 +346,7 @@ const RegisterForm = () => {
                     }
                     {/* verification code  */}
                     {showVerification === 1 &&
-                        <VerificationCode verifyCode={true} loginData={registerForm} resgister={true} createUser={createUser} />
+                        <VerificationCode loginData={registerForm} resgister={true} createUser={createUser} />
                     }
 
                 </div>
