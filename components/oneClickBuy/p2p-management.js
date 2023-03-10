@@ -16,9 +16,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from "next/router";
 import PaymentMethodModal from "/components/snippets/payment-method-modal";
 
-import { useRouter } from 'next/router';
-
-
 const P2PManagement = ({ session, paymentods, userpaymentods }) => {
     const { mode, setClick, verifyData, setVerifyData } = useContext(Context);
     const [rotate, setRotate] = useState(false);
