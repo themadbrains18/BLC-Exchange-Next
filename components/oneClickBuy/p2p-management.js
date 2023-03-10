@@ -14,8 +14,13 @@ import AdTable from './ad/adTable';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { useRouter } from 'next/router';
+
 
 const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) => {
+    const router = useRouter()
+
+
     const { mode, setClick, verifyData, setVerifyData } = useContext(Context);
     const [rotate, setRotate] = useState(false);
 
@@ -30,7 +35,25 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
     // const [minLimit, setMinLimit] = useState(0)
     // const [maxLimit, setMaxLimit] = useState(0)
     const [balanceMessage, setBalanceMessage] = useState(0)
+    const [del_request, setDelRequest] = useState(0)
 
+    const [paymentPopup, setpayment] = useState(false)
+
+
+    // delete confirmation popup
+    const [del_request_popup, setDel_Request_Popup] = useState(false)
+
+    // delete payment method request
+    const deleteRequest = async () => {
+       let result = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/payment/delete-method/${del_request}`)
+        .then(res =>  res.json())
+        toast.success(result.message, {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 5000,
+          })
+        router.push('/p2p-trade/manage')
+        setDel_Request_Popup(false)
+    }
 
     /// 
    
@@ -121,13 +144,13 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
     // 
     // const [paymentPopup, setpaymentPopup] = useState(false)
 
+
     const setpaymentPopup = (e)=>{
         setpayment(false)
     }
 
 
     // enable and disable payment modal 
-    const [paymentPopup, setpayment] = useState(false)
 
 
     return (
@@ -135,10 +158,54 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
             <ToastContainer />
             <section className="dark:bg-black-v-3 py-10 md:py-20 ">
 
-            {
-                paymentPopup && <Paymentmodal paymentods={paymentods} setpaymentPopup={setpaymentPopup}  />
-            }
+                {
+                    paymentPopup && <Paymentmodal paymentods={paymentods} setpaymentPopup={setpaymentPopup} session={session}  />
+                }
                 
+                {/* delete confrim popup */}
+                <div  className={`${
+            del_request_popup
+            ? 'opacity-1 visible fixed top-[50%]'
+            : 'opacity-0 invisible top-[55%]'
+        }  duration-300 z-[20] fixed  left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%] dark:bg-black-v-5 bg-white p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto`}
+      >
+        <div
+          className="max-w-[10px] w-full ml-auto cursor-pointer"
+          onClick={() => setDel_Request_Popup(false)}
+        >
+          <svg
+            version="1.1"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 60.963 60.842"
+            style={{ enableBackground: 'new 0 0 60.963 60.842' }}
+            xmlSpace="preserve"
+          >
+            <path
+              fill={mode === 'dark' ? 'white' : '#231F20'}
+              d="M59.595,52.861L37.094,30.359L59.473,7.98c1.825-1.826,1.825-4.786,0-6.611
+                                        c-1.826-1.825-4.785-1.825-6.611,0L30.483,23.748L8.105,1.369c-1.826-1.825-4.785-1.825-6.611,0c-1.826,1.826-1.826,4.786,0,6.611
+                                        l22.378,22.379L1.369,52.861c-1.826,1.826-1.826,4.785,0,6.611c0.913,0.913,2.109,1.369,3.306,1.369s2.393-0.456,3.306-1.369
+                                        l22.502-22.502l22.501,22.502c0.913,0.913,2.109,1.369,3.306,1.369s2.393-0.456,3.306-1.369
+                                        C61.42,57.647,61.42,54.687,59.595,52.861z"
+            />
+          </svg>
+        </div>
+
+        <p className="info-16-22 dark:!text-white !text-black mt-[15px] text-center text-lg">
+           Are you sure to delete the payment method?
+        </p>
+        <div className="flex justify-center space-x-3 mt-24">
+            <button className='text-white border border-[#fff] py-2 px-6 rounded-lg ' onClick={() => setDel_Request_Popup(false)}>Cancel</button>
+            <button className='text-white border border-[#fff] py-2 px-6 rounded-lg bg-[#1da2b4]' onClick={deleteRequest}>Confirm</button>
+        </div>
+        </div>
+
+
+                {/* delete confrim popup end */}
 
                 <div className="container">
                     <div className="flex items-start">
@@ -205,12 +272,14 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
                             <div className="flex items-center justify-between  gap-[20px] mt-[50px]">
                                 <p className="info-16-22 dark:!text-white !text-black">Payment methods</p>
                                 {/* <p className="info-14 cursor-pointer dark:!text-primary !text-primary" onClick={() => { showPopup(true); setClick(true) }}>+ Add payment methods</p> */}
+
                                 <p className="info-14 cursor-pointer dark:!text-primary !text-primary" onClick={() => {
                                     let verified = false;
                                     if (session?.user?.email !== '' && session?.user?.kycstatus === 'success' && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
                                         verified = true;
                                     }
                                     if (verified) {
+                                        alert('hi')
                                         // setClick(true)
                                         setpayment(true)
                                     }
@@ -258,8 +327,16 @@ const P2PManagement = ({ tokenBalnces, session, paymentods, userpaymentods }) =>
 
                                                     </div>
 
-                                                    <div className="flex text-black dark:!text-[#919899]">
-                                                        <i className="text-lg rounded-[20]">-</i> Delete
+                                                    <div className="flex text-black dark:!text-[#919899] ">
+                                                        <span onClick={(e) =>{
+                                                        //  deleteRequest(pm?.id);
+                                                         setDelRequest(pm?.id);
+                                                         setDel_Request_Popup(true)
+                                                        }}
+                                                        className="cursor-pointer"
+                                                        >
+                                                            <i className="text-lg rounded-[20]">-</i> Delete
+                                                        </span>
                                                     </div>
                                                 </div>
 
