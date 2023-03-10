@@ -12,7 +12,7 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import GradientCard from "./gradientCard";
 
-const Carousel = ({ play_cta, data, arrow}) => {
+const Carousel = ({figcation, play_cta, data, arrow}) => {
   const { mode } = useContext(Context);
  
 
@@ -47,7 +47,12 @@ const Carousel = ({ play_cta, data, arrow}) => {
                       height={220}
                       className="rounded-xl w-[254px] sm:w-[384px] border border-[#414747] mb-6 cursor-pointer "
                     />
+                    
                   )}
+                  {e.figcation && (
+                    <p className='font-noto font-semibold text-[#090d11] mt-6 md:text-xl'>{e.figcation}</p>                    
+                  )}
+
                   {play_cta && (
                     <Image
                       className="absolute right-3 bottom-3"
