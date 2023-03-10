@@ -40,6 +40,7 @@ const handler = nc({
    const session = await getServerSession(req, res, authOptions)
 
 
+   console.log(req.body)
   if (session != null) {
 
       let dd ={
@@ -47,7 +48,8 @@ const handler = nc({
         pmid    :  selectoken?.id,
         status  :  "active",
         pm_name :  selectoken?.payment_method,
-        pmObject : req.body
+        pmObject : req.body,
+        passcode : JSON.parse(req.body)?.passcode
       }
 
       try {
@@ -60,7 +62,12 @@ const handler = nc({
             "Content-Type": "application/json",
           }
         }).then(res => {return res.json()}) //api for the post request
-        res.status(200).send(list)
+
+        if(list.res == "success"){
+          res.status(200).send(list)
+        }else{
+          res.status(401).send(list)
+        }
 
       } catch (error) {
         res.status(401).send(err)

@@ -216,7 +216,7 @@ const Withdraw = ({
         setShowVerifictionModal(false)
         setFormData({})
         setAllisWell(false)
-        // router.push('/asset/withdraw')
+        router.push('/asset/withdraw')
         toast.success(results.message, {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 5000,
@@ -684,6 +684,7 @@ export async function getServerSideProps(context) {
         method: 'GET',
       },
     ).then((response) => response.json())
+
 
     let menu = await data.json()
     return {
