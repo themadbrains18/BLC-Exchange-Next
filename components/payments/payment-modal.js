@@ -134,7 +134,7 @@ const Paymentmodal = ({ paymentods, setpaymentPopup, session }) => {
           className="max-w-[10px] w-full ml-auto cursor-pointer"
           onClick={() => {
             setPopup(false)
-
+            setClick(false)
             setpaymentPopup(false)
           }}
         >
