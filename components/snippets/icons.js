@@ -1863,6 +1863,7 @@ const Icons = ({ type, stroke }) => {
         type === 'close-eye' &&
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
           stroke={mode === "light" ? "black" : "white"}
+          fill={mode === "light" ? "black" : "white"}
           height={16}
           width={16}
         >
@@ -1873,7 +1874,7 @@ const Icons = ({ type, stroke }) => {
             y1="127.305"
             y2="166.813"
             fill="none"
-            stroke="#000"
+            stroke={mode === "light" ? "black" : "white"}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={12}
@@ -1884,7 +1885,7 @@ const Icons = ({ type, stroke }) => {
             y1="149.263"
             y2="189.607"
             fill="none"
-            stroke="#000"
+            stroke={mode === "light" ? "black" : "white"}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={12}
@@ -1895,7 +1896,7 @@ const Icons = ({ type, stroke }) => {
             y1="149.244"
             y2="189.594"
             fill="none"
-            stroke="#000"
+            stroke={mode === "light" ? "black" : "white"}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={12}
@@ -1906,14 +1907,14 @@ const Icons = ({ type, stroke }) => {
             y1="127.272"
             y2="166.971"
             fill="none"
-            stroke="#000"
+            stroke={mode === "light" ? "black" : "white"}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={12}
           />
           <path
             fill="none"
-            stroke="#000"
+            stroke={mode === "light" ? "black" : "white"}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={12}
