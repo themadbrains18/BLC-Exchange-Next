@@ -1,4 +1,8 @@
+import {useContext} from 'react';
+import Context from "/components/contexts/context";
 const ChatBox = () => {
+    const {mode } = useContext(Context);
+
     return(
         <div className='max-w-[450px] w-full mx-auto md:ml-[auto] md:mr-0 border border-[#cccccc7d] rounded-lg shadow-lg'>
             {/* about user */}
@@ -45,7 +49,7 @@ const ChatBox = () => {
                                 <g id="Outlined-/-Action-/-perm_media" transform="translate(510.000000, 274.000000)">
                                     <g>
                                     <polygon id="Path" points="0 0 24 0 24 24 0 24" />
-                                    <path d="M2,6 L0,6 L0,11 L0.01,11 L0,20 C0,21.1 0.9,22 2,22 L20,22 L20,20 L2,20 L2,6 Z M7,15 L21,15 L17.5,10.5 L15,13.51 L11.5,9 L7,15 Z M22,4 L14,4 L12,2 L6,2 C4.9,2 4.01,2.9 4.01,4 L4,16 C4,17.1 4.9,18 6,18 L22,18 C23.1,18 24,17.1 24,16 L24,6 C24,4.9 23.1,4 22,4 Z M22,16 L6,16 L6,4 L11.17,4 L12.58,5.41 L13.17,6 L22,6 L22,16 Z" id="🔹-Icon-Color" fill="#1D1D1D" />
+                                    <path fill={mode === "dark" ? "white" : "#000"}  d="M2,6 L0,6 L0,11 L0.01,11 L0,20 C0,21.1 0.9,22 2,22 L20,22 L20,20 L2,20 L2,6 Z M7,15 L21,15 L17.5,10.5 L15,13.51 L11.5,9 L7,15 Z M22,4 L14,4 L12,2 L6,2 C4.9,2 4.01,2.9 4.01,4 L4,16 C4,17.1 4.9,18 6,18 L22,18 C23.1,18 24,17.1 24,16 L24,6 C24,4.9 23.1,4 22,4 Z M22,16 L6,16 L6,4 L11.17,4 L12.58,5.41 L13.17,6 L22,6 L22,16 Z" id="🔹-Icon-Color" />
                                     </g>
                                 </g>
                                 </g>
