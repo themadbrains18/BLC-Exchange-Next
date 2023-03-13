@@ -21,12 +21,7 @@ const Dropdown = ({
   const { mode, setLogin, heightUpdate, verifyData, setVerifyData } = useContext(Context);
 
   const { data: session } = useSession()
-
-  // useEffect(() => {
-  //   if (session?.user?.email !== '' && (session?.user?.kycstatus !== undefined || session?.user?.kycstatus !== null ) && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
-  //     setVerifyData(true)
-  //   }
-  // })
+ 
 
   return (
     <>
@@ -112,7 +107,7 @@ const Dropdown = ({
             else {
               return (
                 <Link
-                  href={{ pathname: `${e.linkUrl}` }}
+                  href={{ pathname: `${e.linkUrl}`} }
                   key={index}
                   className={`items-center rounded flex gap-6 min-w-[330px] p-4 group/arrow  ${mode === "dark" ? "hover:bg-black" : "hover:bg-light-hover"
                     }`} onClick={() => heightUpdate()}
