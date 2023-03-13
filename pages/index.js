@@ -13,7 +13,23 @@ import Download from "components/home/download";
 
 // const inter = Inter({ subsets: ['latin'] })
 
+// import { io } from "socket.io-client"
+// import { useState } from "react";
+
 export default function Home(props) {
+
+  // const socket = io("http://localhost:5000", { transports: ['websocket'] });
+  
+  // const [nama, steNama] = useState("surinder");
+  // const handlepost = (e) => {
+  //   e.preventDefault();
+  //   socket.emit("roomsttu",{post : nama});
+  // }
+
+  // socket.on('roomsttu', function(msg) {
+  //   console.log(msg,'============msg ');
+  // });
+
   return (
     <>
     
@@ -24,6 +40,7 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" /> 
       </Head>
       {/* top bar */}
+      {/* <button onClick={(e) => handlepost(e)}>Submit</button> */}
       <Hero /> 
       <FlowSliderSec />
       <Aizone />
