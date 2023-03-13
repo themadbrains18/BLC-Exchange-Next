@@ -14,9 +14,7 @@ import AdTable from './ad/adTable';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from "next/router";
-import PaymentMethodModal from "/components/snippets/payment-method-modal";
-
-
+import PaymentMethodModal from "components/snippets/payment-method-modal";
 
 const P2PManagement = ({ session, paymentods, userpaymentods }) => {
     const { mode, setClick, verifyData, setVerifyData } = useContext(Context);
@@ -33,6 +31,8 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
     const pm_method = ['UPI', 'Google Pay']
     const [tokenBalance, setTokenBlance] = useState(0)
     const [clear, setClear] = useState(false);
+
+    const [userSelectedPMethod, setUserSelectedPMethod] = useState([]);
 
     // const [minLimit, setMinLimit] = useState(0)
     // const [maxLimit, setMaxLimit] = useState(0)
@@ -75,7 +75,7 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
             min_limit: yup.number().positive().typeError('Please enter minimum limit'),
             max_limit: yup.number().positive().moreThan(yup.ref('min_limit')).typeError('Maximum limit must be greater than minimum limit'),
             deadline: yup.string().required('Please select Payment duration'),
-            method: yup.string().required('Please select at least one payment method'),
+            method: yup.array().required('Please select at least one payment method').min(1),
             notes: yup.string(),
             checked: yup.boolean().oneOf([true], 'This field must be checked')
             // withdrawAmont: yup
@@ -125,6 +125,7 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
 
     const selectedMethod = async (item) => {
         setValue('method', item)
+        setUserSelectedPMethod(item)
         clearErrors("method")
     };
 
@@ -151,6 +152,7 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
             setBalanceMessage(0)
             setTokenBlance(0)
             setClear(true);
+            setUserSelectedPMethod([]);
             // router.push('/p2p-trade/manage')
         }
         else {
@@ -325,7 +327,6 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
                                     userpaymentods &&
                                     userpaymentods?.map((pm, index) => {
                                         let dataInfo = JSON.parse(pm?.pmObject)
-                                        console.log(dataInfo)
                                         return (
                                             <div key={index}>
                                                 <div className="flex  py-3 px-4 justify-between items-center">
@@ -665,12 +666,16 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
                                                 <p className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white" onClick={()=>{setClick(true); setPaymentMethodModal(true) }}>Please select an option</p>
                                                 {
                                                     paymentMethodModal && 
-                                                    <PaymentMethodModal setPaymentMethodModal={setPaymentMethodModal} />
+                                                    <PaymentMethodModal setPaymentMethodModal={setPaymentMethodModal} userpaymentods={userpaymentods} 
+                                                    selectedMethod={selectedMethod} userSelectedPMethod={userSelectedPMethod} />
                                                 }
                                             </div>
                                             <div className="!text-red-700 info-12">
                                                 {errors.method?.message}
                                             </div>
+                                            {userSelectedPMethod && userSelectedPMethod.length > 0 && userSelectedPMethod.map((item)=>{
+                                                return <p className="info-14-16">{item.pm_name}</p>
+                                            })}
                                         </div>
                                         {/* payment methods */} 
                                         

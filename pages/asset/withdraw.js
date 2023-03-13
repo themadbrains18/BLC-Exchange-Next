@@ -407,7 +407,11 @@ const Withdraw = ({
                       placeholder={
                         show === 1
                           ? 'Enter Withdrawl Addresss'
+<<<<<<< HEAD
                           : 'Enter a BLC - Exchange account email'
+=======
+                          : 'Enter a BLC-Eachange account email'
+>>>>>>> 2a51bea3bdb2cf96ba7b2eaef1da15f39a4c0f38
                       }
                       onChange={(e) => {
                         setValue('userwallet', e.target.value)
@@ -471,7 +475,7 @@ const Withdraw = ({
                       <p>
                         For security purposes, phone verification may be
                         required to withdraw assets. Please be on the look out
-                        for calls from BLC - Exchange customer service
+                        for calls from BLC-Eachange customer service
                       </p>
                       <p className="text-red-600 ">
                         Minimum withdrawal amount: 0.001. You cannot withdraw

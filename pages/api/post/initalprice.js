@@ -19,7 +19,8 @@ const handler = nc({
 
   .get(async (req, res) => {
     try {
-      let data = await getDataWithoutBody()
+
+      let data = await getDataWithoutBody(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=${req.query.receive}&tsyms=${req.query.spend}`)
 
       res.status(200).send({ data });
     } catch (error) {

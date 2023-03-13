@@ -48,8 +48,8 @@ const SideMenu = ({ show, setShow, data,session }) => {
 
       {session === null && 
         <div className="mx-3">
-          <Link href="/register" className="transparent-cta w-full text-center max-w-full block" onClick={()=>{setShow(false);setClick(false)}}>sign up</Link>
-          <Link href="/login" className="cta w-full text-center" onClick={()=>{setShow(false);setClick(false)}}>Login</Link>
+          <Link href="/register" className="cta mb-[10px] w-full text-center max-w-full block" onClick={()=>{setShow(false);setClick(false)}}>sign up</Link>
+          <Link href="/login" className="cta2 w-full text-center" onClick={()=>{setShow(false);setClick(false)}}>Login</Link>
         </div>
       }
       
