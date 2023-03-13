@@ -62,6 +62,30 @@ const SellerOrderSec = ({order}) => {
     };
   }
 
+  const makeReleaseAsset = async (id) => {
+    const socket = io("http://localhost:5000", { transports: ['websocket'] });
+    socket.connect();
+
+    let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/order/release`, {
+        method: "POST",
+        body: JSON.stringify({ orderid: id })
+    }).then(response => response.json());
+
+    console.log(result, '===========order cancel')
+
+    if (result.data.status === 200) {
+        toast.success(result.data.message, {
+            position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+        })
+        socket.emit("order", { orderid: id });
+    }
+    else {
+        toast.error(result.data.message, {
+            position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+        })
+    }
+}
+
 
 
 

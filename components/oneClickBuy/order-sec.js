@@ -50,7 +50,7 @@ const OrderSec = ({ order }) => {
             cancelOrder(order?.id);
         }
 
-        
+
 
     }, []);
 
@@ -318,8 +318,6 @@ const OrderSec = ({ order }) => {
 
                             }
                         </div>
-
-
                         {/* chat box column */}
                         <div className='max-w-full md:max-w-[48%] w-full'>
                             <ChatBox />
@@ -333,7 +331,7 @@ const OrderSec = ({ order }) => {
             }
             {
                 cancleOrderPopup &&
-                <CancleOrder setCancleOrderPopup={setCancleOrderPopup} order={order} cancelOrder={cancelOrder}/>
+                <CancleOrder setCancleOrderPopup={setCancleOrderPopup} order={order} cancelOrder={cancelOrder} />
             }
         </>
     )
