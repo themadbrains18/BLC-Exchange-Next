@@ -43,6 +43,15 @@ const handler = nc({
         }
     })
 
+    .put(async(req,res)=>{
+      try {
+        let data = await putData(`${process.env.NEXT_PUBLIC_APIURL}/order/cancel`,JSON.parse(req.body))
+        res.status(200).send({data});
+      } catch (error) {
+        
+      }
+    })
+
     .delete(async (req,res) =>{
         console.log(req.query.postid,'====delete post id')
         try {
