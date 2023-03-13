@@ -8,7 +8,11 @@ import Paymentmodal from "../payments/payment-modal";
 
 import { useRouter } from "next/router";
 
-const P2PBuySell = ({paymentods}) => {
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+
+const P2PBuySell = ({ paymentods }) => {
 
   const router = useRouter()
   const [showDropdown, setShowDropdown] = useState(false);
@@ -26,7 +30,7 @@ const P2PBuySell = ({paymentods}) => {
   const { mode, setClick } = useContext(Context);
   const [coinImg, setCoinImg] = useState("");
   const [buy, setBuy] = useState(1);
-  const [coin, setCoin] = useState("USD");
+  const [coin, setCoin] = useState(router.query.token !== undefined ? router.query.token : "Select Coin");
   let [bankList, setBankList] = useState();
   let [bankImg, setBankImg] = useState("bcp.png");
   let [bankname, setBankName] = useState("Money");
@@ -35,11 +39,30 @@ const P2PBuySell = ({paymentods}) => {
   let coinDataList3 = ["Cross Margin", "Isolated Margin", "p2p", "Spot", "Coin-M", "USDC-M", "USDT-M"];
 
   let [p2pTradeData, setP2PTradeData] = useState([]);
-  let [tradelist,setTradeList] = useState([]);
+  let [tradelist, setTradeList] = useState([]);
   let [selectedTrade, setSelectedTrade] = useState({});
   const [firstCurrency, setfirstCurrency] = useState(0);
   const [secondCurrency, setsecondCurrency] = useState(0);
   const [clear, setClear] = useState(false);
+  const [pmethodArray, setPMethodArray] = useState([]);
+
+  
+
+  const schema = yup
+    .object()
+    .shape({
+      method: yup.string().required('Please select at least one payment method')
+    }).required()
+  let {
+    register,
+    setValue,
+    getValues,
+    handleSubmit,
+    reset,
+    watch,
+    setError, clearErrors, resetField,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) })
 
   useEffect(() => {
     getP2PTradeAds()
@@ -56,18 +79,18 @@ const P2PBuySell = ({paymentods}) => {
     console.log(posts.data, '=============p2p trade posts')
     if (posts.data) {
 
-      if(router.query.token !==undefined){
-        let record = posts.data.filter((item)=>{
+      if (router.query.token !== undefined) {
+        let record = posts.data.filter((item) => {
           return item.symbol === router.query.token
         })
         setTradeList(record);
-        setP2PTradeData(record);
+        setP2PTradeData(posts.data);
       }
-      else{
+      else {
         setTradeList(posts.data);
         setP2PTradeData(posts.data);
       }
-      
+
     }
 
   }
@@ -76,7 +99,7 @@ const P2PBuySell = ({paymentods}) => {
     setCoin(item.symbol);
     setCoinImg(item.image);
     setRotate(false);
-    let record = p2pTradeData.filter((e)=>{
+    let record = p2pTradeData.filter((e) => {
       return e.symbol === item.symbol
     })
     setTradeList(record);
@@ -93,15 +116,24 @@ const P2PBuySell = ({paymentods}) => {
     var data = val * selectedTrade?.price;
     setfirstCurrency(data);
     setsecondCurrency(val)
+  }
 
+  const resetFilter = () => {
+    setCoin("Select Coin");
+    setCoinImg("");
+    setTradeList(p2pTradeData);
+  }
+
+  const selectNetwork = async (item) => {
+    setValue('method', item)
+    clearErrors("method")
   }
 
   const handleSubmitForm = async (event) => {
     event.preventDefault();
 
-  }
 
-  console.log(router.query,'=============query string')
+  }
 
   return (
     <section className="md:py-[80px] py-[0px] dark:bg-black-v-3 z-[1]">
@@ -198,7 +230,7 @@ const P2PBuySell = ({paymentods}) => {
               <input placeholder="Enter amount" className="h-[43px] px-[10px] max-w-full outline-none rounded-md dark:bg-transparent bg-transparent dark:text-white" type="number" />
             </div>
             <div className="max-w-full md:max-w-[80px] w-full" >
-             <p className='info-14-16 font-bold'>INR</p> 
+              <p className='info-14-16 font-bold'>INR</p>
               {/* <SelectMenu selectMenu={coinDataList} /> */}
             </div>
           </div>
@@ -253,7 +285,7 @@ const P2PBuySell = ({paymentods}) => {
 
           {/* price alert */}
           <div className="max-w-full md:max-w-[100px] w-full">
-            <p className="cursor-pointer info-14 !text-primary">Refresh</p>
+            <p className="cursor-pointer info-14 !text-primary" onClick={() => resetFilter()}>Refresh</p>
           </div>
           <div className="flex items-center gap-[15px] bg-[#cccccc7d] dark:bg-[#3d3636] p-[5px] rounded w-full flex md:hidden">
             <button className={`cta w-full`}>Reset</button>
@@ -324,11 +356,18 @@ const P2PBuySell = ({paymentods}) => {
                       <td>
                         {/* actions */}
                         <div className="my-[24px] grow-[0.6]">
-                          <button className="cta min-w-[100px] w-full" onClick={() => {
-                            showPopup(true); setfirstCurrency(0);
-                            setsecondCurrency(0); setClick(true); setClear(false);
-                            setSelectedTrade(item)
-                          }}>Buy</button>
+                          <button className="cta min-w-[100px] w-full"
+                            onClick={() => {
+                              showPopup(true); setfirstCurrency(0);
+                              setsecondCurrency(0); setClick(true); setClear(false);
+                              setSelectedTrade(item);
+                              let arr = [];
+                              for (const p of item.p_method) {
+                                arr.push(p.pm_name)
+                              }
+                              setPMethodArray(arr);
+
+                            }}>Buy</button>
                         </div>
                       </td>
                     </tr>
@@ -453,7 +492,7 @@ const P2PBuySell = ({paymentods}) => {
                           C61.42,57.647,61.42,54.687,59.595,52.861z" />
                 </svg>
               </div>
-              <form onSubmit={handleSubmitForm}>
+              <form onSubmit={handleSubmit(handleSubmitForm)}>
                 <div className="mb-[25px]">
                   <label className="info-14 !text-grey dark:hover:!text-grey hover:!text-grey mb-[10px] block">I want to pay</label>
                   <div className="relative">
@@ -477,7 +516,10 @@ const P2PBuySell = ({paymentods}) => {
                 <div className="mb-[25px]">
                   <label className="info-14 !text-grey dark:hover:!text-grey hover:!text-grey mb-[10px] block">Payment Methods</label>
                   <div className="relative border  border-black dark:border-white rounded ">
-                    <SelectMenu selectMenu={coinDataList2} clear={clear} />
+                    <SelectMenu selectMenu={pmethodArray} clear={clear} selectNetwork={selectNetwork} />
+                  </div>
+                  <div className="!text-red-700 info-12">
+                    {errors.method?.message}
                   </div>
                 </div>
                 <button className="cta w-full">Buy</button>
