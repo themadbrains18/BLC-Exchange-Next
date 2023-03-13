@@ -1,6 +1,40 @@
-import React from 'react'
+import {useState,useEffect} from 'react';
 
-const OrderSec = () => {
+const OrderSec = (props) => {
+    // cta timer
+    const {initialMinute = 0,initialSeconds = 59} = props;
+    const [ minutes, setMinutes ] = useState(initialMinute);
+    const [seconds, setSeconds ] =  useState(initialSeconds);
+
+    // top of the section timer
+    const {initialMinute2 = 12,initialSeconds2 = 59} = props;
+    const [ minutes2, setMinutes2 ] = useState(initialMinute2);
+    const [seconds2, setSeconds2 ] =  useState(initialSeconds2);
+    
+    useEffect(()=>{
+        let myInterval = setInterval(() => {
+                if (seconds > 0 || seconds2 > 0) {
+                    setSeconds(seconds - 1);
+                    setSeconds2(seconds2 - 1);
+                }
+                if (seconds === 0 || seconds2 === 0) {
+                    if (minutes === 0 || minutes2 === 0) {
+                        clearInterval(myInterval);
+                    } else {
+                        setMinutes(minutes - 1);
+                        setMinutes2(minutes2 - 1);
+                        setSeconds(59);
+                        setSeconds2(59);
+                    }
+                } 
+            }, 1000)
+            return ()=> {
+                clearInterval(myInterval);
+            };
+        });
+
+    
+
   return (
     <section className='dark:bg-black-v-3 py-10 md:py-20 '>
         <div className="container">
@@ -9,7 +43,7 @@ const OrderSec = () => {
                     <div className="pb-[30px] border-b border-grey">
                         <h2 className='section-secondary-heading mb-[30px]'>Payment to be made</h2>
                         <div className='flex items-center gap-[20px]'>
-                            <p className='info-14 max-w-[50%] w-full hover:!text-grey'>Please pay the seller within <span className='font-bold text-primary'>12:56</span> minutes and mark it as "paid".</p>
+                            <p className='info-14 max-w-[50%] w-full hover:!text-grey'>Please pay the seller within <span className='font-bold text-primary'>{ minutes2 === 0 && seconds2 === 0 ? "00 : 00" : <span> {minutes2 < 10 ? `0${minutes2}` : minutes2}:{seconds2 < 10 ?  `0${seconds2}` : seconds2}</span>  }</span> minutes and mark it as "paid".</p>
                             <div className='flex items-center gap-[20px] grow max-w-[50%] w-full '>
                                 <p className='info-14-24 font-bold !text-primary flex grow justify-end'>50001 <span>&nbsp;INR</span></p>
                             </div>
@@ -65,7 +99,7 @@ const OrderSec = () => {
                             <p className="info-14-20 !text-grey"><span>2023-03-10</span> &nbsp; <span>15:04:28</span></p>
                         </div>
                     </div>
-                    <button className="cta w-full mt-[24px]">Paid <span>(00 : 56)</span></button>
+                    <button className="cta w-full mt-[24px]">Paid <span>( { minutes === 0 && seconds === 0 ? "00 : 00" : <span> {minutes < 10 ? `0${minutes}`: minutes }:{seconds < 10 ?  `0${seconds}` : seconds}</span>  } )</span></button>
                     <div className="text-end">
                         <p className="info-14-16 !text-primary cursor-pointer mt-[10px]">Cancel Order</p>
                     </div>
@@ -85,7 +119,7 @@ const OrderSec = () => {
                           </div>
                         </div>
                         {/* chat component */}
-                        <div className="p-[14px] max-h-[400px] h-full overflow-x-auto">
+                        <div className="p-[14px] max-h-[400px] h-full overflow-x-auto flex flex-col	gap-[10px]">
                             <div className="left">
                                 <div className="w-[30px] h-[30px] rounded-full dark:bg-[#8ed0d9] bg-[#e8f6f7] flex">
                                     <span className="m-auto text-primary dark:text-white info-14">A</span>
