@@ -1,0 +1,47 @@
+const ChatBox = () => {
+    return(
+        <div className='max-w-[450px] w-full mx-auto md:ml-[auto] md:mr-0 border border-[#cccccc7d] rounded-lg shadow-lg'>
+            {/* about user */}
+            <div className="flex items-center gap-[20px] grow-[1.6] p-[14px] border-b border-[#cccccc7d]">
+            <div className="w-[48px] h-[48px] rounded-full bg-[#e8f6f7] dark:bg-[#8ed0d9] flex">
+                <span className="m-auto text-primary dark:text-white info-14-16">A</span>
+            </div>
+            <div className="">
+                <p className="info-14 !text-start !text-black hover:!text-black dark:!text-white">Arti</p>
+                <p className="info-12 !text-start">Total trades (buy <span>76</span> | sell <span>406</span>)&nbsp; &nbsp;<span className="info-12 block sm:inline !text-start">Average release <span>2</span></span></p>
+                
+                <p className="info-12 !text-start">Registration Time <span>22-10-06</span></p>
+            </div>
+            </div>
+            {/* chat component */}
+            <div className="p-[14px] max-h-[400px] h-full overflow-x-auto flex flex-col	gap-[10px]">
+                <div className="left">
+                    <div className="w-[30px] h-[30px] rounded-full dark:bg-[#8ed0d9] bg-[#e8f6f7] flex">
+                        <span className="m-auto text-primary dark:text-white info-14">A</span>
+                    </div>
+                    <div className="mt-[4px] p-[10px] rounded-lg min-w-[60px] max-w-fit w-full dark:bg-[#8ed0d9] bg-[#cccccc4f]">
+                        <p className="info-12 dark:text-white text-black">hii</p>
+                    </div>
+                </div>
+                <div className="right">
+                    <div className="w-[30px] h-[30px] ml-[auto] rounded-full dark:bg-[#8ed0d9] bg-[#e8f6f7] flex">
+                        <span className="m-auto text-primary dark:text-white info-14">B</span>
+                    </div>
+                    <div className="mt-[4px] ml-[auto] p-[10px] rounded-lg min-w-[60px] max-w-fit w-full dark:bg-[#8ed0d9] bg-[#cccccc4f]">
+                        <p className="info-12 dark:text-white text-black">hii</p>
+                    </div>
+                </div>
+            </div>
+            {/* send messsage */}
+            <div className="border-t border-[#cccccc7d] p-[14px] !py-[7px]">
+                <div className="flex items-center gap-[15px]">
+                    <input type="text" className="border-0 w-full outline-none info-12 dark:!text-white bg-transparent !text-black"  placeholder="input messsage..." />
+                    <button className="cta">Send</button>
+                </div>
+            </div>
+        </div>
+    )
+
+}
+
+export default ChatBox;
