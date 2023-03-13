@@ -407,11 +407,7 @@ const Withdraw = ({
                       placeholder={
                         show === 1
                           ? 'Enter Withdrawl Addresss'
-<<<<<<< HEAD
-                          : 'Enter a BLC - Exchange account email'
-=======
                           : 'Enter a BLC-Eachange account email'
->>>>>>> 2a51bea3bdb2cf96ba7b2eaef1da15f39a4c0f38
                       }
                       onChange={(e) => {
                         setValue('userwallet', e.target.value)
