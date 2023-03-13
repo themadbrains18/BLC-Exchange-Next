@@ -4,14 +4,16 @@ import SearchDropdown from '../snippets/search-dropdown';
 import Step1 from './step1';
 import Context from '../contexts/context';
 import Link from "next/link";
+import AuthoInstruction from './authoInstruction';
 
 const VerificationType = ({ session, kycList }) => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [active, setActive] = useState(1)
+    const [activepopup, setActivepopup] = useState(false);
     const [countryName, setCountryName] = useState('India')
     const [step, setStep] = useState(0)
     const dropdown = useRef(null);
-    const { mode } = useContext(Context)
+    const { mode ,setClick } = useContext(Context)
     useEffect(() => {
         function handleClick(event) {
             if (dropdown.current && !dropdown.current.contains(event.target)) {
@@ -32,10 +34,9 @@ const VerificationType = ({ session, kycList }) => {
                     </svg>
                 </button>
                 <div className='hidden md:flex items-center gap-4'>
-                    <p className='section-secondary-heading'>ID Verification</p>
+                <p className='section-secondary-heading'>{active ===1 ? 'ID Verification' : 'Institutional Verification'}</p>
                     <p className='info-12 bg-border-clr  rounded-sm'>{session?.kycstatus === 'success' ? 'Verified' : 'Unverified'}</p>
                 </div>
-
 
             </div>
             {session?.kycstatus === 'NA' || session?.kycstatus === 'reject' ?
@@ -130,12 +131,26 @@ const VerificationType = ({ session, kycList }) => {
                             </div>
 
                         </div>
-                        <button className='cta mt-6' onClick={() => { setStep(1) }}>Verify Now</button>
+                        {
+                         active === 1   &&
+                            <button className='cta mt-6' onClick={() => { setStep(1) }}>Verify Now</button> 
+                        }
+                        {
+                         active === 2   &&
+                            <button className='cta mt-6' onClick={() => { setClick(true); setActivepopup(true)  }}>Verify Now</button>    
+                        }
+                        {
+                            activepopup &&
+                            <AuthoInstruction setActivepopup={setActivepopup} />
+                        }
                     </>
                     :
                     <div>
-
-                        <Step1 country={countryName} />
+                    {active === 1 &&
+                    
+                        <Step1 country={countryName} />   
+                    }
+                    
                     </div>
                 :
                 <>

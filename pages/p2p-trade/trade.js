@@ -5,7 +5,7 @@ import VerificationPopup from "components/snippets/verification-popup";
 import { getProviders, getSession } from 'next-auth/react'
 import P2PBuySell from "components/oneClickBuy/p2pbuysell";
 
-const Trade = ({ paymentods, sessions }) => {
+const Trade = ({ paymentods, sessions, userpaymentods }) => {
 
   const [popup, showPopup] = useState(false);
 
