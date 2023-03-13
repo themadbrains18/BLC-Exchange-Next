@@ -10,7 +10,7 @@ const FaqAccordianSingleOpen = ({setHeight,index,rotate,setRotate, quest,ans}) =
           <h2 className="mb-0" id="flush-headingOne">
             <button
             onClick={()=>{setHeight(index)}} 
-              className="group rounded-md relative flex w-full items-center  border-0 bg-white py-4 px-5 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white section-secondary-heading font-noto"
+              className="group rounded-md relative flex w-full items-center  border-0 bg-white py-4 px-5 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-transparent dark:text-white section-secondary-heading font-noto"
               type="button"
               data-te-collapse-init=""
               data-te-target="#flush-collapseOne"
@@ -44,7 +44,7 @@ const FaqAccordianSingleOpen = ({setHeight,index,rotate,setRotate, quest,ans}) =
             aria-labelledby="flush-headingOne"
             data-te-parent="#accordionFlushExample"
           >
-            <div className="pb-4 px-5 info-14-16">
+            <div className="pb-4 px-5 info-14-16 !text-grey">
              {ans}
             </div>
           </div>
