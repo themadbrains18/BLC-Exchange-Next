@@ -1,7 +1,7 @@
 import Context from "/components/contexts/context";
 import React, { useContext } from "react";
 
-const CancleOrder = ({setCancleOrderPopup}) => {
+const CancleOrder = ({setCancleOrderPopup,order,cancelOrder}) => {
     const { mode, setClick } = useContext(Context);
 
     return(
@@ -21,12 +21,12 @@ const CancleOrder = ({setCancleOrderPopup}) => {
                 <p className="info-14-16 mb-[30px]">To avoid financial loss, do not cancle the order after payment!</p>
                 <p className="info-12 mb-[15px]">Tips : You will not be able to use "Buy" functions if you have cancelelld 3 times in one day.</p>
                 <div className="relative inline-block mt-[8px]">
-                    <input id="checkbox" name='terms' type="checkbox" className="hidden agree_cta font-noto " />
+                    <input id="checkbox" name='terms' type="checkbox" className="hidden agree_cta font-noto " required/>
                     <label htmlFor="checkbox" className="relative info-14 hover:!text-grey pl-[25px] after:absolute after:top-[2px] after:left-0 after:border after:border-grey after:w-[16px] after:h-[16px] cursor-pointer">I didn`t pay the other party</label>
                 </div>
                 <div className="mt-[30px] flex items-center gap-[20px]">
                     <button className="cta2 w-full" onClick={() => { setClick(false); setCancleOrderPopup(false) }}>Not now</button>
-                    <button className="cta w-full" onClick={() => { setClick(false); setCancleOrderPopup(false) }}>Confirm</button>
+                    <button className="cta w-full" onClick={() => { setClick(false); setCancleOrderPopup(false); cancelOrder(order?.id) }}>Confirm</button>
                 </div>
             </div>
         </div>

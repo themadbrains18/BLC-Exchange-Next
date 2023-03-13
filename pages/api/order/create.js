@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import { getDataWithoutBody, postData,deleteMethod } from "../../../libs/requestMethod";
+import { getDataWithoutBody, postData,deleteMethod, putData } from "../../../libs/requestMethod";
 
 export const config = {
     api: {
