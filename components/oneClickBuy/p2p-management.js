@@ -16,7 +16,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from "next/router";
 import PaymentMethodModal from "/components/snippets/payment-method-modal";
 
-import { useRouter } from 'next/router';
 
 
 const P2PManagement = ({ session, paymentods, userpaymentods }) => {
@@ -59,7 +58,14 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
     }
     const [postData, setPostData]= useState([]);
     /// 
-   
+
+
+//   useEffect(() => {
+// console.log("===========router", router.query)
+//     // if (router.query.postad) {
+//     //         setActive(3)
+//     // }
+//   })
     const schema = yup
         .object()
         .shape({
@@ -316,7 +322,8 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
 
 
                                 {
-                                    userpaymentods.map((pm, index) => {
+                                    userpaymentods &&
+                                    userpaymentods?.map((pm, index) => {
                                         let dataInfo = JSON.parse(pm?.pmObject)
                                         console.log(dataInfo)
                                         return (

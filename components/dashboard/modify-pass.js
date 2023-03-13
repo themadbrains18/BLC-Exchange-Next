@@ -17,10 +17,10 @@ import Icons from '../snippets/icons';
 const formSchema = Yup.object().shape({
     oldpassword: Yup.string()
         .required('Old Password field is required'),
-    newpassword: Yup.string()
+    newpassword: Yup.string().min(8).max(32)
         .required('Password is mendatory'),
     confirmpassword: Yup
-        .string()
+        .string().min(8).max(32)
         .oneOf([Yup.ref('newpassword')], 'New password and confirm password must match')
         .required('Confirm PAssword Required field'),
 })
@@ -74,6 +74,7 @@ const ModifyPass = ({ session }) => {
             toast.error(result.data.message, {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             });
+            setClick(false)
         }
 
     }
@@ -150,6 +151,7 @@ const ModifyPass = ({ session }) => {
             toast.error(result.data.message, {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             });
+            setClick(false)
         }
     }
 

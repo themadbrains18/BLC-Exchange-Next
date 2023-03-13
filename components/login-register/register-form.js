@@ -188,15 +188,13 @@ const RegisterForm = () => {
             let userdata = result.data.data
             setShowPopup(true)
             setClick(true)
-            setTimeout(() => {
+            setTimeout(async() => {
               
                 setClick(false)
-                signIn("credentials", result.data);
+                await signIn("credentials", result.data.data);
 
             }, 3000);
             userdata.status = 200;
-            // console.log('All is well', result.data)
-            // signIn("credentials", result.data);
 
         }
         else {

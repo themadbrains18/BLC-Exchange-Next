@@ -156,7 +156,7 @@ const AntiFishingCode = ({ session }) => {
                         </div>
                         <div className="my-7">
                             <p className="info-14 !text-[#212833] hover:!text-[#212833] dark:!text-white dark:hover:!text-white">Where does the anti-phishing code appear?</p>
-                            <p className="info-12">When set, this code will be included in emails from Bitget. Any other emails without this code are scams.</p>
+                            <p className="info-12">When set, this code will be included in emails from BLC - Exchange. Any other emails without this code are scams.</p>
                         </div>
                         <p className="info-14-16 mb-[15px] p-[10px] border border-[#ccc] bg-[#ccc6] rounded">Anti-phishing code: <span className="info-14-16 !text-primary">ABCDE12345</span></p>
                         <form onSubmit={handleSubmit(onSubmit)}>
