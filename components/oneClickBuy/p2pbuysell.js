@@ -12,7 +12,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
-const P2PBuySell = ({ paymentods }) => {
+const P2PBuySell = ({ paymentods, session }) => {
 
   const router = useRouter()
   const [showDropdown, setShowDropdown] = useState(false);
@@ -45,6 +45,7 @@ const P2PBuySell = ({ paymentods }) => {
   const [secondCurrency, setsecondCurrency] = useState(0);
   const [clear, setClear] = useState(false);
   const [pmethodArray, setPMethodArray] = useState([]);
+  const [disabled, setDisabled] = useState(false)
 
   
 
@@ -131,7 +132,25 @@ const P2PBuySell = ({ paymentods }) => {
 
   const handleSubmitForm = async (event) => {
     event.preventDefault();
+    setDisabled(true);
 
+    let p_method = getValues('method');
+
+    let formData = {
+      "post_id": selectedTrade.id,
+      "sell_user_id": selectedTrade.user_id,
+      "buy_user_id": session.id,
+      "token_id": BuyData?.token,
+      "price": selectedTrade?.price,
+      "spend_amount": firstCurrency,
+      "receive_amount": secondCurrency,
+      "spend_currency": 'INR',
+      "receive_currency":  selectedTrade?.symbol,
+      "p_method" : p_method,
+      "type":  'buy'
+    }
+
+    console.log(formData,'===========form data');
 
   }
 

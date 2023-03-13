@@ -58,7 +58,14 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
     }
     const [postData, setPostData]= useState([]);
     /// 
-   
+
+
+//   useEffect(() => {
+// console.log("===========router", router.query)
+//     // if (router.query.postad) {
+//     //         setActive(3)
+//     // }
+//   })
     const schema = yup
         .object()
         .shape({
@@ -317,7 +324,8 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
 
 
                                 {
-                                    userpaymentods.map((pm, index) => {
+                                    userpaymentods &&
+                                    userpaymentods?.map((pm, index) => {
                                         let dataInfo = JSON.parse(pm?.pmObject)
                                         return (
                                             <div key={index}>

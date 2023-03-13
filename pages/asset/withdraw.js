@@ -69,7 +69,7 @@ const Withdraw = ({
 
   useEffect(() => {
     if (validAmount != '') {
-      var numb = validAmount.match(/\d/g).join('')
+      var numb = validAmount
       setValue('withdrawAmont', numb)
       setValidamount(numb)
       setyourecived(numb - addfee)
