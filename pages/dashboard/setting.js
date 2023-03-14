@@ -156,8 +156,8 @@ const Setting = ({ account, sessions }) => {
 
               {sessions.user.TwoFA === 'enable' &&
                 <div className="flex items-center gap-5">
-                  <Link href="bindgoogle" className='info-14-16 !text-primary'>modify | </Link>
-                  <Link href="fund-password" className='info-14-16 !text-primary'>Turn Off Notification</Link>
+                  <Link href="bindgoogle" className='info-14-16 !text-primary'>Modify | </Link>
+                  <Link href="bindgoogle" className='info-14-16 !text-primary'>Turn Off Notification</Link>
                 </div>
               }
 
@@ -191,7 +191,7 @@ const Setting = ({ account, sessions }) => {
 
               {sessions.user.tradingPassword !== '' &&
                 <div className="flex items-center gap-5">
-                  <Link href="modify-fund-code" className='info-14-16 !text-primary'>modify | </Link>
+                  <Link href="modify-fund-code" className='info-14-16 !text-primary'>Modify | </Link>
                   <Link href="reset-fund-code" className='info-14-16 !text-primary'>Forget Fund Code</Link>
                 </div>
               }

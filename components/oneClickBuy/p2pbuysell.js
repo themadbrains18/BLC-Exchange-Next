@@ -11,8 +11,10 @@ import { useRouter } from "next/router";
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const P2PBuySell = ({ paymentods, session }) => {
+const P2PBuySell = ({ paymentods, session, userpaymentods }) => {
 
   const router = useRouter()
   const [showDropdown, setShowDropdown] = useState(false);
@@ -47,7 +49,7 @@ const P2PBuySell = ({ paymentods, session }) => {
   const [pmethodArray, setPMethodArray] = useState([]);
   const [disabled, setDisabled] = useState(false)
 
-  
+
 
   const schema = yup
     .object()
@@ -130,32 +132,54 @@ const P2PBuySell = ({ paymentods, session }) => {
     clearErrors("method")
   }
 
-  const handleSubmitForm = async (event) => {
-    event.preventDefault();
+  const handleSubmitForm = async () => {
     setDisabled(true);
 
-    let p_method = getValues('method');
+    let p_method = (selectedTrade.p_method).filter((item) => {
+      return item.pm_name === getValues('method');
+    });
 
     let formData = {
       "post_id": selectedTrade.id,
       "sell_user_id": selectedTrade.user_id,
       "buy_user_id": session.id,
-      "token_id": BuyData?.token,
+      "token_id": selectedTrade?.token,
       "price": selectedTrade?.price,
+      "quantity" : secondCurrency,
       "spend_amount": firstCurrency,
       "receive_amount": secondCurrency,
       "spend_currency": 'INR',
-      "receive_currency":  selectedTrade?.symbol,
-      "p_method" : p_method,
-      "type":  'buy'
+      "receive_currency": selectedTrade?.symbol,
+      "p_method": p_method,
+      "type": 'buy'
     }
 
-    console.log(formData,'===========form data');
+    console.log(formData, '===========form data');
+
+    let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/order/create`, {
+      method: "POST",
+      body: JSON.stringify(formData)
+    }).then(response => response.json())
+
+    if (result.data.status === 200 && result.data != undefined) {
+      toast.success(result.data.message, {
+        position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+      })
+      setClick(false);
+      localStorage.setItem("orderid", result.data.data.id);
+      router.push('/p2p-trade/order/' + result.data.data.id)
+    }
+    else {
+      toast.error(result.data.message, {
+        position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+      })
+    }
 
   }
 
   return (
     <section className="md:py-[80px] py-[0px] dark:bg-black-v-3 z-[1]">
+      <ToastContainer></ToastContainer>
       <div className="container">
         <div className="flex justify-between md:hidden ml-[auto] mb-[20px]" >
           <div className="flex items-center gap-[15px] bg-[#cccccc7d] dark:bg-[#3d3636] p-[5px] rounded flex md:hidden">
