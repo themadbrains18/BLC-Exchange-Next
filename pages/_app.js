@@ -64,9 +64,9 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
          session={session} 
         //  basePath='/'
          // Re-fetch session every 5 minutes
-         refetchInterval={1 * 60}
+        //  refetchInterval={1 * 60}
          // Re-fetches session when window is focused
-         refetchOnWindowFocus={true}
+        //  refetchOnWindowFocus={true}
          >
           <Context.Provider
             value={{
