@@ -7,6 +7,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage:{
+   
+          'jointrader': "url('../public/assets/images/joinTrader1.png')",
+        
+    
+      },
       colors: {
         // cta
         "primary": "#1da2b4",
@@ -48,8 +54,10 @@ module.exports = {
         '100%':{
           transform: "translateY(0)"
         }
-      }
+      },
+   
     }
+    
     },
   },
   plugins: [],
