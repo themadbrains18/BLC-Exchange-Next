@@ -1,21 +1,17 @@
 import { useState, useEffect, useContext, useRef } from 'react';
 import Context from "/components/contexts/context";
-import PaidPopup from './paid-popup';
-import CancleOrder from './cancle-order-popup';
 import ChatBox from './chat-box';
-import Link from "next/link";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SecurityVerificationPopup from './security-verification-popup';
 
 import { io } from "socket.io-client"
 
-const SellerOrderSec = ({order}) => {
+const SellerOrderSec = ({ order,session }) => {
 
   const { mode, setClick } = useContext(Context);
 
-  const [OrderPopup, setOrderPopup] = useState(false);
-  const [cancleOrderPopup, setCancleOrderPopup] = useState(false);
-  const [submitAppeal, setSubmitAppeal] = useState(false);
+  const [funcodePopup, setFuncodePopup] = useState(false);
 
   // cta timer
   const Ref = useRef(null);
@@ -62,29 +58,29 @@ const SellerOrderSec = ({order}) => {
     };
   }
 
-  const makeReleaseAsset = async (id) => {
+  const makeReleaseAsset = async (id, fundcode) => {
     const socket = io("http://localhost:5000", { transports: ['websocket'] });
     socket.connect();
 
     let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/order/release`, {
-        method: "POST",
-        body: JSON.stringify({ orderid: id })
+      method: "POST",
+      body: JSON.stringify({ orderid: id, fundCode : fundcode, userid : order.sell_user_id })
     }).then(response => response.json());
 
     console.log(result, '===========order cancel')
 
     if (result.data.status === 200) {
-        toast.success(result.data.message, {
-            position: toast.POSITION.TOP_RIGHT, autoClose: 5000
-        })
-        socket.emit("order", { orderid: id });
+      toast.success(result.data.message, {
+        position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+      })
+      socket.emit("order", { orderid: id });
     }
     else {
-        toast.error(result.data.message, {
-            position: toast.POSITION.TOP_RIGHT, autoClose: 5000
-        })
+      toast.error(result.data.message, {
+        position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+      })
     }
-}
+  }
 
 
 
@@ -123,9 +119,9 @@ const SellerOrderSec = ({order}) => {
                 }
                 {order?.isReleased === 1 &&
                   <>
-                    <h2 className='section-secondary-heading mb-[30px]'>Payment to be made</h2>
+                    <h2 className='section-secondary-heading mb-[30px]'>Order completed</h2>
                     <div className='flex items-center gap-[20px]'>
-                      <p className='info-14 max-w-[50%] w-full hover:!text-grey'>Please pay the seller within <span className='font-bold text-primary'>{timeLeft}</span> minutes and mark it as "paid".</p>
+                      <p className='info-14 max-w-[50%] w-full hover:!text-grey'>Order is completed!.</p>
                       <div className='flex items-center gap-[20px] grow max-w-[50%] w-full '>
                         <p className='info-14-24 font-bold !text-primary flex grow justify-end'>{order != undefined && order?.spend_amount} <span>&nbsp;INR</span></p>
                       </div>
@@ -228,7 +224,7 @@ const SellerOrderSec = ({order}) => {
               }
               {order?.isComplete === 1 &&
                 <>
-                  <button className="cta w-full mt-[24px]" >Confirm and Release <span></span></button>
+                  <button className="cta w-full mt-[24px]" onClick={()=>{setFuncodePopup(true); setClick(true);}}>Confirm and Release <span></span></button>
                   <div className="flex items-center justify-between gap-[15px] flex-col sm:flex-row mt-[30px]">
                     <p className='info-14 max-w-full sm:max-w-[48%] !text-start w-full hover:!text-grey'>Did not recive payment? File and appeal and wait for the customer support to intervene.</p>
                     <p className='info-14 max-w-full sm:max-w-[48%] !text-start sm:!text-end w-full hover:!text-grey'>Submit appeal<span className='font-bold text-primary'></span></p>
@@ -241,14 +237,14 @@ const SellerOrderSec = ({order}) => {
 
             {/* chat box column */}
             <div className='max-w-full md:max-w-[48%] w-full'>
-              <ChatBox />
+              <ChatBox order={order} session={session}/>
             </div>
           </div>
         </div>
       </section>
       {
-        OrderPopup &&
-        <PaidPopup setOrderPopup={setOrderPopup} setSubmitAppeal={setSubmitAppeal} order={order} makePayment={makePayment} />
+        funcodePopup && 
+        <SecurityVerificationPopup order={order} makeReleaseAsset={makeReleaseAsset} setFuncodePopup={setFuncodePopup}/>
       }
     </>
   )

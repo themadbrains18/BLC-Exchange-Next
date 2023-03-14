@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import OrderSec from "components/oneClickBuy/order-sec";
 import SellerOrderSec from 'components/oneClickBuy/seller-order-sec';
-import { useRouter } from "next/router";
 import { getSession } from 'next-auth/react'
 import { io } from "socket.io-client"
 
 const Order = ({ sessions }) => {
 
-  const { slug } = useRouter().query
   const [order, setOrderDetail] = useState(null)
 
   useEffect(() => {
@@ -42,7 +40,7 @@ const Order = ({ sessions }) => {
       {order !== undefined && order !== null && order &&
 
         <>
-          {order?.buy_user_id === sessions?.user?.id ? <OrderSec order={order} /> : <SellerOrderSec order={order} />}
+          {order?.buy_user_id === sessions?.user?.id ? <OrderSec order={order} session={sessions?.user}/> : <SellerOrderSec order={order} session={sessions?.user}/>}
         </>
 
       }
