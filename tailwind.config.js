@@ -32,6 +32,7 @@ module.exports = {
       },
       content: {
         'completed-icon': 'url("../public/assets/icons/completed-icon.svg")',
+        'exclamation-icon': 'url("../public/assets/icons/exclamation.svg")',
       },
       fontFamily: {
         'noto': ['Noto Sans', 'sans-serif'],

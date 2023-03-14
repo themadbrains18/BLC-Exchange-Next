@@ -161,7 +161,11 @@
 }
 
 .info-14 {
-    @apply font-normal font-noto text-grey text-[14px] leading-[26px] dark:text-grey hover:!text-primary
+    @apply font-normal font-noto text-grey text-[14px] leading-[26px] dark:text-grey hover:!text-primary;
+}
+
+.info-14-2 {
+  @apply font-normal font-noto text-black text-[14px] leading-[26px] dark:text-white;
 }
 
 
