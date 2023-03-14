@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import {postData, getDataWithoutBody} from "../../../libs/requestMethod";
+import {postData, getDataWithoutBody,getData} from "../../../libs/requestMethod";
 
 export const config = {
   api: {
@@ -34,6 +34,15 @@ const handler = nc({
   .get(async (req, res) => {
     try {
       let data = await getDataWithoutBody(`${process.env.NEXT_PUBLIC_APIURL}/market/${req.query.token}`)
+      res.status(200).send({data});
+    } catch (error) {
+      console.log(error)
+       res.status(401).send({error: error})
+    }
+  })
+  .get(async (req, res) => {
+    try {
+      let data = await getData(`${process.env.NEXT_PUBLIC_BASEURL}/market/getOrder/${req.query.token}/${req.params.userid}`)
       res.status(200).send({data});
     } catch (error) {
       console.log(error)

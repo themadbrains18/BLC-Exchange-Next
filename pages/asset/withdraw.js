@@ -329,7 +329,7 @@ const Withdraw = ({
                     >
                       <div className="flex gap-3 ">
                         <img
-                          className="self-start"
+                          className="self-start rounded-full"
                           height={24}
                           width={24}
                           alt="Coin Image"

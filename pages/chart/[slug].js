@@ -9,7 +9,7 @@ import ChartDataTable from "components/chart/chartDataTable";
 import { getProviders, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
-const Chart = ({ coins, assets, orders }) => {
+const Chart = ({ coins, assets, orders, getorders }) => {
   let ctas = ["Open Orders", "Order History"];
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(false);
@@ -50,7 +50,7 @@ const Chart = ({ coins, assets, orders }) => {
           <div className="p-8">
             <ActiveCta data={ctas} active={active} setActive={setActive} />
 
-            <ChartDataTable data={data} />
+            <ChartDataTable data={getorders} />
           </div>
         </div>
       </div>
@@ -73,18 +73,26 @@ export async function getServerSideProps(context) {
     method: "GET"
   }).then(response => response.json());
 
+  let getorders = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/market/create/?token=${params.slug}&userid=${session?.user?.id}`, {
+    method: "GET"
+  }).then(response => response.json());
+
   if (session) {
+
 
     let assetList = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/assets/userasset?userid=${session?.user?.id}`, {
       method: "GET"
     }).then(response => response.json());
+
+ 
 
     return {
       props: {
         coins: tokenList.data.data,
         sessions: session.user,
         assets: assetList.data,
-        orders : orders.data.data
+        orders : orders.data.data,
+        getorders : getorders.data.data
       }, // will be passed to the page component as props
     };
   }
@@ -93,7 +101,8 @@ export async function getServerSideProps(context) {
       coins: tokenList.data.data,
       sessions: {},
       assets: [],
-      orders : orders.data.data
+      orders : orders.data.data,
+      getorders : getorders.data.data
     }, // will be passed to the page component as props
   };
 
