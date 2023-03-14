@@ -92,10 +92,34 @@ const VerificationCode = ({ overlay, verifyCode, antiFishing, emailAuth, bindGoo
         // Bind Email Request OTP Authenticate=======================
         //============================================================================== 
         if (bindEmail === true) {
-            let obj = { username: loginData.number, otp: fillOtp, time: new Date() }
-            let mobileOtpMatch = await otpMatch(obj);
-            if (mobileOtpMatch.status === 200) {
-                updateUser();
+
+            let obj = { username: loginData.email, otp: emailOtp, time: new Date() }
+            let obj2 = { username: loginData.number, otp: fillOtp, time: new Date() }
+            // let mobileOtpMatch = await otpMatch(obj);
+            if(loginData.mobile !== "" && loginData.email === undefined){
+               
+                let emailOtpMatch = await otpMatch(obj2);
+                if (emailOtpMatch.status === 200) {
+                    updateUser();
+                }
+                else {
+                    toast.error('OTP Not Matched', {
+                        position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+                    });
+                }
+            }
+            else {
+                console.log("========hii")
+                let mobileOtpMatch =  await otpMatch(obj2);
+                let emailOtpMatch = await otpMatch(obj);
+                if (mobileOtpMatch.status === 200 && emailOtpMatch.status === 200) {
+                    updateUser();
+                }
+                else {
+                    toast.error('OTP Not Matched', {
+                        position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+                    });
+                }
             }
             return;
         }
@@ -104,11 +128,35 @@ const VerificationCode = ({ overlay, verifyCode, antiFishing, emailAuth, bindGoo
         // Bind Mobile Request OTP Authenticate=======================
         //============================================================================== 
         if (bindMobile === true) {
+         
             let obj = { username: loginData.email, otp: emailOtp, time: new Date() }
-            let mobileOtpMatch = await otpMatch(obj);
-            if (mobileOtpMatch.status === 200) {
-                updateUser();
+            let obj2 = { username: loginData.number, otp: fillOtp, time: new Date() }
+            if(loginData.email !== "" && loginData.mobile === undefined){
+               
+                let emailOtpMatch = await otpMatch(obj);
+                if (emailOtpMatch.status === 200) {
+                    updateUser();
+                }
+                else {
+                    toast.error('OTP Not Matched', {
+                        position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+                    });
+                }
             }
+            else {
+                console.log("========hii")
+                let mobileOtpMatch =  await otpMatch(obj2);
+                let emailOtpMatch = await otpMatch(obj);
+                if (mobileOtpMatch.status === 200 && emailOtpMatch.status === 200) {
+                    updateUser();
+                }
+                else {
+                    toast.error('OTP Not Matched', {
+                        position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+                    });
+                }
+            }
+            
             return;
         }
 
