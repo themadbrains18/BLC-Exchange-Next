@@ -1,13 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState ,useContext} from 'react'
 import BuySell from '../oneClickBuy/buySell';
 import Advantages from '@/components/oneClickBuy/advantages'
 import Faq from '@/components/oneClickBuy/faq'
 import Dropdown from './dropdown';
 import VerificationPopup from "./verification-popup";
 import Link from 'next/link';
+import Context from "components/contexts/context";
+
 
 const SubHeader = ({sessions}) => {
 
+  const { login } = useContext(Context);
+  // const [login2, setLogin2] = useState(login)
+
+  console.log(login + "  login ============");
   let dropDownItems = [
     {
       linkText: "Payment Methods",
@@ -49,17 +55,21 @@ const SubHeader = ({sessions}) => {
             </div>
           </div>
 
+          
+
+
           <div
-            className={`relative   group  hover:pb-8 hover:-mb-8 `}
+            className={`relative  group  hover:pb-8 hover:-mb-8 `}
           >
             <div className='border border-grey rounded-full flex gap-2 items-center'>
               <button className='info-14 h-[42.55px]  hover:!text-grey dark:hover:!text-white border-b-2 border-transparent pb-1 px-3 dark:text-white' >. . .</button>
-
             </div>
             <div>
               <Dropdown subMenu={dropDownItems} right={true} showPopup={showPopup} />
             </div>
+
           </div>
+
           <VerificationPopup popupData={{ popup, showPopup }} />
         </div>
       </section>

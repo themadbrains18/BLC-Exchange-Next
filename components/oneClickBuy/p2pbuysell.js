@@ -191,7 +191,7 @@ const P2PBuySell = ({ paymentods, session, userpaymentods }) => {
     <section className="md:py-[80px] py-[0px] dark:bg-black-v-3 z-[1]">
       <ToastContainer></ToastContainer>
       <div className="container">
-        <div className="flex justify-between md:hidden ml-[auto] mb-[20px]" >
+        <div className="flex justify-between md:hidden ml-[auto] pb-[10px]" >
           <div className="flex items-center gap-[15px] bg-[#cccccc7d] dark:bg-[#3d3636] p-[5px] rounded flex md:hidden">
             <button className={`cta w-full dark:text-white ${buy === 1 ? "" : "text-black bg-transparent"}`} onClick={() => { setBuy(1) }}>Buy</button>
             <button className={`cta w-full dark:text-white ${buy === 2 ? "" : "text-black bg-transparent"}`} onClick={() => { handleClick()  }}>Sell</button>

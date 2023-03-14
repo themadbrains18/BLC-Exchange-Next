@@ -17,6 +17,7 @@ const Header = (props) => {
   const { data: session } = useSession();
   const { mode, setMode, login, topBar, setClick,heightUpdate } = useContext(Context);
   const [login2, setLogin2] = useState(login)
+  console.log(login + "login in header")
   // console.log(session,' session session session')
   const [show, setShow] = useState(false);
   const [showMenuOpen, setShowMenuOpen] = useState(false);
