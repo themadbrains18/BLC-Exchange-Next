@@ -30,7 +30,7 @@ const P2PBuySell = ({ paymentods, session, userpaymentods }) => {
   const [rotate, setRotate] = useState(false);
   const [rotate2, setRotate2] = useState(false);
   const { mode, setClick } = useContext(Context);
-  const [coinImg, setCoinImg] = useState("");
+  const [coinImg, setCoinImg] = useState("https://bitlivecoinnetwork.com/images/logo.png");
   const [buy, setBuy] = useState(1);
   const [coin, setCoin] = useState(router.query.token !== undefined ? router.query.token : "Select Coin");
   let [bankList, setBankList] = useState();
@@ -129,6 +129,11 @@ const P2PBuySell = ({ paymentods, session, userpaymentods }) => {
 
   const selectNetwork = async (item) => {
     setValue('method', item)
+    clearErrors("method")
+  }
+  const selectBank = async (item) => {
+    setBankImg(item.image)
+    setBankName(item.name)
     clearErrors("method")
   }
 
@@ -268,7 +273,7 @@ const P2PBuySell = ({ paymentods, session, userpaymentods }) => {
           </div>
 
           {/* Search dropdown wuthout Image */}
-          <div className="max-w-full w-full border rounded-md border-border-clr relative flex items-start">
+          <div className="max-w-full w-full border rounded-md border-border-clr relative flex items-center">
             <div className="max-w-full md:max-w-[calc(100%-80px)] w-full">
               <input placeholder="Enter amount" className="h-[43px] px-[10px] max-w-full outline-none rounded-md dark:bg-transparent bg-transparent dark:text-white" type="number" />
             </div>
