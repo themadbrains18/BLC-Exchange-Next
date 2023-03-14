@@ -163,7 +163,7 @@ const AntiFishingCode = ({ session }) => {
                         <div>
                             <label className="info-12 !text-grey">Anti-phishing code</label>
                             <div className="relative">
-                                <input type="password" {...register('code')} name="code" className="mt-[8px] info-14 block px-4 w-full bg-transparent border  border-border-clr dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Enter 8-32 letters or numbers" />
+                                <input type="text" {...register('code')} name="code" className="mt-[8px] info-14 block px-4 w-full bg-transparent border  border-border-clr dark:border-white rounded min-h-[46px] text-black dark:text-white outline-none focus:!border-primary" placeholder="Enter 8-32 letters or numbers" />
                                 {/* <Image src={passShow} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] hidden" onClick={(e) => { hidePass(e) }} />
                                 <Image src={passHide} alt="" width={16} height={16} className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%]" onClick={(e) => { showPass(e) }} /> */}
                             </div>

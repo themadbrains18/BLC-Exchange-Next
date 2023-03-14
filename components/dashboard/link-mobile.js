@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
+import { signOut } from "next-auth/react";
 import * as Yup from 'yup'
 
 const formSchema = Yup.object().shape({
@@ -93,13 +94,21 @@ const LinkMobile = ({ sessions }) => {
     //====================================================================
     const Submit = async (e) => {
         e.preventDefault();
-setClick(true)
+        setClick(true)
         let formdata = { email: "", number: filledNumber, dial_code: dialCode }
         let userExist = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/check`, {
             method: "POST",
             body: JSON.stringify(formdata)
         }).then(response => response.json());
+        if (userExist.data.status === 200 && userExist.data !== undefined) {
+            toast.error(userExist.data.message, {
+              position: toast.POSITION.TOP_RIGHT, autoClose: 5000
+            })
+            setClick(false)
+          }
+          else{
 
+          
         let obj = { username: filledNumber, otp: fillOtp, time: new Date() };
 
         let result = await otpMatch(obj);
@@ -109,12 +118,23 @@ setClick(true)
             toast.success(result.message, {
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             })
-
-            let emailOtpForm = { 'email': sessions.user.email };
-            await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`, {
-                method: "POST",
-                body: JSON.stringify(emailOtpForm)
-            }).then(response => response.json());
+            
+            let emailOtpForm = { 'email': sessions?.user?.email };
+            let smsOtpForm = { 'number': sessions?.user?.number, 'dial_code': sessions?.user?.dial_code };
+            console.log("===========smsOtpForm",smsOtpForm)
+            if(emailOtpForm !== undefined || emailOtpForm !==''){
+                await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`, {
+                    method: "POST",
+                    body: JSON.stringify(emailOtpForm)
+                }).then(response => response.json());
+            }
+            
+            if (sessions?.user?.number !== '' && sessions?.user?.dial_code !== undefined ) {
+                await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp/sms`, {
+                    method: "POST",
+                    body: JSON.stringify(smsOtpForm)
+                }).then(response => response.json());
+            }
             setShowver(true)
 
         }
@@ -123,6 +143,7 @@ setClick(true)
                 position: toast.POSITION.TOP_RIGHT, autoClose: 5000
             })
         }
+    }
     }
 
     const updateUser = async () => {
@@ -134,7 +155,8 @@ setClick(true)
             });
             setClick(false)
             setShowver(false)
-            router.push('/dashboard/setting');
+            signOut();
+            router.push('/');
         }
         else {
             toast.error(response.message.errors[0].message, {
@@ -158,7 +180,7 @@ setClick(true)
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
-                                    className= "rotate-180 w-6 h-6" 
+                                    className="rotate-180 w-6 h-6"
                                     viewBox="0 0 24 24"
                                     strokeWidth={1.5}
                                     stroke={mode === "dark" ? "white" : "currentColor"}
