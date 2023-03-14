@@ -85,7 +85,7 @@ const AdTable = ({session}) => {
                   <h4 className="col info-12  p-3 text-black dark:text-white"> {item.min_limit}</h4>
                   <h4 className="col info-12  p-3 text-black dark:text-white"> {item.max_limit}</h4>
                   {/* <h4 className="col info-12  p-3 text-black dark:text-white"> {item.payment_time}</h4> */}
-                  <h4 className="col info-12  p-3 text-black dark:text-white"> {item.p_method}</h4>
+                  <h4 className="col info-12  p-3 text-black dark:text-white"> {item.p_method[0].pm_name}</h4>
                   <h4 className="col info-12  p-3 text-black dark:text-white ">
                     <svg
                       id="Layer_1"

@@ -9,17 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { io } from "socket.io-client"
 
-const OrderSec = ({ order }) => {
+const OrderSec = ({ order,session }) => {
     const { mode, setClick } = useContext(Context);
-
-    // const handlepost = (e) => {
-    //   e.preventDefault();
-    //   socket.emit("roomsttu",{post : nama});
-    // }
-
-    // socket.on('roomsttu', function(msg) {
-    //   console.log(msg,'============msg ');
-    // });
 
     const [OrderPopup, setOrderPopup] = useState(false);
     const [cancleOrderPopup, setCancleOrderPopup] = useState(false);
@@ -28,12 +19,9 @@ const OrderSec = ({ order }) => {
     // cta timer
     const Ref = useRef(null);
 
-    // const [order, setOrderDetail] = useState(null)
     const [timeLeft, setTimer] = useState();
 
-
     useEffect(() => {
-        // getOrderDetailById();
 
         let deadline = new Date(order?.createdAt);
         deadline.setMinutes(deadline.getMinutes() + 15);
@@ -46,47 +34,13 @@ const OrderSec = ({ order }) => {
             }, 1000);
             Ref.current = timer;
         }
-        else if (currentTime > deadline && order?.isComplete === 0 && order?.isCanceled === 0) {
+        else if (currentTime > deadline && order?.isComplete === 0 && order?.isCanceled === 0 && order?.isReleased === 0) {
             cancelOrder(order?.id);
         }
 
 
 
     }, []);
-
-
-    const getOrderDetailById = async () => {
-
-        let orderid = localStorage.getItem("orderid");
-        let data = await fetch(
-            `${process.env.NEXT_PUBLIC_BASEURL}/order/create?orderid=${orderid}`,
-            {
-                method: 'GET',
-            },
-        ).then((response) => response.json())
-
-        if (data) {
-            data.data[0].p_method[0].pmObject = JSON.parse(data.data[0].p_method[0].pmObject);
-
-            let deadline = new Date(data.data[0].createdAt);
-            deadline.setMinutes(deadline.getMinutes() + 15);
-            deadline.setSeconds(deadline.getSeconds() + 5);
-            let currentTime = new Date();
-            if (currentTime < deadline && data?.data[0]?.isReleased === 0) {
-                if (Ref.current) clearInterval(Ref.current);
-                const timer = setInterval(() => {
-                    calculateTimeLeft(deadline);
-                }, 1000);
-                Ref.current = timer;
-            }
-            else if (currentTime > deadline && data?.data[0]?.isComplete === 0 && data?.data[0]?.isCanceled === 0) {
-                cancelOrder(data?.data[0].id);
-            }
-
-            setOrderDetail(data.data[0])
-        }
-
-    }
 
     const calculateTimeLeft = (e) => {
         let { total, minutes, seconds }
@@ -199,9 +153,9 @@ const OrderSec = ({ order }) => {
                                 }
                                 {order?.isReleased === 1 &&
                                     <>
-                                        <h2 className='section-secondary-heading mb-[30px]'>Payment to be made</h2>
+                                        <h2 className='section-secondary-heading mb-[30px]'>Order completed</h2>
                                         <div className='flex items-center gap-[20px]'>
-                                            <p className='info-14 max-w-[50%] w-full hover:!text-grey'>Please pay the seller within <span className='font-bold text-primary'>{timeLeft}</span> minutes and mark it as "paid".</p>
+                                            <p className='info-14 max-w-[50%] w-full hover:!text-grey'>Order is completed. Please check the crypto you received on "Asset" page!.</p>
                                             <div className='flex items-center gap-[20px] grow max-w-[50%] w-full '>
                                                 <p className='info-14-24 font-bold !text-primary flex grow justify-end'>{order != undefined && order?.spend_amount} <span>&nbsp;INR</span></p>
                                             </div>
@@ -320,7 +274,7 @@ const OrderSec = ({ order }) => {
                         </div>
                         {/* chat box column */}
                         <div className='max-w-full md:max-w-[48%] w-full'>
-                            <ChatBox />
+                            <ChatBox order={order} session={session}/>
                         </div>
                     </div>
                 </div>

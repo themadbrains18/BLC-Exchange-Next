@@ -11,6 +11,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import VerificationPopup from '../snippets/verification-popup';
 import AdTable from './ad/adTable';
+import OrderTable from './orderTable';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from "next/router";
@@ -47,25 +48,25 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
 
     // delete payment method request
     const deleteRequest = async () => {
-       let result = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/payment/delete-method/${del_request}`)
-        .then(res =>  res.json())
+        let result = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/payment/delete-method/${del_request}`)
+            .then(res => res.json())
         toast.success(result.message, {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 5000,
-          })
+        })
         router.push('/p2p-trade/manage')
         setDel_Request_Popup(false)
     }
-    const [postData, setPostData]= useState([]);
+    const [postData, setPostData] = useState([]);
     /// 
 
 
-//   useEffect(() => {
-// console.log("===========router", router.query)
-//     // if (router.query.postad) {
-//     //         setActive(3)
-//     // }
-//   })
+    //   useEffect(() => {
+    // console.log("===========router", router.query)
+    //     // if (router.query.postad) {
+    //     //         setActive(3)
+    //     // }
+    //   })
     const schema = yup
         .object()
         .shape({
@@ -163,17 +164,11 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
 
     }
 
-    // 
-    // const [paymentPopup, setpaymentPopup] = useState(false)
-
-
-    const setpaymentPopup = (e)=>{
+    const setpaymentPopup = (e) => {
         setpayment(false)
     }
 
-
     // enable and disable payment modal 
-
 
     return (
         <>
@@ -181,50 +176,49 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
             <section className="dark:bg-black-v-3 py-10 md:py-20 ">
 
                 {
-                    paymentPopup && <Paymentmodal paymentods={paymentods} setpaymentPopup={setpaymentPopup} session={session}  />
+                    paymentPopup && <Paymentmodal paymentods={paymentods} setpaymentPopup={setpaymentPopup} session={session} />
                 }
-                
+
                 {/* delete confrim popup */}
-                <div  className={`${
-            del_request_popup
-            ? 'opacity-1 visible fixed top-[50%]'
-            : 'opacity-0 invisible top-[55%]'
-        }  duration-300 z-[20] fixed  left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%] dark:bg-black-v-5 bg-white p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto`}
-      >
-        <div
-          className="max-w-[10px] w-full ml-auto cursor-pointer"
-          onClick={() => setDel_Request_Popup(false)}
-        >
-          <svg
-            version="1.1"
-            id="Layer_1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            x="0px"
-            y="0px"
-            viewBox="0 0 60.963 60.842"
-            style={{ enableBackground: 'new 0 0 60.963 60.842' }}
-            xmlSpace="preserve"
-          >
-            <path
-              fill={mode === 'dark' ? 'white' : '#231F20'}
-              d="M59.595,52.861L37.094,30.359L59.473,7.98c1.825-1.826,1.825-4.786,0-6.611
+                <div className={`${del_request_popup
+                        ? 'opacity-1 visible fixed top-[50%]'
+                        : 'opacity-0 invisible top-[55%]'
+                    }  duration-300 z-[20] fixed  left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%] dark:bg-black-v-5 bg-white p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto`}
+                >
+                    <div
+                        className="max-w-[10px] w-full ml-auto cursor-pointer"
+                        onClick={() => setDel_Request_Popup(false)}
+                    >
+                        <svg
+                            version="1.1"
+                            id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlnsXlink="http://www.w3.org/1999/xlink"
+                            x="0px"
+                            y="0px"
+                            viewBox="0 0 60.963 60.842"
+                            style={{ enableBackground: 'new 0 0 60.963 60.842' }}
+                            xmlSpace="preserve"
+                        >
+                            <path
+                                fill={mode === 'dark' ? 'white' : '#231F20'}
+                                d="M59.595,52.861L37.094,30.359L59.473,7.98c1.825-1.826,1.825-4.786,0-6.611
                                         c-1.826-1.825-4.785-1.825-6.611,0L30.483,23.748L8.105,1.369c-1.826-1.825-4.785-1.825-6.611,0c-1.826,1.826-1.826,4.786,0,6.611
                                         l22.378,22.379L1.369,52.861c-1.826,1.826-1.826,4.785,0,6.611c0.913,0.913,2.109,1.369,3.306,1.369s2.393-0.456,3.306-1.369
                                         l22.502-22.502l22.501,22.502c0.913,0.913,2.109,1.369,3.306,1.369s2.393-0.456,3.306-1.369
                                         C61.42,57.647,61.42,54.687,59.595,52.861z"
-            />
-          </svg>
-        </div>
+                            />
+                        </svg>
+                    </div>
 
-        <p className="info-16-22 dark:!text-white !text-black mt-[15px] text-center text-lg">
-           Are you sure to delete the payment method?
-        </p>
-        <div className="flex justify-center space-x-3 mt-24">
-            <button className='text-white border border-[#fff] py-2 px-6 rounded-lg ' onClick={() => setDel_Request_Popup(false)}>Cancel</button>
-            <button className='text-white border border-[#fff] py-2 px-6 rounded-lg bg-[#1da2b4]' onClick={deleteRequest}>Confirm</button>
-        </div>
-        </div>
+                    <p className="info-16-22 dark:!text-white !text-black mt-[15px] text-center text-lg">
+                        Are you sure to delete the payment method?
+                    </p>
+                    <div className="flex justify-center space-x-3 mt-24">
+                        <button className='text-white border border-[#fff] py-2 px-6 rounded-lg ' onClick={() => setDel_Request_Popup(false)}>Cancel</button>
+                        <button className='text-white border border-[#fff] py-2 px-6 rounded-lg bg-[#1da2b4]' onClick={deleteRequest}>Confirm</button>
+                    </div>
+                </div>
 
 
                 {/* delete confrim popup end */}
@@ -242,9 +236,9 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
                                             verified = true;
                                         }
                                         if (verified) {
-                                            clearErrors(["usertoken","method","deadline","amount","quantity","min_limit","max_limit","checked"])
+                                            clearErrors(["usertoken", "method", "deadline", "amount", "quantity", "min_limit", "max_limit", "checked"])
                                             setActive(3)
-                                            
+
                                         }
                                         else {
                                             showPopup(true);
@@ -354,12 +348,12 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
                                                     </div>
 
                                                     <div className="flex text-black dark:!text-[#919899] ">
-                                                        <span onClick={(e) =>{
-                                                        //  deleteRequest(pm?.id);
-                                                         setDelRequest(pm?.id);
-                                                         setDel_Request_Popup(true)
+                                                        <span onClick={(e) => {
+                                                            //  deleteRequest(pm?.id);
+                                                            setDelRequest(pm?.id);
+                                                            setDel_Request_Popup(true)
                                                         }}
-                                                        className="cursor-pointer"
+                                                            className="cursor-pointer"
                                                         >
                                                             <i className="text-lg rounded-[20]">-</i> Delete
                                                         </span>
@@ -374,23 +368,23 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
                             </div>
                             {/* payment method list here! end */}
 
-                        {
-                            (userpaymentods.length === 0) &&  <div className="grid place-content-center w-full p-4 mt-[50px]">
-                            <div className="inline-grid">
-                                <Image
-                                    src={"/assets/icons/noData.svg"}
-                                    alt="No Data"
-                                    className=""
-                                    height={80}
-                                    width={80}
-                                />
-                                <h4 className="info-14  md:p-0 text-disable-clr dark:text-white text-center">
-                                    No Data
-                                </h4>
-                            </div>
-                        </div>
-                        }
-                           
+                            {
+                                (userpaymentods.length === 0) && <div className="grid place-content-center w-full p-4 mt-[50px]">
+                                    <div className="inline-grid">
+                                        <Image
+                                            src={"/assets/icons/noData.svg"}
+                                            alt="No Data"
+                                            className=""
+                                            height={80}
+                                            width={80}
+                                        />
+                                        <h4 className="info-14  md:p-0 text-disable-clr dark:text-white text-center">
+                                            No Data
+                                        </h4>
+                                    </div>
+                                </div>
+                            }
+
 
                             {/* Other settings */}
                             <div className="mt-[30px]">
@@ -471,6 +465,10 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
                                 </div>
                             </div>
 
+                        </div>
+                        }
+                        {active === 2 && <div className="max-w-[100%-200px] w-full md:border-l border-grey md:pl-[20px]">
+                            <OrderTable session={session} />
                         </div>
                         }
                         {active === 3 && <div className="max-w-[100%-200px] w-full md:border-l border-grey md:pl-[20px]">
@@ -663,22 +661,22 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
                                             <h4 className="info-14-16">Payment Methods</h4>
                                             <div className="border-b info-14 hover:!text-grey dark:hover:!text-white dark:text-white" >
                                                 {/* <SelectMenu selectMenu={pm_method} selectMethod={selectedMethod} /> */}
-                                                <p className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white" onClick={()=>{setClick(true); setPaymentMethodModal(true) }}>Please select an option</p>
+                                                <p className="info-14 hover:!text-grey dark:hover:!text-white dark:text-white" onClick={() => { setClick(true); setPaymentMethodModal(true) }}>Please select an option</p>
                                                 {
-                                                    paymentMethodModal && 
-                                                    <PaymentMethodModal setPaymentMethodModal={setPaymentMethodModal} userpaymentods={userpaymentods} 
-                                                    selectedMethod={selectedMethod} userSelectedPMethod={userSelectedPMethod} />
+                                                    paymentMethodModal &&
+                                                    <PaymentMethodModal setPaymentMethodModal={setPaymentMethodModal} userpaymentods={userpaymentods}
+                                                        selectedMethod={selectedMethod} userSelectedPMethod={userSelectedPMethod} />
                                                 }
                                             </div>
                                             <div className="!text-red-700 info-12">
                                                 {errors.method?.message}
                                             </div>
-                                            {userSelectedPMethod && userSelectedPMethod.length > 0 && userSelectedPMethod.map((item)=>{
+                                            {userSelectedPMethod && userSelectedPMethod.length > 0 && userSelectedPMethod.map((item) => {
                                                 return <p className="info-14-16">{item.pm_name}</p>
                                             })}
                                         </div>
-                                        {/* payment methods */} 
-                                        
+                                        {/* payment methods */}
+
                                         <div className='mt-8'>
                                             <h4 className="info-14-16">Notes (Optional)</h4>
                                             <div className="border-b info-14 hover:!text-grey dark:hover:!text-white dark:text-white">
@@ -715,7 +713,7 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
                             {/* about */}
 
 
-                            <AdTable session={session}/>
+                            <AdTable session={session} />
 
 
                         </div>
