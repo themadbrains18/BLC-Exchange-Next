@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       backgroundImage:{
    
-          'jointrader': "url('../public/assets/images/joinTrader1.png')",
+          'jointrader': "url('../public/assets/images/joinTrader.svg')",
         
     
       },

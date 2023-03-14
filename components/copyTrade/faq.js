@@ -1,17 +1,3 @@
-// import React from 'react'
-
-// const Faq = () => {
-//     return (
-//         <section className='bg-[#fafafa] dark:bg-black-v-3 py-10 md:py-20'>
-//             <div className='container '>
-//           <h2 className='heading-28-40 font-serif mb-12'>FAQ</h2>
-
-//             </div>
-//         </section>
-//     )
-// }
-
-// export default Faq
 
 import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import FaqAccordianSingleOpen from "../snippets/faqAccordianSingleOpen";
