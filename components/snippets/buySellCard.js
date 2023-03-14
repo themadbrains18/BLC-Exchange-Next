@@ -331,13 +331,13 @@ const BuySellCard = ({ active, menu, sell, show, setShow, symbol, usdtBal, token
           <div className="flex gap-3 mt-4">
             {session && session?.user ?
               <button
-                className={`cta w-full leading-[3.5] rounded-lg ${sell && "bg-red-600 hover:bg-red-500"
+                className={`cta w-full rounded-lg ${sell && "bg-red-600 hover:bg-red-500"
                   } ${color === 1 && "bg-red-600 hover:bg-red-500"}`}
               >
                 {sell || color === 1 ? "Sell" : "Buy"}
               </button> :
               <button type="button" onClick={() => { router.push('/login') }}
-                className={`cta w-full leading-[3.5] rounded-lg ${sell && "bg-red-600 hover:bg-red-500"
+                className={`cta w-full rounded-lg ${sell && "bg-red-600 hover:bg-red-500"
                   } ${color === 1 && "bg-red-600 hover:bg-red-500"}`}
               >
                 Login

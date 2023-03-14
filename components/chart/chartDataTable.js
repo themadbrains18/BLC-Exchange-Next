@@ -3,7 +3,7 @@ import Image from "next/image";
 const ChartDataTable = ({data}) => {
   return (
     <>
-    <div className="overflow-x-auto table_box ">
+    <div className="overflow-x-auto table_box">
         <div className="table mt-4 w-max md:w-full border border-border-clr rounded-sm ">
           <div
             className={`head_row bg-table-bg grid grid-cols-8 gap-4  border-b border-border-clr dark:bg-black-v-4 `}
@@ -97,8 +97,8 @@ const ChartDataTable = ({data}) => {
                   src={"/assets/icons/noData.svg"}
                   alt="No Data"
                   className=""
-                  height={200}
-                  width={200}
+                  height={60}
+                  width={60}
                 />
                 <h4 className="info-14  md:p-0 text-disable-clr dark:text-white text-center">
                   No Data

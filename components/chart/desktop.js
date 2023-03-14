@@ -16,7 +16,7 @@ const Desktop = ({symbol, assets, coins, orders}) => {
 
   return (
     <>
-      <div className={`grow hidden lg:block dark:bg-black-v-3 border-4 border-t-0 ${mode === 'dark' ? 'border-black' : 'border-gray-200'}`}>
+      <div className={`grow sdfsdfdsf hidden lg:block dark:bg-black-v-3 border-4 border-t-0 ${mode === 'dark' ? 'border-black' : 'border-gray-200'}`}>
         <Graph symbol={symbol}/>
         <div className={`p-8  border-t-4 ${mode === 'dark' ? 'border-black' : 'border-gray-200'}`} >
           <BuySellDoge symbol={symbol} assets={assets} coin={coin[0]}/>
