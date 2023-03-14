@@ -299,7 +299,7 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
                                         verified = true;
                                     }
                                     if (verified) {
-                                        alert('hi')
+                                        // alert('hi')
                                         // setClick(true)
                                         setpayment(true)
                                     }
