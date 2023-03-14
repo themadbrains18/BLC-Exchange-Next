@@ -164,6 +164,7 @@
     @apply font-normal font-noto text-grey text-[14px] leading-[26px] dark:text-grey hover:!text-primary
 }
 
+
 .info-12 {
   @apply font-normal font-noto text-[12px] text-light-grey leading-[18px] dark:text-grey;
 }
