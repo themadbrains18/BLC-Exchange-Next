@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 function FollowerBenefits() {
   return (
-    <section className='startTraderPrivilege dark:bg-black md:pt-[80px] pt-[40px]'>
+    <section className='startTraderPrivilege dark:bg-black-v-4 md:pt-[80px] pt-[40px]'>
         <div className='container'>
             <div className='text-center mb-5 md:mb-12'>
                 <h2 className='heading-28-40 font-semibold capitalize '>Follower Benefits</h2>

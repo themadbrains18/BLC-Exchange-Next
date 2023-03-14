@@ -9,7 +9,7 @@ const BuySell = ({sessions, setShow}) => {
     const [dropDown, setDropDown] = useState(false)
     const [currencyList, setCurrecnyList] = useState(false)
     const [coin, setCoin] = useState('USDT')
-    const [coinImg, setCoinImg] = useState(false)
+    const [coinImg, setCoinImg] = useState('https://bitlivecoinnetwork.com/images/logo.png')
     const [convertPrice, setConvertPrice] = useState(0)
     const [coinName, setcoinName] = useState('INR');
     const [recieveCoinName, setRecieveCoinName] = useState('USDT');
@@ -78,7 +78,12 @@ const BuySell = ({sessions, setShow}) => {
             router.push('/login')
         }
         else{
-            router.push(`/p2p-trade/trade?token=${coin}&amount=${spendAmount}`)
+            if(show===1){
+                router.push(`/p2p-trade/trade?token=${coin}&amount=${spendAmount}`)
+            }
+            else{
+                router.push(`/p2p-trade/manage?token=${coin}&amount=${spendAmount}`)
+            }
         }
     }
 

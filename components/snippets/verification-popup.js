@@ -34,7 +34,7 @@ export default function VerificationPopup({popupData:{popup,showPopup}}) {
                     <p className="info-14 !text-grey hover:!text-grey grow ">KYC</p>
                 </div>
                 <div>
-                    <Link className="info-12 !text-primary" href="/dashboard/verified" onClick={() => { setClick(false) }}>{session?.user?.kycStatus !== undefined?'Bind':'Set Now'}</Link>
+                    <Link className="info-12 !text-primary" href="/dashboard/verified" onClick={() => { setClick(false) }}>{session?.user?.kycstatus !== undefined?'Bind':'Set Now'}</Link>
                 </div>
             </div>
 

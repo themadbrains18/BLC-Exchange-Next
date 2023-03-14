@@ -30,7 +30,7 @@ const P2PBuySell = ({ paymentods, session, userpaymentods }) => {
   const [rotate, setRotate] = useState(false);
   const [rotate2, setRotate2] = useState(false);
   const { mode, setClick } = useContext(Context);
-  const [coinImg, setCoinImg] = useState("");
+  const [coinImg, setCoinImg] = useState("https://bitlivecoinnetwork.com/images/logo.png");
   const [buy, setBuy] = useState(1);
   const [coin, setCoin] = useState(router.query.token !== undefined ? router.query.token : "Select Coin");
   let [bankList, setBankList] = useState();
@@ -131,6 +131,16 @@ const P2PBuySell = ({ paymentods, session, userpaymentods }) => {
     setValue('method', item)
     clearErrors("method")
   }
+  const selectBank = async (item) => {
+    setBankImg(item.image)
+    setBankName(item.name)
+    clearErrors("method")
+  }
+  const handleClick = () => {
+    router.push(`/p2p-trade/manage?token='USDT`)
+    setBuy(2)
+
+  }
 
   const handleSubmitForm = async () => {
     setDisabled(true);
@@ -142,7 +152,7 @@ const P2PBuySell = ({ paymentods, session, userpaymentods }) => {
     let formData = {
       "post_id": selectedTrade.id,
       "sell_user_id": selectedTrade.user_id,
-      "buy_user_id": session.id,
+      "buy_user_id": session?.id,
       "token_id": selectedTrade?.token,
       "price": selectedTrade?.price,
       "quantity" : secondCurrency,
@@ -184,7 +194,7 @@ const P2PBuySell = ({ paymentods, session, userpaymentods }) => {
         <div className="flex justify-between md:hidden ml-[auto] mb-[20px]" >
           <div className="flex items-center gap-[15px] bg-[#cccccc7d] dark:bg-[#3d3636] p-[5px] rounded flex md:hidden">
             <button className={`cta w-full dark:text-white ${buy === 1 ? "" : "text-black bg-transparent"}`} onClick={() => { setBuy(1) }}>Buy</button>
-            <button className={`cta w-full dark:text-white ${buy === 2 ? "" : "text-black bg-transparent"}`} onClick={() => { setBuy(2) }}>Sell</button>
+            <button className={`cta w-full dark:text-white ${buy === 2 ? "" : "text-black bg-transparent"}`} onClick={() => { handleClick()  }}>Sell</button>
           </div>
           <svg onClick={() => { setShowDropdown(true) }} className="max-w-[32px] w-full " version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 210.68 210.68" style={{ enableBackground: 'new 0 0 210.68 210.68' }} xmlSpace="preserve">
             <path fill={mode === "dark" ? "white" : "currentcolor"} d="M205.613,30.693c0-10.405-10.746-18.149-32.854-23.676C154.659,2.492,130.716,0,105.34,0
@@ -211,7 +221,7 @@ const P2PBuySell = ({ paymentods, session, userpaymentods }) => {
           {/* buy sell cta's */}
           <div className="flex items-center gap-[15px] bg-[#cccccc7d] dark:bg-[#3d3636] p-[5px] w-full rounded hidden md:flex">
             <button className={`cta w-full dark:text-white${buy === 1 ? "" : "text-black bg-transparent"}`} onClick={() => { setBuy(1) }}>Buy</button>
-            <button className={`cta w-full dark:text-white ${buy === 2 ? "" : "text-black bg-transparent"}`} onClick={() => { setBuy(2) }}>Sell</button>
+            <button className={`cta w-full dark:text-white ${buy === 2 ? "" : "text-black bg-transparent"}`} onClick={() => { handleClick()  }}>Sell</button>
           </div>
           {/* Prime Merchants */}
           <div className="flex items-center gap-[15px] max-w-full md:max-w-[180px] w-full">
@@ -268,7 +278,7 @@ const P2PBuySell = ({ paymentods, session, userpaymentods }) => {
           </div>
 
           {/* Search dropdown wuthout Image */}
-          <div className="max-w-full w-full border rounded-md border-border-clr relative flex items-start">
+          <div className="max-w-full w-full border rounded-md border-border-clr relative flex items-center">
             <div className="max-w-full md:max-w-[calc(100%-80px)] w-full">
               <input placeholder="Enter amount" className="h-[43px] px-[10px] max-w-full outline-none rounded-md dark:bg-transparent bg-transparent dark:text-white" type="number" />
             </div>
@@ -330,7 +340,7 @@ const P2PBuySell = ({ paymentods, session, userpaymentods }) => {
           <div className="max-w-full md:max-w-[100px] w-full">
             <p className="cursor-pointer info-14 !text-primary" onClick={() => resetFilter()}>Refresh</p>
           </div>
-          <div className="flex items-center gap-[15px] bg-[#cccccc7d] dark:bg-[#3d3636] p-[5px] rounded w-full flex md:hidden">
+          <div className=" items-center gap-[15px] bg-[#cccccc7d] dark:bg-[#3d3636] p-[5px] rounded w-full flex md:hidden">
             <button className={`cta w-full`}>Reset</button>
             <button className={`cta w-full`}>Confirm</button>
           </div>

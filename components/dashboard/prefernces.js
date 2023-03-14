@@ -6,7 +6,7 @@ import Link from 'next/link';
 import VerificationCode from './../../components/login-register/verification-code';
 import Image from 'next/image';
 
-const Prefernces = () => {
+const Prefernces = ({sessions, lastLogin}) => {
     const { mode, setClick } = useContext(Context);
     const [showSafteyV, setShowSafteyV] = useState(0);
     const [SetState, showSetState] = useState(0);
@@ -28,7 +28,7 @@ const Prefernces = () => {
                             </div>
                             <div className='flex gap-3 md:gap-6 items-center'>
                                 <Image src='/assets/images/avatar-default.jpg' width={30} height={30} className='rounded-3xl'></Image>
-                                <Link className='cta' href="bindmobile">Change</Link>
+                                <button type='file' className='cta' href="">Change</button>
                             </div>
                         </div>
 
@@ -40,8 +40,8 @@ const Prefernces = () => {
                                 </div>
                             </div>
                             <div className='flex gap-3 md:gap-6 items-center'>
-                                <p className='info-14'>BGUSER-NVQPH393</p>
-                                <button className='cta' onClick={() => { setClick(true); setShowSafteyV(1) }}> Change</button>
+                                <p className='info-14'>BLCUSER-{sessions !== undefined && sessions.own_code}</p>
+                                {/* <button className='cta' onClick={() => { setClick(true); setShowSafteyV(1) }}> Change</button> */}
                             </div>
                         </div>
 
@@ -52,7 +52,7 @@ const Prefernces = () => {
                                     <p className="info-12 ">The time you register for the BLC-Exchange account</p>
                                 </div>
                             </div>
-                            <p className='info-14'>2023-02-16 13:28:29</p>
+                            <p className='info-14'> {lastLogin}</p>
                         </div>
 
                         <div className="flex items-center flex-row  justify-between py-[20px] gap-5 ">
@@ -72,7 +72,7 @@ const Prefernces = () => {
                 </div>
             </div>
 
-            <div className="divide-y shadow-lg dark:shadow-[#1da2b41c] rounded-lg">
+            <div className="divide-y shadow-lg dark:shadow-[#1da2b41c] rounded-lg px-0 md:px-4">
 
                 <div className="py-[20px]">
                     <p className="info-14-20 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Notifications</p>
@@ -132,7 +132,7 @@ const Prefernces = () => {
 
 
             </div>
-            <div className="divide-y  mt-4 shadow-lg dark:shadow-[#1da2b41c] rounded-lg	">
+            <div className="divide-y  mt-4 shadow-lg dark:shadow-[#1da2b41c] rounded-lg px-0 md:px-4	">
 
                 <div className="py-[20px]">
                     <p className="info-14-20 dark:text-white text-black hover:!text-black dark:hover:!text-white ">Futures Trading Settings</p>

@@ -1,21 +1,40 @@
+import InstInformation from 'components/institute-verification/information'
 import React from 'react'
+import Layout from 'components/layout/Layout'
+import { getProviders, getSession } from "next-auth/react"
+const Information = ({ account, sessions }) => {
+    return (
+        <>
+            <Layout data={account} name="ID Verification" verify_cta={true} >
+              
+           
+                <div className=' grow '>
+                   <InstInformation />
+                </div>
+            </Layout>
+        </>
+    )
+}
+export async function getServerSideProps(context) {
 
-function Information() {
-  return (
-    <section className='mt-12 ml-[33px]' > 
-      <h2 className='mb-5'>Institutional Verification</h2>
-      <span className='block py-[14px] px-[18px] bg-[#f9f9f9]'>
-        Before starting the institution verification, please prepare the following documents in advance.
-      </span>
-      <ul  className='ml-[30px] mt-6 mb-12 '>
-        <li className='flex items-center gap-2 mb-4'>
-          <span className='w-[7px] h-[7px] bg-[#1da2b4] block' ></span>
-          <span className='block info-14 text-black'>Certificate of Incorporation</span>
-        </li>
-      </ul>
+  const { req } = context;
+  const session = await getSession({ req });
+  const providers = await getProviders()
+  if (session) {
+    let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
+    let menu = await data.json();
+    return {
+      props: {
+        account: menu.specialNav.account,
+        sessions: session
+      },
+    };
+  }
+  return {
+    redirect: { destination: "/" },
+  };
 
-    </section>
-  )
+
 }
 
 export default Information

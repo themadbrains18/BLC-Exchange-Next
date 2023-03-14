@@ -153,75 +153,12 @@
                 "linkText": "Transaction History",
                 "desc": "Buy and Sell Crypto",
                 "svgType": "transaction_history",
-                "menu": [
-                    {
-                        "linkText": "Spot",
-                        "linkUrl": "/transaction/spot"
-                    },
-                   
-                    {
-                        "linkText": "Spot",
-                        "linkUrl": "p"
-                    },
-                   
-                    {
-                        "linkText": "Spot",
-                        "linkUrl": "p"
-                    },
-                   
-                    {
-                        "linkText": "Spot",
-                        "linkUrl": "p"
-                    },
-                   
-                    {
-                        "linkText": "Spot",
-                        "linkUrl": "p"
-                    },
-                   
-                    {
-                        "linkText": "Spot",
-                        "linkUrl": "p"
-                    }
-                   
-                ]
+                "linkUrl": "earn"
             },
             {
                 "linkText": "Orders",
                 "linkUrl": "earn",
-                "svgType": "orders",
-                "menu": [
-                    {
-                        "linkText": "Spot",
-                        "linkUrl": "/asset/orders/spot"
-                    },
-                   
-                    {
-                        "linkText": "Margin",
-                        "linkUrl": "p"
-                    },
-                   
-                    {
-                        "linkText": "P2P",
-                        "linkUrl": "p"
-                    },
-                   
-                    {
-                        "linkText": "Earn",
-                        "linkUrl": "p"
-                    },
-                   
-                    {
-                        "linkText": "Coupons",
-                        "linkUrl": "p"
-                    },
-                   
-                    {
-                        "linkText": "Merge Swap",
-                        "linkUrl": "Merge Swap"
-                    }
-                   
-                ]
+                "svgType": "orders"
             },
             {
                 "linkText": "Mega Swap Orders",
