@@ -7,6 +7,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage:{
+   
+          'jointrader': "url('../public/assets/images/joinTrader1.png')",
+        
+    
+      },
       colors: {
         // cta
         "primary": "#1da2b4",
@@ -32,6 +38,7 @@ module.exports = {
       },
       content: {
         'completed-icon': 'url("../public/assets/icons/completed-icon.svg")',
+        'exclamation-icon': 'url("../public/assets/icons/exclamation.svg")',
       },
       fontFamily: {
         'noto': ['Noto Sans', 'sans-serif'],
@@ -48,8 +55,10 @@ module.exports = {
         '100%':{
           transform: "translateY(0)"
         }
-      }
+      },
+   
     }
+    
     },
   },
   plugins: [],

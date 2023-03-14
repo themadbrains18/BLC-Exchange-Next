@@ -27,7 +27,7 @@ const TopBar = () => {
           </Link>
           <button
             onClick={() => {
-              // setAlert(false);
+              setAlert(false);
               heightUpdate(topPadding)
             }}
           >
