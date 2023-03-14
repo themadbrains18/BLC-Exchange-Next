@@ -61,12 +61,24 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
     /// 
 
 
-    //   useEffect(() => {
-    // console.log("===========router", router.query)
-    //     // if (router.query.postad) {
-    //     //         setActive(3)
-    //     // }
-    //   })
+    useEffect(() => {
+
+        if (router.query.token) {
+            let verified = false;
+            if (session?.user?.email !== '' && session?.user?.kycstatus === 'success' && session?.user?.number !== '' && session?.user?.tradingPassword !== '') {
+                verified = true;
+            }
+            if (verified) {
+                clearErrors(["usertoken", "method", "deadline", "amount", "quantity", "min_limit", "max_limit", "checked"])
+                setActive(3)
+
+            }
+            else {
+                showPopup(true);
+            }
+
+        }
+    },[])
     const schema = yup
         .object()
         .shape({
@@ -181,8 +193,8 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
 
                 {/* delete confrim popup */}
                 <div className={`${del_request_popup
-                        ? 'opacity-1 visible fixed top-[50%]'
-                        : 'opacity-0 invisible top-[55%]'
+                    ? 'opacity-1 visible fixed top-[50%]'
+                    : 'opacity-0 invisible top-[55%]'
                     }  duration-300 z-[20] fixed  left-[50%] translate-y-[-50%] w-[calc(100%-20px)] sm:w-full translate-x-[-50%] dark:bg-black-v-5 bg-white p-3 sm:p-6 border border-grey max-w-[480px] w-full mx-auto`}
                 >
                     <div

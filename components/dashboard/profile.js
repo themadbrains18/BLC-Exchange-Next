@@ -38,15 +38,15 @@ const Profile = ({ sessions, lastLogin }) => {
                     </div>
                     <div className='pl-0 md:pl-8 relative'>
                         <div className='flex'>
-                            <p className='info-14-24'>BGUSER-{sessions !== undefined && sessions.own_code}</p>
-                            <img src='/assets/icons/edit.svg' alt='error' className='pl-1 cursor-pointer'></img>
+                            <p className='info-14-24'>BLCUSER-{sessions !== undefined && sessions.own_code}</p>
+                            {/* <img src='/assets/icons/edit.svg' alt='error' className='pl-1 cursor-pointer'></img> */}
                         </div>
                         <div className='mt-1  flex gap-2 items-center'>
                             <div className='flex items-center'>
                                 <Image src='/assets/icons/viip.svg' alt='error' width={18} height={22}></Image>
                                 <p className='info-12 bg-border-clr px-1'>VIP 0</p>
                             </div>
-                            <p className='info-12 bg-border-clr px-1'>Not Verified</p>
+                            <p className='info-12 bg-border-clr px-1'>{sessions.kycstatus === 'success'? 'Verified':' Not Verified'}</p>
                             <img src='/assets/icons/noraml-user.svg' alt='error'></img>
                         </div>
                         <div className='hidden flex-wrap md:flex justify-between xl:justify-self-auto xl:flex-nowrap gap-9 xl:gap-10'>

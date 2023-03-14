@@ -5,10 +5,11 @@ import SearchDropdown from "/components/snippets/search-dropdown";
 import SelectMenu from "components/snippets/selectMenu";
 import PaymentMethods from "/public/assets/images/payment-methods.png";
 import Paymentmodal from '../../components/payments/payment-modal';
+import { useRouter } from "next/router";
 
 const Hall = ({paymentods,setpaymentPopup}) => {
 
-  
+  const router = useRouter()
 
   const [showDropdown, setShowDropdown] = useState(false);
   const [dropDown, setDropDown] = useState(false);
@@ -125,6 +126,12 @@ const Hall = ({paymentods,setpaymentPopup}) => {
     setsecondCurrency(data)
 
   }
+  const handleClick = () => {
+    console.log("============jhjhjkdhkj")
+    setBuy(2)
+    router.push(`/p2p-trade/manage?token='USDT`)
+
+  }
 
   const secCalcu = (val) => {
     var data = val * selectedTrade?.price;
@@ -137,9 +144,9 @@ const Hall = ({paymentods,setpaymentPopup}) => {
     <section className="md:py-[80px] py-[0px] dark:bg-black-v-3 z-[1]">
       <div className="container">
         <div className="flex justify-between md:hidden ml-[auto] mb-[20px]" >
-          <div className="flex items-center gap-[15px] bg-[#cccccc7d] dark:bg-[#3d3636] p-[5px] rounded flex md:hidden">
+          <div className="flex items-center gap-[15px] bg-[#cccccc7d] dark:bg-[#3d3636] p-[5px] rounded  md:hidden">
             <button className={`cta w-full dark:text-white ${buy === 1 ? "" : "text-black bg-transparent"}`} onClick={() => { setBuy(1) }}>Buy</button>
-            <button className={`cta w-full dark:text-white ${buy === 2 ? "" : "text-black bg-transparent"}`} onClick={() => { setBuy(2) }}>Sell</button>
+            <button className={`cta w-full dark:text-white ${buy === 2 ? "" : "text-black bg-transparent"}`} onClick={() => { handleClick()  }}>Sell</button>
           </div>
           <svg onClick={() => { setShowDropdown(true) }} className="max-w-[32px] w-full " version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 210.68 210.68" style={{ enableBackground: 'new 0 0 210.68 210.68' }} xmlSpace="preserve">
             <path fill={mode === "dark" ? "white" : "currentcolor"} d="M205.613,30.693c0-10.405-10.746-18.149-32.854-23.676C154.659,2.492,130.716,0,105.34,0
@@ -163,9 +170,9 @@ const Hall = ({paymentods,setpaymentPopup}) => {
                     C61.42,57.647,61.42,54.687,59.595,52.861z" />
           </svg>
           {/* buy sell cta's */}
-          <div className="flex items-center gap-[15px] bg-[#cccccc7d] dark:bg-[#3d3636] p-[5px] w-full rounded hidden md:flex">
+          <div className=" items-center gap-[15px] bg-[#cccccc7d] dark:bg-[#3d3636] p-[5px] w-full rounded hidden md:flex">
             <button className={`cta w-full dark:text-white${buy === 1 ? "" : "text-black bg-transparent"}`} onClick={() => { setBuy(1) }}>Buy</button>
-            <button className={`cta w-full dark:text-white ${buy === 2 ? "" : "text-black bg-transparent"}`} onClick={() => { setBuy(2) }}>Sell</button>
+            <button className={`cta w-full dark:text-white ${buy === 2 ? "" : "text-black bg-transparent"}`} onClick={() => { handleClick() }}>Sell</button>
           </div>
           {/* Prime Merchants */}
           <div className="flex items-center gap-[15px] max-w-full md:max-w-[180px] w-full">
