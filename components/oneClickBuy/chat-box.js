@@ -43,6 +43,8 @@ const ChatBox = ({ order, session }) => {
         let formData = {
             'orderid': order.id,
             'post_id': order.post_id,
+            'buy_user_id': order.buy_user_id,
+            'sell_user_id': order.sell_user_id,
             'from': session.id,
             'to': session.id === order.sell_user_id ? order.buy_user_id : order.sell_user_id,
             'message': message

@@ -8,7 +8,7 @@ const JoinTrader = () => {
             <div className=' text-center grid place-content-center'>
                 <div className='container'>
                     <div className='mb-11 md:mb-28 mt-[75px]'>
-                        <h2 className='heading-28-40 mx-auto  text-center max-w-[600px] mb-12'>Share your strategies with 8 million+ Bitget users</h2>
+                        <h2 className='heading-28-40 mx-auto  text-center max-w-[600px] mb-12'>Share your strategies with 8 million + BLC Exchange users</h2>
                         <button className='cta'>Join as a Trader</button>
                     </div>
                     <div>

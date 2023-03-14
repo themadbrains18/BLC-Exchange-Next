@@ -15,7 +15,7 @@ function FollowerBenefits() {
                     <Image src="/assets/images/followers1.svg" alt="img" className='block m-auto' width={250} height={290} />
                     <div>
                         <h3 className='info-16-28 font-medium md:mt-[62px] mt-[30px] md:mb-4 mb-2'>Profit easily</h3>
-                        <p className='info-14-16 text-[#929899]'>Browse through our thousands of Bitget traders and follow them seamlessly</p>
+                        <p className='info-14-16 text-[#929899]'>Browse through our thousands of BLC Exchange traders and follow them seamlessly</p>
                     </div>
                 </li>
                 <li className='md:max-w-[385px] p-[30px] bg-[#f9f9f9] dark:bg-black-v-3 rounded-sm flex md:flex-col-reverse flex-col'>

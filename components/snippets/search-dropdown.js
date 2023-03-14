@@ -59,10 +59,10 @@ const SearchDropdown = ({
   };
 
   const selectCounteryName = (event,code) => {
-    let countryName = document.querySelector("#countryName");
+    // let countryName = document.querySelector("#countryName");
     let SelectedValue = event.target.innerHTML;
     setShowDropdown(false);
-    countryName.innerHTML = SelectedValue;
+    // countryName.innerHTML = SelectedValue;
     setCountryName(SelectedValue);
     if(selectedCountry !== undefined ){
       selectedCountry(SelectedValue);

@@ -22,7 +22,7 @@ import Sound from '../../public/assets/images/sound.png';
 let image = [
     {
         image:userGuideImg1,
-        figcation:"How to start my crypto journey on Bitget？"
+        figcation:"How to start my crypto journey on BLC Exchange？"
     },    
     {
         image:userGuideImg2,

@@ -27,7 +27,7 @@ function TraderPrivilege() {
                             </li>    
                             <li className='list-disc md:mb-10 mb-5'>
                                 <h5 className='mb-2 info-16-22 text-black font-semibold'>Gift packages</h5>
-                                <p className=' info-14-16 text-[#929899]'>Receive Bitget gift packages in addition to the event rewards.</p>
+                                <p className=' info-14-16 text-[#929899]'>Receive BLC Exchange gift packages in addition to the event rewards.</p>
                             </li>    
                             <li className='list-disc '>
                                 <h5 className='mb-2 info-16-22 text-black font-semibold'>Get certified</h5>
@@ -44,11 +44,11 @@ function TraderPrivilege() {
                         <ul className=' rounded-sm border-2 border-[#ebebeb] md:px-10 p-5 md:pt-10 md:pb-14'>
                             <li className='list-disc md:mb-10 mb-5'>
                                 <h5 className='mb-2 info-16-22 text-black font-semibold'>Influence</h5>
-                                <p className=' info-14-16 text-[#929899]'>Monetize your influence by providing millions of Bitget users your trading strategy.</p>
+                                <p className=' info-14-16 text-[#929899]'>Monetize your influence by providing millions of BLC Exchange users your trading strategy.</p>
                             </li>    
                             <li className='list-disc md:mb-10 mb-5'>
                                 <h5 className='mb-2 info-16-22 text-black font-semibold'>Increase credibility</h5>
-                                <p className=' info-14-16 text-[#929899]'>Elite Star Traders can be certified by Bitget and gain exposure to extend their reach.</p>
+                                <p className=' info-14-16 text-[#929899]'>Elite Star Traders can be certified by BLC Exchange and gain exposure to extend their reach.</p>
                             </li>    
                             <li className='list-disc md:mb-10 mb-5'>
                                 <h5 className='mb-2 info-16-22 text-black font-semibold'>Prize pools</h5>
