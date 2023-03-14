@@ -62,23 +62,25 @@ const Withdraw = ({
   const [yourecived, setyourecived] = useState(0)
 
   const [validAmount, setValidamount] = useState('')
-
+  const [minimunWithdraw, setMinimumWithdraw] = useState(0.02)
   // withraw list get in state
 
   const [withdrwaList, setWithdrawList] = useState(getWithdrawlist)
 
   useEffect(() => {
     if (validAmount != '') {
-      var numb = validAmount
-      setValue('withdrawAmont', numb)
-      setValidamount(numb)
-      setyourecived(numb - addfee)
+      // var numb = validAmount.match(/\d/g).join('')
+      setValue('withdrawAmont', validAmount)
+      setValidamount(validAmount)
+      setyourecived(validAmount - addfee)
     }
 
     if (sessions) {
       setValue('userid', sessions.user.id)
     }
   }, [validAmount])
+
+
 
   const schema = yup
     .object()
@@ -89,11 +91,12 @@ const Withdraw = ({
       withdrawAmont: yup
         .number()
         .positive()
-        .min(0.2)
+        .min(minimunWithdraw)
         .max(tokenBalance - addfee)
         .required('Please enter amount'),
     })
     .required()
+
 
   let {
     register,
@@ -108,8 +111,9 @@ const Withdraw = ({
 
   const selectCoin = async (item) => {
     console.log('i am here!', item)
-    setCoin(item.symbol)
-    setCoinImg(item.image)
+    setCoin(item?.symbol)
+    setCoinImg(item?.image)
+    setMinimumWithdraw(item?.minimum_withdraw)
     setselectedNetworkID(0)
     setNetwork([])
     setClearNetwork(true)
@@ -425,6 +429,7 @@ const Withdraw = ({
                   <div className="flex  mt-4 items-end ">
                     <input
                       type="number"
+                      step="0.001"
                       // pattern="^[0-9]+[0-9]*$"
                       className="caret-primary w-full bg-transparent  outline-none"
                       placeholder={
@@ -459,7 +464,7 @@ const Withdraw = ({
                   {selectedTokens ? selectedTokens.symbol : ''}
                 </span>
                 <span className="info-14 mt-2 hover:!text-grey dark:hover:!text-white dark:text-white block">
-                  To Receive - {yourecived} -{' '}
+                  To Receive - {((tokenBalance) < yourecived) ? 0 : (yourecived+addfee)} -{' '}
                   {selectedTokens ? selectedTokens.symbol : ''}
                 </span>
 

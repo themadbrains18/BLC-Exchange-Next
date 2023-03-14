@@ -51,7 +51,7 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
   }, []);
 
   const heightUpdate = (topPaddong) => {
-    padding = document.querySelector(".header").offsetHeight;
+    padding = document.querySelector(".navbar").offsetHeight;
     // console.log(padding+"in height update function")
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
   };
