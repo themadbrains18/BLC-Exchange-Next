@@ -40,16 +40,19 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
     window.addEventListener("resize", () => {
       if (ref.current !== null) {
         padding = ref.current.offsetHeight;
-        // console.log(padding)
+        // console.log(padding + "in resize function")
         setPad(padding);
+
         ref2.current.setAttribute("style", `padding-top: ${padding}px`);
+
       }
 
     });
   }, []);
 
   const heightUpdate = (topPaddong) => {
-    padding = document.querySelector(".navbar").offsetHeight;
+    padding = document.querySelector(".header").offsetHeight;
+    // console.log(padding+"in height update function")
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
   };
   return (
