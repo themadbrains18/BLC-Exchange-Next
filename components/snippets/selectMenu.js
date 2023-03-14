@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 
 import Context from "../contexts/context";
-const SelectMenu = ({height150,borderBottom, clear, returnvals, type, all, selectMenu, selectNetwork,selectTime,selectMethod, getDepositAddress, network, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
+const SelectMenu = ({font12,height150,borderBottom, clear, returnvals, type, all, selectMenu, selectNetwork,selectTime,selectMethod, getDepositAddress, network, deposit, transfer, from, to, setFromWallet, setToWallet, fromValue }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [value, setValue] = useState('');
@@ -135,7 +135,7 @@ const SelectMenu = ({height150,borderBottom, clear, returnvals, type, all, selec
                   all &&
                   <button
                     className={`md:relative  ${open && "z-[2]"
-                      } info-14-16 block w-full text-left p-2 dark:text-white dark:bg-black  ${active === "all" &&
+                      } ${font12 ? "info-12":"info-14-16"}  block w-full text-left p-2 dark:text-white dark:bg-black  ${active === "all" &&
                       "bg-blue-50 text-primary dark:!text-primary"
                       }`}
                     onClick={() => {
@@ -169,7 +169,7 @@ const SelectMenu = ({height150,borderBottom, clear, returnvals, type, all, selec
                         key={i}
                         type="button"
                         className={`md:relative ${open && "z-[2]"
-                          } info-14-16 block w-full text-left p-2 dark:text-white dark:bg-black  ${active === i &&
+                          }  ${font12 ? "info-12":"info-14-16"} block w-full text-left p-2 dark:text-white dark:bg-black  ${active === i &&
                           "bg-blue-50 text-primary dark:!text-primary"
                           }`}
                         onClick={() => {
@@ -197,7 +197,7 @@ const SelectMenu = ({height150,borderBottom, clear, returnvals, type, all, selec
                       <button type="button"
                         key={i}
                         className={`md:relative ${open && "z-[2]"
-                          } info-14-16 block w-full text-left p-2 dark:text-white dark:bg-black  ${active === i &&
+                          }  ${font12 ? "info-12":"info-14-16"} block w-full text-left p-2 dark:text-white dark:bg-black  ${active === i &&
                           "bg-blue-50 text-primary dark:!text-primary"
                           }`}
                         onClick={(e) => {

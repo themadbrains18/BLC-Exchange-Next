@@ -21,7 +21,7 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
     const { mode, setClick, verifyData, setVerifyData } = useContext(Context);
     const [rotate, setRotate] = useState(false);
     const router = useRouter()
-
+    
     const [dropDown, setDropDown] = useState(false);
     const [paymentMethodModal, setPaymentMethodModal] = useState(false);
     const [active, setActive] = useState(1);
@@ -167,6 +167,21 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
     const setpaymentPopup = (e) => {
         setpayment(false)
     }
+    const showSidebar = ()=>{
+        setClick(true);
+       let sideBar = document.querySelector("#sideBar");
+       sideBar.classList.add("!left-[0]");
+       
+       let sideBarLi = sideBar.querySelectorAll("li");
+       for(let i of sideBarLi){
+           i.addEventListener("click",()=>{
+               sideBar.classList.remove("!left-[0]");
+               let manageCta = document.querySelector("#manageCta span");
+               manageCta.innerText = i.querySelector("a").innerText;
+               setClick(false);
+        })
+       }
+    }
 
     // enable and disable payment modal 
 
@@ -224,8 +239,9 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
                 {/* delete confrim popup end */}
 
                 <div className="container">
-                    <div className="flex items-start">
-                        <div className="max-w-[200px] w-full md:block hidden">
+                    <div className="flex items-start flex-col md:flex-row">
+                        {/* sidebar */}
+                        <div id="sideBar" className={`max-w-[200px] w-full md:block  dark:bg-black-v-3  fixed h-[100vh] top-[48.04px] left-[-100%] z-[9] md:h-full duration-300 md:z-auto  md:static`}>
                             <ul>
                                 <li className={`${active === 1 ? 'border-r-[4px] border-primary pl-[15px] bg-[#1da2b41f]' : 'pl-[15px]'}`} ><Link className="info-14-16 py-[10px] block " href="manage" onClick={() => { setActive(1) }}>P2P management</Link></li>
                                 <li className={`${active === 2 ? 'border-r-[4px] border-primary pl-[15px] bg-[#1da2b41f]' : 'pl-[15px]'}`} ><Link className="info-14-16 py-[10px] block" href="" onClick={() => { setActive(2) }}>My order</Link></li>
@@ -250,7 +266,16 @@ const P2PManagement = ({ session, paymentods, userpaymentods }) => {
                                 }}>My Ads</Link></li>
                             </ul>
                         </div>
-                        {active === 1 && <div className="max-w-[100%-200px] w-full md:border-l border-grey md:pl-[20px]">
+                        <div className="md:hidden mb-[20px]">
+                            <button className="section-secondary-heading font-noto  flex gap-[15px] items-center" id="manageCta" onClick={()=>{ showSidebar() }}>
+                                <span className="block">P2P managment</span>
+                                <svg className="mt-[3px]" width={20} height={20} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill={mode === "dark" ? "white" : "currentcolor"} d="M11.2341 16.5873L14.6179 12.9779C15.1274 12.4344 15.1274 11.5564 14.6179 11.0129L11.2341 7.40354C10.411 6.53952 9 7.1527 9 8.39299V15.5979C9 16.8521 10.411 17.4653 11.2341 16.5873Z" />
+                                </svg>
+                            </button>
+                        </div>
+                        {active === 1 && 
+                        <div className="max-w-[100%-200px] w-full md:border-l border-grey md:pl-[20px]">
                             {/* about */}
                             <div className="flex md:items-center justify-between flex-col md:flex-row	gap-[20px]">
                                 <div className="flex items-center gap-[18px]">
