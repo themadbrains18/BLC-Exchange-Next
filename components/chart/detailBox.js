@@ -118,13 +118,13 @@ const DetailBox = ({ mobile, orders, coin }) => {
                 </div>
               ) : (
                 <div className="xl:grid xl:place-content-center w-full ">
-                  <div className="inline-grid">
+                  <div className="inline-grid mt-[20px]">
                     <Image
                       src={"/assets/icons/noData.svg"}
                       alt="No Data"
                       className=""
-                      height={200}
-                      width={200}
+                      height={60}
+                      width={60}
                     />
                     <h4 className="info-14  md:p-0 text-disable-clr dark:text-white text-center">
                       No Data

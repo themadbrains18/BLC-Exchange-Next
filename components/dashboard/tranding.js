@@ -3,9 +3,12 @@ import Image from "next/image";
 import Coin1 from "../../public/assets/icons/start.svg";
 import Graph from "../../public/assets/images/graph.png";
 import Referral from './referral';
+import { useRouter } from 'next/router';
 
-const Tranding = () => {
+const Tranding = ({coins}) => {
+    console.log("==============coin", coins)
     const [show, setShow] = useState(1);
+    const router = useRouter()
 
     return (
         <section className=' py-10'>
@@ -47,539 +50,113 @@ const Tranding = () => {
                 </div>
                     {show === 1 && (
                         <>
-                            <div className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
+                        {coins.map((item,index) => {
+                           return <div  key={index} onClick={() => { router.push('/chart/' + item.SYMBOL) }} className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
                                 <div className="grid max-w-full w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4 rounded-lg hover:bg-border-clr ">
                                     <div className="flex items-center  gap-3">
                                         <Image
-                                            src={Coin1}
+                                            src={item.TOKENLOGOURL}
                                             alt=""
                                             width={24}
                                             height={24}
                                             className="rounded-full"
                                         />
                                         <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
+                                            <p className="info-14-24">{item.SYMBOL}</p>
                                             <p className="info-14-16 !text-grey">USDT</p>
                                         </div>
                                     </div>
                                     <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
+                                        <p className="info-14-24">₮ {item.PRICE}</p>
+                                        <p className="info-14-16 !text-grey">$ {item.CHANGE24HOUR}</p>
                                     </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
+                                    <p className="info-14-16 !text-primary">{item.VOLUME24HOUR}</p>
                                     <div>
                                         <Image src={Graph} alt="" width={150} height={30} />
                                     </div>
                                 </div>
                                 <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
+                                    <button className='cta  inline-block ' onClick={() => { router.push('/chart/' + item.SYMBOL) }}>Trade</button>
                                 </div>
                                 {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
                             </div>
-                            <div className="p-[1px] rounded-lg hover:bg-border-clr dark:hover:bg-black-v-4  cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px]  dark:hover:bg-black-v-4  rounded-lg hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
-                                        <Image
-                                            src={Coin1}
-                                            alt=""
-                                            width={24}
-                                            height={24}
-                                            className="rounded-full"
-                                        />
-                                        <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
-                                            <p className="info-14-16 !text-grey">USDT</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
-                                    </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
-                                    <div>
-                                        <Image src={Graph} alt="" width={150} height={30} />
-                                    </div>
-                                </div>
-                                {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
-                                <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
-                                </div>
-                            </div>
-                            <div className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4  rounded-lg hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
-                                        <Image
-                                            src={Coin1}
-                                            alt=""
-                                            width={24}
-                                            height={24}
-                                            className="rounded-full"
-                                        />
-                                        <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
-                                            <p className="info-14-16 !text-grey">USDT</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
-                                    </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
-                                    <div>
-                                        <Image src={Graph} alt="" width={150} height={30} />
-                                    </div>
-                                </div>
-                                {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
-                                <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
-                                </div>
-                            </div>
-                            <div className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4  rounded-lg hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
-                                        <Image
-                                            src={Coin1}
-                                            alt=""
-                                            width={24}
-                                            height={24}
-                                            className="rounded-full"
-                                        />
-                                        <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
-                                            <p className="info-14-16 !text-grey">USDT</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
-                                    </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
-                                    <div>
-                                        <Image src={Graph} alt="" width={150} height={30} />
-                                    </div>
-                                </div>
-                                {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
-                                <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
-                                </div>
-                            </div>
-                            <div className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4  rounded-lg hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
-                                        <Image
-                                            src={Coin1}
-                                            alt=""
-                                            width={24}
-                                            height={24}
-                                            className="rounded-full"
-                                        />
-                                        <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
-                                            <p className="info-14-16 !text-grey">USDT</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
-                                    </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
-                                    <div>
-                                        <Image src={Graph} alt="" width={150} height={30} />
-                                    </div>
-                                </div>
-                                {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
-                                <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
-                                </div>
-                            </div>
-                            <div className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4  rounded-lg hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
-                                        <Image
-                                            src={Coin1}
-                                            alt=""
-                                            width={24}
-                                            height={24}
-                                            className="rounded-full"
-                                        />
-                                        <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
-                                            <p className="info-14-16 !text-grey">USDT</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
-                                    </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
-                                    <div>
-                                        <Image src={Graph} alt="" width={150} height={30} />
-                                    </div>
-                                </div>
-                                {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
-                                <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
-                                </div>
-                            </div>
+                        })}
+                            
+                           
+                  
 
                         </>
                     )}
 
                     {show === 2 && (
                         <>
-                            <div className="p-[1px] rounded-lg hover:bg-border-clr dark:hover:bg-black-v-4  cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px]  rounded-lg dark:hover:bg-black-v-4 hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
+                            {coins.map((item,index) => {
+                           return <div  key={index} onClick={() => { router.push('/chart/' + item.SYMBOL) }} className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
+                                <div className="grid max-w-full w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4 rounded-lg hover:bg-border-clr ">
+                                    <div className="flex items-center  gap-3">
                                         <Image
-                                            src={Coin1}
+                                            src={item.TOKENLOGOURL}
                                             alt=""
                                             width={24}
                                             height={24}
                                             className="rounded-full"
                                         />
                                         <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
+                                            <p className="info-14-24">{item.SYMBOL}</p>
                                             <p className="info-14-16 !text-grey">USDT</p>
                                         </div>
                                     </div>
                                     <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
+                                        <p className="info-14-24">₮ {item.PRICE}</p>
+                                        <p className="info-14-16 !text-grey">$ {item.CHANGE24HOUR}</p>
                                     </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
+                                    <p className="info-14-16 !text-primary">{item.VOLUME24HOUR}</p>
                                     <div>
                                         <Image src={Graph} alt="" width={150} height={30} />
                                     </div>
                                 </div>
-                                {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
                                 <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
-                                </div>
-                            </div>
-                            <div className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4  rounded-lg hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
-                                        <Image
-                                            src={Coin1}
-                                            alt=""
-                                            width={24}
-                                            height={24}
-                                            className="rounded-full"
-                                        />
-                                        <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
-                                            <p className="info-14-16 !text-grey">USDT</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
-                                    </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
-                                    <div>
-                                        <Image src={Graph} alt="" width={150} height={30} />
-                                    </div>
-                                </div>
-                                {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
-                                <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
-                                </div>
-                            </div>
-                            <div className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4  rounded-lg hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
-                                        <Image
-                                            src={Coin1}
-                                            alt=""
-                                            width={24}
-                                            height={24}
-                                            className="rounded-full"
-                                        />
-                                        <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
-                                            <p className="info-14-16 !text-grey">USDT</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
-                                    </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
-                                    <div>
-                                        <Image src={Graph} alt="" width={150} height={30} />
-                                    </div>
-                                </div>
-                                {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
-                                <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
-                                </div>
-                            </div>
-                            <div className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4  rounded-lg hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
-                                        <Image
-                                            src={Coin1}
-                                            alt=""
-                                            width={24}
-                                            height={24}
-                                            className="rounded-full"
-                                        />
-                                        <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
-                                            <p className="info-14-16 !text-grey">USDT</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
-                                    </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
-                                    <div>
-                                        <Image src={Graph} alt="" width={150} height={30} />
-                                    </div>
-                                </div>
-                                <div className='max-w-[20%] w-full text-center '>
-                                    <button className='cta  inline-block '>Trade</button>
+                                    <button className='cta  inline-block ' onClick={() => { router.push('/chart/' + item.SYMBOL) }}>Trade</button>
                                 </div>
                                 {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
                             </div>
-                            <div className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4  rounded-lg hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
-                                        <Image
-                                            src={Coin1}
-                                            alt=""
-                                            width={24}
-                                            height={24}
-                                            className="rounded-full"
-                                        />
-                                        <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
-                                            <p className="info-14-16 !text-grey">USDT</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
-                                    </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
-                                    <div>
-                                        <Image src={Graph} alt="" width={150} height={30} />
-                                    </div>
-                                </div>
-                                {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
-                                <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
-                                </div>
-                            </div>
-                            <div className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4  rounded-lg hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
-                                        <Image
-                                            src={Coin1}
-                                            alt=""
-                                            width={24}
-                                            height={24}
-                                            className="rounded-full"
-                                        />
-                                        <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
-                                            <p className="info-14-16 !text-grey">USDT</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
-                                    </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
-                                    <div>
-                                        <Image src={Graph} alt="" width={150} height={30} />
-                                    </div>
-                                </div>
-                                {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
-                                <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
-                                </div>
-                            </div>
+                        })}
 
                         </>
                     )}
                     {show === 3 && (
                         <>
-                            <div className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4  rounded-lg hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
+                            {coins.map((item,index) => {
+                           return <div  key={index} onClick={() => { router.push('/chart/' + item.SYMBOL) }} className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
+                                <div className="grid max-w-full w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4 rounded-lg hover:bg-border-clr ">
+                                    <div className="flex items-center  gap-3">
                                         <Image
-                                            src={Coin1}
+                                            src={item.TOKENLOGOURL}
                                             alt=""
                                             width={24}
                                             height={24}
                                             className="rounded-full"
                                         />
                                         <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
+                                            <p className="info-14-24">{item.SYMBOL}</p>
                                             <p className="info-14-16 !text-grey">USDT</p>
                                         </div>
                                     </div>
                                     <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
+                                        <p className="info-14-24">₮ {item.PRICE}</p>
+                                        <p className="info-14-16 !text-grey">$ {item.CHANGE24HOUR}</p>
                                     </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
+                                    <p className="info-14-16 !text-primary">{item.VOLUME24HOUR}</p>
                                     <div>
                                         <Image src={Graph} alt="" width={150} height={30} />
                                     </div>
                                 </div>
-                                {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
                                 <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
-                                </div>
-                            </div>
-                            <div className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4  rounded-lg hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
-                                        <Image
-                                            src={Coin1}
-                                            alt=""
-                                            width={24}
-                                            height={24}
-                                            className="rounded-full"
-                                        />
-                                        <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
-                                            <p className="info-14-16 !text-grey">USDT</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
-                                    </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
-                                    <div>
-                                        <Image src={Graph} alt="" width={150} height={30} />
-                                    </div>
+                                    <button className='cta  inline-block ' onClick={() => { router.push('/chart/' + item.SYMBOL) }}>Trade</button>
                                 </div>
                                 {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
-                                <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
-                                </div>
                             </div>
-                            <div className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4  rounded-lg hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
-                                        <Image
-                                            src={Coin1}
-                                            alt=""
-                                            width={24}
-                                            height={24}
-                                            className="rounded-full"
-                                        />
-                                        <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
-                                            <p className="info-14-16 !text-grey">USDT</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
-                                    </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
-                                    <div>
-                                        <Image src={Graph} alt="" width={150} height={30} />
-                                    </div>
-                                </div>
-                                {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
-                                <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
-                                </div>
-                            </div>
-                            <div className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4  rounded-lg hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
-                                        <Image
-                                            src={Coin1}
-                                            alt=""
-                                            width={24}
-                                            height={24}
-                                            className="rounded-full"
-                                        />
-                                        <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
-                                            <p className="info-14-16 !text-grey">USDT</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
-                                    </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
-                                    <div>
-                                        <Image src={Graph} alt="" width={150} height={30} />
-                                    </div>
-                                </div>
-                                {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
-                                <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
-                                </div>
-                            </div>
-                            <div className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4  rounded-lg hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
-                                        <Image
-                                            src={Coin1}
-                                            alt=""
-                                            width={24}
-                                            height={24}
-                                            className="rounded-full"
-                                        />
-                                        <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
-                                            <p className="info-14-16 !text-grey">USDT</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
-                                    </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
-                                    <div>
-                                        <Image src={Graph} alt="" width={150} height={30} />
-                                    </div>
-                                </div>
-                                {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
-                                <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
-                                </div>
-                            </div>
-                            <div className="p-[1px] rounded-lg dark:hover:bg-black-v-4  hover:bg-border-clr cursor-pointer flex items-center ">
-                                <div className="grid max-w-[80%] w-full grid-cols-2 md:grid-cols-4 items-center p-[14px] sm:p-[24px] dark:hover:bg-black-v-4  rounded-lg hover:bg-border-clr ">
-                                    <div className="flex items-center gap-3">
-                                        <Image
-                                            src={Coin1}
-                                            alt=""
-                                            width={24}
-                                            height={24}
-                                            className="rounded-full"
-                                        />
-                                        <div className="flex items-end gap-2 flex-wrap	">
-                                            <p className="info-14-24">PSI</p>
-                                            <p className="info-14-16 !text-grey">USDT</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-end gap-2 flex-wrap	">
-                                        <p className="info-14-24">₮ 6.8954</p>
-                                        <p className="info-14-16 !text-grey">$ 6.90</p>
-                                    </div>
-                                    <p className="info-14-16 !text-primary">+25%</p>
-                                    <div>
-                                        <Image src={Graph} alt="" width={150} height={30} />
-                                    </div>
-                                </div>
-                                {/* <button className='text-primary border border-primary rounded-md'>Trade</button> */}
-                                <div className='max-w-[20%] w-full text-center'>
-                                    <button className='cta  inline-block '>Trade</button>
-                                </div>
-                            </div>
+                        })}
 
                         </>
                     )}

@@ -466,12 +466,15 @@ body{
    box-shadow: 0px 0px 0px 2px white inset;
  }
  
- input[type="radio"]:checked + label{
+ input[type="radio"]:checked + label{ 
     color: #1da2b4;
  }
  .cta--modifier label:before{
   display:none;
  }
- 
+ .image_ratio{
+  aspect-ratio: 9 / 5;
+  object-fit: contain;
+ }
  
 @tailwind utilities;

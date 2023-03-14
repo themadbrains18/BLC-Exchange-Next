@@ -31,8 +31,8 @@ function AuthoInstruction({setActivepopup}) {
                 </div>
                 
                 <div className='md:p-6 p-3'>
-                    <p className='info-14-16 font-noto'>Bind your Bitget account and authorize it as Institution Account</p>
-                    <span className='info-14-20 font-medium font-noto text-black'>Bitget UID：</span>
+                    <p className='info-14-16 font-noto'>Bind your BLC Exchange account and authorize it as Institution Account</p>
+                    <span className='info-14-20 font-medium font-noto text-black'>BLC Exchange UID：</span>
                     <span className='info-14-20 font-medium text-[#1da2b4] font-noto'>3739093429</span>
                 </div>
                 <div>

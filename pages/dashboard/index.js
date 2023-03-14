@@ -10,7 +10,7 @@ import Layout from '@/components/layout/Layout'
 import { getProviders, getSession } from "next-auth/react"
 
 
-const Dashboard = ({ account, sessions, lastLogin }) => {
+const Dashboard = ({ account, sessions, lastLogin,overview, coins }) => {
   return (
     <>
       <Layout data={account} name="dashboard">
@@ -20,9 +20,9 @@ const Dashboard = ({ account, sessions, lastLogin }) => {
           </div>
           <div className='flex w-full gap-8'>
             <div className=' w-full'>
-              <Assets />
+              <Assets overview={overview} />
               <SocialTrades />
-              <Tranding />
+              <Tranding coins={coins}/>
               <Explore />
               <div className="md:hidden mt-[-40px]">
                 <Referral sessions={sessions.user} />
@@ -48,12 +48,21 @@ export async function getServerSideProps(context) {
   const providers = await getProviders()
   if (session) {
     let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
+    let assetOverview = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/assets/overview/${session?.user?.id}/USDT`,{
+      method :"GET"
+    }).then(response => response.json());
+    let tokenList = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/token/marketcoin`, {
+      method: "GET"
+    }).then(response => response.json());
+  
     let menu = await data.json();
     return {
       props: {
         account: menu.specialNav.account,
         sessions: session,
-        lastLogin : session.lastlogin
+        lastLogin : session.lastlogin,
+        overview : assetOverview.data,
+        coins: tokenList.data.data,
       },
     };
   }

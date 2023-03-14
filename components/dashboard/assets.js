@@ -3,7 +3,7 @@ import React,{useState} from 'react'
 import Welfare from './welfare'
 import Link from 'next/link'
 
-const Assets = () => {
+const Assets = ({overview}) => {
     const [show, setShow] = useState(true);
     return (
         <section className='py-3 md:py-5'>
@@ -26,9 +26,9 @@ const Assets = () => {
                             <img src='/assets/images/download-right-arrow.png' alt='error' className='mt-2'></img>
                         </div>
                         <div className='flex items-center gap-2'>
-                            <p className='section-secondary-heading'>{show ? <span>000.00000</span> : <span>****</span>}{" "}</p>
-                            <p className='self-end info-14-16'>BTC</p>
-                            <p className='self-end info-14-16'>≈$ {show ? <span>0</span> : <span>***</span>}{" "}</p>
+                            <p className='section-secondary-heading'>{show ? <span>{overview.overall}</span> : <span>****</span>}{" "}</p>
+                            <p className='self-end info-14-16'>USDT</p>
+                            {/* <p className='self-end info-14-16'>≈$ {show ? <span>0</span> : <span>***</span>}{" "}</p> */}
                             <button
                 className="eyeIcon"
                 onClick={() => {
@@ -79,7 +79,7 @@ const Assets = () => {
                     </div>
                 </div>
                 <div className='flex mt-4 md:mt-0 items-end gap-4'>
-                    <Link href='' className='border border-primary info-14-16 !text-white px-2 py-1 w-max md:w-full bg-primary rounded hover:!text-white'>Buy Crypto</Link>
+                    <Link href='/p2p-trade/quick' className='border border-primary info-14-16 !text-white px-2 py-1 w-max md:w-full bg-primary rounded hover:!text-white'>Buy Crypto</Link>
                     <Link href='/asset/deposit' className='border border-primary info-14-16 px-2 py-1 rounded text-primary'>Deposit</Link>
                     <Link href='/asset/withdraw' className='border border-primary info-14-16 px-2 py-1 rounded text-primary'>Withdraw</Link>
 
