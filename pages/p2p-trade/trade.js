@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
+import Context from "components/contexts/context";
+
 import Link from "next/link";
 import Dropdown from "components/snippets/dropdown";
 import VerificationPopup from "components/snippets/verification-popup";
@@ -8,7 +10,10 @@ import P2PBuySell from "components/oneClickBuy/p2pbuysell";
 const Trade = ({ paymentods, sessions, userpaymentods }) => {
 
   const [popup, showPopup] = useState(false);
-
+  const { login} = useContext(Context);
+  const [login2, setLogin2] = useState(login)
+  console.log(login + "login ============");
+  // console.log(login +"login ====================")   
   let dropDownItems = [
     {
       linkText: "Payment Methods",
@@ -49,7 +54,7 @@ const Trade = ({ paymentods, sessions, userpaymentods }) => {
           </div>
 
           <div
-            className={`relative   group  hover:pb-8 hover:-mb-8 `}
+            className={`relative group  hover:pb-8 hover:-mb-8 `}
           >
             <div className='border border-grey rounded-full flex gap-2 items-center'>
               <button className='info-14 h-[42.55px]  hover:!text-grey dark:hover:!text-white border-b-2 border-transparent pb-1 px-3 dark:text-white' >. . .</button>

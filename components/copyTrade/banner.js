@@ -12,7 +12,7 @@ function Banner() {
                     <div className='max-w-full md:max-w-[55%] w-full'>
                         <h1 className='section-heading-32-48'>Star Trader Recruitment Program</h1>
                         <p className='info-14-16 md:mt-[17px] mt-[10px] md:mb-[33px] mb-[22px]'>
-                            Earn alongside industry leading traders and share your strategies with over 2,000,000 users on Bitget to earn lucrative profits and exclusive privileges
+                            Earn alongside industry leading traders and share your strategies with over 2,000,000 users on BLC Exchange to earn lucrative profits and exclusive privileges
                         </p>
 
                         <div className='flex gap-4 items-center flex-wrap justify-center md:justify-start'>

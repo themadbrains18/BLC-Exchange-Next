@@ -18,7 +18,7 @@ export const UserTask = () => {
                                     <p className='font-noto dark:text-white font-semibold text-xl md:text-[#1e1e1e] text-[24px]'>Sign up</p>
                                     <img src='/assets/icons/question.png' alt='error' width={16} height={16}></img>
                                 </div>
-                                <p className='font-noto info-14-16  mb-[10px] '>Sign up to begin your journey with Bitget</p>
+                                <p className='font-noto info-14-16  mb-[10px] '>Sign up to begin your journey with BLC Exchange</p>
                             </div>
                             <button className='font-noto  text-white py-2 w-full bg-[#1da2b4] rounded-[4px] md:h-10 md:w-44 mt-3 lg:self-center '> Sign up</button>
                         </div>

@@ -270,7 +270,7 @@ const Modal = (props) => {
                                     <div className='flex flex-col mt-8 p-4 '>
                                         <p className='section-secondary-heading self-center dark:text-black'>Check your image</p>
                                         <div className='my-14 bg-border-clr self-center '>
-                                            {imagesrc !== '' && <img src={imagesrc} className="max-w-[300px] w-full" />}
+                                            {imagesrc !== '' && <img src={imagesrc} className="max-w-[300px] w-full image_ratio" />}
                                         </div>
                                         <p className='info-14-16 self-center dark:text-black'>Make sure your deatils are clear and unobstruced</p>
                                     </div>
@@ -293,7 +293,7 @@ const Modal = (props) => {
                                     <div className='flex flex-col mt-8 p-4 '>
                                         <p className='section-secondary-heading self-center dark:text-black'>Check your image</p>
                                         <div className='my-14 bg-border-clr self-center '>
-                                            {imagesrc2 !== '' && <img src={imagesrc2} className="max-w-[300px] w-full" />}
+                                            {imagesrc2 !== '' && <img src={imagesrc2} className="max-w-[300px] w-full image_ratio" />}
                                         </div>
                                         <p className='info-14-16 self-center dark:text-black'>Make sure your deatils are clear and unobstruced</p>
                                     </div>
