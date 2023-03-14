@@ -15,7 +15,7 @@ const ReferCard = () => {
 
   const {data:session}= useSession()
   const code = session?.user?.own_code
-  const referLink = `http://localhost:3000/register?referal=${code}`
+  const referLink = `https://blcexchange.net//register?referal=${code}`
   return (
 
     <>
