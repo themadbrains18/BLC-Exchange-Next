@@ -2,9 +2,23 @@
 import React, { useState } from "react";
 import Image from 'next/image';
 function AttacheFile() {
-    const [file, setFile] = useState();
+    const [file, setFile] = useState([]);
+
     function handleChange(e) {
-        setFile(URL.createObjectURL(e.target.files[0]));
+        console.log("============hjkfhksdjhfkjshd=",e.target.files[0])
+        // setFile(URL.createObjectURL(e.target.files[0]));
+        //  setFile(e.target.files[0]);
+
+        if(file.length > 0){
+            setFile(pre => [...pre,URL.createObjectURL(e.target.files[0])])
+        }else{
+            // files.push(URL.createObjectURL(e.target.files[0]))
+            setFile([URL.createObjectURL(e.target.files[0])])
+        }
+
+        // let files=[]
+
+        // setFile(files)
     }
     return (
         <>
@@ -19,17 +33,13 @@ function AttacheFile() {
                                 <h4 className='md:mt-8 mt-5 mb-2 info-14-20'>Certificate of Incorporation</h4>
                                 <span className='block info-14-2 text-[#919899]'>Attach a maximum of 10 JPG/JPEG/PNG files, each file no more than 2 MB.</span>
                                 <ul className="flex mt-2">
-                                    <li className=''>
-                                        <span className='relative w-[120px] inline-block'>
-                                            <input type="file" onChange={handleChange} className='file:w-[104px] w-[104px] file:h-[104px] h-[104px] block file:text-transparent text-transparent file:rounded-2 file:border-[1px] file:border-dashed hover:file:border-blue-500 file:border-grey file:bg-[#f9f9f9]' multiple />
-                                            <svg version="1.1" className='absolute top-[48%] block left-[46%] translate-x-[-50%] translate-y-[-50%] w-[12px] h-[12px]' id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 50" enableBackground="new 0 0 50 50" xmlSpace="preserve">
-                                                <path d="M9.077,25.99h14v14c0,0.553,0.448,1,1,1s1-0.447,1-1v-14h14c0.552,0,1-0.447,1-1s-0.448-1-1-1h-14v-14c0-0.553-0.448-1-1-1
-                                            s-1,0.447-1,1v14h-14c-0.552,0-1,0.447-1,1S8.525,25.99,9.077,25.99z" />
-                                            </svg>
-                                        </span>
-                                    </li>
-                                    <li className='rounded-lg group relative block overflow-hidden'>
-                                        <Image className="rounded-lg hover:bg-green-400" src={file} alt="" width={104} height={104} />
+                                {file.length > 0 &&
+                                    
+                                    file.map((item, itndex)=>{
+                                    
+                                       return (
+                                         <li className='rounded-lg group relative block overflow-hidden'>
+                                        <Image className="rounded-lg hover:bg-green-400" src={item} alt="" width={104} height={104} />
                                         <div className="opacity-0 bg-[#000000a1] absolute top-0 left-0 w-[100px] h-[100px ] group-hover:w-full group-hover:h-full group-hover:opacity-60 duration-400">
                                         </div>
                                         <div className="flex absolute gap-3 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] invisible group-hover:visible z-20">
@@ -47,7 +57,21 @@ function AttacheFile() {
                                             </button>
                                         </div>
 
+                                    </li>)
+                                    })
+                                }
+
+                                    <li className=''>
+                                        <span className='relative w-[120px] inline-block'>
+                                            <input type="file" onChange={handleChange} className='file:w-[104px] w-[104px] file:h-[104px] h-[104px] block file:text-transparent text-transparent file:rounded-2 file:border-[1px] file:border-dashed hover:file:border-blue-500 file:border-grey file:bg-[#f9f9f9]' multiple />
+                                            <svg version="1.1" className='absolute top-[48%] block left-[46%] translate-x-[-50%] translate-y-[-50%] w-[12px] h-[12px]' id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 50" enableBackground="new 0 0 50 50" xmlSpace="preserve">
+                                                <path d="M9.077,25.99h14v14c0,0.553,0.448,1,1,1s1-0.447,1-1v-14h14c0.552,0,1-0.447,1-1s-0.448-1-1-1h-14v-14c0-0.553-0.448-1-1-1
+                                            s-1,0.447-1,1v14h-14c-0.552,0-1,0.447-1,1S8.525,25.99,9.077,25.99z" />
+                                            </svg>
+                                        </span>
                                     </li>
+                                  
+                                   
                                 </ul>
                             </li>
                         </ul>
