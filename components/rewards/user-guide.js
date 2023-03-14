@@ -45,7 +45,7 @@ let image = [
 const UserGuide = () => {
     return (
         <>
-            <section className="ai_zone py-10 lg:pb-20 bg-white">
+            <section className="ai_zone py-10 dark:bg-black lg:pb-20">
                 <div className='container'>
                     <div className='flex justify-between items-center mb-5 md:mb-9 lg:mb-12'>
                         <h2 className='font-noto-display text-[24px] md:text-[32px]'>User Guide</h2>

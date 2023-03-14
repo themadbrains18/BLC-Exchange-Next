@@ -50,7 +50,7 @@ const Carousel = ({figcation, play_cta, data, arrow}) => {
                     
                   )}
                   {e.figcation && (
-                    <p className='font-noto font-semibold text-[#090d11] mt-6 md:text-xl'>{e.figcation}</p>                    
+                    <p className='font-noto dark:text-white font-semibold text-[#090d11] mt-6 md:text-xl'>{e.figcation}</p>                    
                   )}
 
                   {play_cta && (

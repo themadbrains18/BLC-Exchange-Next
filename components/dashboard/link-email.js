@@ -104,6 +104,7 @@ const LinkEmail = ({ sessions }) => {
       toast.error(userExist.data.message, {
         position: toast.POSITION.TOP_RIGHT, autoClose: 5000
       })
+      setClick(false)
     }
     else {
       let obj = { username: filledEmail, otp: fillOtp, time: new Date() };

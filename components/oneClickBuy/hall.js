@@ -462,7 +462,7 @@ const Hall = ({paymentods,setpaymentPopup}) => {
                 <p className="info-14 !text-[#fb8e0c]  hover:!text-[#fb8e0c]">*To protect your assets, please do not modify your registration link or conduct private transactions with merchants off the platform.</p>
               </li>
               <li className="mb-[10px]">
-                <p className="info-14 hover:!text-grey">1. During the transaction ,<span className="!text-[#fb8e0c]"> please do not include BTC/USDT/Bitget</span> or other similar information in the remarks</p>
+                <p className="info-14 hover:!text-grey">1. During the transaction ,<span className="!text-[#fb8e0c]"> please do not include BTC/USDT/BLC-Eachange</span> or other similar information in the remarks</p>
               </li>
               <li className="mb-[10px]">
                 <p className="info-14 hover:!text-grey">2. Single payment exceeding 50,000 CNY should be made in batches</p>
@@ -726,7 +726,11 @@ const Hall = ({paymentods,setpaymentPopup}) => {
             </p>
             <ul className="h-[200px] overflow-y-scroll">
               <li className="mb-[10px]">
-                <p className="info-14 hover:!text-grey">1. Don't leave any messages in the remark, including but not limited to USDT, Bitget and crypocurrency</p>
+<<<<<<< HEAD
+                <p className="info-14 hover:!text-grey">1. Don't leave any messages in the remark, including but not limited to USDT, BLC - Exchange and crypocurrency</p>
+=======
+                <p className="info-14 hover:!text-grey">1. Don't leave any messages in the remark, including but not limited to USDT, BLC-Eachange and crypocurrency</p>
+>>>>>>> 2a51bea3bdb2cf96ba7b2eaef1da15f39a4c0f38
               </li>
               <li className="mb-[10px]">
                 <p className="info-14 hover:!text-grey">2. Single payment exceeding 50,000 CNY should be made in batches</p>

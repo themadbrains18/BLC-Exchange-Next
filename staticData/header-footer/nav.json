@@ -13,7 +13,7 @@
                 "linkText": "P2P Trading (0 Fee)",
                 "desc": "Buy crypto from verified merchants",
                 "svgType": "p2p",
-                "linkUrl": "earn"
+                "linkUrl": "/p2p-trade/trade"
             },
             {
                 "linkText": "Credit/Debit card",

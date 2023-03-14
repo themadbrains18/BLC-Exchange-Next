@@ -411,7 +411,7 @@ const Withdraw = ({
                       placeholder={
                         show === 1
                           ? 'Enter Withdrawl Addresss'
-                          : 'Enter a Bitget account email'
+                          : 'Enter a BLC-Eachange account email'
                       }
                       onChange={(e) => {
                         setValue('userwallet', e.target.value)
@@ -476,7 +476,7 @@ const Withdraw = ({
                       <p>
                         For security purposes, phone verification may be
                         required to withdraw assets. Please be on the look out
-                        for calls from Bitget customer service
+                        for calls from BLC-Eachange customer service
                       </p>
                       <p className="text-red-600 ">
                         Minimum withdrawal amount: 0.001. You cannot withdraw
