@@ -5,7 +5,7 @@ const Explore = () => {
         <>
             <section className='dark:bg-black-v-3 bg-[#f1fcfd] py-10 md:py-20'>
                 <div className='container'>
-              <h1 className='hero-heading font-noto'>Having a rough ride with market volatility? Automate your trades with Strategy Hub</h1>
+              <h1 className='heading-28-40 font-noto'>Having a rough ride with market volatility? Automate your trades with Strategy Hub</h1>
                    
                 </div>
             </section>

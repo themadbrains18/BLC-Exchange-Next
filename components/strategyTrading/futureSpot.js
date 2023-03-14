@@ -10,8 +10,8 @@ const FutureSpot = () => {
         <>
             <section className='dark:bg-black-v-3 py-10 md:py-20'>
                 <div className='container '>
-                    <div className='grid grid-cols-4'>
-                        <div className='w-[282px] p-6 border-[1px] rounded-xl'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 gap-5 lg:grid-cols-4'>
+                        <div className=' p-6 border-[1px] rounded-xl'>
                             <Image src={futureSpot1} width={72} height={72} className='mb-6' ></Image>
                             <h3 className='font-noto text-2xl mb-6'>Futures grid</h3>
                             <ul className='list-disc pl-4 mb-10'>
@@ -24,7 +24,7 @@ const FutureSpot = () => {
                                 <Image src={futureSpotArrow} width={26} height={15} className='h-[15px]' ></Image>
                             </Link>
                         </div>
-                        <div className='w-[282px] p-6 border-[1px] rounded-xl'>
+                        <div className=' p-6 border-[1px] rounded-xl'>
                             <Image src={futureSpot1} width={72} height={72} className='mb-6' ></Image>
                             <h3 className='font-noto text-2xl mb-6'>Futures grid</h3>
                             <ul className='list-disc pl-4 mb-10'>
@@ -37,7 +37,7 @@ const FutureSpot = () => {
                                 <Image src={futureSpotArrow} width={26} height={15} className='h-[15px]' ></Image>
                             </Link>
                         </div>
-                        <div className='w-[282px] p-6 border-[1px] rounded-xl'>
+                        <div className=' p-6 border-[1px] rounded-xl'>
                             <Image src={futureSpot1} width={72} height={72} className='mb-6' ></Image>
                             <h3 className='font-noto text-2xl mb-6'>Futures grid</h3>
                             <ul className='list-disc pl-4 mb-10'>
@@ -50,7 +50,7 @@ const FutureSpot = () => {
                                 <Image src={futureSpotArrow} width={26} height={15} className='h-[15px]' ></Image>
                             </Link>
                         </div>
-                        <div className='w-[282px] p-6 border-[1px] rounded-xl'>
+                        <div className=' p-6 border-[1px] rounded-xl'>
                             <Image src={futureSpot1} width={72} height={72} className='mb-6' ></Image>
                             <h3 className='font-noto text-2xl mb-6'>Futures grid</h3>
                             <ul className='list-disc pl-4 mb-10'>
