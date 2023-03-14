@@ -12,7 +12,7 @@ const Setting = ({ account, sessions }) => {
   const [SetState, showSetState] = useState(0);
   const [activePopup, SetActivePopup] = useState(false);
 
-  console.log(sessions.user.antiphishing, '===========anti phishing')
+  console.log(sessions?.user?.antiphishing, '===========anti phishing')
 
   return (
     <Layout data={account} name="Setting">
@@ -62,12 +62,12 @@ const Setting = ({ account, sessions }) => {
                   <p className="info-12 ">Used to log in, withdraw, retrieve passwords, modify security settings, and perform security verification when managing APIs</p>
                 </div>
               </div>
-              {sessions.user.number === '' &&
+              {sessions?.user?.number === '' &&
                 <Link className='cta  leading-[36px] md:leading-[46px]' href="bindmobile">Settings</Link>
               }
-              {sessions.user.number !== '' &&
+              {sessions?.user?.number !== '' &&
                 <div className='flex flex-col md:flex-row'>
-                  <p className='info-14-16 !text-primary info-14-16 !text-primary flex items-center'><span className="flex items-center"><span>{sessions.user.number}</span><span className="block max-w-[2px] bg-primary h-[20px] w-[2px] mx-[10px]">  </span></span></p> <Link className='info-14-16 !text-primary' href="bindmobile">Modify</Link>
+                  <p className='info-14-16 !text-primary info-14-16 flex items-center'><span className="flex items-center"><span>{sessions?.user?.number}</span><span className="block max-w-[2px] bg-primary h-[20px] w-[2px] mx-[10px]">  </span></span></p> <Link className='info-14-16 !text-primary' href="bindmobile">Modify</Link>
                 </div>
               }
             </div>
@@ -94,12 +94,12 @@ const Setting = ({ account, sessions }) => {
                 </div>
               </div>
 
-              {sessions.user.email === '' &&
+              {sessions?.user?.email === '' &&
                 <Link className='cta  leading-[36px] md:leading-[46px]' href="bindemail">Settings</Link>
               }
-              {sessions.user.email !== '' &&
+              {sessions?.user?.email !== '' &&
                 <div className='flex flex-col md:flex-row'>
-                  <p className='info-14-16 !text-primary flex items-center'><span className="flex items-center"><span> {sessions.user.email}</span>{sessions.user.email ? <span className="block max-w-[2px] bg-primary h-[20px] w-[2px] mx-[10px]"></span> : ""}</span> </p> <Link className='info-14-16 !text-primary' href="bindemail">Modify</Link>
+                  <p className='info-14-16 !text-primary flex items-center'><span className="flex items-center"><span> {sessions?.user?.email}</span>{sessions?.user?.email ? <span className="block max-w-[2px] bg-primary h-[20px] w-[2px] mx-[10px]"></span> : ""}</span> </p> <Link className='info-14-16 !text-primary' href="bindemail">Modify</Link>
                 </div>
               }
 
@@ -150,14 +150,14 @@ const Setting = ({ account, sessions }) => {
                   <p className="info-12 ">Used to log in, withdraw, retrieve passwords, modify security settings, and perform security verification when managing APIs</p>
                 </div>
               </div>
-              {sessions.user.TwoFA === 'disable' &&
+              {sessions?.user?.TwoFA === 'disable' &&
                 <Link href="bindgoogle" className='cta  leading-[36px] md:leading-[46px]'>Settings</Link>
               }
 
-              {sessions.user.TwoFA === 'enable' &&
+              {sessions?.user?.TwoFA === 'enable' &&
                 <div className="flex items-center gap-5">
-                  <Link href="bindgoogle" className='info-14-16 !text-primary'>modify | </Link>
-                  <Link href="fund-password" className='info-14-16 !text-primary'>Turn Off Notification</Link>
+                  <Link href="bindgoogle" className='info-14-16 !text-primary'>Modify | </Link>
+                  <Link href="bindgoogle" className='info-14-16 !text-primary'>Turn Off Notification</Link>
                 </div>
               }
 
@@ -185,13 +185,13 @@ const Setting = ({ account, sessions }) => {
                   <p className="info-12 ">Protect your account from unauthorized withdrawals and P2P trading.</p>
                 </div>
               </div>
-              {sessions.user.tradingPassword === '' &&
+              {sessions?.user?.tradingPassword === '' &&
                 <Link href="fund-password" className='cta  leading-[36px] md:leading-[46px]'>Settings</Link>
               }
 
-              {sessions.user.tradingPassword !== '' &&
+              {sessions?.user?.tradingPassword !== '' &&
                 <div className="flex items-center gap-5">
-                  <Link href="modify-fund-code" className='info-14-16 !text-primary'>modify | </Link>
+                  <Link href="modify-fund-code" className='info-14-16 !text-primary'>Modify | </Link>
                   <Link href="reset-fund-code" className='info-14-16 !text-primary'>Forget Fund Code</Link>
                 </div>
               }
@@ -214,12 +214,12 @@ const Setting = ({ account, sessions }) => {
                   <p className="info-12 ">To protect yourself from counterfeit emails, the emails you receive from BLC-Exchange will contain the anti-phishing code you have set</p>
                 </div>
               </div>
-              {sessions.user.antiphishing === null &&
+              {sessions?.user?.antiphishing === null &&
                 <Link className='cta  leading-[36px] md:leading-[46px]' href="anti-phishing">Settings</Link>
               }
-              {sessions.user.antiphishing !== null &&
+              {sessions?.user?.antiphishing !== null &&
                 <div>
-                  <p className='info-14-16 !text-primary flex items-center'><span className="flex items-center"><span>{sessions.user.antiphishing}</span>{sessions.user.antiphishing ? <span className="block max-w-[2px] bg-primary h-[20px] w-[2px] mx-[10px]"></span> : ""}</span> </p> <Link className='info-14-16 !text-primary' href="modify-anti-phishing">Modify</Link>
+                  <p className='info-14-16 !text-primary flex items-center'><span className="flex items-center"><span>{sessions?.user?.antiphishing}</span>{sessions?.user?.antiphishing ? <span className="block max-w-[2px] bg-primary h-[20px] w-[2px] mx-[10px]"></span> : ""}</span> </p> <Link className='info-14-16 !text-primary' href="modify-anti-phishing">Modify</Link>
                 </div>
               }
             </div>
@@ -333,7 +333,7 @@ export async function getServerSideProps(context) {
   const { req } = context;
   const session = await getSession({ req });
   const providers = await getProviders()
-  if (session) {
+  if (session.user) {
     let data = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/hello");
     let menu = await data.json();
     return {

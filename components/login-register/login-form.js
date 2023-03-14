@@ -171,7 +171,7 @@ const LoginForm = () => {
                                         </button>
                                         <div className='flex justify-end mt-4'>
                                             <Link href="/forget" className='info-14 !text-primary  cursor-pointer'>Forgot password?</Link>
-                                        </div>s
+                                        </div>
                                     </form>
                                 }
                                 {/* qr part */}

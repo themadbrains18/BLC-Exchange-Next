@@ -6,7 +6,7 @@ import Context from '../contexts/context';
 import Link from "next/link";
 import AuthoInstruction from './authoInstruction';
 
-const VerificationType = ({session}) => {
+const VerificationType = ({ session, kycList }) => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [active, setActive] = useState(1)
     const [activepopup, setActivepopup] = useState(false);
@@ -28,15 +28,16 @@ const VerificationType = ({session}) => {
         <section className=' dark:bg-black-v-5 '>
 
             <div className='flex gap-4 items-center'>
-                <button className={`${(step === 1 ) ? 'block' : 'hidden'}`} onClick={() => setStep(step - 1)}>
-                <svg className="max-w-[24px] w-full" enableBackground="new 0 0 32 32" version="1.1" viewBox="0 0 32 32" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                                    <path fill={mode === "dark" ? "white" : "#121313"} clipRule="evenodd" d="M31.106,15H3.278l8.325-8.293  c0.391-0.391,0.391-1.024,0-1.414c-0.391-0.391-1.024-0.391-1.414,0l-9.9,9.899c-0.385,0.385-0.385,1.029,0,1.414l9.9,9.9  c0.391,0.391,1.024,0.391,1.414,0c0.391-0.391,0.391-1.024,0-1.414L3.278,17h27.828c0.552,0,1-0.448,1-1  C32.106,15.448,31.658,15,31.106,15z" fillRule="evenodd" />
-                                </svg>
+                <button className={`${(step === 1) ? 'block' : 'hidden'}`} onClick={() => setStep(step - 1)}>
+                    <svg className="max-w-[24px] w-full" enableBackground="new 0 0 32 32" version="1.1" viewBox="0 0 32 32" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                        <path fill={mode === "dark" ? "white" : "#121313"} clipRule="evenodd" d="M31.106,15H3.278l8.325-8.293  c0.391-0.391,0.391-1.024,0-1.414c-0.391-0.391-1.024-0.391-1.414,0l-9.9,9.899c-0.385,0.385-0.385,1.029,0,1.414l9.9,9.9  c0.391,0.391,1.024,0.391,1.414,0c0.391-0.391,0.391-1.024,0-1.414L3.278,17h27.828c0.552,0,1-0.448,1-1  C32.106,15.448,31.658,15,31.106,15z" fillRule="evenodd" />
+                    </svg>
                 </button>
                 <div className='hidden md:flex items-center gap-4'>
                 <p className='section-secondary-heading'>{active ===1 ? 'ID Verification' : 'Institutional Verification'}</p>
-                    <p className='info-12 bg-border-clr  rounded-sm'>Unverified</p>
+                    <p className='info-12 bg-border-clr  rounded-sm'>{session?.kycstatus === 'success' ? 'Verified' : 'Unverified'}</p>
                 </div>
+
             </div>
             {session?.kycstatus === 'NA' || session?.kycstatus === 'reject' ?
                 step == 0 ?
@@ -63,6 +64,9 @@ const VerificationType = ({session}) => {
                             <div className={`p-6  border-2 box-border border-primary rounded-lg flex gap-2 ${active === 1 ? 'border-2 ' : 'border-transparent'} `} onClick={() => { setActive(1) }}>
                                 <div>
                                     <input type='checkbox' checked={active === 1 ? 'checked' : ''} />
+
+
+
                                 </div>
                                 <div>
                                     <p className='info-14-24'>Individual Verification</p>
@@ -153,26 +157,31 @@ const VerificationType = ({session}) => {
                                 <div className='flex flex-col md:flex-row gap-4'>
                                     <div className=' flex justify-between md:flex-col'>
                                         <p className='info-14'>Nationality</p>
-                                        <p className='info-14'>-</p>
+                                        <p className='info-14'>{session?.kycstatus === 'success' ? kycList.country : '-'} </p>
                                     </div>
                                     <div className=' flex justify-between md:flex-col'>
                                         <p className='info-14'>Name</p>
-                                        <p className='info-14'>-</p>
+                                        <p className='info-14'>{session?.kycstatus === 'success' ? kycList.name : '-'}</p>
                                     </div>
                                     <div className=' flex justify-between md:flex-col'>
                                         <p className='info-14'>Identity no.</p>
-                                        <p className='info-14'>-</p>
+                                        <p className='info-14 text-ellipsis break-words whitespace-nowrap overflow-hidden'> {session?.kycstatus === 'success' ? kycList.docnumber : '-'}</p>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
                     </div>
-                    <div className='max-w-lg w-full bg-table-bg rounded-xl mt-7 info-14'>
-                        <p className='py-10 px-7 ' >
-
-                            Your identification information has been submitted. We will inform you as soon as the review is completed.
-                        </p>
+                    <div className='max-w-max w-full bg-table-bg rounded-xl mt-7 info-14'>
+                        <div className='py-10 px-7 ' >
+                        {session?.kycstatus === 'success' ?
+                        <div className='flex gap-3'>
+                        <Image src='/assets/icons/tick.svg' alt='error' width={20} height={20}></Image>
+                        <p className='dark:text-black info-14-16'>Verified</p>
+                    </div> : 
+                        'Your identification information has been submitted. We will inform you as soon as the review is completed.'
+                        }
+                        </div>
                     </div>
                 </>
 

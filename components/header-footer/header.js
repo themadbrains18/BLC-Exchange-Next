@@ -219,7 +219,7 @@ const Header = (props) => {
             
              <div
            
-             className={`group hidden relative  hover:pb-8 hover:-mb-8 ${
+             className={`group hidden relative hover:px-[30px] hover:mx-[-30px] cursor-pointer hover:pb-8 hover:-mb-8 ${
                login2 === true ? "lg:block" : "hidden"
              }`}
            >

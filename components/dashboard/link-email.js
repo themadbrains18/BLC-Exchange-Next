@@ -10,6 +10,7 @@ import { otpMatch, updateUserSecurity } from '../../libs/commanMethod';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
+import { signOut } from 'next-auth/react';
 
 const formSchema = Yup.object().shape({
   email: Yup.string()
@@ -72,7 +73,7 @@ const LinkEmail = ({ sessions }) => {
     }).then(response => response.json());
     const inputElements = document.querySelectorAll('.input_wrapper input');
     inputElements.forEach((ele, index) => {
-      ele.value=''
+      ele.value = ''
     })
     if (otpResponse.data.status === 200 && otpResponse.data != undefined) {
       setCount(count + 1);
@@ -93,7 +94,7 @@ const LinkEmail = ({ sessions }) => {
   //====================================================================
   const Submit = async (e) => {
     e.preventDefault();
-      setClick(true)
+    setClick(true)
     let formdata = { email: filledEmail, number: "" }
     let userExist = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users/check`, {
       method: "POST",
@@ -104,6 +105,7 @@ const LinkEmail = ({ sessions }) => {
       toast.error(userExist.data.message, {
         position: toast.POSITION.TOP_RIGHT, autoClose: 5000
       })
+      setClick(false)
     }
     else {
       let obj = { username: filledEmail, otp: fillOtp, time: new Date() };
@@ -113,17 +115,28 @@ const LinkEmail = ({ sessions }) => {
       if (result.status === 200) {
 
         // send email otp when mobile otp matched
+        let emailOtpForm = { 'email': sessions?.user?.email };
         let OtpForm = { 'number': sessions.user.number, 'dial_code': sessions.user.dial_code };
-        await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp/sms`, {
-          method: "POST",
-          body: JSON.stringify(OtpForm)
-        }).then(response => response.json());
+        if (sessions?.user?.number !== '' && sessions?.user?.dial_code !== undefined) {
+          await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp/sms`, {
+            method: "POST",
+            body: JSON.stringify(OtpForm)
+          }).then(response => response.json());
+        }
+        if (emailOtpForm !== undefined || emailOtpForm !== '') {
+          await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/otp`, {
+            method: "POST",
+            body: JSON.stringify(emailOtpForm)
+          }).then(response => response.json());
+        }
         setShowver(true)
       }
       else {
-        toast.error(result.data.message, {
+        setClick(false)
+        toast.error(result.message, {
           position: toast.POSITION.TOP_RIGHT, autoClose: 5000
         })
+
       }
     }
   }
@@ -139,7 +152,8 @@ const LinkEmail = ({ sessions }) => {
       });
       setClick(false)
       setShowver(false)
-      router.push('/dashboard/setting');
+      signOut()
+      router.push('/');
     }
     else {
       toast.error(response.message.errors[0].message, {

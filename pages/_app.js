@@ -40,9 +40,11 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
     window.addEventListener("resize", () => {
       if (ref.current !== null) {
         padding = ref.current.offsetHeight;
-        // console.log(padding)
+        // console.log(padding + "in resize function")
         setPad(padding);
+
         ref2.current.setAttribute("style", `padding-top: ${padding}px`);
+
       }
 
     });
@@ -50,6 +52,7 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
 
   const heightUpdate = (topPaddong) => {
     padding = document.querySelector(".navbar").offsetHeight;
+    // console.log(padding+"in height update function")
     ref2.current.setAttribute("style", `padding-top: ${padding}px`);
   };
   return (
@@ -60,7 +63,14 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
             <Loader />
           </div>
         )}
-        <SessionProvider session={session}>
+        <SessionProvider 
+         session={session} 
+        //  basePath='/'
+         // Re-fetch session every 5 minutes
+        //  refetchInterval={1 * 60}
+         // Re-fetches session when window is focused
+        //  refetchOnWindowFocus={true}
+         >
           <Context.Provider
             value={{
               mode,
@@ -77,6 +87,7 @@ export default function App({ Component, pageProps: { session, ...pageProps }, p
               setVerifyData
             }}
           >
+            
             <div
               className={` bg-black  opacity-0 invisible duration-300 fixed top-0 left-0 h-full w-full ${click && "!visible opacity-50 z-[2]"
                 }`}

@@ -292,9 +292,12 @@ input[type=number]::-webkit-outer-spin-button {
 .qwe [stroke="#212833"]{
   stroke: #fff!important;
 }
+
 .qwe [fill="#212833"]{
   fill:#fff!important;
 }
+
+
 .table_box::-webkit-scrollbar{
   display: none;
 }
